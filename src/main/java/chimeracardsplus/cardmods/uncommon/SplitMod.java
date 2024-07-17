@@ -1,0 +1,83 @@
+package chimeracardsplus.cardmods.uncommon;
+
+import CardAugments.cardmods.AbstractAugment;
+import basemod.abstracts.AbstractCardModifier;
+import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.damagemods.SunderDamage;
+import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
+import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SplitMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(SplitMod.class.getSimpleName());
+    public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
+    public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
+
+    @Override
+    public boolean validCard(AbstractCard card) {
+        return cardCheck(card, (c) -> (c.cost >= 1 && c.type == AbstractCard.CardType.ATTACK && doesntUpgradeCost()));
+    }
+
+    @Override
+    public void onInitialApplication(AbstractCard card) {
+        card.cost += 1;
+        card.costForTurn = card.cost;
+        DamageModifierManager.addModifier(card, new SunderDamage(card.cost));
+    }
+
+    public void onUpgradeCheck(AbstractCard card) {
+        List<AbstractDamageModifier> mods = DamageModifierManager.modifiers(card);
+        List<AbstractDamageModifier> toRemove = new ArrayList<>();
+        for (AbstractDamageModifier m : mods) {
+            if (m instanceof SunderDamage) {
+                toRemove.add(m);
+            }
+        }
+        for (AbstractDamageModifier m : toRemove) {
+            DamageModifierManager.removeModifier(card, m);
+        }
+        DamageModifierManager.addModifier(card, new SunderDamage(card.cost));
+    }
+
+    @Override
+    public String getPrefix() {
+        return TEXT[0];
+    }
+
+    @Override
+    public String getSuffix() {
+        return TEXT[1];
+    }
+
+    @Override
+    public String getAugmentDescription() {
+        return TEXT[2];
+    }
+
+    @Override
+    public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card.cost <= 1) {
+            return rawDescription;
+        }
+        return insertAfterText(rawDescription, card.cost <= 3 ? CARD_TEXT[card.cost - 2] : String.format(CARD_TEXT[2], card.cost));
+    }
+
+    @Override
+    public AugmentRarity getModRarity() {
+        return AugmentRarity.UNCOMMON;
+    }
+
+    @Override
+    public AbstractCardModifier makeCopy() {
+        return new SplitMod();
+    }
+
+    @Override
+    public String identifier(AbstractCard card) {
+        return ID;
+    }
+}
