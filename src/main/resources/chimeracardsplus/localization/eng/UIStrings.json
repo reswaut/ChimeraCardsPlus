@@ -206,9 +206,9 @@
       " NL Lose 2 HP. NL Gain 1 Strength."
     ]
   },
-  "chimeracardsplus:SentriedMod": {
+  "chimeracardsplus:GuardedMod": {
     "TEXT": [
-      "Sentried ",
+      "Guarded ",
       "",
       "Gains [E] when #yExhausted."
     ],
@@ -220,7 +220,7 @@
     "TEXT": [
       "Separate ",
       "",
-      "Increases card value by #b25%. NL Adds #yExhaust ALL cards in your hand with a different type."
+      "Increases card value by #b33%. NL #yExhausts ALL cards in your hand with a different type."
     ],
     "EXTRA_TEXT": [
       " NL Exhaust ALL non-Attack cards in your hand.",
@@ -647,7 +647,7 @@
     "TEXT": [
       "Stable ",
       "",
-      "Costs [E] more. NL Increases damage and #yBlock by #b33%. NL Retains your hand this turn."
+      "Costs [E] more. NL Increases damage and #yBlock by #b33%. NL #yRetains your hand this turn."
     ],
     "EXTRA_TEXT": [
       " NL Retain your hand this turn."
@@ -657,7 +657,7 @@
     "TEXT": [
       "Superluminal ",
       "",
-      "Reduces card values by #b3. NL Draws #b1 card if less than #b3(4) cards are played this turn."
+      "Reduces damage and #yBlock by #b3. NL Draws #b1 card if less than #b3(4) cards are played this turn."
     ],
     "EXTRA_TEXT": [
       " NL If you have played less than %s cards this turn, draw 1 card.",
@@ -1050,7 +1050,7 @@
     "TEXT": [
       "Shackling ",
       "",
-      "Applies #b5 #yStrength down. NL Adds #yExhaust."
+      "Applies #b5 #yStrength down for one turn. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
       " NL Enemy loses 5 Strength this turn. NL Exhaust."
@@ -1156,7 +1156,7 @@
     "TEXT": [
       "Violent ",
       "",
-      "Puts #2 random Attacks from your draw pile into your hand. NL Adds #yExhaust."
+      "Puts #b2 random Attacks from your draw pile into your hand. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
       " NL Put 2 random Attacks from your draw pile into your hand. NL Exhaust.",
@@ -1457,7 +1457,7 @@
     "TEXT": [
       "Du-Vu ",
       "",
-      "Increases damage by the number of #rCurses in your deck. NL Only appears if you have #yDu-Vu #yDoll."
+      "Increases damage by the number of #rCurses in your deck."
     ],
     "EXTRA_TEXT": [
       " NL Deals 1 more damage for each Curse in your deck."
