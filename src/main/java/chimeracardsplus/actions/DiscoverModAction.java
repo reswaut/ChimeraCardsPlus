@@ -35,16 +35,11 @@ public class DiscoverModAction extends AbstractGameAction {
             if (!this.retrieveCard) {
                 if (AbstractDungeon.cardRewardScreen.discoveryCard != null) {
                     AbstractCard disCard = AbstractDungeon.cardRewardScreen.discoveryCard.makeStatEquivalentCopy();
-                    AbstractCard disCard2 = AbstractDungeon.cardRewardScreen.discoveryCard.makeStatEquivalentCopy();
                     if (AbstractDungeon.player.hasPower("MasterRealityPower")) {
                         disCard.upgrade();
-                        disCard2.upgrade();
                     }
 
-                    disCard.setCostForTurn(0);
-                    disCard2.setCostForTurn(0);
                     disCard.current_x = -1000.0F * Settings.xScale;
-                    disCard2.current_x = -1000.0F * Settings.xScale + AbstractCard.IMG_HEIGHT_S;
                     if (AbstractDungeon.player.hand.size() < 10) {
                         AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(disCard, (float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
                     } else {

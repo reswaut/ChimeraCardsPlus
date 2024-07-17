@@ -260,9 +260,9 @@
       " NL Apply 1 Weak and Vulnerable."
     ]
   },
-  "chimeracardsplus:BrutalMod": {
+  "chimeracardsplus:CubicMod": {
     "TEXT": [
-      "Brutal ",
+      "Cubic ",
       "",
       "Loses #b1 HP. Draws #b1 card."
     ],
@@ -1073,7 +1073,7 @@
       "Costs [E] . NL Adds the card to your hand with a chosen Modifier. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
-      "Choose 1 of 3 random Modifiers. Add %s into your hand with the chosen Modifier on it.",
+      "Choose 1 of 3 random Modifiers. Add %s into your hand with the chosen Modifier on it. NL Exhaust.",
       "Innate NL "
     ]
   },

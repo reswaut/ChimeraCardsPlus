@@ -11,8 +11,8 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-public class BrutalMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(BrutalMod.class.getSimpleName());
+public class CubicMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(CubicMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
@@ -54,7 +54,7 @@ public class BrutalMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new BrutalMod();
+        return new CubicMod();
     }
 
     @Override
