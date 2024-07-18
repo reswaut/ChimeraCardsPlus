@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.blue.Melter;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -26,7 +27,7 @@ public class HeatingMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost != -2
+        return cardCheck(card, (c) -> (c.cost != -2 && !(c instanceof Melter)
                 && c.type == AbstractCard.CardType.ATTACK
                 && c.baseDamage >= 3 && usesEnemyTargeting()));
     }

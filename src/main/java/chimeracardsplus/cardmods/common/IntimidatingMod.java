@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.red.Intimidate;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -35,6 +36,14 @@ public class IntimidatingMod extends AbstractAugment {
     }
 
     @Override
+    public float modifyBaseMagic(float magic, AbstractCard card) {
+        if (card instanceof Intimidate) {
+            return magic + 1;
+        }
+        return magic;
+    }
+
+    @Override
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> (c.cost >= -1
                 && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
@@ -57,12 +66,17 @@ public class IntimidatingMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof Intimidate) {
+            return rawDescription;
+        }
         return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1]);
     }
 
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            this.addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new WeakPower(mo, 1, false), 1, true, AbstractGameAction.AttackEffect.NONE));
+        if (!(card instanceof Intimidate)) {
+            for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                this.addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new WeakPower(mo, 1, false), 1, true, AbstractGameAction.AttackEffect.NONE));
+            }
         }
     }
 

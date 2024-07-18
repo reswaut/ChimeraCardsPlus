@@ -7,6 +7,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.red.WildStrike;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -18,7 +19,9 @@ public class PainfulMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        MultiCardPreview.add(card, new Wound());
+        if (!(card instanceof WildStrike)) {
+            MultiCardPreview.add(card, new Wound());
+        }
         card.cost -= 1;
         card.costForTurn = card.cost;
     }
@@ -45,6 +48,9 @@ public class PainfulMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof WildStrike) {
+            return rawDescription.replace(CARD_TEXT[1], CARD_TEXT[2]);
+        }
         return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 

@@ -8,6 +8,8 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.purple.Evaluate;
+import com.megacrit.cardcrawl.cards.purple.Pray;
 import com.megacrit.cardcrawl.cards.tempCards.Insight;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -22,28 +24,31 @@ public class WiseMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        MultiCardPreview.add(card, new Insight());
+        if (!(card instanceof Evaluate || card instanceof Pray)) {
+            MultiCardPreview.add(card, new Insight());
+        }
     }
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> ((c.cost == -1 || c.cost >= 1) && doesntUpgradeCost())) &&
+        return cardCheck(card, c -> ((c.cost == -1 || c.cost >= 1) && doesntUpgradeCost()
+                && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL))) &&
                 (card.baseDamage > 1 || card.baseBlock > 1 || (card.baseMagicNumber > 1 && doesntDowngradeMagicNoUseChecks(card)));
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 1) ? (damage * 2.0F / 3.0F) : damage;
+        return (damage > 1) ? (damage * 0.75F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 1) ? (block * 2.0F / 3.0F) : block;
+        return (block > 1) ? (block * 0.75F) : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 2.0F / 3.0F) : magic;
+        return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 0.75F) : magic;
     }
 
     @Override
@@ -63,13 +68,20 @@ public class WiseMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        int cost = card.cost;
+        if (card instanceof Evaluate || card instanceof Pray) {
+            cost += 1;
+        }
         String text = "";
-        if (card.cost == -1) {
+        if (cost == -1) {
             text = CARD_TEXT[2];
-        } else if (card.cost == 1) {
-            text = String.format(CARD_TEXT[0], card.cost);
-        } else if (card.cost > 1) {
-            text = String.format(CARD_TEXT[1], card.cost);
+        } else if (cost == 1) {
+            text = CARD_TEXT[0];
+        } else if (cost > 1) {
+            text = String.format(CARD_TEXT[1], cost);
+        }
+        if (card instanceof Evaluate || card instanceof Pray) {
+            return rawDescription.replace(CARD_TEXT[3], text);
         }
         return insertAfterText(rawDescription, text);
     }

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.green.Choke;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -25,6 +26,14 @@ public class ChokingMod extends AbstractAugment implements DynvarCarrier {
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
         return damage * 0.80F;
+    }
+
+    @Override
+    public float modifyBaseMagic(float magic, AbstractCard card) {
+        if (card instanceof Choke) {
+            return magic + getBaseVal(card);
+        }
+        return magic;
     }
 
     @Override
@@ -82,12 +91,15 @@ public class ChokingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof Choke) {
+            return rawDescription;
+        }
         return insertAfterText(rawDescription, String.format(CARD_TEXT[0], DESCRIPTION_KEY));
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (target != null) {
+        if (!(card instanceof Choke) && target != null) {
             this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new ChokePower(target, getBaseVal(card)), getBaseVal(card)));
         }
     }

@@ -6,9 +6,11 @@ import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.red.PerfectedStrike;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import static com.megacrit.cardcrawl.core.CardCrawlGame.isInARun;
 
 public class PerfectMod extends AbstractAugment implements DynvarCarrier {
     public static final String ID = ChimeraCardsPlus.makeID(PerfectMod.class.getSimpleName());
@@ -18,29 +20,6 @@ public class PerfectMod extends AbstractAugment implements DynvarCarrier {
     public static final int[] multiplier = { 6, 4, 3, 2 };
     public boolean modified;
     public boolean upgraded;
-
-    public static int countCards() {
-        int count = 0;
-        for (AbstractCard c : AbstractDungeon.player.hand.group) {
-            if (isStrike(c)) {
-                ++count;
-            }
-        }
-
-        for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
-            if (isStrike(c)) {
-                ++count;
-            }
-        }
-
-        for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
-            if (isStrike(c)) {
-                ++count;
-            }
-        }
-
-        return count;
-    }
 
     public static boolean isStrike(AbstractCard c) {
         return c.hasTag(AbstractCard.CardTags.STRIKE);
@@ -53,12 +32,27 @@ public class PerfectMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+        if (isInARun() && (card instanceof PerfectedStrike)) {
+            float realBaseDamage = card.baseDamage - card.magicNumber * PerfectedStrike.countCards();
+            return damage - realBaseDamage * 0.5F;
+        }
         return damage * 0.5F;
     }
 
     @Override
     public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage + getBaseVal(card) * countCards();
+        if (card instanceof PerfectedStrike) {
+            return damage;
+        }
+        return damage + getBaseVal(card) * PerfectedStrike.countCards();
+    }
+
+    @Override
+    public float modifyBaseMagic(float magic, AbstractCard card) {
+        if (card instanceof PerfectedStrike) {
+            return magic + getBaseVal(card);
+        }
+        return magic;
     }
 
     public int getBaseVal(AbstractCard card) {
@@ -66,7 +60,11 @@ public class PerfectMod extends AbstractAugment implements DynvarCarrier {
         if (upgrades >= multiplier.length) {
             upgrades = multiplier.length - 1;
         }
-        return (card.baseDamage - 1) / multiplier[upgrades] + 1;
+        int realBaseDamage = card.baseDamage;
+        if (isInARun() && (card instanceof PerfectedStrike)) {
+            realBaseDamage -= card.magicNumber * PerfectedStrike.countCards();
+        }
+        return (realBaseDamage - 1) / multiplier[upgrades] + 1;
     }
 
     public String key() {
@@ -113,6 +111,9 @@ public class PerfectMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof PerfectedStrike) {
+            return rawDescription;
+        }
         return insertAfterText(rawDescription, String.format(CARD_TEXT[0], DESCRIPTION_KEY));
     }
 

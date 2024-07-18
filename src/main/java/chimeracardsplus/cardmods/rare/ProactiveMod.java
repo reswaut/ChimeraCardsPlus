@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.PutOnDeckAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.colorless.ThinkingAhead;
+import com.megacrit.cardcrawl.cards.red.Warcry;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -18,7 +20,7 @@ public class ProactiveMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1));
+        return cardCheck(card, (c) -> (c.cost >= -1 && !(c instanceof Warcry || c instanceof ThinkingAhead)));
     }
 
     @Override

@@ -5,6 +5,7 @@ import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.purple.Brilliance;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -26,7 +27,7 @@ public class BrilliantMod extends AbstractAugment {
         return cardCheck(card, c -> c.baseDamage >= 1) && characterCheck(p -> {
             ArrayList<AbstractCard> deck = p.masterDeck.group;
             for (AbstractCard c : deck) {
-                if (c.rawDescription.contains(CARD_TEXT[1])) {
+                if (c.rawDescription.contains(CARD_TEXT[3])) {
                     return true;
                 }
             }
@@ -51,6 +52,9 @@ public class BrilliantMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof Brilliance) {
+            return rawDescription.replace(CARD_TEXT[1], CARD_TEXT[2]);
+        }
         return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 

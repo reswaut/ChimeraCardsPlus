@@ -7,6 +7,7 @@ import chimeracardsplus.actions.ExhaustAllCardsInHandAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.red.SeverSoul;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -21,7 +22,7 @@ public class SeparateMod extends AbstractAugment {
     @Override
     public boolean validCard(AbstractCard card) {
         return (card.baseDamage >= 3 || card.baseBlock >= 3 || (card.magicNumber >= 3 && doesntDowngradeMagicNoUseChecks(card)))
-                && cardCheck(card, (c) -> (c.cost >= -1
+                && cardCheck(card, (c) -> (c.cost >= -1 && !(c instanceof SeverSoul)
                 && (c.type == AbstractCard.CardType.ATTACK ||
                 c.type == AbstractCard.CardType.SKILL ||
                 c.type == AbstractCard.CardType.POWER)));

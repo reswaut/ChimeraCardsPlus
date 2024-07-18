@@ -7,6 +7,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.colorless.Bite;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -22,13 +23,22 @@ public class BitingMod extends AbstractAugment implements DynvarCarrier {
     @Override
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> (c.cost >= 0
-                && !c.hasTag(AbstractCard.CardTags.STARTER_STRIKE)
-                && !c.hasTag(AbstractCard.CardTags.STARTER_DEFEND)));
+                && c.rarity != AbstractCard.CardRarity.BASIC));
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, getBaseVal(card)));
+        if (!(card instanceof Bite)) {
+            this.addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, getBaseVal(card)));
+        }
+    }
+
+    @Override
+    public float modifyBaseMagic(float magic, AbstractCard card) {
+        if (card instanceof Bite) {
+            return magic + getBaseVal(card);
+        }
+        return magic;
     }
 
     public int getBaseVal(AbstractCard card) {
@@ -79,6 +89,9 @@ public class BitingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof Bite) {
+            return rawDescription;
+        }
         return insertAfterText(rawDescription, String.format(CARD_TEXT[0], DESCRIPTION_KEY));
     }
 

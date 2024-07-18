@@ -7,6 +7,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.red.FlameBarrier;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -22,7 +23,7 @@ public class FlamingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && card.baseBlock > 1;
+        return card.cost >= -1 && card.baseBlock >= 4;
     }
 
     @Override
@@ -31,12 +32,22 @@ public class FlamingMod extends AbstractAugment implements DynvarCarrier {
     }
 
     @Override
+    public float modifyBaseMagic(float magic, AbstractCard card) {
+        if (card instanceof FlameBarrier) {
+            return magic + getBaseVal(card);
+        }
+        return magic;
+    }
+
+    @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FlameBarrierPower(AbstractDungeon.player, getBaseVal(card)), getBaseVal(card)));
+        if (!(card instanceof FlameBarrier)) {
+            this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FlameBarrierPower(AbstractDungeon.player, getBaseVal(card)), getBaseVal(card)));
+        }
     }
 
     public int getBaseVal(AbstractCard card) {
-        return ((int)(card.baseBlock * 0.75F) - 1) / 3 + 1;
+        return card.baseBlock / 4;
     }
 
     public String key() {
@@ -83,6 +94,9 @@ public class FlamingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof FlameBarrier) {
+            return rawDescription;
+        }
         return insertAfterText(rawDescription, String.format(CARD_TEXT[0], DESCRIPTION_KEY));
     }
 

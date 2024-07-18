@@ -7,6 +7,7 @@ import chimeracardsplus.damagemods.LearnDamage;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.purple.LessonLearned;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class LearnMod extends AbstractAugment {
     @Override
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost()
-                && !c.hasTag(AbstractCard.CardTags.STARTER_STRIKE)
+                && c.rarity != AbstractCard.CardRarity.BASIC
                 && c.type == AbstractCard.CardType.ATTACK));
     }
 
@@ -72,6 +73,9 @@ public class LearnMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof LessonLearned) {
+            return rawDescription.replace(CARD_TEXT[2], CARD_TEXT[3]);
+        }
         return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1]);
     }
 

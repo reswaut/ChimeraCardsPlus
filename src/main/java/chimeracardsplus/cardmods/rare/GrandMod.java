@@ -5,6 +5,7 @@ import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.green.GrandFinale;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -19,7 +20,7 @@ public class GrandMod extends AbstractAugment {
     @Override
     public boolean validCard(AbstractCard card) {
         return (card.baseDamage >= 1 || card.baseBlock >= 1 || (card.magicNumber >= 1 && doesntDowngradeMagicNoUseChecks(card)))
-                && cardCheck(card, (c) -> (c.cost >= -1));
+                && cardCheck(card, (c) -> (c.cost >= -1) && !(c instanceof GrandFinale));
     }
 
     @Override

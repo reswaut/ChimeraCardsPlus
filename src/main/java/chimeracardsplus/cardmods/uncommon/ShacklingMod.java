@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.colorless.DarkShackles;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -17,9 +18,11 @@ public class ShacklingMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(ShacklingMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
+    private boolean addedExhaust;
 
     @Override
     public void onInitialApplication(AbstractCard card) {
+        addedExhaust = !card.exhaust;
         card.exhaust = true;
     }
 
@@ -27,7 +30,34 @@ public class ShacklingMod extends AbstractAugment {
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> (c.cost >= -1
                 && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)
-                && notExhaust(c) && usesEnemyTargeting()));
+                && usesEnemyTargeting()));
+    }
+
+    @Override
+    public void onUpgradeCheck(AbstractCard card) {
+        if (!card.exhaust) {
+            addedExhaust = true;
+            card.exhaust = true;
+        }
+        card.initializeDescription();
+    }
+
+    @Override
+    public float modifyBaseMagic(float magic, AbstractCard card) {
+        if (card instanceof DarkShackles) {
+            return magic + 5.0F;
+        }
+        return magic;
+    }
+
+    @Override
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        if (!(card instanceof DarkShackles) && target != null) {
+            this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new StrengthPower(target, -5), -5, true, AbstractGameAction.AttackEffect.NONE));
+            if (!target.hasPower("Artifact")) {
+                this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new GainStrengthPower(target, 5), 5, true, AbstractGameAction.AttackEffect.NONE));
+            }
+        }
     }
 
     @Override
@@ -47,18 +77,10 @@ public class ShacklingMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, CARD_TEXT[0]);
-    }
-
-    @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (target == null) {
-            return;
+        if (card instanceof DarkShackles) {
+            return rawDescription;
         }
-        this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new StrengthPower(target, -5), -5, true, AbstractGameAction.AttackEffect.NONE));
-        if (!target.hasPower("Artifact")) {
-            this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new GainStrengthPower(target, 5), 5, true, AbstractGameAction.AttackEffect.NONE));
-        }
+        return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1]);
     }
 
     @Override

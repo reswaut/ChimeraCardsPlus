@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.green.CripplingPoison;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -34,9 +35,16 @@ public class CripplingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= 0
-                && (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL)
-                && cardCheck(card, (c) -> doesntUpgradeCost());
+        return cardCheck(card, (c) -> c.cost >= 0 && doesntUpgradeCost()
+                && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL));
+    }
+
+    @Override
+    public float modifyBaseMagic(float magic, AbstractCard card) {
+        if (card instanceof CripplingPoison) {
+            return magic + getBaseVal(card);
+        }
+        return magic;
     }
 
     public int getBaseVal(AbstractCard card) {
@@ -91,13 +99,18 @@ public class CripplingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof CripplingPoison) {
+            return insertAfterText(rawDescription, String.format(CARD_TEXT[2]));
+        }
         return insertAfterText(rawDescription, String.format(addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1], DESCRIPTION_KEY));
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            this.addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new PoisonPower(mo, AbstractDungeon.player, getBaseVal(card)), getBaseVal(card), true, AbstractGameAction.AttackEffect.NONE));
+            if (!(card instanceof CripplingPoison)) {
+                this.addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new PoisonPower(mo, AbstractDungeon.player, getBaseVal(card)), getBaseVal(card), true, AbstractGameAction.AttackEffect.NONE));
+            }
             this.addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new WeakPower(mo, 1, false), 1, true, AbstractGameAction.AttackEffect.NONE));
         }
     }

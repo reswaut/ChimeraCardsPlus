@@ -3,9 +3,12 @@ package chimeracardsplus.cardmods.uncommon;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.unique.GainEnergyIfDiscardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.green.SneakyStrike;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
@@ -31,6 +34,11 @@ public class StealthyMod extends AbstractAugment {
     }
 
     @Override
+    public Color getGlow(AbstractCard card) {
+        return (GameActionManager.totalDiscardedThisTurn > 0) ? Color.GOLD : null;
+    }
+
+    @Override
     public String getPrefix() {
         return TEXT[0];
     }
@@ -47,6 +55,9 @@ public class StealthyMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof SneakyStrike) {
+            return rawDescription.replace(CARD_TEXT[1], CARD_TEXT[2]);
+        }
         return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 

@@ -13,8 +13,7 @@ public class SmoothMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.baseBlock >= 1))
-                && characterCheck((p) -> p.hasRelic("Oddly Smooth Stone"));
+        return cardCheck(card, (c) -> (c.baseBlock >= 1));
     }
 
     @Override

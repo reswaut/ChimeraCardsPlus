@@ -7,6 +7,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.red.Immolate;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -18,7 +19,9 @@ public class OverclockedMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        MultiCardPreview.add(card, new Burn());
+        if (!(card instanceof Immolate)) {
+            MultiCardPreview.add(card, new Burn());
+        }
         card.cost -= 1;
         card.costForTurn = card.cost;
     }
@@ -45,6 +48,9 @@ public class OverclockedMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof Immolate) {
+            return rawDescription.replace(CARD_TEXT[1], CARD_TEXT[2]);
+        }
         return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 

@@ -7,6 +7,7 @@ import chimeracardsplus.damagemods.SunderDamage;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.blue.Sunder;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
 import java.util.ArrayList;
@@ -60,10 +61,18 @@ public class SplitMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card.cost <= 1) {
+        int cost = card.cost;
+        if (card instanceof Sunder) {
+            cost += 3;
+        }
+        if (cost <= 0) {
             return rawDescription;
         }
-        return insertAfterText(rawDescription, card.cost <= 3 ? CARD_TEXT[card.cost - 2] : String.format(CARD_TEXT[2], card.cost));
+        String text = (cost <= 3) ? CARD_TEXT[cost - 1] : String.format(CARD_TEXT[3], cost);
+        if (card instanceof Sunder) {
+            return rawDescription.replace(CARD_TEXT[4], text);
+        }
+        return insertAfterText(rawDescription, text);
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.red.SpotWeakness;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -38,7 +39,7 @@ public class ObservantMod extends AbstractAugment {
     @Override
     public boolean validCard(AbstractCard card) {
         return (card.baseDamage > 1 || card.baseBlock > 1 || (card.magicNumber > 1 && doesntDowngradeMagicNoUseChecks(card)))
-                && cardCheck(card, (c) -> ((c.cost == -1 || c.cost >= 1) && doesntUpgradeCost() && usesEnemyTargeting()));
+                && cardCheck(card, (c) -> ((c.cost == -1 || c.cost >= 1) && doesntUpgradeCost() && usesEnemyTargeting() && !(c instanceof SpotWeakness)));
     }
 
     @Override

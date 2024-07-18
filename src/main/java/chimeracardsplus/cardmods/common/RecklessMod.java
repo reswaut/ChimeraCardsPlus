@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.red.RecklessCharge;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -25,7 +26,7 @@ public class RecklessMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && (card.baseDamage > 1 || card.baseBlock > 1);
+        return cardCheck(card, (c) -> (c.cost >= -1 && (c.baseDamage > 1 || c.baseBlock > 1)));
     }
 
     @Override
@@ -55,6 +56,9 @@ public class RecklessMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof RecklessCharge) {
+            return rawDescription.replace(CARD_TEXT[1], CARD_TEXT[2]);
+        }
         return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 

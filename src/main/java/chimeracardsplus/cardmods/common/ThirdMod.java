@@ -8,6 +8,9 @@ import com.megacrit.cardcrawl.actions.utility.ScryAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.purple.CutThroughFate;
+import com.megacrit.cardcrawl.cards.purple.JustLucky;
+import com.megacrit.cardcrawl.cards.purple.ThirdEye;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -25,7 +28,8 @@ public class ThirdMod extends AbstractAugment implements DynvarCarrier {
     @Override
     public boolean validCard(AbstractCard card) {
         return (card.baseDamage > 1 || card.baseBlock > 1 || (card.baseMagicNumber > 1 && doesntDowngradeMagicNoUseChecks(card))) &&
-                cardCheck(card, c -> (c.cost != -2));
+                cardCheck(card, c -> (c.cost != -2)
+                        && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL));
     }
 
     @Override
@@ -40,12 +44,17 @@ public class ThirdMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
+        if (card instanceof CutThroughFate || card instanceof JustLucky || card instanceof ThirdEye) {
+            return magic * 0.75F + getBaseVal(card);
+        }
         return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 0.75F) : magic;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new ScryAction(getBaseVal(card)));
+        if (!(card instanceof CutThroughFate || card instanceof JustLucky || card instanceof ThirdEye)) {
+            this.addToBot(new ScryAction(getBaseVal(card)));
+        }
     }
 
     public int getBaseVal(AbstractCard card) {
@@ -96,6 +105,9 @@ public class ThirdMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof CutThroughFate || card instanceof JustLucky || card instanceof ThirdEye) {
+            return rawDescription;
+        }
         return insertAfterText(rawDescription, String.format(CARD_TEXT[0], DESCRIPTION_KEY));
     }
 

@@ -5,6 +5,7 @@ import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.red.Sentinel;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
 public class GuardedMod extends AbstractAugment {
@@ -34,6 +35,9 @@ public class GuardedMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof Sentinel) {
+            return rawDescription.replace(CARD_TEXT[1], CARD_TEXT[2]);
+        }
         return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 
@@ -44,7 +48,7 @@ public class GuardedMod extends AbstractAugment {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.RARE;
+        return AugmentRarity.UNCOMMON;
     }
 
     @Override

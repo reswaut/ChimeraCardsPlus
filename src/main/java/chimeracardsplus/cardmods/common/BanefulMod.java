@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.unique.BaneAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.green.Bane;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -29,7 +30,7 @@ public class BanefulMod extends AbstractAugment {
         return cardCheck(card, c -> (c.cost >= -1 && c.baseDamage >= 3 && usesEnemyTargeting())) && characterCheck(p -> {
             ArrayList<AbstractCard> deck = p.masterDeck.group;
             for (AbstractCard c : deck) {
-                if (c.rawDescription.contains(CARD_TEXT[1])) {
+                if (c.rawDescription.contains(CARD_TEXT[3])) {
                     return true;
                 }
             }
@@ -54,6 +55,9 @@ public class BanefulMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof Bane) {
+            return rawDescription.replace(CARD_TEXT[1], CARD_TEXT[2]);
+        }
         return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 

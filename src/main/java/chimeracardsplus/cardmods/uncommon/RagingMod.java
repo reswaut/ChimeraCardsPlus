@@ -6,6 +6,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.red.Rage;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -22,8 +23,18 @@ public class RagingMod extends AbstractAugment {
     }
 
     @Override
+    public float modifyBaseMagic(float magic, AbstractCard card) {
+        if (card instanceof Rage) {
+            return magic + 3;
+        }
+        return magic;
+    }
+
+    @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new RagePower(AbstractDungeon.player, 3), 3));
+        if (!(card instanceof Rage)) {
+            this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new RagePower(AbstractDungeon.player, 3), 3));
+        }
     }
 
     @Override
@@ -43,6 +54,9 @@ public class RagingMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof Rage) {
+            return rawDescription;
+        }
         return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 

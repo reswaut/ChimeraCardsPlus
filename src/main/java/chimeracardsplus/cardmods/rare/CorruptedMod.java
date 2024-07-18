@@ -22,9 +22,7 @@ public class CorruptedMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= 1
-                && card.type == AbstractCard.CardType.SKILL
-                && cardCheck(card, (c) -> doesntUpgradeCost());
+        return cardCheck(card, (c) -> (c.cost >= 1 && c.type == AbstractCard.CardType.SKILL && doesntUpgradeCost()));
     }
 
     @Override

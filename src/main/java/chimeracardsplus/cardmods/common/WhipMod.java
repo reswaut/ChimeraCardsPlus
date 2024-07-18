@@ -9,12 +9,11 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.actions.watcher.HeadStompAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.purple.SashWhip;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
-import static chimeracardsplus.util.CardAugmentsExt.doesntDowngradeMagicNoUseChecks;
 
 public class WhipMod extends AbstractAugment implements DynvarCarrier {
     public static final String ID = ChimeraCardsPlus.makeID(WhipMod.class.getSimpleName());
@@ -26,8 +25,7 @@ public class WhipMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return (card.baseDamage > 1 || card.baseBlock > 1 || (card.baseMagicNumber > 1 && doesntDowngradeMagicNoUseChecks(card))) &&
-                cardCheck(card, c -> (c.cost != -2 && usesEnemyTargeting()));
+        return cardCheck(card, c -> ((c.baseDamage > 1 || c.baseBlock > 1) && c.cost != -2 && usesEnemyTargeting()));
     }
 
     @Override
@@ -42,20 +40,22 @@ public class WhipMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 0.75F) : magic;
+        if (card instanceof SashWhip) {
+            return magic + getBaseVal(card);
+        }
+        return magic;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (target == null) {
-            return;
+        if (!(card instanceof SashWhip) && target != null) {
+            this.addToBot(new HeadStompAction((AbstractMonster) target, getBaseVal(card)));
         }
-        this.addToBot(new HeadStompAction((AbstractMonster) target, getBaseVal(card)));
     }
 
     @Override
     public Color getGlow(AbstractCard card) {
-        if (!AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty()
+        if (!(card instanceof SashWhip) && !AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty()
                 && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).type == AbstractCard.CardType.ATTACK) {
             return Color.GOLD;
         }
@@ -110,6 +110,9 @@ public class WhipMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof SashWhip) {
+            return rawDescription;
+        }
         return insertAfterText(rawDescription, String.format(CARD_TEXT[0], DESCRIPTION_KEY));
     }
 

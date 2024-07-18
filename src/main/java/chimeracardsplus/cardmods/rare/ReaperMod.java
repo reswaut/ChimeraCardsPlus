@@ -8,6 +8,7 @@ import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.red.Reaper;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -22,8 +23,8 @@ public class ReaperMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1 && c.baseDamage >= 4
-                && !c.hasTag(AbstractCard.CardTags.STARTER_STRIKE)
+        return cardCheck(card, (c) -> c.cost >= -1 && c.baseDamage >= 4 && !(c instanceof Reaper)
+                && c.rarity != AbstractCard.CardRarity.BASIC
                 && c.type == AbstractCard.CardType.ATTACK);
     }
 

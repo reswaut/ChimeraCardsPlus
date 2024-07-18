@@ -6,6 +6,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.unique.ExpertiseAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.green.Expertise;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -17,7 +18,7 @@ public class ExpertMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost()));
+        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost() && !(c instanceof Expertise)));
     }
 
     @Override

@@ -1,4 +1,4 @@
-package chimeracardsplus.cardmods.uncommon;
+package chimeracardsplus.cardmods.rare;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
@@ -44,7 +44,7 @@ public class InescapableMod extends AbstractAugment {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.UNCOMMON;
+        return AugmentRarity.RARE;
     }
 
     @Override

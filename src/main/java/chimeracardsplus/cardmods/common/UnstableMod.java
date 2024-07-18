@@ -7,6 +7,7 @@ import chimeracardsplus.actions.UnloadCardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.green.Unload;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -22,7 +23,7 @@ public class UnstableMod extends AbstractAugment {
     @Override
     public boolean validCard(AbstractCard card) {
         return (card.baseDamage >= 4 || card.baseBlock >= 4 || (card.magicNumber >= 4 && doesntDowngradeMagicNoUseChecks(card)))
-                && cardCheck(card, (c) -> (c.cost >= -1
+                && cardCheck(card, (c) -> (c.cost >= -1 && !(c instanceof Unload)
                 && (c.type == AbstractCard.CardType.ATTACK ||
                 c.type == AbstractCard.CardType.SKILL ||
                 c.type == AbstractCard.CardType.POWER)));

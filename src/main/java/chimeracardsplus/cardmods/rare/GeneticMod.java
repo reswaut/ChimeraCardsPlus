@@ -37,7 +37,7 @@ public class GeneticMod extends AbstractAugment implements DynvarCarrier {
     }
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0 && c.baseBlock >= 4 && !c.hasTag(AbstractCard.CardTags.STARTER_DEFEND)));
+        return cardCheck(card, (c) -> (c.cost >= 0 && c.baseBlock >= 4 && c.rarity != AbstractCard.CardRarity.BASIC));
     }
 
     @Override

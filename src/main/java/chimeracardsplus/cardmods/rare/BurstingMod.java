@@ -6,6 +6,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.green.Burst;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -28,8 +29,18 @@ public class BurstingMod extends AbstractAugment {
     }
 
     @Override
+    public float modifyBaseMagic(float magic, AbstractCard card) {
+        if (card instanceof Burst) {
+            return magic + 1;
+        }
+        return magic;
+    }
+
+    @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new BurstPower(AbstractDungeon.player, 1), 1));
+        if (!(card instanceof Burst)) {
+            this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new BurstPower(AbstractDungeon.player, 1), 1));
+        }
     }
 
     @Override
@@ -49,6 +60,9 @@ public class BurstingMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof Burst) {
+            return rawDescription.replace(CARD_TEXT[1], CARD_TEXT[2]);
+        }
         return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 

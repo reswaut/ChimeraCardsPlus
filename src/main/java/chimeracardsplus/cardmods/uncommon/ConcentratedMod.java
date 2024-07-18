@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.green.Concentrate;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -27,11 +28,21 @@ public class ConcentratedMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        int discards = getBaseVal(card);
-        if (discards > 0) {
-            this.addToBot(new DiscardAction(AbstractDungeon.player, AbstractDungeon.player, discards, false));
+        if (!(card instanceof Concentrate)) {
+            int discards = getBaseVal(card);
+            if (discards > 0) {
+                this.addToBot(new DiscardAction(AbstractDungeon.player, AbstractDungeon.player, discards, false));
+            }
         }
         this.addToBot(new GainEnergyAction(2));
+    }
+
+    @Override
+    public float modifyBaseMagic(float magic, AbstractCard card) {
+        if (card instanceof Concentrate) {
+            return magic + getBaseVal(card);
+        }
+        return magic;
     }
 
     public int getBaseVal(AbstractCard card) {
@@ -86,6 +97,9 @@ public class ConcentratedMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof Concentrate) {
+            return rawDescription.replace(CARD_TEXT[3], CARD_TEXT[4]);
+        }
         String text;
         int discards = getBaseVal(card);
         if (discards > 1) {

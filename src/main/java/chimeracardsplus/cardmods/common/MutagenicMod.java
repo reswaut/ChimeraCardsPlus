@@ -16,8 +16,7 @@ public class MutagenicMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.baseDamage >= 1 && c.type == AbstractCard.CardType.ATTACK))
-                && characterCheck((p) -> p.hasRelic("MutagenicStrength"));
+        return cardCheck(card, (c) -> (c.baseDamage >= 1 && c.type == AbstractCard.CardType.ATTACK));
     }
 
     @Override

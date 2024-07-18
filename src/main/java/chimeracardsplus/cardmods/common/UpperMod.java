@@ -1,4 +1,4 @@
-package chimeracardsplus.cardmods.uncommon;
+package chimeracardsplus.cardmods.common;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.red.Uppercut;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -28,6 +29,14 @@ public class UpperMod extends AbstractAugment {
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
         return (block > 1) ? (block * 0.80F) : block;
+    }
+
+    @Override
+    public float modifyBaseMagic(float magic, AbstractCard card) {
+        if (card instanceof Uppercut) {
+            return magic + 1;
+        }
+        return magic;
     }
 
     @Override
@@ -52,20 +61,25 @@ public class UpperMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof Uppercut) {
+            return rawDescription;
+        }
         return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (target != null) {
-            this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new WeakPower(target, 1, false), 1, true, AbstractGameAction.AttackEffect.NONE));
-            this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new VulnerablePower(target, 1, false), 1, true, AbstractGameAction.AttackEffect.NONE));
+        if (!(card instanceof Uppercut)) {
+            if (target != null) {
+                this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new WeakPower(target, 1, false), 1, true, AbstractGameAction.AttackEffect.NONE));
+                this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new VulnerablePower(target, 1, false), 1, true, AbstractGameAction.AttackEffect.NONE));
+            }
         }
     }
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.UNCOMMON;
+        return AugmentRarity.COMMON;
     }
 
     @Override

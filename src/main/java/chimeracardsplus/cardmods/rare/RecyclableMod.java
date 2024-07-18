@@ -10,15 +10,15 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
-public class RecyclingMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(RecyclingMod.class.getSimpleName());
+public class RecyclableMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(RecyclableMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     private boolean inherentHack = true;
     private AbstractCard hiddenCard;
 
     // This modifier should be applied first.
-    public RecyclingMod() {
+    public RecyclableMod() {
         this.priority = -100;
     }
 
@@ -120,7 +120,7 @@ public class RecyclingMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new RecyclingMod();
+        return new RecyclableMod();
     }
 
     public boolean isInherent(AbstractCard card) {
