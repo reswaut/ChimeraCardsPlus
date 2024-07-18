@@ -1,13 +1,13 @@
 {
   "chimeracardsplus:ModConfigs": {
     "TEXT": [
-      "Chimera Cards+"
+      "Enable Chimera Cards+ content."
     ]
   },
-  "chimeracardsplus:HavocMod": {
+  "chimeracardsplus:DisorderedMod": {
     "TEXT": [
+      "Disordered ",
       "",
-      " Havoc",
       "Costs [E] more. NL Plays and #yExhausts the top card of your draw pile."
     ],
     "EXTRA_TEXT": [
@@ -436,9 +436,9 @@
       " NL Draw 2 cards."
     ]
   },
-  "chimeracardsplus:BurstingMod": {
+  "chimeracardsplus:BurstyMod": {
     "TEXT": [
-      "Bursting ",
+      "Bursty ",
       "",
       "Costs [E] more. NL Copies the next Skill played this turn."
     ],
@@ -966,9 +966,9 @@
       " NL When Retained, increase its Block by %s this combat."
     ]
   },
-  "chimeracardsplus:SandsMod": {
+  "chimeracardsplus:EstablishedMod": {
     "TEXT": [
-      "Sands of ",
+      "Established ",
       "",
       "Costs [E] [E] more. NL Adds #yRetain. NL Costs [E] less when #yRetained."
     ],
@@ -1368,10 +1368,10 @@
       " NL Once per turn, if *Ancient *Tea *Set triggered this turn, trigger it again."
     ]
   },
-  "chimeracardsplus:BottleMod": {
+  "chimeracardsplus:InkyMod": {
     "TEXT": [
+      "Inky ",
       "",
-      "'s Bottle",
       "Draws #b1 card if the card triggers #yInk #yBottle. NL Only appears if you have #yInk #yBottle."
     ],
     "EXTRA_TEXT": [
@@ -1457,10 +1457,10 @@
     "EXTRA_TEXT": [
     ]
   },
-  "chimeracardsplus:StatueMod": {
+  "chimeracardsplus:StatuesqueMod": {
     "TEXT": [
+      "Statuesque ",
       "",
-      "'s Statue",
       "Obtains a random potion when killing an enemy. NL Adds #yExhaust. NL Only appears if you have #yWhite #yBeast #yStatue."
     ],
     "EXTRA_TEXT": [
@@ -1478,10 +1478,10 @@
       " NL Heal 2 HP."
     ]
   },
-  "chimeracardsplus:AshesMod": {
+  "chimeracardsplus:AshyMod": {
     "TEXT": [
+      "Ashy ",
       "",
-      "'s Ashes",
       "Deals #b3 damage to ALL enemies when #yExhausted."
     ],
     "EXTRA_TEXT": [
@@ -1518,10 +1518,10 @@
       " NL Once per combat, if you have not lost HP this combat, prevent the next time you would lose HP."
     ]
   },
-  "chimeracardsplus:ChipMod": {
+  "chimeracardsplus:GamblingMod": {
     "TEXT": [
+      "Gambling ",
       "",
-      "'s Chip",
       "Discards any number of cards and draw that many cards on the first use on the first turn. NL Only appears if you have #yGambling #yChip."
     ],
     "EXTRA_TEXT": [
@@ -1538,10 +1538,10 @@
       " NL Deals 1 more damage for each time you gained Strength at Rest Sites."
     ]
   },
-  "chimeracardsplus:BurnerMod": {
+  "chimeracardsplus:IncenseBurnerMod": {
     "TEXT": [
       "",
-      "'s Burner",
+      "'s Incense Burner",
       "Gains #b1 #yIntangible on the first use on each of the turns #yIncense #yBurner trigger. NL Only appears if you have #yIncense #yBurner."
     ],
     "EXTRA_TEXT": [
@@ -1558,10 +1558,10 @@
       " NL Once per turn, if *Pocketwatch triggered this turn, trigger it again."
     ]
   },
-  "chimeracardsplus:CalendarMod": {
+  "chimeracardsplus:CalendricMod": {
     "TEXT": [
+      "Calendric ",
       "",
-      "'s Calendar",
       "Deals #b52 damage to ALL enemies on the first use on turn #b8. NL Only appears if you have #yStone #yCalendar."
     ],
     "EXTRA_TEXT": [
@@ -1620,10 +1620,10 @@
     "EXTRA_TEXT": [
     ]
   },
-  "chimeracardsplus:WheelMod": {
+  "chimeracardsplus:PrayerWheelMod": {
     "TEXT": [
       "",
-      "'s Wheel",
+      "'s Prayer Wheel",
       "Drops an additional card reward when killing an enemy. NL Adds #yExhaust. NL Only appears if you have #yPrayer #yWheel."
     ],
     "EXTRA_TEXT": [
@@ -1720,6 +1720,48 @@
     "EXTRA_TEXT": [
       " NL Gain 1 Ritual. NL Exhaust.",
       " NL Gain 1 Ritual."
+    ]
+  },
+  "chimeracardsplus:ConservedMod": {
+    "TEXT": [
+      "Conserved ",
+      "",
+      "Reduces damage and #yBlock by #b20%. NL Conserves Energy for next turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Energy is conserved for next turn."
+    ]
+  },
+  "chimeracardsplus:ImmortalityMod": {
+    "TEXT": [
+      "",
+      " for Immortality",
+      "Makes your wildest dreams come true."
+    ],
+    "EXTRA_TEXT": [
+      "Choose one: NL Gain !B! Plated Armor, !D! Strength, or !M! Gold. NL Exhaust.",
+      "At the end of your turn, gain %s *Plated *Armor."
+    ]
+  },
+  "chimeracardsplus:TemperamentalMod": {
+    "TEXT": [
+      "Temperamental ",
+      "",
+      "Increases damage and #yBlock by #b33%. NL Prevents you from changing #yStances this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL You cannot leave your stance until next turn."
+    ]
+  },
+  "chimeracardsplus:DuplicatingMod": {
+    "TEXT": [
+      "Duplicating ",
+      "",
+      "Costs [E] more. NL Copies the next card played this turn. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL This turn, your next card is played twice. NL Exhaust.",
+      " NL This turn, your next card is played twice."
     ]
   }
 }

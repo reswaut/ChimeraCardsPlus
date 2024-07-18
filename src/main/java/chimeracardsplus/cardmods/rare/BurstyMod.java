@@ -12,8 +12,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.BurstPower;
 
-public class BurstingMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(BurstingMod.class.getSimpleName());
+public class BurstyMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(BurstyMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
@@ -73,7 +73,7 @@ public class BurstingMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new BurstingMod();
+        return new BurstyMod();
     }
 
     @Override

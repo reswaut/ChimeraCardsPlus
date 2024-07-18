@@ -3,43 +3,20 @@ package chimeracardsplus.cardmods.uncommon;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
-public class SandsMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(SandsMod.class.getSimpleName());
+public class AshyMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(AshyMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
-    private int turnsRetained;
 
-    public SandsMod() {
-        this.turnsRetained = 0;
-    }
-    public SandsMod(int turnsRetained) {
-        this.turnsRetained = turnsRetained;
-    }
-
-    @Override
-    public void onInitialApplication(AbstractCard card) {
-        card.selfRetain = true;
-        card.cost += 2;
-        card.costForTurn = card.cost;
-    }
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 1 && doesntUpgradeCost() && notRetain(c)
-                && doesntOverride(c, "triggerOnEndOfTurnForPlayingCard")));
-    }
-
-    @Override
-    public void onRetained(AbstractCard card) {
-        turnsRetained += 1;
-        card.applyPowers();
-    }
-
-    @Override
-    public void onApplyPowers(AbstractCard card) {
-        card.setCostForTurn(Math.max(0, card.cost - turnsRetained));
+        return notExhaust(card);
     }
 
     @Override
@@ -59,7 +36,12 @@ public class SandsMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return CARD_TEXT[0] + insertAfterText(rawDescription, CARD_TEXT[1]);
+        return insertAfterText(rawDescription, CARD_TEXT[0]);
+    }
+
+    @Override
+    public void onExhausted(AbstractCard card) {
+        this.addToBot(new DamageAllEnemiesAction(null, DamageInfo.createDamageMatrix(3, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE));
     }
 
     @Override
@@ -69,7 +51,7 @@ public class SandsMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new SandsMod(turnsRetained);
+        return new AshyMod();
     }
 
     @Override

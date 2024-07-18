@@ -12,8 +12,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WheelMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(WheelMod.class.getSimpleName());
+public class PrayerWheelMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(PrayerWheelMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     private boolean addedExhaust;
@@ -79,7 +79,7 @@ public class WheelMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new WheelMod();
+        return new PrayerWheelMod();
     }
 
     @Override

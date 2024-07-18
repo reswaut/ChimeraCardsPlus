@@ -12,8 +12,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StatueMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(StatueMod.class.getSimpleName());
+public class StatuesqueMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(StatuesqueMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     private boolean addedExhaust;
@@ -79,7 +79,7 @@ public class StatueMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new StatueMod();
+        return new StatuesqueMod();
     }
 
     @Override

@@ -1,10 +1,12 @@
-package chimeracardsplus.cardmods.common;
+package chimeracardsplus.cardmods.rare;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
+import com.megacrit.cardcrawl.actions.unique.GamblingChipAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -12,14 +14,39 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
-public class BottleMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(BottleMod.class.getSimpleName());
+public class GamblingMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(GamblingMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
+    private boolean used = false;
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic("InkBottle"));
+        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic("Gambling Chip"));
+    }
+
+    @Override
+    public boolean onBattleStart(AbstractCard card) {
+        used = false;
+        return false;
+    }
+
+    @Override
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        if (!used && GameActionManager.turn <= 1) {
+            AbstractRelic relic = AbstractDungeon.player.getRelic("Gambling Chip");
+            if (relic != null) {
+                relic.flash();
+                this.addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, relic));
+            }
+            this.addToBot(new GamblingChipAction(AbstractDungeon.player));
+            used = true;
+        }
+    }
+
+    @Override
+    public Color getGlow(AbstractCard card) {
+        return (!used && GameActionManager.turn <= 1) ? Color.GOLD : null;
     }
 
     @Override
@@ -43,30 +70,13 @@ public class BottleMod extends AbstractAugment {
     }
 
     @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        AbstractRelic relic = AbstractDungeon.player.getRelic("InkBottle");
-        if (relic != null && relic.counter == 0) {
-            this.addToBot(new DrawCardAction(1));
-        }
-    }
-
-    @Override
-    public Color getGlow(AbstractCard card) {
-        AbstractRelic relic = AbstractDungeon.player.getRelic("InkBottle");
-        if (relic != null && relic.counter == 9) {
-            return Color.GOLD;
-        }
-        return null;
-    }
-
-    @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.COMMON;
+        return AugmentRarity.RARE;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new BottleMod();
+        return new GamblingMod();
     }
 
     @Override

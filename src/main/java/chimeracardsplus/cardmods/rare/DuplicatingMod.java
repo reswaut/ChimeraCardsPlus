@@ -1,34 +1,48 @@
-package chimeracardsplus.cardmods.common;
+package chimeracardsplus.cardmods.rare;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.common.PlayTopCardAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.DuplicationPower;
 
-public class HavocMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(HavocMod.class.getSimpleName());
+public class DuplicatingMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(DuplicatingMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
+    private boolean addedExhaust;
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost()));
+        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost()
+                && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
     }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
+        addedExhaust = !card.exhaust;
+        card.exhaust = true;
         card.cost += 1;
         card.costForTurn = card.cost;
     }
 
     @Override
+    public void onUpgradeCheck(AbstractCard card) {
+        if (!card.exhaust) {
+            addedExhaust = true;
+            card.exhaust = true;
+        }
+        card.initializeDescription();
+    }
+
+    @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new PlayTopCardAction(AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng), true));
+        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DuplicationPower(AbstractDungeon.player, 1), 1));
     }
 
     @Override
@@ -48,17 +62,17 @@ public class HavocMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, CARD_TEXT[0]);
+        return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1]);
     }
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.COMMON;
+        return AugmentRarity.RARE;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new HavocMod();
+        return new DuplicatingMod();
     }
 
     @Override

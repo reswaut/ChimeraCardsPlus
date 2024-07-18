@@ -22,7 +22,7 @@ public class BitingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0
+        return cardCheck(card, (c) -> (c.cost >= 0 && c.type == AbstractCard.CardType.ATTACK
                 && c.rarity != AbstractCard.CardRarity.BASIC));
     }
 

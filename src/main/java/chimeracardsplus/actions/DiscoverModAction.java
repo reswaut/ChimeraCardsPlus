@@ -70,9 +70,14 @@ public class DiscoverModAction extends AbstractGameAction {
             while (derp.size() != 3) {
                 boolean dupe = false;
                 AbstractAugment tmp = getTrulyRandomValidCardMod(baseCard);
+                AbstractCard card1 = baseCard.makeStatEquivalentCopy();
+                addModifier(card1, tmp);
 
                 for (AbstractAugment c : derp) {
-                    if (c.equals(tmp)) {
+                    AbstractAugment mod = (AbstractAugment) c.makeCopy();
+                    AbstractCard card2 = baseCard.makeStatEquivalentCopy();
+                    addModifier(card2, mod);
+                    if (tmp.identifier(card1).equals(mod.identifier(card2))) {
                         dupe = true;
                         break;
                     }

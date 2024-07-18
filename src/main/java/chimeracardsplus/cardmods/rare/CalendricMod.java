@@ -17,8 +17,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
-public class CalendarMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(CalendarMod.class.getSimpleName());
+public class CalendricMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(CalendricMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     private boolean used = false;
@@ -84,7 +84,7 @@ public class CalendarMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new CalendarMod();
+        return new CalendricMod();
     }
 
     @Override
