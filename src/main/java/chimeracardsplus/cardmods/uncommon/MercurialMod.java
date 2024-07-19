@@ -16,8 +16,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
-public class HourglassMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(HourglassMod.class.getSimpleName());
+public class MercurialMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(MercurialMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     private boolean used = false;
@@ -86,7 +86,7 @@ public class HourglassMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new HourglassMod();
+        return new MercurialMod();
     }
 
     @Override

@@ -50,13 +50,13 @@ public class ThirdMod extends AbstractAugment implements DynvarCarrier {
         if (card instanceof CutThroughFate || card instanceof JustLucky || card instanceof ThirdEye) {
             return magic * 0.75F + getBaseVal(card);
         }
-        this.addToBot(new VFXAction(new ThirdEyeEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY)));
         return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 0.75F) : magic;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (!(card instanceof CutThroughFate || card instanceof JustLucky || card instanceof ThirdEye)) {
+            this.addToBot(new VFXAction(new ThirdEyeEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY)));
             this.addToBot(new ScryAction(getBaseVal(card)));
         }
     }
