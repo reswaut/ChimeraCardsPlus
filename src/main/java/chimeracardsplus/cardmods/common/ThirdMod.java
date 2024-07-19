@@ -37,20 +37,20 @@ public class ThirdMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 1) ? (damage * 0.75F) : damage;
+        return (damage > 1) ? (damage * 0.8F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 1) ? (block * 0.75F) : block;
+        return (block > 1) ? (block * 0.8F) : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
         if (card instanceof CutThroughFate || card instanceof JustLucky || card instanceof ThirdEye) {
-            return magic * 0.75F + getBaseVal(card);
+            return magic * 0.8F + getBaseVal(card);
         }
-        return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 0.75F) : magic;
+        return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 0.8F) : magic;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class ThirdMod extends AbstractAugment implements DynvarCarrier {
     }
 
     public int getBaseVal(AbstractCard card) {
-        return 3 + 2 * getEffectiveUpgrades(card);
+        return 2 + getEffectiveUpgrades(card);
     }
 
     public String key() {

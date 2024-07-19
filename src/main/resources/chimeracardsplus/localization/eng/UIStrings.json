@@ -907,7 +907,7 @@
     "TEXT": [
       "Third ",
       "",
-      "Reduces card values by #b25%. NL Scries #b3(5)."
+      "Reduces card values by #b20%. NL Scries #b2(3)."
     ],
     "EXTRA_TEXT": [
       " NL Scry %s."
