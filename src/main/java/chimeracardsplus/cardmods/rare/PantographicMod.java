@@ -15,8 +15,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
-public class PantographMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(PantographMod.class.getSimpleName());
+public class PantographicMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(PantographicMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     private boolean used = false;
@@ -89,7 +89,7 @@ public class PantographMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new PantographMod();
+        return new PantographicMod();
     }
 
     @Override

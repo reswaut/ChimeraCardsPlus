@@ -1260,7 +1260,7 @@
     "TEXT": [
       "Captain's ",
       "",
-      "Gains 10 #yPlated #yArmor. NL Adds #yExhaust. NL Only appears if you have #yAnchor, #yHorn #yCleat, and #yCaptain's #yWheel."
+      "Gains #b10 #yPlated #yArmor. NL Adds #yExhaust. NL Only appears if you have #yAnchor, #yHorn #yCleat, and #yCaptain's #yWheel."
     ],
     "EXTRA_TEXT": [
       " NL Gain 10 *Plated *Armor. NL Exhaust.",
@@ -1429,7 +1429,7 @@
     "TEXT": [
       "Mummified ",
       "",
-      "Reduces the cost of a random card in your hand to 0 this turn. NL Only appears if you have #yMummified #yHand."
+      "Reduces the cost of a random card in your hand to #b0 this turn. NL Only appears if you have #yMummified #yHand."
     ],
     "EXTRA_TEXT": [
       " NL A random card in your hand costs 0 this turn."
@@ -1445,11 +1445,11 @@
       " NL If this triggers *Ornamental *Fan, trigger it again."
     ]
   },
-  "chimeracardsplus:PantographMod": {
+  "chimeracardsplus:PantographicMod": {
     "TEXT": [
+      "Pantographic ",
       "",
-      "'s Pantograph",
-      "Heals 25 HP on the first use on the first turn in Boss combats. NL Only appears if you have #yPantograph."
+      "Heals #b25 HP on the first use on the first turn in Boss combats. NL Only appears if you have #yPantograph."
     ],
     "EXTRA_TEXT": [
       " NL Once per Boss combat, heal 25 HP on your first turn."
@@ -1552,7 +1552,7 @@
       "Draws #b3 cards on the first use on each of the turns #yPocketwatch trigger. NL Only appears if you have #yPocketwatch."
     ],
     "EXTRA_TEXT": [
-      " NL Once per combat, if *Pocketwatch triggered this turn, draw 3 cards."
+      " NL Once per turn, if *Pocketwatch triggered this turn, draw 3 cards."
     ]
   },
   "chimeracardsplus:CalendricMod": {
@@ -1572,7 +1572,7 @@
       "Gains #b4 #yPlated #yArmor on the first use on the first turn. NL Only appears if you have #yThread #yand #yNeedle."
     ],
     "EXTRA_TEXT": [
-      " NL Once per combat, gain 4 *Plated *Armor on your first turn.."
+      " NL Once per combat, gain 4 *Plated *Armor on your first turn."
     ]
   },
   "chimeracardsplus:StarMod": {
@@ -1621,11 +1621,11 @@
     "TEXT": [
       "",
       "'s Prayer Wheel",
-      "Drops an additional card reward when killing an enemy. NL Adds #yExhaust. NL Only appears if you have #yPrayer #yWheel."
+      "Drops an additional card reward when killing an enemy in a normal combat. NL Adds #yExhaust. NL Only appears if you have #yPrayer #yWheel."
     ],
     "EXTRA_TEXT": [
-      " NL If this kills an enemy, it drops an additional card reward. NL Exhaust.",
-      " NL If this kills an enemy, it drops an additional card reward."
+      " NL If this kills an enemy in a normal combat, it drops an additional card reward. NL Exhaust.",
+      " NL If this kills an enemy in a normal combat, it drops an additional card reward."
     ]
   },
   "chimeracardsplus:BladedMod": {
@@ -1775,7 +1775,7 @@
     "TEXT": [
       "Sulfuric ",
       "",
-      "Reduces damage by #b20%. NL Gains 2 Strength. NL Gives ALL enemies 1 Strength."
+      "Reduces damage by #b20%. NL Gains #b2 Strength. NL Gives ALL enemies #b1 Strength."
     ],
     "EXTRA_TEXT": [
       " NL Gain 2 Strength and ALL enemies gain 1 Strength."
@@ -1785,7 +1785,7 @@
     "TEXT": [
       "Chemical ",
       "",
-      "Increases X by #b2. Only appears if you have #yChemical #yX."
+      "Increases X by #b2. NL Only appears if you have #yChemical #yX."
     ],
     "EXTRA_TEXT": [
       "Increase X by 2. NL "
@@ -1834,6 +1834,17 @@
     ],
     "EXTRA_TEXT": [
       " NL If this card is discarded from your hand, deal 3 damage to a random enemy.",
+      "discard"
+    ]
+  },
+  "chimeracardsplus:ReplaceableMod": {
+    "TEXT": [
+      "Replaceable ",
+      "",
+      "Adds a random card into your hand when discarded."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this card is discarded from your hand, add a random card into your hand.",
       "discard"
     ]
   }

@@ -30,7 +30,7 @@ public class BlessedMod extends AbstractAugment {
     @Override
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> (c.cost >= -1
-                && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)))
+                && isNormalCard(c)))
                 && characterCheck((p) -> {
                     AbstractRelic relic = p.getRelic("NeowsBlessing");
                     return (relic != null) && relic.counter > 1;
@@ -102,10 +102,10 @@ public class BlessedMod extends AbstractAugment {
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         String text;
-        if (!CardCrawlGame.isInARun()) {
-            text = CARD_TEXT[0];
-        } else if (used) {
+        if (used) {
             text = CARD_TEXT[1];
+        } else if (!CardCrawlGame.isInARun()) {
+            text = CARD_TEXT[0];
         } else {
             AbstractRelic relic = AbstractDungeon.player.getRelic("NeowsBlessing");
             if (relic == null || relic.counter <= 0) {
