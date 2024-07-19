@@ -333,7 +333,8 @@
     "EXTRA_TEXT": [
       " NL If you have discarded a card this turn, gain [E] [E].",
       "If you have discarded a card this turn, NL gain [G] [G].",
-      "If you have discarded a card this turn, NL gain [G] [G] [G] [G]."
+      "If you have discarded a card this turn, NL gain [G] [G] [G] [G].",
+      "discard"
     ]
   },
   "chimeracardsplus:GamblerMod": {
@@ -465,6 +466,9 @@
       "Increases cost to [E] [E] [E] . NL Next turn, draws card and gains [E] equal to the increased cost."
     ],
     "EXTRA_TEXT": [
+      " NL Next turn, draw 1 card and gain [E]. NL Exhaust.",
+      " NL Next turn, draw 2 cards and gain [E] [E]. NL Exhaust.",
+      " NL Next turn, draw 3 cards and gain [E] [E] [E]. NL Exhaust.",
       " NL Next turn, draw 1 card and gain [E].",
       " NL Next turn, draw 2 cards and gain [E] [E].",
       " NL Next turn, draw 3 cards and gain [E] [E] [E]."
@@ -927,6 +931,9 @@
       "Increases cost to [E] [E] [E] . NL Adds an #yUpgraded #yMiracle into hand in a number of following turns equal to the increased cost."
     ],
     "EXTRA_TEXT": [
+      " NL Put a *Miracle+ into your hand at the start of your next turn. NL Exhaust.",
+      " NL Put a *Miracle+ into your hand at the start of your next 2 turns. NL Exhaust.",
+      " NL Put a *Miracle+ into your hand at the start of your next 3 turns. NL Exhaust.",
       " NL Put a *Miracle+ into your hand at the start of your next turn.",
       " NL Put a *Miracle+ into your hand at the start of your next 2 turns.",
       " NL Put a *Miracle+ into your hand at the start of your next 3 turns."
@@ -1146,7 +1153,7 @@
     "TEXT": [
       "Impatient ",
       "",
-      "Reduces card values by #b25%. NL Draws #b2 cards if you have no Attacks in hand."
+      "Reduces card values by #b33%. NL Draws #b2 cards if you have no Attacks in hand."
     ],
     "EXTRA_TEXT": [
       " NL If you have no Attacks in your hand, draw 2 cards."
@@ -1189,10 +1196,10 @@
     "TEXT": [
       "Flamboyant ",
       "",
-      "Increases damage by #b100% if at least 5 cards are played this turn."
+      "Increases damage by #b3 if at least #b5 cards are played this turn."
     ],
     "EXTRA_TEXT": [
-      " NL Deals double damage if you have played at least 5 cards this turn.",
+      " NL Deals 3 additional damage if you have played at least 5 cards this turn.",
       " (%s card played.)",
       " (%s cards played.)"
     ]

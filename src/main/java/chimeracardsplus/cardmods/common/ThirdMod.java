@@ -4,6 +4,7 @@ import CardAugments.cardmods.AbstractAugment;
 import CardAugments.cardmods.DynvarCarrier;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.ScryAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -13,7 +14,9 @@ import com.megacrit.cardcrawl.cards.purple.JustLucky;
 import com.megacrit.cardcrawl.cards.purple.ThirdEye;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.ThirdEyeEffect;
 
 import static chimeracardsplus.util.CardAugmentsExt.doesntDowngradeMagicNoUseChecks;
 
@@ -47,6 +50,7 @@ public class ThirdMod extends AbstractAugment implements DynvarCarrier {
         if (card instanceof CutThroughFate || card instanceof JustLucky || card instanceof ThirdEye) {
             return magic * 0.75F + getBaseVal(card);
         }
+        this.addToBot(new VFXAction(new ThirdEyeEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY)));
         return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 0.75F) : magic;
     }
 

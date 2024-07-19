@@ -17,6 +17,7 @@ public class DoppelgangerMod extends AbstractAugment {
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     private int effect;
+    private boolean addedExhaust = false;
 
     @Override
     public boolean validCard(AbstractCard card) {
@@ -25,9 +26,22 @@ public class DoppelgangerMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
+        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
+            addedExhaust = true;
+            card.exhaust = true;
+        }
         effect = 3 - card.cost;
         card.cost = 3;
         card.costForTurn = card.cost;
+    }
+
+    @Override
+    public void onUpgradeCheck(AbstractCard card) {
+        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
+            addedExhaust = true;
+            card.exhaust = true;
+        }
+        card.initializeDescription();
     }
 
     @Override
@@ -56,7 +70,7 @@ public class DoppelgangerMod extends AbstractAugment {
         if (effect <= 0 || effect > 3) {
             return rawDescription;
         }
-        return insertAfterText(rawDescription, CARD_TEXT[effect - 1]);
+        return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[effect - 1] : CARD_TEXT[effect - 1 + 3]);
     }
 
     @Override

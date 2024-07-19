@@ -3,12 +3,17 @@ package chimeracardsplus.cardmods.rare;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.green.GrandFinale;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.GrandFinalEffect;
 
 import static chimeracardsplus.util.CardAugmentsExt.doesntDowngradeMagicNoUseChecks;
 
@@ -45,6 +50,15 @@ public class GrandMod extends AbstractAugment {
             card.cantUseMessage = CardCrawlGame.languagePack.getCardStrings("Grand Finale").UPGRADE_DESCRIPTION;
         }
         return ret;
+    }
+
+    @Override
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        if (Settings.FAST_MODE) {
+            this.addToBot(new VFXAction(new GrandFinalEffect(), 0.7F));
+        } else {
+            this.addToBot(new VFXAction(new GrandFinalEffect(), 1.0F));
+        }
     }
 
     @Override

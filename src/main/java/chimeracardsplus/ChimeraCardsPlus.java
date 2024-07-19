@@ -4,14 +4,11 @@ import CardAugments.CardAugmentsMod;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.AutoAdd;
 import basemod.BaseMod;
-import basemod.interfaces.EditKeywordsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
 import chimeracardsplus.util.GeneralUtils;
-import chimeracardsplus.util.KeywordInfo;
 import chimeracardsplus.util.TextureLoader;
 import com.badlogic.gdx.Files;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglFileHandle;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
@@ -20,21 +17,21 @@ import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.ModInfo;
 import com.evacipated.cardcrawl.modthespire.Patcher;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
-import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.scannotation.AnnotationDB;
 
-import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.Set;
 
 @SpireInitializer
 public class ChimeraCardsPlus implements
         EditStringsSubscriber,
-        EditKeywordsSubscriber,
         PostInitializeSubscriber {
     public static ModInfo info;
     public static String modID; //Edit your pom.xml to change this
@@ -85,8 +82,6 @@ public class ChimeraCardsPlus implements
     }
     private static final String defaultLanguage = "eng";
 
-    public static final Map<String, KeywordInfo> keywords = new HashMap<>();
-
     @Override
     public void receiveEditStrings() {
         /*
@@ -113,42 +108,6 @@ public class ChimeraCardsPlus implements
                 localizationPath(lang, "UIStrings.json"));
     }
 
-    @Override
-    public void receiveEditKeywords()
-    {
-        Gson gson = new Gson();
-        String json = Gdx.files.internal(localizationPath(defaultLanguage, "Keywords.json")).readString(String.valueOf(StandardCharsets.UTF_8));
-        KeywordInfo[] keywords = gson.fromJson(json, KeywordInfo[].class);
-        for (KeywordInfo keyword : keywords) {
-            keyword.prep();
-            registerKeyword(keyword);
-        }
-
-        if (!defaultLanguage.equals(getLangString())) {
-            try
-            {
-                json = Gdx.files.internal(localizationPath(getLangString(), "Keywords.json")).readString(String.valueOf(StandardCharsets.UTF_8));
-                keywords = gson.fromJson(json, KeywordInfo[].class);
-                for (KeywordInfo keyword : keywords) {
-                    keyword.prep();
-                    registerKeyword(keyword);
-                }
-            }
-            catch (Exception e)
-            {
-                logger.warn("{} does not support {} keywords.", modID, getLangString());
-            }
-        }
-    }
-
-    private void registerKeyword(KeywordInfo info) {
-        BaseMod.addKeyword(modID.toLowerCase(), info.PROPER_NAME, info.NAMES, info.DESCRIPTION);
-        if (!info.ID.isEmpty())
-        {
-            keywords.put(info.ID, info);
-        }
-    }
-
     //These methods are used to generate the correct filepaths to various parts of the resources folder.
     public static String localizationPath(String lang, String file) {
         return resourcesFolder + "/localization/" + lang + "/" + file;
@@ -156,15 +115,6 @@ public class ChimeraCardsPlus implements
 
     public static String imagePath(String file) {
         return resourcesFolder + "/images/" + file;
-    }
-    public static String characterPath(String file) {
-        return resourcesFolder + "/images/character/" + file;
-    }
-    public static String powerPath(String file) {
-        return resourcesFolder + "/images/powers/" + file;
-    }
-    public static String relicPath(String file) {
-        return resourcesFolder + "/images/relics/" + file;
     }
 
     /**

@@ -4,6 +4,7 @@ import CardAugments.cardmods.AbstractAugment;
 import CardAugments.cardmods.DynvarCarrier;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.actions.watcher.TriggerMarksAction;
@@ -15,6 +16,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.watcher.MarkPower;
+import com.megacrit.cardcrawl.vfx.combat.PressurePointEffect;
 
 public class MarkedMod extends AbstractAugment implements DynvarCarrier {
     public static final String ID = ChimeraCardsPlus.makeID(MarkedMod.class.getSimpleName());
@@ -43,6 +45,7 @@ public class MarkedMod extends AbstractAugment implements DynvarCarrier {
         if (target == null) {
             return;
         }
+        this.addToBot(new VFXAction(new PressurePointEffect(target.hb.cX, target.hb.cY)));
         this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new MarkPower(target, getBaseVal(card)), getBaseVal(card)));
         this.addToBot(new TriggerMarksAction(new PressurePoints()));
     }

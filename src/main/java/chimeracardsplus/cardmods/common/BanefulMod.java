@@ -5,6 +5,7 @@ import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.unique.BaneAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.green.Bane;
@@ -61,8 +62,10 @@ public class BanefulMod extends AbstractAugment {
         return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 
+    @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (target != null) {
+            this.addToBot(new WaitAction(0.01F));
             this.addToBot(new BaneAction((AbstractMonster) target, new DamageInfo(AbstractDungeon.player, card.damage, card.damageTypeForTurn)));
         }
     }

@@ -3,8 +3,14 @@ package chimeracardsplus.cardmods.rare;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 
 public class CorruptedMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(CorruptedMod.class.getSimpleName());
@@ -32,6 +38,11 @@ public class CorruptedMod extends AbstractAugment {
             card.exhaust = true;
         }
         card.initializeDescription();
+    }
+
+    @Override
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        this.addToBot(new VFXAction(AbstractDungeon.player, new BorderLongFlashEffect(Color.PURPLE), 0.0F, true));
     }
 
     @Override

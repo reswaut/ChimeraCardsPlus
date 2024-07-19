@@ -1,4 +1,4 @@
-package chimeracardsplus.cardmods.rare;
+package chimeracardsplus.cardmods.common;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
@@ -21,12 +21,12 @@ public class FlamboyantMod extends AbstractAugment {
 
     @Override
     public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return AbstractDungeon.actionManager.cardsPlayedThisTurn.size() > 5 ? (damage * 2.0F) : damage;
+        return AbstractDungeon.actionManager.cardsPlayedThisTurn.size() > 5 ? (damage + 3.0F) : damage;
     }
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> c.baseDamage >= 1);
+        return cardCheck(card, c -> c.cost >= -1 && c.baseDamage >= 1);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class FlamboyantMod extends AbstractAugment {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.RARE;
+        return AugmentRarity.COMMON;
     }
 
     @Override
