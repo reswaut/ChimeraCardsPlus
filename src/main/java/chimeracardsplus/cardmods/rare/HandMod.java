@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.watcher.BlockReturnPower;
 
-import static chimeracardsplus.util.CardAugmentsExt.doesntDowngradeMagicNoUseChecks;
+import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
 
 public class HandMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(HandMod.class.getSimpleName());

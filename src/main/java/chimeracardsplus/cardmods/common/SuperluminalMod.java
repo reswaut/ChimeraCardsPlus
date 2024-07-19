@@ -4,18 +4,18 @@ import CardAugments.cardmods.AbstractAugment;
 import CardAugments.cardmods.DynvarCarrier;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.patches.TriggerOnDiscardMod;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class SuperluminalMod extends AbstractAugment implements DynvarCarrier {
+public class SuperluminalMod extends AbstractAugment implements DynvarCarrier, TriggerOnDiscardMod {
     public static final String ID = ChimeraCardsPlus.makeID(SuperluminalMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
@@ -54,17 +54,14 @@ public class SuperluminalMod extends AbstractAugment implements DynvarCarrier {
         card.initializeDescription();
     }
 
-    // The following are the best that I can do without discard hooks.
     @Override
-    public void atEndOfTurn(AbstractCard card, CardGroup group) {
-        descriptionHack = group.type == CardGroup.CardGroupType.HAND;
+    public void onMoveToDiscard(AbstractCard card) {
+        descriptionHack = false;
         card.initializeDescription();
     }
 
     @Override
-    public void onOtherCardPlayed(AbstractCard card, AbstractCard otherCard, CardGroup group) {
-        descriptionHack = group.type == CardGroup.CardGroupType.HAND;
-        card.initializeDescription();
+    public void onManualDiscard(AbstractCard card) {
     }
 
     @Override

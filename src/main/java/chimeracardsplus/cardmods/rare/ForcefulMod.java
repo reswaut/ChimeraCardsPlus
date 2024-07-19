@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
 
-import static chimeracardsplus.util.CardAugmentsExt.doesntDowngradeMagicNoUseChecks;
+import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
 
 public class ForcefulMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(ForcefulMod.class.getSimpleName());

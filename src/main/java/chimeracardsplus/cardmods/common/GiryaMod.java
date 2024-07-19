@@ -25,7 +25,7 @@ public class GiryaMod extends AbstractAugment {
     public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
         AbstractRelic relic = AbstractDungeon.player.getRelic("Girya");
         if (relic != null) {
-            damage += relic.counter;
+            damage += 3.0F * relic.counter;
         }
         return damage;
     }

@@ -1,32 +1,26 @@
-package chimeracardsplus.cardmods.common;
+package chimeracardsplus.cardmods.uncommon;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.patches.TriggerOnDiscardMod;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class DuVuMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(DuVuMod.class.getSimpleName());
+import static chimeracardsplus.util.CardCheckHelpers.hasCardWithKeywordInDeck;
+
+public class TingshaMod extends AbstractAugment implements TriggerOnDiscardMod {
+    public static final String ID = ChimeraCardsPlus.makeID(TingshaMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.baseDamage >= 1 && c.type == AbstractCard.CardType.ATTACK)) && hasACurse();
-    }
-
-    @Override
-    public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
-            if (c.type == AbstractCard.CardType.CURSE) {
-                damage += 1.0F;
-            }
-        }
-        return damage;
+        return characterCheck((p) -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
     }
 
     @Override
@@ -50,13 +44,21 @@ public class DuVuMod extends AbstractAugment {
     }
 
     @Override
+    public void onManualDiscard(AbstractCard card) {
+        this.addToBot(new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, 3, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
+    }
+
+    public void onMoveToDiscard(AbstractCard card) {
+    }
+
+    @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.COMMON;
+        return AugmentRarity.UNCOMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new DuVuMod();
+        return new TingshaMod();
     }
 
     @Override

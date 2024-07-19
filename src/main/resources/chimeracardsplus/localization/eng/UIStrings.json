@@ -792,7 +792,7 @@
     "TEXT": [
       "Split ",
       "",
-      "Costs [E] more. NL Gains [E] equal to the increased cost when killing an enemy."
+      "Costs [E] more. NL Gains [E] equal to the increased cost when killing an enemy. NL Increases damage by #b25%."
     ],
     "EXTRA_TEXT": [
       " NL If this kills an enemy, gain [E] .",
@@ -1274,7 +1274,7 @@
       "Applies #b1 #yVulnerable to ALL enemies on the first use on the first turn. NL Only appears if you have #yBag #yof #yMarbles."
     ],
     "EXTRA_TEXT": [
-      " NL Once per turn, if *Bag *of *Marbles triggered this turn, trigger it again."
+      " NL Once per combat, apply 1 Vulnerable to ALL enemies on your first turn."
     ]
   },
   "chimeracardsplus:PreparationMod": {
@@ -1284,7 +1284,7 @@
       "Draws #b2 cards on the first use on the first turn. NL Only appears if you have #yBag #yof #yPreparation."
     ],
     "EXTRA_TEXT": [
-      " NL Once per turn, if *Bag *of *Preparation triggered this turn, trigger it again."
+      " NL Once per combat, draw 2 cards on your first turn."
     ]
   },
   "chimeracardsplus:HappyMod": {
@@ -1294,7 +1294,7 @@
       "Gains [E] on the first use on each of the turns #yHappy #yFlower trigger. NL Only appears if you have #yHappy #yFlower."
     ],
     "EXTRA_TEXT": [
-      " NL Once per turn, if *Happy *Flower triggered this turn, trigger it again."
+      " NL Once per turn, gain [E] if *Happy *Flower triggered this turn."
     ]
   },
   "chimeracardsplus:LanternMod": {
@@ -1304,7 +1304,7 @@
       "Gains [E] on the first use on the first turn. NL Only appears if you have #yLantern."
     ],
     "EXTRA_TEXT": [
-      " NL Once per turn, if *Lantern triggered this turn, trigger it again."
+      " NL Once per combat, gain [E] on your first turn."
     ]
   },
   "chimeracardsplus:NunchakuMod": {
@@ -1314,7 +1314,7 @@
       "Gains [E] if the card triggers #yNunchaku. NL Only appears if you have #yNunchaku."
     ],
     "EXTRA_TEXT": [
-      " NL If this triggers *Nunchaku, trigger it again."
+      " NL If this triggers *Nunchaku, gain 1 additional [E]."
     ]
   },
   "chimeracardsplus:SmoothMod": {
@@ -1333,7 +1333,7 @@
       "Increases damage by #b100% if the card triggers #yPen #yNib. NL Only appears if you have #yPen #yNib."
     ],
     "EXTRA_TEXT": [
-      " NL Deals double damage if this Attack triggers *Pen *Nib."
+      " NL Deals double damage if this triggers *Pen *Nib."
     ]
   },
   "chimeracardsplus:VajraMod": {
@@ -1362,7 +1362,7 @@
       "Gains [E] and draws #b1 card when killing an enemy. NL Only appears if you have #yGremlin #yHorn."
     ],
     "EXTRA_TEXT": [
-      " NL If this triggers *Gremlin *Horn, trigger it again."
+      " NL If this kills an enemy, gain [E] and draw 1 card."
     ]
   },
   "chimeracardsplus:TeaSetMod": {
@@ -1372,7 +1372,7 @@
       "Gains [E] [E] on the first use on the first turn if the last room was a Rest Site. NL Only appears if you have #yAncient #yTea #ySet."
     ],
     "EXTRA_TEXT": [
-      " NL Once per turn, if *Ancient *Tea *Set triggered this turn, trigger it again."
+      " NL Once per combat, gain [E] [E] on your first turn if the last room was a Rest Site."
     ]
   },
   "chimeracardsplus:InkyMod": {
@@ -1382,7 +1382,7 @@
       "Draws #b1 card if the card triggers #yInk #yBottle. NL Only appears if you have #yInk #yBottle."
     ],
     "EXTRA_TEXT": [
-      " NL If this triggers *Ink *Bottle, trigger it again."
+      " NL If this triggers *Ink *Bottle, draw 1 additional card."
     ]
   },
   "chimeracardsplus:KunaiMod": {
@@ -1392,7 +1392,7 @@
       "Gains #b1 #yDexterity if the card triggers #yKunai. NL Only appears if you have #yKunai."
     ],
     "EXTRA_TEXT": [
-      " NL If this triggers *Kunai, trigger it again."
+      " NL If this triggers *Kunai, gain 1 additional Dexterity."
     ]
   },
   "chimeracardsplus:ShurikenMod": {
@@ -1402,7 +1402,7 @@
       "Gains #b1 #yStrength if the card triggers #yShuriken. NL Only appears if you have #yShuriken."
     ],
     "EXTRA_TEXT": [
-      " NL If this triggers *Shuriken, trigger it again."
+      " NL If this triggers *Shuriken, gain 1 additional Strength."
     ]
   },
   "chimeracardsplus:LetterOpenerMod": {
@@ -1432,7 +1432,7 @@
       "Reduces the cost of a random card in your hand to 0 this turn. NL Only appears if you have #yMummified #yHand."
     ],
     "EXTRA_TEXT": [
-      " NL Trigger *Mummified *Hand."
+      " NL A random card in your hand costs 0 this turn."
     ]
   },
   "chimeracardsplus:OrnamentalMod": {
@@ -1452,7 +1452,7 @@
       "Heals 25 HP on the first use on the first turn in Boss combats. NL Only appears if you have #yPantograph."
     ],
     "EXTRA_TEXT": [
-      " NL Once per turn, if *Pantograph triggered this turn, trigger it again."
+      " NL Once per Boss combat, heal 25 HP on your first turn."
     ]
   },
   "chimeracardsplus:DummyMod": {
@@ -1505,16 +1505,6 @@
       " NL If this card is Exhausted, add a random card into your hand."
     ]
   },
-  "chimeracardsplus:DuVuMod": {
-    "TEXT": [
-      "Du-Vu ",
-      "",
-      "Increases damage by the number of #rCurses in your deck."
-    ],
-    "EXTRA_TEXT": [
-      " NL Deals 1 more damage for each Curse in your deck."
-    ]
-  },
   "chimeracardsplus:FossilizedMod": {
     "TEXT": [
       "Fossilized ",
@@ -1532,17 +1522,17 @@
       "Discards any number of cards and draw that many cards on the first use on the first turn. NL Only appears if you have #yGambling #yChip."
     ],
     "EXTRA_TEXT": [
-      " NL Once per turn, if *Gambling *Chip triggered this turn, trigger it again."
+      " NL Once per combat, discard any number of cards and draw that many on your first turn."
     ]
   },
   "chimeracardsplus:GiryaMod": {
     "TEXT": [
       "",
       "'s Girya",
-      "Increases damage by #b1 for each time you gained #yStrength at Rest Sites. NL Only appears if you have #yGirya."
+      "Increases damage by #b3 for each time you gained #yStrength at Rest Sites. NL Only appears if you have #yGirya."
     ],
     "EXTRA_TEXT": [
-      " NL Deals 1 more damage for each time you gained Strength at Rest Sites."
+      " NL Deals 3 more damage for each time you gained Strength at Rest Sites."
     ]
   },
   "chimeracardsplus:IncenseBurnerMod": {
@@ -1552,7 +1542,7 @@
       "Gains #b1 #yIntangible on the first use on each of the turns #yIncense #yBurner trigger. NL Only appears if you have #yIncense #yBurner."
     ],
     "EXTRA_TEXT": [
-      " NL Once per turn, if *Incense *Burner triggered this turn, trigger it again."
+      " NL Once per turn, if *Incense *Burner triggered this turn, gain 1 Intangible."
     ]
   },
   "chimeracardsplus:PocketwatchMod": {
@@ -1562,7 +1552,7 @@
       "Draws #b3 cards on the first use on each of the turns #yPocketwatch trigger. NL Only appears if you have #yPocketwatch."
     ],
     "EXTRA_TEXT": [
-      " NL Once per turn, if *Pocketwatch triggered this turn, trigger it again."
+      " NL Once per combat, if *Pocketwatch triggered this turn, draw 3 cards."
     ]
   },
   "chimeracardsplus:CalendricMod": {
@@ -1572,7 +1562,7 @@
       "Deals #b52 damage to ALL enemies on the first use on turn #b8. NL Only appears if you have #yStone #yCalendar."
     ],
     "EXTRA_TEXT": [
-      " NL Once per turn, if *Stone *Calendar triggered last turn, trigger it again."
+      " NL Once per combat, trigger *Stone *Calendar on turn 8."
     ]
   },
   "chimeracardsplus:NeedleworkMod": {
@@ -1582,7 +1572,7 @@
       "Gains #b4 #yPlated #yArmor on the first use on the first turn. NL Only appears if you have #yThread #yand #yNeedle."
     ],
     "EXTRA_TEXT": [
-      " NL Once per turn, if *Thread *and *Needle triggered this turn, trigger it again."
+      " NL Once per combat, gain 4 *Plated *Armor on your first turn.."
     ]
   },
   "chimeracardsplus:StarMod": {
@@ -1671,7 +1661,7 @@
     "TEXT": [
       "Blessed ",
       "",
-      "The card carries a strange blessing."
+      "Carries a strange blessing."
     ],
     "EXTRA_TEXT": [
       " NL You feel blessed.",
@@ -1685,7 +1675,7 @@
       "Applies #b1 #yWeak to ALL enemies on the first use on the first turn. NL Only appears if you have #yRed #yMask."
     ],
     "EXTRA_TEXT": [
-      " NL Once per turn, if *Red *Mask triggered this turn, trigger it again."
+      " NL Once per combat, apply 1 Weak to ALL enemies on your first turn."
     ]
   },
   "chimeracardsplus:ClockworkMod": {
@@ -1695,17 +1685,17 @@
       "Gains #b1 #yArtifact on the first use on the first turn. NL Only appears if you have #yClockwork #ySouvenir."
     ],
     "EXTRA_TEXT": [
-      " NL Once per turn, if *Clockwork *Souvenir triggered this turn, trigger it again."
+      " NL Once per combat, gain 1 Artifact on your first turn."
     ]
   },
   "chimeracardsplus:CourageousMod": {
     "TEXT": [
       "Courageous ",
       "",
-      "Increases damage by #b2 in Elite combats."
+      "Increases damage by #b3 in Elite combats."
     ],
     "EXTRA_TEXT": [
-      " NL Deals 2 more damage in Elite combats."
+      " NL Deals 3 more damage in Elite combats."
     ]
   },
   "chimeracardsplus:ToolboxMod": {
@@ -1715,7 +1705,7 @@
       "Adds a chosen Colorless card into your hand on the first use on the first turn. NL Only appears if you have #yToolbox."
     ],
     "EXTRA_TEXT": [
-      " NL Once per turn, if *Toolbox triggered this turn, trigger it again."
+      " NL Once per combat, trigger *Toolbox on your first turn."
     ]
   },
   "chimeracardsplus:IncantatoryMod": {
@@ -1757,7 +1747,7 @@
       "Increases damage and #yBlock by #b33%. NL Prevents you from changing #yStances this turn."
     ],
     "EXTRA_TEXT": [
-      " NL You cannot leave your stance until next turn."
+      " NL You cannot change Stances until next turn."
     ]
   },
   "chimeracardsplus:DuplicatingMod": {
@@ -1769,6 +1759,82 @@
     "EXTRA_TEXT": [
       " NL This turn, your next card is played twice. NL Exhaust.",
       " NL This turn, your next card is played twice."
+    ]
+  },
+  "chimeracardsplus:ScalyMod": {
+    "TEXT": [
+      "Scaly ",
+      "",
+      "Gains #b3 #yThorns on the first use on the first turn. NL Only appears if you have #yBronze #yScales."
+    ],
+    "EXTRA_TEXT": [
+      " NL Once per combat, gain 3 Thorns on your first turn."
+    ]
+  },
+  "chimeracardsplus:SulfuricMod": {
+    "TEXT": [
+      "Sulfuric ",
+      "",
+      "Reduces damage by #b20%. NL Gains 2 Strength. NL Gives ALL enemies 1 Strength."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain 2 Strength and ALL enemies gain 1 Strength."
+    ]
+  },
+  "chimeracardsplus:ChemicalMod": {
+    "TEXT": [
+      "Chemical ",
+      "",
+      "Increases X by #b2. Only appears if you have #yChemical #yX."
+    ],
+    "EXTRA_TEXT": [
+      "Increase X by 2. NL "
+    ]
+  },
+  "chimeracardsplus:ReflexMod": {
+    "TEXT": [
+      "Reflex ",
+      "",
+      "Draws #b1 card when discarded."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this card is discarded from your hand, draw 1 card.",
+      "discard"
+    ]
+  },
+  "chimeracardsplus:TacticalMod": {
+    "TEXT": [
+      "Tactical ",
+      "",
+      "Gains [E] when discarded."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this card is discarded from your hand, gain [E].",
+      "If this card is discarded from your hand, gain [G]",
+      "If this card is discarded from your hand, gain [G] [G]",
+      "discard"
+    ]
+  },
+  "chimeracardsplus:ToughMod": {
+    "TEXT": [
+      "Tough ",
+      "",
+      "Gains #b3(4) #yBlock when discarded."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this card is discarded from your hand, gain %s Block.",
+      "discard"
+    ]
+  },
+  "chimeracardsplus:TingshaMod": {
+    "TEXT": [
+      "",
+      "'s Tingsha",
+      "Deals #b3 damage to a random enemy when discarded."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this card is discarded from your hand, deal 3 damage to a random enemy.",
+      "discard"
     ]
   }
 }

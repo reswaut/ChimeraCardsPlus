@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.GrandFinalEffect;
 
-import static chimeracardsplus.util.CardAugmentsExt.doesntDowngradeMagicNoUseChecks;
+import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
 
 public class GrandMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(GrandMod.class.getSimpleName());

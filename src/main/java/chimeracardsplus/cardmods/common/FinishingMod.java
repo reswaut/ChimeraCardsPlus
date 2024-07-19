@@ -4,17 +4,17 @@ import CardAugments.cardmods.AbstractAugment;
 import CardAugments.patches.InterruptUseCardFieldPatches;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.patches.TriggerOnDiscardMod;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class FinishingMod extends AbstractAugment {
+public class FinishingMod extends AbstractAugment implements TriggerOnDiscardMod {
     public static final String ID = ChimeraCardsPlus.makeID(FinishingMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
@@ -94,17 +94,14 @@ public class FinishingMod extends AbstractAugment {
         card.initializeDescription();
     }
 
-    // The following are the best that I can do without discard hooks.
     @Override
-    public void atEndOfTurn(AbstractCard card, CardGroup group) {
-        descriptionHack = group.type == CardGroup.CardGroupType.HAND;
+    public void onMoveToDiscard(AbstractCard card) {
+        descriptionHack = false;
         card.initializeDescription();
     }
 
     @Override
-    public void onOtherCardPlayed(AbstractCard card, AbstractCard otherCard, CardGroup group) {
-        descriptionHack = group.type == CardGroup.CardGroupType.HAND;
-        card.initializeDescription();
+    public void onManualDiscard(AbstractCard card) {
     }
 
     @Override

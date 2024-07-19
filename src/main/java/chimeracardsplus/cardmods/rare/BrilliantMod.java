@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import java.util.ArrayList;
+import static chimeracardsplus.util.CardCheckHelpers.hasCardWithKeywordInDeck;
 
 public class BrilliantMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(BrilliantMod.class.getSimpleName());
@@ -24,15 +24,7 @@ public class BrilliantMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> c.baseDamage >= 1) && characterCheck(p -> {
-            ArrayList<AbstractCard> deck = p.masterDeck.group;
-            for (AbstractCard c : deck) {
-                if (c.rawDescription.contains(CARD_TEXT[3])) {
-                    return true;
-                }
-            }
-            return false;
-        });
+        return cardCheck(card, c -> c.baseDamage >= 1) && characterCheck((p) -> hasCardWithKeywordInDeck(p, CARD_TEXT[3]));
     }
 
     @Override

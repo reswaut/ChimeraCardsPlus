@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import static chimeracardsplus.util.CardAugmentsExt.doesntDowngradeMagicNoUseChecks;
+import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
 
 public class EnlightenedMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(EnlightenedMod.class.getSimpleName());

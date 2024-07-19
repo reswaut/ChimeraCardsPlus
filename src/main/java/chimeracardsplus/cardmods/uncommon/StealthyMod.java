@@ -11,7 +11,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.green.SneakyStrike;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+
+import static chimeracardsplus.util.CardCheckHelpers.hasCardWithKeywordInDeck;
 
 public class StealthyMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(StealthyMod.class.getSimpleName());
@@ -20,14 +21,7 @@ public class StealthyMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= 0 && cardCheck(card, (c) -> doesntUpgradeCost()) && characterCheck((p) -> {
-            for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
-                if (c.rawDescription.toLowerCase().contains(CARD_TEXT[3])) {
-                    return true;
-                }
-            }
-            return false;
-        });
+        return card.cost >= 0 && cardCheck(card, (c) -> doesntUpgradeCost()) && characterCheck((p) -> hasCardWithKeywordInDeck(p, CARD_TEXT[3]));
     }
 
     @Override

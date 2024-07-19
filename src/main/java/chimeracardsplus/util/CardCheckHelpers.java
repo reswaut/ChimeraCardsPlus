@@ -3,10 +3,11 @@ package chimeracardsplus.util;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.BranchingUpgradesCard;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.MultiUpgradeCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 
 import java.util.ArrayList;
 
-public class CardAugmentsExt {
+public class CardCheckHelpers {
     public static boolean doesntDowngradeMagicNoUseChecks(AbstractCard card) {
         AbstractCard baseCheck = card.makeCopy();
         ArrayList<AbstractCard> cardsToCheck = new ArrayList<>();
@@ -34,5 +35,14 @@ public class CardAugmentsExt {
             cardsToCheck.add(upgradeCheck);
         }
         return cardsToCheck.stream().allMatch((c) -> c.baseMagicNumber >= baseCheck.baseMagicNumber);
+    }
+
+    public static boolean hasCardWithKeywordInDeck(AbstractPlayer p, String keyword) {
+        for (AbstractCard card : p.masterDeck.group) {
+            if (card.rawDescription.toLowerCase().contains(keyword.toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

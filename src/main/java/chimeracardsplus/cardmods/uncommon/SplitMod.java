@@ -7,8 +7,10 @@ import chimeracardsplus.damagemods.SunderDamage;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.blue.Sunder;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,8 @@ public class SplitMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 1 && c.type == AbstractCard.CardType.ATTACK && doesntUpgradeCost()));
+        return cardCheck(card, (c) -> (c.cost >= 1 && c.baseDamage >= 4 && c.type == AbstractCard.CardType.ATTACK
+                && doesntUpgradeCost()));
     }
 
     @Override
@@ -42,6 +45,11 @@ public class SplitMod extends AbstractAugment {
             DamageModifierManager.removeModifier(card, m);
         }
         DamageModifierManager.addModifier(card, new SunderDamage(card.cost));
+    }
+
+    @Override
+    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage * 1.25F;
     }
 
     @Override

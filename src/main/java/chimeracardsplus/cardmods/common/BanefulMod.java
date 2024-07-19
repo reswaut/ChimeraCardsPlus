@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import java.util.ArrayList;
+import static chimeracardsplus.util.CardCheckHelpers.hasCardWithKeywordInDeck;
 
 public class BanefulMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(BanefulMod.class.getSimpleName());
@@ -28,15 +28,8 @@ public class BanefulMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> (c.cost >= -1 && c.baseDamage >= 3 && usesEnemyTargeting())) && characterCheck(p -> {
-            ArrayList<AbstractCard> deck = p.masterDeck.group;
-            for (AbstractCard c : deck) {
-                if (c.rawDescription.contains(CARD_TEXT[3])) {
-                    return true;
-                }
-            }
-            return false;
-        });
+        return cardCheck(card, c -> (c.cost >= -1 && c.baseDamage >= 3 && usesEnemyTargeting()))
+                && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[3]));
     }
 
     @Override

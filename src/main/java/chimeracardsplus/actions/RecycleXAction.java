@@ -32,11 +32,11 @@ public class RecycleXAction extends AbstractGameAction {
                 if (this.p.hand.getBottomCard().costForTurn == -1) {
                     hiddenCard.energyOnUse = EnergyPanel.getCurrentEnergy();
                     hiddenCard.freeToPlayOnce = true;
-                    hiddenCard.use(p, (AbstractMonster) target);
+                    hiddenCard.use(p, target instanceof AbstractMonster ? (AbstractMonster) target : null);
                 } else {
                     hiddenCard.energyOnUse = Math.max(0, this.p.hand.getBottomCard().costForTurn);
                     hiddenCard.freeToPlayOnce = true;
-                    hiddenCard.use(p, (AbstractMonster) target);
+                    hiddenCard.use(p, target instanceof AbstractMonster ? (AbstractMonster) target : null);
                 }
 
                 this.p.hand.moveToExhaustPile(this.p.hand.getBottomCard());
@@ -54,7 +54,7 @@ public class RecycleXAction extends AbstractGameAction {
                         hiddenCard.energyOnUse = Math.max(0, c.costForTurn);
                     }
                     hiddenCard.freeToPlayOnce = true;
-                    hiddenCard.use(p, (AbstractMonster) target);
+                    hiddenCard.use(p, target instanceof AbstractMonster ? (AbstractMonster) target : null);
                     this.p.hand.moveToExhaustPile(c);
                 }
 

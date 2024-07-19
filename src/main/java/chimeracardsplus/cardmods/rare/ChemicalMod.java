@@ -1,47 +1,29 @@
 package chimeracardsplus.cardmods.rare;
 
 import CardAugments.cardmods.AbstractAugment;
+import CardAugments.patches.InterruptUseCardFieldPatches;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.unique.ForethoughtAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
-
-public class ForethoughtMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(ForethoughtMod.class.getSimpleName());
+public class ChemicalMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(ChemicalMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return (card.baseDamage > 1 || card.baseBlock > 1 || (card.baseMagicNumber > 1 && doesntDowngradeMagicNoUseChecks(card)))
-                && cardCheck(card, (c) -> c.cost >= -1);
+        return cardCheck(card, (c) -> (c.cost == -1 && doesntUpgradeCost())) && characterCheck((p) -> p.hasRelic("Chemical X"));
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 1) ? (damage * 0.75F) : damage;
-    }
-
-    @Override
-    public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 1) ? (block * 0.75F) : block;
-    }
-
-    @Override
-    public float modifyBaseMagic(float magic, AbstractCard card) {
-        return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 0.75F) : magic;
-    }
-
-    @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new ForethoughtAction(false));
+    public void onInitialApplication(AbstractCard card) {
+        InterruptUseCardFieldPatches.InterceptUseField.interceptUse.set(card, true);
     }
 
     @Override
@@ -61,7 +43,13 @@ public class ForethoughtMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, CARD_TEXT[0]);
+        return insertBeforeText(rawDescription, CARD_TEXT[0]);
+    }
+
+    @Override
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        card.energyOnUse += 2;
+        card.use(AbstractDungeon.player, target instanceof AbstractMonster ? (AbstractMonster) target : null);
     }
 
     @Override
@@ -71,7 +59,7 @@ public class ForethoughtMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ForethoughtMod();
+        return new ChemicalMod();
     }
 
     @Override
