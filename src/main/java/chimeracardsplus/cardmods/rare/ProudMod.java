@@ -23,7 +23,7 @@ public class ProudMod extends AbstractAugment {
     @Override
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> (notExhaust(c) && notInnate(c) && doesntUpgradeExhaust() && doesntUpgradeInnate()
-                && c.cost >= 0 && doesntUpgradeCost()
+                && c.cost >= 0 && doesntUpgradeCost() && !c.hasTag(AbstractCard.CardTags.HEALING)
                 && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
     }
 

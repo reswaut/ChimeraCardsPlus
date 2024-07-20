@@ -18,7 +18,7 @@ public class ScribblyMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost()
+        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost() && !drawsCards(c)
                 && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
     }
 

@@ -46,7 +46,7 @@ public class GeneticMod extends AbstractAugment implements DynvarCarrier {
     }
 
     public int getBaseVal(AbstractCard card) {
-        return card.baseBlock / 4;
+        return card.baseBlock / 5;
     }
 
     public String key() {

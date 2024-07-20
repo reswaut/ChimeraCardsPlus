@@ -723,7 +723,7 @@
     "TEXT": [
       "Genetic ",
       "",
-      "Sets #yBlock to #b1. NL Increases #yBlock by #b25% permanently each time played. NL Adds #yExhaust."
+      "Sets #yBlock to #b1. NL Increases #yBlock by #b20% permanently each time played. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
       " NL Permanently increase this card's Block by %s. NL Exhaust.",
@@ -1126,7 +1126,7 @@
     ],
     "EXTRA_TEXT": [
       "Choose 1 of 3 random Modifiers. Add %s into your hand with the chosen Modifier on it. NL Exhaust.",
-      "Innate NL "
+      "Innate. NL "
     ]
   },
   "chimeracardsplus:EnlightenedMod": {
@@ -1196,10 +1196,10 @@
     "TEXT": [
       "Flamboyant ",
       "",
-      "Increases damage by #b3 if at least #b5 cards are played this turn."
+      "Increases damage by #b50% if at least #b5 cards are played this turn."
     ],
     "EXTRA_TEXT": [
-      " NL Deals 3 additional damage if you have played at least 5 cards this turn.",
+      " NL Deals 50% more damage if you have played at least 5 cards this turn.",
       " (%s card played.)",
       " (%s cards played.)"
     ]
@@ -1846,6 +1846,88 @@
     "EXTRA_TEXT": [
       " NL If this card is discarded from your hand, add a random card into your hand.",
       "discard"
+    ]
+  },
+  "chimeracardsplus:UnceasingMod": {
+    "TEXT": [
+      "Unceasing ",
+      "",
+      "Draws #b1 card if you have no cards in hand."
+    ],
+    "EXTRA_TEXT": [
+      " NL If you have no cards in hand, draw 1 card."
+    ]
+  },
+  "chimeracardsplus:ParasiticMod": {
+    "TEXT": [
+      "Parasitic ",
+      "",
+      "Increases card values by #b33%. NL Loses #b3 Max HP when transformed or removed from your deck."
+    ],
+    "EXTRA_TEXT": [
+      " NL If transformed or removed from your deck, lose 3 Max HP."
+    ]
+  },
+  "chimeracardsplus:CallingMod": {
+    "TEXT": [
+      "Calling ",
+      "",
+      "Increases card values by #b67%. NL Cannot be removed from your deck."
+    ],
+    "EXTRA_TEXT": [
+      " NL Cannot be removed from your deck."
+    ]
+  },
+  "chimeracardsplus:MirroredMod": {
+    "TEXT": [
+      "Mirrored ",
+      "",
+      "Adds an additional copies into your deck upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, add a copy into your deck."
+    ]
+  },
+  "chimeracardsplus:CeramicMod": {
+    "TEXT": [
+      "Ceramic ",
+      "",
+      "Gains #b9 #yGold upon pick. NL Only appears if you have #yCeramic #yFish."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, gain 9 *Gold."
+    ]
+  },
+  "chimeracardsplus:EdibleMod": {
+    "TEXT": [
+      "Edible ",
+      "",
+      "Reduces card values by #b33%. NL Gains Max HP based on rarity upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, raise your Max HP by 1.",
+      " NL Upon pickup, raise your Max HP by 2.",
+      " NL Upon pickup, raise your Max HP by 3."
+    ]
+  },
+  "chimeracardsplus:WaffleMod": {
+    "TEXT": [
+      "",
+      "'s Waffle",
+      "Reduces card values by #b33%. NL Heals #b7 HP upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, heal 7 HP."
+    ]
+  },
+  "chimeracardsplus:SmilingMod": {
+    "TEXT": [
+      "Smiling ",
+      "",
+      "Gains #b50 #yGold when transformed or removed from your deck."
+    ],
+    "EXTRA_TEXT": [
+      " NL If transformed or removed from your deck, gain 50 *Gold."
     ]
   }
 }

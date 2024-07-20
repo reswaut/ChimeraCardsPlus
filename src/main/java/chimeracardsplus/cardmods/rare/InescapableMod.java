@@ -14,7 +14,7 @@ public class InescapableMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, AbstractAugment::notExhaust);
+        return cardCheck(card, (c) -> notExhaust(c) && !c.hasTag(AbstractCard.CardTags.HEALING));
     }
 
     @Override
