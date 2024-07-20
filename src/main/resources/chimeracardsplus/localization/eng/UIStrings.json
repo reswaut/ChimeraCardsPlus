@@ -176,7 +176,7 @@
     "TEXT": [
       "Raging ",
       "",
-      "Gains #b3 #yBlock whenever you play an Attack this turn."
+      "Reduces #yBlock by #b20%. NL Gains #b3 #yBlock whenever you play an Attack this turn."
     ],
     "EXTRA_TEXT": [
       " NL Whenever you play an Attack this turn, gain 3 Block."
@@ -667,10 +667,10 @@
     "TEXT": [
       "Emotional ",
       "",
-      "Costs [E] more. NL Triggers the passive ability of ALL Orbs."
+      "Costs [E] more. NL Triggers the passive ability of all Orbs."
     ],
     "EXTRA_TEXT": [
-      " NL Trigger the passive ability of ALL Orbs."
+      " NL Trigger the passive ability of all Orbs."
     ]
   },
   "chimeracardsplus:StableMod": {
@@ -869,6 +869,7 @@
       " NL Shuffle an *Insight into your draw pile.",
       " NL Shuffle %d *Insights into your draw pile.",
       " NL Shuffle X *Insights into your draw pile.",
+      " NL Shuffle an *Insight into your draw pile.",
       " NL Shuffle an *Insight into your draw pile."
     ]
   },
@@ -1133,7 +1134,7 @@
     "TEXT": [
       "Enlightened ",
       "",
-      "Reduces card values by #b20%. NL Reduces the cost of a random card in your hand to 1 this turn."
+      "Reduces card values by #b25%. NL Reduces the cost of a random card in your hand to 1 this turn."
     ],
     "EXTRA_TEXT": [
       " NL Reduce the cost of a random card in your hand to 1 this turn."
@@ -1196,10 +1197,10 @@
     "TEXT": [
       "Flamboyant ",
       "",
-      "Increases damage by #b50% if at least #b5 cards are played this turn."
+      "Increases damage by #b50% if #b5 or more cards are played this turn."
     ],
     "EXTRA_TEXT": [
-      " NL Deals 50% more damage if you have played at least 5 cards this turn.",
+      " NL Deals 50% more damage if you have played 5 or more cards this turn.",
       " (%s card played.)",
       " (%s cards played.)"
     ]
@@ -1294,7 +1295,7 @@
       "Gains [E] on the first use on each of the turns #yHappy #yFlower trigger. NL Only appears if you have #yHappy #yFlower."
     ],
     "EXTRA_TEXT": [
-      " NL Once per turn, gain [E] if *Happy *Flower triggered this turn."
+      " NL Once on each turn *Happy *Flower triggers, gain [E]."
     ]
   },
   "chimeracardsplus:LanternMod": {
@@ -1928,6 +1929,16 @@
     ],
     "EXTRA_TEXT": [
       " NL If transformed or removed from your deck, gain 50 *Gold."
+    ]
+  },
+  "chimeracardsplus:ArtOfMod": {
+    "TEXT": [
+      "Art of ",
+      "",
+      "Gains [E] on the first use on each of the turns #yArt #yof #yWar trigger. NL Only appears if you have #yArt #yof #yWar."
+    ],
+    "EXTRA_TEXT": [
+      " NL Once per turn, if you did not play any Attack during your last turn, gain [E]."
     ]
   }
 }

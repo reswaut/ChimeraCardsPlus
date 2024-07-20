@@ -176,7 +176,7 @@
     "TEXT": [
       "Raging ",
       "",
-      "Gains #b3 #yBlock whenever you play an Attack this turn."
+      "Reduces #yBlock by #b20%. NL Gains #b3 #yBlock whenever you play an Attack this turn."
     ],
     "EXTRA_TEXT": [
       " NL Whenever you play an Attack this turn, gain 3 Block."
@@ -838,412 +838,413 @@
   },
   "chimeracardsplus:CrushingMod": {
     "TEXT": [
-      "Crushing ",
+      "粉碎",
       "",
-      "Reduces damage and #yBlock by #b25%. NL Applies #b1(2) #yVulnerable if the last card played was a Skill."
+      "造成的伤害和获得的 #y格挡 减少 #b25% 。 NL 如果本场战斗中打出的上一张牌是技能牌，给予 #b1(2) 层 易伤 。"
     ],
     "EXTRA_TEXT": [
-      " NL If the last card played this combat was a Skill, apply %s Vulnerable."
+      " NL 如果本场战斗中打出的上一张牌是技能牌，给予 %s 层 易伤 。"
     ]
   },
   "chimeracardsplus:CutThroughMod": {
     "TEXT": [
-      "Cut Through ",
+      "斩破",
       "",
-      "Reduces card values by #b25%. NL Scries #b1(2) and draws #b1 card."
+      "卡牌数值减少 #b25% 。 NL 预见 #b1(2) ，然后抽 #b1 张牌。"
     ],
     "EXTRA_TEXT": [
-      " NL Scry %s.",
-      " NL Draw 1 card.",
-      "Draw 1 card.",
-      "Draw 2 cards."
+      " NL 预见 %s 。",
+      " NL 抽 1 张牌。",
+      "抽1张牌。",
+      "抽2张牌。"
     ]
   },
   "chimeracardsplus:WiseMod": {
     "TEXT": [
-      "Wise ",
+      "智慧",
       "",
-      "Reduces card values by #b25%. NL Adds #yInsights into your draw pile equal to the cost."
+      "卡牌数值减少 #b25% 。 NL 在你的抽牌堆中加入等于耗能数量的 #y洞见 。"
     ],
     "EXTRA_TEXT": [
-      " NL Shuffle an *Insight into your draw pile.",
-      " NL Shuffle %d *Insights into your draw pile.",
-      " NL Shuffle X *Insights into your draw pile.",
-      " NL Shuffle an *Insight into your draw pile."
+      " NL 在你的抽牌堆中加入一张 *洞见 。",
+      " NL 在你的抽牌堆中加入 %s 张 *洞见 。",
+      " NL 在你的抽牌堆中加入 X 张 *洞见 。",
+      " NL 在你的抽牌堆中加入一张 *洞见 。",
+      " NL 在你的抽牌堆中加入1张 *洞见 。"
     ]
   },
   "chimeracardsplus:MarkedMod": {
     "TEXT": [
-      "Marked ",
+      "印记",
       "",
-      "Reduces damage by #b67%. NL Applies #yMark equal to #b33% damage, then makes ALL enemies lose HP equal to their #yMark."
+      "造成的伤害减少 #b67% 。 NL 给予 #b33% 伤害的 #y印记 ，然后所有拥有 #y印记 的敌人失去与层数相等的生命。"
     ],
     "EXTRA_TEXT": [
-      " NL Apply %s *Mark. NL ALL enemies lose HP equal to their *Mark."
+      " NL 给予 %s 层 *印记 ，然后所有拥有 *印记 的敌人失去与层数相等的生命。"
     ]
   },
   "chimeracardsplus:PrayerfulMod": {
     "TEXT": [
-      "Prayerful ",
+      "虔诚",
       "",
-      "Gains #b1(2) #yMantra."
+      "获得 #b1(2) 层 真言 。"
     ],
     "EXTRA_TEXT": [
-      " NL Gain %s Mantra.",
-      " NL Enter Divinity."
+      " NL 获得 %s 层 真言 。",
+      " NL 进入 神格 。"
     ]
   },
   "chimeracardsplus:WhipMod": {
     "TEXT": [
       "",
-      " and Whip",
-      "Reduces damage and #yBlock by #b25%. NL Applies #b1(2) #yWeak if the last card played was an Attack."
+      "抽打",
+      "造成的伤害和获得的 #y格挡 减少 #b25% 。 NL 如果本场战斗中打出的上一张牌是攻击牌，给予 #b1(2) 层 虚弱 。"
     ],
     "EXTRA_TEXT": [
-      " NL If the last card played this combat was an Attack, apply %s Weak."
+      " NL 如果本场战斗中打出的上一张牌是攻击牌，给予 %s 层 虚弱 。"
     ]
   },
   "chimeracardsplus:ThirdMod": {
     "TEXT": [
-      "Third ",
+      "第三",
       "",
-      "Reduces card values by #b20%. NL Scries #b2(3)."
+      "卡牌数值减少 #b20% 。 NL 预见 #b2(3) 。"
     ],
     "EXTRA_TEXT": [
-      " NL Scry %s."
+      " NL 预见 %s 。"
     ]
   },
   "chimeracardsplus:RealityMod": {
     "TEXT": [
       "",
-      " Reality",
-      "If possible, costs [E] less, reduces damage by #b12, and adds a #ySmite into your hand. NL If possible, costs [E] less, reduces #yBlock by #b12, and adds a #ySafety into your hand."
+      "现实",
+      "若能做到，则将耗能减少 #b1 ，造成的伤害减少 #b12 ，然后将一张 #y惩恶 加入你的手牌。 NL 若能做到，则将耗能减少 #b1 ，获得的 #y格挡 减少 #b12 ，然后将一张 #y平安 加入你的手牌。"
     ],
     "EXTRA_TEXT": [
-      " NL Add a *Smite into your hand.",
-      " NL Add a *Safety into your hand."
+      " NL 将一张 *惩恶 加入你的手牌。",
+      " NL 将一张 *平安 加入你的手牌。"
     ]
   },
   "chimeracardsplus:CollectedMod": {
     "TEXT": [
-      "Collected ",
+      "收集",
       "",
-      "Increases cost to [E] [E] [E] . NL Adds an #yUpgraded #yMiracle into hand in a number of following turns equal to the increased cost. NL Adds #yExhaust."
+      "耗能增加到 #b3 。 NL 耗能每增加 #b1 ，就在接下来的一个回合开始时增加一张 #y奇迹+ 到你的手牌。 NL #y消耗 。"
     ],
     "EXTRA_TEXT": [
-      " NL Put a *Miracle+ into your hand at the start of your next turn. NL Exhaust.",
-      " NL Put a *Miracle+ into your hand at the start of your next 2 turns. NL Exhaust.",
-      " NL Put a *Miracle+ into your hand at the start of your next 3 turns. NL Exhaust.",
-      " NL Put a *Miracle+ into your hand at the start of your next turn.",
-      " NL Put a *Miracle+ into your hand at the start of your next 2 turns.",
-      " NL Put a *Miracle+ into your hand at the start of your next 3 turns."
+      " NL 在你的下一个回合开始时，增加一张 *奇迹+ 到你的手牌。 NL 消耗 。",
+      " NL 在你的下2个回合开始时，增加一张 *奇迹+ 到你的手牌。 NL 消耗 。",
+      " NL 在你的下3个回合开始时，增加一张 *奇迹+ 到你的手牌。 NL 消耗 。",
+      " NL 在你的下一个回合开始时，增加一张 *奇迹+ 到你的手牌。",
+      " NL 在你的下2个回合开始时，增加一张 *奇迹+ 到你的手牌。",
+      " NL 在你的下3个回合开始时，增加一张 *奇迹+ 到你的手牌。"
     ]
   },
   "chimeracardsplus:ConclusiveMod": {
     "TEXT": [
-      "Conclusive ",
+      "结末",
       "",
-      "Increases card values by #b50%. NL Ends your turn."
+      "卡牌数值增加 #b50% 。 NL 结束你的回合。"
     ],
     "EXTRA_TEXT": [
-      " NL End your turn."
+      " NL 结束你的回合。"
     ]
   },
   "chimeracardsplus:ForeignMod": {
     "TEXT": [
-      "Foreign ",
+      "他山",
       "",
-      "Adds a random card with the same type of any color into your hand. Also reduces its cost to #b0 this turn when #yUpgraded. NL Adds #yExhaust."
+      "增加一张任意颜色的同类型牌到你的手牌。 #y升级 后使它在本回合耗能变为0。 NL #y消耗 。"
     ],
     "EXTRA_TEXT": [
-      " NL Add a random Attack card of any color into your hand. NL Exhaust.",
-      " NL Add a random Attack card of any color into your hand. It costs 0 this turn. NL Exhaust.",
-      " NL Add a random Skill card of any color into your hand. NL Exhaust.",
-      " NL Add a random Skill card of any color into your hand. It costs 0 this turn. NL Exhaust."
+      " NL 增加一张任意颜色的攻击牌到你的手牌。 NL 消耗 。",
+      " NL 增加一张任意颜色的攻击牌到你的手牌。这张牌在本回合耗能变为0。 NL 消耗 。",
+      " NL 增加一张任意颜色的技能牌到你的手牌。 NL 消耗 。",
+      " NL 增加一张任意颜色的技能牌到你的手牌。这张牌在本回合耗能变为0。 NL 消耗 。"
     ]
   },
   "chimeracardsplus:PreservantMod": {
     "TEXT": [
-      "Preservant ",
+      "坚韧",
       "",
-      "Adds #yRetain. NL Reduces #yBlock by #b50%. NL Increases #yBlock by #b25% when #yRetained."
+      "#y保留 。 NL 获得的 #y格挡 减少 #b50% 。 NL 被 #y保留 时，获得的 #y格挡 增加 #b25% 。"
     ],
     "EXTRA_TEXT": [
-      "Retain. NL ",
-      " NL When Retained, increase its Block by %s this combat."
+      "保留 。 NL ",
+      " NL 每当这张牌被 保留 时，将其在本场战斗的 格挡 增加 %s 点。"
     ]
   },
   "chimeracardsplus:EstablishedMod": {
     "TEXT": [
-      "Established ",
+      "确立",
       "",
-      "Costs [E] [E] more. NL Adds #yRetain. NL Costs [E] less when #yRetained."
+      "耗能增加 #b2 。 NL #y保留 。 NL 被 #y保留 时，耗能减少 #b1 。"
     ],
     "EXTRA_TEXT": [
-      "Retain. NL ",
-      " NL When Retained, lower its cost by 1 this combat."
+      "保留 。 NL ",
+      " NL 每当这张牌被 保留 时，将其在本场战斗的耗能减少1。"
     ]
   },
   "chimeracardsplus:HandMod": {
     "TEXT": [
+      "以手",
       "",
-      " to the Hand",
-      "Reduces card values by #b33%. NL Gains #yBlock equal to the cost whenever you attack the enemy. NL Adds #yExhaust."
+      "卡牌数值减少 #b33% 。 NL 每当目标敌人受到攻击时，你获得与耗能相等的 #b格挡。 NL 消耗 。"
     ],
     "EXTRA_TEXT": [
-      " NL Whenever you attack this enemy, gain %d Block. NL Exhaust.",
-      " NL Whenever you attack this enemy, gain %d Block.",
-      " NL Whenever you attack this enemy, gain X Block. NL Exhaust.",
-      " NL Whenever you attack this enemy, gain X Block."
+      " NL 每当目标敌人受到攻击时，你获得 %d 点 格挡 。 NL 消耗 。",
+      " NL 每当目标敌人受到攻击时，你获得 %d 点 格挡 。",
+      " NL 每当目标敌人受到攻击时，你获得 X 点 格挡 。 NL 消耗 。",
+      " NL 每当目标敌人受到攻击时，你获得 X 点 格挡 。"
     ]
   },
   "chimeracardsplus:PatientMod": {
     "TEXT": [
-      "Patient ",
+      "耐心",
       "",
-      "Adds #yRetain. NL Reduces damage by #b50%. NL Increases damage by #b25% when #yRetained."
+      "#y保留 。 NL 造成的伤害减少 #b50% 。 NL 被 #y保留 时，造成的伤害增加 #b25% 。"
     ],
     "EXTRA_TEXT": [
-      "Retain. NL ",
-      " NL When Retained, increase its damage by %s this combat."
+      "保留 。 NL ",
+      " NL 每当这张牌被 保留 时，将其在本场战斗的伤害增加 %s 点。"
     ]
   },
   "chimeracardsplus:WreathMod": {
     "TEXT": [
-      "Wreath of ",
       "",
-      "Reduces damage by #b50%. NL Gives your next attack #b33% of this card's damage."
+      "纹",
+      "造成的伤害减少 #b50% 。 NL 你的下一张攻击牌造成这张牌 #b33% 伤害的额外伤害。"
     ],
     "EXTRA_TEXT": [
-      " NL Your next attack deals %s additional damage."
+      " NL 你的下一张攻击牌造成 %s 点额外伤害。"
     ]
   },
   "chimeracardsplus:BrilliantMod": {
     "TEXT": [
-      "Brilliant ",
+      "光辉",
       "",
-      "Increases damage by #b1 for each #yMantra gained this combat."
+      "额外造成本场战斗中获得的 #y真言 总层数的伤害。"
     ],
     "EXTRA_TEXT": [
-      " NL Deals additional damage equal to Mantra gained this combat.",
-      "Deals additional damage equal to Mantra gained this combat.",
-      "Deals 2 additional damage for each Mantra gained this combat.",
-      "Mantra"
+      " NL 额外造成本场战斗中获得的 真言 总层数的伤害。",
+      "额外造成本场战斗中获得的 真言 总层数的伤害。",
+      "额外造成本场战斗中获得的 真言 总层数2倍的伤害。",
+      "真言"
     ]
   },
   "chimeracardsplus:LearnMod": {
     "TEXT": [
+      "勤学",
       "",
-      " and Learn",
-      "Costs [E] more. NL #yUpgrades a random card in deck if #yFatal. NL Adds #yExhaust."
+      "耗能增加 #b1 。 NL 斩杀 时， 升级 你牌组中的一张随机牌。 NL #y消耗 。"
     ],
     "EXTRA_TEXT": [
-      " NL If Fatal, Upgrade a random card in your deck. NL Exhaust.",
-      " NL If Fatal, Upgrade a random card in your deck.",
-      "If Fatal, Upgrade a random card in your deck.",
-      "If Fatal, Upgrade 2 random cards in your deck."
+      " NL 斩杀 时， 升级 你牌组中的一张随机牌。 NL 消耗 。",
+      " NL 斩杀 时， 升级 你牌组中的一张随机牌。",
+      "斩杀 时， 升级 你牌组中的一张随机牌。",
+      "斩杀 时， 升级 你牌组中的2张随机牌。"
     ]
   },
   "chimeracardsplus:ScribblyMod": {
     "TEXT": [
-      "Scribbly ",
+      "潦草",
       "",
-      "Costs [E] more. NL Draws cards until your hand is full. NL Adds #yExhaust."
+      "耗能增加 #b1 。 NL 抽牌直到将手牌抽满。 NL #y消耗 。"
     ],
     "EXTRA_TEXT": [
-      " NL Draw cards until your hand is full. NL Exhaust.",
-      " NL Draw cards until your hand is full."
+      " NL 抽牌直到将手牌抽满。 NL 消耗 。",
+      " NL 抽牌直到将手牌抽满。"
     ]
   },
   "chimeracardsplus:ExpertMod": {
     "TEXT": [
-      "Expert ",
+      "独门",
       "",
-      "Costs [E] more. NL Draws cards until your have 6 in hand."
+      "耗能增加 #b1 。 NL 抽牌直到你的手牌有 #b6 张牌。"
     ],
     "EXTRA_TEXT": [
-      " NL Draw cards until your have 6 in your hand."
+      " NL 抽牌直到你的手牌有 6 张牌。"
     ]
   },
   "chimeracardsplus:DartMod": {
     "TEXT": [
-      "Dart ",
+      "飞镖",
       "",
-      "Reduces damage by #b50%. NL Hits once for each Skill in your hand."
+      "造成的伤害减少 #b50% 。 NL 手牌中每有一张技能牌，就造成一次伤害。"
     ],
     "EXTRA_TEXT": [
-      " for each Skill in your hand."
+      "若干次，其数量等于手牌中技能牌的数量。"
     ]
   },
   "chimeracardsplus:FinishingMod": {
     "TEXT": [
-      "Finishing ",
+      "终结",
       "",
-      "Reduces damage by #b33%. NL Hits once for each Attack played this turn."
+      "造成的伤害减少 #b33% 。 NL 你在这个回合内每打出过一张攻击牌，就造成一次伤害。"
     ],
     "EXTRA_TEXT": [
-      " for each Attack played this turn.",
-      " NL (%d Attack played.)",
-      " NL (%d Attacks played.)"
+      "若干次，其数量等于你在这个回合内打出的攻击牌的数量。",
+      " NL （你本回合打出过 %s 张攻击牌。）",
+      " NL （你本回合打出过 %s 张攻击牌。）"
     ]
   },
   "chimeracardsplus:BitingMod": {
     "TEXT": [
-      "Biting ",
+      "噬咬",
       "",
-      "Heals #b1(2) HP."
+      "回复 #b1(2) 点生命。"
     ],
     "EXTRA_TEXT": [
-      " NL Heal %s HP."
+      " NL 回复 %s 点生命。"
     ]
   },
   "chimeracardsplus:ShacklingMod": {
     "TEXT": [
-      "Shackling ",
+      "镣铐",
       "",
-      "Applies #b5 #yStrength down for one turn. NL Adds #yExhaust."
+      "敌人在本回合内失去 #b5 点 力量 。 NL #y消耗 。"
     ],
     "EXTRA_TEXT": [
-      " NL Enemy loses 5 Strength this turn. NL Exhaust.",
-      " NL Enemy loses 5 Strength this turn."
+      " NL 敌人在本回合内失去 5 点 力量 。 NL 消耗 。",
+      " NL 敌人在本回合内失去 5 点 力量 。"
     ]
   },
   "chimeracardsplus:DeepMod": {
     "TEXT": [
-      "Deep ",
+      "深",
       "",
-      "Shuffles your discard pile into your draw pile."
+      "将你的弃牌堆洗牌后放入你的抽牌堆。"
     ],
     "EXTRA_TEXT": [
-      " NL Shuffle your discard pile into your draw pile."
+      " NL 将你的弃牌堆洗牌后放入你的抽牌堆。"
     ]
   },
   "chimeracardsplus:DiscoveredMod": {
     "TEXT": [
-      "Discovered ",
+      "发现",
       "",
-      "Costs [E] . NL Adds the card to your hand with a chosen Modifier. NL Adds #yExhaust."
+      "耗能为 #b1 。 NL 选择一个卡牌修改添加到这张牌上。 NL #y消耗 。"
     ],
     "EXTRA_TEXT": [
-      "Choose 1 of 3 random Modifiers. Add %s into your hand with the chosen Modifier on it. NL Exhaust.",
-      "Innate NL "
+      "从3个卡牌修改中选择1个。把带有所选卡牌修改的 %s 添加到你的手牌中。 NL 消耗 。",
+      "固有 。 NL "
     ]
   },
   "chimeracardsplus:EnlightenedMod": {
     "TEXT": [
-      "Enlightened ",
+      "开悟",
       "",
-      "Reduces card values by #b20%. NL Reduces the cost of a random card in your hand to 1 this turn."
+      "卡牌数值减少 #b25% 。 NL 使你手牌中的一张随机牌在本回合中耗能减少为 #b1 。"
     ],
     "EXTRA_TEXT": [
-      " NL Reduce the cost of a random card in your hand to 1 this turn."
+      " NL 使你手牌中的一张随机牌在本回合中耗能减少为 1 。"
     ]
   },
   "chimeracardsplus:ForethoughtMod": {
     "TEXT": [
-      "Forethought ",
+      "预谋",
       "",
-      "Reduces card values by #b25%. NL Returns a card from your hand to the bottom of your draw pile. Reduces its cost to 0 until played."
+      "卡牌数值减少 #b25% 。 NL 将手牌中的一张牌放到抽牌堆的底部。这张牌在被打出之前，耗能变为 #b0 。"
     ],
     "EXTRA_TEXT": [
-      " NL Put a card from your hand to the bottom of your draw pile. It costs 0 until played."
+      " NL 将手牌中的一张牌放到抽牌堆的底部。这张牌在被打出之前，耗能变为 0 。"
     ]
   },
   "chimeracardsplus:ImpatientMod": {
     "TEXT": [
-      "Impatient ",
+      "急躁",
       "",
-      "Reduces card values by #b33%. NL Draws #b2 cards if you have no Attacks in hand."
+      "卡牌数值减少 #b33% 。 NL 如果你的手牌中没有攻击牌，抽 #b2 张牌。"
     ],
     "EXTRA_TEXT": [
-      " NL If you have no Attacks in your hand, draw 2 cards."
+      " NL 如果你的手牌中没有攻击牌，抽 2 张牌。"
     ]
   },
   "chimeracardsplus:MagneticMod": {
     "TEXT": [
-      "Magnetic ",
+      "磁力",
       "",
-      "Adds a random Colorless card into your hand. Also reduces its cost to #b0 this turn when #yUpgraded. NL Adds #yExhaust."
+      "增加一张随机无色牌到你的手牌。 #y升级 后使它在本回合耗能变为0。 NL #y消耗 。"
     ],
     "EXTRA_TEXT": [
-      " NL Add a random Colorless card into your hand. NL Exhaust.",
-      " NL Add a random Colorless card into your hand. It costs 0 this turn. NL Exhaust."
+      " NL 增加一张随机无色牌到你的手牌。 NL 消耗 。",
+      " NL 增加一张随机无色牌到你的手牌。这张牌在本回合耗能变为0。 NL 消耗 。"
     ]
   },
   "chimeracardsplus:MadMod": {
     "TEXT": [
-      "Mad ",
+      "疯狂",
       "",
-      "Costs [E] more. NL Reduces the cost of a random card in your hand to 0 this combat. NL Adds #yExhaust."
+      "耗能增加 #b1 。 NL 使你手牌中的一张随机牌在本场战斗中耗能变为0。 NL #y消耗 。"
     ],
     "EXTRA_TEXT": [
-      " NL Reduce the cost of a random card in your hand to 0 this combat. NL Exhaust.",
-      " NL Reduce the cost of a random card in your hand to 0 this combat."
+      " NL 你手牌中一张随机牌在本场战斗中耗能变为0。 NL 消耗 。",
+      " NL 你手牌中一张随机牌在本场战斗中耗能变为0。"
     ]
   },
   "chimeracardsplus:PanicMod": {
     "TEXT": [
-      "Panic ",
+      "应急",
       "",
-      "Increases #yBlock by #b300%. NL Prevents gaining #yBlock from cards for 2 turn. NL Adds #yExhaust."
+      "获得的 #y格挡 增加 #b300% 。 NL 你在接下来 #b2 回合内无法再从卡牌中获得 #y格挡 。 NL #y消耗 。"
     ],
     "EXTRA_TEXT": [
-      " NL You cannot gain Block from cards for 2 turn. NL Exhaust.",
-      " NL You cannot gain Block from cards for 2 turn."
+      " NL 你在接下来 2 回合内无法再从卡牌中获得 格挡 。 NL 消耗 。",
+      " NL 你在接下来 2 回合内无法再从卡牌中获得 格挡 。"
     ]
   },
   "chimeracardsplus:FlamboyantMod": {
     "TEXT": [
-      "Flamboyant ",
+      "艳丽",
       "",
-      "Increases damage by #b50% if at least #b5 cards are played this turn."
+      "如果你在这回合打出了 #b5 张或更多的牌，造成的伤害增加 #b50% 。"
     ],
     "EXTRA_TEXT": [
-      " NL Deals 50% more damage if you have played at least 5 cards this turn.",
-      " (%s card played.)",
-      " (%s cards played.)"
+      " NL 如果你在这回合中打出了 5 张或更多的牌，造成的伤害增加 50% 。",
+      " （已打出 %s 张牌。）",
+      " （已打出 %s 张牌。）"
     ]
   },
   "chimeracardsplus:ViolentMod": {
     "TEXT": [
-      "Violent ",
+      "暴力",
       "",
-      "Puts #b2 random Attacks from your draw pile into your hand. NL Adds #yExhaust."
+      "随机将你抽牌堆中 #b2 张攻击牌加入你的手牌。 NL #y消耗 。"
     ],
     "EXTRA_TEXT": [
-      " NL Put 2 random Attacks from your draw pile into your hand. NL Exhaust.",
-      " NL Put 2 random Attacks from your draw pile into your hand."
+      " NL 随机将你抽牌堆中 2 张攻击牌加入你的手牌。 NL 消耗 。",
+      " NL 随机将你抽牌堆中 2 张攻击牌加入你的手牌。"
     ]
   },
   "chimeracardsplus:ProactiveMod": {
     "TEXT": [
-      "Proactive ",
+      "先发",
       "",
-      "Draws #b1 card. NL Returns #b1 card from your hand to the top of your draw pile."
+      "抽 #b1 张牌，然后将手牌中的一张牌放到你抽牌堆的顶端。"
     ],
     "EXTRA_TEXT": [
-      " NL Draw 1 card. NL Put a card from your hand on top of your draw pile."
+      " NL 抽 1 张牌，然后将手牌中的一张牌放到你抽牌堆的顶端。"
     ]
   },
   "chimeracardsplus:InescapableMod": {
     "TEXT": [
-      "Inescapable ",
+      "无法逃脱的",
       "",
-      "Returns a copy to your hand when #yExhausted."
+      "被 #y消耗 时增加一张这张牌的复制到你的手牌。"
     ],
     "EXTRA_TEXT": [
-      " NL If this card is Exhausted, put a copy of this card into your hand."
+      " NL 如果这张牌被 消耗 ，增加一张它的复制到你的手牌。"
     ]
   },
   "chimeracardsplus:ProudMod": {
     "TEXT": [
-      "Proud ",
+      "傲慢",
       "",
-      "Costs [E] more. NL Adds #yInnate and #yExhaust. NL Puts a copy of the card on top of your draw pile if you end your turn with it in hand."
+      "耗能增加 #b1 。 NL #y固有 。 #y消耗 。 NL 你的回合结束时，如果这张牌在你的手牌中，则在抽牌堆顶部加入一张这张牌的复制品。"
     ],
     "EXTRA_TEXT": [
-      "Innate. NL ",
-      " NL At the end of your turn, put a copy of this card on top of your draw pile. NL Exhaust."
+      "固有 。 NL ",
+      " NL 你的回合结束时，在抽牌堆顶部加入一张这张牌的复制品。 NL 消耗 。"
     ]
   },
   "chimeracardsplus:AkabekoMod": {
@@ -1850,84 +1851,94 @@
   },
   "chimeracardsplus:UnceasingMod": {
     "TEXT": [
-      "Unceasing ",
+      "不休",
       "",
-      "Draws #b1 card if you have no cards in hand."
+      "如果你没有手牌，抽一张牌。"
     ],
     "EXTRA_TEXT": [
-      " NL If you have no cards in hand, draw 1 card."
+      " NL 如果你没有手牌，抽一张牌。"
     ]
   },
   "chimeracardsplus:ParasiticMod": {
     "TEXT": [
-      "Parasitic ",
+      "寄生",
       "",
-      "Increases card values by #b33%. NL Loses #b3 Max HP when transformed or removed from your deck."
+      "卡牌数值增加 #b33% 。 NL 如果这张牌在你的牌组中被转化或移除，失去 #b3 点最大生命。"
     ],
     "EXTRA_TEXT": [
-      " NL If transformed or removed from your deck, lose 3 Max HP."
+      " NL 如果这张牌在你的牌组中被转化或移除，失去3点最大生命。"
     ]
   },
   "chimeracardsplus:CallingMod": {
     "TEXT": [
-      "Calling ",
+      "召唤",
       "",
-      "Increases card values by #b67%. NL Cannot be removed from your deck."
+      "卡牌数值增加 #b33% 。 NL 不能从牌组中移除。"
     ],
     "EXTRA_TEXT": [
-      " NL Cannot be removed from your deck."
+      " NL 不能从牌组中移除。"
     ]
   },
   "chimeracardsplus:MirroredMod": {
     "TEXT": [
-      "Mirrored ",
+      "镜像",
       "",
-      "Adds an additional copies into your deck upon pickup."
+      "拾起时，复制一张到你的牌组中。"
     ],
     "EXTRA_TEXT": [
-      " NL Upon pickup, add a copy into your deck."
+      " NL 拾起时，复制一张到你的牌组中。"
     ]
   },
   "chimeracardsplus:CeramicMod": {
     "TEXT": [
-      "Ceramic ",
+      "陶瓷",
       "",
-      "Gains #b9 #yGold upon pick. NL Only appears if you have #yCeramic #yFish."
+      "拾起时获得 #b9 #y金币 。 NL 只会在你拥有 #y陶瓷小鱼 时出现。"
     ],
     "EXTRA_TEXT": [
-      " NL Upon pickup, gain 9 *Gold."
+      " NL 拾起时获得9 *金币 。"
     ]
   },
   "chimeracardsplus:EdibleMod": {
     "TEXT": [
-      "Edible ",
+      "可食用",
       "",
-      "Reduces card values by #b33%. NL Gains Max HP based on rarity upon pickup."
+      "卡牌数值减少 #b33% 。 NL 拾起时根据稀有度获得最大生命值。"
     ],
     "EXTRA_TEXT": [
-      " NL Upon pickup, raise your Max HP by 1.",
-      " NL Upon pickup, raise your Max HP by 2.",
-      " NL Upon pickup, raise your Max HP by 3."
+      " NL 拾起时，将你的最大生命值提升 #b1 。",
+      " NL 拾起时，将你的最大生命值提升 #b2 。",
+      " NL 拾起时，将你的最大生命值提升 #b3 。"
     ]
   },
   "chimeracardsplus:WaffleMod": {
     "TEXT": [
       "",
-      "'s Waffle",
-      "Reduces card values by #b33%. NL Heals #b7 HP upon pickup."
+      "的华夫饼",
+      "卡牌数值减少 #b33% 。 NL 拾起时回复 #b7 点生命。"
     ],
     "EXTRA_TEXT": [
-      " NL Upon pickup, heal 7 HP."
+      " NL 拾起时回复7点生命。"
     ]
   },
   "chimeracardsplus:SmilingMod": {
     "TEXT": [
-      "Smiling ",
+      "微笑",
       "",
-      "Gains #b50 #yGold when transformed or removed from your deck."
+      "如果这张牌在你的牌组中被转化或移除，获得 #b50 #y金币 。"
     ],
     "EXTRA_TEXT": [
-      " NL If transformed or removed from your deck, gain 50 *Gold."
+      " NL 如果这张牌在你的牌组中被转化或移除，获得 50 *金币 。"
+    ]
+  },
+  "chimeracardsplus:ArtOfMod": {
+    "TEXT": [
+      "",
+      "兵法",
+      "在 #y孙子兵法 触发的每个回合中第一次使用时，获得 [E] 。 NL 只会在你拥有 #y孙子兵法 时出现。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 每回合限一次，如果你在上回合中没有打出任何攻击牌，则获得 [E] 。"
     ]
   }
 }

@@ -81,7 +81,7 @@ public class WiseMod extends AbstractAugment {
             text = String.format(CARD_TEXT[1], cost);
         }
         if (card instanceof Evaluate || card instanceof Pray) {
-            return rawDescription.replace(CARD_TEXT[3], text);
+            return rawDescription.replace(CARD_TEXT[3], text).replace(CARD_TEXT[4], text);
         }
         return insertAfterText(rawDescription, text);
     }

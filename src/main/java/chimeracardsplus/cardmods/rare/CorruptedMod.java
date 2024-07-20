@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.red.Corruption;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -28,7 +29,15 @@ public class CorruptedMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 1 && c.type == AbstractCard.CardType.SKILL && doesntUpgradeCost()));
+        return cardCheck(card, (c) -> (c.cost >= 1 && c.type == AbstractCard.CardType.SKILL && doesntUpgradeCost()))
+                && characterCheck((p) -> {
+            for (AbstractCard c : p.masterDeck.group) {
+                if (c instanceof Corruption) {
+                    return true;
+                }
+            }
+            return false;
+        });
     }
 
     @Override

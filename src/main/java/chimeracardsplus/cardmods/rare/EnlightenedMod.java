@@ -26,17 +26,17 @@ public class EnlightenedMod extends AbstractAugment {
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 1) ? (damage * 0.8F) : damage;
+        return (damage > 1) ? (damage * 0.75F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 1) ? (block * 0.8F) : block;
+        return (block > 1) ? (block * 0.75F) : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 0.8F) : magic;
+        return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 0.75F) : magic;
     }
 
     @Override

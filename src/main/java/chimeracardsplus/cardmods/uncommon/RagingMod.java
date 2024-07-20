@@ -23,7 +23,12 @@ public class RagingMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= -1;
+        return cardCheck(card, (c) -> (c.cost >= -1 && c.baseBlock > 1));
+    }
+
+    @Override
+    public float modifyBaseBlock(float block, AbstractCard card) {
+        return (block > 1) ? (block * 0.8F) : block;
     }
 
     @Override
