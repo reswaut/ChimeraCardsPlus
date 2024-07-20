@@ -23,7 +23,8 @@ public class PrayerfulMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1);
+        return cardCheck(card, (c) -> c.cost >= -1
+                && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL));
     }
 
     @Override

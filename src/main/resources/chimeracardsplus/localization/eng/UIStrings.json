@@ -209,7 +209,7 @@
       "Loses #b2 HP. NL Gains #b1 #yStrength."
     ],
     "EXTRA_TEXT": [
-      " NL Lose 2 HP. NL Gain 1 Strength."
+      " NL Lose 2 HP. Gain 1 Strength."
     ]
   },
   "chimeracardsplus:GuardedMod": {
@@ -275,7 +275,7 @@
       "Loses #b1 HP. NL Draws #b1 card."
     ],
     "EXTRA_TEXT": [
-      " NL Lose 1 HP. NL Draw 1 card."
+      " NL Lose 1 HP. Draw 1 card."
     ]
   },
   "chimeracardsplus:CorruptedMod": {
@@ -409,7 +409,7 @@
     "TEXT": [
       "",
       " Setup",
-      "Costs [E] more. NL Returns a card from your hand to the top of your draw pile. NL Reduces its cost to #b0 the next time it is played."
+      "Costs [E] more. NL Returns a card from your hand to the top of your draw pile. Reduces its cost to #b0 the next time it is played."
     ],
     "EXTRA_TEXT": [
       " NL Put a card from your hand on top of your draw pile. It costs 0 until played."
@@ -600,7 +600,9 @@
     ],
     "EXTRA_TEXT": [
       " NL Put a card from your discard pile into your hand. NL Exhaust.",
-      " NL Put a card from your discard pile into your hand."
+      " NL Put a card from your discard pile into your hand.",
+      "Put a card from your discard pile into your hand.",
+      "Put 2 cards from your discard pile into your hand."
     ]
   },
   "chimeracardsplus:SpringyMod": {

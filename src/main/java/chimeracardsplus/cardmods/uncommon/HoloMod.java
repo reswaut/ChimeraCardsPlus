@@ -1,14 +1,19 @@
 package chimeracardsplus.cardmods.uncommon;
 
 import CardAugments.cardmods.AbstractAugment;
+import CardAugments.patches.InterruptUseCardFieldPatches;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import com.megacrit.cardcrawl.actions.common.BetterDiscardPileToHandAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.defect.DiscardPileToHandAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.blue.Hologram;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class HoloMod extends AbstractAugment {
@@ -22,6 +27,9 @@ public class HoloMod extends AbstractAugment {
         if (getEffectiveUpgrades(card) == 0) {
             addedExhaust = !card.exhaust;
             card.exhaust = true;
+        }
+        if (card instanceof Hologram) {
+            InterruptUseCardFieldPatches.InterceptUseField.interceptUse.set(card, true);
         }
     }
 
@@ -51,6 +59,11 @@ public class HoloMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        if (card instanceof Hologram) {
+            this.addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, card.block));
+            this.addToBot(new BetterDiscardPileToHandAction(2));
+            return;
+        }
         this.addToBot(new DiscardPileToHandAction(1));
     }
 
@@ -71,6 +84,9 @@ public class HoloMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof Hologram) {
+            return rawDescription.replace(CARD_TEXT[2], CARD_TEXT[3]);
+        }
         return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1]);
     }
 
