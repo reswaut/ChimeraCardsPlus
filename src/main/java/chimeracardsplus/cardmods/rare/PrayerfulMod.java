@@ -1,4 +1,4 @@
-package chimeracardsplus.cardmods.uncommon;
+package chimeracardsplus.cardmods.rare;
 
 import CardAugments.cardmods.AbstractAugment;
 import CardAugments.cardmods.DynvarCarrier;
@@ -100,7 +100,7 @@ public class PrayerfulMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.UNCOMMON;
+        return AugmentRarity.RARE;
     }
 
     @Override

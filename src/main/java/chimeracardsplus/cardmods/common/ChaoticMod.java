@@ -1,41 +1,44 @@
-package chimeracardsplus.cardmods.uncommon;
+package chimeracardsplus.cardmods.common;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.blue.Chaos;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ConservePower;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
-public class ConservedMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(ConservedMod.class.getSimpleName());
+public class ChaoticMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(ChaoticMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0 && (c.baseDamage > 1 || c.baseBlock > 1)));
+        return allowOrbMods() && cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost()));
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 1) ? (damage * 0.8F) : damage;
+    public void onInitialApplication(AbstractCard card) {
+        card.cost += 1;
+        card.costForTurn = card.cost;
+        card.showEvokeValue = true;
     }
 
     @Override
-    public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 1) ? (block * 0.8F) : block;
+    public float modifyBaseMagic(float magic, AbstractCard card) {
+        if (card instanceof Chaos) {
+            return magic + 1;
+        }
+        return magic;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ConservePower(AbstractDungeon.player, 1), 1));
+        this.addToBot(new ChannelAction(AbstractOrb.getRandomOrb(true)));
     }
 
     @Override
@@ -55,17 +58,20 @@ public class ConservedMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (card instanceof Chaos) {
+            return rawDescription.replace(CARD_TEXT[1], CARD_TEXT[2]);
+        }
         return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.UNCOMMON;
+        return AugmentRarity.COMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ConservedMod();
+        return new ChaoticMod();
     }
 
     @Override

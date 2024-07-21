@@ -3,30 +3,27 @@ package chimeracardsplus.cardmods.uncommon;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
-import com.megacrit.cardcrawl.actions.common.ShuffleAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-public class DeepMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(DeepMod.class.getSimpleName());
+public class EntrenchedMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(EntrenchedMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
     @Override
+    public void onInitialApplication(AbstractCard card) {
+        card.cost += 1;
+        card.costForTurn = card.cost;
+    }
+    @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1);
+        return cardCheck(card, (c) -> (c.cost >= 0 && c.baseBlock >= 1 && doesntUpgradeCost()));
     }
 
     @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (!AbstractDungeon.player.discardPile.isEmpty()) {
-            this.addToBot(new EmptyDeckShuffleAction());
-            this.addToBot(new ShuffleAction(AbstractDungeon.player.drawPile, false));
-        }
+    public float modifyBaseBlock(float block, AbstractCard card) {
+        return block * 2.0F;
     }
 
     @Override
@@ -46,7 +43,7 @@ public class DeepMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, CARD_TEXT[0]);
+        return rawDescription;
     }
 
     @Override
@@ -56,7 +53,7 @@ public class DeepMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new DeepMod();
+        return new EntrenchedMod();
     }
 
     @Override

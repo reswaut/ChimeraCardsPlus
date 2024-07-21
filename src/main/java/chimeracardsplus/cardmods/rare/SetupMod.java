@@ -1,22 +1,22 @@
-package chimeracardsplus.cardmods.uncommon;
+package chimeracardsplus.cardmods.rare;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.defect.ImpulseAction;
+import com.megacrit.cardcrawl.actions.unique.SetupAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
-public class EmotionalMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(EmotionalMod.class.getSimpleName());
+public class SetupMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(SetupMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return allowOrbMods() && cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost()));
+        return card.cost >= 0 && cardCheck(card, (c) -> doesntUpgradeCost());
     }
 
     @Override
@@ -27,7 +27,7 @@ public class EmotionalMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new ImpulseAction());
+        this.addToBot(new SetupAction());
     }
 
     @Override
@@ -52,12 +52,12 @@ public class EmotionalMod extends AbstractAugment {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.UNCOMMON;
+        return AugmentRarity.RARE;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new EmotionalMod();
+        return new SetupMod();
     }
 
     @Override
