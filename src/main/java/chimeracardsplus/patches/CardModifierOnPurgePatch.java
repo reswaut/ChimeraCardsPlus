@@ -2,10 +2,12 @@ package chimeracardsplus.patches;
 
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
+import chimeracardsplus.interfaces.TriggerOnPurgeMod;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.events.city.Vampires;
+import com.megacrit.cardcrawl.events.shrines.WeMeetAgain;
 import com.megacrit.cardcrawl.relics.PandorasBox;
 import javassist.CtBehavior;
 
@@ -110,7 +112,7 @@ public class CardModifierOnPurgePatch {
             clz = Vampires.class,
             method = "replaceAttacks"
     )
-    public static class betterVampiresReplaceAttacks {
+    public static class BetterVampiresReplaceAttacks {
         @SpireInsertPatch(
                 locator = Locator.class,
                 localvars = {"card"}
@@ -142,4 +144,38 @@ public class CardModifierOnPurgePatch {
         }
     }
 
+    @SpirePatch(
+            clz = WeMeetAgain.class,
+            method = "getRandomNonBasicCard"
+    )
+    public static class BetterWeMeetAgainGetRandomNonBasicCard {
+        @SpireInsertPatch(
+                locator = Locator.class,
+                localvars = {"list"}
+        )
+        public static void Insert(WeMeetAgain __instance, @ByRef ArrayList<AbstractCard>[] list) {
+            ArrayList<AbstractCard> tmp = new ArrayList<>();
+            for (AbstractCard c : list[0]) {
+                boolean removable = true;
+                for (AbstractCardModifier mod : CardModifierManager.modifiers(c)) {
+                    if (mod instanceof TriggerOnPurgeMod && !((TriggerOnPurgeMod) mod).isRemovable(c)) {
+                        removable = false;
+                        break;
+                    }
+                }
+                if (removable) {
+                    tmp.add(c);
+                }
+            }
+            list[0] = tmp;
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(ArrayList.class, "isEmpty");
+                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
+            }
+        }
+    }
 }

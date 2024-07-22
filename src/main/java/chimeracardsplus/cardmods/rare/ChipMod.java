@@ -14,8 +14,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
-public class GamblingMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(GamblingMod.class.getSimpleName());
+public class ChipMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(ChipMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     private boolean used = false;
@@ -76,7 +76,7 @@ public class GamblingMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new GamblingMod();
+        return new ChipMod();
     }
 
     @Override

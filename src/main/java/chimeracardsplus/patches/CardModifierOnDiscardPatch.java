@@ -2,6 +2,7 @@ package chimeracardsplus.patches;
 
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
+import chimeracardsplus.interfaces.TriggerOnDiscardMod;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 

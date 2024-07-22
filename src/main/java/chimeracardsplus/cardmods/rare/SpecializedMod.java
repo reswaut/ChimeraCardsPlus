@@ -3,13 +3,13 @@ package chimeracardsplus.cardmods.rare;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.patches.TriggerOnObtainMod;
+import chimeracardsplus.interfaces.TriggerOnObtainMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-public class MirroredMod extends AbstractAugment implements TriggerOnObtainMod {
-    public static final String ID = ChimeraCardsPlus.makeID(MirroredMod.class.getSimpleName());
+public class SpecializedMod extends AbstractAugment implements TriggerOnObtainMod {
+    public static final String ID = ChimeraCardsPlus.makeID(SpecializedMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
@@ -20,6 +20,7 @@ public class MirroredMod extends AbstractAugment implements TriggerOnObtainMod {
 
     @Override
     public void onObtain(AbstractCard card) {
+        AbstractDungeon.player.masterDeck.addToTop(card.makeStatEquivalentCopy());
         AbstractDungeon.player.masterDeck.addToTop(card.makeStatEquivalentCopy());
     }
 
@@ -50,7 +51,7 @@ public class MirroredMod extends AbstractAugment implements TriggerOnObtainMod {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new MirroredMod();
+        return new SpecializedMod();
     }
 
     @Override

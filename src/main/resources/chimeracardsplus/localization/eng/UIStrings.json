@@ -1520,10 +1520,10 @@
       " NL Once per combat, if you have not lost HP this combat, prevent the next time you would lose HP."
     ]
   },
-  "chimeracardsplus:GamblingMod": {
+  "chimeracardsplus:ChipMod": {
     "TEXT": [
-      "Gambling ",
       "",
+      "'s Chips",
       "Discards any number of cards and draw that many cards on the first use on the first turn. NL Only appears if you have #yGambling #yChip."
     ],
     "EXTRA_TEXT": [
@@ -1852,14 +1852,14 @@
       " NL Cannot be removed from your deck."
     ]
   },
-  "chimeracardsplus:MirroredMod": {
+  "chimeracardsplus:SpecializedMod": {
     "TEXT": [
-      "Mirrored ",
+      "Specialized ",
       "",
-      "Adds an additional copies into your deck upon pickup."
+      "Adds #b2 additional copies into your deck upon pickup."
     ],
     "EXTRA_TEXT": [
-      " NL Upon pickup, add a copy into your deck."
+      " NL Upon pickup, add 2 copies into your deck."
     ]
   },
   "chimeracardsplus:CeramicMod": {
@@ -1876,7 +1876,7 @@
     "TEXT": [
       "Edible ",
       "",
-      "Reduces card values by #b33%. NL Gains Max HP based on rarity upon pickup."
+      "Reduces card values by #b25%. NL Gains Max HP based on rarity upon pickup."
     ],
     "EXTRA_TEXT": [
       " NL Upon pickup, raise your Max HP by 1.",
@@ -1888,7 +1888,7 @@
     "TEXT": [
       "",
       "'s Waffle",
-      "Reduces card values by #b33%. NL Heals #b7 HP upon pickup."
+      "Reduces card values by #b25%. NL Heals #b7 HP upon pickup."
     ],
     "EXTRA_TEXT": [
       " NL Upon pickup, heal 7 HP."
@@ -1921,7 +1921,7 @@
       "After you use a potion, gains [E] on the next use this turn."
     ],
     "EXTRA_TEXT": [
-      " NL Once on turn you used a potion, gain [E]."
+      " NL Once on each turn you used a potion, gain [E]."
     ]
   },
   "chimeracardsplus:FiendMod": {
@@ -1990,7 +1990,7 @@
     "TEXT": [
       "Clear ",
       "",
-      "Costs [E] more. NL Chooses #b1 of the top #b2 cards to put into your hand. #yExhausts the other. NL NL This #yModifier is inspired by the deprecated card #Clarity."
+      "Reduces damage and #yBlock by #b20%. NL Chooses #b1 of the top #b2 cards to put into your hand. #yExhausts the other. NL NL This #yModifier is inspired by the deprecated card #yClarity."
     ],
     "EXTRA_TEXT": [
       " NL Look at the top 2 cards of your draw pile. Add 1 to your hand and Exhaust the other."
@@ -2076,6 +2076,46 @@
       "Retain. NL ",
       " NL When Retained, ",
       "Innate. "
+    ]
+  },
+  "chimeracardsplus:ForgetfulMod": {
+    "TEXT": [
+      "Forgetful ",
+      "",
+      "Reduces card values by #b33%. NL Optionally Removes another card in your deck upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, you may Remove another card in your deck."
+    ]
+  },
+  "chimeracardsplus:ChangingMod": {
+    "TEXT": [
+      "Changing ",
+      "",
+      "Reduces card values by #b33%. NL Optionally #yTransforms another card in your deck upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, you may Transform another card in your deck."
+    ]
+  },
+  "chimeracardsplus:GrowingMod": {
+    "TEXT": [
+      "Growing ",
+      "",
+      "Reduces card values by #b33%. NL Optionally #yUpgrades another card in your deck upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, you may Upgrade another card in your deck."
+    ]
+  },
+  "chimeracardsplus:MirroredMod": {
+    "TEXT": [
+      "Mirrored ",
+      "",
+      "Reduces card values by #b33%. NL Optionally Duplicates another card in your deck upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, you may Duplicate another card in your deck."
     ]
   }
 }

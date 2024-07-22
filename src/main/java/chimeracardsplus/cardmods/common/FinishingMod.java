@@ -4,7 +4,7 @@ import CardAugments.cardmods.AbstractAugment;
 import CardAugments.patches.InterruptUseCardFieldPatches;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.patches.TriggerOnDiscardMod;
+import chimeracardsplus.interfaces.TriggerOnDiscardMod;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
@@ -85,6 +85,7 @@ public class FinishingMod extends AbstractAugment implements TriggerOnDiscardMod
                 card.use(AbstractDungeon.player, (AbstractMonster)target);
             }
         }
+        descriptionHack = false;
         card.initializeDescription();
     }
 

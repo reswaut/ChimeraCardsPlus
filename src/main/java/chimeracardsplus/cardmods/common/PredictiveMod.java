@@ -69,19 +69,26 @@ public class PredictiveMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        AbstractCard c = card;
+        for (AbstractCard o : MultiCardPreview.multiCardPreview.get(card)) {
+            if (CardModifierManager.hasModifier(o, PredictedMod.ID)) {
+                c = o;
+                break;
+            }
+        }
         String front_text = "";
-        if (card.isInnate) {
+        if (c.isInnate) {
             front_text += CARD_TEXT[1];
         }
-        if (card.selfRetain) {
+        if (c.selfRetain) {
             front_text += CARD_TEXT[2];
         }
-        if (card.isEthereal) {
+        if (c.isEthereal) {
             front_text += CARD_TEXT[3];
         }
         return (front_text.isEmpty() ? "" : (front_text + CARD_TEXT[5]))
-                + String.format(CARD_TEXT[0], FormatHelper.prefixWords(card.name, "*"))
-                + (card.exhaust ? CARD_TEXT[4] : "");
+                + String.format(CARD_TEXT[0], FormatHelper.prefixWords(c.name, "*"))
+                + (c.exhaust ? CARD_TEXT[4] : "");
     }
 
     @Override

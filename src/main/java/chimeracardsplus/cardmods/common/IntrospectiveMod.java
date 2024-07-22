@@ -18,17 +18,19 @@ public class IntrospectiveMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        this.addedExhaust = !card.exhaust;
-        card.exhaust = true;
+        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
+            addedExhaust = true;
+            card.exhaust = true;
+        }
     }
 
     @Override
     public void onUpgradeCheck(AbstractCard card) {
-        if (!card.exhaust) {
-            this.addedExhaust = true;
+        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
+            addedExhaust = true;
             card.exhaust = true;
-            card.initializeDescription();
         }
+        card.initializeDescription();
     }
 
     @Override

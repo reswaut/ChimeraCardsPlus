@@ -6,8 +6,10 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.actions.watcher.ClarityAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class ClearMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(ClearMod.class.getSimpleName());
@@ -16,13 +18,17 @@ public class ClearMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost()));
+        return cardCheck(card, (c) -> (c.cost >= -1 && (c.baseDamage > 1 || c.baseBlock > 1)));
     }
 
     @Override
-    public void onInitialApplication(AbstractCard card) {
-        card.cost += 1;
-        card.costForTurn = card.cost;
+    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage >= 1.0F ? damage * 0.8F : damage;
+    }
+
+    @Override
+    public float modifyBaseBlock(float block, AbstractCard card) {
+        return block >= 1.0F ? block * 0.8F : block;
     }
 
     @Override
