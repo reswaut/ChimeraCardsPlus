@@ -5,7 +5,7 @@ import basemod.helpers.CardModifierManager;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
-public class CardModifierWhenDiscardedPatch {
+public class CardModifierOnDiscardPatch {
     @SpirePatch(
             clz = AbstractCard.class,
             method = "triggerOnManualDiscard"

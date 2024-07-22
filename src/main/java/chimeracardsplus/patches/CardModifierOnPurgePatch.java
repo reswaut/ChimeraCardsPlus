@@ -12,7 +12,7 @@ import javassist.CtBehavior;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class CardModifierWhenPurgedPatch {
+public class CardModifierOnPurgePatch {
     @SpirePatch(
             clz = AbstractCard.class,
             method = "onRemoveFromMasterDeck"

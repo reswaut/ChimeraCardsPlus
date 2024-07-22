@@ -28,7 +28,7 @@ public class EstablishedMod extends AbstractAugment {
     }
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 1 && doesntUpgradeCost() && notRetain(c)
+        return cardCheck(card, (c) -> (c.cost >= 1 && doesntUpgradeCost() && notRetain(c) && notEthereal(c)
                 && doesntOverride(c, "triggerOnEndOfTurnForPlayingCard")));
     }
 

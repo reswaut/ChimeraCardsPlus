@@ -39,6 +39,7 @@ public class StormMod extends AbstractAugment {
         MultiCardPreview.add(card, preview);
         InterruptUseCardFieldPatches.InterceptUseField.interceptUse.set(card, true);
         card.isEthereal = false;
+        card.selfRetain = false;
         card.exhaust = false;
         card.cost = 1;
         card.costForTurn = card.cost;
@@ -68,7 +69,7 @@ public class StormMod extends AbstractAugment {
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> (
                 (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)
-                && doesntExhaust(c) && noShenanigans(c)
+                        && notExhaust(c) && noShenanigans(c)
                 && c.cost == 0 && doesntUpgradeCost())
         );
     }

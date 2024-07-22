@@ -666,9 +666,9 @@
       " NL 获得 %s 集中 。"
     ]
   },
-  "chimeracardsplus:EmotionalMod": {
+  "chimeracardsplus:ImpulsiveMod": {
     "TEXT": [
-      "情感",
+      "脉冲",
       "",
       "耗能增加 #b1 。 NL 触发所有充能球的被动效果。"
     ],
@@ -1127,10 +1127,10 @@
     "TEXT": [
       "发现",
       "",
-      "耗能为 #b1 。 NL 选择一个卡牌修改添加到这张牌上。 NL #y消耗 。"
+      "耗能为 #b1 。 NL 选择一个 #y卡牌修改 添加到这张牌上。 NL #y消耗 。"
     ],
     "EXTRA_TEXT": [
-      "从3个卡牌修改中选择1个。把带有所选卡牌修改的 %s 添加到你的手牌中。 NL 消耗 。",
+      "从3个 *卡牌修改 中选择1个。把带有所选 *卡牌修改 的 %s 添加到你的手牌中。 NL 消耗 。",
       "固有 。 NL "
     ]
   },
@@ -1179,7 +1179,7 @@
     "TEXT": [
       "疯狂",
       "",
-      "耗能增加 #b1 。 NL 使你手牌中的一张随机牌在本场战斗中耗能变为0。 NL #y消耗 。"
+      "耗能增加 #b1 。 NL 使你手牌中的一张随机牌在本场战斗中耗能变为 #b0 。 NL #y消耗 。"
     ],
     "EXTRA_TEXT": [
       " NL 你手牌中一张随机牌在本场战斗中耗能变为0。 NL 消耗 。",
@@ -1253,8 +1253,8 @@
   },
   "chimeracardsplus:AkabekoMod": {
     "TEXT": [
+      "赤牛",
       "",
-      "的赤牛",
       "如果这是战斗中使用的第一张攻击牌，则造成的伤害增加 #b8 点。 NL 只会在你拥有 #y赤牛 时出现。"
     ],
     "EXTRA_TEXT": [
@@ -1274,8 +1274,8 @@
   },
   "chimeracardsplus:MarblesMod": {
     "TEXT": [
+      "弹珠",
       "",
-      "的弹珠",
       "第一回合第一次使用时，给予所有敌人 #b1 层 易伤 。 NL 只会在你拥有 #y弹珠袋 时出现。"
     ],
     "EXTRA_TEXT": [
@@ -1304,8 +1304,8 @@
   },
   "chimeracardsplus:LanternMod": {
     "TEXT": [
+      "灯笼",
       "",
-      "的灯笼",
       "第一回合第一次使用时，获得 [E] 。 NL 只会在你拥有 #y灯笼 时出现。"
     ],
     "EXTRA_TEXT": [
@@ -1314,8 +1314,8 @@
   },
   "chimeracardsplus:NunchakuMod": {
     "TEXT": [
+      "双节棍",
       "",
-      "的双节棍",
       "如果这张牌触发了 #y双节棍 ，则获得 [E] 。 NL 只会在你拥有 #y双节棍 时出现。"
     ],
     "EXTRA_TEXT": [
@@ -1343,8 +1343,8 @@
   },
   "chimeracardsplus:VajraMod": {
     "TEXT": [
+      "金刚杵",
       "",
-      "的金刚杵",
       "造成的伤害增加 #b1 点。"
     ],
     "EXTRA_TEXT": [
@@ -1392,8 +1392,8 @@
   },
   "chimeracardsplus:KunaiMod": {
     "TEXT": [
+      "苦无",
       "",
-      "的苦无",
       "如果这张牌触发了 #y苦无 ，则获得 #b1 点 #y敏捷 。 NL 只会在你拥有 #y苦无 时出现。"
     ],
     "EXTRA_TEXT": [
@@ -1402,8 +1402,8 @@
   },
   "chimeracardsplus:ShurikenMod": {
     "TEXT": [
+      "手里剑",
       "",
-      "的手里剑",
       "如果这张牌触发了 #y手里剑 ，则获得 #b1 点 #y力量 。 NL 只会在你拥有 #y手里剑 时出现。"
     ],
     "EXTRA_TEXT": [
@@ -1476,8 +1476,8 @@
       "杀死敌人时获得一瓶随机药水。 NL #y消耗 。 NL 只会在你拥有 #y白兽雕像 时出现。"
     ],
     "EXTRA_TEXT": [
-      " NL 如果这张牌杀死了敌人，则获得一瓶随机药水。 NL 消耗 。",
-      " NL 如果这张牌杀死了敌人，则获得一瓶随机药水。"
+      " NL 如果这张牌杀死了敌人，获得一瓶随机药水。 NL 消耗 。",
+      " NL 如果这张牌杀死了敌人，获得一瓶随机药水。"
     ]
   },
   "chimeracardsplus:BirdFacedMod": {
@@ -1532,8 +1532,8 @@
   },
   "chimeracardsplus:GiryaMod": {
     "TEXT": [
+      "壶铃",
       "",
-      "的壶铃",
       "你每在休息处获得一次 #y力量 ，造成的伤害就增加 #b3 。 NL 只会在你拥有 #y壶铃 时出现。"
     ],
     "EXTRA_TEXT": [
@@ -1724,37 +1724,6 @@
       " NL 获得1层 仪式 。"
     ]
   },
-  "chimeracardsplus:ConservedMod": {
-    "TEXT": [
-      "保存",
-      "",
-      "造成的伤害与获得的 #y格挡 减少 #b20% 。 NL 本回合的能量可以留到下一回合。"
-    ],
-    "EXTRA_TEXT": [
-      " NL 本回合的能量可以留到下一回合。"
-    ]
-  },
-  "chimeracardsplus:ImmortalityMod": {
-    "TEXT": [
-      "",
-      "永生",
-      "让你最疯狂的梦想成真。"
-    ],
-    "EXTRA_TEXT": [
-      "选择：获得 !B! 层 多层护甲 、 !D! 点 力量 、 或 !M! 金币 。 NL 消耗 。",
-      "在你的回合结束时，获得 %s 层 *多层护甲 。"
-    ]
-  },
-  "chimeracardsplus:TemperamentalMod": {
-    "TEXT": [
-      "性情",
-      "",
-      "造成的伤害与获得的 #y格挡 增加 #b33% 。 NL 阻止你在本回合转换 #y姿态 。"
-    ],
-    "EXTRA_TEXT": [
-      " NL 直到下个回合，你不能转换 姿态 。"
-    ]
-  },
   "chimeracardsplus:DuplicatingMod": {
     "TEXT": [
       "复制",
@@ -1943,6 +1912,170 @@
     ],
     "EXTRA_TEXT": [
       " NL 每回合限一次，如果你在上回合中没有打出任何攻击牌，则获得 [E] 。"
+    ]
+  },
+  "chimeracardsplus:SozuMod": {
+    "TEXT": [
+      "",
+      "的添水",
+      "在你使用使用一瓶药水后，本回合内下次使用时，获得 [E] 。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 每回合限一次，如果你在这个回合使用了药水，获得 [E] 。"
+    ]
+  },
+  "chimeracardsplus:FiendMod": {
+    "TEXT": [
+      "恶魔",
+      "",
+      "耗能增加 #b2 。 NL #y消耗 你的手牌，每 #y消耗 一张牌打出这张牌一次。 NL #y消耗 。"
+    ],
+    "EXTRA_TEXT": [
+      "消耗 你的手牌。 NL ",
+      "若干次，其数量等于被 消耗 的牌的数量。 NL 消耗 。"
+    ]
+  },
+  "chimeracardsplus:ConservedMod": {
+    "TEXT": [
+      "保存",
+      "",
+      "造成的伤害与获得的 #y格挡 减少 #b20% 。 NL 本回合的能量可以留到下一回合。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 本回合的能量可以留到下一回合。"
+    ]
+  },
+  "chimeracardsplus:TemperamentalMod": {
+    "TEXT": [
+      "性情",
+      "",
+      "造成的伤害与获得的 #y格挡 增加 #b33% 。 NL 阻止你在本回合转换 #y姿态 。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 直到下个回合，你不能转换 姿态 。"
+    ]
+  },
+  "chimeracardsplus:ImmortalityMod": {
+    "TEXT": [
+      "",
+      "永生",
+      "让你最疯狂的梦想成真。"
+    ],
+    "EXTRA_TEXT": [
+      "选择：获得 !B! 层 多层护甲 、 !D! 点 力量 、 或 !M! 金币 。 NL 消耗 。",
+      "在你的回合结束时，获得 %s 层 *多层护甲 。"
+    ]
+  },
+  "chimeracardsplus:GildedMod": {
+    "TEXT": [
+      "镀金",
+      "",
+      "每有 #b100 #y金币 ，获得的 #y格挡 就增加 #b2 。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 每有 100 金币 ，获得的 格挡 就增加 2 。"
+    ]
+  },
+  "chimeracardsplus:ChallengingMod": {
+    "TEXT": [
+      "挑战",
+      "",
+      "造成的伤害和获得的 #y格挡 减少 #b25% 。 NL 获得 #b2 层 #y易伤 。 NL 给予所有敌人 #b2 层 #y易伤 。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 获得 2 层 易伤 。给予所有敌人 2 层 易伤 。"
+    ]
+  },
+  "chimeracardsplus:ClearMod": {
+    "TEXT": [
+      "明晰",
+      "",
+      "耗能增加 #b1 。 NL 检视你抽牌堆顶部的两张牌，将一张加入手牌， #y消耗 另一张。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 检视你抽牌堆顶部的两张牌，将一张加入手牌， 消耗 另一张。"
+    ]
+  },
+  "chimeracardsplus:FlickeringMod": {
+    "TEXT": [
+      "闪烁",
+      "",
+      "杀死敌人时返回你的手牌。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 如果这张牌杀死了敌人，它会返回你的手牌。"
+    ]
+  },
+  "chimeracardsplus:IntrospectiveMod": {
+    "TEXT": [
+      "内省",
+      "",
+      "移除你的 #y脆弱 和 #y易伤 。 NL #y消耗 。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 移除你的 脆弱 和 易伤 。 NL 消耗 。",
+      " NL 移除你的 脆弱 和 易伤 。"
+    ]
+  },
+  "chimeracardsplus:PredictiveMod": {
+    "TEXT": [
+      "先兆",
+      "",
+      "下回合，将这张牌的 #y应兆 放入你的手牌。"
+    ],
+    "EXTRA_TEXT": [
+      "在下一回合，将 *应兆 %s 放入你的手牌。",
+      "固有 。 ",
+      "保留 。 ",
+      "虚无 。 ",
+      " NL 消耗 。",
+      "NL "
+    ]
+  },
+  "chimeracardsplus:PredictedMod": {
+    "TEXT": [
+      "应兆",
+      "",
+      "首次使用耗能为 #b0 。 NL 卡牌数值增加 #b33% 。 NL #y消耗 。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 消耗 。",
+      "X",
+      "%d",
+      "X+",
+      "%d+"
+    ]
+  },
+  "chimeracardsplus:SwipeMod": {
+    "TEXT": [
+      "横扫",
+      "",
+      "造成的伤害减少 #b20% 。 NL 对所有其他敌人造成 #b40% 伤害 。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 对所有其他敌人造成 %s 伤害。"
+    ]
+  },
+  "chimeracardsplus:ExperiencedMod": {
+    "TEXT": [
+      "熟练",
+      "",
+      "你的手牌中每有一张 #y升级 后的卡牌，造成的伤害就增加 #b1 。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 你的手牌中每有一张 升级 后的卡牌，造成的伤害就增加 1 。"
+    ]
+  },
+  "chimeracardsplus:AuraMod": {
+    "TEXT": [
+      "",
+      "灵气",
+      "#y保留 。 NL 卡牌数值减少 #b50% 。 NL 被 #y保留 时触发 #b25% 数值的效果。"
+    ],
+    "EXTRA_TEXT": [
+      "保留 。 NL ",
+      " NL 每当这张牌被 保留 时，",
+      "固有 。 "
     ]
   }
 }

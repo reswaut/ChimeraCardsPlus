@@ -3,32 +3,29 @@ package chimeracardsplus.cardmods.uncommon;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-public class DistractingMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(DistractingMod.class.getSimpleName());
+public class ExperiencedMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(ExperiencedMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
     @Override
-    public void onInitialApplication(AbstractCard card) {
-        card.exhaust = true;
-    }
-
-    @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && cardCheck(card, AbstractAugment::notExhaust)
-                && (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL);
+        return cardCheck(card, (c) -> c.baseBlock >= 1);
     }
 
     @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        card.initializeDescription();
+    public float modifyBlock(float block, AbstractCard card) {
+        int amount = 0;
+        for (AbstractCard c : AbstractDungeon.player.hand.group) {
+            if (c != card && getEffectiveUpgrades(c) > 0) {
+                ++amount;
+            }
+        }
+        return block + amount;
     }
 
     @Override
@@ -48,16 +45,7 @@ public class DistractingMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, card.upgraded ? CARD_TEXT[1] : CARD_TEXT[0]);
-    }
-
-    @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        AbstractCard c = AbstractDungeon.returnTrulyRandomCardInCombat(AbstractCard.CardType.SKILL).makeCopy();
-        if (card.upgraded) {
-            c.setCostForTurn(0);
-        }
-        this.addToBot(new MakeTempCardInHandAction(c, true));
+        return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 
     @Override
@@ -67,7 +55,7 @@ public class DistractingMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new DistractingMod();
+        return new ExperiencedMod();
     }
 
     @Override

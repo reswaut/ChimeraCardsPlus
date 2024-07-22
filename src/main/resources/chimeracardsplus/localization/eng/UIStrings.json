@@ -666,9 +666,9 @@
       " NL Gain %s Focus."
     ]
   },
-  "chimeracardsplus:EmotionalMod": {
+  "chimeracardsplus:ImpulsiveMod": {
     "TEXT": [
-      "Emotional ",
+      "Impulsive ",
       "",
       "Costs [E] more. NL Triggers the passive ability of all Orbs."
     ],
@@ -1127,10 +1127,10 @@
     "TEXT": [
       "Discovered ",
       "",
-      "Costs [E] . NL Adds the card to your hand with a chosen Modifier. NL Adds #yExhaust."
+      "Costs [E] . NL Adds the card to your hand with a chosen #yModifier. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
-      "Choose 1 of 3 random Modifiers. Add %s into your hand with the chosen Modifier on it. NL Exhaust.",
+      "Choose 1 of 3 random *Modifiers. Add %s into your hand with the chosen *Modifier on it. NL Exhaust.",
       "Innate. NL "
     ]
   },
@@ -1179,7 +1179,7 @@
     "TEXT": [
       "Mad ",
       "",
-      "Costs [E] more. NL Reduces the cost of a random card in your hand to 0 this combat. NL Adds #yExhaust."
+      "Costs [E] more. NL Reduces the cost of a random card in your hand to #b0 this combat. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
       " NL Reduce the cost of a random card in your hand to 0 this combat. NL Exhaust.",
@@ -1190,11 +1190,11 @@
     "TEXT": [
       "Panic ",
       "",
-      "Increases #yBlock by #b300%. NL Prevents gaining #yBlock from cards for 2 turn. NL Adds #yExhaust."
+      "Increases #yBlock by #b300%. NL Prevents gaining #yBlock from cards for #b2 turns. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
-      " NL You cannot gain Block from cards for 2 turn. NL Exhaust.",
-      " NL You cannot gain Block from cards for 2 turn."
+      " NL You cannot gain Block from cards for 2 turns. NL Exhaust.",
+      " NL You cannot gain Block from cards for 2 turns."
     ]
   },
   "chimeracardsplus:FlamboyantMod": {
@@ -1253,8 +1253,8 @@
   },
   "chimeracardsplus:AkabekoMod": {
     "TEXT": [
+      "Akabeko ",
       "",
-      "'s Akabeko",
       "Increases damage by #b8 if this the first Attack played. NL Only appears if you have #yAkabeko."
     ],
     "EXTRA_TEXT": [
@@ -1274,8 +1274,8 @@
   },
   "chimeracardsplus:MarblesMod": {
     "TEXT": [
+      "Marble ",
       "",
-      "'s Marbles",
       "Applies #b1 #yVulnerable to ALL enemies on the first use on the first turn. NL Only appears if you have #yBag #yof #yMarbles."
     ],
     "EXTRA_TEXT": [
@@ -1304,8 +1304,8 @@
   },
   "chimeracardsplus:LanternMod": {
     "TEXT": [
+      "Lantern ",
       "",
-      "'s Lantern",
       "Gains [E] on the first use on the first turn. NL Only appears if you have #yLantern."
     ],
     "EXTRA_TEXT": [
@@ -1314,8 +1314,8 @@
   },
   "chimeracardsplus:NunchakuMod": {
     "TEXT": [
+      "Nunchaku ",
       "",
-      "'s Nunchaku",
       "Gains [E] if the card triggers #yNunchaku. NL Only appears if you have #yNunchaku."
     ],
     "EXTRA_TEXT": [
@@ -1343,8 +1343,8 @@
   },
   "chimeracardsplus:VajraMod": {
     "TEXT": [
+      "Vajra ",
       "",
-      "'s Vajra",
       "Increases damage by #b1."
     ],
     "EXTRA_TEXT": [
@@ -1362,8 +1362,8 @@
   },
   "chimeracardsplus:HornMod": {
     "TEXT": [
+      "Horn ",
       "",
-      "'s Horn",
       "Gains [E] and draws #b1 card when killing an enemy. NL Only appears if you have #yGremlin #yHorn."
     ],
     "EXTRA_TEXT": [
@@ -1392,8 +1392,8 @@
   },
   "chimeracardsplus:KunaiMod": {
     "TEXT": [
+      "Kunai ",
       "",
-      "'s Kunai",
       "Gains #b1 #yDexterity if the card triggers #yKunai. NL Only appears if you have #yKunai."
     ],
     "EXTRA_TEXT": [
@@ -1402,8 +1402,8 @@
   },
   "chimeracardsplus:ShurikenMod": {
     "TEXT": [
+      "Shuriken ",
       "",
-      "'s Shuriken",
       "Gains #b1 #yStrength if the card triggers #yShuriken. NL Only appears if you have #yShuriken."
     ],
     "EXTRA_TEXT": [
@@ -1532,8 +1532,8 @@
   },
   "chimeracardsplus:GiryaMod": {
     "TEXT": [
+      "Girya ",
       "",
-      "'s Girya",
       "Increases damage by #b3 for each time you gained #yStrength at Rest Sites. NL Only appears if you have #yGirya."
     ],
     "EXTRA_TEXT": [
@@ -1724,37 +1724,6 @@
       " NL Gain 1 Ritual."
     ]
   },
-  "chimeracardsplus:ConservedMod": {
-    "TEXT": [
-      "Conserved ",
-      "",
-      "Reduces damage and #yBlock by #b20%. NL Conserves Energy for next turn."
-    ],
-    "EXTRA_TEXT": [
-      " NL Energy is conserved for next turn."
-    ]
-  },
-  "chimeracardsplus:ImmortalityMod": {
-    "TEXT": [
-      "",
-      " for Immortality",
-      "Makes your wildest dreams come true."
-    ],
-    "EXTRA_TEXT": [
-      "Choose one: NL Gain !B! Plated Armor, !D! Strength, or !M! Gold. NL Exhaust.",
-      "At the end of your turn, gain %s *Plated *Armor."
-    ]
-  },
-  "chimeracardsplus:TemperamentalMod": {
-    "TEXT": [
-      "Temperamental ",
-      "",
-      "Increases damage and #yBlock by #b33%. NL Prevents you from changing #yStances this turn."
-    ],
-    "EXTRA_TEXT": [
-      " NL You cannot change Stances until next turn."
-    ]
-  },
   "chimeracardsplus:DuplicatingMod": {
     "TEXT": [
       "Duplicating ",
@@ -1943,6 +1912,170 @@
     ],
     "EXTRA_TEXT": [
       " NL Once per turn, if you did not play any Attack during your last turn, gain [E]."
+    ]
+  },
+  "chimeracardsplus:SozuMod": {
+    "TEXT": [
+      "",
+      "'s Sozu",
+      "After you use a potion, gains [E] on the next use this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Once on turn you used a potion, gain [E]."
+    ]
+  },
+  "chimeracardsplus:FiendMod": {
+    "TEXT": [
+      "Fiend ",
+      "",
+      "Costs [E] [E] more. NL #yExhausts your hand and plays the card once for each card #yExhausted. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      "Exhaust your hand. NL ",
+      " for each card Exhausted. NL Exhaust."
+    ]
+  },
+  "chimeracardsplus:ConservedMod": {
+    "TEXT": [
+      "Conserved ",
+      "",
+      "Reduces damage and #yBlock by #b20%. NL Conserves Energy for next turn. NL NL This #yModifier is inspired by the deprecated card #yConserve #Battery."
+    ],
+    "EXTRA_TEXT": [
+      " NL Energy is conserved for next turn."
+    ]
+  },
+  "chimeracardsplus:TemperamentalMod": {
+    "TEXT": [
+      "Temperamental ",
+      "",
+      "Increases damage and #yBlock by #b33%. NL Prevents you from changing #yStances this turn. NL NL This #yModifier is inspired by a deprecated version of #yTantrum."
+    ],
+    "EXTRA_TEXT": [
+      " NL You cannot change Stances until next turn."
+    ]
+  },
+  "chimeracardsplus:ImmortalityMod": {
+    "TEXT": [
+      "",
+      " for Immortality",
+      "Makes your wildest dreams come true. NL NL This #yModifier is inspired by a deprecated version of #yWish."
+    ],
+    "EXTRA_TEXT": [
+      "Choose one: NL Gain !B! Plated Armor, !D! Strength, or !M! Gold. NL Exhaust.",
+      "At the end of your turn, gain %s *Plated *Armor."
+    ]
+  },
+  "chimeracardsplus:GildedMod": {
+    "TEXT": [
+      "Gilded ",
+      "",
+      "Increases #yBlock by #b2 for every #b100 #yGold you have. NL NL This #yModifier is inspired by an unnamed deprecated Relic."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gains 2 additional Block for every 100 Gold you have."
+    ]
+  },
+  "chimeracardsplus:ChallengingMod": {
+    "TEXT": [
+      "Challenging ",
+      "",
+      "Reduces damage and #yBlock by #b25%. NL Gains #b2 #yVulnerable. NL Applies #b2 #yVulnerable to ALL enemies. NL NL This #yModifier is inspired by the deprecated card #yChallenge #yAccepted."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain 2 Vulnerable. Apply 2 Vulnerable to ALL enemies."
+    ]
+  },
+  "chimeracardsplus:ClearMod": {
+    "TEXT": [
+      "Clear ",
+      "",
+      "Costs [E] more. NL Chooses #b1 of the top #b2 cards to put into your hand. #yExhausts the other. NL NL This #yModifier is inspired by the deprecated card #Clarity."
+    ],
+    "EXTRA_TEXT": [
+      " NL Look at the top 2 cards of your draw pile. Add 1 to your hand and Exhaust the other."
+    ]
+  },
+  "chimeracardsplus:FlickeringMod": {
+    "TEXT": [
+      "Flickering ",
+      "",
+      "Returns to your hand when killing an enemy. NL NL This #yModifier is inspired by the deprecated card #yFlicker."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this kills an enemy, return it to your hand."
+    ]
+  },
+  "chimeracardsplus:IntrospectiveMod": {
+    "TEXT": [
+      "Introspective ",
+      "",
+      "Removes all of your #yFrail and #yVulnerable. NL Adds #yExhaust. NL NL This #yModifier is inspired by the deprecated card #yIntrospection."
+    ],
+    "EXTRA_TEXT": [
+      " NL Remove all of your Frail and Vulnerable. NL Exhaust.",
+      " NL Remove all of your Frail and Vulnerable."
+    ]
+  },
+  "chimeracardsplus:PredictiveMod": {
+    "TEXT": [
+      "Predictive ",
+      "",
+      "Adds the card with #yPredicted #yModifier into your hand next turn. NL NL This #yModifier is inspired by the deprecated card #yPrediction."
+    ],
+    "EXTRA_TEXT": [
+      "Next turn, add *Predicted %s into your hand.",
+      "Innate. ",
+      "Retain. ",
+      "Ethereal. ",
+      " NL Exhaust.",
+      "NL "
+    ]
+  },
+  "chimeracardsplus:PredictedMod": {
+    "TEXT": [
+      "Predicted ",
+      "",
+      "Costs #b0 on first use. NL Increases card values by #b33%. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Exhaust.",
+      " X ",
+      " %d ",
+      " X+",
+      " %d+"
+    ]
+  },
+  "chimeracardsplus:SwipeMod": {
+    "TEXT": [
+      "Swipe ",
+      "",
+      "Reduces damage by #b20%. NL Deals #b40% damage to ALL other enemies. NL NL This #yModifier is inspired by the deprecated card #ySwipe."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deal %s damage to ALL other enemies."
+    ]
+  },
+  "chimeracardsplus:ExperiencedMod": {
+    "TEXT": [
+      "Experienced ",
+      "",
+      "Increases #yBlock by #b1 for every #yUpgraded card in your hand. NL NL This #yModifier is inspired by the deprecated card #yExperienced."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gains 1 additional Block for each Upgraded card in your hand."
+    ]
+  },
+  "chimeracardsplus:AuraMod": {
+    "TEXT": [
+      "",
+      " Aura",
+      "Adds #yRetain. NL Reduces card values by #b50%. NL Triggers card effect with #b25% card values when #yRetained. NL NL This #yModifier is inspired by the deprecated Aura cards."
+    ],
+    "EXTRA_TEXT": [
+      "Retain. NL ",
+      " NL When Retained, ",
+      "Innate. "
     ]
   }
 }

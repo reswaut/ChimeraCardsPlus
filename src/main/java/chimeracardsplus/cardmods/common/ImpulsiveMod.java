@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
-public class EmotionalMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(EmotionalMod.class.getSimpleName());
+public class ImpulsiveMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(ImpulsiveMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
@@ -57,7 +57,7 @@ public class EmotionalMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new EmotionalMod();
+        return new ImpulsiveMod();
     }
 
     @Override

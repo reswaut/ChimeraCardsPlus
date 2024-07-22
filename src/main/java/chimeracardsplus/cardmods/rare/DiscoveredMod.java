@@ -37,6 +37,7 @@ public class DiscoveredMod extends AbstractAugment {
         MultiCardPreview.add(card, preview);
         InterruptUseCardFieldPatches.InterceptUseField.interceptUse.set(card, true);
         card.isEthereal = false;
+        card.selfRetain = false;
         card.exhaust = true;
         card.cost = 1;
         card.costForTurn = card.cost;

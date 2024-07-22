@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.Soul;
 import javassist.CtBehavior;
 
-public class CardModifierWhenObtainedPatch {
+public class CardModifierOnObtainPatch {
     @SpirePatch(
             clz = Soul.class,
             method = "obtain"
