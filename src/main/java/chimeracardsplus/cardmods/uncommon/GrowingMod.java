@@ -117,7 +117,7 @@ public class GrowingMod extends AbstractAugment implements TriggerOnObtainMod, U
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.RARE;
+        return AugmentRarity.UNCOMMON;
     }
 
     @Override

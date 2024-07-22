@@ -65,7 +65,7 @@ public class ChallengingMod extends AbstractAugment {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.UNCOMMON;
+        return AugmentRarity.COMMON;
     }
 
     @Override

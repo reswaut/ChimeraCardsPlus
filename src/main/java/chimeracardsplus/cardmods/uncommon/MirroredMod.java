@@ -122,7 +122,7 @@ public class MirroredMod extends AbstractAugment implements TriggerOnObtainMod, 
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.RARE;
+        return AugmentRarity.UNCOMMON;
     }
 
     @Override
