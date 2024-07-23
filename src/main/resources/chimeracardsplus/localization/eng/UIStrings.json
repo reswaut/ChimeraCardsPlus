@@ -692,7 +692,7 @@
     "TEXT": [
       "Superluminal ",
       "",
-      "Reduces damage and #yBlock by #b3. NL Draws #b1 card if less than #b3(4) cards are played this turn."
+      "Reduces damage and #yBlock by #b3. NL Draws #b1 card if you played less than #b3(4) cards this turn."
     ],
     "EXTRA_TEXT": [
       " NL If you have played less than %s cards this turn, draw 1 card.",

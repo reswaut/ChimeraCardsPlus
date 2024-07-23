@@ -25,15 +25,24 @@ public class ChangingMod extends AbstractAugment implements TriggerOnObtainMod, 
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     public static final String UI_TEXT = CardCrawlGame.languagePack.getEventString("Transmorgrifier").OPTIONS[2];
-    private final Set<AbstractDungeon.CurrentScreen> VALID_SCREENS = new HashSet<AbstractDungeon.CurrentScreen>(Arrays.asList(
+    private final Set<AbstractDungeon.CurrentScreen> VALID_SCREENS = new HashSet<>(Arrays.asList(
             AbstractDungeon.CurrentScreen.COMBAT_REWARD,
             AbstractDungeon.CurrentScreen.MAP,
             AbstractDungeon.CurrentScreen.NONE,
             AbstractDungeon.CurrentScreen.SHOP,
             AbstractDungeon.CurrentScreen.VICTORY
     ));
-    private boolean pickup = false, cardsSelected = true;
-    private CardGroup group;
+    private boolean pickup, cardsSelected;
+
+    public ChangingMod() {
+        this.pickup = false;
+        this.cardsSelected = true;
+    }
+
+    public ChangingMod(boolean pickup) {
+        this.pickup = pickup;
+        this.cardsSelected = true;
+    }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
@@ -65,7 +74,7 @@ public class ChangingMod extends AbstractAugment implements TriggerOnObtainMod, 
         AbstractRoom.RoomPhase phase = AbstractDungeon.getCurrRoom().phase;
         if (cardsSelected && pickup && phase != AbstractRoom.RoomPhase.INCOMPLETE && phase != AbstractRoom.RoomPhase.COMBAT && VALID_SCREENS.contains(AbstractDungeon.screen)) {
             pickup = false;
-            group = CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards());
+            CardGroup group = CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards());
             group.removeCard(card);
             AbstractDungeon.gridSelectScreen.open(group, 1, UI_TEXT, false, true, true, false);
             AbstractDungeon.dynamicBanner.hide();
@@ -87,7 +96,7 @@ public class ChangingMod extends AbstractAugment implements TriggerOnObtainMod, 
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
             return true;
         }
-        if (!cardsSelected && (group != AbstractDungeon.gridSelectScreen.targetGroup || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.COMBAT_REWARD)) {
+        if (!cardsSelected && AbstractDungeon.screen == AbstractDungeon.CurrentScreen.COMBAT_REWARD) {
             cardsSelected = true;
             AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
@@ -122,7 +131,7 @@ public class ChangingMod extends AbstractAugment implements TriggerOnObtainMod, 
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ChangingMod();
+        return new ChangingMod(this.pickup);
     }
 
     @Override
