@@ -6,7 +6,7 @@
   },
   "chimeracardsplus:DisorderedMod": {
     "TEXT": [
-      "无序",
+      "破灭",
       "",
       "耗能增加 #b1 。 NL 打出并 #y消耗 抽牌堆顶部的牌。"
     ],
@@ -326,7 +326,7 @@
   },
   "chimeracardsplus:StealthyMod": {
     "TEXT": [
-      "秘密",
+      "隐蔽",
       "",
       "耗能增加 #b1 。 NL 如果你在这回合丢弃过牌，获得 [E] [E] 。"
     ],
@@ -339,7 +339,7 @@
   },
   "chimeracardsplus:GamblerMod": {
     "TEXT": [
-      "赌徒的",
+      "赌徒",
       "",
       "丢弃所有手牌，然后抽相同数量张牌。 NL #y升级 前 #y消耗 。"
     ],
@@ -1333,8 +1333,8 @@
   },
   "chimeracardsplus:PenNibMod": {
     "TEXT": [
+      "钢笔尖",
       "",
-      "的钢笔尖",
       "如果这张牌触发了 #y钢笔尖 ，则造成的伤害增加 #b100% 。 NL 只会在你拥有 #y钢笔尖 时出现。"
     ],
     "EXTRA_TEXT": [
@@ -1372,8 +1372,8 @@
   },
   "chimeracardsplus:TeaSetMod": {
     "TEXT": [
+      "茶具",
       "",
-      "的茶具",
       "第一回合第一次使用时，如果上一个房间是休息处，则获得 [E] [E] 。 NL 只会在你拥有 #y古茶具套装 时出现。"
     ],
     "EXTRA_TEXT": [
@@ -1412,8 +1412,8 @@
   },
   "chimeracardsplus:LetterOpenerMod": {
     "TEXT": [
+      "开信刀",
       "",
-      "的开信刀",
       "如果这张牌触发了 #y开信刀 ，则对所有敌人造成 #b5 点伤害。 NL 只会在你拥有 #y开信刀 时出现。"
     ],
     "EXTRA_TEXT": [
@@ -1452,8 +1452,8 @@
   },
   "chimeracardsplus:PantographicMod": {
     "TEXT": [
+      "缩放仪",
       "",
-      "的缩放仪",
       "在Boss战的第一回合第一次使用时，回复 #b25 点生命。 NL 只会在你拥有 #y缩放仪 时出现。"
     ],
     "EXTRA_TEXT": [
@@ -1462,8 +1462,8 @@
   },
   "chimeracardsplus:DummyMod": {
     "TEXT": [
+      "木偶",
       "",
-      "的木偶",
       "造成的伤害增加 #b3。 NL 只会在你拥有 #y打击木偶 时出现。"
     ],
     "EXTRA_TEXT": [
@@ -1542,8 +1542,8 @@
   },
   "chimeracardsplus:IncenseBurnerMod": {
     "TEXT": [
+      "香炉",
       "",
-      "的香炉",
       "在 #y香炉 触发的每个回合中第一次使用时，获得1层 #y无实体 。 NL 只会在你拥有 #y香炉 时出现。"
     ],
     "EXTRA_TEXT": [
@@ -1552,8 +1552,8 @@
   },
   "chimeracardsplus:PocketwatchMod": {
     "TEXT": [
+      "怀表",
       "",
-      "的怀表",
       "在 #y怀表 触发的每个回合中第一次使用时，抽 #b3 张牌。 NL 只会在你拥有 #y怀表 时出现。"
     ],
     "EXTRA_TEXT": [
@@ -1615,8 +1615,8 @@
   },
   "chimeracardsplus:BootMod": {
     "TEXT": [
+      "发条靴",
       "",
-      "的发条靴",
       "造成的伤害增加到5。"
     ],
     "EXTRA_TEXT": [
@@ -1624,8 +1624,8 @@
   },
   "chimeracardsplus:PrayerWheelMod": {
     "TEXT": [
+      "转经轮",
       "",
-      "的转经轮",
       "普通战斗中杀死敌人时，额外掉落一次卡牌奖励。 NL #y消耗 。 NL 只会在你拥有 #y转经轮 时出现。"
     ],
     "EXTRA_TEXT": [
@@ -1673,10 +1673,10 @@
       " NL 祝福已经失去了力量。"
     ]
   },
-  "chimeracardsplus:MaskMod": {
+  "chimeracardsplus:MaskedMod": {
     "TEXT": [
+      "面具",
       "",
-      "的面具",
       "第一回合第一次使用时，给予所有敌人 #b1 层 虚弱 。 NL 只会在你拥有 #y红面具 时出现。"
     ],
     "EXTRA_TEXT": [
@@ -1705,8 +1705,8 @@
   },
   "chimeracardsplus:ToolboxMod": {
     "TEXT": [
+      "工具箱",
       "",
-      "的工具箱",
       "第一回合第一次使用时，从 #b3 张随机无色牌中选择 #b1 张增加到你的手牌。 NL 只会在你拥有 #y工具箱 时出现。"
     ],
     "EXTRA_TEXT": [
@@ -1802,8 +1802,8 @@
   },
   "chimeracardsplus:TingshaMod": {
     "TEXT": [
+      "铜钹",
       "",
-      "的铜钹",
       "丢弃时对一名随机敌人造成 #b3 点伤害。"
     ],
     "EXTRA_TEXT": [
@@ -1886,8 +1886,8 @@
   },
   "chimeracardsplus:WaffleMod": {
     "TEXT": [
+      "华夫饼",
       "",
-      "的华夫饼",
       "卡牌数值减少 #b25% 。 NL 拾起时回复 #b7 点生命。"
     ],
     "EXTRA_TEXT": [
@@ -1916,8 +1916,8 @@
   },
   "chimeracardsplus:SozuMod": {
     "TEXT": [
+      "添水",
       "",
-      "的添水",
       "在你使用使用一瓶药水后，本回合内下次使用时，获得 [E] 。"
     ],
     "EXTRA_TEXT": [
@@ -1933,6 +1933,59 @@
     "EXTRA_TEXT": [
       "消耗 你的手牌。 NL ",
       "数次，其数量等于被 消耗 的牌的数量。 NL 消耗 。"
+    ]
+  },
+  "chimeracardsplus:FastingMod": {
+    "TEXT": [
+      "斋戒",
+      "",
+      "耗能减少 #b1 。 NL 每回合开始时少获得 #b1 [E] 。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 每回合开始时少获得 1 [E] 。",
+      "每回合开始时少获得1 [W] 。",
+      "每回合开始时少获得2 [W] 。"
+    ]
+  },
+  "chimeracardsplus:AchingMod": {
+    "TEXT": [
+      "疼痛",
+      "",
+      "卡牌数值增加 #b25% 。 NL 当在手牌中时，每打出一张其他牌，失去 #b1 生命。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 当在手牌中时，每打出一张其他牌，失去1生命。"
+    ]
+  },
+  "chimeracardsplus:SecretMod": {
+    "TEXT": [
+      "秘密",
+      "",
+      "从抽牌堆中选择一张这张牌放入你的手牌。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 从抽牌堆中选择一张 %s 放入你的手牌。"
+    ]
+  },
+  "chimeracardsplus:EntropicMod": {
+    "TEXT": [
+      "无序",
+      "",
+      "耗能增加 #b1 。 NL 用随机卡牌填满你的手牌。 #y升级 后 #y升级 这些牌。 NL #y消耗 。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 用随机卡牌填满你的手牌。 NL 消耗 。",
+      " NL 用 升级 过的随机卡牌填满你的手牌。 NL 消耗 。"
+    ]
+  },
+  "chimeracardsplus:FairyMod": {
+    "TEXT": [
+      "",
+      "中精灵",
+      "卡牌数值减少 #b33% 。当你要被杀死时，免死并回复到最大生命值的 #b10% ，把这张牌从你的牌组中移除。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 当你要被杀死时，免死并回复到最大生命值的 10% ，把这张牌从你的牌组中移除。"
     ]
   },
   "chimeracardsplus:ConservedMod": {

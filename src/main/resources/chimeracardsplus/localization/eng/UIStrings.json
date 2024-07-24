@@ -1333,8 +1333,8 @@
   },
   "chimeracardsplus:PenNibMod": {
     "TEXT": [
+      "Pen Nib ",
       "",
-      "'s Pen Nib",
       "Increases damage by #b100% if the card triggers #yPen #yNib. NL Only appears if you have #yPen #yNib."
     ],
     "EXTRA_TEXT": [
@@ -1372,8 +1372,8 @@
   },
   "chimeracardsplus:TeaSetMod": {
     "TEXT": [
+      "Tea Set ",
       "",
-      "'s Tea Set",
       "Gains [E] [E] on the first use on the first turn if the last room was a Rest Site. NL Only appears if you have #yAncient #yTea #ySet."
     ],
     "EXTRA_TEXT": [
@@ -1412,8 +1412,8 @@
   },
   "chimeracardsplus:LetterOpenerMod": {
     "TEXT": [
+      "Letter Opener ",
       "",
-      "'s Letter Opener",
       "Deals #b5 damage to ALL enemies if the card triggers #yLetter #yOpener. NL Only appears if you have #yLetter #yOpener."
     ],
     "EXTRA_TEXT": [
@@ -1462,8 +1462,8 @@
   },
   "chimeracardsplus:DummyMod": {
     "TEXT": [
+      "Dummy ",
       "",
-      "'s Dummy",
       "Increases damage by #b3. NL Only appears if you have #yStrike #yDummy."
     ],
     "EXTRA_TEXT": [
@@ -1542,8 +1542,8 @@
   },
   "chimeracardsplus:IncenseBurnerMod": {
     "TEXT": [
+      "Incense Burner ",
       "",
-      "'s Incense Burner",
       "Gains #b1 #yIntangible on the first use on each of the turns #yIncense #yBurner trigger. NL Only appears if you have #yIncense #yBurner."
     ],
     "EXTRA_TEXT": [
@@ -1552,8 +1552,8 @@
   },
   "chimeracardsplus:PocketwatchMod": {
     "TEXT": [
+      "Pocketwatch ",
       "",
-      "'s Pocketwatch",
       "Draws #b3 cards on the first use on each of the turns #yPocketwatch trigger. NL Only appears if you have #yPocketwatch."
     ],
     "EXTRA_TEXT": [
@@ -1624,8 +1624,8 @@
   },
   "chimeracardsplus:PrayerWheelMod": {
     "TEXT": [
+      "Prayer Wheel ",
       "",
-      "'s Prayer Wheel",
       "Drops an additional card reward when killing an enemy in a normal combat. NL Adds #yExhaust. NL Only appears if you have #yPrayer #yWheel."
     ],
     "EXTRA_TEXT": [
@@ -1673,10 +1673,10 @@
       " NL The blessing has lost its power."
     ]
   },
-  "chimeracardsplus:MaskMod": {
+  "chimeracardsplus:MaskedMod": {
     "TEXT": [
+      "Masked ",
       "",
-      "'s Mask",
       "Applies #b1 #yWeak to ALL enemies on the first use on the first turn. NL Only appears if you have #yRed #yMask."
     ],
     "EXTRA_TEXT": [
@@ -1705,8 +1705,8 @@
   },
   "chimeracardsplus:ToolboxMod": {
     "TEXT": [
+      "Toolbox ",
       "",
-      "'s Toolbox",
       "Adds a chosen Colorless card into your hand on the first use on the first turn. NL Only appears if you have #yToolbox."
     ],
     "EXTRA_TEXT": [
@@ -1802,8 +1802,8 @@
   },
   "chimeracardsplus:TingshaMod": {
     "TEXT": [
+      "Tingsha ",
       "",
-      "'s Tingsha",
       "Deals #b3 damage to a random enemy when discarded."
     ],
     "EXTRA_TEXT": [
@@ -1886,8 +1886,8 @@
   },
   "chimeracardsplus:WaffleMod": {
     "TEXT": [
+      "Waffle ",
       "",
-      "'s Waffle",
       "Reduces card values by #b25%. NL Heals #b7 HP upon pickup."
     ],
     "EXTRA_TEXT": [
@@ -1916,8 +1916,8 @@
   },
   "chimeracardsplus:SozuMod": {
     "TEXT": [
+      "Sozu ",
       "",
-      "'s Sozu",
       "After you use a potion, gains [E] on the next use this turn."
     ],
     "EXTRA_TEXT": [
@@ -1933,6 +1933,59 @@
     "EXTRA_TEXT": [
       "Exhaust your hand. NL ",
       " for each card Exhausted. NL Exhaust."
+    ]
+  },
+  "chimeracardsplus:FastingMod": {
+    "TEXT": [
+      "Fasting ",
+      "",
+      "Costs [E] less. NL Gains [E] less at the start of each turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain 1 less [E] at the start of each turn.",
+      "Gain 1 less [W] at the start of each turn.",
+      "Gain 2 less [W] at the start of each turn."
+    ]
+  },
+  "chimeracardsplus:AchingMod": {
+    "TEXT": [
+      "Aching ",
+      "",
+      "Increases card values by #b25%. NL While the card is in hand, loses #b1 HP whenever you play another card."
+    ],
+    "EXTRA_TEXT": [
+      " NL While in hand, lose 1 HP whenever you play another card."
+    ]
+  },
+  "chimeracardsplus:SecretMod": {
+    "TEXT": [
+      "Secret ",
+      "",
+      "Puts a copy of the card from your draw pile into your hand."
+    ],
+    "EXTRA_TEXT": [
+      " NL Put 1 %s from your draw pile into your hand."
+    ]
+  },
+  "chimeracardsplus:EntropicMod": {
+    "TEXT": [
+      "Entropic ",
+      "",
+      "Costs [E] more. NL Fills your hand with random cards. Also #yUpgrades them if #yUpgraded. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Fill your hand with random cards. NL Exhaust.",
+      " NL Fill your hand with random Upgraded cards. NL Exhaust."
+    ]
+  },
+  "chimeracardsplus:FairyMod": {
+    "TEXT": [
+      "Fairy in ",
+      "",
+      "Reduces card values by #b33%. When you would die, heals to #b10% of your Max HP instead and remove the card from your deck."
+    ],
+    "EXTRA_TEXT": [
+      " NL When you would die, heal to 10% of your Max HP instead and remove this from your deck."
     ]
   },
   "chimeracardsplus:ConservedMod": {

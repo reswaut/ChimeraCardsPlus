@@ -4,7 +4,7 @@ import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.interfaces.TriggerOnObtainMod;
-import chimeracardsplus.interfaces.UpdateObjectsMod;
+import chimeracardsplus.interfaces.TriggerOnUpdateObjectsMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -20,7 +20,7 @@ import java.util.Set;
 
 import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
 
-public class ChangingMod extends AbstractAugment implements TriggerOnObtainMod, UpdateObjectsMod {
+public class ChangingMod extends AbstractAugment implements TriggerOnObtainMod, TriggerOnUpdateObjectsMod {
     public static final String ID = ChimeraCardsPlus.makeID(ChangingMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;

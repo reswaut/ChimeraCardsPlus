@@ -17,8 +17,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
-public class MaskMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(MaskMod.class.getSimpleName());
+public class MaskedMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(MaskedMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     private boolean used = false;
@@ -82,7 +82,7 @@ public class MaskMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new MaskMod();
+        return new MaskedMod();
     }
 
     @Override

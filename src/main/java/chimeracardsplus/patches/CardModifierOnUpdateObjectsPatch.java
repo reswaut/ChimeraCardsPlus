@@ -2,7 +2,7 @@ package chimeracardsplus.patches;
 
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
-import chimeracardsplus.interfaces.UpdateObjectsMod;
+import chimeracardsplus.interfaces.TriggerOnUpdateObjectsMod;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -20,8 +20,8 @@ public class CardModifierOnUpdateObjectsPatch {
                 updated = false;
                 for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
                     for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
-                        if (mod instanceof UpdateObjectsMod) {
-                            if (((UpdateObjectsMod) mod).onUpdateObjects(card)) {
+                        if (mod instanceof TriggerOnUpdateObjectsMod) {
+                            if (((TriggerOnUpdateObjectsMod) mod).onUpdateObjects(card)) {
                                 updated = true;
                                 break;
                             }
