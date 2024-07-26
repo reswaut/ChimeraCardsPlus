@@ -2170,5 +2170,28 @@
     "EXTRA_TEXT": [
       " NL Upon pickup, you may Duplicate another card in your deck."
     ]
+  },
+  "chimeracardsplus:CursedMod": {
+    "TEXT": [
+      "Cursed ",
+      "%s-Cursed ",
+      "",
+      "Increases card values by #b100%. NL Adds a #rCurse into your deck upon pickup.",
+      "Increases card values by #b100%%. NL Adds %s into your deck upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, add a *Curse into your deck.",
+      " NL Upon pickup, add %s into your deck."
+    ]
+  },
+  "chimeracardsplus:ExertedMod": {
+    "TEXT": [
+      "Exerted ",
+      "",
+      "Draws #b1 card. NL Draws #b1 less card next turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Draw 1 card. Draw 1 less card next turn."
+    ]
   }
 }
