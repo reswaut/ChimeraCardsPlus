@@ -1255,7 +1255,7 @@
     "TEXT": [
       "Akabeko ",
       "",
-      "Increases damage by #b8 if this the first Attack played. NL Only appears if you have #yAkabeko."
+      "Increases damage by #b8 if this is the first Attack played. NL Only appears if you have #yAkabeko."
     ],
     "EXTRA_TEXT": [
       " NL Deals 8 more damage if you have not played Attacks this combat."
@@ -2192,6 +2192,16 @@
     ],
     "EXTRA_TEXT": [
       " NL Draw 1 card. Draw 1 less card next turn."
+    ]
+  },
+  "chimeracardsplus:OpeningMod": {
+    "TEXT": [
+      "Opening ",
+      "",
+      "Increases damage by 2 if this is the first card played this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deals 2 more damage if you have not played cards this turn."
     ]
   }
 }

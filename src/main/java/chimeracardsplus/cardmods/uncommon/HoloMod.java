@@ -6,7 +6,6 @@ import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.BetterDiscardPileToHandAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.defect.DiscardPileToHandAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -64,7 +63,7 @@ public class HoloMod extends AbstractAugment {
             this.addToBot(new BetterDiscardPileToHandAction(2));
             return;
         }
-        this.addToBot(new DiscardPileToHandAction(1));
+        this.addToBot(new BetterDiscardPileToHandAction(1));
     }
 
     @Override
