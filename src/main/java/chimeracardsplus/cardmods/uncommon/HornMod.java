@@ -8,6 +8,7 @@ import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.relics.GremlinHorn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class HornMod extends AbstractAugment {
     @Override
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> (c.cost >= -1 && c.type == AbstractCard.CardType.ATTACK))
-                && characterCheck((p) -> p.hasRelic("Gremlin Horn"));
+                && characterCheck((p) -> p.hasRelic(GremlinHorn.ID));
     }
 
     @Override

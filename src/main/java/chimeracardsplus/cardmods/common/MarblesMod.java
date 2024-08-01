@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.BagOfMarbles;
 
 public class MarblesMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(MarblesMod.class.getSimpleName());
@@ -25,7 +26,7 @@ public class MarblesMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic("Bag of Marbles"));
+        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic(BagOfMarbles.ID));
     }
 
     @Override
@@ -61,7 +62,7 @@ public class MarblesMod extends AbstractAugment {
 
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (!used && GameActionManager.turn <= 1) {
-            AbstractRelic relic = AbstractDungeon.player.getRelic("Bag of Marbles");
+            AbstractRelic relic = AbstractDungeon.player.getRelic(BagOfMarbles.ID);
             if (relic != null) {
                 relic.flash();
             }

@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.ThreadAndNeedle;
 
 public class NeedleworkMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(NeedleworkMod.class.getSimpleName());
@@ -23,7 +24,7 @@ public class NeedleworkMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic("Thread and Needle"));
+        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic(ThreadAndNeedle.ID));
     }
 
     @Override
@@ -35,12 +36,12 @@ public class NeedleworkMod extends AbstractAugment {
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (!used && GameActionManager.turn <= 1) {
-            AbstractRelic relic = AbstractDungeon.player.getRelic("Thread and Needle");
+            AbstractRelic relic = AbstractDungeon.player.getRelic(ThreadAndNeedle.ID);
             if (relic != null) {
                 relic.flash();
                 this.addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, relic));
             }
-            this.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new PlatedArmorPower(AbstractDungeon.player, 4), 4));
+            this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new PlatedArmorPower(AbstractDungeon.player, 4), 4));
             used = true;
         }
     }

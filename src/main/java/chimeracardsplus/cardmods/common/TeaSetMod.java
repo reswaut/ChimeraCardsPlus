@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AncientTeaSet;
 
 public class TeaSetMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(TeaSetMod.class.getSimpleName());
@@ -22,13 +23,13 @@ public class TeaSetMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic("Ancient Tea Set"));
+        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic(AncientTeaSet.ID));
     }
 
     @Override
     public boolean onBattleStart(AbstractCard card) {
         used = true;
-        AbstractRelic relic = AbstractDungeon.player.getRelic("Ancient Tea Set");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(AncientTeaSet.ID);
         if (relic != null && relic.counter == -2) {
             used = false;
         }
@@ -38,7 +39,7 @@ public class TeaSetMod extends AbstractAugment {
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (!used && GameActionManager.turn <= 1) {
-            AbstractRelic relic = AbstractDungeon.player.getRelic("Ancient Tea Set");
+            AbstractRelic relic = AbstractDungeon.player.getRelic(AncientTeaSet.ID);
             if (relic != null) {
                 relic.flash();
                 this.addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, relic));

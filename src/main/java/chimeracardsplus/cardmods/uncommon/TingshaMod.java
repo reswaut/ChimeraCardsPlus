@@ -48,6 +48,7 @@ public class TingshaMod extends AbstractAugment implements TriggerOnDiscardMod {
         this.addToBot(new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, 3, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
     }
 
+    @Override
     public void onMoveToDiscard(AbstractCard card) {
     }
 

@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.Shuriken;
 
 public class ShurikenMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(ShurikenMod.class.getSimpleName());
@@ -21,7 +22,7 @@ public class ShurikenMod extends AbstractAugment {
     @Override
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> (c.type == AbstractCard.CardType.ATTACK && c.cost >= -1))
-                && characterCheck((p) -> p.hasRelic("Shuriken"));
+                && characterCheck((p) -> p.hasRelic(Shuriken.ID));
     }
 
     @Override
@@ -46,7 +47,7 @@ public class ShurikenMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        AbstractRelic relic = AbstractDungeon.player.getRelic("Shuriken");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(Shuriken.ID);
         if (relic != null && relic.counter == 0) {
             this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, 1)));
         }
@@ -54,7 +55,7 @@ public class ShurikenMod extends AbstractAugment {
 
     @Override
     public Color getGlow(AbstractCard card) {
-        AbstractRelic relic = AbstractDungeon.player.getRelic("Shuriken");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(Shuriken.ID);
         if (relic != null && relic.counter == 2) {
             return Color.GOLD;
         }

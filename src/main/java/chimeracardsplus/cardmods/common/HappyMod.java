@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.HappyFlower;
 
 public class HappyMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(HappyMod.class.getSimpleName());
@@ -22,13 +23,13 @@ public class HappyMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic("Happy Flower"));
+        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic(HappyFlower.ID));
     }
 
     @Override
     public void atEndOfTurn(AbstractCard card, CardGroup group) {
         used = true;
-        AbstractRelic relic = AbstractDungeon.player.getRelic("Happy Flower");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(HappyFlower.ID);
         if (relic != null && relic.counter == 2) {
             used = false;
         }
@@ -37,7 +38,7 @@ public class HappyMod extends AbstractAugment {
     @Override
     public boolean onBattleStart(AbstractCard card) {
         used = true;
-        AbstractRelic relic = AbstractDungeon.player.getRelic("Happy Flower");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(HappyFlower.ID);
         if (relic != null && relic.counter == 2) {
             used = false;
         }
@@ -49,7 +50,7 @@ public class HappyMod extends AbstractAugment {
         if (used) {
             return;
         }
-        AbstractRelic relic = AbstractDungeon.player.getRelic("Happy Flower");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(HappyFlower.ID);
         if (relic != null && relic.counter == 0) {
             relic.flash();
             this.addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, relic));
@@ -63,7 +64,7 @@ public class HappyMod extends AbstractAugment {
         if (used) {
             return null;
         }
-        AbstractRelic relic = AbstractDungeon.player.getRelic("Happy Flower");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(HappyFlower.ID);
         if (relic != null && relic.counter == 0) {
             return Color.GOLD;
         }

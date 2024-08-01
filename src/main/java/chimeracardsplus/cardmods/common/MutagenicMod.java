@@ -3,6 +3,7 @@ package chimeracardsplus.cardmods.common;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -45,6 +46,11 @@ public class MutagenicMod extends AbstractAugment {
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         return insertAfterText(rawDescription, CARD_TEXT[0]);
+    }
+
+    @Override
+    public Color getGlow(AbstractCard card) {
+        return (GameActionManager.turn <= 1) ? Color.GOLD : null;
     }
 
     @Override

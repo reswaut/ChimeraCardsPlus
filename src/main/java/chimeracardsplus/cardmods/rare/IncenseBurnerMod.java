@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.IncenseBurner;
 
 public class IncenseBurnerMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(IncenseBurnerMod.class.getSimpleName());
@@ -22,13 +23,13 @@ public class IncenseBurnerMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic("Incense Burner"));
+        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic(IncenseBurner.ID));
     }
 
     @Override
     public void atEndOfTurn(AbstractCard card, CardGroup group) {
         used = true;
-        AbstractRelic relic = AbstractDungeon.player.getRelic("Incense Burner");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(IncenseBurner.ID);
         if (relic != null && relic.counter == 5) {
             used = false;
         }
@@ -36,7 +37,7 @@ public class IncenseBurnerMod extends AbstractAugment {
     @Override
     public boolean onBattleStart(AbstractCard card) {
         used = true;
-        AbstractRelic relic = AbstractDungeon.player.getRelic("Incense Burner");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(IncenseBurner.ID);
         if (relic != null && relic.counter == 5) {
             used = false;
         }
@@ -48,7 +49,7 @@ public class IncenseBurnerMod extends AbstractAugment {
         if (used) {
             return;
         }
-        AbstractRelic relic = AbstractDungeon.player.getRelic("Incense Burner");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(IncenseBurner.ID);
         if (relic != null && relic.counter == 0) {
             relic.flash();
             this.addToBot(new ApplyPowerAction(AbstractDungeon.player, null, new IntangiblePlayerPower(AbstractDungeon.player, 1), 1));
@@ -61,7 +62,7 @@ public class IncenseBurnerMod extends AbstractAugment {
         if (used) {
             return null;
         }
-        AbstractRelic relic = AbstractDungeon.player.getRelic("Incense Burner");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(IncenseBurner.ID);
         if (relic != null && relic.counter == 0) {
             return Color.GOLD;
         }

@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.Pantograph;
 
 public class PantographicMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(PantographicMod.class.getSimpleName());
@@ -23,7 +24,7 @@ public class PantographicMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic("Pantograph"));
+        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic(Pantograph.ID));
     }
 
     @Override
@@ -37,7 +38,7 @@ public class PantographicMod extends AbstractAugment {
         if (!used && GameActionManager.turn <= 1) {
             for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
                 if (m.type == AbstractMonster.EnemyType.BOSS) {
-                    AbstractRelic relic = AbstractDungeon.player.getRelic("Pantograph");
+                    AbstractRelic relic = AbstractDungeon.player.getRelic(Pantograph.ID);
                     if (relic != null) {
                         relic.flash();
                         this.addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, relic));

@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.LetterOpener;
 
 public class LetterOpenerMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(LetterOpenerMod.class.getSimpleName());
@@ -22,7 +23,7 @@ public class LetterOpenerMod extends AbstractAugment {
     @Override
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> (c.type == AbstractCard.CardType.SKILL && c.cost >= -1))
-                && characterCheck((p) -> p.hasRelic("Letter Opener"));
+                && characterCheck((p) -> p.hasRelic(LetterOpener.ID));
     }
 
     @Override
@@ -47,7 +48,7 @@ public class LetterOpenerMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        AbstractRelic relic = AbstractDungeon.player.getRelic("Letter Opener");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(LetterOpener.ID);
         if (relic != null && relic.counter == 0) {
             this.addToBot(new DamageAllEnemiesAction(null, DamageInfo.createDamageMatrix(5, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HEAVY));
         }
@@ -55,7 +56,7 @@ public class LetterOpenerMod extends AbstractAugment {
 
     @Override
     public Color getGlow(AbstractCard card) {
-        AbstractRelic relic = AbstractDungeon.player.getRelic("Letter Opener");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(LetterOpener.ID);
         if (relic != null && relic.counter == 2) {
             return Color.GOLD;
         }

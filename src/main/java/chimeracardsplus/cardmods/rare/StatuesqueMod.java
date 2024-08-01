@@ -8,6 +8,7 @@ import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.relics.WhiteBeast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class StatuesqueMod extends AbstractAugment {
     @Override
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> (c.cost >= -1 && c.type == AbstractCard.CardType.ATTACK))
-                && characterCheck((p) -> p.hasRelic("White Beast Statue"));
+                && characterCheck((p) -> p.hasRelic(WhiteBeast.ID));
     }
 
     @Override

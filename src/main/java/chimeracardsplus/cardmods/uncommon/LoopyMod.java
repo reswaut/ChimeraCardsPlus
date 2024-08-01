@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
+import com.megacrit.cardcrawl.relics.GoldPlatedCables;
 
 public class LoopyMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(LoopyMod.class.getSimpleName());
@@ -27,7 +28,7 @@ public class LoopyMod extends AbstractAugment {
         }
         AbstractDungeon.player.orbs.get(0).onStartOfTurn();
         AbstractDungeon.player.orbs.get(0).onEndOfTurn();
-        if (AbstractDungeon.player.hasRelic("Cables")) {
+        if (AbstractDungeon.player.hasRelic(GoldPlatedCables.ID)) {
             AbstractDungeon.player.orbs.get(0).onStartOfTurn();
             AbstractDungeon.player.orbs.get(0).onEndOfTurn();
         }

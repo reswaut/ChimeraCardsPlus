@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.Pocketwatch;
 
 public class PocketwatchMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(PocketwatchMod.class.getSimpleName());
@@ -22,7 +23,7 @@ public class PocketwatchMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic("Pocketwatch"));
+        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic(Pocketwatch.ID));
     }
 
     @Override
@@ -39,7 +40,7 @@ public class PocketwatchMod extends AbstractAugment {
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (!used) {
-            AbstractRelic relic = AbstractDungeon.player.getRelic("Pocketwatch");
+            AbstractRelic relic = AbstractDungeon.player.getRelic(Pocketwatch.ID);
             if (relic != null) {
                 relic.flash();
                 this.addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, relic));

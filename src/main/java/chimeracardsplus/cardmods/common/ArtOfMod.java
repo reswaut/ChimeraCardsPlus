@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.ArtOfWar;
 
 public class ArtOfMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(ArtOfMod.class.getSimpleName());
@@ -22,7 +23,7 @@ public class ArtOfMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic("Art of War"));
+        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic(ArtOfWar.ID));
     }
 
     @Override
@@ -48,7 +49,7 @@ public class ArtOfMod extends AbstractAugment {
             return;
         }
         active = false;
-        AbstractRelic relic = AbstractDungeon.player.getRelic("Art of War");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(ArtOfWar.ID);
         if (relic != null && relic.counter == 0) {
             relic.flash();
             this.addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, relic));

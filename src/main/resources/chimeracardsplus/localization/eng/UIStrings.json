@@ -2198,10 +2198,31 @@
     "TEXT": [
       "Opening ",
       "",
-      "Increases damage by 2 if this is the first card played this turn."
+      "Increases damage by #b2 if this is the first card played this turn."
     ],
     "EXTRA_TEXT": [
       " NL Deals 2 more damage if you have not played cards this turn."
+    ]
+  },
+  "chimeracardsplus:ShatteringMod": {
+    "TEXT": [
+      "Shattering ",
+      "",
+      "Increases damage by #b3 if the enemy has #yBlock."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deals 3 more damage to enemies with Block."
+    ]
+  },
+  "chimeracardsplus:ReplicativeMod": {
+    "TEXT": [
+      "Replicative ",
+      "",
+      "Returns a copy to your hand when discarded."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this card is discarded from your hand, put a copy of this card into your hand.",
+      "discard"
     ]
   }
 }

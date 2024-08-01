@@ -58,7 +58,7 @@ public class CursedMod extends AbstractAugment implements TriggerOnObtainMod {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.rarity != AbstractCard.CardRarity.BASIC)
+        return cardCheck(card, (c) -> c.rarity != AbstractCard.CardRarity.BASIC && c.type != AbstractCard.CardType.CURSE)
                 && (card.baseBlock > 0 || card.baseDamage > 0 || (card.baseMagicNumber > 0 && doesntDowngradeMagicNoUseChecks(card)));
     }
 

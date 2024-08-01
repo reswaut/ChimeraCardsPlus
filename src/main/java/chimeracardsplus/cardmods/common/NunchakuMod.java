@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.Nunchaku;
 
 public class NunchakuMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(NunchakuMod.class.getSimpleName());
@@ -20,7 +21,7 @@ public class NunchakuMod extends AbstractAugment {
     @Override
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> (c.type == AbstractCard.CardType.ATTACK && c.cost >= -1))
-                && characterCheck((p) -> p.hasRelic("Nunchaku"));
+                && characterCheck((p) -> p.hasRelic(Nunchaku.ID));
     }
 
     @Override
@@ -45,7 +46,7 @@ public class NunchakuMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        AbstractRelic relic = AbstractDungeon.player.getRelic("Nunchaku");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(Nunchaku.ID);
         if (relic != null && relic.counter == 0) {
             this.addToBot(new GainEnergyAction(1));
         }
@@ -53,7 +54,7 @@ public class NunchakuMod extends AbstractAugment {
 
     @Override
     public Color getGlow(AbstractCard card) {
-        AbstractRelic relic = AbstractDungeon.player.getRelic("Nunchaku");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(Nunchaku.ID);
         if (relic != null && relic.counter == 9) {
             return Color.GOLD;
         }

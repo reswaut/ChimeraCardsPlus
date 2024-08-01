@@ -15,7 +15,7 @@ public class SpecializedMod extends AbstractAugment implements TriggerOnObtainMo
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.rarity != AbstractCard.CardRarity.BASIC);
+        return cardCheck(card, (c) -> c.rarity != AbstractCard.CardRarity.BASIC && c.type != AbstractCard.CardType.CURSE);
     }
 
     @Override

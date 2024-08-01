@@ -42,7 +42,7 @@ public class SecretMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, String.format(CARD_TEXT[0], FormatHelper.prefixWords(card.name, "*")));
+        return insertAfterText(rawDescription, String.format(CARD_TEXT[0], FormatHelper.prefixWords(removeUpgradeText(card.name)[0], "*")));
     }
 
     @Override

@@ -1,20 +1,29 @@
-package chimeracardsplus.cardmods.rare;
+package chimeracardsplus.cardmods.common;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class InescapableMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(InescapableMod.class.getSimpleName());
+public class ShatteringMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(ShatteringMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> notExhaust(c) && notEthereal(c) && !c.hasTag(AbstractCard.CardTags.HEALING));
+        return cardCheck(card, (c) -> (c.baseDamage >= 1 && c.type == AbstractCard.CardType.ATTACK));
+    }
+
+    @Override
+    public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+        if (target != null && target.currentBlock > 0) {
+            damage += 3.0F;
+        }
+        return damage;
     }
 
     @Override
@@ -38,18 +47,13 @@ public class InescapableMod extends AbstractAugment {
     }
 
     @Override
-    public void onExhausted(AbstractCard card) {
-        this.addToBot(new MakeTempCardInHandAction(card.makeStatEquivalentCopy(), true));
-    }
-
-    @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.RARE;
+        return AugmentRarity.COMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new InescapableMod();
+        return new ShatteringMod();
     }
 
     @Override

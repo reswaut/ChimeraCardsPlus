@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.RedMask;
 
 public class MaskedMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(MaskedMod.class.getSimpleName());
@@ -25,7 +26,7 @@ public class MaskedMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic("Red Mask"));
+        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic(RedMask.ID));
     }
 
     @Override
@@ -61,7 +62,7 @@ public class MaskedMod extends AbstractAugment {
 
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (!used && GameActionManager.turn <= 1) {
-            AbstractRelic relic = AbstractDungeon.player.getRelic("Red Mask");
+            AbstractRelic relic = AbstractDungeon.player.getRelic(RedMask.ID);
             if (relic != null) {
                 relic.flash();
             }

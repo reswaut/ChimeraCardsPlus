@@ -3,18 +3,22 @@ package chimeracardsplus.cardmods.rare;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.interfaces.TriggerOnDiscardMod;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
-public class InescapableMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(InescapableMod.class.getSimpleName());
+import static chimeracardsplus.util.CardCheckHelpers.hasCardWithKeywordInDeck;
+
+public class ReplicativeMod extends AbstractAugment implements TriggerOnDiscardMod {
+    public static final String ID = ChimeraCardsPlus.makeID(ReplicativeMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> notExhaust(c) && notEthereal(c) && !c.hasTag(AbstractCard.CardTags.HEALING));
+        return cardCheck(card, (c) -> !c.hasTag(AbstractCard.CardTags.HEALING))
+                && characterCheck((p) -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
     }
 
     @Override
@@ -38,8 +42,12 @@ public class InescapableMod extends AbstractAugment {
     }
 
     @Override
-    public void onExhausted(AbstractCard card) {
+    public void onManualDiscard(AbstractCard card) {
         this.addToBot(new MakeTempCardInHandAction(card.makeStatEquivalentCopy(), true));
+    }
+
+    @Override
+    public void onMoveToDiscard(AbstractCard card) {
     }
 
     @Override
@@ -49,7 +57,7 @@ public class InescapableMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new InescapableMod();
+        return new ReplicativeMod();
     }
 
     @Override

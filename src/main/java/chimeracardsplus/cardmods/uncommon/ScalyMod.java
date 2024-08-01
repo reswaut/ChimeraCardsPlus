@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.ThornsPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.BronzeScales;
 
 public class ScalyMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(ScalyMod.class.getSimpleName());
@@ -23,7 +24,7 @@ public class ScalyMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic("Bronze Scales"));
+        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic(BronzeScales.ID));
     }
 
     @Override
@@ -64,12 +65,12 @@ public class ScalyMod extends AbstractAugment {
 
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (!used && GameActionManager.turn <= 1) {
-            AbstractRelic relic = AbstractDungeon.player.getRelic("Bronze Scales");
+            AbstractRelic relic = AbstractDungeon.player.getRelic(BronzeScales.ID);
             if (relic != null) {
                 relic.flash();
                 this.addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, relic));
             }
-            this.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ThornsPower(AbstractDungeon.player, 3), 3));
+            this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ThornsPower(AbstractDungeon.player, 3), 3));
             used = true;
         }
     }

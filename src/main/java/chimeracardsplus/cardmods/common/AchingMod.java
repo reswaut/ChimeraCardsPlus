@@ -3,6 +3,7 @@ package chimeracardsplus.cardmods.common;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -42,6 +43,7 @@ public class AchingMod extends AbstractAugment {
     public void onOtherCardPlayed(AbstractCard card, AbstractCard otherCard, CardGroup group) {
         if (group.type == CardGroup.CardGroupType.HAND) {
             this.addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, 1));
+            card.flash(Color.RED);
         }
     }
 

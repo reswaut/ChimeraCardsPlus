@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.MercuryHourglass;
 
 public class MercurialMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(MercurialMod.class.getSimpleName());
@@ -24,7 +25,7 @@ public class MercurialMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic("Mercury Hourglass"));
+        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic(MercuryHourglass.ID));
     }
 
     @Override
@@ -43,7 +44,7 @@ public class MercurialMod extends AbstractAugment {
             return;
         }
         used = true;
-        AbstractRelic relic = AbstractDungeon.player.getRelic("Mercury Hourglass");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(MercuryHourglass.ID);
         if (relic != null) {
             relic.flash();
             this.addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, relic));

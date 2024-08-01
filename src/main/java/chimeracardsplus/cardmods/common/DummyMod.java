@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.relics.StrikeDummy;
 
 public class DummyMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(DummyMod.class.getSimpleName());
@@ -16,7 +17,7 @@ public class DummyMod extends AbstractAugment {
     @Override
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> (c.baseDamage >= 1) && c.hasTag(AbstractCard.CardTags.STRIKE))
-                && characterCheck((p) -> p.hasRelic("StrikeDummy"));
+                && characterCheck((p) -> p.hasRelic(StrikeDummy.ID));
     }
 
     @Override

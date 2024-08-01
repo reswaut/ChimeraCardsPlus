@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.BufferPower;
+import com.megacrit.cardcrawl.relics.FossilizedHelix;
 
 public class FossilizedMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(FossilizedMod.class.getSimpleName());
@@ -20,7 +21,7 @@ public class FossilizedMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic("FossilizedHelix"));
+        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic(FossilizedHelix.ID));
     }
 
     @Override

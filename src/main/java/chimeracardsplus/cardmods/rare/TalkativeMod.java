@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.CultistMask;
 
 public class TalkativeMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(TalkativeMod.class.getSimpleName());
@@ -18,12 +19,12 @@ public class TalkativeMod extends AbstractAugment {
     @Override
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> c.cost >= -1)
-                && characterCheck((p) -> p.hasRelic("CultistMask"));
+                && characterCheck((p) -> p.hasRelic(CultistMask.ID));
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        AbstractRelic relic = AbstractDungeon.player.getRelic("CultistMask");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(CultistMask.ID);
         if (relic != null) {
             relic.atBattleStart();
         }

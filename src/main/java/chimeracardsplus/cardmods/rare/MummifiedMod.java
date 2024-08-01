@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.MummifiedHand;
 
 public class MummifiedMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(MummifiedMod.class.getSimpleName());
@@ -18,12 +19,12 @@ public class MummifiedMod extends AbstractAugment {
     @Override
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> c.cost >= -1 && c.type == AbstractCard.CardType.POWER)
-                && characterCheck((p) -> p.hasRelic("Mummified Hand"));
+                && characterCheck((p) -> p.hasRelic(MummifiedHand.ID));
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        AbstractRelic relic = AbstractDungeon.player.getRelic("Mummified Hand");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(MummifiedHand.ID);
         if (relic != null) {
             relic.onUseCard(card, action);
         }

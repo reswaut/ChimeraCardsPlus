@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.OrnamentalFan;
 
 public class OrnamentalMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(OrnamentalMod.class.getSimpleName());
@@ -20,7 +21,7 @@ public class OrnamentalMod extends AbstractAugment {
     @Override
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> (c.type == AbstractCard.CardType.ATTACK && c.cost >= -1))
-                && characterCheck((p) -> p.hasRelic("Ornamental Fan"));
+                && characterCheck((p) -> p.hasRelic(OrnamentalFan.ID));
     }
 
     @Override
@@ -45,7 +46,7 @@ public class OrnamentalMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        AbstractRelic relic = AbstractDungeon.player.getRelic("Ornamental Fan");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(OrnamentalFan.ID);
         if (relic != null && relic.counter == 0) {
             this.addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, 4));
         }
@@ -53,7 +54,7 @@ public class OrnamentalMod extends AbstractAugment {
 
     @Override
     public Color getGlow(AbstractCard card) {
-        AbstractRelic relic = AbstractDungeon.player.getRelic("Ornamental Fan");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(OrnamentalFan.ID);
         if (relic != null && relic.counter == 2) {
             return Color.GOLD;
         }

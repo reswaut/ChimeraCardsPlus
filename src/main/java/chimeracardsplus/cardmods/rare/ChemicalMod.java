@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.relics.ChemicalX;
 
 public class ChemicalMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(ChemicalMod.class.getSimpleName());
@@ -18,7 +19,7 @@ public class ChemicalMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost == -1 && doesntUpgradeCost())) && characterCheck((p) -> p.hasRelic("Chemical X"));
+        return cardCheck(card, (c) -> (c.cost == -1 && doesntUpgradeCost())) && characterCheck((p) -> p.hasRelic(ChemicalX.ID));
     }
 
     @Override

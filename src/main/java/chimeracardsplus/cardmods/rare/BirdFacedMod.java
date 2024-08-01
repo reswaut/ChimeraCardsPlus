@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.BirdFacedUrn;
 
 public class BirdFacedMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(BirdFacedMod.class.getSimpleName());
@@ -18,7 +19,7 @@ public class BirdFacedMod extends AbstractAugment {
     @Override
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> c.cost >= -1 && c.type == AbstractCard.CardType.POWER)
-                && characterCheck((p) -> p.hasRelic("Bird Faced Urn"));
+                && characterCheck((p) -> p.hasRelic(BirdFacedUrn.ID));
     }
 
     @Override

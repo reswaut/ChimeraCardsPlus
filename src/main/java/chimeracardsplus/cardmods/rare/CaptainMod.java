@@ -10,6 +10,9 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import com.megacrit.cardcrawl.relics.Anchor;
+import com.megacrit.cardcrawl.relics.CaptainsWheel;
+import com.megacrit.cardcrawl.relics.HornCleat;
 
 public class CaptainMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(CaptainMod.class.getSimpleName());
@@ -36,7 +39,7 @@ public class CaptainMod extends AbstractAugment {
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> (c.cost >= -1
                 && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)
-                && characterCheck((p) -> p.hasRelic("Anchor") && p.hasRelic("HornCleat") && p.hasRelic("CaptainsWheel")))
+                && characterCheck((p) -> p.hasRelic(Anchor.ID) && p.hasRelic(HornCleat.ID) && p.hasRelic(CaptainsWheel.ID)))
         );
     }
 

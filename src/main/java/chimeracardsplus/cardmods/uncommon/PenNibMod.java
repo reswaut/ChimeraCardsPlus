@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.PenNib;
 
 public class PenNibMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(PenNibMod.class.getSimpleName());
@@ -19,7 +20,7 @@ public class PenNibMod extends AbstractAugment {
     @Override
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> (c.type == AbstractCard.CardType.ATTACK && c.baseDamage >= 1 && c.cost >= -1))
-                && characterCheck((p) -> p.hasRelic("Pen Nib"));
+                && characterCheck((p) -> p.hasRelic(PenNib.ID));
     }
 
     @Override

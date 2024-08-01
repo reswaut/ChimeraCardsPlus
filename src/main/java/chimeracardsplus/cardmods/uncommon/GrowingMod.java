@@ -62,7 +62,7 @@ public class GrowingMod extends AbstractAugment implements TriggerOnObtainMod, T
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> isNormalCard(c) && c.rarity != AbstractCard.CardRarity.BASIC);
+        return cardCheck(card, (c) -> isNormalCard(c) && c.rarity != AbstractCard.CardRarity.BASIC && c.type != AbstractCard.CardType.CURSE);
     }
 
     @Override

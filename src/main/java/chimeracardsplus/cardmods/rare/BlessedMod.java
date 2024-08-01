@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.NeowsLament;
 
 import static basemod.helpers.CardModifierManager.modifiers;
 
@@ -32,7 +33,7 @@ public class BlessedMod extends AbstractAugment {
         return cardCheck(card, (c) -> (c.cost >= -1
                 && isNormalCard(c)))
                 && characterCheck((p) -> {
-                    AbstractRelic relic = p.getRelic("NeowsBlessing");
+            AbstractRelic relic = p.getRelic(NeowsLament.ID);
                     return (relic != null) && relic.counter > 1;
                 });
     }
@@ -40,7 +41,7 @@ public class BlessedMod extends AbstractAugment {
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (!used) {
-            AbstractRelic relic = AbstractDungeon.player.getRelic("NeowsBlessing");
+            AbstractRelic relic = AbstractDungeon.player.getRelic(NeowsLament.ID);
             if (relic != null && relic.counter > 0) {
                 relic.flash();
                 relic.counter += 1;
@@ -77,7 +78,7 @@ public class BlessedMod extends AbstractAugment {
         if (!CardCrawlGame.isInARun() || used) {
             return null;
         }
-        AbstractRelic relic = AbstractDungeon.player.getRelic("NeowsBlessing");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(NeowsLament.ID);
         if (relic == null || relic.counter <= 0) {
             return null;
         }
@@ -107,7 +108,7 @@ public class BlessedMod extends AbstractAugment {
         } else if (!CardCrawlGame.isInARun()) {
             text = CARD_TEXT[0];
         } else {
-            AbstractRelic relic = AbstractDungeon.player.getRelic("NeowsBlessing");
+            AbstractRelic relic = AbstractDungeon.player.getRelic(NeowsLament.ID);
             if (relic == null || relic.counter <= 0) {
                 text = CARD_TEXT[1];
             } else {

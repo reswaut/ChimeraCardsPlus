@@ -30,9 +30,9 @@ public class SulfuricMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, 2), 2));
+        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, 2), 2));
         for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
-            this.addToTop(new ApplyPowerAction(m, m, new StrengthPower(m, 1), 1));
+            this.addToBot(new ApplyPowerAction(m, m, new StrengthPower(m, 1), 1));
         }
     }
 

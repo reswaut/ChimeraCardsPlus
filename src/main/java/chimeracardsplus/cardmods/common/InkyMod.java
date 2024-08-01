@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.InkBottle;
 
 public class InkyMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(InkyMod.class.getSimpleName());
@@ -19,7 +20,7 @@ public class InkyMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic("InkBottle"));
+        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic(InkBottle.ID));
     }
 
     @Override
@@ -44,7 +45,7 @@ public class InkyMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        AbstractRelic relic = AbstractDungeon.player.getRelic("InkBottle");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(InkBottle.ID);
         if (relic != null && relic.counter == 0) {
             this.addToBot(new DrawCardAction(1));
         }
@@ -52,7 +53,7 @@ public class InkyMod extends AbstractAugment {
 
     @Override
     public Color getGlow(AbstractCard card) {
-        AbstractRelic relic = AbstractDungeon.player.getRelic("InkBottle");
+        AbstractRelic relic = AbstractDungeon.player.getRelic(InkBottle.ID);
         if (relic != null && relic.counter == 9) {
             return Color.GOLD;
         }
