@@ -1,6 +1,9 @@
 package chimeracardsplus.actions;
 
 import CardAugments.cardmods.AbstractAugment;
+import chimeracardsplus.interfaces.TriggerOnObtainMod;
+import chimeracardsplus.interfaces.TriggerOnPurgeMod;
+import chimeracardsplus.interfaces.TriggerPreDeathMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
@@ -12,8 +15,8 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import java.util.ArrayList;
 
 import static CardAugments.CardAugmentsMod.getAllValidMods;
-import static CardAugments.CardAugmentsMod.getTrulyRandomValidCardMod;
 import static basemod.helpers.CardModifierManager.addModifier;
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.miscRng;
 
 public class DiscoverModAction extends AbstractGameAction {
     private boolean retrieveCard = false;
@@ -58,39 +61,27 @@ public class DiscoverModAction extends AbstractGameAction {
 
     private ArrayList<AbstractCard> generateCardChoices() {
         ArrayList<AbstractAugment> all = getAllValidMods(baseCard);
+        ArrayList<AbstractAugment> filt = new ArrayList<>();
+        for (AbstractAugment mod : all) {
+            if (!(mod instanceof TriggerOnObtainMod || mod instanceof TriggerOnPurgeMod || mod instanceof TriggerPreDeathMod)) {
+                filt.add(mod);
+            }
+        }
         ArrayList<AbstractCard> ret = new ArrayList<>();
-        if (all.isEmpty()) {
+        if (filt.isEmpty()) {
             ret.add(baseCard);
             return ret;
         }
-        ArrayList<AbstractAugment> derp = new ArrayList<>();
-        if (all.size() <= 3) {
-            derp = all;
-        } else {
-            while (derp.size() != 3) {
-                boolean dupe = false;
-                AbstractAugment tmp = getTrulyRandomValidCardMod(baseCard);
-                AbstractCard card1 = baseCard.makeStatEquivalentCopy();
-                addModifier(card1, tmp);
-
-                for (AbstractAugment c : derp) {
-                    AbstractAugment mod = (AbstractAugment) c.makeCopy();
-                    AbstractCard card2 = baseCard.makeStatEquivalentCopy();
-                    addModifier(card2, mod);
-                    if (tmp.identifier(card1).equals(mod.identifier(card2))) {
-                        dupe = true;
-                        break;
-                    }
-                }
-
-                if (!dupe) {
-                    derp.add((AbstractAugment) tmp.makeCopy());
-                }
+        ArrayList<Integer> derp = new ArrayList<>();
+        while (derp.size() < Math.min(3, filt.size())) {
+            int tmp = miscRng.random(0, filt.size() - 1);
+            if (!derp.contains(tmp)) {
+                derp.add(tmp);
             }
         }
-        for (AbstractAugment augment : derp) {
+        for (int id : derp) {
             AbstractCard card = baseCard.makeStatEquivalentCopy();
-            addModifier(card, augment);
+            addModifier(card, filt.get(id).makeCopy());
             ret.add(card);
         }
         return ret;

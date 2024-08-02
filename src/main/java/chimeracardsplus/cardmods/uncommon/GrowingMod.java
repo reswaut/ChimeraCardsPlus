@@ -33,6 +33,7 @@ public class GrowingMod extends AbstractAugment implements TriggerOnObtainMod, T
             AbstractDungeon.CurrentScreen.SHOP,
             AbstractDungeon.CurrentScreen.VICTORY
     ));
+    private AbstractDungeon.CurrentScreen prevScreen;
     private boolean pickup, cardsSelected;
 
     public GrowingMod() {
@@ -74,6 +75,7 @@ public class GrowingMod extends AbstractAugment implements TriggerOnObtainMod, T
     public boolean onUpdateObjects(AbstractCard card) {
         AbstractRoom.RoomPhase phase = AbstractDungeon.getCurrRoom().phase;
         if (cardsSelected && pickup && phase != AbstractRoom.RoomPhase.INCOMPLETE && phase != AbstractRoom.RoomPhase.COMBAT && VALID_SCREENS.contains(AbstractDungeon.screen)) {
+            prevScreen = AbstractDungeon.screen;
             pickup = false;
             CardGroup group = AbstractDungeon.player.masterDeck.getUpgradableCards();
             group.removeCard(card);
@@ -96,7 +98,7 @@ public class GrowingMod extends AbstractAugment implements TriggerOnObtainMod, T
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
             return true;
         }
-        if (!cardsSelected && AbstractDungeon.screen == AbstractDungeon.CurrentScreen.COMBAT_REWARD) {
+        if (!cardsSelected && AbstractDungeon.screen == prevScreen) {
             cardsSelected = true;
             AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
             AbstractDungeon.gridSelectScreen.selectedCards.clear();

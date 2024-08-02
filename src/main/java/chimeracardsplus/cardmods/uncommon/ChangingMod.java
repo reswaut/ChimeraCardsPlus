@@ -32,6 +32,7 @@ public class ChangingMod extends AbstractAugment implements TriggerOnObtainMod, 
             AbstractDungeon.CurrentScreen.SHOP,
             AbstractDungeon.CurrentScreen.VICTORY
     ));
+    private AbstractDungeon.CurrentScreen prevScreen;
     private boolean pickup, cardsSelected;
 
     public ChangingMod() {
@@ -73,6 +74,7 @@ public class ChangingMod extends AbstractAugment implements TriggerOnObtainMod, 
     public boolean onUpdateObjects(AbstractCard card) {
         AbstractRoom.RoomPhase phase = AbstractDungeon.getCurrRoom().phase;
         if (cardsSelected && pickup && phase != AbstractRoom.RoomPhase.INCOMPLETE && phase != AbstractRoom.RoomPhase.COMBAT && VALID_SCREENS.contains(AbstractDungeon.screen)) {
+            prevScreen = AbstractDungeon.screen;
             pickup = false;
             CardGroup group = CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards());
             group.removeCard(card);
@@ -96,7 +98,7 @@ public class ChangingMod extends AbstractAugment implements TriggerOnObtainMod, 
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
             return true;
         }
-        if (!cardsSelected && AbstractDungeon.screen == AbstractDungeon.CurrentScreen.COMBAT_REWARD) {
+        if (!cardsSelected && AbstractDungeon.screen == prevScreen) {
             cardsSelected = true;
             AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
