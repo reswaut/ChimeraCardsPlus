@@ -24,7 +24,7 @@
 
     <!-- This information will be displayed in ModTheSpire, the modded launcher. -->
     <name>Chimera Cards+</name>
-    <version>0.4.4</version>
+    <version>0.4.5</version>
     <!-- Avoid using \ in this description, as they can cause the description to fail to load. -->
     <!-- If you really want to use them, you'll need to "escape" them by putting another one in front, like \\ -->
     <description>Adds chimera card modifiers based on stuff in vanilla game.</description>

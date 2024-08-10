@@ -23,7 +23,7 @@ public class LoopyMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (AbstractDungeon.player.orbs.get(0) instanceof EmptyOrbSlot) {
+        if (AbstractDungeon.player.orbs.isEmpty() || AbstractDungeon.player.orbs.get(0) instanceof EmptyOrbSlot) {
             return;
         }
         AbstractDungeon.player.orbs.get(0).onStartOfTurn();

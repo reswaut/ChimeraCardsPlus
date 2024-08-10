@@ -26,7 +26,9 @@ public class ExertedMod extends AbstractAugment {
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         this.addToBot(new DrawCardAction(1));
-        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DrawReductionPower(AbstractDungeon.player, 1)));
+        DrawReductionPower power = new DrawReductionPower(AbstractDungeon.player, 1);
+        power.atEndOfRound();
+        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, power));
     }
 
     @Override
