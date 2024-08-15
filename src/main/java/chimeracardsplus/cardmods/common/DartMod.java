@@ -30,7 +30,7 @@ public class DartMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return allowOrbMods() && cardCheck(card, (c) -> (c.baseDamage > 1
+        return cardCheck(card, (c) -> (c.baseDamage > 1
                 && noShenanigans(c)
                 && usesEnemyTargeting()
                 && c.type == CardType.ATTACK
