@@ -1,6 +1,7 @@
 package chimeracardsplus.cardmods.common;
 
 import CardAugments.cardmods.AbstractAugment;
+import CardAugments.patches.InterruptUseCardFieldPatches;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
@@ -21,20 +22,26 @@ public class HeatingMod extends AbstractAugment {
     public boolean upgraded;
 
     @Override
+    public void onInitialApplication(AbstractCard card) {
+        InterruptUseCardFieldPatches.InterceptUseField.interceptUse.set(card, true);
+    }
+
+    @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage >= 1.0F ? Math.max(damage - 2.0F, 1.0F) : damage;
+        return damage * 0.8F;
     }
 
     @Override
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> (c.cost != -2 && !(c instanceof Melter)
                 && c.type == AbstractCard.CardType.ATTACK
-                && c.baseDamage >= 3 && usesEnemyTargeting()));
+                && c.baseDamage >= 2 && usesEnemyTargeting()));
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         this.addToBot(new RemoveAllBlockAction(target, AbstractDungeon.player));
+        card.use(AbstractDungeon.player, target instanceof AbstractMonster ? (AbstractMonster) target : null);
     }
 
     @Override
@@ -54,7 +61,7 @@ public class HeatingMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, CARD_TEXT[0]);
+        return insertBeforeText(rawDescription, CARD_TEXT[0]);
     }
 
     @Override

@@ -18,17 +18,17 @@ public class CallingMod extends AbstractAugment implements TriggerOnPurgeMod {
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 1) ? (damage * 5.0F / 3.0F) : damage;
+        return (damage > 1) ? (damage * 7.0F / 5.0F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 1) ? (block * 5.0F / 3.0F) : block;
+        return (block > 1) ? (block * 7.0F / 5.0F) : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 5.0F / 3.0F) : magic;
+        return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 7.0F / 5.0F) : magic;
     }
 
     @Override

@@ -19,17 +19,17 @@ public class ParasiticMod extends AbstractAugment implements TriggerOnPurgeMod {
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 1) ? (damage * 4.0F / 3.0F) : damage;
+        return (damage > 1) ? (damage * 6.0F / 5.0F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 1) ? (block * 4.0F / 3.0F) : block;
+        return (block > 1) ? (block * 6.0F / 5.0F) : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 4.0F / 3.0F) : magic;
+        return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 6.0F / 5.0F) : magic;
     }
 
     @Override

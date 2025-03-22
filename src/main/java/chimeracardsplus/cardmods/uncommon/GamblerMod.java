@@ -14,22 +14,22 @@ public class GamblerMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(GamblerMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
-    private boolean addedExhaust;
+    private boolean addedExhaust = false;
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (getEffectiveUpgrades(card) == 0) {
-            addedExhaust = !card.exhaust;
+        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
+            addedExhaust = true;
             card.exhaust = true;
         }
     }
 
     @Override
     public void onUpgradeCheck(AbstractCard card) {
-        if (card.exhaust && addedExhaust) {
-            card.exhaust = false;
+        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
+            addedExhaust = true;
+            card.exhaust = true;
         }
-        addedExhaust = false;
         card.initializeDescription();
     }
 

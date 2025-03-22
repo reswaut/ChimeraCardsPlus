@@ -341,7 +341,7 @@
     "TEXT": [
       "Gambler's ",
       "",
-      "Discards your hand, then draws that many cards. NL Adds #yExhaust if not #yUpgraded."
+      "Discards your hand, then draws that many cards. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
       " NL Discard your hand, then draw that many cards. NL Exhaust.",
@@ -712,16 +712,6 @@
       "Costs 2 less [B] for each Power card played this combat."
     ]
   },
-  "chimeracardsplus:AggregateMod": {
-    "TEXT": [
-      "Aggregate ",
-      "",
-      "Costs [E] more. NL Costs [E] less for every #b4 cards in your draw pile."
-    ],
-    "EXTRA_TEXT": [
-      " NL Costs 1 less [E] for every 4 cards in your draw pile."
-    ]
-  },
   "chimeracardsplus:GeneticMod": {
     "TEXT": [
       "Genetic ",
@@ -758,10 +748,10 @@
     "TEXT": [
       "Heating ",
       "",
-      "Reduces damage by #b2. NL Removes #yBlock from the enemy."
+      "Reduces damage by #b20%. NL Removes #yBlock from the enemy."
     ],
     "EXTRA_TEXT": [
-      " NL Remove all Block from the enemy."
+      "Remove all Block from the enemy. NL "
     ]
   },
   "chimeracardsplus:OverclockedMod": {
@@ -1836,7 +1826,7 @@
     "TEXT": [
       "Parasitic ",
       "",
-      "Increases card values by #b33%. NL Loses #b3 Max HP when transformed or removed from your deck."
+      "Increases card values by #b20%. NL Loses #b3 Max HP when transformed or removed from your deck."
     ],
     "EXTRA_TEXT": [
       " NL If transformed or removed from your deck, lose 3 Max HP."
@@ -1846,7 +1836,7 @@
     "TEXT": [
       "Calling ",
       "",
-      "Increases card values by #b67%. NL Cannot be removed from your deck."
+      "Increases card values by #b40%. NL Cannot be removed from your deck."
     ],
     "EXTRA_TEXT": [
       " NL Cannot be removed from your deck."
@@ -1859,7 +1849,7 @@
       "Adds #b2 additional copies into your deck upon pickup."
     ],
     "EXTRA_TEXT": [
-      " NL Upon pickup, add 2 copies into your deck."
+      " NL Upon pickup, add 2 additional copies into your deck."
     ]
   },
   "chimeracardsplus:CeramicMod": {
@@ -1992,7 +1982,7 @@
     "TEXT": [
       "Conserved ",
       "",
-      "Reduces damage and #yBlock by #b20%. NL Conserves Energy for next turn. NL NL This #yModifier is inspired by the deprecated card #yConserve #Battery."
+      "Reduces damage and #yBlock by #b20%. NL Conserves Energy for next turn."
     ],
     "EXTRA_TEXT": [
       " NL Energy is conserved for next turn."
@@ -2002,7 +1992,7 @@
     "TEXT": [
       "Temperamental ",
       "",
-      "Increases damage and #yBlock by #b33%. NL Prevents you from changing #yStances this turn. NL NL This #yModifier is inspired by a deprecated version of #yTantrum."
+      "Increases damage and #yBlock by #b33%. NL Prevents you from changing #yStances this turn."
     ],
     "EXTRA_TEXT": [
       " NL You cannot change Stances until next turn."
@@ -2012,28 +2002,18 @@
     "TEXT": [
       "",
       " for Immortality",
-      "Makes your wildest dreams come true. NL NL This #yModifier is inspired by a deprecated version of #yWish."
+      "Makes your wildest dreams come true."
     ],
     "EXTRA_TEXT": [
       "Choose one: NL Gain !B! Plated Armor, !D! Strength, or !M! Gold. NL Exhaust.",
       "At the end of your turn, gain %s *Plated *Armor."
     ]
   },
-  "chimeracardsplus:GildedMod": {
-    "TEXT": [
-      "Gilded ",
-      "",
-      "Increases #yBlock by #b2 for every #b100 #yGold you have. NL NL This #yModifier is inspired by an unnamed deprecated Relic."
-    ],
-    "EXTRA_TEXT": [
-      " NL Gains 2 additional Block for every 100 Gold you have."
-    ]
-  },
   "chimeracardsplus:ChallengingMod": {
     "TEXT": [
       "Challenging ",
       "",
-      "Reduces damage and #yBlock by #b25%. NL Gains #b2 #yVulnerable. NL Applies #b2 #yVulnerable to ALL enemies. NL NL This #yModifier is inspired by the deprecated card #yChallenge #yAccepted."
+      "Reduces damage and #yBlock by #b25%. NL Gains #b2 #yVulnerable. NL Applies #b2 #yVulnerable to ALL enemies."
     ],
     "EXTRA_TEXT": [
       " NL Gain 2 Vulnerable. Apply 2 Vulnerable to ALL enemies."
@@ -2043,7 +2023,7 @@
     "TEXT": [
       "Clear ",
       "",
-      "Reduces damage and #yBlock by #b20%. NL Chooses #b1 of the top #b2 cards to put into your hand. #yExhausts the other. NL NL This #yModifier is inspired by the deprecated card #yClarity."
+      "Reduces damage and #yBlock by #b20%. NL Chooses #b1 of the top #b2 cards to put into your hand. #yExhausts the other."
     ],
     "EXTRA_TEXT": [
       " NL Look at the top 2 cards of your draw pile. Add 1 to your hand and Exhaust the other."
@@ -2053,7 +2033,7 @@
     "TEXT": [
       "Flickering ",
       "",
-      "Returns to your hand when killing an enemy. NL NL This #yModifier is inspired by the deprecated card #yFlicker."
+      "Returns to your hand when killing an enemy."
     ],
     "EXTRA_TEXT": [
       " NL If this kills an enemy, return it to your hand."
@@ -2063,7 +2043,7 @@
     "TEXT": [
       "Introspective ",
       "",
-      "Removes all of your #yFrail and #yVulnerable. NL Adds #yExhaust. NL NL This #yModifier is inspired by the deprecated card #yIntrospection."
+      "Removes all of your #yFrail and #yVulnerable. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
       " NL Remove all of your Frail and Vulnerable. NL Exhaust.",
@@ -2074,7 +2054,7 @@
     "TEXT": [
       "Predictive ",
       "",
-      "Adds the card with #yPredicted #yModifier into your hand next turn. NL NL This #yModifier is inspired by the deprecated card #yPrediction."
+      "Adds the card with #yPredicted #yModifier into your hand next turn."
     ],
     "EXTRA_TEXT": [
       "Next turn, add *Predicted %s into your hand.",
@@ -2103,7 +2083,7 @@
     "TEXT": [
       "Swipe ",
       "",
-      "Reduces damage by #b20%. NL Deals #b40% damage to ALL other enemies. NL NL This #yModifier is inspired by the deprecated card #ySwipe."
+      "Reduces damage by #b20%. NL Deals #b40% damage to ALL other enemies."
     ],
     "EXTRA_TEXT": [
       " NL Deal %s damage to ALL other enemies."
@@ -2113,7 +2093,7 @@
     "TEXT": [
       "Experienced ",
       "",
-      "Increases #yBlock by #b1 for every #yUpgraded card in your hand. NL NL This #yModifier is inspired by the deprecated card #yExperienced."
+      "Increases #yBlock by #b1 for every #yUpgraded card in your hand."
     ],
     "EXTRA_TEXT": [
       " NL Gains 1 additional Block for each Upgraded card in your hand."
@@ -2123,7 +2103,7 @@
     "TEXT": [
       "",
       " Aura",
-      "Adds #yRetain. NL Reduces card values by #b50%. NL Triggers card effect with #b25% card values when #yRetained. NL NL This #yModifier is inspired by the deprecated Aura cards."
+      "Adds #yRetain. NL Reduces card values by #b50%. NL Triggers card effect with #b25% card values when #yRetained."
     ],
     "EXTRA_TEXT": [
       "Retain. NL ",

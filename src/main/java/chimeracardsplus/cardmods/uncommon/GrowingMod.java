@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 
 import java.util.Arrays;
@@ -63,7 +64,8 @@ public class GrowingMod extends AbstractAugment implements TriggerOnObtainMod, T
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> isNormalCard(c) && c.rarity != AbstractCard.CardRarity.BASIC && c.type != AbstractCard.CardType.CURSE);
+        return cardCheck(card, (c) -> isNormalCard(c) && c.rarity != AbstractCard.CardRarity.BASIC)
+                && !(CardCrawlGame.isInARun() && AbstractDungeon.getCurrRoom() instanceof ShopRoom);
     }
 
     @Override
