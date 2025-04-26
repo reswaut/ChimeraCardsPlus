@@ -33,17 +33,17 @@ public class FocusedMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return allowOrbMods() && cardCheck(card, (c) -> (c.cost >= -1 && (c.baseDamage >= 10 || c.baseBlock >= 10)));
+        return allowOrbMods() && cardCheck(card, (c) -> (c.cost >= -1 && (c.baseDamage >= 8 || c.baseBlock >= 8)));
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage >= 1.0F ? Math.max(1.0F, damage - getBaseVal(card) * 7.0F) : damage;
+        return damage >= 1.0F ? Math.max(1.0F, damage - getBaseValDamage(card) * 7.0F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return block >= 1.0F ? Math.max(1.0F, block - getBaseVal(card) * 7.0F) : block;
+        return block >= 1.0F ? Math.max(1.0F, block - getBaseValBlock(card) * 7.0F) : block;
     }
 
     @Override
@@ -51,8 +51,16 @@ public class FocusedMod extends AbstractAugment implements DynvarCarrier {
         this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FocusPower(AbstractDungeon.player, getBaseVal(card)), getBaseVal(card)));
     }
 
+    private int getBaseValDamage(AbstractCard card) {
+        return Math.max(card.baseDamage, 0) / 7;
+    }
+
+    private int getBaseValBlock(AbstractCard card) {
+        return Math.max(card.baseBlock, 0) / 7;
+    }
+
     public int getBaseVal(AbstractCard card) {
-        return Math.min((Math.max(card.baseDamage, 0) + Math.max(card.baseBlock, 0)) / 10, 10);
+        return getBaseValDamage(card) + getBaseValBlock(card);
     }
 
     public String key() {

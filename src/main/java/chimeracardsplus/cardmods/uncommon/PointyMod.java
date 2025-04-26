@@ -12,8 +12,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.PenNib;
 
-public class PenNibMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(PenNibMod.class.getSimpleName());
+public class PointyMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(PointyMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
@@ -70,7 +70,7 @@ public class PenNibMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new PenNibMod();
+        return new PointyMod();
     }
 
     @Override

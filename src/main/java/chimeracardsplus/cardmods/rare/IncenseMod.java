@@ -15,8 +15,8 @@ import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.IncenseBurner;
 
-public class IncenseBurnerMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(IncenseBurnerMod.class.getSimpleName());
+public class IncenseMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(IncenseMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     private boolean used = false;
@@ -96,7 +96,7 @@ public class IncenseBurnerMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new IncenseBurnerMod();
+        return new IncenseMod();
     }
 
     @Override

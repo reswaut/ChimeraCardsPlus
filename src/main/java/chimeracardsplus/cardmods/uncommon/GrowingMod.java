@@ -65,7 +65,7 @@ public class GrowingMod extends AbstractAugment implements TriggerOnObtainMod, T
     @Override
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> isNormalCard(c) && c.rarity != AbstractCard.CardRarity.BASIC)
-                && !(CardCrawlGame.isInARun() && AbstractDungeon.getCurrRoom() instanceof ShopRoom);
+                && !(AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() instanceof ShopRoom);
     }
 
     @Override
@@ -75,6 +75,9 @@ public class GrowingMod extends AbstractAugment implements TriggerOnObtainMod, T
 
     @Override
     public boolean onUpdateObjects(AbstractCard card) {
+        if (AbstractDungeon.getCurrMapNode() == null) {
+            return false;
+        }
         AbstractRoom.RoomPhase phase = AbstractDungeon.getCurrRoom().phase;
         if (cardsSelected && pickup && phase != AbstractRoom.RoomPhase.INCOMPLETE && phase != AbstractRoom.RoomPhase.COMBAT && VALID_SCREENS.contains(AbstractDungeon.screen)) {
             prevScreen = AbstractDungeon.screen;

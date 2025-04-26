@@ -278,11 +278,11 @@
       " NL 失去 1 点生命。抽 1 张牌。"
     ]
   },
-  "chimeracardsplus:CorruptedMod": {
+  "chimeracardsplus:SlimyMod": {
     "TEXT": [
-      "腐化",
+      "黏着",
       "",
-      "耗能为 #b0 。 NL #y消耗 。"
+      "耗能减少 #b1 。 NL #y消耗 。"
     ],
     "EXTRA_TEXT": [
       " NL 消耗 。"
@@ -634,7 +634,7 @@
     "TEXT": [
       "大容量",
       "",
-      "大幅减少造成的伤害和获得的 #y格挡 。 NL 获得一定量的充能球栏位。 NL #y消耗 。"
+      "减少造成的伤害和获得的 #y格挡 。 NL 每减少 #b5 点，获得 #b1 个充能球栏位。 NL #y消耗 。"
     ],
     "EXTRA_TEXT": [
       " NL 获得 %s 个充能球栏位。 NL 消耗 。",
@@ -659,7 +659,7 @@
     "TEXT": [
       "集中",
       "",
-      "大幅减少造成的伤害和获得的 #y格挡 。 NL 获得一定量的 #y集中 。 NL #y消耗 。"
+      "减少造成的伤害和获得的 #y格挡 。 NL 每减少 #b7 点，获得 #b1 点 #y集中 。 NL #y消耗 。"
     ],
     "EXTRA_TEXT": [
       " NL 获得 %s 集中 。 NL 消耗 。",
@@ -1321,9 +1321,9 @@
     "EXTRA_TEXT": [
     ]
   },
-  "chimeracardsplus:PenNibMod": {
+  "chimeracardsplus:PointyMod": {
     "TEXT": [
-      "钢笔尖",
+      "尖尖",
       "",
       "如果这张牌触发了 #y钢笔尖 ，则造成的伤害增加 #b100% 。 NL 只会在你拥有 #y钢笔尖 时出现。"
     ],
@@ -1400,9 +1400,9 @@
       " NL 如果这张牌触发了 *手里剑 ，则额外获得1点 力量 。"
     ]
   },
-  "chimeracardsplus:LetterOpenerMod": {
+  "chimeracardsplus:EnvelopeMod": {
     "TEXT": [
-      "开信刀",
+      "信件",
       "",
       "如果这张牌触发了 #y开信刀 ，则对所有敌人造成 #b5 点伤害。 NL 只会在你拥有 #y开信刀 时出现。"
     ],
@@ -1530,9 +1530,9 @@
       " NL 你每在休息处获得一次 力量 ，造成的伤害就增加3。"
     ]
   },
-  "chimeracardsplus:IncenseBurnerMod": {
+  "chimeracardsplus:IncenseMod": {
     "TEXT": [
-      "香炉",
+      "熏香",
       "",
       "在 #y香炉 触发的每个回合中第一次打出时，获得1层 #y无实体 。 NL 只会在你拥有 #y香炉 时出现。"
     ],
@@ -1941,10 +1941,10 @@
     "TEXT": [
       "疼痛",
       "",
-      "卡牌数值增加 #b25% 。 NL 当在手牌中时，每打出一张其他牌，失去 #b1 生命。"
+      "卡牌数值增加 #b25% 。 NL 当在手牌中时，每打出一张其他牌，失去 #b1 点生命。"
     ],
     "EXTRA_TEXT": [
-      " NL 当在手牌中时，每打出一张其他牌，失去1生命。"
+      " NL 当在手牌中时，每打出一张其他牌，失去1点生命。"
     ]
   },
   "chimeracardsplus:SecretMod": {
@@ -2157,7 +2157,7 @@
       "%s诅咒",
       "",
       "卡牌数值增加 #b100% 。 NL 拾起时获得一张 #r诅咒 。",
-      "卡牌数值增加 #b100%% 。 NL 拾起时将一张 %s 加入你的牌组。"
+      "卡牌数值增加 #b100% 。 NL 拾起时将一张 %s 加入你的牌组。"
     ],
     "EXTRA_TEXT": [
       " NL 拾起时获得一张 *诅咒 。",
@@ -2203,6 +2203,77 @@
     "EXTRA_TEXT": [
       " NL 如果这张牌从你的手牌中被丢弃，增加一张它的复制到你的手牌。",
       "丢弃"
+    ]
+  },
+  "chimeracardsplus:HastyMod": {
+    "TEXT": [
+      "迅捷",
+      "",
+      "耗能减少 #b1 。 NL 失去 [E] 。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 失去 [E] 。"
+    ]
+  },
+  "chimeracardsplus:CorruptedMod": {
+    "TEXT": [
+      "腐蚀",
+      "",
+      "造成的伤害增加 #b50% 。 NL 失去 #b3 点生命。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 失去3点生命。"
+    ]
+  },
+  "chimeracardsplus:StrainedMod": {
+    "TEXT": [
+      "牵强",
+      "",
+      "造成的伤害增加 #b50% 。 NL 失去 #b1 点 #y力量 。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 失去 1 点 力量 。"
+    ]
+  },
+  "chimeracardsplus:DrainedMod": {
+    "TEXT": [
+      "竭力",
+      "",
+      "获得的 #y格挡 增加 #b50% 。 NL 失去 #b1 点 #y敏捷 。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 失去 1 点 敏捷 。"
+    ]
+  },
+  "chimeracardsplus:UnfocusedMod": {
+    "TEXT": [
+      "失焦",
+      "",
+      "卡牌数值增加 #b25% 。 NL 失去 #b1 点 #y集中 。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 失去 1 点 集中 。"
+    ]
+  },
+  "chimeracardsplus:OpportunisticMod": {
+    "TEXT": [
+      "投机",
+      "",
+      "卡牌数值减少 #b33% 。 NL 如果你的手牌中没有技能牌，抽 #b2 张牌。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 如果你的手牌中没有技能牌，抽 2 张牌。"
+    ]
+  },
+  "chimeracardsplus:WaryMod": {
+    "TEXT": [
+      "谨慎",
+      "",
+      "随机将你抽牌堆中 #b2 张技能牌加入你的手牌。 NL #y消耗 。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 随机将你抽牌堆中 2 张技能牌加入你的手牌。 NL 消耗 。",
+      " NL 随机将你抽牌堆中 2 张技能牌加入你的手牌。"
     ]
   }
 }

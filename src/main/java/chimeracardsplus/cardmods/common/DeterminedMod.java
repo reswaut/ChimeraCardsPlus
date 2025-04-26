@@ -30,7 +30,7 @@ public class DeterminedMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && (card.baseDamage > 1 || card.baseBlock > 1 || (card.magicNumber > 1 && doesntDowngradeMagicNoUseChecks(card)));
+        return card.cost >= -1 && (card.baseDamage > 1 || card.baseBlock > 1 || (card.baseMagicNumber > 1 && doesntDowngradeMagicNoUseChecks(card)));
     }
 
     @Override

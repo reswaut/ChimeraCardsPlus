@@ -21,7 +21,7 @@ public class SeparateMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return (card.baseDamage >= 3 || card.baseBlock >= 3 || (card.magicNumber >= 3 && doesntDowngradeMagicNoUseChecks(card)))
+        return (card.baseDamage >= 3 || card.baseBlock >= 3 || (card.baseMagicNumber >= 3 && doesntDowngradeMagicNoUseChecks(card)))
                 && cardCheck(card, (c) -> (c.cost >= -1 && !(c instanceof SeverSoul)
                 && (c.type == AbstractCard.CardType.ATTACK ||
                 c.type == AbstractCard.CardType.SKILL ||

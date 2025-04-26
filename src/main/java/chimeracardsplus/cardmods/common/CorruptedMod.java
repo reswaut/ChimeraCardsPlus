@@ -3,45 +3,28 @@ package chimeracardsplus.cardmods.common;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.actions.UnloadCardAction;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.green.Unload;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
-
-public class UnstableMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(UnstableMod.class.getSimpleName());
+public class CorruptedMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(CorruptedMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return (card.baseDamage >= 4 || card.baseBlock >= 4 || (card.baseMagicNumber >= 4 && doesntDowngradeMagicNoUseChecks(card)))
-                && cardCheck(card, (c) -> (c.cost >= -1 && !(c instanceof Unload)
-                && (c.type == AbstractCard.CardType.ATTACK ||
-                c.type == AbstractCard.CardType.SKILL ||
-                c.type == AbstractCard.CardType.POWER)));
+        return cardCheck(card, (c) -> (c.baseDamage >= 2 && c.type == AbstractCard.CardType.ATTACK));
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage >= 4.0F) ? (damage * 1.25F) : damage;
-    }
-
-    @Override
-    public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block >= 4.0F) ? (block * 1.25F) : block;
-    }
-
-    @Override
-    public float modifyBaseMagic(float magic, AbstractCard card) {
-        return (magic >= 4.0F && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 1.25F) : magic;
+        return damage * 1.5F;
     }
 
     @Override
@@ -61,20 +44,12 @@ public class UnstableMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        String text = "";
-        if (card.type == AbstractCard.CardType.ATTACK) {
-            text = CARD_TEXT[0];
-        } else if (card.type == AbstractCard.CardType.SKILL) {
-            text = CARD_TEXT[1];
-        } else if (card.type == AbstractCard.CardType.POWER) {
-            text = CARD_TEXT[2];
-        }
-        return insertAfterText(rawDescription, text);
+        return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new UnloadCardAction(card.type, AbstractDungeon.player));
+        this.addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, 3));
     }
 
     @Override
@@ -84,7 +59,7 @@ public class UnstableMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new UnstableMod();
+        return new CorruptedMod();
     }
 
     @Override

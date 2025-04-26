@@ -35,9 +35,8 @@ public class ShockingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= 0
-                && (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL)
-                && cardCheck(card, (c) -> doesntUpgradeCost());
+        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost()
+                && (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL)));
     }
 
     @Override

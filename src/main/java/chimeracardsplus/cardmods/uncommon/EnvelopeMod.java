@@ -15,8 +15,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.LetterOpener;
 
-public class LetterOpenerMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(LetterOpenerMod.class.getSimpleName());
+public class EnvelopeMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(EnvelopeMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
@@ -70,7 +70,7 @@ public class LetterOpenerMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new LetterOpenerMod();
+        return new EnvelopeMod();
     }
 
     @Override

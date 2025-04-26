@@ -278,11 +278,11 @@
       " NL Lose 1 HP. Draw 1 card."
     ]
   },
-  "chimeracardsplus:CorruptedMod": {
+  "chimeracardsplus:SlimyMod": {
     "TEXT": [
-      "Corrupted ",
+      "Slimy ",
       "",
-      "Costs #b0. NL Adds #yExhaust."
+      "Costs [E] less. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
       " NL Exhaust."
@@ -634,7 +634,7 @@
     "TEXT": [
       "Capacious ",
       "",
-      "Reduces damage and #yBlock by a large amount. NL Gains a number of Orb slots. NL Adds #yExhaust."
+      "Reduces damage and #yBlock. NL Gains #b1 Orb slot for every #b5 damage and #yBlock lost. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
       " NL Gain %s Orb slot. NL Exhaust.",
@@ -659,7 +659,7 @@
     "TEXT": [
       "Focused ",
       "",
-      "Reduces damage and #yBlock by a large amount. NL Gains an amount of #yFocus. NL Adds #yExhaust."
+      "Reduces damage and #yBlock. NL Gains #b1 #yFocus for every #b7 damage and #yBlock lost. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
       " NL Gain %s Focus. NL Exhaust.",
@@ -1321,9 +1321,9 @@
     "EXTRA_TEXT": [
     ]
   },
-  "chimeracardsplus:PenNibMod": {
+  "chimeracardsplus:PointyMod": {
     "TEXT": [
-      "Pen Nib ",
+      "Pointy ",
       "",
       "Increases damage by #b100% if the card triggers #yPen #yNib. NL Only appears if you have #yPen #yNib."
     ],
@@ -1400,9 +1400,9 @@
       " NL If this triggers *Shuriken, gain 1 additional Strength."
     ]
   },
-  "chimeracardsplus:LetterOpenerMod": {
+  "chimeracardsplus:EnvelopeMod": {
     "TEXT": [
-      "Letter Opener ",
+      "Envelope ",
       "",
       "Deals #b5 damage to ALL enemies if the card triggers #yLetter #yOpener. NL Only appears if you have #yLetter #yOpener."
     ],
@@ -1530,9 +1530,9 @@
       " NL Deals 3 more damage for each time you gained Strength at Rest Sites."
     ]
   },
-  "chimeracardsplus:IncenseBurnerMod": {
+  "chimeracardsplus:IncenseMod": {
     "TEXT": [
-      "Incense Burner ",
+      "Incense ",
       "",
       "Gains #b1 #yIntangible on the first use on each of the turns #yIncense #yBurner trigger. NL Only appears if you have #yIncense #yBurner."
     ],
@@ -2203,6 +2203,77 @@
     "EXTRA_TEXT": [
       " NL If this card is discarded from your hand, put a copy of this card into your hand.",
       "discard"
+    ]
+  },
+  "chimeracardsplus:HastyMod": {
+    "TEXT": [
+      "Hasty ",
+      "",
+      "Costs [E] less. NL Loses [E] ."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose [E]."
+    ]
+  },
+  "chimeracardsplus:CorruptedMod": {
+    "TEXT": [
+      "Corrupted ",
+      "",
+      "Increases damage by #b50%. NL Loses #b3 HP."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose 3 HP."
+    ]
+  },
+  "chimeracardsplus:StrainedMod": {
+    "TEXT": [
+      "Strained ",
+      "",
+      "Increases damage by #b50%. NL Loses #b1 #yStrength."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose 1 Strength."
+    ]
+  },
+  "chimeracardsplus:DrainedMod": {
+    "TEXT": [
+      "Drained ",
+      "",
+      "Increases #yBlock by #b50%. NL Loses #b1 #yDexterity."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose 1 Dexterity."
+    ]
+  },
+  "chimeracardsplus:UnfocusedMod": {
+    "TEXT": [
+      "Unfocused ",
+      "",
+      "Increases card values by #b25%. NL Loses #b1 #yFocus."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose 1 Focus."
+    ]
+  },
+  "chimeracardsplus:OpportunisticMod": {
+    "TEXT": [
+      "Opportunistic ",
+      "",
+      "Reduces card values by #b33%. NL Draws #b2 cards if you have no Skills in hand."
+    ],
+    "EXTRA_TEXT": [
+      " NL If you have no Skills in your hand, draw 2 cards."
+    ]
+  },
+  "chimeracardsplus:WaryMod": {
+    "TEXT": [
+      "Wary ",
+      "",
+      "Puts #b2 random Skills from your draw pile into your hand. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Put 2 random Skills from your draw pile into your hand. NL Exhaust.",
+      " NL Put 2 random Skills from your draw pile into your hand."
     ]
   }
 }

@@ -24,7 +24,7 @@ public class GrandMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return (card.baseDamage >= 1 || card.baseBlock >= 1 || (card.magicNumber >= 1 && doesntDowngradeMagicNoUseChecks(card)))
+        return (card.baseDamage >= 1 || card.baseBlock >= 1 || (card.baseMagicNumber >= 1 && doesntDowngradeMagicNoUseChecks(card)))
                 && cardCheck(card, (c) -> (c.cost >= -1) && !(c instanceof GrandFinale));
     }
 

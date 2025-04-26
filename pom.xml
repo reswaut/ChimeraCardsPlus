@@ -14,7 +14,7 @@
 
         <!-- These don't have to be up-to-date, it's just nice if they are. -->
         <SlayTheSpire.version>12-18-2022</SlayTheSpire.version>
-        <ModTheSpire.version>3.30.0</ModTheSpire.version>
+        <ModTheSpire.version>3.30.3</ModTheSpire.version>
 
         <!-- These two 1.8s are referring to the Java version; don't change them. -->
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -24,7 +24,7 @@
 
     <!-- This information will be displayed in ModTheSpire, the modded launcher. -->
     <name>Chimera Cards+</name>
-    <version>0.4.9</version>
+    <version>0.5.0</version>
     <!-- Avoid using \ in this description, as they can cause the description to fail to load. -->
     <!-- If you really want to use them, you'll need to "escape" them by putting another one in front, like \\ -->
     <description>Adds 200+ chimera card modifiers.</description>
@@ -56,21 +56,21 @@
             <artifactId>basemod</artifactId>
             <!--Don't worry about these version numbers, they're only used for display
                 in the left sidebar under External Libraries and don't need to be accurate.-->
-            <version>5.44.0</version>
+            <version>5.55.3</version>
             <scope>system</scope>
             <systemPath>${steam.path}/workshop/content/646570/1605833019/BaseMod.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.evacipated.cardcrawl.mod</groupId>
             <artifactId>StSLib</artifactId>
-            <version>2.4.0</version>
+            <version>2.11.0</version>
             <scope>system</scope>
             <systemPath>${steam.path}/workshop/content/646570/1609158507/StSLib.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>CardAugments</groupId>
             <artifactId>CardAugments</artifactId>
-            <version>1.0.4</version>
+            <version>1.0.5</version>
             <scope>system</scope>
             <systemPath>${steam.path}/workshop/content/646570/2970981743/CardAugments.jar</systemPath>
         </dependency>

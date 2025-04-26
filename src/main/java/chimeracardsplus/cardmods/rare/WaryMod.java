@@ -3,55 +3,42 @@ package chimeracardsplus.cardmods.rare;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.utility.DrawPileToHandAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.red.Corruption;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 
-public class CorruptedMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(CorruptedMod.class.getSimpleName());
+public class WaryMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(WaryMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
-    private boolean addedExhaust = false;
+    private boolean addedExhaust;
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        card.cost = 0;
-        card.costForTurn = card.cost;
-        addedExhaust = !card.exhaust;
+        this.addedExhaust = !card.exhaust;
         card.exhaust = true;
-    }
-
-    @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 1 && c.type == AbstractCard.CardType.SKILL && doesntUpgradeCost()))
-                && characterCheck((p) -> {
-            for (AbstractCard c : p.masterDeck.group) {
-                if (c instanceof Corruption) {
-                    return true;
-                }
-            }
-            return false;
-        });
     }
 
     @Override
     public void onUpgradeCheck(AbstractCard card) {
         if (!card.exhaust) {
-            addedExhaust = true;
+            this.addedExhaust = true;
             card.exhaust = true;
+            card.initializeDescription();
         }
-        card.initializeDescription();
+    }
+
+    @Override
+    public boolean validCard(AbstractCard card) {
+        return cardCheck(card, (c) -> (c.cost >= -1 && !drawsCards(c)
+                && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new VFXAction(AbstractDungeon.player, new BorderLongFlashEffect(Color.PURPLE), 0.0F, true));
+        this.addToBot(new DrawPileToHandAction(2, AbstractCard.CardType.SKILL));
     }
 
     @Override
@@ -71,7 +58,7 @@ public class CorruptedMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return addedExhaust ? insertAfterText(rawDescription, CARD_TEXT[0]) : rawDescription;
+        return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1]);
     }
 
     @Override
@@ -81,7 +68,7 @@ public class CorruptedMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new CorruptedMod();
+        return new WaryMod();
     }
 
     @Override

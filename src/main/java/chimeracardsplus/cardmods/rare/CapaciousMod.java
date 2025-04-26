@@ -31,17 +31,17 @@ public class CapaciousMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return allowOrbMods() && cardCheck(card, (c) -> (c.cost >= -1 && (c.baseDamage >= 7 || c.baseBlock >= 7)));
+        return allowOrbMods() && cardCheck(card, (c) -> (c.cost >= -1 && (c.baseDamage >= 6 || c.baseBlock >= 6)));
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage >= 1.0F ? Math.max(1.0F, damage - getBaseVal(card) * 5.0F) : damage;
+        return damage >= 1.0F ? Math.max(1.0F, damage - getBaseValDamage(card) * 5.0F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return block >= 1.0F ? Math.max(1.0F, block - getBaseVal(card) * 5.0F) : block;
+        return block >= 1.0F ? Math.max(1.0F, block - getBaseValBlock(card) * 5.0F) : block;
     }
 
     @Override
@@ -49,8 +49,16 @@ public class CapaciousMod extends AbstractAugment implements DynvarCarrier {
         this.addToBot(new IncreaseMaxOrbAction(getBaseVal(card)));
     }
 
+    private int getBaseValDamage(AbstractCard card) {
+        return Math.min(Math.max(card.baseDamage, 0) / 5, 5);
+    }
+
+    private int getBaseValBlock(AbstractCard card) {
+        return Math.min(Math.max(card.baseBlock, 0) / 5, 5);
+    }
+
     public int getBaseVal(AbstractCard card) {
-        return Math.min((Math.max(card.baseDamage, 0) + Math.max(card.baseBlock, 0)) / 7, 10);
+        return getBaseValDamage(card) + getBaseValBlock(card);
     }
 
     public String key() {
