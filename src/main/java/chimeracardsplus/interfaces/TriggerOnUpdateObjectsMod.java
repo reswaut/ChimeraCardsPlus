@@ -2,6 +2,6 @@ package chimeracardsplus.interfaces;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
-public interface TriggerOnUpdateObjectsMod {
+public interface TriggerOnUpdateObjectsMod extends HealingMod {
     boolean onUpdateObjects(AbstractCard card);
 }

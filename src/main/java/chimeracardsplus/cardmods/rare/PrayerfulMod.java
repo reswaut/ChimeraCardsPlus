@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.watcher.MantraPower;
+import com.megacrit.cardcrawl.stances.DivinityStance;
 
 public class PrayerfulMod extends AbstractAugment implements DynvarCarrier {
     public static final String ID = ChimeraCardsPlus.makeID(PrayerfulMod.class.getSimpleName());
@@ -36,7 +37,7 @@ public class PrayerfulMod extends AbstractAugment implements DynvarCarrier {
         if (value < 10) {
             this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new MantraPower(AbstractDungeon.player, value), value));
         } else {
-            this.addToBot(new ChangeStanceAction("Divinity"));
+            this.addToBot(new ChangeStanceAction(DivinityStance.STANCE_ID));
         }
     }
 

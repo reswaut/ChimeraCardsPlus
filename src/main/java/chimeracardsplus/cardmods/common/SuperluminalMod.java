@@ -66,7 +66,7 @@ public class SuperluminalMod extends AbstractAugment implements DynvarCarrier, T
 
     @Override
     public Color getGlow(AbstractCard card) {
-        return AbstractDungeon.actionManager.cardsPlayedThisTurn.size() < getBaseVal(card) ? Color.GOLD : null;
+        return AbstractDungeon.actionManager.cardsPlayedThisTurn.size() < getBaseVal(card) ? Color.GOLD.cpy() : null;
     }
 
     public int getBaseVal(AbstractCard card) {

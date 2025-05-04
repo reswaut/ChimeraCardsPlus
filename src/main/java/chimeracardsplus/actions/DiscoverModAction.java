@@ -1,9 +1,8 @@
 package chimeracardsplus.actions;
 
 import CardAugments.cardmods.AbstractAugment;
-import chimeracardsplus.interfaces.TriggerOnObtainMod;
-import chimeracardsplus.interfaces.TriggerOnPurgeMod;
-import chimeracardsplus.interfaces.TriggerPreDeathMod;
+import CardAugments.patches.RolledModFieldPatches;
+import chimeracardsplus.interfaces.HealingMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
@@ -13,6 +12,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import static CardAugments.CardAugmentsMod.getAllValidMods;
 import static basemod.helpers.CardModifierManager.addModifier;
@@ -29,9 +29,8 @@ public class DiscoverModAction extends AbstractGameAction {
     }
 
     public void update() {
-        ArrayList<AbstractCard> generatedCards = this.generateCardChoices();
-
         if (this.duration == Settings.ACTION_DUR_FAST) {
+            ArrayList<AbstractCard> generatedCards = this.generateCardChoices();
             AbstractDungeon.cardRewardScreen.customCombatOpen(generatedCards, CardRewardScreen.TEXT[1], false);
             this.tickDuration();
         } else {
@@ -60,28 +59,23 @@ public class DiscoverModAction extends AbstractGameAction {
     }
 
     private ArrayList<AbstractCard> generateCardChoices() {
-        ArrayList<AbstractAugment> all = getAllValidMods(baseCard);
-        ArrayList<AbstractAugment> filt = new ArrayList<>();
-        for (AbstractAugment mod : all) {
-            if (!(mod instanceof TriggerOnObtainMod || mod instanceof TriggerOnPurgeMod || mod instanceof TriggerPreDeathMod)) {
-                filt.add(mod);
-            }
-        }
+        ArrayList<AbstractAugment> filter = getAllValidMods(baseCard).stream().filter((mod) -> !(mod instanceof HealingMod)).collect(Collectors.toCollection(ArrayList::new));
         ArrayList<AbstractCard> ret = new ArrayList<>();
-        if (filt.isEmpty()) {
+        if (filter.isEmpty()) {
             ret.add(baseCard);
             return ret;
         }
         ArrayList<Integer> derp = new ArrayList<>();
-        while (derp.size() < Math.min(3, filt.size())) {
-            int tmp = miscRng.random(0, filt.size() - 1);
+        while (derp.size() < Math.min(3, filter.size())) {
+            int tmp = miscRng.random(0, filter.size() - 1);
             if (!derp.contains(tmp)) {
                 derp.add(tmp);
             }
         }
         for (int id : derp) {
             AbstractCard card = baseCard.makeStatEquivalentCopy();
-            addModifier(card, filt.get(id).makeCopy());
+            addModifier(card, filter.get(id).makeCopy());
+            RolledModFieldPatches.RolledModField.rolled.set(card, true);
             ret.add(card);
         }
         return ret;

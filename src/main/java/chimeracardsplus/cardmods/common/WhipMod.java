@@ -57,7 +57,7 @@ public class WhipMod extends AbstractAugment implements DynvarCarrier {
     public Color getGlow(AbstractCard card) {
         if (!(card instanceof SashWhip) && !AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty()
                 && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).type == AbstractCard.CardType.ATTACK) {
-            return Color.GOLD;
+            return Color.GOLD.cpy();
         }
         return null;
     }

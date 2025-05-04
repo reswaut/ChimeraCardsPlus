@@ -54,7 +54,7 @@ public class ImpatientMod extends AbstractAugment {
                 return null;
             }
         }
-        return Color.GOLD;
+        return Color.GOLD.cpy();
     }
 
     @Override

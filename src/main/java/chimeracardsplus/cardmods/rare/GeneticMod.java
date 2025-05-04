@@ -4,6 +4,7 @@ import CardAugments.cardmods.AbstractAugment;
 import CardAugments.cardmods.DynvarCarrier;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.interfaces.HealingMod;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -13,7 +14,7 @@ import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 
 import static basemod.helpers.CardModifierManager.modifiers;
 
-public class GeneticMod extends AbstractAugment implements DynvarCarrier {
+public class GeneticMod extends AbstractAugment implements DynvarCarrier, HealingMod {
     public static final String ID = ChimeraCardsPlus.makeID(GeneticMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;

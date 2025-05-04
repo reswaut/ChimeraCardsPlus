@@ -34,7 +34,7 @@ public class UnceasingMod extends AbstractAugment {
 
     @Override
     public Color getGlow(AbstractCard card) {
-        return AbstractDungeon.player.hand.size() <= 1 ? Color.GOLD : null;
+        return AbstractDungeon.player.hand.size() <= 1 ? Color.GOLD.cpy() : null;
     }
 
     @Override

@@ -70,8 +70,8 @@ public class ForeignMod extends AbstractAugment {
             cardRarity = AbstractCard.CardRarity.RARE;
         }
         AbstractCard c = CardLibrary.getAnyColorCard(card.type, cardRarity);
-        if (card.upgraded) {
-            c.setCostForTurn(0);
+        if (card.upgraded && c.canUpgrade()) {
+            c.upgrade();
         }
         this.addToBot(new MakeTempCardInHandAction(c, true));
     }

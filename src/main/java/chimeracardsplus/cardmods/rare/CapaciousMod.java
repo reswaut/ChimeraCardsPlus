@@ -17,8 +17,7 @@ public class CapaciousMod extends AbstractAugment implements DynvarCarrier {
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     public static final String DESCRIPTION_KEY = "!" + ID + "!";
-    public boolean modified;
-    public boolean upgraded;
+    public boolean modified, upgraded;
     private boolean addedExhaust = false;
 
     @Override
@@ -50,11 +49,11 @@ public class CapaciousMod extends AbstractAugment implements DynvarCarrier {
     }
 
     private int getBaseValDamage(AbstractCard card) {
-        return Math.min(Math.max(card.baseDamage, 0) / 5, 5);
+        return Math.min(Math.max(card.baseDamage - 1, 0) / 5, 5);
     }
 
     private int getBaseValBlock(AbstractCard card) {
-        return Math.min(Math.max(card.baseBlock, 0) / 5, 5);
+        return Math.min(Math.max(card.baseBlock - 1, 0) / 5, 5);
     }
 
     public int getBaseVal(AbstractCard card) {

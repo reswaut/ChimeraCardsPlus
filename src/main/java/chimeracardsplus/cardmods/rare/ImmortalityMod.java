@@ -6,6 +6,7 @@ import CardAugments.patches.InterruptUseCardFieldPatches;
 import CardAugments.util.PortraitHelper;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.interfaces.BonusMod;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -17,7 +18,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.watcher.LiveForeverPower;
 
-public class ImmortalityMod extends AbstractAugment implements DynvarCarrier {
+public class ImmortalityMod extends AbstractAugment implements DynvarCarrier, BonusMod {
     public static final String ID = ChimeraCardsPlus.makeID(ImmortalityMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
@@ -57,7 +58,7 @@ public class ImmortalityMod extends AbstractAugment implements DynvarCarrier {
             for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
                 if (c instanceof Wish) {
                     ++count;
-                    if (count >= 3) {
+                    if (count >= 2) {
                         return true;
                     }
                 }

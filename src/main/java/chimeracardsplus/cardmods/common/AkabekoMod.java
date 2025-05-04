@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.relics.Akabeko;
 
 public class AkabekoMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(AkabekoMod.class.getSimpleName());
@@ -32,8 +31,7 @@ public class AkabekoMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> (c.baseDamage >= 1 && c.type == AbstractCard.CardType.ATTACK))
-                && characterCheck((p) -> p.hasRelic(Akabeko.ID));
+        return cardCheck(card, c -> (c.baseDamage >= 1 && c.type == AbstractCard.CardType.ATTACK));
     }
 
     @Override
@@ -43,7 +41,7 @@ public class AkabekoMod extends AbstractAugment {
                 return null;
             }
         }
-        return Color.GOLD;
+        return Color.GOLD.cpy();
     }
 
     @Override

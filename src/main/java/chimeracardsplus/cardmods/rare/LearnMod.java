@@ -4,6 +4,7 @@ import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.damagemods.LearnDamage;
+import chimeracardsplus.interfaces.HealingMod;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -13,7 +14,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LearnMod extends AbstractAugment {
+public class LearnMod extends AbstractAugment implements HealingMod {
     public static final String ID = ChimeraCardsPlus.makeID(LearnMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;

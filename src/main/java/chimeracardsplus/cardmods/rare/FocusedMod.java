@@ -52,11 +52,11 @@ public class FocusedMod extends AbstractAugment implements DynvarCarrier {
     }
 
     private int getBaseValDamage(AbstractCard card) {
-        return Math.max(card.baseDamage, 0) / 7;
+        return Math.max(card.baseDamage - 1, 0) / 7;
     }
 
     private int getBaseValBlock(AbstractCard card) {
-        return Math.max(card.baseBlock, 0) / 7;
+        return Math.max(card.baseBlock - 1, 0) / 7;
     }
 
     public int getBaseVal(AbstractCard card) {

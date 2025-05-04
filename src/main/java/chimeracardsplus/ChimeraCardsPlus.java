@@ -106,6 +106,8 @@ public class ChimeraCardsPlus implements
         //Feel free to comment out/delete any that you don't end up using.
         BaseMod.loadCustomStringsFile(UIStrings.class,
                 localizationPath(lang, "UIStrings.json"));
+        BaseMod.loadCustomStringsFile(UIStrings.class,
+                localizationPath(lang, "ModifierStrings.json"));
     }
 
     //These methods are used to generate the correct filepaths to various parts of the resources folder.

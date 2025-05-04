@@ -26,9 +26,7 @@ public class ProactiveMod extends AbstractAugment {
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         this.addToBot(new DrawCardAction(AbstractDungeon.player, 1));
-        if (!AbstractDungeon.player.hand.isEmpty()) {
-            this.addToBot(new PutOnDeckAction(AbstractDungeon.player, AbstractDungeon.player, 1, false));
-        }
+        this.addToBot(new PutOnDeckAction(AbstractDungeon.player, AbstractDungeon.player, 1, false));
     }
 
     @Override

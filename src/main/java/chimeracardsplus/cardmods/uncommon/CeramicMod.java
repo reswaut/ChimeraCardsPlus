@@ -7,7 +7,6 @@ import chimeracardsplus.interfaces.TriggerOnObtainMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.relics.CeramicFish;
 
 public class CeramicMod extends AbstractAugment implements TriggerOnObtainMod {
     public static final String ID = ChimeraCardsPlus.makeID(CeramicMod.class.getSimpleName());
@@ -16,8 +15,7 @@ public class CeramicMod extends AbstractAugment implements TriggerOnObtainMod {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.rarity != AbstractCard.CardRarity.BASIC && c.type != AbstractCard.CardType.CURSE)
-                && characterCheck((p) -> p.hasRelic(CeramicFish.ID));
+        return cardCheck(card, (c) -> c.rarity != AbstractCard.CardRarity.BASIC && c.type != AbstractCard.CardType.CURSE);
     }
 
     @Override

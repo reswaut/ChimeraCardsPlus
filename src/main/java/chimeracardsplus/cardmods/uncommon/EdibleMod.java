@@ -19,17 +19,17 @@ public class EdibleMod extends AbstractAugment implements TriggerOnObtainMod {
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 1) ? (damage * 0.75F) : damage;
+        return (damage >= 0.0F) ? (damage * 0.75F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 1) ? (block * 0.75F) : block;
+        return (block >= 0.0F) ? (block * 0.75F) : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 0.75F) : magic;
+        return (magic >= 0.0F && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 0.75F) : magic;
     }
 
     @Override

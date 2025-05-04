@@ -10,6 +10,7 @@ import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPreview;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.actions.DiscoverModAction;
+import chimeracardsplus.interfaces.HealingMod;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -17,7 +18,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class DiscoveredMod extends AbstractAugment {
+public class DiscoveredMod extends AbstractAugment implements HealingMod {
     public static final String ID = ChimeraCardsPlus.makeID(DiscoveredMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;

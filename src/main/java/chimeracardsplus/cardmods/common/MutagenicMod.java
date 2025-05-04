@@ -50,7 +50,7 @@ public class MutagenicMod extends AbstractAugment {
 
     @Override
     public Color getGlow(AbstractCard card) {
-        return (GameActionManager.turn <= 1) ? Color.GOLD : null;
+        return (GameActionManager.turn <= 1) ? Color.GOLD.cpy() : null;
     }
 
     @Override

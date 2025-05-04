@@ -37,7 +37,7 @@ public class StealthyMod extends AbstractAugment {
 
     @Override
     public Color getGlow(AbstractCard card) {
-        return (GameActionManager.totalDiscardedThisTurn > 0) ? Color.GOLD : null;
+        return (GameActionManager.totalDiscardedThisTurn > 0) ? Color.GOLD.cpy() : null;
     }
 
     @Override

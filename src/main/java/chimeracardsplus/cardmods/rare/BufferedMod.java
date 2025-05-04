@@ -1,6 +1,7 @@
 package chimeracardsplus.cardmods.rare;
 
 import CardAugments.cardmods.AbstractAugment;
+import CardAugments.cardmods.DynvarCarrier;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -11,10 +12,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.BufferPower;
 
-public class BufferedMod extends AbstractAugment {
+public class BufferedMod extends AbstractAugment implements DynvarCarrier {
     public static final String ID = ChimeraCardsPlus.makeID(BufferedMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
+    public static final String DESCRIPTION_KEY = "!" + ID + "!";
+    public boolean modified, upgraded;
     private boolean addedExhaust = false;
 
     @Override
@@ -32,12 +35,38 @@ public class BufferedMod extends AbstractAugment {
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block >= 11.0F) ? (block - 10.0F) : 1.0F;
+        return block >= 1.0F ? Math.max(1.0F, block - getBaseVal(card) * 10.0F) : block;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new BufferPower(AbstractDungeon.player, 1), 1));
+        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new BufferPower(AbstractDungeon.player, getBaseVal(card)), getBaseVal(card)));
+    }
+
+    public int getBaseVal(AbstractCard card) {
+        return Math.max(card.baseBlock - 1, 0) / 10;
+    }
+
+    public String key() {
+        return ID;
+    }
+
+    public int val(AbstractCard card) {
+        return this.getBaseVal(card);
+    }
+
+    public int baseVal(AbstractCard card) {
+        return this.getBaseVal(card);
+    }
+
+    public boolean modified(AbstractCard card) {
+        return this.modified;
+    }
+
+    public boolean upgraded(AbstractCard card) {
+        this.modified = card.timesUpgraded != 0 || card.upgraded;
+        this.upgraded = card.timesUpgraded != 0 || card.upgraded;
+        return this.upgraded;
     }
 
     @Override
@@ -66,7 +95,15 @@ public class BufferedMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1]);
+        String text = "";
+        if (getBaseVal(card) <= 0) {
+            return rawDescription;
+        } else if (getBaseVal(card) == 1) {
+            text = addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1];
+        } else if (getBaseVal(card) >= 2) {
+            text = String.format(addedExhaust ? CARD_TEXT[2] : CARD_TEXT[3], DESCRIPTION_KEY);
+        }
+        return insertAfterText(rawDescription, text);
     }
 
     @Override

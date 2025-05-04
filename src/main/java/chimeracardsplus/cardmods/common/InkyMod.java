@@ -3,6 +3,7 @@ package chimeracardsplus.cardmods.common;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.interfaces.TriggerOnDiscardMod;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -10,17 +11,16 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.InkBottle;
 
-public class InkyMod extends AbstractAugment {
+public class InkyMod extends AbstractAugment implements TriggerOnDiscardMod {
     public static final String ID = ChimeraCardsPlus.makeID(InkyMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
+    private boolean descriptionHack = false;
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1) && characterCheck((p) -> p.hasRelic(InkBottle.ID));
+        return cardCheck(card, (c) -> (c.cost >= -1));
     }
 
     @Override
@@ -40,22 +40,43 @@ public class InkyMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, CARD_TEXT[0]);
+        String text = CARD_TEXT[0];
+        if (descriptionHack) {
+            int count = AbstractDungeon.actionManager.cardsPlayedThisCombat.size();
+            text += String.format((count == 1) ? CARD_TEXT[1] : CARD_TEXT[2], count);
+        }
+        return insertAfterText(rawDescription, text);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        AbstractRelic relic = AbstractDungeon.player.getRelic(InkBottle.ID);
-        if (relic != null && relic.counter == 0) {
+        if (AbstractDungeon.actionManager.cardsPlayedThisCombat.size() == 10) {
             this.addToBot(new DrawCardAction(1));
         }
+        descriptionHack = false;
+        card.initializeDescription();
+    }
+
+    @Override
+    public void onApplyPowers(AbstractCard card) {
+        descriptionHack = true;
+        card.initializeDescription();
+    }
+
+    @Override
+    public void onMoveToDiscard(AbstractCard card) {
+        descriptionHack = false;
+        card.initializeDescription();
+    }
+
+    @Override
+    public void onManualDiscard(AbstractCard card) {
     }
 
     @Override
     public Color getGlow(AbstractCard card) {
-        AbstractRelic relic = AbstractDungeon.player.getRelic(InkBottle.ID);
-        if (relic != null && relic.counter == 9) {
-            return Color.GOLD;
+        if (AbstractDungeon.actionManager.cardsPlayedThisCombat.size() == 9) {
+            return Color.GOLD.cpy();
         }
         return null;
     }

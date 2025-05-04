@@ -42,15 +42,14 @@ public class SozuMod extends AbstractAugment implements TriggerOnUsePotionMod {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (used) {
-            return;
+        if (!used) {
+            this.addToBot(new GainEnergyAction(1));
         }
-        this.addToBot(new GainEnergyAction(1));
     }
 
     @Override
     public Color getGlow(AbstractCard card) {
-        return used ? null : Color.GOLD;
+        return used ? null : Color.GOLD.cpy();
     }
 
     @Override

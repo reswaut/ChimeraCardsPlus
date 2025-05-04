@@ -78,7 +78,7 @@ public class FlamboyantMod extends AbstractAugment implements TriggerOnDiscardMo
 
     @Override
     public Color getGlow(AbstractCard card) {
-        return AbstractDungeon.actionManager.cardsPlayedThisTurn.size() >= 5 ? Color.GOLD : null;
+        return AbstractDungeon.actionManager.cardsPlayedThisTurn.size() >= 5 ? Color.GOLD.cpy() : null;
     }
 
     @Override

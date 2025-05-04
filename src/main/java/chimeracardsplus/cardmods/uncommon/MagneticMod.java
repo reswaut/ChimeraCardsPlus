@@ -54,8 +54,8 @@ public class MagneticMod extends AbstractAugment {
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         AbstractCard c = AbstractDungeon.returnTrulyRandomColorlessCardInCombat(AbstractDungeon.cardRandomRng).makeCopy();
-        if (card.upgraded) {
-            c.setCostForTurn(0);
+        if (card.upgraded && c.canUpgrade()) {
+            c.upgrade();
         }
         this.addToBot(new MakeTempCardInHandAction(c, true));
     }

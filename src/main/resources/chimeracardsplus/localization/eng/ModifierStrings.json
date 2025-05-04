@@ -1,0 +1,2319 @@
+{
+  "chimeracardsplus:AchingMod": {
+    "TEXT": [
+      "Aching ",
+      "",
+      "Increases card values by #b25%. NL While the card is in hand, loses #b1 HP whenever you play another card."
+    ],
+    "EXTRA_TEXT": [
+      " NL While in hand, lose 1 HP whenever you play another card."
+    ]
+  },
+  "chimeracardsplus:AgileMod": {
+    "TEXT": [
+      "Agile ",
+      "",
+      "Gains #b3 #yDexterity this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain 3 Dexterity. NL At the end of this turn, lose 3 Dexterity."
+    ]
+  },
+  "chimeracardsplus:AkabekoMod": {
+    "TEXT": [
+      "Akabeko ",
+      "",
+      "Increases damage by #b8 if this is the first Attack played."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deals 8 more damage if you have not played Attacks this combat."
+    ]
+  },
+  "chimeracardsplus:ArtOfMod": {
+    "TEXT": [
+      "Art of ",
+      "",
+      "Gains [E] next turn if no Attacks are played this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If you have not played Attacks this turn, gain [E] next turn."
+    ]
+  },
+  "chimeracardsplus:AshyMod": {
+    "TEXT": [
+      "Ashy ",
+      "",
+      "Deals #b3 damage to ALL enemies when #yExhausted."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this card is Exhausted, deal 3 damage to ALL enemies."
+    ]
+  },
+  "chimeracardsplus:AuraMod": {
+    "TEXT": [
+      "",
+      " Aura",
+      "Adds #yRetain. NL Reduces card values by #b50%. NL Triggers card effect with #b25% card values when #yRetained."
+    ],
+    "EXTRA_TEXT": [
+      "Retain. NL ",
+      " NL When Retained, ",
+      "Innate. "
+    ]
+  },
+  "chimeracardsplus:BanefulMod": {
+    "TEXT": [
+      "Baneful ",
+      "",
+      "Reduces damage by #b25%. NL Deals damage an additional time if the enemy has #yPoison."
+    ],
+    "EXTRA_TEXT": [
+      " NL If the enemy has Poison, deal !D! damage again.",
+      "If the enemy has Poison, deal !D! damage again.",
+      "If the enemy has Poison, deal !D! damage 2 more times.",
+      "Poison"
+    ]
+  },
+  "chimeracardsplus:BarrageMod": {
+    "TEXT": [
+      "Barrage of ",
+      "",
+      "Reduces damage by #b50%. NL Hits once for each #yChanneled Orb."
+    ],
+    "EXTRA_TEXT": [
+      " for each Channeled Orb."
+    ]
+  },
+  "chimeracardsplus:BirdFacedMod": {
+    "TEXT": [
+      "Bird-Faced ",
+      "",
+      "Heals #b2 HP."
+    ],
+    "EXTRA_TEXT": [
+      " NL Heal 2 HP."
+    ]
+  },
+  "chimeracardsplus:BitingMod": {
+    "TEXT": [
+      "Biting ",
+      "",
+      "Reduces damage by #b20%. NL Heals HP equal to the cost."
+    ],
+    "EXTRA_TEXT": [
+      " NL Heal %d HP.",
+      " NL Heal X HP."
+    ]
+  },
+  "chimeracardsplus:BladedMod": {
+    "TEXT": [
+      "Bladed ",
+      "",
+      "Increases damage by #b4."
+    ],
+    "EXTRA_TEXT": []
+  },
+  "chimeracardsplus:BlessedMod": {
+    "TEXT": [
+      "Blessed ",
+      "",
+      "Carries an ancient blessing."
+    ],
+    "EXTRA_TEXT": [
+      " NL Receive an ancient blessing.",
+      " NL The blessing has lost its power."
+    ]
+  },
+  "chimeracardsplus:BloodlettingMod": {
+    "TEXT": [
+      "Bloodletting ",
+      "",
+      "Costs [E] less. NL Loses #b3 HP."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose 3 HP."
+    ]
+  },
+  "chimeracardsplus:BootMod": {
+    "TEXT": [
+      "",
+      "'s Boot",
+      "Increases damage to #b5."
+    ],
+    "EXTRA_TEXT": []
+  },
+  "chimeracardsplus:BrilliantMod": {
+    "TEXT": [
+      "Brilliant ",
+      "",
+      "Increases damage by #b1 for each #yMantra gained this combat."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deals additional damage equal to Mantra gained this combat.",
+      "Deals additional damage equal to Mantra gained this combat.",
+      "Deals 2 additional damage for each Mantra gained this combat.",
+      "Mantra"
+    ]
+  },
+  "chimeracardsplus:BufferedMod": {
+    "TEXT": [
+      "Buffered ",
+      "",
+      "Reduces #yBlock. NL Gains #b1 #yBuffer for every #b10 #yBlock lost. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Prevent the next time you would lose HP. NL Exhaust.",
+      " NL Prevent the next time you would lose HP.",
+      " NL Prevent the next %s times you would lose HP. NL Exhaust.",
+      " NL Prevent the next %s times you would lose HP."
+    ]
+  },
+  "chimeracardsplus:BurstyMod": {
+    "TEXT": [
+      "Bursty ",
+      "",
+      "Costs [E] more. NL Copies the next Skill played this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL This turn, your next Skill is played twice.",
+      "This turn, your next Skill is played twice.",
+      "This turn, your next !M! Skills are played twice."
+    ]
+  },
+  "chimeracardsplus:CallingMod": {
+    "TEXT": [
+      "Calling ",
+      "",
+      "Increases card values by #b40%. NL Cannot be removed from your deck."
+    ],
+    "EXTRA_TEXT": [
+      " NL Cannot be removed from your deck."
+    ]
+  },
+  "chimeracardsplus:CapaciousMod": {
+    "TEXT": [
+      "Capacious ",
+      "",
+      "Reduces damage and #yBlock. NL Gains #b1 Orb slot for every #b5 damage and #yBlock lost. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain %s Orb slot. NL Exhaust.",
+      " NL Gain %s Orb slot.",
+      " NL Gain %s Orb slots. NL Exhaust.",
+      " NL Gain %s Orb slots."
+    ]
+  },
+  "chimeracardsplus:CaptainMod": {
+    "TEXT": [
+      "Captain's ",
+      "",
+      "Gains #b10 #yPlated #yArmor. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain 10 *Plated *Armor. NL Exhaust.",
+      " NL Gain 10 *Plated *Armor."
+    ]
+  },
+  "chimeracardsplus:CastMod": {
+    "TEXT": [
+      "",
+      " and Cast",
+      "#yEvokes your next Orb."
+    ],
+    "EXTRA_TEXT": [
+      " NL Evoke your next Orb."
+    ]
+  },
+  "chimeracardsplus:CeramicMod": {
+    "TEXT": [
+      "Ceramic ",
+      "",
+      "Gains #b9 #yGold upon pick."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, gain 9 *Gold."
+    ]
+  },
+  "chimeracardsplus:ChallengingMod": {
+    "TEXT": [
+      "Challenging ",
+      "",
+      "Reduces damage and #yBlock by #b25%. NL Gains #b2 #yVulnerable. NL Applies #b2 #yVulnerable to ALL enemies."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain 2 Vulnerable. Apply 2 Vulnerable to ALL enemies."
+    ]
+  },
+  "chimeracardsplus:ChangingMod": {
+    "TEXT": [
+      "Changing ",
+      "",
+      "Reduces card values by #b33%. NL Optionally #yTransforms another card in your deck upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, you may Transform another card in your deck."
+    ]
+  },
+  "chimeracardsplus:ChaoticMod": {
+    "TEXT": [
+      "Chaotic ",
+      "",
+      "Costs [E] more. NL #yChannels #b1 random Orb."
+    ],
+    "EXTRA_TEXT": [
+      " NL Channel 1 random Orb.",
+      "Channel !M! random Orb.",
+      "Channel !M! random Orbs."
+    ]
+  },
+  "chimeracardsplus:ChemicalMod": {
+    "TEXT": [
+      "Chemical ",
+      "",
+      "Increases X by #b1."
+    ],
+    "EXTRA_TEXT": [
+      "Increase X by 1. NL "
+    ]
+  },
+  "chimeracardsplus:ChokingMod": {
+    "TEXT": [
+      "Choking ",
+      "",
+      "Reduces damage by #b20%. NL Applies #yChoke equal to #b20% damage."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you play a card this turn, the enemy loses %s HP."
+    ]
+  },
+  "chimeracardsplus:ClearMod": {
+    "TEXT": [
+      "Clear ",
+      "",
+      "Reduces damage and #yBlock by #b20%. NL Chooses #b1 of the top #b2 cards to put into your hand. #yExhausts the other."
+    ],
+    "EXTRA_TEXT": [
+      " NL Look at the top 2 cards of your draw pile. Add 1 to your hand and Exhaust the other."
+    ]
+  },
+  "chimeracardsplus:CollectedMod": {
+    "TEXT": [
+      "Collected ",
+      "",
+      "Increases cost to [E] [E] [E] . NL Adds an #yUpgraded #yMiracle into hand in a number of following turns equal to the increased cost. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Put a *Miracle+ into your hand at the start of your next turn. NL Exhaust.",
+      " NL Put a *Miracle+ into your hand at the start of your next 2 turns. NL Exhaust.",
+      " NL Put a *Miracle+ into your hand at the start of your next 3 turns. NL Exhaust.",
+      " NL Put a *Miracle+ into your hand at the start of your next turn.",
+      " NL Put a *Miracle+ into your hand at the start of your next 2 turns.",
+      " NL Put a *Miracle+ into your hand at the start of your next 3 turns."
+    ]
+  },
+  "chimeracardsplus:ConcentratedMod": {
+    "TEXT": [
+      "Concentrated ",
+      "",
+      "Discards #b3(2) cards. NL Gains [E] [E] ."
+    ],
+    "EXTRA_TEXT": [
+      " NL Discard %s cards. NL Gain [E] [E].",
+      " NL Discard %s card. NL Gain [E] [E].",
+      " NL Gain [E] [E].",
+      "Gain [G] [G].",
+      "Gain [G] [G] [G] [G]."
+    ]
+  },
+  "chimeracardsplus:ConclusiveMod": {
+    "TEXT": [
+      "Conclusive ",
+      "",
+      "Increases card values by #b50%. NL Ends your turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL End your turn."
+    ]
+  },
+  "chimeracardsplus:ConservedMod": {
+    "TEXT": [
+      "Conserved ",
+      "",
+      "Reduces damage and #yBlock by #b20%. NL Conserves Energy for next turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Energy is conserved for next turn."
+    ]
+  },
+  "chimeracardsplus:CorruptedMod": {
+    "TEXT": [
+      "Corrupted ",
+      "",
+      "Increases damage by #b50%. NL Loses #b3 HP."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose 3 HP."
+    ]
+  },
+  "chimeracardsplus:CourageousMod": {
+    "TEXT": [
+      "Courageous ",
+      "",
+      "Increases damage by #b3 in Elite combats."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deals 3 more damage in Elite combats."
+    ]
+  },
+  "chimeracardsplus:CreativeMod": {
+    "TEXT": [
+      "Creative ",
+      "",
+      "Adds a random Power into your hand. #yUpgrades that card when #yUpgraded. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Add a random Power into your hand. NL Exhaust.",
+      " NL Add a random Upgraded Power into your hand. NL Exhaust."
+    ]
+  },
+  "chimeracardsplus:CripplingMod": {
+    "TEXT": [
+      "Crippling ",
+      "",
+      "Costs [E] more. NL Applies #b3(5) #yPoison and #b1 #yWeak to ALL enemies. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Apply %s Poison and 1 Weak to ALL enemies. NL Exhaust.",
+      " NL Apply %s Poison and 1 Weak to ALL enemies.",
+      " NL Apply 1 Weak to ALL enemies."
+    ]
+  },
+  "chimeracardsplus:CrushingMod": {
+    "TEXT": [
+      "Crushing ",
+      "",
+      "Reduces damage and #yBlock by #b25%. NL Applies #b1(2) #yVulnerable if the last card played was a Skill."
+    ],
+    "EXTRA_TEXT": [
+      " NL If the last card played this combat was a Skill, apply %s Vulnerable."
+    ]
+  },
+  "chimeracardsplus:CubicMod": {
+    "TEXT": [
+      "Cubic ",
+      "",
+      "Loses #b1 HP. NL Draws #b1 card."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose 1 HP. Draw 1 card."
+    ]
+  },
+  "chimeracardsplus:CursedMod": {
+    "TEXT": [
+      "Cursed ",
+      "%s-Cursed ",
+      "",
+      "Increases card values by #b100%. NL Adds a #rCurse into your deck upon pickup.",
+      "Increases card values by #b100%%. NL Adds %s into your deck upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, add a *Curse into your deck.",
+      " NL Upon pickup, add %s into your deck."
+    ]
+  },
+  "chimeracardsplus:CutThroughMod": {
+    "TEXT": [
+      "Cut Through ",
+      "",
+      "Reduces card values by #b25%. NL Scries #b1(2) and draws #b1 card."
+    ],
+    "EXTRA_TEXT": [
+      " NL Scry %s.",
+      " NL Draw 1 card.",
+      "Draw 1 card.",
+      "Draw 2 cards."
+    ]
+  },
+  "chimeracardsplus:DarkMod": {
+    "TEXT": [
+      "Dark ",
+      "",
+      "Draws #b1 card when #yExhausted."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this card is Exhausted, draw 1 card."
+    ]
+  },
+  "chimeracardsplus:DartMod": {
+    "TEXT": [
+      "Dart ",
+      "",
+      "Reduces damage by #b50%. NL Hits once for each Skill in your hand."
+    ],
+    "EXTRA_TEXT": [
+      " for each Skill in your hand."
+    ]
+  },
+  "chimeracardsplus:DeadMod": {
+    "TEXT": [
+      "Dead ",
+      "",
+      "Adds a random card into your hand when #yExhausted."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this card is Exhausted, add a random card into your hand."
+    ]
+  },
+  "chimeracardsplus:DeepMod": {
+    "TEXT": [
+      "Deep ",
+      "",
+      "Shuffles your discard pile into your draw pile."
+    ],
+    "EXTRA_TEXT": [
+      " NL Shuffle your discard pile into your draw pile."
+    ]
+  },
+  "chimeracardsplus:DeterminedMod": {
+    "TEXT": [
+      "Determined ",
+      "",
+      "Increases card values by #b67%. NL Adds two #rWounds into your hand."
+    ],
+    "EXTRA_TEXT": [
+      " NL Add 2 *Wounds into your hand.",
+      "Add 2 *Wounds into your hand.",
+      "Add 4 *Wounds into your hand."
+    ]
+  },
+  "chimeracardsplus:DexterousMod": {
+    "TEXT": [
+      "Dexterous ",
+      "",
+      "Reduces #yBlock by #b80%. NL Gains #yDexterity equal to #b20% #yBlock. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain %s Dexterity. NL Exhaust.",
+      " NL Gain %s Dexterity."
+    ]
+  },
+  "chimeracardsplus:DisarmingMod": {
+    "TEXT": [
+      "Disarming ",
+      "",
+      "Reduces card values by #b33%. NL Applies #yStrength down equal to the cost. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Enemy loses %d Strength. NL Exhaust.",
+      " NL Enemy loses %d Strength.",
+      " NL Enemy loses X Strength. NL Exhaust.",
+      " NL Enemy loses X Strength."
+    ]
+  },
+  "chimeracardsplus:DiscoveredMod": {
+    "TEXT": [
+      "Discovered ",
+      "",
+      "Costs [E] . NL Adds the card to your hand with a chosen #yModifier. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      "Choose 1 of 3 random *Modifiers. Add %s into your hand with the chosen *Modifier on it. NL Exhaust.",
+      "Innate. NL "
+    ]
+  },
+  "chimeracardsplus:DisorderedMod": {
+    "TEXT": [
+      "Disordered ",
+      "",
+      "Costs [E] more. NL Plays and #yExhausts the top card of your draw pile."
+    ],
+    "EXTRA_TEXT": [
+      " NL Play the top card of your draw pile and Exhaust it."
+    ]
+  },
+  "chimeracardsplus:DistractingMod": {
+    "TEXT": [
+      "Distracting ",
+      "",
+      "Adds a random Skill into your hand. #yUpgrades that card when #yUpgraded. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Add a random Skill into your hand. NL Exhaust.",
+      " NL Add a random Upgraded Skill into your hand. NL Exhaust."
+    ]
+  },
+  "chimeracardsplus:DoppelgangerMod": {
+    "TEXT": [
+      "",
+      "'s Doppelganger",
+      "Increases cost to [E] [E] [E] . NL Next turn, draws card and gains [E] equal to the increased cost. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Next turn, draw 1 card and gain [E]. NL Exhaust.",
+      " NL Next turn, draw 2 cards and gain [E] [E]. NL Exhaust.",
+      " NL Next turn, draw 3 cards and gain [E] [E] [E]. NL Exhaust.",
+      " NL Next turn, draw 1 card and gain [E].",
+      " NL Next turn, draw 2 cards and gain [E] [E].",
+      " NL Next turn, draw 3 cards and gain [E] [E] [E]."
+    ]
+  },
+  "chimeracardsplus:DoublingMod": {
+    "TEXT": [
+      "Doubling ",
+      "",
+      "Costs [E] more. NL Copies the next Attack played this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL This turn, your next Attack is played twice.",
+      "This turn, your next Attack is played twice.",
+      "This turn, your next !M! Attacks are played twice."
+    ]
+  },
+  "chimeracardsplus:WearyMod": {
+    "TEXT": [
+      "Weary ",
+      "",
+      "Increases #yBlock by #b50%. NL Loses #b1 #yDexterity."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose 1 Dexterity."
+    ]
+  },
+  "chimeracardsplus:DuplicatingMod": {
+    "TEXT": [
+      "Duplicating ",
+      "",
+      "Costs [E] more. NL Copies the next card played this turn. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL This turn, your next card is played twice. NL Exhaust.",
+      " NL This turn, your next card is played twice."
+    ]
+  },
+  "chimeracardsplus:EdibleMod": {
+    "TEXT": [
+      "Edible ",
+      "",
+      "Reduces card values by #b25%. NL Gains Max HP based on rarity upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, raise your Max HP by 1.",
+      " NL Upon pickup, raise your Max HP by 2.",
+      " NL Upon pickup, raise your Max HP by 3."
+    ]
+  },
+  "chimeracardsplus:EnlightenedMod": {
+    "TEXT": [
+      "Enlightened ",
+      "",
+      "Reduces card values by #b25%. NL Reduces the cost of a random card in your hand to 1 this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Reduce the cost of a random card in your hand to 1 this turn."
+    ]
+  },
+  "chimeracardsplus:EntropicMod": {
+    "TEXT": [
+      "Entropic ",
+      "",
+      "Costs [E] more. NL Fills your hand with random cards. #yUpgrades those cards when #yUpgraded. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Fill your hand with random cards. NL Exhaust.",
+      " NL Fill your hand with random Upgraded cards. NL Exhaust."
+    ]
+  },
+  "chimeracardsplus:ExertedMod": {
+    "TEXT": [
+      "Exerted ",
+      "",
+      "Draws #b1 card. NL Draws #b1 less card next turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Draw 1 card. Draw 1 less card next turn."
+    ]
+  },
+  "chimeracardsplus:ExperiencedMod": {
+    "TEXT": [
+      "Experienced ",
+      "",
+      "Increases #yBlock by #b1 for every #yUpgraded card in your hand."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gains 1 additional Block for each Upgraded card in your hand."
+    ]
+  },
+  "chimeracardsplus:ExpertMod": {
+    "TEXT": [
+      "Expert ",
+      "",
+      "Costs [E] more. NL Draws cards until your have 6 in hand."
+    ],
+    "EXTRA_TEXT": [
+      " NL Draw cards until your have 6 in your hand."
+    ]
+  },
+  "chimeracardsplus:ExplosionMod": {
+    "TEXT": [
+      "",
+      " Explosion",
+      "Costs [E] more. NL When the enemy dies, deals damage equal to its Max HP to ALL enemies."
+    ],
+    "EXTRA_TEXT": [
+      " NL When the enemy dies, deal damage equal to its Max HP to ALL enemies."
+    ]
+  },
+  "chimeracardsplus:FairyMod": {
+    "TEXT": [
+      "Fairy in ",
+      "",
+      "Reduces card values by #b33%. When you would die, heals to #b10% of your Max HP instead and remove the card from your deck."
+    ],
+    "EXTRA_TEXT": [
+      " NL When you would die, heal to 10% of your Max HP instead and remove this from your deck."
+    ]
+  },
+  "chimeracardsplus:FastingMod": {
+    "TEXT": [
+      "Fasting ",
+      "",
+      "Costs [E] less. NL Gains [E] less at the start of each turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain 1 less [E] at the start of each turn.",
+      "Gain 1 less [W] at the start of each turn.",
+      "Gain 2 less [W] at the start of each turn."
+    ]
+  },
+  "chimeracardsplus:FeedingMod": {
+    "TEXT": [
+      "Feeding ",
+      "",
+      "Reduces damage by #b25%. NL Gains #b2(3) Max HP if #yFatal. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL If Fatal, raise your Max HP by %s. NL Exhaust.",
+      " NL If Fatal, raise your Max HP by %s."
+    ]
+  },
+  "chimeracardsplus:FiendMod": {
+    "TEXT": [
+      "Fiend ",
+      "",
+      "Costs [E] [E] more. NL #yExhausts your hand and plays the card once for each card #yExhausted. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      "Exhaust your hand. NL ",
+      " for each card Exhausted. NL Exhaust."
+    ]
+  },
+  "chimeracardsplus:FinishingMod": {
+    "TEXT": [
+      "Finishing ",
+      "",
+      "Reduces damage by #b33%. NL Hits once for each Attack played this turn."
+    ],
+    "EXTRA_TEXT": [
+      " for each Attack played this turn.",
+      " NL (%d Attack played.)",
+      " NL (%d Attacks played.)"
+    ]
+  },
+  "chimeracardsplus:FlamboyantMod": {
+    "TEXT": [
+      "Flamboyant ",
+      "",
+      "Increases damage by #b50% if #b5 or more cards are played this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deals 50% more damage if you have played 5 or more cards this turn.",
+      " (%d card played.)",
+      " (%d cards played.)"
+    ]
+  },
+  "chimeracardsplus:FlamingMod": {
+    "TEXT": [
+      "Flaming ",
+      "",
+      "Reduces #yBlock by #b25%. NL Deals damage equal to #b25% #yBlock back when attacked this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you are attacked this turn, deal %s damage back."
+    ]
+  },
+  "chimeracardsplus:FlickeringMod": {
+    "TEXT": [
+      "Flickering ",
+      "",
+      "Returns to your hand when killing an enemy."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this kills an enemy, return it to your hand."
+    ]
+  },
+  "chimeracardsplus:FocusedMod": {
+    "TEXT": [
+      "Focused ",
+      "",
+      "Reduces damage and #yBlock. NL Gains #b1 #yFocus for every #b7 damage and #yBlock lost. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain %s Focus. NL Exhaust.",
+      " NL Gain %s Focus."
+    ]
+  },
+  "chimeracardsplus:ForcefulMod": {
+    "TEXT": [
+      "Forceful ",
+      "",
+      "Costs [E] [E] [E] more. NL Costs [E] less for each Power played in combat. NL Increases card values by #b33%."
+    ],
+    "EXTRA_TEXT": [
+      " NL Costs 1 less [E] for each Power card played this combat.",
+      "Costs 1 less [B] for each Power card played this combat.",
+      "Costs 2 less [B] for each Power card played this combat."
+    ]
+  },
+  "chimeracardsplus:ForeignMod": {
+    "TEXT": [
+      "Foreign ",
+      "",
+      "Adds a random card with the same type of any color into your hand. #yUpgrades those cards when #yUpgraded. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Add a random Attack card of any color into your hand. NL Exhaust.",
+      " NL Add a random Upgraded Attack card of any color into your hand. NL Exhaust.",
+      " NL Add a random Skill card of any color into your hand. NL Exhaust.",
+      " NL Add a random Upgraded Skill card of any color into your hand. NL Exhaust."
+    ]
+  },
+  "chimeracardsplus:ForethoughtMod": {
+    "TEXT": [
+      "Forethought ",
+      "",
+      "Reduces card values by #b25%. NL Returns a card from your hand to the bottom of your draw pile. Reduces its cost to 0 until played."
+    ],
+    "EXTRA_TEXT": [
+      " NL Put a card from your hand to the bottom of your draw pile. It costs 0 until played."
+    ]
+  },
+  "chimeracardsplus:ForgetfulMod": {
+    "TEXT": [
+      "Forgetful ",
+      "",
+      "Reduces card values by #b33%. NL Optionally Removes another card in your deck upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, you may Remove another card in your deck."
+    ]
+  },
+  "chimeracardsplus:GamblerMod": {
+    "TEXT": [
+      "Gambler's ",
+      "",
+      "Discards your hand, then draws that many cards. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Discard your hand, then draw that many cards. NL Exhaust.",
+      " NL Discard your hand, then draw that many cards."
+    ]
+  },
+  "chimeracardsplus:GeneticMod": {
+    "TEXT": [
+      "Genetic ",
+      "",
+      "Sets #yBlock to #b1. NL Increases #yBlock by #b20% permanently each time played. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Permanently increase this card's Block by %s. NL Exhaust.",
+      " NL Permanently increase this card's Block by %s."
+    ]
+  },
+  "chimeracardsplus:GrandMod": {
+    "TEXT": [
+      "Grand ",
+      "",
+      "Increases card values by #b400%. NL The card is #yUnplayable if your deck is not empty."
+    ],
+    "EXTRA_TEXT": [
+      " NL Can only be played if there are no cards in your draw pile."
+    ]
+  },
+  "chimeracardsplus:GrowingMod": {
+    "TEXT": [
+      "Growing ",
+      "",
+      "Reduces card values by #b33%. NL Optionally #yUpgrades another card in your deck upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, you may Upgrade another card in your deck."
+    ]
+  },
+  "chimeracardsplus:GuardedMod": {
+    "TEXT": [
+      "Guarded ",
+      "",
+      "Gains [E] when #yExhausted."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this card is Exhausted, gain [E].",
+      "If this card is Exhausted, NL gain [R] [R]",
+      "If this card is Exhausted, NL gain [R] [R] [R]"
+    ]
+  },
+  "chimeracardsplus:HandMod": {
+    "TEXT": [
+      "",
+      " to the Hand",
+      "Reduces card values by #b33%. NL Gains #yBlock equal to the cost whenever you attack the enemy. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you attack this enemy, gain %d Block. NL Exhaust.",
+      " NL Whenever you attack this enemy, gain %d Block.",
+      " NL Whenever you attack this enemy, gain X Block. NL Exhaust.",
+      " NL Whenever you attack this enemy, gain X Block."
+    ]
+  },
+  "chimeracardsplus:HappyMod": {
+    "TEXT": [
+      "Happy ",
+      "",
+      "Gains [E] on the third turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this is your third turn, gain [E]."
+    ]
+  },
+  "chimeracardsplus:HastyMod": {
+    "TEXT": [
+      "Hasty ",
+      "",
+      "Costs [E] less. NL Loses [E] ."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose [E]."
+    ]
+  },
+  "chimeracardsplus:HeadonMod": {
+    "TEXT": [
+      "Head-on ",
+      "",
+      "Reduces damage and #yBlock by #b25%. NL Returns a card from your discard pile to the top of your draw pile."
+    ],
+    "EXTRA_TEXT": [
+      " NL Put a card from your discard pile on top of your draw pile."
+    ]
+  },
+  "chimeracardsplus:HeatingMod": {
+    "TEXT": [
+      "Heating ",
+      "",
+      "Reduces damage by #b20%. NL Removes #yBlock from the enemy."
+    ],
+    "EXTRA_TEXT": [
+      "Remove all Block from the enemy. NL "
+    ]
+  },
+  "chimeracardsplus:HelloMod": {
+    "TEXT": [
+      "Hello ",
+      "",
+      "Adds a random Common card into your hand. #yUpgrades that card when #yUpgraded. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Add a random Common card into your hand. NL Exhaust.",
+      " NL Add a random Upgraded Common card into your hand. NL Exhaust."
+    ]
+  },
+  "chimeracardsplus:HoloMod": {
+    "TEXT": [
+      "Holo ",
+      "",
+      "Reduces damage and #yBlock by #b67%. NL Returns a card from your discard pile to your hand. NL Adds #yExhaust if not #yUpgraded."
+    ],
+    "EXTRA_TEXT": [
+      " NL Put a card from your discard pile into your hand. NL Exhaust.",
+      " NL Put a card from your discard pile into your hand.",
+      "Put a card from your discard pile into your hand.",
+      "Put 2 cards from your discard pile into your hand."
+    ]
+  },
+  "chimeracardsplus:HornMod": {
+    "TEXT": [
+      "Horn ",
+      "",
+      "Gains [E] and draws #b1 card when killing an enemy."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this kills an enemy, gain [E] and draw 1 card."
+    ]
+  },
+  "chimeracardsplus:ImmortalityMod": {
+    "TEXT": [
+      "",
+      " for Immortality",
+      "Makes your wildest dreams come true."
+    ],
+    "EXTRA_TEXT": [
+      "Choose one: NL Gain !B! Plated Armor, !D! Strength, or !M! Gold. NL Exhaust.",
+      "At the end of your turn, gain %s *Plated *Armor."
+    ]
+  },
+  "chimeracardsplus:ImpatientMod": {
+    "TEXT": [
+      "Impatient ",
+      "",
+      "Reduces card values by #b33%. NL Draws #b2 cards if you have no Attacks in hand."
+    ],
+    "EXTRA_TEXT": [
+      " NL If you have no Attacks in your hand, draw 2 cards."
+    ]
+  },
+  "chimeracardsplus:ImpulsiveMod": {
+    "TEXT": [
+      "Impulsive ",
+      "",
+      "Costs [E] more. NL Triggers the passive ability of all Orbs."
+    ],
+    "EXTRA_TEXT": [
+      " NL Trigger the passive ability of all Orbs."
+    ]
+  },
+  "chimeracardsplus:IncantatoryMod": {
+    "TEXT": [
+      "Incantatory ",
+      "",
+      "Decreases #yDamage by #b7. NL Gains #b1 #yRitual. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain 1 Ritual. NL Exhaust.",
+      " NL Gain 1 Ritual."
+    ]
+  },
+  "chimeracardsplus:IncenseMod": {
+    "TEXT": [
+      "Incense ",
+      "",
+      "Gains #b1 #yIntangible on the sixth turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this is your sixth turn, gain 1 Intangible."
+    ]
+  },
+  "chimeracardsplus:InescapableMod": {
+    "TEXT": [
+      "Inescapable ",
+      "",
+      "Returns a copy to your hand when #yExhausted."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this card is Exhausted, put a copy of this card into your hand."
+    ]
+  },
+  "chimeracardsplus:InfernalMod": {
+    "TEXT": [
+      "Infernal ",
+      "",
+      "Adds a random Attack into your hand. #yUpgrades that card when #yUpgraded. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Add a random Attack into your hand. NL Exhaust.",
+      " NL Add a random Upgraded Attack into your hand. NL Exhaust."
+    ]
+  },
+  "chimeracardsplus:InflammableMod": {
+    "TEXT": [
+      "Inflammable ",
+      "",
+      "Reduces damage by #b80%. NL Gains #yStrength equal to #b20% damage. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain %s Strength. NL Exhaust.",
+      " NL Gain %s Strength."
+    ]
+  },
+  "chimeracardsplus:InjuriousMod": {
+    "TEXT": [
+      "Injurious ",
+      "",
+      "Increases damage and #yBlock by #b33%. NL Adds a #rWound into your draw pile."
+    ],
+    "EXTRA_TEXT": [
+      " NL Shuffle a *Wound into your draw pile.",
+      "Shuffle a *Wound into your draw pile.",
+      "Shuffle 2 *Wounds into your draw pile."
+    ]
+  },
+  "chimeracardsplus:InkyMod": {
+    "TEXT": [
+      "Inky ",
+      "",
+      "Draws #b1 card if this is the tenth card played in combat."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this is the tenth card played this combat, draw 1 card.",
+      " (%d card played.)",
+      " (%d cards played.)"
+    ]
+  },
+  "chimeracardsplus:IntimidatingMod": {
+    "TEXT": [
+      "Intimidating ",
+      "",
+      "Applies #b1 #yWeak to ALL enemies. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Apply 1 Weak to ALL enemies. NL Exhaust.",
+      " NL Apply 1 Weak to ALL enemies."
+    ]
+  },
+  "chimeracardsplus:IntrospectiveMod": {
+    "TEXT": [
+      "Introspective ",
+      "",
+      "Removes all of your #yFrail and #yVulnerable. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Remove all of your Frail and Vulnerable. NL Exhaust.",
+      " NL Remove all of your Frail and Vulnerable."
+    ]
+  },
+  "chimeracardsplus:KunaiMod": {
+    "TEXT": [
+      "Kunai ",
+      "",
+      "Gains #b1 #yDexterity if this is the third Attack played in a turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this is the third Attack played this turn, gain 1 Dexterity.",
+      " (%d Attack played.)",
+      " (%d Attacks played.)"
+    ]
+  },
+  "chimeracardsplus:LearnMod": {
+    "TEXT": [
+      "",
+      " and Learn",
+      "Costs [E] more. NL #yUpgrades a random card in deck if #yFatal. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL If Fatal, Upgrade a random card in your deck. NL Exhaust.",
+      " NL If Fatal, Upgrade a random card in your deck.",
+      "If Fatal, Upgrade a random card in your deck.",
+      "If Fatal, Upgrade 2 random cards in your deck."
+    ]
+  },
+  "chimeracardsplus:LoopyMod": {
+    "TEXT": [
+      "Loopy ",
+      "",
+      "Triggers the passive ability of your next Orb."
+    ],
+    "EXTRA_TEXT": [
+      " NL Trigger the passive ability of your next Orb."
+    ]
+  },
+  "chimeracardsplus:LoudMod": {
+    "TEXT": [
+      "Loud ",
+      "",
+      "Costs [E] more. NL Copies the next Power played this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL This turn, your next Power card is played twice.",
+      "This turn, your next Power card is played twice.",
+      "This turn, your next !M! Power cards are played twice."
+    ]
+  },
+  "chimeracardsplus:MadMod": {
+    "TEXT": [
+      "Mad ",
+      "",
+      "Costs [E] more. NL Reduces the cost of a random card in your hand to #b0 this combat. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Reduce the cost of a random card in your hand to 0 this combat. NL Exhaust.",
+      " NL Reduce the cost of a random card in your hand to 0 this combat."
+    ]
+  },
+  "chimeracardsplus:MagneticMod": {
+    "TEXT": [
+      "Magnetic ",
+      "",
+      "Adds a random Colorless card into your hand. #yUpgrades that card when #yUpgraded. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Add a random Colorless card into your hand. NL Exhaust.",
+      " NL Add a random Upgraded Colorless card into your hand. NL Exhaust."
+    ]
+  },
+  "chimeracardsplus:MarbleMod": {
+    "TEXT": [
+      "Marble ",
+      "",
+      "Applies #b1 #yVulnerable to ALL enemies. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Apply 1 Vulnerable to ALL enemies. NL Exhaust.",
+      " NL Apply 1 Vulnerable to ALL enemies."
+    ]
+  },
+  "chimeracardsplus:MarkedMod": {
+    "TEXT": [
+      "Marked ",
+      "",
+      "Reduces damage by #b67%. NL Applies #yMark equal to #b33% damage, then makes ALL enemies lose HP equal to their #yMark."
+    ],
+    "EXTRA_TEXT": [
+      " NL Apply %s *Mark. NL ALL enemies lose HP equal to their *Mark."
+    ]
+  },
+  "chimeracardsplus:MetallicMod": {
+    "TEXT": [
+      "Metallic ",
+      "",
+      "Reduces #yBlock by #b75%. NL Gains #yMetallicize equal to #b25% #yBlock. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain %s *Metallicize. NL Exhaust.",
+      " NL Gain %s *Metallicize."
+    ]
+  },
+  "chimeracardsplus:MirroredMod": {
+    "TEXT": [
+      "Mirrored ",
+      "",
+      "Reduces card values by #b33%. NL Optionally Duplicates another card in your deck upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, you may Duplicate another card in your deck."
+    ]
+  },
+  "chimeracardsplus:MummifiedMod": {
+    "TEXT": [
+      "Mummified ",
+      "",
+      "Reduces the cost of a random card in your hand to #b0 this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL A random card in your hand costs 0 this turn."
+    ]
+  },
+  "chimeracardsplus:MutagenicMod": {
+    "TEXT": [
+      "Mutagenic ",
+      "",
+      "Increases damage by #b3 on the first turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deals 3 more damage on your first turn."
+    ]
+  },
+  "chimeracardsplus:NightmareMod": {
+    "TEXT": [
+      "",
+      "'s Nightmare",
+      "Costs [E] [E] [E] . NL Adds #b3 copies of the card into your hand next turn. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      "Next turn, add !M! copies of %s into your hand. NL Exhaust.",
+      "Innate. NL "
+    ]
+  },
+  "chimeracardsplus:NormalMod": {
+    "TEXT": [
+      "Normal ",
+      "",
+      "Costs [E] less. NL While the card is in hand, cards are #yUnplayable if you played #b3 or more cards this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL While in hand, you cannot play more than 3 cards this turn.",
+      " (%d card played.)",
+      " (%d cards played.)"
+    ]
+  },
+  "chimeracardsplus:NunchakuMod": {
+    "TEXT": [
+      "Nunchaku ",
+      "",
+      "Gains [E] if this is the tenth Attack played in combat."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this is the tenth Attack played this combat, gain [E].",
+      " (%d Attack played.)",
+      " (%d Attacks played.)"
+    ]
+  },
+  "chimeracardsplus:ObservantMod": {
+    "TEXT": [
+      "Observant ",
+      "",
+      "Reduces card values by #b33%. NL Gains #yStrength equal to the cost if the enemy intends to attack."
+    ],
+    "EXTRA_TEXT": [
+      " NL If the enemy intends to attack, gain %d Strength.",
+      " NL If the enemy intends to attack, gain X Strength."
+    ]
+  },
+  "chimeracardsplus:OpportunisticMod": {
+    "TEXT": [
+      "Opportunistic ",
+      "",
+      "Reduces card values by #b33%. NL Draws #b2 cards if you have no Skills in hand."
+    ],
+    "EXTRA_TEXT": [
+      " NL If you have no Skills in your hand, draw 2 cards."
+    ]
+  },
+  "chimeracardsplus:OverclockedMod": {
+    "TEXT": [
+      "Overclocked ",
+      "",
+      "Costs [E] less. NL Adds a #rBurn into your discard pile."
+    ],
+    "EXTRA_TEXT": [
+      " NL Add a *Burn into your discard pile.",
+      "Add a *Burn into your discard pile.",
+      "Add 2 *Burns into your discard pile."
+    ]
+  },
+  "chimeracardsplus:PainfulMod": {
+    "TEXT": [
+      "Painful ",
+      "",
+      "Costs [E] less. NL Adds #b2 #rWounds into your draw pile."
+    ],
+    "EXTRA_TEXT": [
+      " NL Shuffle 2 *Wounds into your draw pile.",
+      "Shuffle a *Wound into your draw pile.",
+      "Shuffle 3 *Wounds into your draw pile."
+    ]
+  },
+  "chimeracardsplus:PainlessMod": {
+    "TEXT": [
+      "Painless ",
+      "",
+      "Gains #b3(4) #yBlock when #yExhausted."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this card is Exhausted, gain %s Block."
+    ]
+  },
+  "chimeracardsplus:PanicMod": {
+    "TEXT": [
+      "Panic ",
+      "",
+      "Increases #yBlock by #b300%. NL Prevents gaining #yBlock from cards for #b2 turns. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL You cannot gain Block from cards for 2 turns. NL Exhaust.",
+      " NL You cannot gain Block from cards for 2 turns."
+    ]
+  },
+  "chimeracardsplus:ParasiticMod": {
+    "TEXT": [
+      "Parasitic ",
+      "",
+      "Increases card values by #b20%. NL Loses #b3 Max HP when transformed or removed from your deck."
+    ],
+    "EXTRA_TEXT": [
+      " NL If transformed or removed from your deck, lose 3 Max HP."
+    ]
+  },
+  "chimeracardsplus:PatientMod": {
+    "TEXT": [
+      "Patient ",
+      "",
+      "Adds #yRetain. NL Reduces damage by #b50%. NL Increases damage by #b25% when #yRetained."
+    ],
+    "EXTRA_TEXT": [
+      "Retain. NL ",
+      " NL When Retained, increase its damage by %s this combat."
+    ]
+  },
+  "chimeracardsplus:PerfectMod": {
+    "TEXT": [
+      "Perfect ",
+      "",
+      "Reduces damage by #b50%, but increases damage by #b17%(25%) for each of your \"Strike\" card."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deals %s additional damage for ALL your cards containing \"Strike\"."
+    ]
+  },
+  "chimeracardsplus:PhantasmalMod": {
+    "TEXT": [
+      "Phantasmal ",
+      "",
+      "Costs [E] more. NL Doubles Attack damage next turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Next turn, your Attacks deal double damage."
+    ]
+  },
+  "chimeracardsplus:PocketwatchMod": {
+    "TEXT": [
+      "",
+      "'s Pocketwatch",
+      "Draws #b3 cards next turn if this is the fourth card played in a turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this is the fourth card this turn, draw 3 cards next turn.",
+      " (%d card played.)",
+      " (%d cards played.)"
+    ]
+  },
+  "chimeracardsplus:PointyMod": {
+    "TEXT": [
+      "Pointy ",
+      "",
+      "Increases damage by #b100% if this is the tenth Attack played in combat."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deals double damage if this is the tenth Attack played this combat.",
+      " (%d Attack played.)",
+      " (%d Attacks played.)"
+    ]
+  },
+  "chimeracardsplus:PrayerfulMod": {
+    "TEXT": [
+      "Prayerful ",
+      "",
+      "Gains #b1(2) #yMantra."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain %s Mantra.",
+      " NL Enter Divinity."
+    ]
+  },
+  "chimeracardsplus:PrayerMod": {
+    "TEXT": [
+      "Prayer's",
+      "",
+      "Drops an additional card reward when killing an enemy in a normal combat. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this kills an enemy in a normal combat, it drops an additional card reward. NL Exhaust.",
+      " NL If this kills an enemy in a normal combat, it drops an additional card reward."
+    ]
+  },
+  "chimeracardsplus:PredictedMod": {
+    "TEXT": [
+      "Predicted ",
+      "",
+      "Costs #b0 on first use. NL Increases card values by #b33%. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Exhaust.",
+      " X ",
+      " %d ",
+      " X+",
+      " %d+"
+    ]
+  },
+  "chimeracardsplus:PredictiveMod": {
+    "TEXT": [
+      "Predictive ",
+      "",
+      "Adds the card with #yPredicted #yModifier into your hand next turn."
+    ],
+    "EXTRA_TEXT": [
+      "Next turn, add *Predicted %s into your hand.",
+      "Innate. ",
+      "Retain. ",
+      "Ethereal. ",
+      " NL Exhaust.",
+      "NL "
+    ]
+  },
+  "chimeracardsplus:PreservantMod": {
+    "TEXT": [
+      "Preservant ",
+      "",
+      "Adds #yRetain. NL Reduces #yBlock by #b50%. NL Increases #yBlock by #b25% when #yRetained."
+    ],
+    "EXTRA_TEXT": [
+      "Retain. NL ",
+      " NL When Retained, increase its Block by %s this combat."
+    ]
+  },
+  "chimeracardsplus:ProactiveMod": {
+    "TEXT": [
+      "Proactive ",
+      "",
+      "Draws #b1 card. NL Returns #b1 card from your hand to the top of your draw pile."
+    ],
+    "EXTRA_TEXT": [
+      " NL Draw 1 card. NL Put a card from your hand on top of your draw pile."
+    ]
+  },
+  "chimeracardsplus:ProudMod": {
+    "TEXT": [
+      "Proud ",
+      "",
+      "Costs [E] more. NL Adds #yInnate and #yExhaust. NL Puts a copy of the card on top of your draw pile if you end your turn with it in hand."
+    ],
+    "EXTRA_TEXT": [
+      "Innate. NL ",
+      " NL At the end of your turn, put a copy of this card on top of your draw pile. NL Exhaust."
+    ]
+  },
+  "chimeracardsplus:QuickSkillMod": {
+    "TEXT": [
+      "Quick ",
+      "",
+      "Reduces #yBlock by #b20%. NL Draws #b1 card."
+    ],
+    "EXTRA_TEXT": [
+      " NL Draw 1 card."
+    ]
+  },
+  "chimeracardsplus:RagingMod": {
+    "TEXT": [
+      "Raging ",
+      "",
+      "Reduces #yBlock by #b20%. NL Gains #b3 #yBlock whenever you play an Attack this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you play an Attack this turn, gain 3 Block."
+    ]
+  },
+  "chimeracardsplus:RealityMod": {
+    "TEXT": [
+      "",
+      " Reality",
+      "If possible, costs [E] less, reduces damage by #b12, and adds a #ySmite into your hand. NL If possible, costs [E] less, reduces #yBlock by #b12, and adds a #ySafety into your hand."
+    ],
+    "EXTRA_TEXT": [
+      " NL Add a *Smite into your hand.",
+      " NL Add a *Safety into your hand."
+    ]
+  },
+  "chimeracardsplus:ReaperMod": {
+    "TEXT": [
+      "Reaper's ",
+      "",
+      "Reduces damage by #b75%. NL Heals HP equal to unblocked damage dealt. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Heal HP equal to unblocked damage. NL Exhaust.",
+      " NL Heal HP equal to unblocked damage."
+    ]
+  },
+  "chimeracardsplus:RecklessMod": {
+    "TEXT": [
+      "Reckless ",
+      "",
+      "Increases damage and #yBlock by #b25%. NL Adds a #rDazed into your draw pile."
+    ],
+    "EXTRA_TEXT": [
+      " NL Shuffle a *Dazed into your draw pile.",
+      "Shuffle a *Dazed into your draw pile.",
+      "Shuffle 2 *Dazed into your draw pile."
+    ]
+  },
+  "chimeracardsplus:RecyclableMod": {
+    "TEXT": [
+      "Recyclable ",
+      "",
+      "Costs [E] . NL #yExhausts #b1 card and sets X equal to its cost."
+    ],
+    "EXTRA_TEXT": [
+      "Exhaust a card. NL ",
+      ", where X is the Exhausted card's cost.",
+      " NL X is the Exhausted card's cost.",
+      " X ",
+      " X+",
+      "."
+    ]
+  },
+  "chimeracardsplus:ReflexMod": {
+    "TEXT": [
+      "Reflex ",
+      "",
+      "Draws #b1 card when discarded."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this card is discarded from your hand, draw 1 card.",
+      "discard"
+    ]
+  },
+  "chimeracardsplus:ReplaceableMod": {
+    "TEXT": [
+      "Replaceable ",
+      "",
+      "Adds a random card into your hand when discarded."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this card is discarded from your hand, add a random card into your hand.",
+      "discard"
+    ]
+  },
+  "chimeracardsplus:ReplicativeMod": {
+    "TEXT": [
+      "Replicative ",
+      "",
+      "Returns a copy to your hand when discarded."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this card is discarded from your hand, put a copy of this card into your hand.",
+      "discard"
+    ]
+  },
+  "chimeracardsplus:RupturedMod": {
+    "TEXT": [
+      "Ruptured ",
+      "",
+      "Loses #b2 HP. NL Gains #b1 #yStrength."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose 2 HP. Gain 1 Strength."
+    ]
+  },
+  "chimeracardsplus:ScribblyMod": {
+    "TEXT": [
+      "Scribbly ",
+      "",
+      "Costs [E] more. NL Draws cards until your hand is full. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Draw cards until your hand is full. NL Exhaust.",
+      " NL Draw cards until your hand is full."
+    ]
+  },
+  "chimeracardsplus:SecretMod": {
+    "TEXT": [
+      "Secret ",
+      "",
+      "Puts a copy of the card from your draw pile into your hand."
+    ],
+    "EXTRA_TEXT": [
+      " NL Put 1 %s from your draw pile into your hand."
+    ]
+  },
+  "chimeracardsplus:SeparateMod": {
+    "TEXT": [
+      "Separate ",
+      "",
+      "Increases card value by #b33%. NL #yExhausts all cards in your hand with a different type."
+    ],
+    "EXTRA_TEXT": [
+      " NL Exhaust all non-Attack cards in your hand.",
+      " NL Exhaust all non-Skill cards in your hand.",
+      " NL Exhaust all non-Power cards in your hand."
+    ]
+  },
+  "chimeracardsplus:SetupMod": {
+    "TEXT": [
+      "",
+      " Setup",
+      "Costs [E] more. NL Returns a card from your hand to the top of your draw pile. Reduces its cost to #b0 the next time it is played."
+    ],
+    "EXTRA_TEXT": [
+      " NL Put a card from your hand on top of your draw pile. It costs 0 until played."
+    ]
+  },
+  "chimeracardsplus:ShacklingMod": {
+    "TEXT": [
+      "Shackling ",
+      "",
+      "Applies #b5 #yStrength down for one turn. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Enemy loses 5 Strength this turn. NL Exhaust.",
+      " NL Enemy loses 5 Strength this turn."
+    ]
+  },
+  "chimeracardsplus:ShatteringMod": {
+    "TEXT": [
+      "Shattering ",
+      "",
+      "Increases damage by #b3 if the enemy has #yBlock."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deals 3 more damage to enemies with Block."
+    ]
+  },
+  "chimeracardsplus:ShockingMod": {
+    "TEXT": [
+      "Shocking ",
+      "",
+      "Costs [E] more. NL Applies #b2(3) #yWeak and #yVulnerable to ALL enemies. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Apply %s Weak and Vulnerable to ALL enemies. NL Exhaust.",
+      " NL Apply %s Weak and Vulnerable to ALL enemies."
+    ]
+  },
+  "chimeracardsplus:ShriekingMod": {
+    "TEXT": [
+      "Shrieking ",
+      "",
+      "Applies #b3 #yStrength down to ALL enemies for one turn. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL ALL enemies loses 3 Strength this turn. NL Exhaust.",
+      " NL ALL enemies loses 3 Strength this turn."
+    ]
+  },
+  "chimeracardsplus:ShurikenMod": {
+    "TEXT": [
+      "Shuriken ",
+      "",
+      "Gains #b1 #yStrength if this is the third Attack played in a turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this is the third Attack played this turn, gain 1 Strength.",
+      " (%d Attack played.)",
+      " (%d Attacks played.)"
+    ]
+  },
+  "chimeracardsplus:SmilingMod": {
+    "TEXT": [
+      "Smiling ",
+      "",
+      "Gains #b50 #yGold when transformed or removed from your deck."
+    ],
+    "EXTRA_TEXT": [
+      " NL If transformed or removed from your deck, gain 50 *Gold."
+    ]
+  },
+  "chimeracardsplus:SmoothMod": {
+    "TEXT": [
+      "Smooth ",
+      "",
+      "Increases #yBlock by #b1."
+    ],
+    "EXTRA_TEXT": []
+  },
+  "chimeracardsplus:SozuMod": {
+    "TEXT": [
+      "Sozu ",
+      "",
+      "After you use a potion, gains [E] this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If you used a potion this turn, gain [E]."
+    ]
+  },
+  "chimeracardsplus:SpecializedMod": {
+    "TEXT": [
+      "Specialized ",
+      "",
+      "Adds #b2 additional copies into your deck upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, add 2 additional copies into your deck."
+    ]
+  },
+  "chimeracardsplus:SplitMod": {
+    "TEXT": [
+      "Split ",
+      "",
+      "Costs [E] more. NL Gains [E] equal to the increased cost when killing an enemy. NL Increases damage by #b25%."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this kills an enemy, gain [E] .",
+      " NL If this kills an enemy, gain [E] [E].",
+      " NL If this kills an enemy, gain [E] [E] [E].",
+      " NL If this kills an enemy, gain %d [E].",
+      " NL If this kills an enemy, gain [B] [B] [B]."
+    ]
+  },
+  "chimeracardsplus:SpringyMod": {
+    "TEXT": [
+      "Springy ",
+      "",
+      "Reduces damage and #yBlock by #b25%. NL Returns the next card you play this turn to the top of your draw pile."
+    ],
+    "EXTRA_TEXT": [
+      " NL Put the next card you play this turn on top of your draw pile.",
+      "Put the next card you play this turn on top of your draw pile.",
+      "Put the next 2 cards you play this turn on top of your draw pile."
+    ]
+  },
+  "chimeracardsplus:StableMod": {
+    "TEXT": [
+      "Stable ",
+      "",
+      "Costs [E] more. NL Increases damage and #yBlock by #b33%. NL #yRetains your hand this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Retain your hand this turn.",
+      "Retain your hand this turn.",
+      "Retain your hand for 2 turns."
+    ]
+  },
+  "chimeracardsplus:StarMod": {
+    "TEXT": [
+      "Star ",
+      "",
+      "Drops an additional Relic when killing an Elite. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this kills an Elite, it drops an additional Relic. NL Exhaust.",
+      " NL If this kills an Elite, it drops an additional Relic."
+    ]
+  },
+  "chimeracardsplus:StatuesqueMod": {
+    "TEXT": [
+      "Statuesque ",
+      "",
+      "Obtains a random potion when killing an enemy. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this kills an enemy, obtain a random potion. NL Exhaust.",
+      " NL If this kills an enemy, obtain a random potion."
+    ]
+  },
+  "chimeracardsplus:StealthyMod": {
+    "TEXT": [
+      "Stealthy ",
+      "",
+      "Costs [E] more. NL Gains [E] [E] if you have discarded a card this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If you have discarded a card this turn, gain [E] [E].",
+      "If you have discarded a card this turn, NL gain [G] [G].",
+      "If you have discarded a card this turn, NL gain [G] [G] [G] [G].",
+      "discard"
+    ]
+  },
+  "chimeracardsplus:SteamMod": {
+    "TEXT": [
+      "Steam ",
+      "",
+      "Increases #yBlock by #b25%. NL Reduces #yBlock by #b1 when played."
+    ],
+    "EXTRA_TEXT": [
+      " NL Decrease this card's Block by 1 this combat.",
+      "Decrease this card's Block by 1 this combat.",
+      "Decrease this card's Block by 2 this combat."
+    ]
+  },
+  "chimeracardsplus:StormMod": {
+    "TEXT": [
+      "Storm of ",
+      "",
+      "Costs [E] . NL Discards your hand and adds a equal number of the card into your hand."
+    ],
+    "EXTRA_TEXT": [
+      "Discard your hand. Add !M! %s into your hand for each card discarded.",
+      "Innate. NL "
+    ]
+  },
+  "chimeracardsplus:StrainedMod": {
+    "TEXT": [
+      "Strained ",
+      "",
+      "Increases damage by #b50%. NL Loses #b1 #yStrength."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose 1 Strength."
+    ]
+  },
+  "chimeracardsplus:StrategicMod": {
+    "TEXT": [
+      "Strategic ",
+      "",
+      "Draws #b2 cards. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Draw 2 cards. NL Exhaust.",
+      " NL Draw 2 cards."
+    ]
+  },
+  "chimeracardsplus:StrikeMod": {
+    "TEXT": [
+      "",
+      " Strike",
+      "Counts as a \"Strike\" card."
+    ],
+    "EXTRA_TEXT": []
+  },
+  "chimeracardsplus:SulfuricMod": {
+    "TEXT": [
+      "Sulfuric ",
+      "",
+      "Reduces damage by #b20%. NL Gains #b2 Strength. NL Gives ALL enemies #b1 Strength."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain 2 Strength and ALL enemies gain 1 Strength."
+    ]
+  },
+  "chimeracardsplus:SuperluminalMod": {
+    "TEXT": [
+      "Superluminal ",
+      "",
+      "Reduces damage and #yBlock by #b3. NL Draws #b1 card if you played less than #b3(4) cards this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If you have played less than %s cards this turn, draw 1 card.",
+      " (%d card played.)",
+      " (%d cards played.)"
+    ]
+  },
+  "chimeracardsplus:TacticalMod": {
+    "TEXT": [
+      "Tactical ",
+      "",
+      "Gains [E] when discarded."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this card is discarded from your hand, gain [E].",
+      "If this card is discarded from your hand, gain [G]",
+      "If this card is discarded from your hand, gain [G] [G]",
+      "discard"
+    ]
+  },
+  "chimeracardsplus:TalkativeMod": {
+    "TEXT": [
+      "Talkative ",
+      "",
+      "You feel more talkative."
+    ],
+    "EXTRA_TEXT": [
+      " NL You feel more talkative."
+    ]
+  },
+  "chimeracardsplus:TemperamentalMod": {
+    "TEXT": [
+      "Temperamental ",
+      "",
+      "Increases damage and #yBlock by #b33%. NL Prevents you from changing #yStances this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL You cannot change Stances until next turn."
+    ]
+  },
+  "chimeracardsplus:TerrifyingMod": {
+    "TEXT": [
+      "Terrifying ",
+      "",
+      "Costs [E] more. NL Applies #b99 #yVulnerable. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Apply 99 Vulnerable. NL Exhaust.",
+      " NL Apply 99 Vulnerable."
+    ]
+  },
+  "chimeracardsplus:ThirdMod": {
+    "TEXT": [
+      "Third ",
+      "",
+      "Reduces card values by #b20%. NL Scries #b2(3)."
+    ],
+    "EXTRA_TEXT": [
+      " NL Scry %s."
+    ]
+  },
+  "chimeracardsplus:ThornyMod": {
+    "TEXT": [
+      "Thorny ",
+      "",
+      "Reduces #yBlock by #b75%. NL Gains #yThorns equal to #b25% #yBlock. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain %s Thorns. NL Exhaust.",
+      " NL Gain %s Thorns."
+    ]
+  },
+  "chimeracardsplus:TingshaMod": {
+    "TEXT": [
+      "Tingsha ",
+      "",
+      "Deals #b3 damage to a random enemy when discarded."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this card is discarded from your hand, deal 3 damage to a random enemy.",
+      "discard"
+    ]
+  },
+  "chimeracardsplus:ToughMod": {
+    "TEXT": [
+      "Tough ",
+      "",
+      "Gains #b3(4) #yBlock when discarded."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this card is discarded from your hand, gain %s Block.",
+      "discard"
+    ]
+  },
+  "chimeracardsplus:TranceMod": {
+    "TEXT": [
+      "",
+      " Trance",
+      "Costs [E] less. NL You cannot draw additional cards this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL You cannot draw additional cards this turn."
+    ]
+  },
+  "chimeracardsplus:UnceasingMod": {
+    "TEXT": [
+      "Unceasing ",
+      "",
+      "Draws #b1 card if you have no cards in hand."
+    ],
+    "EXTRA_TEXT": [
+      " NL If you have no cards in hand, draw 1 card."
+    ]
+  },
+  "chimeracardsplus:UnfocusedMod": {
+    "TEXT": [
+      "Unfocused ",
+      "",
+      "Increases card values by #b25%. NL Loses #b1 #yFocus."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose 1 Focus."
+    ]
+  },
+  "chimeracardsplus:UnstableMod": {
+    "TEXT": [
+      "Unstable ",
+      "",
+      "Increases card value by #b25%. NL Discards all cards with a different type."
+    ],
+    "EXTRA_TEXT": [
+      " NL Discard all non-Attack cards in your hand.",
+      " NL Discard all non-Skill cards in your hand.",
+      " NL Discard all non-Power cards in your hand."
+    ]
+  },
+  "chimeracardsplus:UpperMod": {
+    "TEXT": [
+      "Upper ",
+      "",
+      "Reduces damage and #yBlock by #b20%. NL Applies #b1 #yWeak and #yVulnerable."
+    ],
+    "EXTRA_TEXT": [
+      " NL Apply 1 Weak and Vulnerable."
+    ]
+  },
+  "chimeracardsplus:VajraMod": {
+    "TEXT": [
+      "Vajra ",
+      "",
+      "Increases damage by #b1."
+    ],
+    "EXTRA_TEXT": []
+  },
+  "chimeracardsplus:ViolentMod": {
+    "TEXT": [
+      "Violent ",
+      "",
+      "Puts #b2 random Attacks from your draw pile into your hand. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Put 2 random Attacks from your draw pile into your hand. NL Exhaust.",
+      " NL Put 2 random Attacks from your draw pile into your hand."
+    ]
+  },
+  "chimeracardsplus:WaffleMod": {
+    "TEXT": [
+      "Waffle ",
+      "",
+      "Reduces card values by #b25%. NL Heals #b7 HP upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, heal 7 HP."
+    ]
+  },
+  "chimeracardsplus:WaryMod": {
+    "TEXT": [
+      "Wary ",
+      "",
+      "Puts #b2 random Skills from your draw pile into your hand. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Put 2 random Skills from your draw pile into your hand. NL Exhaust.",
+      " NL Put 2 random Skills from your draw pile into your hand."
+    ]
+  },
+  "chimeracardsplus:WhipMod": {
+    "TEXT": [
+      "",
+      " and Whip",
+      "Reduces damage and #yBlock by #b25%. NL Applies #b1(2) #yWeak if the last card played was an Attack."
+    ],
+    "EXTRA_TEXT": [
+      " NL If the last card played this combat was an Attack, apply %s Weak."
+    ]
+  },
+  "chimeracardsplus:WiseMod": {
+    "TEXT": [
+      "Wise ",
+      "",
+      "Reduces card values by #b25%. NL Adds #yInsights into your draw pile equal to the cost."
+    ],
+    "EXTRA_TEXT": [
+      " NL Shuffle an *Insight into your draw pile.",
+      " NL Shuffle %d *Insights into your draw pile.",
+      " NL Shuffle X *Insights into your draw pile.",
+      " NL Shuffle an *Insight into your draw pile.",
+      " NL Shuffle an *Insight into your draw pile."
+    ]
+  },
+  "chimeracardsplus:WreathMod": {
+    "TEXT": [
+      "Wreath of ",
+      "",
+      "Reduces damage by #b50%. NL Gives your next Attack #b33% of this card's damage."
+    ],
+    "EXTRA_TEXT": [
+      " NL Your next Attack deals %s additional damage."
+    ]
+  },
+  "chimeracardsplus:EstablishedMod": {
+    "TEXT": [
+      "Established ",
+      "",
+      "Costs [E] [E] more. NL Adds #yRetain. NL Costs [E] less when #yRetained."
+    ],
+    "EXTRA_TEXT": [
+      "Retain. NL ",
+      " NL When Retained, lower its cost by 1 this combat."
+    ]
+  },
+  "chimeracardsplus:GoldenMod": {
+    "TEXT": [
+      "Golden ",
+      "",
+      "Gains #yGold equal to the cost. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain %d *Gold. NL Exhaust.",
+      " NL Gain %d *Gold.",
+      " NL Gain X *Gold. NL Exhaust.",
+      " NL Gain X *Gold."
+    ]
+  },
+  "chimeracardsplus:OpeningMod": {
+    "TEXT": [
+      "Opening ",
+      "",
+      "Increases damage by #b3 if this is the first Attack played this turn. NL Increases #yBlock by #b3 if this is the first Skill played this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deals 3 more damage if you have not played Attacks this turn.",
+      " NL Gains 3 more Block if you have not played Skills this turn."
+    ]
+  },
+  "chimeracardsplus:PlatedMod": {
+    "TEXT": [
+      "Plated ",
+      "",
+      "Reduces #yBlock by #b67%. NL Gains #yPlated #yArmor equal to #b33% #yBlock. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain %s *Plated *Armor. NL Exhaust.",
+      " NL Gain %s *Plated *Armor."
+    ]
+  },
+  "chimeracardsplus:FadingMod": {
+    "TEXT": [
+      "Fading ",
+      "",
+      "Increases card values by #b100%. NL Removes itself from the deck after defeating a Boss."
+    ],
+    "EXTRA_TEXT": [
+      " NL After you defeat a Boss, remove this from your deck."
+    ]
+  },
+  "chimeracardsplus:UpliftingMod": {
+    "TEXT": [
+      "Uplifting ",
+      "",
+      "Reduces damage by #b60%. NL Gives your next Attack damage equal to unblocked damage dealt."
+    ],
+    "EXTRA_TEXT": [
+      " NL Your next Attack deals additional damage equal to unblocked damage."
+    ]
+  },
+  "chimeracardsplus:SelfFormingMod": {
+    "TEXT": [
+      "Self-Forming ",
+      "",
+      "Increases Block by #b50%. NL Loses #b3 HP."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose 3 HP."
+    ]
+  },
+  "chimeracardsplus:OrnamentalMod": {
+    "TEXT": [
+      "Ornamental ",
+      "",
+      "Gains #b4 #yBlock if this is the third Attack played in a turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this is the third Attack played this turn, gain !B! Block.",
+      " (%d Attack played.)",
+      " (%d Attacks played.)"
+    ]
+  },
+  "chimeracardsplus:UnawakenedMod": {
+    "TEXT": [
+      "Unawakened ",
+      "",
+      "Adds an #yAwakened copy into your deck when transformed or removed from your deck."
+    ],
+    "EXTRA_TEXT": [
+      " NL This card hasn't awakened yet..."
+    ]
+  },
+  "chimeracardsplus:AwakenedMod": {
+    "TEXT": [
+      "Awakened ",
+      "",
+      "Increases card values by #b100%."
+    ],
+    "EXTRA_TEXT": []
+  },
+  "chimeracardsplus:FlashyMod": {
+    "TEXT": [
+      "Flashy ",
+      "",
+      "Reduces damage by #b33%. NL Draws #b2 cards when dealing unblocked damage."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this deals unblocked damage, draw 2 cards."
+    ]
+  },
+  "chimeracardsplus:AugerMod": {
+    "TEXT": [
+      "Auger ",
+      "",
+      "Reduces damage by #b33%. NL Applies #b2 #yVulnerable when dealing unblocked damage."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this deals unblocked damage, apply 2 Vulnerable."
+    ]
+  },
+  "chimeracardsplus:TimeWarpedMod": {
+    "TEXT": [
+      "Time-Warped ",
+      "",
+      "Gains #b2 #yStrength and ends your turn if this is the twelfth card played in combat."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this is the twelfth card played this combat, gain 2 Strength and end your turn.",
+      " (%d card played.)",
+      " (%d cards played.)"
+    ]
+  },
+  "chimeracardsplus:RefluxingMod": {
+    "TEXT": [
+      "Refluxing ",
+      "",
+      "Costs [E] more. NL Increases damage by #b33%. NL Gains [E] when dealing unblocked damage."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this deals unblocked damage, gain [E]."
+    ]
+  },
+  "chimeracardsplus:CleansingMod": {
+    "TEXT": [
+      "Cleansing ",
+      "",
+      "Removes a random debuff from you. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose a random debuff. NL Exhaust.",
+      " NL Lose a random debuff."
+    ]
+  },
+  "chimeracardsplus:RegretfulMod": {
+    "TEXT": [
+      "Regretful ",
+      "",
+      "Increases card values by #b25%. NL At the end of your turn, if the card is in hand, lose HP equal to the number of cards in hand."
+    ],
+    "EXTRA_TEXT": [
+      " NL At the end of your turn, lose HP equal to the number of cards in your hand."
+    ]
+  },
+  "chimeracardsplus:HesitantMod": {
+    "TEXT": [
+      "Hesitant ",
+      "",
+      "Increases card values by #b25%. NL At the end of your turn, if the card is in hand, gain #b1 Weak."
+    ],
+    "EXTRA_TEXT": [
+      " NL At the end of your turn, gain 1 Weak."
+    ]
+  },
+  "chimeracardsplus:DecayingMod": {
+    "TEXT": [
+      "Decaying ",
+      "",
+      "Increases card values by #b25%. NL At the end of your turn, if the card is in hand, take #b2 damage."
+    ],
+    "EXTRA_TEXT": [
+      " NL At the end of your turn, take 2 damage."
+    ]
+  },
+  "chimeracardsplus:DrainingMod": {
+    "TEXT": [
+      "Draining ",
+      "",
+      "Increases card values by #b40%. NL Loses #b1 HP when drawn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you draw this card, lose 1 HP."
+    ]
+  },
+  "chimeracardsplus:BackupMod": {
+    "TEXT": [
+      "Backup ",
+      "",
+      "Costs [E] more. NL Draws #b1 card when drawn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you draw this card, draw 1 card."
+    ]
+  },
+  "chimeracardsplus:JudgeMod": {
+    "TEXT": [
+      "",
+      " and Judge",
+      "Reduces damage by #b25%. NL Kills the enemy if it has HP less than or equal to #b75% damage."
+    ],
+    "EXTRA_TEXT": [
+      " NL If the enemy has %s or less HP, set their HP to 0."
+    ]
+  },
+  "chimeracardsplus:StrangeMod": {
+    "TEXT": [
+      "Strange ",
+      "",
+      "#yExhausts #b50% of the time."
+    ],
+    "EXTRA_TEXT": [
+      " 50% chance to Exhaust.",
+      " Exhaust."
+    ]
+  },
+  "chimeracardsplus:PunishingMod": {
+    "TEXT": [
+      "Punishing ",
+      "",
+      "Costs [E] less. NL Reduces damage by #b50%. NL Deals #b5(7) damage, then triggers card effect if the enemy has #yVulnerable."
+    ],
+    "EXTRA_TEXT": [
+      "Deal %s damage. NL If the enemy has Vulnerable, "
+    ]
+  },
+  "chimeracardsplus:DevastatingMod": {
+    "TEXT": [
+      "Devastating ",
+      "",
+      "Costs [E] less. NL Reduces damage by #b50%. NL Deals #b5(7) damage, then triggers card effect if the enemy has #yWeak."
+    ],
+    "EXTRA_TEXT": [
+      "Deal %s damage. NL If the enemy has Weak, "
+    ]
+  }
+}

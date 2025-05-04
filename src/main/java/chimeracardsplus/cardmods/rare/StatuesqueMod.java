@@ -4,16 +4,16 @@ import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.damagemods.StatueDamage;
+import chimeracardsplus.interfaces.HealingMod;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.relics.WhiteBeast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StatuesqueMod extends AbstractAugment {
+public class StatuesqueMod extends AbstractAugment implements HealingMod {
     public static final String ID = ChimeraCardsPlus.makeID(StatuesqueMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
@@ -49,8 +49,7 @@ public class StatuesqueMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1 && c.type == AbstractCard.CardType.ATTACK))
-                && characterCheck((p) -> p.hasRelic(WhiteBeast.ID));
+        return cardCheck(card, (c) -> (c.cost >= -1 && c.type == AbstractCard.CardType.ATTACK && c.rarity != AbstractCard.CardRarity.BASIC));
     }
 
     @Override
