@@ -24,14 +24,14 @@ public class ArtOfMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter((c) -> c.type == AbstractCard.CardType.ATTACK).count() == 1) {
+        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter((c) -> c != null && c.type == AbstractCard.CardType.ATTACK).count() == 1) {
             this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new EnergizedPower(AbstractDungeon.player, 1)));
         }
     }
 
     @Override
     public Color getGlow(AbstractCard card) {
-        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().noneMatch((c) -> c.type == AbstractCard.CardType.ATTACK)) {
+        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().noneMatch((c) -> c != null && c.type == AbstractCard.CardType.ATTACK)) {
             return Color.GOLD.cpy();
         }
         return null;

@@ -238,7 +238,7 @@
     "TEXT": [
       "Challenging ",
       "",
-      "Reduces damage and #yBlock by #b25%. NL Gains #b2 #yVulnerable. NL Applies #b2 #yVulnerable to ALL enemies."
+      "Gains #b2 #yVulnerable. NL Applies #b2 #yVulnerable to ALL enemies."
     ],
     "EXTRA_TEXT": [
       " NL Gain 2 Vulnerable. Apply 2 Vulnerable to ALL enemies."
@@ -248,7 +248,7 @@
     "TEXT": [
       "Changing ",
       "",
-      "Reduces card values by #b33%. NL Optionally #yTransforms another card in your deck upon pickup."
+      "Optionally #yTransforms another card in your deck upon pickup."
     ],
     "EXTRA_TEXT": [
       " NL Upon pickup, you may Transform another card in your deck."
@@ -315,14 +315,10 @@
     "TEXT": [
       "Concentrated ",
       "",
-      "Discards #b3(2) cards. NL Gains [E] [E] ."
+      "Costs [E] less. NL Discards #b3 cards."
     ],
     "EXTRA_TEXT": [
-      " NL Discard %s cards. NL Gain [E] [E].",
-      " NL Discard %s card. NL Gain [E] [E].",
-      " NL Gain [E] [E].",
-      "Gain [G] [G].",
-      "Gain [G] [G] [G] [G]."
+      " NL Discard 3 cards."
     ]
   },
   "chimeracardsplus:ConclusiveMod": {
@@ -339,20 +335,10 @@
     "TEXT": [
       "Conserved ",
       "",
-      "Reduces damage and #yBlock by #b20%. NL Conserves Energy for next turn."
+      "Conserves Energy for next turn."
     ],
     "EXTRA_TEXT": [
       " NL Energy is conserved for next turn."
-    ]
-  },
-  "chimeracardsplus:CorruptedMod": {
-    "TEXT": [
-      "Corrupted ",
-      "",
-      "Increases damage by #b50%. NL Loses #b3 HP."
-    ],
-    "EXTRA_TEXT": [
-      " NL Lose 3 HP."
     ]
   },
   "chimeracardsplus:CourageousMod": {
@@ -517,7 +503,7 @@
       "Costs [E] . NL Adds the card to your hand with a chosen #yModifier. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
-      "Choose 1 of 3 random *Modifiers. Add %s into your hand with the chosen *Modifier on it. NL Exhaust.",
+      "Choose 1 of 3 random *Modifiers. Add %s into your hand with the chosen *Modifier applied to it. NL Exhaust.",
       "Innate. NL "
     ]
   },
@@ -594,7 +580,7 @@
     "TEXT": [
       "Edible ",
       "",
-      "Reduces card values by #b25%. NL Gains Max HP based on rarity upon pickup."
+      "Gains Max HP based on rarity upon pickup."
     ],
     "EXTRA_TEXT": [
       " NL Upon pickup, raise your Max HP by 1.",
@@ -606,7 +592,7 @@
     "TEXT": [
       "Enlightened ",
       "",
-      "Reduces card values by #b25%. NL Reduces the cost of a random card in your hand to 1 this turn."
+      "Reduces the cost of a random card in your hand to 1 this turn."
     ],
     "EXTRA_TEXT": [
       " NL Reduce the cost of a random card in your hand to 1 this turn."
@@ -667,7 +653,7 @@
     "TEXT": [
       "Fairy in ",
       "",
-      "Reduces card values by #b33%. When you would die, heals to #b10% of your Max HP instead and remove the card from your deck."
+      "When you would die, heals to #b10% of your Max HP instead and remove the card from your deck."
     ],
     "EXTRA_TEXT": [
       " NL When you would die, heal to 10% of your Max HP instead and remove this from your deck."
@@ -766,7 +752,7 @@
     "TEXT": [
       "Forceful ",
       "",
-      "Costs [E] [E] [E] more. NL Costs [E] less for each Power played in combat. NL Increases card values by #b33%."
+      "Costs [E] [E] more. NL Costs [E] less for each Power played in combat. NL Increases card values by #b33%."
     ],
     "EXTRA_TEXT": [
       " NL Costs 1 less [E] for each Power card played this combat.",
@@ -791,17 +777,17 @@
     "TEXT": [
       "Forethought ",
       "",
-      "Reduces card values by #b25%. NL Returns a card from your hand to the bottom of your draw pile. Reduces its cost to 0 until played."
+      "Costs [E] more. NL Returns any number of cards from your hand to the bottom of your draw pile. Reduces their cost to 0 until played."
     ],
     "EXTRA_TEXT": [
-      " NL Put a card from your hand to the bottom of your draw pile. It costs 0 until played."
+      " NL Put any number of cards from your hand to the bottom of your draw pile. They cost 0 until played."
     ]
   },
   "chimeracardsplus:ForgetfulMod": {
     "TEXT": [
       "Forgetful ",
       "",
-      "Reduces card values by #b33%. NL Optionally Removes another card in your deck upon pickup."
+      "Optionally Removes another card in your deck upon pickup."
     ],
     "EXTRA_TEXT": [
       " NL Upon pickup, you may Remove another card in your deck."
@@ -843,7 +829,7 @@
     "TEXT": [
       "Growing ",
       "",
-      "Reduces card values by #b33%. NL Optionally #yUpgrades another card in your deck upon pickup."
+      "Optionally #yUpgrades another card in your deck upon pickup."
     ],
     "EXTRA_TEXT": [
       " NL Upon pickup, you may Upgrade another card in your deck."
@@ -963,7 +949,7 @@
     "TEXT": [
       "Impatient ",
       "",
-      "Reduces card values by #b33%. NL Draws #b2 cards if you have no Attacks in hand."
+      "Draws #b2 cards if you have no Attacks in hand."
     ],
     "EXTRA_TEXT": [
       " NL If you have no Attacks in your hand, draw 2 cards."
@@ -1183,7 +1169,7 @@
     "TEXT": [
       "Mirrored ",
       "",
-      "Reduces card values by #b33%. NL Optionally Duplicates another card in your deck upon pickup."
+      "Optionally Duplicates another card in your deck upon pickup."
     ],
     "EXTRA_TEXT": [
       " NL Upon pickup, you may Duplicate another card in your deck."
@@ -1259,7 +1245,7 @@
     "TEXT": [
       "Opportunistic ",
       "",
-      "Reduces card values by #b33%. NL Draws #b2 cards if you have no Skills in hand."
+      "Draws #b2 cards if you have no Skills in hand."
     ],
     "EXTRA_TEXT": [
       " NL If you have no Skills in your hand, draw 2 cards."
@@ -1358,7 +1344,7 @@
       "Draws #b3 cards next turn if this is the fourth card played in a turn."
     ],
     "EXTRA_TEXT": [
-      " NL If this is the fourth card this turn, draw 3 cards next turn.",
+      " NL If this is the fourth card played this turn, draw 3 cards next turn.",
       " (%d card played.)",
       " (%d cards played.)"
     ]
@@ -1710,7 +1696,7 @@
     "TEXT": [
       "Split ",
       "",
-      "Costs [E] more. NL Gains [E] equal to the increased cost when killing an enemy. NL Increases damage by #b25%."
+      "Costs [E] more. NL Gains [E] back when killing an enemy. NL Increases damage by #b25%."
     ],
     "EXTRA_TEXT": [
       " NL If this kills an enemy, gain [E] .",
@@ -1755,9 +1741,9 @@
       " NL If this kills an Elite, it drops an additional Relic."
     ]
   },
-  "chimeracardsplus:StatuesqueMod": {
+  "chimeracardsplus:LiquidizingMod": {
     "TEXT": [
-      "Statuesque ",
+      "Liquidizing ",
       "",
       "Obtains a random potion when killing an enemy. NL Adds #yExhaust."
     ],
@@ -1835,7 +1821,7 @@
     "TEXT": [
       "Sulfuric ",
       "",
-      "Reduces damage by #b20%. NL Gains #b2 Strength. NL Gives ALL enemies #b1 Strength."
+      "Gains #b2 Strength. NL Gives ALL enemies #b1 Strength."
     ],
     "EXTRA_TEXT": [
       " NL Gain 2 Strength and ALL enemies gain 1 Strength."
@@ -1901,10 +1887,10 @@
     "TEXT": [
       "Third ",
       "",
-      "Reduces card values by #b20%. NL Scries #b2(3)."
+      "Reduces damage and #yBlock by #b25%. NL Scries #b3."
     ],
     "EXTRA_TEXT": [
-      " NL Scry %s."
+      " NL Scry 3."
     ]
   },
   "chimeracardsplus:ThornyMod": {
@@ -2015,7 +2001,7 @@
     "TEXT": [
       "Waffle ",
       "",
-      "Reduces card values by #b25%. NL Heals #b7 HP upon pickup."
+      "Heals #b7 HP upon pickup."
     ],
     "EXTRA_TEXT": [
       " NL Upon pickup, heal 7 HP."
@@ -2132,16 +2118,6 @@
       " NL Your next Attack deals additional damage equal to unblocked damage."
     ]
   },
-  "chimeracardsplus:SelfFormingMod": {
-    "TEXT": [
-      "Self-Forming ",
-      "",
-      "Increases Block by #b50%. NL Loses #b3 HP."
-    ],
-    "EXTRA_TEXT": [
-      " NL Lose 3 HP."
-    ]
-  },
   "chimeracardsplus:OrnamentalMod": {
     "TEXT": [
       "Ornamental ",
@@ -2229,7 +2205,7 @@
     "TEXT": [
       "Regretful ",
       "",
-      "Increases card values by #b25%. NL At the end of your turn, if the card is in hand, lose HP equal to the number of cards in hand."
+      "At the end of your turn, if the card is in hand, lose HP equal to the number of cards in hand."
     ],
     "EXTRA_TEXT": [
       " NL At the end of your turn, lose HP equal to the number of cards in your hand."
@@ -2239,7 +2215,7 @@
     "TEXT": [
       "Hesitant ",
       "",
-      "Increases card values by #b25%. NL At the end of your turn, if the card is in hand, gain #b1 Weak."
+      "At the end of your turn, if the card is in hand, gain #b1 #yWeak."
     ],
     "EXTRA_TEXT": [
       " NL At the end of your turn, gain 1 Weak."
@@ -2249,7 +2225,7 @@
     "TEXT": [
       "Decaying ",
       "",
-      "Increases card values by #b25%. NL At the end of your turn, if the card is in hand, take #b2 damage."
+      "At the end of your turn, if the card is in hand, take #b2 damage."
     ],
     "EXTRA_TEXT": [
       " NL At the end of your turn, take 2 damage."
@@ -2289,11 +2265,11 @@
     "TEXT": [
       "Strange ",
       "",
-      "#yExhausts #b50% of the time."
+      "#yExhausts with #b50% chance."
     ],
     "EXTRA_TEXT": [
-      " 50% chance to Exhaust.",
-      " Exhaust."
+      "50% chance to Exhaust.",
+      "Exhaust."
     ]
   },
   "chimeracardsplus:PunishingMod": {
@@ -2314,6 +2290,27 @@
     ],
     "EXTRA_TEXT": [
       "Deal %s damage. NL If the enemy has Weak, "
+    ]
+  },
+  "chimeracardsplus:DisgracefulMod": {
+    "TEXT": [
+      "Disgraceful ",
+      "",
+      "At the end of your turn, if the card is in hand, gain #b1 #yFrail."
+    ],
+    "EXTRA_TEXT": [
+      " NL At the end of your turn, gain 1 Frail."
+    ]
+  },
+  "chimeracardsplus:GuilefulMod": {
+    "TEXT": [
+      "Guileful ",
+      "",
+      "Plays when discarded."
+    ],
+    "EXTRA_TEXT": [
+      "chimeracardsplus:Sly. NL ",
+      "discard"
     ]
   }
 }

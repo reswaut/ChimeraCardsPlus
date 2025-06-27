@@ -22,7 +22,7 @@ public class ForcefulMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        card.cost += 3;
+        card.cost += 2;
         card.costForTurn = card.cost;
 
         if (CardCrawlGame.dungeon != null && AbstractDungeon.currMapNode != null) {
@@ -45,7 +45,7 @@ public class ForcefulMod extends AbstractAugment {
                     --dest;
                 }
             }
-            return dest <= 0;
+            return dest <= 1;
         });
     }
 

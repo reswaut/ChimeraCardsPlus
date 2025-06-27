@@ -3,6 +3,7 @@ package chimeracardsplus.cardmods.rare;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.interfaces.BonusMod;
 import chimeracardsplus.interfaces.HealingMod;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -16,7 +17,7 @@ import com.megacrit.cardcrawl.relics.NeowsLament;
 
 import static basemod.helpers.CardModifierManager.modifiers;
 
-public class BlessedMod extends AbstractAugment implements HealingMod {
+public class BlessedMod extends AbstractAugment implements HealingMod, BonusMod {
     public static final String ID = ChimeraCardsPlus.makeID(BlessedMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;

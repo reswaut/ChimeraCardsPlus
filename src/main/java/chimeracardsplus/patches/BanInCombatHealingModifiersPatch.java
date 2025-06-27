@@ -88,7 +88,7 @@ public class BanInCombatHealingModifiersPatch {
         public static void Postfix() {
             float HB_X = ReflectionHacks.getPrivateStatic(ModifierScreen.class, "HB_X");
             float DISABLE_Y = ReflectionHacks.getPrivateStatic(ModifierScreen.class, "DISABLE_Y");
-            healingModTooltip.set(HB_X / Settings.scale - 110.0F, DISABLE_Y / Settings.scale - 60.0F);
+            healingModTooltip.set(HB_X - 110.0F * Settings.scale, DISABLE_Y - 60.0F * Settings.scale);
         }
     }
 

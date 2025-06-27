@@ -22,7 +22,7 @@ public class StrangeMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.exhaust);
+        return cardCheck(card, (c) -> c.exhaust && doesntUpgradeExhaust() && c.cost >= -1);
     }
 
     @Override

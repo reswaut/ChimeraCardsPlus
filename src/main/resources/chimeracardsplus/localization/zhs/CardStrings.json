@@ -1,0 +1,34 @@
+{
+  "chimeracardsplus:BitingPreview": {
+    "NAME": "噬咬",
+    "DESCRIPTION": "伤害 -20%。 NL 回复耗能的生命。"
+  },
+  "chimeracardsplus:DecayingPreview": {
+    "NAME": "腐朽",
+    "DESCRIPTION": "在你的回合结束时，如果在你的手牌中，收到2点伤害。"
+  },
+  "chimeracardsplus:DisgracefulPreview": {
+    "NAME": "可耻",
+    "DESCRIPTION": "在你的回合结束时，如果在你的手牌中，获得1层 脆弱 。"
+  },
+  "chimeracardsplus:HesitantPreview": {
+    "NAME": "犹豫",
+    "DESCRIPTION": "在你的回合结束时，如果在你的手牌中，获得1层 虚弱 。"
+  },
+  "chimeracardsplus:LiquidizingPreview": {
+    "NAME": "液化",
+    "DESCRIPTION": "杀死敌人时获得一瓶随机药水。 NL 消耗 。"
+  },
+  "chimeracardsplus:RegretfulPreview": {
+    "NAME": "悔恨",
+    "DESCRIPTION": "在你的回合结束时，如果在你的手牌中，失去手牌数的生命。"
+  },
+  "chimeracardsplus:StrategicPreview": {
+    "NAME": "战略",
+    "DESCRIPTION": "抽 2 张牌。 NL 消耗 。"
+  },
+  "chimeracardsplus:UnawakenedPreview": {
+    "NAME": "未觉醒",
+    "DESCRIPTION": "被变化或移除后觉醒。"
+  }
+}

@@ -42,7 +42,7 @@ public class NunchakuMod extends AbstractAugment implements TriggerOnDiscardMod 
     public String modifyDescription(String rawDescription, AbstractCard card) {
         String text = CARD_TEXT[0];
         if (descriptionHack) {
-            int count = (int) AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().filter((c) -> c.type == AbstractCard.CardType.ATTACK).count();
+            int count = (int) AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().filter((c) -> c != null && c.type == AbstractCard.CardType.ATTACK).count();
             text += String.format((count == 1) ? CARD_TEXT[1] : CARD_TEXT[2], count);
         }
         return insertAfterText(rawDescription, text);
@@ -50,7 +50,7 @@ public class NunchakuMod extends AbstractAugment implements TriggerOnDiscardMod 
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().filter((c) -> c.type == AbstractCard.CardType.ATTACK).count() == 10) {
+        if (AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().filter((c) -> c != null && c.type == AbstractCard.CardType.ATTACK).count() == 10) {
             this.addToBot(new GainEnergyAction(1));
         }
         descriptionHack = false;
@@ -75,7 +75,7 @@ public class NunchakuMod extends AbstractAugment implements TriggerOnDiscardMod 
 
     @Override
     public Color getGlow(AbstractCard card) {
-        if (AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().filter((c) -> c.type == AbstractCard.CardType.ATTACK).count() == 9) {
+        if (AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().filter((c) -> c != null && c.type == AbstractCard.CardType.ATTACK).count() == 9) {
             return Color.GOLD.cpy();
         }
         return null;

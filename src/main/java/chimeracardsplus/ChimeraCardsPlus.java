@@ -4,129 +4,114 @@ import CardAugments.CardAugmentsMod;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.AutoAdd;
 import basemod.BaseMod;
+import basemod.ModLabeledToggleButton;
+import basemod.ModPanel;
+import basemod.interfaces.EditKeywordsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
 import chimeracardsplus.util.GeneralUtils;
 import chimeracardsplus.util.TextureLoader;
 import com.badlogic.gdx.Files;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglFileHandle;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.GdxRuntimeException;
+import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.ModInfo;
 import com.evacipated.cardcrawl.modthespire.Patcher;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
+import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.scannotation.AnnotationDB;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 @SpireInitializer
 public class ChimeraCardsPlus implements
+        EditKeywordsSubscriber,
         EditStringsSubscriber,
         PostInitializeSubscriber {
     public static ModInfo info;
-    public static String modID; //Edit your pom.xml to change this
+    private static final String EVENT_ADDONS_PLUS_KEY = "EventAddonsPlus";
     static { loadModInfo(); }
     private static final String resourcesFolder = checkResourcesPath();
-    public static final Logger logger = LogManager.getLogger(modID); //Used to output to the console.
+    private static final String FILE_NAME = "chimera_cards_plus_config";
+    private static final String DEFAULT_LANGUAGE = "eng";
+    public static String modID;
+    public static final Logger logger = LogManager.getLogger(modID);
+    public static SpireConfig config;
+    public static ModPanel settingsPanel;
+    private static boolean enableEventAddonsPlus = true;
+    private static UIStrings uiStrings;
+    private static String[] TEXT;
 
-    //This is used to prefix the IDs of various objects like cards and relics,
-    //to avoid conflicts between different mods using the same name for things.
     public static String makeID(String id) {
         return modID + ":" + id;
     }
 
-    //This will be called by ModTheSpire because of the @SpireInitializer annotation at the top of the class.
     public static void initialize() {
         new ChimeraCardsPlus();
     }
 
     public ChimeraCardsPlus() {
-        BaseMod.subscribe(this); //This will make BaseMod trigger all the subscribers at their appropriate times.
+        BaseMod.subscribe(this);
         logger.info("{} subscribed to BaseMod.", modID);
+
+        Properties defaultSettings = new Properties();
+        defaultSettings.setProperty(EVENT_ADDONS_PLUS_KEY, String.valueOf(enableEventAddonsPlus));
+
+        try {
+            config = new SpireConfig(modID, FILE_NAME, defaultSettings);
+            enableEventAddonsPlus = config.getBool(EVENT_ADDONS_PLUS_KEY);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    @Override
-    public void receivePostInitialize() {
-        //This loads the image used as an icon in the in-game mods menu.
-        Texture badgeTexture = TextureLoader.getTexture(imagePath("badge.png"));
-        //Set up the mod information displayed in the in-game mods menu.
-        //The information used is taken from your pom.xml file.
+    public static boolean enableEventAddons() {
+        return enableEventAddonsPlus;
+    }
 
-        //If you want to set up a config panel, that will be done here.
-        //The Mod Badges page has a basic example of this, but setting up config is overall a bit complex.
-        BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, null);
+    private static void setupSettingsPanel() {
+        settingsPanel = new ModPanel();
+        uiStrings = CardCrawlGame.languagePack.getUIString(makeID("ModConfigs"));
+        TEXT = uiStrings.TEXT;
 
-        CardAugmentsMod.registerMod(modID, CardCrawlGame.languagePack.getUIString(makeID("ModConfigs")).TEXT[0]);
+        float yPos = Settings.HEIGHT * 0.5f / Settings.scale + 200.0f;
+        ModLabeledToggleButton enableEventsButton = new ModLabeledToggleButton(TEXT[1], 350.0F, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, config.getBool(EVENT_ADDONS_PLUS_KEY), settingsPanel, (label) -> {
+        }, (button) -> {
+            config.setBool(EVENT_ADDONS_PLUS_KEY, button.enabled);
+            enableEventAddonsPlus = button.enabled;
+            try {
+                config.save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        settingsPanel.addUIElement(enableEventsButton);
+    }
 
-        new AutoAdd(modID)
-                .packageFilter("chimeracardsplus.cardmods")
-                .any(AbstractAugment.class, (info, abstractAugment) -> CardAugmentsMod.registerAugment(abstractAugment, modID));
+    private static String getLangString() {
+        return Settings.language.name().toLowerCase();
     }
 
     /*----------Localization----------*/
 
-    //This is used to load the appropriate localization files based on language.
-    private static String getLangString()
-    {
-        return Settings.language.name().toLowerCase();
-    }
-    private static final String defaultLanguage = "eng";
-
-    @Override
-    public void receiveEditStrings() {
-        /*
-            First, load the default localization.
-            Then, if the current language is different, attempt to load localization for that language.
-            This results in the default localization being used for anything that might be missing.
-            The same process is used to load keywords slightly below.
-        */
-        loadLocalization(defaultLanguage); //no exception catching for default localization; you better have at least one that works.
-        if (!defaultLanguage.equals(getLangString())) {
-            try {
-                loadLocalization(getLangString());
-            }
-            catch (GdxRuntimeException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private void loadLocalization(String lang) {
-        //While this does load every type of localization, most of these files are just outlines so that you can see how they're formatted.
-        //Feel free to comment out/delete any that you don't end up using.
-        BaseMod.loadCustomStringsFile(UIStrings.class,
-                localizationPath(lang, "UIStrings.json"));
-        BaseMod.loadCustomStringsFile(UIStrings.class,
-                localizationPath(lang, "ModifierStrings.json"));
-    }
-
-    //These methods are used to generate the correct filepaths to various parts of the resources folder.
-    public static String localizationPath(String lang, String file) {
-        return resourcesFolder + "/localization/" + lang + "/" + file;
-    }
-
-    public static String imagePath(String file) {
-        return resourcesFolder + "/images/" + file;
-    }
-
-    /**
-     * Checks the expected resources path based on the package name.
-     */
     private static String checkResourcesPath() {
         String name = ChimeraCardsPlus.class.getName(); //getPackage can be iffy with patching, so class name is used instead.
-        int separator = name.indexOf('.');
-        if (separator > 0)
-            name = name.substring(0, separator);
+        name = name.substring(0, name.indexOf('.'));
 
         FileHandle resources = new LwjglFileHandle(name, Files.FileType.Internal);
         if (resources.child("images").exists() && resources.child("localization").exists()) {
@@ -139,23 +124,87 @@ public class ChimeraCardsPlus implements
                 "\tat the top of the " + ChimeraCardsPlus.class.getSimpleName() + " java file.");
     }
 
-    /**
-     * This determines the mod's ID based on information stored by ModTheSpire.
-     */
     private static void loadModInfo() {
         Optional<ModInfo> infos = Arrays.stream(Loader.MODINFOS).filter((modInfo)->{
             AnnotationDB annotationDB = Patcher.annotationDBMap.get(modInfo.jarURL);
-            if (annotationDB == null)
+            if (annotationDB == null) {
                 return false;
+            }
             Set<String> initializers = annotationDB.getAnnotationIndex().getOrDefault(SpireInitializer.class.getName(), Collections.emptySet());
             return initializers.contains(ChimeraCardsPlus.class.getName());
         }).findFirst();
-        if (infos.isPresent()) {
-            info = infos.get();
-            modID = info.ID;
-        }
-        else {
+        if (!infos.isPresent()) {
             throw new RuntimeException("Failed to determine mod info/ID based on initializer.");
+        }
+        info = infos.get();
+        modID = info.ID;
+    }
+
+    @Override
+    public void receivePostInitialize() {
+        Texture badgeTexture = TextureLoader.getTexture(imagePath("badge.png"));
+
+        setupSettingsPanel();
+        BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, settingsPanel);
+
+        CardAugmentsMod.registerMod(modID, TEXT[0]);
+
+        new AutoAdd(modID)
+                .packageFilter("chimeracardsplus.cardmods")
+                .any(AbstractAugment.class, (info, abstractAugment) -> CardAugmentsMod.registerAugment(abstractAugment, modID));
+    }
+
+    @Override
+    public void receiveEditStrings() {
+        loadLocalization(DEFAULT_LANGUAGE);
+        if (!DEFAULT_LANGUAGE.equals(getLangString())) {
+            try {
+                loadLocalization(getLangString());
+            } catch (GdxRuntimeException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void loadLocalization(String lang) {
+        BaseMod.loadCustomStringsFile(CardStrings.class,
+                localizationPath(lang, "CardStrings.json"));
+        BaseMod.loadCustomStringsFile(EventStrings.class,
+                localizationPath(lang, "EventStrings.json"));
+        BaseMod.loadCustomStringsFile(UIStrings.class,
+                localizationPath(lang, "ModifierStrings.json"));
+        BaseMod.loadCustomStringsFile(UIStrings.class,
+                localizationPath(lang, "UIStrings.json"));
+    }
+
+    public static String localizationPath(String lang, String file) {
+        return resourcesFolder + "/localization/" + lang + "/" + file;
+    }
+
+    public static String imagePath(String file) {
+        return resourcesFolder + "/images/" + file;
+    }
+
+    @Override
+    public void receiveEditKeywords() {
+        loadKeywords(DEFAULT_LANGUAGE);
+        if (!DEFAULT_LANGUAGE.equals(getLangString())) {
+            try {
+                loadKeywords(getLangString());
+            } catch (GdxRuntimeException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void loadKeywords(String lang) {
+        Gson gson = new Gson();
+        String json = Gdx.files.internal(localizationPath(lang, "KeywordStrings.json")).readString(String.valueOf(StandardCharsets.UTF_8));
+        Keyword[] keywords = gson.fromJson(json, Keyword[].class);
+        if (keywords != null) {
+            for (Keyword keyword : keywords) {
+                BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+            }
         }
     }
 }

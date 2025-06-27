@@ -28,8 +28,7 @@ public class BanefulMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> (c.cost >= -1 && c.baseDamage >= 3 && usesEnemyTargeting()))
-                && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[3]));
+        return cardCheck(card, c -> (c.cost >= -1 && c.baseDamage >= 3 && usesEnemyTargeting())) && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[3]));
     }
 
     @Override

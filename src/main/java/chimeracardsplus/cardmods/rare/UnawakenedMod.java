@@ -1,6 +1,7 @@
 package chimeracardsplus.cardmods.rare;
 
 import CardAugments.cardmods.AbstractAugment;
+import CardAugments.patches.RolledModFieldPatches;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.special.AwakenedMod;
@@ -24,11 +25,6 @@ public class UnawakenedMod extends AbstractAugment implements TriggerOnPurgeMod 
     }
 
     @Override
-    public boolean isRemovable(AbstractCard card) {
-        return true;
-    }
-
-    @Override
     public void onRemoveFromMasterDeck(AbstractCard card) {
         AbstractCard AwakenedCard = card.makeCopy();
         for (int i = 0; i < card.timesUpgraded; ++i) {
@@ -37,6 +33,7 @@ public class UnawakenedMod extends AbstractAugment implements TriggerOnPurgeMod 
             }
         }
         addModifier(AwakenedCard, new AwakenedMod());
+        RolledModFieldPatches.RolledModField.rolled.set(AwakenedCard, true);
         AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(AwakenedCard, (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
     }
 

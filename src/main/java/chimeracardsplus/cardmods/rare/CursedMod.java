@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
@@ -59,7 +60,8 @@ public class CursedMod extends AbstractAugment implements TriggerOnObtainMod {
     @Override
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> c.rarity != AbstractCard.CardRarity.BASIC && c.type != AbstractCard.CardType.CURSE)
-                && (card.baseBlock > 0 || card.baseDamage > 0 || (card.baseMagicNumber > 0 && doesntDowngradeMagicNoUseChecks(card)));
+                && (card.baseBlock > 0 || card.baseDamage > 0 || (card.baseMagicNumber > 0 && doesntDowngradeMagicNoUseChecks(card)))
+                && !(AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() instanceof ShopRoom);
     }
 
     @Override
@@ -101,7 +103,7 @@ public class CursedMod extends AbstractAugment implements TriggerOnObtainMod {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.COMMON;
+        return AugmentRarity.RARE;
     }
 
     @Override

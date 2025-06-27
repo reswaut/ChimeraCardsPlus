@@ -1,5 +1,6 @@
 package chimeracardsplus.patches;
 
+import chimeracardsplus.ChimeraCardsPlus;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.ModInfo;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
@@ -20,20 +21,17 @@ import java.net.URISyntaxException;
 )
 public class DynamicPatchTrigger {
     @SpireRawPatch
-    public static void Raw(CtBehavior ctBehavior) throws NotFoundException, CannotCompileException {
-        System.out.println("Starting dynamic patches.");
+    public static void Raw(CtBehavior ctBehavior) throws NotFoundException, CannotCompileException, URISyntaxException {
+        ChimeraCardsPlus.logger.info("Starting dynamic patches.");
         ClassFinder finder = new ClassFinder();
         finder.add(new File(Loader.STS_JAR));
         for (ModInfo modInfo : Loader.MODINFOS) {
             if (modInfo.jarURL != null) {
-                try {
-                    finder.add(new File(modInfo.jarURL.toURI()));
-                } catch (URISyntaxException ignored) {
-                }
+                finder.add(new File(modInfo.jarURL.toURI()));
             }
         }
         ClassPool pool = ctBehavior.getDeclaringClass().getClassPool();
         CardModifierOnDiscardPatch.PostTriggerOnManualDiscardHook.patch(finder, pool);
-        System.out.println("Dynamic patches complete.");
+        ChimeraCardsPlus.logger.info("Dynamic patches complete.");
     }
 }

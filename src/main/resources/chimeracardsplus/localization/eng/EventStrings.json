@@ -1,0 +1,79 @@
+{
+  "chimeracardsplus:AddictPatches": {
+    "DESCRIPTIONS": [
+      "You lash out to seize the #yrelic. NL \"You @MONSTER!\"@ he wails as he crumples down. NL NL #p~Dark~ #p~shadows~ smudge your weapon. His #pcurses ~cling~ to it like cobwebs."
+    ],
+    "OPTIONS": [
+      "[Attack] #gObtain #ga #gRelic. #rGive #r2 #rRandom #rAttacks Disgraceful.",
+      "[Locked] Requires: 2 Attacks."
+    ]
+  },
+  "chimeracardsplus:BackToBasicsPatches": {
+    "DESCRIPTIONS": [
+      "The solution holds insight. NL Why not?"
+    ],
+    "OPTIONS": [
+      "[Insight] #gGive #gall #gDefends Strategic."
+    ]
+  },
+  "chimeracardsplus:ForgottenAlterPatches": {
+    "DESCRIPTIONS": [
+      "You kneel before the statue in reverence. Pale light emanates from the statue, washing over you with #g~eerie~ #g~warmth.~ NL NL But as the light fades, you feel your techniques #pfalter - the blessing comes with ~strings~ attached."
+    ],
+    "OPTIONS": [
+      "[Worship] #gHeal #g",
+      " #gHP. #rGive #r3 #rRandom #rCards Decaying.",
+      "[Locked] Requires: 3 non-Curse Cards."
+    ]
+  },
+  "chimeracardsplus:GoldenWingPatches": {
+    "DESCRIPTIONS": [
+      "You trace your fingers along the wing's carvings, #bcuriosity wins over your desire for #ygold. The statue grows warm beneath your palm as #g~ancient~ #g~wisdom~ flows into you. NL NL As you focus, your feel a #b~mystical~ #b~power~ resonates within your mind, awakening the deepest potentials in your techniques. You feel certain this energy will manifest when needed most."
+    ],
+    "OPTIONS": [
+      "[Examine] #gGive #g3 #gCards Unawakened.",
+      "[Locked] Requires: 3 Cards.",
+      "Choose 3 Cards to Augment."
+    ]
+  },
+  "chimeracardsplus:LabPatches": {
+    "DESCRIPTIONS": [
+      "You discover a bubbling vat of ~volatile~ ~ichor~ labeled \"LIQUIDIZING AGENT\". Risking exposure, you dip your weapon inside. The mutagen @sizzles@ @violently!@ NL NL You recoil as sprays of the ichor splash onto your hand and #rburn through your skin. Perhaps you should be more careful."
+    ],
+    "OPTIONS": [
+      "[Experiment] #gGive #ga #grandom #gAttack Liquidizing. #rLose #r",
+      " #rHP.",
+      "[Locked] Requires: Non-Basic Attack card."
+    ]
+  },
+  "chimeracardsplus:MoaiHeadPatches": {
+    "DESCRIPTIONS": [
+      "You strike the blood-strained teeth with all your might! #r@Fresh@ #r@blood@ gushes from the stone. NL NL As the #r~crimson~ #r~fluid~ coats your hands, your confidence is shaken by the act of violence against this ~living~ ancient monument."
+    ],
+    "OPTIONS": [
+      "[Attack] #rGive #ra #rrandom #rcard Hesitant. #gGain #g",
+      " #gMax #gHP.",
+      "[Locked] Requires: Non-Curse card."
+    ]
+  },
+  "chimeracardsplus:TheMausoleumPatches": {
+    "DESCRIPTIONS": [
+      "Your fingers close around a pulsating #ygem. With a sharp tug, it comes ~free!~ NL NL An @anguished@ @wail@ erupts from the sarcophagus! The sound seeps into your bones, leaving behind only a deep sense of #pregret.",
+      "Your fingers close around a pulsating #ygem. With a sharp tug, it @CRACKS@ and @SHATTERS@ in your hand. NL NL An @anguished@ @wail@ erupts from the sarcophagus! The sound seeps into your bones, leaving behind only a deep sense of #pregret."
+    ],
+    "OPTIONS": [
+      "[Take Gem] #rGive #ra #rrandom #rcard Regretful. #g50%: #gGain #g",
+      " #gGold.",
+      "[Locked] Requires: Non-Curse card."
+    ]
+  },
+  "chimeracardsplus:VampiresPatches": {
+    "DESCRIPTIONS": [
+    ],
+    "OPTIONS": [
+      "[Accept] #gTransform #ga #gcard #gto #ga Biting #gAttack #gof #gAny #gColor. #rLose #r",
+      " #rMax #rHP.",
+      "[Locked] Requires: Card in deck."
+    ]
+  }
+}
