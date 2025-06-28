@@ -9,6 +9,7 @@ import basemod.ModPanel;
 import basemod.interfaces.EditKeywordsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
+import chimeracardsplus.interfaces.SpecialNamingRules;
 import chimeracardsplus.util.GeneralUtils;
 import chimeracardsplus.util.TextureLoader;
 import com.badlogic.gdx.Files;
@@ -44,7 +45,6 @@ public class ChimeraCardsPlus implements
         EditStringsSubscriber,
         PostInitializeSubscriber {
     public static ModInfo info;
-    private static final String EVENT_ADDONS_PLUS_KEY = "EventAddonsPlus";
     static { loadModInfo(); }
     private static final String resourcesFolder = checkResourcesPath();
     private static final String FILE_NAME = "chimera_cards_plus_config";
@@ -53,9 +53,13 @@ public class ChimeraCardsPlus implements
     public static final Logger logger = LogManager.getLogger(modID);
     public static SpireConfig config;
     public static ModPanel settingsPanel;
+    private static final String EVENT_ADDONS_PLUS_KEY = "EventAddonsPlus";
     private static boolean enableEventAddonsPlus = true;
+    private static final String SPECIAL_NAMING_KEY = "CompactNaming";
+    public static SpecialNamingRules specialNamingRules;
     private static UIStrings uiStrings;
     private static String[] TEXT;
+    private static boolean enableSpecialNaming = false;
 
     public static String makeID(String id) {
         return modID + ":" + id;
@@ -71,10 +75,12 @@ public class ChimeraCardsPlus implements
 
         Properties defaultSettings = new Properties();
         defaultSettings.setProperty(EVENT_ADDONS_PLUS_KEY, String.valueOf(enableEventAddonsPlus));
+        defaultSettings.setProperty(SPECIAL_NAMING_KEY, String.valueOf(enableSpecialNaming));
 
         try {
             config = new SpireConfig(modID, FILE_NAME, defaultSettings);
             enableEventAddonsPlus = config.getBool(EVENT_ADDONS_PLUS_KEY);
+            enableSpecialNaming = config.getBool(SPECIAL_NAMING_KEY);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -82,6 +88,10 @@ public class ChimeraCardsPlus implements
 
     public static boolean enableEventAddons() {
         return enableEventAddonsPlus;
+    }
+
+    public static boolean enableSpecialNaming() {
+        return enableSpecialNaming;
     }
 
     private static void setupSettingsPanel() {
@@ -101,6 +111,33 @@ public class ChimeraCardsPlus implements
             }
         });
         settingsPanel.addUIElement(enableEventsButton);
+
+        yPos -= 50.0f;
+        ModLabeledToggleButton enableSpecialNamingButton = new ModLabeledToggleButton(TEXT[2], 350.0F, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, config.getBool(SPECIAL_NAMING_KEY), settingsPanel, (label) -> {
+        }, (button) -> {
+            config.setBool(SPECIAL_NAMING_KEY, button.enabled);
+            enableSpecialNaming = button.enabled;
+            try {
+                config.save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        settingsPanel.addUIElement(enableSpecialNamingButton);
+    }
+
+    @Override
+    public void receivePostInitialize() {
+        Texture badgeTexture = TextureLoader.getTexture(imagePath("badge.png"));
+
+        setupSettingsPanel();
+        BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, settingsPanel);
+
+        CardAugmentsMod.registerMod(modID, TEXT[0]);
+
+        new AutoAdd(modID)
+                .packageFilter("chimeracardsplus.cardmods")
+                .any(AbstractAugment.class, (info, abstractAugment) -> CardAugmentsMod.registerAugment(abstractAugment, modID));
     }
 
     private static String getLangString() {
@@ -141,20 +178,6 @@ public class ChimeraCardsPlus implements
     }
 
     @Override
-    public void receivePostInitialize() {
-        Texture badgeTexture = TextureLoader.getTexture(imagePath("badge.png"));
-
-        setupSettingsPanel();
-        BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, settingsPanel);
-
-        CardAugmentsMod.registerMod(modID, TEXT[0]);
-
-        new AutoAdd(modID)
-                .packageFilter("chimeracardsplus.cardmods")
-                .any(AbstractAugment.class, (info, abstractAugment) -> CardAugmentsMod.registerAugment(abstractAugment, modID));
-    }
-
-    @Override
     public void receiveEditStrings() {
         loadLocalization(DEFAULT_LANGUAGE);
         if (!DEFAULT_LANGUAGE.equals(getLangString())) {
@@ -175,6 +198,7 @@ public class ChimeraCardsPlus implements
                 localizationPath(lang, "ModifierStrings.json"));
         BaseMod.loadCustomStringsFile(UIStrings.class,
                 localizationPath(lang, "UIStrings.json"));
+        loadSpecialNamingRules(lang);
     }
 
     public static String localizationPath(String lang, String file) {
@@ -204,6 +228,19 @@ public class ChimeraCardsPlus implements
         if (keywords != null) {
             for (Keyword keyword : keywords) {
                 BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+            }
+        }
+    }
+
+    private void loadSpecialNamingRules(String lang) {
+        Gson gson = new Gson();
+        String json = Gdx.files.internal(localizationPath(lang, "SpecialNamingRules.json")).readString(String.valueOf(StandardCharsets.UTF_8));
+        SpecialNamingRules rules = gson.fromJson(json, SpecialNamingRules.class);
+        if (rules != null) {
+            if (specialNamingRules == null) {
+                specialNamingRules = rules;
+            } else {
+                specialNamingRules.addRules(rules);
             }
         }
     }

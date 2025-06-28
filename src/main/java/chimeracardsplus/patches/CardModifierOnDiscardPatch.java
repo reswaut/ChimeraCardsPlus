@@ -5,6 +5,7 @@ import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.interfaces.TriggerOnDiscardMod;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import javassist.*;
 import org.clapper.util.classutil.*;
@@ -12,8 +13,8 @@ import org.clapper.util.classutil.*;
 import java.util.ArrayList;
 
 public class CardModifierOnDiscardPatch {
-    public static class PostTriggerOnManualDiscardHook {
-        public static void patch(ClassFinder finder, ClassPool pool) throws NotFoundException, CannotCompileException {
+    public static class TriggerOnManualDiscardPatch {
+        public static void doPatch(ClassFinder finder, ClassPool pool) throws NotFoundException, CannotCompileException {
             ChimeraCardsPlus.logger.info("- Trigger on Manual Discard Patch:");
             AndClassFilter filter = new AndClassFilter(new NotClassFilter(new InterfaceOnlyClassFilter()), new SubclassClassFilter(AbstractCard.class));
             ArrayList<ClassInfo> clzList = new ArrayList<>();
@@ -40,7 +41,7 @@ public class CardModifierOnDiscardPatch {
         public static void ManualDiscardTrigger(CtClass ctClass, CtMethod method) throws CannotCompileException {
             if (method.getName().equals("triggerOnManualDiscard")) {
                 ChimeraCardsPlus.logger.info("- Patching {}", ctClass.getName());
-                method.insertAfter(PostTriggerOnManualDiscardHook.class.getName() + ".Postfix(this);");
+                method.insertAfter(TriggerOnManualDiscardPatch.class.getName() + ".Postfix(this);");
             }
         }
 
@@ -57,7 +58,8 @@ public class CardModifierOnDiscardPatch {
             clz = AbstractCard.class,
             method = "onMoveToDiscard"
     )
-    public static class PostOnMoveToDisCardHook {
+    public static class TriggerOnMoveToDisCardPatch {
+        @SpirePostfixPatch
         public static void Postfix(AbstractCard __instance) {
             for (AbstractCardModifier mod : CardModifierManager.modifiers(__instance)) {
                 if (mod instanceof TriggerOnDiscardMod) {

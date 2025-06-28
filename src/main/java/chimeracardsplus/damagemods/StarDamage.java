@@ -17,12 +17,9 @@ public class StarDamage extends AbstractDamageModifier {
     }
 
     public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature targetHit) {
-        if (DamageModifierManager.getInstigator(info) instanceof AbstractCard
+        if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
                 && targetHit.currentHealth > 0
                 && targetHit.currentHealth - lastDamageTaken <= 0) {
-            if (!(targetHit instanceof AbstractMonster)) {
-                return;
-            }
             if (((AbstractMonster)targetHit).type != AbstractMonster.EnemyType.ELITE) {
                 return;
             }

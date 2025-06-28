@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class FlashyDamage extends AbstractDamageModifier {
     private final int cardDraw;
@@ -16,7 +17,7 @@ public class FlashyDamage extends AbstractDamageModifier {
     }
 
     public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature targetHit) {
-        if (DamageModifierManager.getInstigator(info) instanceof AbstractCard
+        if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
                 && targetHit.currentHealth > 0 && !targetHit.halfDead && lastDamageTaken > 0) {
             addToBot(new DrawCardAction(cardDraw));
         }

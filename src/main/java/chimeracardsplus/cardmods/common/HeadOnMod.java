@@ -1,29 +1,40 @@
-package chimeracardsplus.cardmods.rare;
+package chimeracardsplus.cardmods.common;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
+import com.megacrit.cardcrawl.actions.unique.DiscardPileToTopOfDeckAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.status.Burn;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class OverclockedMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(OverclockedMod.class.getSimpleName());
+public class HeadOnMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(HeadOnMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
     @Override
-    public void onInitialApplication(AbstractCard card) {
-        card.cost -= 1;
-        card.costForTurn = card.cost;
+    public boolean validCard(AbstractCard card) {
+        return cardCheck(card, c -> (c.cost != -2 && (c.baseDamage > 1 || c.baseBlock > 1)));
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 1 && doesntUpgradeCost()));
+    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+        return (damage > 1) ? (damage * 0.75F) : damage;
+    }
+
+    @Override
+    public float modifyBaseBlock(float block, AbstractCard card) {
+        return (block > 1) ? (block * 0.75F) : block;
+    }
+
+    @Override
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        this.addToBot(new DiscardPileToTopOfDeckAction(AbstractDungeon.player));
     }
 
     @Override
@@ -47,18 +58,13 @@ public class OverclockedMod extends AbstractAugment {
     }
 
     @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new MakeTempCardInDiscardAction(new Burn(), 1));
-    }
-
-    @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.RARE;
+        return AugmentRarity.COMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new OverclockedMod();
+        return new HeadOnMod();
     }
 
     @Override

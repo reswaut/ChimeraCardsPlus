@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 public class DrilledDamage extends AbstractDamageModifier {
@@ -15,7 +16,7 @@ public class DrilledDamage extends AbstractDamageModifier {
     }
 
     public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature targetHit) {
-        if (DamageModifierManager.getInstigator(info) instanceof AbstractCard
+        if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
                 && targetHit.currentHealth > 0 && !targetHit.halfDead && lastDamageTaken > 0) {
             addToBot(new ApplyPowerAction(targetHit, AbstractDungeon.player, new VulnerablePower(targetHit, 2, false)));
         }

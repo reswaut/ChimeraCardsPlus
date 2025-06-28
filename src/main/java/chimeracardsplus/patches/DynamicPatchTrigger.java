@@ -31,7 +31,7 @@ public class DynamicPatchTrigger {
             }
         }
         ClassPool pool = ctBehavior.getDeclaringClass().getClassPool();
-        CardModifierOnDiscardPatch.PostTriggerOnManualDiscardHook.patch(finder, pool);
+        CardModifierOnDiscardPatch.TriggerOnManualDiscardPatch.doPatch(finder, pool);
         ChimeraCardsPlus.logger.info("Dynamic patches complete.");
     }
 }

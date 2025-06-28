@@ -21,7 +21,9 @@ public class RecklessMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        MultiCardPreview.add(card, new Dazed());
+        if (!(card instanceof RecklessCharge)) {
+            MultiCardPreview.add(card, new Dazed());
+        }
     }
 
     @Override

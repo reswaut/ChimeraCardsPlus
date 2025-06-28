@@ -8,8 +8,6 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.purple.Evaluate;
-import com.megacrit.cardcrawl.cards.purple.Pray;
 import com.megacrit.cardcrawl.cards.tempCards.Insight;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -24,9 +22,7 @@ public class WiseMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (!(card instanceof Evaluate || card instanceof Pray)) {
-            MultiCardPreview.add(card, new Insight());
-        }
+        MultiCardPreview.add(card, new Insight());
     }
 
     @Override
@@ -69,9 +65,6 @@ public class WiseMod extends AbstractAugment {
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         int cost = card.cost;
-        if (card instanceof Evaluate || card instanceof Pray) {
-            cost += 1;
-        }
         String text = "";
         if (cost == -1) {
             text = CARD_TEXT[2];
@@ -79,9 +72,6 @@ public class WiseMod extends AbstractAugment {
             text = CARD_TEXT[0];
         } else if (cost > 1) {
             text = String.format(CARD_TEXT[1], cost);
-        }
-        if (card instanceof Evaluate || card instanceof Pray) {
-            return rawDescription.replace(CARD_TEXT[3], text).replace(CARD_TEXT[4], text);
         }
         return insertAfterText(rawDescription, text);
     }

@@ -8,7 +8,6 @@ import chimeracardsplus.interfaces.HealingMod;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.purple.LessonLearned;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
 import java.util.ArrayList;
@@ -74,9 +73,6 @@ public class LearnMod extends AbstractAugment implements HealingMod {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof LessonLearned) {
-            return rawDescription.replace(CARD_TEXT[2], CARD_TEXT[3]);
-        }
         return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1]);
     }
 

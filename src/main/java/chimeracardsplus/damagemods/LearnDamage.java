@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 
@@ -20,7 +21,7 @@ public class LearnDamage extends AbstractDamageModifier {
     }
 
     public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature targetHit) {
-        if (DamageModifierManager.getInstigator(info) instanceof AbstractCard
+        if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
                 && targetHit.currentHealth > 0
                 && targetHit.currentHealth - lastDamageTaken <= 0
                 && !targetHit.halfDead && !targetHit.hasPower("Minion")) {

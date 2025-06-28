@@ -22,7 +22,7 @@ public class WheelDamage extends AbstractDamageModifier {
                 return;
             }
         }
-        if (DamageModifierManager.getInstigator(info) instanceof AbstractCard
+        if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
                 && targetHit.currentHealth > 0
                 && targetHit.currentHealth - lastDamageTaken <= 0) {
             AbstractDungeon.getCurrRoom().addCardToRewards();
