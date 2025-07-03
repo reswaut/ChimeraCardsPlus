@@ -15,7 +15,6 @@ import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import static com.megacrit.cardcrawl.actions.AbstractGameAction.ActionType.DEBUFF;
-import static com.megacrit.cardcrawl.core.Settings.ACTION_DUR_XFAST;
 
 public class ShacklingMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(ShacklingMod.class.getSimpleName());
@@ -55,24 +54,23 @@ public class ShacklingMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature cardTarget, UseCardAction action) {
+        if (card instanceof DarkShackles) {
+            return;
+        }
         this.addToBot(new AbstractGameAction() {
             {
                 this.actionType = DEBUFF;
-                this.startDuration = ACTION_DUR_XFAST;
-                this.duration = this.startDuration;
             }
 
             @Override
             public void update() {
-                if (this.duration == this.startDuration) {
-                    if (!(card instanceof DarkShackles) && cardTarget != null) {
-                        if (!cardTarget.hasPower("Artifact")) {
-                            this.addToTop(new ApplyPowerAction(cardTarget, AbstractDungeon.player, new GainStrengthPower(cardTarget, 5), 5, true, AbstractGameAction.AttackEffect.NONE));
-                        }
-                        this.addToTop(new ApplyPowerAction(cardTarget, AbstractDungeon.player, new StrengthPower(cardTarget, -5), -5, true, AbstractGameAction.AttackEffect.NONE));
+                if (cardTarget != null) {
+                    if (!cardTarget.hasPower("Artifact")) {
+                        this.addToTop(new ApplyPowerAction(cardTarget, AbstractDungeon.player, new GainStrengthPower(cardTarget, 5), 5, true, AbstractGameAction.AttackEffect.NONE));
                     }
-                    this.isDone = true;
+                    this.addToTop(new ApplyPowerAction(cardTarget, AbstractDungeon.player, new StrengthPower(cardTarget, -5), -5, true, AbstractGameAction.AttackEffect.NONE));
                 }
+                this.isDone = true;
             }
         });
     }

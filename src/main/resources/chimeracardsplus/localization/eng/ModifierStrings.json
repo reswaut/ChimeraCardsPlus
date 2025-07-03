@@ -180,14 +180,14 @@
       "This turn, your next !M! Skills are played twice."
     ]
   },
-  "chimeracardsplus:CallingMod": {
+  "chimeracardsplus:SoulboundMod": {
     "TEXT": [
-      "Calling ",
+      "Soulbound ",
       "",
       "Increases card values by #b40%. NL Cannot be removed from your deck."
     ],
     "EXTRA_TEXT": [
-      " NL Cannot be removed from your deck."
+      "stslib:Soulbound. NL "
     ]
   },
   "chimeracardsplus:CapaciousMod": {
@@ -2311,6 +2311,38 @@
     ],
     "EXTRA_TEXT": [
       " NL If the last card played this combat was a Attack, draw 2 cards."
+    ]
+  },
+  "chimeracardsplus:CounterMod": {
+    "TEXT": [
+      "Counter ",
+      "",
+      "Increases damage by #b40%. NL Gives enemy #yBlock equal to unblocked damage."
+    ],
+    "EXTRA_TEXT": [
+      " NL Give enemy Block equal to unblocked damage."
+    ]
+  },
+  "chimeracardsplus:SharedMod": {
+    "TEXT": [
+      "Shared ",
+      "",
+      "Increases #yBlock by #b40%. NL Gives all enemies equal #yBlock."
+    ],
+    "EXTRA_TEXT": [
+      " NL Give ALL enemies !B! Block."
+    ]
+  },
+  "chimeracardsplus:LockingMod": {
+    "TEXT": [
+      "Locking ",
+      "",
+      "Increases card values by #b100%. NL Becomes #yUnplayable after played."
+    ],
+    "EXTRA_TEXT": [
+      " NL Becomes Unplayable for the rest of combat.",
+      "Unplayable. NL ",
+      "I have already played this card."
     ]
   }
 }

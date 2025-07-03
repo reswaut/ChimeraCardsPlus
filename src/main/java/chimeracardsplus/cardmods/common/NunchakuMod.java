@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class NunchakuMod extends AbstractAugment implements TriggerOnDiscardMod {
-    public static final String ID = ChimeraCardsPlus.makeID(InkyMod.class.getSimpleName());
+    public static final String ID = ChimeraCardsPlus.makeID(NunchakuMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     private boolean descriptionHack = false;
@@ -88,7 +88,7 @@ public class NunchakuMod extends AbstractAugment implements TriggerOnDiscardMod 
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new InkyMod();
+        return new NunchakuMod();
     }
 
     @Override

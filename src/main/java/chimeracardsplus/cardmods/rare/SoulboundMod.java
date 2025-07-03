@@ -11,8 +11,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
 
-public class CallingMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(CallingMod.class.getSimpleName());
+public class SoulboundMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(SoulboundMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
@@ -58,7 +58,7 @@ public class CallingMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, CARD_TEXT[0]);
+        return insertBeforeText(rawDescription, CARD_TEXT[0]);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class CallingMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new CallingMod();
+        return new SoulboundMod();
     }
 
     @Override

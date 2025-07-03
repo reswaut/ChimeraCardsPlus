@@ -20,7 +20,6 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 
 import static com.megacrit.cardcrawl.actions.AbstractGameAction.ActionType.DEBUFF;
-import static com.megacrit.cardcrawl.core.Settings.ACTION_DUR_XFAST;
 
 public class ShriekingMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(ShriekingMod.class.getSimpleName());
@@ -59,36 +58,33 @@ public class ShriekingMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        if (card instanceof PiercingWail) {
+            return;
+        }
         this.addToBot(new AbstractGameAction() {
             {
                 this.actionType = DEBUFF;
-                this.startDuration = ACTION_DUR_XFAST;
-                this.duration = this.startDuration;
             }
 
             @Override
             public void update() {
-                if (this.duration == this.startDuration) {
-                    if (!(card instanceof PiercingWail)) {
-                        for (int i = AbstractDungeon.getMonsters().monsters.size(); i-- > 0; ) {
-                            AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
-                            if (!mo.hasPower("Artifact")) {
-                                this.addToTop(new ApplyPowerAction(mo, AbstractDungeon.player, new GainStrengthPower(mo, 3), 3, true, AbstractGameAction.AttackEffect.NONE));
-                            }
-                        }
-                        for (int i = AbstractDungeon.getMonsters().monsters.size(); i-- > 0; ) {
-                            AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
-                            this.addToTop(new ApplyPowerAction(mo, AbstractDungeon.player, new StrengthPower(mo, -3), -3, true, AbstractGameAction.AttackEffect.NONE));
-                        }
-                        if (Settings.FAST_MODE) {
-                            this.addToTop(new VFXAction(AbstractDungeon.player, new ShockWaveEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, Settings.GREEN_TEXT_COLOR, ShockWaveEffect.ShockWaveType.CHAOTIC), 0.3F));
-                        } else {
-                            this.addToTop(new VFXAction(AbstractDungeon.player, new ShockWaveEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, Settings.GREEN_TEXT_COLOR, ShockWaveEffect.ShockWaveType.CHAOTIC), 1.5F));
-                        }
-                        this.addToTop(new SFXAction("ATTACK_PIERCING_WAIL"));
+                for (int i = AbstractDungeon.getMonsters().monsters.size(); i-- > 0; ) {
+                    AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
+                    if (!mo.hasPower("Artifact")) {
+                        this.addToTop(new ApplyPowerAction(mo, AbstractDungeon.player, new GainStrengthPower(mo, 3), 3, true, AbstractGameAction.AttackEffect.NONE));
                     }
-                    this.isDone = true;
                 }
+                for (int i = AbstractDungeon.getMonsters().monsters.size(); i-- > 0; ) {
+                    AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
+                    this.addToTop(new ApplyPowerAction(mo, AbstractDungeon.player, new StrengthPower(mo, -3), -3, true, AbstractGameAction.AttackEffect.NONE));
+                }
+                if (Settings.FAST_MODE) {
+                    this.addToTop(new VFXAction(AbstractDungeon.player, new ShockWaveEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, Settings.GREEN_TEXT_COLOR, ShockWaveEffect.ShockWaveType.CHAOTIC), 0.3F));
+                } else {
+                    this.addToTop(new VFXAction(AbstractDungeon.player, new ShockWaveEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, Settings.GREEN_TEXT_COLOR, ShockWaveEffect.ShockWaveType.CHAOTIC), 1.5F));
+                }
+                this.addToTop(new SFXAction("ATTACK_PIERCING_WAIL"));
+                this.isDone = true;
             }
         });
     }

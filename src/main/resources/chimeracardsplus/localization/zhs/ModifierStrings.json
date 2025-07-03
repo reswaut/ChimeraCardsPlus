@@ -180,14 +180,14 @@
       "在这个回合，你的下 !M! 张技能牌会打出两次。"
     ]
   },
-  "chimeracardsplus:CallingMod": {
+  "chimeracardsplus:SoulboundMod": {
     "TEXT": [
-      "召唤",
+      "缚魂",
       "",
       "卡牌数值增加 #b40% 。 NL 不能从牌组中移除。"
     ],
     "EXTRA_TEXT": [
-      " NL 不能从牌组中移除。"
+      "stslib:灵魂绑定 。 NL "
     ]
   },
   "chimeracardsplus:CapaciousMod": {
@@ -2150,7 +2150,7 @@
   },
   "chimeracardsplus:AugerMod": {
     "TEXT": [
-      "螺钻",
+      "螺旋",
       "",
       "造成的伤害减少 #b33% 。 NL 造成未被 #y格挡 的伤害时给予 #b2 层 #y易伤 。"
     ],
@@ -2311,6 +2311,38 @@
     ],
     "EXTRA_TEXT": [
       " NL 若本场战斗上一张打出的牌是攻击牌，抽 2 张牌。"
+    ]
+  },
+  "chimeracardsplus:CounterMod": {
+    "TEXT": [
+      "反击",
+      "",
+      "造成的伤害增加 #b40% 。 NL 给予敌人所造成的未被 #y格挡 的伤害。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 给予敌人所造成的未被 格挡 的伤害。"
+    ]
+  },
+  "chimeracardsplus:SharedMod": {
+    "TEXT": [
+      "共享",
+      "",
+      "获得的 #y格挡 增加 #b40% 。 NL 给予所有敌人等量的 #y格挡 。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 给予所有敌人 !B! 点 格挡 。"
+    ]
+  },
+  "chimeracardsplus:LockingMod": {
+    "TEXT": [
+      "紧固",
+      "",
+      "卡牌数值增加 #b100% 。 NL 打出后 #y不能被打出 。"
+    ],
+    "EXTRA_TEXT": [
+      " NL 在本场战斗中本牌 不能被打出 。",
+      "不能被打出 。 NL ",
+      "我已经打出过这张牌了。"
     ]
   }
 }
