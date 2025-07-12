@@ -6,7 +6,6 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.blue.Chaos;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -26,14 +25,6 @@ public class ChaoticMod extends AbstractAugment {
         card.cost += 1;
         card.costForTurn = card.cost;
         card.showEvokeValue = true;
-    }
-
-    @Override
-    public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (card instanceof Chaos) {
-            return magic + 1;
-        }
-        return magic;
     }
 
     @Override
@@ -58,9 +49,6 @@ public class ChaoticMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof Chaos) {
-            return rawDescription.replace(CARD_TEXT[1], CARD_TEXT[2]);
-        }
         return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 

@@ -1,7 +1,9 @@
 package chimeracardsplus.actions;
 
+import CardAugments.CardAugmentsMod;
 import CardAugments.cardmods.AbstractAugment;
 import CardAugments.patches.RolledModFieldPatches;
+import basemod.helpers.CardModifierManager;
 import chimeracardsplus.interfaces.HealingMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -13,10 +15,6 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
-
-import static CardAugments.CardAugmentsMod.getAllValidMods;
-import static basemod.helpers.CardModifierManager.addModifier;
-import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.miscRng;
 
 public class DiscoverModAction extends AbstractGameAction {
     private boolean retrieveCard = false;
@@ -59,7 +57,7 @@ public class DiscoverModAction extends AbstractGameAction {
     }
 
     private ArrayList<AbstractCard> generateCardChoices() {
-        ArrayList<AbstractAugment> filter = getAllValidMods(baseCard).stream().filter((mod) -> !(mod instanceof HealingMod)).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<AbstractAugment> filter = CardAugmentsMod.getAllValidMods(baseCard).stream().filter((mod) -> !(mod instanceof HealingMod)).collect(Collectors.toCollection(ArrayList::new));
         ArrayList<AbstractCard> ret = new ArrayList<>();
         if (filter.isEmpty()) {
             ret.add(baseCard);
@@ -67,14 +65,14 @@ public class DiscoverModAction extends AbstractGameAction {
         }
         ArrayList<Integer> derp = new ArrayList<>();
         while (derp.size() < Math.min(3, filter.size())) {
-            int tmp = miscRng.random(0, filter.size() - 1);
+            int tmp = AbstractDungeon.miscRng.random(0, filter.size() - 1);
             if (!derp.contains(tmp)) {
                 derp.add(tmp);
             }
         }
         for (int id : derp) {
             AbstractCard card = baseCard.makeStatEquivalentCopy();
-            addModifier(card, filter.get(id).makeCopy());
+            CardModifierManager.addModifier(card, filter.get(id).makeCopy());
             RolledModFieldPatches.RolledModField.rolled.set(card, true);
             ret.add(card);
         }

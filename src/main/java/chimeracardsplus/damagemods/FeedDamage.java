@@ -7,6 +7,9 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.MinionPower;
+import com.megacrit.cardcrawl.powers.RegrowPower;
+import com.megacrit.cardcrawl.powers.UnawakenedPower;
 
 public class FeedDamage extends AbstractDamageModifier {
     private final int maxHp;
@@ -20,7 +23,10 @@ public class FeedDamage extends AbstractDamageModifier {
         if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
                 && targetHit.currentHealth > 0
                 && targetHit.currentHealth - lastDamageTaken <= 0
-                && !targetHit.halfDead && !targetHit.hasPower("Minion")) {
+                && !targetHit.halfDead
+                && !targetHit.hasPower(MinionPower.POWER_ID)
+                && !targetHit.hasPower(RegrowPower.POWER_ID)
+                && !targetHit.hasPower(UnawakenedPower.POWER_ID)) {
             AbstractDungeon.player.increaseMaxHp(this.maxHp, false);
         }
     }

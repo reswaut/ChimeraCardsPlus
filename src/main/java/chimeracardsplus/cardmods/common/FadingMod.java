@@ -25,8 +25,8 @@ public class FadingMod extends AbstractAugment implements HealingMod {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && card.rarity != AbstractCard.CardRarity.BASIC &&
-                (card.baseDamage > 1 || card.baseBlock > 1 || (card.baseMagicNumber > 1 && doesntDowngradeMagicNoUseChecks(card)));
+        return card.rarity != AbstractCard.CardRarity.BASIC && isNormalCard(card) &&
+                (card.baseDamage > 0 || card.baseBlock > 0 || (card.baseMagicNumber > 0 && doesntDowngradeMagicNoUseChecks(card)));
     }
 
     @Override

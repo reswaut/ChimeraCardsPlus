@@ -28,7 +28,7 @@
   },
   "chimeracardsplus:GoldenWingPatches": {
     "DESCRIPTIONS": [
-      "You trace your fingers along the wing's carvings, #bcuriosity wins over your desire for #ygold. The statue grows warm beneath your palm as #g~ancient~ #g~wisdom~ flows into you. NL NL As you focus, your feel a #b~mystical~ #b~power~ resonates within your mind, awakening the deepest potentials in your techniques. You feel certain this energy will manifest when needed most."
+      "You trace your fingers along the wing's carvings, #bcuriosity wins over the lure of #ygold. NL NL As you focus, you feel a #b~mystical~ #b~power~ humming in the stone, waiting to awaken when needed most."
     ],
     "OPTIONS": [
       "[Examine] #gGive #g3 #gCards Unawakened.",
@@ -48,7 +48,7 @@
   },
   "chimeracardsplus:MoaiHeadPatches": {
     "DESCRIPTIONS": [
-      "You strike the blood-strained teeth with all your might! #r@Fresh@ #r@blood@ gushes from the stone. NL NL As the #r~crimson~ #r~fluid~ coats your hands, your confidence is shaken by the act of violence against this ~living~ ancient monument."
+      "@POW!@ #r@Fresh@ #r@blood@ gushes from the stone! NL NL As the #r~crimson~ #r~fluid~ coats your hands, your confidence is shaken by the act of violence against this ~living~ ancient monument."
     ],
     "OPTIONS": [
       "[Attack] #rGive #ra #rrandom #rcard Hesitant. #gGain #g",
@@ -71,7 +71,7 @@
     "DESCRIPTIONS": [
     ],
     "OPTIONS": [
-      "[Accept] #gTransform #ga #gcard #gto #ga Biting #gAttack #gof #gAny #gColor. #rLose #r",
+      "[Accept] #gTransform #ga #gcard #gto #ga Biting #gattack #gof #gany #gcolor. #rLose #r",
       " #rMax #rHP.",
       "[Locked] Requires: Card in deck."
     ]

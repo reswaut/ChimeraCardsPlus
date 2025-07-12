@@ -69,8 +69,6 @@
     ],
     "EXTRA_TEXT": [
       " NL If the enemy has Poison, deal !D! damage again.",
-      "If the enemy has Poison, deal !D! damage again.",
-      "If the enemy has Poison, deal !D! damage 2 more times.",
       "Poison"
     ]
   },
@@ -261,9 +259,7 @@
       "Costs [E] more. NL #yChannels #b1 random Orb."
     ],
     "EXTRA_TEXT": [
-      " NL Channel 1 random Orb.",
-      "Channel !M! random Orb.",
-      "Channel !M! random Orbs."
+      " NL Channel 1 random Orb."
     ]
   },
   "chimeracardsplus:ChemicalMod": {
@@ -664,9 +660,7 @@
       "Costs [E] less. NL Gains [E] less at the start of each turn."
     ],
     "EXTRA_TEXT": [
-      " NL Gain 1 less [E] at the start of each turn.",
-      "Gain 1 less [W] at the start of each turn.",
-      "Gain 2 less [W] at the start of each turn."
+      " NL Gain 1 less [E] at the start of each turn."
     ]
   },
   "chimeracardsplus:FeedingMod": {
@@ -1023,9 +1017,7 @@
       "Increases damage and #yBlock by #b33%. NL Adds a #rWound into your draw pile."
     ],
     "EXTRA_TEXT": [
-      " NL Shuffle a *Wound into your draw pile.",
-      "Shuffle a *Wound into your draw pile.",
-      "Shuffle 2 *Wounds into your draw pile."
+      " NL Shuffle a *Wound into your draw pile."
     ]
   },
   "chimeracardsplus:InkyMod": {
@@ -1485,9 +1477,7 @@
       "Increases damage and #yBlock by #b25%. NL Adds a #rDazed into your draw pile."
     ],
     "EXTRA_TEXT": [
-      " NL Shuffle a *Dazed into your draw pile.",
-      "Shuffle a *Dazed into your draw pile.",
-      "Shuffle 2 *Dazed into your draw pile."
+      " NL Shuffle a *Dazed into your draw pile."
     ]
   },
   "chimeracardsplus:RecyclableMod": {
@@ -1752,8 +1742,6 @@
     ],
     "EXTRA_TEXT": [
       " NL If you have discarded a card this turn, gain [E] [E].",
-      "If you have discarded a card this turn, NL gain [G] [G].",
-      "If you have discarded a card this turn, NL gain [G] [G] [G] [G].",
       "discard"
     ]
   },
@@ -2343,6 +2331,27 @@
       " NL Becomes Unplayable for the rest of combat.",
       "Unplayable. NL ",
       "I have already played this card."
+    ]
+  },
+  "chimeracardsplus:TransientMod": {
+    "TEXT": [
+      "Transient ",
+      "",
+      "Increases card values by #b100%. NL Removes itself from the deck after playing #b5(6) times."
+    ],
+    "EXTRA_TEXT": [
+      " NL After you play this card %s times, remove it from your deck.",
+      " NL Remove this card from your deck."
+    ]
+  },
+  "chimeracardsplus:TangledMod": {
+    "TEXT": [
+      "Tangled ",
+      "",
+      "Costs [E] less. NL Gain #b1 #yEntangled."
+    ],
+    "EXTRA_TEXT": [
+      " NL You cannot play additional Attacks this turn."
     ]
   }
 }

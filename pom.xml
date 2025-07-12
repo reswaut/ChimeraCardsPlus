@@ -18,8 +18,8 @@
     </properties>
 
     <name>Chimera Cards+</name>
-    <version>0.8.1</version>
-    <description>Adds 200+ chimera card modifiers.\n增加200+奇美拉卡牌修改。</description>
+    <version>0.8.3</version>
+    <description>Adds 200+ Chimera Cards modifiers.\n增加200+奇美拉卡牌修改。</description>
 
     <groupId>${modID}</groupId>
     <artifactId>${modID}</artifactId>

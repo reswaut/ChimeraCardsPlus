@@ -3,7 +3,7 @@ package chimeracardsplus.cardmods.rare;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.damagemods.StatueDamage;
+import chimeracardsplus.damagemods.LiquidizingDamage;
 import chimeracardsplus.interfaces.HealingMod;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
@@ -23,7 +23,7 @@ public class LiquidizingMod extends AbstractAugment implements HealingMod {
     public void onInitialApplication(AbstractCard card) {
         this.addedExhaust = !card.exhaust;
         card.exhaust = true;
-        DamageModifierManager.addModifier(card, new StatueDamage());
+        DamageModifierManager.addModifier(card, new LiquidizingDamage());
     }
 
     @Override
@@ -31,14 +31,14 @@ public class LiquidizingMod extends AbstractAugment implements HealingMod {
         List<AbstractDamageModifier> mods = DamageModifierManager.modifiers(card);
         List<AbstractDamageModifier> toRemove = new ArrayList<>();
         for (AbstractDamageModifier m : mods) {
-            if (m instanceof StatueDamage) {
+            if (m instanceof LiquidizingDamage) {
                 toRemove.add(m);
             }
         }
         for (AbstractDamageModifier m : toRemove) {
             DamageModifierManager.removeModifier(card, m);
         }
-        DamageModifierManager.addModifier(card, new StatueDamage());
+        DamageModifierManager.addModifier(card, new LiquidizingDamage());
 
         if (!card.exhaust) {
             this.addedExhaust = true;

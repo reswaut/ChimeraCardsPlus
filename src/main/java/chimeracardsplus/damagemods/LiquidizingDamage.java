@@ -1,16 +1,15 @@
 package chimeracardsplus.damagemods;
 
+import chimeracardsplus.actions.ObtainLiquidizingPotionAction;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
-import com.megacrit.cardcrawl.actions.common.ObtainPotionAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class StatueDamage extends AbstractDamageModifier {
-    public StatueDamage() {
+public class LiquidizingDamage extends AbstractDamageModifier {
+    public LiquidizingDamage() {
         this.priority = 32767;
     }
 
@@ -18,7 +17,7 @@ public class StatueDamage extends AbstractDamageModifier {
         if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
                 && targetHit.currentHealth > 0
                 && targetHit.currentHealth - lastDamageTaken <= 0) {
-            this.addToBot(new ObtainPotionAction(AbstractDungeon.returnRandomPotion(true)));
+            this.addToBot(new ObtainLiquidizingPotionAction());
         }
     }
 
@@ -27,6 +26,6 @@ public class StatueDamage extends AbstractDamageModifier {
     }
 
     public AbstractDamageModifier makeCopy() {
-        return new StatueDamage();
+        return new LiquidizingDamage();
     }
 }

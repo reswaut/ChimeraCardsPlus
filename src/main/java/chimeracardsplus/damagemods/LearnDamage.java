@@ -9,6 +9,9 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.MinionPower;
+import com.megacrit.cardcrawl.powers.RegrowPower;
+import com.megacrit.cardcrawl.powers.UnawakenedPower;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 
@@ -24,7 +27,10 @@ public class LearnDamage extends AbstractDamageModifier {
         if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
                 && targetHit.currentHealth > 0
                 && targetHit.currentHealth - lastDamageTaken <= 0
-                && !targetHit.halfDead && !targetHit.hasPower("Minion")) {
+                && !targetHit.halfDead
+                && !targetHit.hasPower(MinionPower.POWER_ID)
+                && !targetHit.hasPower(RegrowPower.POWER_ID)
+                && !targetHit.hasPower(UnawakenedPower.POWER_ID)) {
             ArrayList<AbstractCard> possibleCards = new ArrayList<>();
             AbstractCard theCard = null;
 
