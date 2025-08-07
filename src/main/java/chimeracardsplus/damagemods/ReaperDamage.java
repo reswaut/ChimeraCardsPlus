@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlyingOrbEffect;
 
@@ -17,6 +18,7 @@ public class ReaperDamage extends AbstractDamageModifier {
 
     public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature targetHit) {
         if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
+                && AbstractDungeon.player.equals(info.owner)
                 && targetHit.currentHealth > 0 && !targetHit.halfDead) {
             for (int j = 0; j < lastDamageTaken / 2 && j < 10; j++) {
                 addToBot(new VFXAction(new FlyingOrbEffect(targetHit.hb.cX, targetHit.hb.cY)));

@@ -6,7 +6,6 @@ import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -30,14 +29,18 @@ public class BarrageMod extends AbstractAugment {
     }
 
     @Override
+    public float modifyBaseBlock(float block, AbstractCard card) {
+        return block * 0.5F;
+    }
+
+    @Override
     public boolean validCard(AbstractCard card) {
-        return allowOrbMods() && cardCheck(card, (c) -> (c.baseDamage > 1
-                && noShenanigans(c)
-                && usesEnemyTargeting()
-                && c.type == CardType.ATTACK
+        return allowOrbMods() && cardCheck(card, (c) -> (noShenanigans(c)
+                && c.cost >= 0
+                && (c.baseDamage >= 2 || c.baseBlock >= 2)
                 && customCheck(c, (check) ->
                     noCardModDescriptionChanges(check)
-                    && check.rawDescription.chars().filter((ch) -> ch == 46 || ch == 12290).count() == 1L)
+                            && check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1L)
         ));
     }
 
@@ -63,16 +66,14 @@ public class BarrageMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (target instanceof AbstractMonster) {
-            int hits = 0;
-            for (int i = 0; i < AbstractDungeon.player.orbs.size(); ++i) {
-                if (!(AbstractDungeon.player.orbs.get(i) instanceof EmptyOrbSlot)) {
-                    ++hits;
-                }
+        int hits = 0;
+        for (int i = 0; i < AbstractDungeon.player.orbs.size(); ++i) {
+            if (!(AbstractDungeon.player.orbs.get(i) instanceof EmptyOrbSlot)) {
+                ++hits;
             }
-            for (int i = 0; i < hits; ++i) {
-                card.use(AbstractDungeon.player, (AbstractMonster)target);
-            }
+        }
+        for (int i = 0; i < hits; ++i) {
+            card.use(AbstractDungeon.player, (AbstractMonster) target);
         }
     }
 

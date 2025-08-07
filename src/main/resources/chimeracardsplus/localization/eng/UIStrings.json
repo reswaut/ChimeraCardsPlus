@@ -1,15 +1,20 @@
 {
-  "chimeracardsplus:HealingModTooltip": {
+  "${modID}:HealingModTooltip": {
     "TEXT": [
       "Run-Scale Modifier",
       "This Modifier will not be generated during combat."
     ]
   },
-  "chimeracardsplus:ModConfigs": {
+  "${modID}:ModConfigs": {
     "TEXT": [
       "Enable Chimera Cards+ Content",
       "Enable Event Addons+",
       "Enable Special Naming"
+    ],
+    "EXTRA_TEXT": [
+      "${project.name}",
+      "${author}",
+      "${project.description}"
     ]
   }
 }

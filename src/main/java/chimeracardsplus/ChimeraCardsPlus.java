@@ -10,7 +10,6 @@ import basemod.interfaces.EditKeywordsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
 import chimeracardsplus.interfaces.SpecialNamingRules;
-import chimeracardsplus.util.GeneralUtils;
 import chimeracardsplus.util.TextureLoader;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
@@ -19,9 +18,6 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
-import com.evacipated.cardcrawl.modthespire.Loader;
-import com.evacipated.cardcrawl.modthespire.ModInfo;
-import com.evacipated.cardcrawl.modthespire.Patcher;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
@@ -33,23 +29,20 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.scannotation.AnnotationDB;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.Properties;
 
 @SpireInitializer
 public class ChimeraCardsPlus implements
         EditKeywordsSubscriber,
         EditStringsSubscriber,
         PostInitializeSubscriber {
-    public static ModInfo info;
-    static { loadModInfo(); }
     private static final String resourcesFolder = checkResourcesPath();
     private static final String FILE_NAME = "chimera_cards_plus_config";
     private static final String DEFAULT_LANGUAGE = "eng";
-    public static String modID;
+    public static final String modID = "chimeracardsplus";
     public static final Logger logger = LogManager.getLogger(modID);
     public static SpireConfig config;
     public static ModPanel settingsPanel;
@@ -96,8 +89,6 @@ public class ChimeraCardsPlus implements
 
     private static void setupSettingsPanel() {
         settingsPanel = new ModPanel();
-        uiStrings = CardCrawlGame.languagePack.getUIString(makeID("ModConfigs"));
-        TEXT = uiStrings.TEXT;
 
         float yPos = Settings.HEIGHT * 0.5f / Settings.scale + 200.0f;
         ModLabeledToggleButton enableEventsButton = new ModLabeledToggleButton(TEXT[1], 350.0F, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, config.getBool(EVENT_ADDONS_PLUS_KEY), settingsPanel, (label) -> {
@@ -126,28 +117,8 @@ public class ChimeraCardsPlus implements
         settingsPanel.addUIElement(enableSpecialNamingButton);
     }
 
-    @Override
-    public void receivePostInitialize() {
-        Texture badgeTexture = TextureLoader.getTexture(imagePath("badge.png"));
-
-        setupSettingsPanel();
-        BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, settingsPanel);
-
-        CardAugmentsMod.registerMod(modID, TEXT[0]);
-
-        new AutoAdd(modID)
-                .packageFilter("chimeracardsplus.cardmods")
-                .any(AbstractAugment.class, (info, abstractAugment) -> CardAugmentsMod.registerAugment(abstractAugment, modID));
-    }
-
-    private static String getLangString() {
-        return Settings.language.name().toLowerCase();
-    }
-
-    /*----------Localization----------*/
-
     private static String checkResourcesPath() {
-        String name = ChimeraCardsPlus.class.getName(); //getPackage can be iffy with patching, so class name is used instead.
+        String name = ChimeraCardsPlus.class.getName();
         name = name.substring(0, name.indexOf('.'));
 
         FileHandle resources = new LwjglFileHandle(name, Files.FileType.Internal);
@@ -161,20 +132,26 @@ public class ChimeraCardsPlus implements
                 "\tat the top of the " + ChimeraCardsPlus.class.getSimpleName() + " java file.");
     }
 
-    private static void loadModInfo() {
-        Optional<ModInfo> infos = Arrays.stream(Loader.MODINFOS).filter((modInfo)->{
-            AnnotationDB annotationDB = Patcher.annotationDBMap.get(modInfo.jarURL);
-            if (annotationDB == null) {
-                return false;
-            }
-            Set<String> initializers = annotationDB.getAnnotationIndex().getOrDefault(SpireInitializer.class.getName(), Collections.emptySet());
-            return initializers.contains(ChimeraCardsPlus.class.getName());
-        }).findFirst();
-        if (!infos.isPresent()) {
-            throw new RuntimeException("Failed to determine mod info/ID based on initializer.");
-        }
-        info = infos.get();
-        modID = info.ID;
+    private static String getLangString() {
+        return Settings.language.name().toLowerCase();
+    }
+
+    /*----------Localization----------*/
+
+    @Override
+    public void receivePostInitialize() {
+        Texture badgeTexture = TextureLoader.getTexture(imagePath("badge.png"));
+        uiStrings = CardCrawlGame.languagePack.getUIString(makeID("ModConfigs"));
+        TEXT = uiStrings.TEXT;
+
+        setupSettingsPanel();
+        BaseMod.registerModBadge(badgeTexture, uiStrings.EXTRA_TEXT[0], uiStrings.EXTRA_TEXT[1], uiStrings.EXTRA_TEXT[2], settingsPanel);
+
+        CardAugmentsMod.registerMod(modID, TEXT[0]);
+
+        new AutoAdd(modID)
+                .packageFilter("chimeracardsplus.cardmods")
+                .any(AbstractAugment.class, (info, abstractAugment) -> CardAugmentsMod.registerAugment(abstractAugment, modID));
     }
 
     @Override

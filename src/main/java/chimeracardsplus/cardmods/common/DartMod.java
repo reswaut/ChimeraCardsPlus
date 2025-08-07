@@ -29,14 +29,18 @@ public class DartMod extends AbstractAugment {
     }
 
     @Override
+    public float modifyBaseBlock(float block, AbstractCard card) {
+        return block * 0.5F;
+    }
+
+    @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.baseDamage > 1
-                && noShenanigans(c)
-                && usesEnemyTargeting()
-                && c.type == CardType.ATTACK
+        return cardCheck(card, (c) -> (noShenanigans(c)
+                && c.cost >= 0
+                && (c.baseDamage >= 2 || c.baseBlock >= 2)
                 && customCheck(c, (check) ->
                     noCardModDescriptionChanges(check)
-                    && check.rawDescription.chars().filter((ch) -> ch == 46 || ch == 12290).count() == 1L)
+                            && check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1L)
         ));
     }
 
@@ -62,16 +66,14 @@ public class DartMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (target instanceof AbstractMonster) {
-            int hits = 0;
-            for (AbstractCard c : AbstractDungeon.player.hand.group) {
-                if (c.type == CardType.SKILL) {
-                    ++hits;
-                }
+        int hits = 0;
+        for (AbstractCard c : AbstractDungeon.player.hand.group) {
+            if (c.type == CardType.SKILL && !card.uuid.equals(c.uuid)) {
+                ++hits;
             }
-            for (int i = 0; i < hits; ++i) {
-                card.use(AbstractDungeon.player, (AbstractMonster)target);
-            }
+        }
+        for (int i = 0; i < hits; ++i) {
+            card.use(AbstractDungeon.player, (AbstractMonster) target);
         }
     }
 

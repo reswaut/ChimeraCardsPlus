@@ -11,21 +11,10 @@ import static chimeracardsplus.ChimeraCardsPlus.logger;
 public class TextureLoader {
     private static final HashMap<String, Texture> textures = new HashMap<>();
 
-    /**
-     * @param filePath - String path to the texture you want to load relative to resources,
-     * Example: imagePath("missing.png")
-     * @return <b>com.badlogic.gdx.graphics.Texture</b> - The texture from the path provided, or a "missing image" texture if it doesn't exist.
-     */
     public static Texture getTexture(final String filePath) {
         return getTexture(filePath, true);
     }
 
-    /**
-     * @param filePath - String path to the texture you want to load relative to resources,
-     * Example: imagePath("missing.png")
-     * @param linear - Whether the image should use a linear or nearest filter for scaling.
-     * @return <b>com.badlogic.gdx.graphics.Texture</b> - The texture from the path provided, or a "missing image" texture if it doesn't exist.
-     */
     public static Texture getTexture(final String filePath, boolean linear) {
         if (textures.get(filePath) == null) {
             try {
@@ -47,21 +36,10 @@ public class TextureLoader {
         return t;
     }
 
-    /**
-     * @param filePath - String path to the texture you want to load relative to resources,
-     * Example: imagePath("missing.png")
-     * @return <b>com.badlogic.gdx.graphics.Texture</b> - The texture from the path provided, or null if it doesn't exist.
-     */
     public static Texture getTextureNull(final String filePath) {
         return getTextureNull(filePath, true);
     }
 
-    /**
-     * @param filePath - String path to the texture you want to load relative to resources,
-     * Example: imagePath("missing.png")
-     * @param linear - Whether the image should use a linear or nearest filter for scaling.
-     * @return <b>com.badlogic.gdx.graphics.Texture</b> - The texture from the path provided, or null if it doesn't exist.
-     */
     public static Texture getTextureNull(final String filePath, boolean linear) {
         if (!textures.containsKey(filePath)) {
             try {
@@ -84,12 +62,9 @@ public class TextureLoader {
 
     private static void loadTexture(final String textureString, boolean linearFilter) throws GdxRuntimeException {
         Texture texture = new Texture(textureString);
-        if (linearFilter)
-        {
+        if (linearFilter) {
             texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-        }
-        else
-        {
+        } else {
             texture.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
         }
         logger.info("Loaded texture {}", textureString);

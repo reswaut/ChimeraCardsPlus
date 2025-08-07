@@ -1,5 +1,5 @@
 {
-  "chimeracardsplus:AchingMod": {
+  "${modID}:AchingMod": {
     "TEXT": [
       "疼痛",
       "",
@@ -9,7 +9,7 @@
       " NL 当在手牌中时，每打出一张其他牌，失去1点生命。"
     ]
   },
-  "chimeracardsplus:AgileMod": {
+  "${modID}:AgileMod": {
     "TEXT": [
       "灵活",
       "",
@@ -19,7 +19,7 @@
       " NL 获得3点 敏捷 。 NL 你的回合结束时，失去3点 敏捷 。"
     ]
   },
-  "chimeracardsplus:AkabekoMod": {
+  "${modID}:AkabekoMod": {
     "TEXT": [
       "赤牛",
       "",
@@ -29,7 +29,7 @@
       " NL 如果你还没有在战斗中打出攻击牌，则额外造成8点伤害。"
     ]
   },
-  "chimeracardsplus:ArtOfMod": {
+  "${modID}:ArtOfMod": {
     "TEXT": [
       "",
       "兵法",
@@ -39,7 +39,7 @@
       " NL 如果你还没有在回合中打出攻击牌，则在下回合获得 [E] 。"
     ]
   },
-  "chimeracardsplus:AshyMod": {
+  "${modID}:AshyMod": {
     "TEXT": [
       "",
       "之灰",
@@ -49,7 +49,7 @@
       " NL 如果这张牌被 消耗 ，对所有敌人造成3点伤害。"
     ]
   },
-  "chimeracardsplus:AuraMod": {
+  "${modID}:AuraMod": {
     "TEXT": [
       "",
       "灵气",
@@ -61,7 +61,7 @@
       "固有 。 "
     ]
   },
-  "chimeracardsplus:BanefulMod": {
+  "${modID}:BanefulMod": {
     "TEXT": [
       "灾祸",
       "",
@@ -72,17 +72,17 @@
       "中毒"
     ]
   },
-  "chimeracardsplus:BarrageMod": {
+  "${modID}:BarrageMod": {
     "TEXT": [
+      "弹幕",
       "",
-      "齐射",
-      "造成的伤害减少 #b50% 。 NL 你每拥有一个充能球，就造成一次伤害。"
+      "造成的伤害和获得的 #y格挡 减少 #b50% 。 NL 你每拥有一个充能球，就打出一次。"
     ],
     "EXTRA_TEXT": [
       "数次，其数量等于充能球的数量。"
     ]
   },
-  "chimeracardsplus:BirdFacedMod": {
+  "${modID}:BirdFacedMod": {
     "TEXT": [
       "鸟面",
       "",
@@ -92,7 +92,7 @@
       " NL 回复2点生命。"
     ]
   },
-  "chimeracardsplus:BitingMod": {
+  "${modID}:BitingMod": {
     "TEXT": [
       "噬咬",
       "",
@@ -103,7 +103,7 @@
       " NL 回复 X 点生命。"
     ]
   },
-  "chimeracardsplus:BladedMod": {
+  "${modID}:BladedMod": {
     "TEXT": [
       "带刃",
       "",
@@ -111,7 +111,7 @@
     ],
     "EXTRA_TEXT": []
   },
-  "chimeracardsplus:BlessedMod": {
+  "${modID}:BlessedMod": {
     "TEXT": [
       "受祝福的",
       "",
@@ -122,7 +122,7 @@
       " NL 祝福已经耗尽。"
     ]
   },
-  "chimeracardsplus:BloodlettingMod": {
+  "${modID}:BloodlettingMod": {
     "TEXT": [
       "放血",
       "",
@@ -132,7 +132,7 @@
       " NL 失去3点生命。"
     ]
   },
-  "chimeracardsplus:BootMod": {
+  "${modID}:BootMod": {
     "TEXT": [
       "",
       "的靴子",
@@ -140,7 +140,7 @@
     ],
     "EXTRA_TEXT": []
   },
-  "chimeracardsplus:BrilliantMod": {
+  "${modID}:BrilliantMod": {
     "TEXT": [
       "光辉",
       "",
@@ -153,7 +153,7 @@
       "真言"
     ]
   },
-  "chimeracardsplus:BufferedMod": {
+  "${modID}:BufferedMod": {
     "TEXT": [
       "缓冲",
       "",
@@ -166,7 +166,7 @@
       " NL 阻止下 %s 次你受到的生命值损伤。"
     ]
   },
-  "chimeracardsplus:BurstyMod": {
+  "${modID}:BurstyMod": {
     "TEXT": [
       "爆发",
       "",
@@ -178,9 +178,9 @@
       "在这个回合，你的下 !M! 张技能牌会打出两次。"
     ]
   },
-  "chimeracardsplus:SoulboundMod": {
+  "${modID}:SoulboundMod": {
     "TEXT": [
-      "缚魂",
+      "魂缚",
       "",
       "卡牌数值增加 #b40% 。 NL 不能从牌组中移除。"
     ],
@@ -188,7 +188,7 @@
       "stslib:灵魂绑定 。 NL "
     ]
   },
-  "chimeracardsplus:CapaciousMod": {
+  "${modID}:CapaciousMod": {
     "TEXT": [
       "扩容",
       "",
@@ -201,7 +201,7 @@
       " NL 获得 %s 个充能球栏位。"
     ]
   },
-  "chimeracardsplus:CaptainMod": {
+  "${modID}:CaptainMod": {
     "TEXT": [
       "船长的",
       "",
@@ -212,7 +212,7 @@
       " NL 获得 10 层 *多层护甲 。"
     ]
   },
-  "chimeracardsplus:CastMod": {
+  "${modID}:CastMod": {
     "TEXT": [
       "",
       "并释放",
@@ -222,7 +222,7 @@
       " NL 激发 你最右侧的充能球。"
     ]
   },
-  "chimeracardsplus:CeramicMod": {
+  "${modID}:CeramicMod": {
     "TEXT": [
       "陶瓷",
       "",
@@ -232,7 +232,7 @@
       " NL 拾起时获得9 *金币 。"
     ]
   },
-  "chimeracardsplus:ChallengingMod": {
+  "${modID}:ChallengingMod": {
     "TEXT": [
       "挑战",
       "",
@@ -242,7 +242,7 @@
       " NL 获得 2 层 易伤 。给予所有敌人 2 层 易伤 。"
     ]
   },
-  "chimeracardsplus:ChangingMod": {
+  "${modID}:ChangingMod": {
     "TEXT": [
       "改变",
       "",
@@ -252,7 +252,7 @@
       " NL 拾起时可以 变化 牌组中的另一张牌。"
     ]
   },
-  "chimeracardsplus:ChaoticMod": {
+  "${modID}:ChaoticMod": {
     "TEXT": [
       "混沌",
       "",
@@ -262,7 +262,7 @@
       " NL 生成 1 个随机充能球。"
     ]
   },
-  "chimeracardsplus:ChemicalMod": {
+  "${modID}:ChemicalMod": {
     "TEXT": [
       "化学物",
       "",
@@ -272,7 +272,7 @@
       "将X增加1。 NL "
     ]
   },
-  "chimeracardsplus:ChokingMod": {
+  "${modID}:ChokingMod": {
     "TEXT": [
       "勒脖",
       "",
@@ -282,7 +282,7 @@
       " NL 你在这个回合内每打出一张牌，该名敌人都会失去 %s 点生命。"
     ]
   },
-  "chimeracardsplus:ClearMod": {
+  "${modID}:ClearMod": {
     "TEXT": [
       "明晰",
       "",
@@ -292,7 +292,7 @@
       " NL 检视你抽牌堆顶部的两张牌，将一张加入手牌， 消耗 另一张。"
     ]
   },
-  "chimeracardsplus:CollectedMod": {
+  "${modID}:CollectedMod": {
     "TEXT": [
       "收集",
       "",
@@ -307,7 +307,7 @@
       " NL 在你的下3个回合开始时，增加一张 *奇迹+ 到你的手牌。"
     ]
   },
-  "chimeracardsplus:ConcentratedMod": {
+  "${modID}:ConcentratedMod": {
     "TEXT": [
       "专注",
       "",
@@ -317,7 +317,7 @@
       " NL 丢弃 3 张牌。"
     ]
   },
-  "chimeracardsplus:ConclusiveMod": {
+  "${modID}:ConclusiveMod": {
     "TEXT": [
       "结末",
       "",
@@ -327,7 +327,7 @@
       " NL 结束你的回合。"
     ]
   },
-  "chimeracardsplus:ConservedMod": {
+  "${modID}:ConservedMod": {
     "TEXT": [
       "保存",
       "",
@@ -337,7 +337,7 @@
       " NL 本回合的能量可以留到下一回合。"
     ]
   },
-  "chimeracardsplus:CourageousMod": {
+  "${modID}:CourageousMod": {
     "TEXT": [
       "勇气",
       "",
@@ -347,7 +347,7 @@
       " NL 在与精英敌人战斗时额外造成3点伤害。"
     ]
   },
-  "chimeracardsplus:CreativeMod": {
+  "${modID}:CreativeMod": {
     "TEXT": [
       "创造性",
       "",
@@ -358,7 +358,7 @@
       " NL 增加一张随机 升级 过的 能力 牌到你的手牌。 NL 消耗 。"
     ]
   },
-  "chimeracardsplus:CripplingMod": {
+  "${modID}:CripplingMod": {
     "TEXT": [
       "致残",
       "",
@@ -370,7 +370,7 @@
       " NL 给予所有敌人1层 虚弱 。"
     ]
   },
-  "chimeracardsplus:CrushingMod": {
+  "${modID}:CrushingMod": {
     "TEXT": [
       "粉碎",
       "",
@@ -380,7 +380,7 @@
       " NL 如果本场战斗中打出的上一张牌是技能牌，给予 %s 层 易伤 。"
     ]
   },
-  "chimeracardsplus:CubicMod": {
+  "${modID}:CubicMod": {
     "TEXT": [
       "",
       "立方体",
@@ -390,7 +390,7 @@
       " NL 失去 1 点生命。抽 1 张牌。"
     ]
   },
-  "chimeracardsplus:CursedMod": {
+  "${modID}:CursedMod": {
     "TEXT": [
       "被诅咒的",
       "被%s诅咒的",
@@ -403,7 +403,7 @@
       " NL 拾起时将一张 %s 加入你的牌组。"
     ]
   },
-  "chimeracardsplus:CutThroughMod": {
+  "${modID}:CutThroughMod": {
     "TEXT": [
       "斩破",
       "",
@@ -416,7 +416,7 @@
       "抽2张牌。"
     ]
   },
-  "chimeracardsplus:DarkMod": {
+  "${modID}:DarkMod": {
     "TEXT": [
       "昏暗",
       "",
@@ -426,17 +426,17 @@
       " NL 如果这张牌被 消耗 ，抽 1 张牌。"
     ]
   },
-  "chimeracardsplus:DartMod": {
+  "${modID}:DartMod": {
     "TEXT": [
       "飞镖",
       "",
-      "造成的伤害减少 #b50% 。 NL 手牌中每有一张技能牌，就造成一次伤害。"
+      "造成的伤害和获得的 #y格挡 减少 #b50% 。 NL 手牌中每有一张技能牌，就打出一次。"
     ],
     "EXTRA_TEXT": [
       "数次，其数量等于手牌中技能牌的数量。"
     ]
   },
-  "chimeracardsplus:DeadMod": {
+  "${modID}:DeadMod": {
     "TEXT": [
       "枯萎",
       "",
@@ -446,7 +446,7 @@
       " NL 如果这张牌被 消耗 ，增加一张随机卡牌到你的手牌。"
     ]
   },
-  "chimeracardsplus:DeepMod": {
+  "${modID}:DeepMod": {
     "TEXT": [
       "深",
       "",
@@ -456,7 +456,7 @@
       " NL 将你的弃牌堆洗牌后放入你的抽牌堆。"
     ]
   },
-  "chimeracardsplus:DeterminedMod": {
+  "${modID}:DeterminedMod": {
     "TEXT": [
       "坚决",
       "",
@@ -466,7 +466,7 @@
       " NL 增加2张 *伤口 到你的手牌。"
     ]
   },
-  "chimeracardsplus:DexterousMod": {
+  "${modID}:DexterousMod": {
     "TEXT": [
       "灵巧",
       "",
@@ -477,7 +477,7 @@
       " NL 获得 %s 点 敏捷 。"
     ]
   },
-  "chimeracardsplus:DisarmingMod": {
+  "${modID}:DisarmingMod": {
     "TEXT": [
       "缴械",
       "",
@@ -490,7 +490,7 @@
       " NL 使敌人失去 X 点 力量 。"
     ]
   },
-  "chimeracardsplus:DiscoveredMod": {
+  "${modID}:DiscoveredMod": {
     "TEXT": [
       "发现",
       "",
@@ -501,7 +501,7 @@
       "固有 。 NL "
     ]
   },
-  "chimeracardsplus:DisorderedMod": {
+  "${modID}:DisorderedMod": {
     "TEXT": [
       "破灭",
       "",
@@ -511,7 +511,7 @@
       " NL 打出抽牌堆顶部的牌，将其 消耗 。"
     ]
   },
-  "chimeracardsplus:DistractingMod": {
+  "${modID}:DistractingMod": {
     "TEXT": [
       "分心",
       "",
@@ -522,7 +522,7 @@
       " NL 增加一张随机 升级 过的 技能 牌到你的手牌。 NL 消耗 。"
     ]
   },
-  "chimeracardsplus:DoppelgangerMod": {
+  "${modID}:DoppelgangerMod": {
     "TEXT": [
       "",
       "的二重身",
@@ -537,7 +537,7 @@
       " NL 下一回合，抽3张牌，获得 [E] [E] [E] 。"
     ]
   },
-  "chimeracardsplus:DoublingMod": {
+  "${modID}:DoublingMod": {
     "TEXT": [
       "双发",
       "",
@@ -549,7 +549,7 @@
       "在这个回合，你的下 !M! 张攻击牌会打出两次。"
     ]
   },
-  "chimeracardsplus:WearyMod": {
+  "${modID}:WearyMod": {
     "TEXT": [
       "疲惫",
       "",
@@ -559,7 +559,7 @@
       " NL 失去 1 点 敏捷 。"
     ]
   },
-  "chimeracardsplus:DuplicatingMod": {
+  "${modID}:DuplicatingMod": {
     "TEXT": [
       "复制",
       "",
@@ -570,7 +570,7 @@
       " NL 本回合你的下一张牌将被打出两次。"
     ]
   },
-  "chimeracardsplus:EdibleMod": {
+  "${modID}:EdibleMod": {
     "TEXT": [
       "可食用",
       "",
@@ -582,7 +582,7 @@
       " NL 拾起时，将你的最大生命值提升 3 。"
     ]
   },
-  "chimeracardsplus:EnlightenedMod": {
+  "${modID}:EnlightenedMod": {
     "TEXT": [
       "开悟",
       "",
@@ -592,7 +592,7 @@
       " NL 使你手牌中的一张随机牌在本回合中耗能减少为 [E] 。"
     ]
   },
-  "chimeracardsplus:EntropicMod": {
+  "${modID}:EntropicMod": {
     "TEXT": [
       "无序",
       "",
@@ -603,7 +603,7 @@
       " NL 用 升级 过的随机卡牌填满你的手牌。 NL 消耗 。"
     ]
   },
-  "chimeracardsplus:ExertedMod": {
+  "${modID}:ExertedMod": {
     "TEXT": [
       "耗竭",
       "",
@@ -613,7 +613,7 @@
       " NL 抽 1 张牌。下一回合少抽 1 张牌。"
     ]
   },
-  "chimeracardsplus:ExperiencedMod": {
+  "${modID}:ExperiencedMod": {
     "TEXT": [
       "熟练",
       "",
@@ -623,7 +623,7 @@
       " NL 你的手牌中每有一张 升级 后的卡牌，获得的 格挡 就增加 1 。"
     ]
   },
-  "chimeracardsplus:ExpertMod": {
+  "${modID}:ExpertMod": {
     "TEXT": [
       "独门",
       "",
@@ -633,7 +633,7 @@
       " NL 抽牌直到你的手牌有 6 张牌。"
     ]
   },
-  "chimeracardsplus:ExplosionMod": {
+  "${modID}:ExplosionMod": {
     "TEXT": [
       "",
       "爆炸",
@@ -643,7 +643,7 @@
       " NL 当这名敌人死亡时，对所有敌人造成等于其最大生命值的伤害。"
     ]
   },
-  "chimeracardsplus:FairyMod": {
+  "${modID}:FairyMod": {
     "TEXT": [
       "",
       "中精灵",
@@ -653,7 +653,7 @@
       " NL 当你要被杀死时，免死并回复到最大生命值的 10% ，把这张牌从你的牌组中移除。"
     ]
   },
-  "chimeracardsplus:FastingMod": {
+  "${modID}:FastingMod": {
     "TEXT": [
       "斋戒",
       "",
@@ -663,7 +663,7 @@
       " NL 每回合开始时少获得 1 [E] 。"
     ]
   },
-  "chimeracardsplus:FeedingMod": {
+  "${modID}:FeedingMod": {
     "TEXT": [
       "狂宴",
       "",
@@ -674,30 +674,33 @@
       " NL 斩杀 时，获得 %s 点最大生命。"
     ]
   },
-  "chimeracardsplus:FiendMod": {
+  "${modID}:FiendMod": {
     "TEXT": [
       "恶魔",
       "",
-      "耗能增加 #b2 。 NL #y消耗 你的手牌，每 #y消耗 一张牌打出这张牌一次。 NL #y消耗 。"
+      "耗能增加 #b2 。 NL #y消耗 你的手牌，每 #y消耗 一张牌打出一次。 NL #y消耗 。"
     ],
     "EXTRA_TEXT": [
       "消耗 你的手牌。 NL ",
       "数次，其数量等于被 消耗 的牌的数量。 NL 消耗 。"
     ]
   },
-  "chimeracardsplus:FinishingMod": {
+  "${modID}:FinishingMod": {
     "TEXT": [
       "终结",
       "",
-      "造成的伤害减少 #b33% 。 NL 你在这个回合内每打出过一张攻击牌，就造成一次伤害。"
+      "造成的伤害和获得的 #y格挡 减少 #b33% 。 NL 你在这个回合内每打出过一张相同类型的牌，就打出一次。"
     ],
     "EXTRA_TEXT": [
       "数次，其数量等于你在这个回合内打出的攻击牌的数量。",
       " NL （你本回合打出过 %s 张攻击牌。）",
-      " NL （你本回合打出过 %s 张攻击牌。）"
+      " NL （你本回合打出过 %s 张攻击牌。）",
+      "数次，其数量等于你在这个回合内打出的技能牌的数量。",
+      " NL （你本回合打出过 %s 张技能牌。）",
+      " NL （你本回合打出过 %s 张技能牌。）"
     ]
   },
-  "chimeracardsplus:FlamboyantMod": {
+  "${modID}:FlamboyantMod": {
     "TEXT": [
       "艳丽",
       "",
@@ -709,7 +712,7 @@
       " （已打出 %d 张牌。）"
     ]
   },
-  "chimeracardsplus:FlamingMod": {
+  "${modID}:FlamingMod": {
     "TEXT": [
       "燃烧",
       "",
@@ -719,7 +722,7 @@
       " NL 你在这个回合每受到一次攻击，都对攻击者造成 %s 点伤害。"
     ]
   },
-  "chimeracardsplus:FlickeringMod": {
+  "${modID}:FlickeringMod": {
     "TEXT": [
       "闪烁",
       "",
@@ -729,7 +732,7 @@
       " NL 如果这张牌杀死了敌人，它会返回你的手牌。"
     ]
   },
-  "chimeracardsplus:FocusedMod": {
+  "${modID}:FocusedMod": {
     "TEXT": [
       "集中",
       "",
@@ -740,7 +743,7 @@
       " NL 获得 %s 集中 。"
     ]
   },
-  "chimeracardsplus:ForcefulMod": {
+  "${modID}:ForcefulMod": {
     "TEXT": [
       "有力",
       "",
@@ -752,7 +755,7 @@
       "你在本场战斗中每打出一张能力牌，耗能就减少2 [B] 。"
     ]
   },
-  "chimeracardsplus:ForeignMod": {
+  "${modID}:ForeignMod": {
     "TEXT": [
       "他山",
       "",
@@ -765,7 +768,7 @@
       " NL 增加一张任意颜色的随机 升级 过的技能牌到你的手牌。 NL 消耗 。"
     ]
   },
-  "chimeracardsplus:ForethoughtMod": {
+  "${modID}:ForethoughtMod": {
     "TEXT": [
       "预谋",
       "",
@@ -775,7 +778,7 @@
       " NL 将手牌中的任意张牌放到抽牌堆的底部。它们在被打出之前，耗能变为0。"
     ]
   },
-  "chimeracardsplus:ForgetfulMod": {
+  "${modID}:ForgetfulMod": {
     "TEXT": [
       "遗忘",
       "",
@@ -785,7 +788,7 @@
       " NL 拾起时可以 移除 牌组中的另一张牌。"
     ]
   },
-  "chimeracardsplus:GamblerMod": {
+  "${modID}:GamblerMod": {
     "TEXT": [
       "赌徒",
       "",
@@ -796,7 +799,7 @@
       " NL 丢弃所有手牌，然后抽相同数量张牌。"
     ]
   },
-  "chimeracardsplus:GeneticMod": {
+  "${modID}:GeneticMod": {
     "TEXT": [
       "遗传",
       "",
@@ -807,7 +810,7 @@
       " NL 这张牌在本局游戏中的 格挡 永久性增加 %s 。"
     ]
   },
-  "chimeracardsplus:GrandMod": {
+  "${modID}:GrandMod": {
     "TEXT": [
       "华丽",
       "",
@@ -817,7 +820,7 @@
       " NL 只有当抽牌堆中没有牌时才能打出。"
     ]
   },
-  "chimeracardsplus:GrowingMod": {
+  "${modID}:GrowingMod": {
     "TEXT": [
       "成长",
       "",
@@ -827,7 +830,7 @@
       " NL 拾起时可以 升级 牌组中的另一张牌。"
     ]
   },
-  "chimeracardsplus:GuardedMod": {
+  "${modID}:GuardedMod": {
     "TEXT": [
       "哨卫",
       "",
@@ -839,7 +842,7 @@
       "如果这张牌被 消耗 ，获得 [R] [R] [R]"
     ]
   },
-  "chimeracardsplus:HandMod": {
+  "${modID}:HandMod": {
     "TEXT": [
       "以手",
       "",
@@ -852,7 +855,7 @@
       " NL 每当目标敌人受到攻击时，你获得 X 点 格挡 。"
     ]
   },
-  "chimeracardsplus:HappyMod": {
+  "${modID}:HappyMod": {
     "TEXT": [
       "开心",
       "",
@@ -862,7 +865,7 @@
       " NL 如果这是你的第3个回合，则获得 [E] 。"
     ]
   },
-  "chimeracardsplus:HastyMod": {
+  "${modID}:HastyMod": {
     "TEXT": [
       "迅捷",
       "",
@@ -872,7 +875,7 @@
       " NL 失去 [E] 。"
     ]
   },
-  "chimeracardsplus:HeadOnMod": {
+  "${modID}:HeadOnMod": {
     "TEXT": [
       "迎头",
       "",
@@ -882,7 +885,7 @@
       " NL 将弃牌堆中的一张牌放到抽牌堆的顶部。"
     ]
   },
-  "chimeracardsplus:HeatingMod": {
+  "${modID}:HeatingMod": {
     "TEXT": [
       "熔化",
       "",
@@ -892,7 +895,7 @@
       "去除敌人的所有 格挡 。 NL "
     ]
   },
-  "chimeracardsplus:HelloMod": {
+  "${modID}:HelloMod": {
     "TEXT": [
       "你好，",
       "",
@@ -903,7 +906,7 @@
       " NL 增加一张随机 升级 过的 普通 牌到你的手牌。 NL 消耗 。"
     ]
   },
-  "chimeracardsplus:HoloMod": {
+  "${modID}:HoloMod": {
     "TEXT": [
       "全息",
       "",
@@ -916,7 +919,7 @@
       "将弃牌堆中的2张牌放入你的手牌。"
     ]
   },
-  "chimeracardsplus:HornMod": {
+  "${modID}:HornMod": {
     "TEXT": [
       "",
       "之角",
@@ -926,7 +929,7 @@
       " NL 如果这张牌杀死了敌人，则获得 [E] 并抽 1 张牌。"
     ]
   },
-  "chimeracardsplus:ImmortalityMod": {
+  "${modID}:ImmortalityMod": {
     "TEXT": [
       "",
       "永生",
@@ -937,7 +940,7 @@
       "在你的回合结束时，获得 %s 层 *多层护甲 。"
     ]
   },
-  "chimeracardsplus:ImpatientMod": {
+  "${modID}:ImpatientMod": {
     "TEXT": [
       "急躁",
       "",
@@ -947,7 +950,7 @@
       " NL 如果你的手牌中没有攻击牌，抽 2 张牌。"
     ]
   },
-  "chimeracardsplus:ImpulsiveMod": {
+  "${modID}:ImpulsiveMod": {
     "TEXT": [
       "脉冲",
       "",
@@ -957,7 +960,7 @@
       " NL 触发所有充能球的被动效果。"
     ]
   },
-  "chimeracardsplus:IncantatoryMod": {
+  "${modID}:IncantatoryMod": {
     "TEXT": [
       "施咒",
       "",
@@ -968,7 +971,7 @@
       " NL 获得1层 仪式 。"
     ]
   },
-  "chimeracardsplus:IncenseMod": {
+  "${modID}:IncenseMod": {
     "TEXT": [
       "熏香",
       "",
@@ -978,7 +981,7 @@
       " NL 如果这是你的第6个回合，则获得1层 无实体 。"
     ]
   },
-  "chimeracardsplus:InescapableMod": {
+  "${modID}:InescapableMod": {
     "TEXT": [
       "无法逃脱的",
       "",
@@ -988,7 +991,7 @@
       " NL 如果这张牌被 消耗 ，增加一张它的复制到你的手牌。"
     ]
   },
-  "chimeracardsplus:InfernalMod": {
+  "${modID}:InfernalMod": {
     "TEXT": [
       "地狱",
       "",
@@ -999,7 +1002,7 @@
       " NL 增加一张随机 升级 过的 攻击 牌到你的手牌。 NL 消耗 。"
     ]
   },
-  "chimeracardsplus:InflammableMod": {
+  "${modID}:InflammableMod": {
     "TEXT": [
       "易燃",
       "",
@@ -1010,7 +1013,7 @@
       " NL 获得 %s 点 力量 。"
     ]
   },
-  "chimeracardsplus:InjuriousMod": {
+  "${modID}:InjuriousMod": {
     "TEXT": [
       "致伤",
       "",
@@ -1020,7 +1023,7 @@
       " NL 将一张 *伤口 放入你的抽牌堆中。"
     ]
   },
-  "chimeracardsplus:InkyMod": {
+  "${modID}:InkyMod": {
     "TEXT": [
       "墨水",
       "",
@@ -1032,7 +1035,7 @@
       " （已打出 %d 张牌。）"
     ]
   },
-  "chimeracardsplus:IntimidatingMod": {
+  "${modID}:IntimidatingMod": {
     "TEXT": [
       "威吓",
       "",
@@ -1043,7 +1046,7 @@
       " NL 给予所有敌人 1 层 虚弱 。"
     ]
   },
-  "chimeracardsplus:IntrospectiveMod": {
+  "${modID}:IntrospectiveMod": {
     "TEXT": [
       "内省",
       "",
@@ -1054,7 +1057,7 @@
       " NL 移除你的 脆弱 和 易伤 。"
     ]
   },
-  "chimeracardsplus:KunaiMod": {
+  "${modID}:KunaiMod": {
     "TEXT": [
       "苦无",
       "",
@@ -1066,7 +1069,7 @@
       " （已打出 %d 张攻击牌。）"
     ]
   },
-  "chimeracardsplus:LearnMod": {
+  "${modID}:LearnMod": {
     "TEXT": [
       "勤学",
       "",
@@ -1077,7 +1080,7 @@
       " NL 斩杀 时， 升级 你牌组中的一张随机牌。"
     ]
   },
-  "chimeracardsplus:LoopyMod": {
+  "${modID}:LoopyMod": {
     "TEXT": [
       "循环",
       "",
@@ -1087,7 +1090,7 @@
       " NL 触发你最右侧的1个充能球的被动能力。"
     ]
   },
-  "chimeracardsplus:LoudMod": {
+  "${modID}:LoudMod": {
     "TEXT": [
       "增幅",
       "",
@@ -1099,7 +1102,7 @@
       "在这个回合，你的下 !M! 张 能力牌 会打出两次。"
     ]
   },
-  "chimeracardsplus:MadMod": {
+  "${modID}:MadMod": {
     "TEXT": [
       "疯狂",
       "",
@@ -1110,7 +1113,7 @@
       " NL 你手牌中一张随机牌在本场战斗中耗能变为0。"
     ]
   },
-  "chimeracardsplus:MagneticMod": {
+  "${modID}:MagneticMod": {
     "TEXT": [
       "磁力",
       "",
@@ -1121,7 +1124,7 @@
       " NL 增加一张随机 升级 过的无色牌到你的手牌。 NL 消耗 。"
     ]
   },
-  "chimeracardsplus:MarbleMod": {
+  "${modID}:MarbleMod": {
     "TEXT": [
       "弹珠",
       "",
@@ -1132,7 +1135,7 @@
       " NL 给予所有敌人 1 层 易伤 。"
     ]
   },
-  "chimeracardsplus:MarkedMod": {
+  "${modID}:MarkedMod": {
     "TEXT": [
       "印记",
       "",
@@ -1142,7 +1145,7 @@
       " NL 给予 %s 层 *印记 ，然后所有拥有 *印记 的敌人失去与层数相等的生命。"
     ]
   },
-  "chimeracardsplus:MetallicMod": {
+  "${modID}:MetallicMod": {
     "TEXT": [
       "金属",
       "",
@@ -1153,7 +1156,7 @@
       " NL 获得 %s *金属化 。"
     ]
   },
-  "chimeracardsplus:MirroredMod": {
+  "${modID}:MirroredMod": {
     "TEXT": [
       "镜像",
       "",
@@ -1163,7 +1166,7 @@
       " NL 拾起时可以 复制 牌组中的另一张牌。"
     ]
   },
-  "chimeracardsplus:MummifiedMod": {
+  "${modID}:MummifiedMod": {
     "TEXT": [
       "干瘪",
       "",
@@ -1173,7 +1176,7 @@
       " NL 使手牌中一张随机牌在这个回合耗能变为0。"
     ]
   },
-  "chimeracardsplus:MutagenicMod": {
+  "${modID}:MutagenicMod": {
     "TEXT": [
       "突变",
       "",
@@ -1183,7 +1186,7 @@
       " NL 在第一回合额外造成3点伤害。"
     ]
   },
-  "chimeracardsplus:NightmareMod": {
+  "${modID}:NightmareMod": {
     "TEXT": [
       "",
       "的夜魇",
@@ -1194,7 +1197,7 @@
       "固有 。 NL "
     ]
   },
-  "chimeracardsplus:NormalMod": {
+  "${modID}:NormalMod": {
     "TEXT": [
       "凡庸",
       "",
@@ -1206,7 +1209,7 @@
       " （已打出 %d 张牌。）"
     ]
   },
-  "chimeracardsplus:NunchakuMod": {
+  "${modID}:NunchakuMod": {
     "TEXT": [
       "双节棍",
       "",
@@ -1218,7 +1221,7 @@
       " （已打出 %d 张攻击牌。）"
     ]
   },
-  "chimeracardsplus:ObservantMod": {
+  "${modID}:ObservantMod": {
     "TEXT": [
       "敏锐",
       "",
@@ -1229,7 +1232,7 @@
       " NL 如果敌人的意图是攻击，你获得 X 点 力量 。"
     ]
   },
-  "chimeracardsplus:OpportunisticMod": {
+  "${modID}:OpportunisticMod": {
     "TEXT": [
       "投机",
       "",
@@ -1239,7 +1242,7 @@
       " NL 如果你的手牌中没有技能牌，抽 2 张牌。"
     ]
   },
-  "chimeracardsplus:OverclockedMod": {
+  "${modID}:OverclockedMod": {
     "TEXT": [
       "超频",
       "",
@@ -1249,7 +1252,7 @@
       " NL 将一张 *灼伤 放入你的弃牌堆中。"
     ]
   },
-  "chimeracardsplus:PainfulMod": {
+  "${modID}:PainfulMod": {
     "TEXT": [
       "痛处",
       "",
@@ -1259,7 +1262,7 @@
       " NL 将2张 *伤口 放入你的抽牌堆中。"
     ]
   },
-  "chimeracardsplus:PainlessMod": {
+  "${modID}:PainlessMod": {
     "TEXT": [
       "无痛",
       "",
@@ -1269,7 +1272,7 @@
       " NL 如果这张牌被 消耗 ，获得 %s 点 格挡 。"
     ]
   },
-  "chimeracardsplus:PanicMod": {
+  "${modID}:PanicMod": {
     "TEXT": [
       "应急",
       "",
@@ -1280,7 +1283,7 @@
       " NL 你在接下来 2 回合内无法再从卡牌中获得 格挡 。"
     ]
   },
-  "chimeracardsplus:ParasiticMod": {
+  "${modID}:ParasiticMod": {
     "TEXT": [
       "寄生",
       "",
@@ -1290,7 +1293,7 @@
       " NL 如果这张牌在你的牌组中被转化或移除，失去3点最大生命。"
     ]
   },
-  "chimeracardsplus:PatientMod": {
+  "${modID}:PatientMod": {
     "TEXT": [
       "耐心",
       "",
@@ -1301,7 +1304,7 @@
       " NL 每当这张牌被 保留 时，将其在本场战斗的伤害增加 %s 点。"
     ]
   },
-  "chimeracardsplus:PerfectMod": {
+  "${modID}:PerfectMod": {
     "TEXT": [
       "无瑕",
       "",
@@ -1311,7 +1314,7 @@
       " NL 你每有一张名字中有 打击 的牌，伤害+ %s 。"
     ]
   },
-  "chimeracardsplus:PhantasmalMod": {
+  "${modID}:PhantasmalMod": {
     "TEXT": [
       "幻影",
       "",
@@ -1321,7 +1324,7 @@
       " NL 在你的下个回合，你所有的攻击伤害翻倍。"
     ]
   },
-  "chimeracardsplus:PocketwatchMod": {
+  "${modID}:PocketwatchMod": {
     "TEXT": [
       "",
       "的怀表",
@@ -1333,7 +1336,7 @@
       " （已打出 %d 张牌。）"
     ]
   },
-  "chimeracardsplus:PointyMod": {
+  "${modID}:PointyMod": {
     "TEXT": [
       "尖尖",
       "",
@@ -1345,7 +1348,7 @@
       " （已打出 %d 张攻击牌。）"
     ]
   },
-  "chimeracardsplus:PrayerfulMod": {
+  "${modID}:PrayerfulMod": {
     "TEXT": [
       "虔诚",
       "",
@@ -1356,7 +1359,7 @@
       " NL 进入 神格 。"
     ]
   },
-  "chimeracardsplus:PrayerMod": {
+  "${modID}:PrayerMod": {
     "TEXT": [
       "祷告",
       "",
@@ -1367,7 +1370,7 @@
       " NL 如果这张牌在普通战斗中杀死了敌人，则额外掉落一次卡牌奖励。"
     ]
   },
-  "chimeracardsplus:PredictedMod": {
+  "${modID}:PredictedMod": {
     "TEXT": [
       "应兆",
       "",
@@ -1381,7 +1384,7 @@
       "%d+"
     ]
   },
-  "chimeracardsplus:PredictiveMod": {
+  "${modID}:PredictiveMod": {
     "TEXT": [
       "先兆",
       "",
@@ -1396,7 +1399,7 @@
       "NL "
     ]
   },
-  "chimeracardsplus:PreservantMod": {
+  "${modID}:PreservantMod": {
     "TEXT": [
       "坚韧",
       "",
@@ -1407,7 +1410,7 @@
       " NL 每当这张牌被 保留 时，将其在本场战斗的 格挡 增加 %s 点。"
     ]
   },
-  "chimeracardsplus:ProactiveMod": {
+  "${modID}:ProactiveMod": {
     "TEXT": [
       "先发",
       "",
@@ -1417,7 +1420,7 @@
       " NL 抽 1 张牌，然后将手牌中的一张牌放到你抽牌堆的顶端。"
     ]
   },
-  "chimeracardsplus:ProudMod": {
+  "${modID}:ProudMod": {
     "TEXT": [
       "傲慢",
       "",
@@ -1428,7 +1431,7 @@
       " NL 你的回合结束时，在抽牌堆顶部加入一张这张牌的复制品。 NL 消耗 。"
     ]
   },
-  "chimeracardsplus:QuickSkillMod": {
+  "${modID}:QuickSkillMod": {
     "TEXT": [
       "快速",
       "",
@@ -1438,7 +1441,7 @@
       " NL 抽1张牌。"
     ]
   },
-  "chimeracardsplus:RagingMod": {
+  "${modID}:RagingMod": {
     "TEXT": [
       "狂怒",
       "",
@@ -1448,7 +1451,7 @@
       " NL 这个回合内，打出一张攻击牌后，获得 3 点 格挡 。"
     ]
   },
-  "chimeracardsplus:RealityMod": {
+  "${modID}:RealityMod": {
     "TEXT": [
       "",
       "现实",
@@ -1459,7 +1462,7 @@
       " NL 将一张 *平安 加入你的手牌。"
     ]
   },
-  "chimeracardsplus:ReaperMod": {
+  "${modID}:ReaperMod": {
     "TEXT": [
       "",
       "收割",
@@ -1470,7 +1473,7 @@
       " NL 未被 格挡 的伤害将回复你的生命。"
     ]
   },
-  "chimeracardsplus:RecklessMod": {
+  "${modID}:RecklessMod": {
     "TEXT": [
       "无谋",
       "",
@@ -1480,7 +1483,7 @@
       " NL 将一张 *晕眩 放入你的抽牌堆中。"
     ]
   },
-  "chimeracardsplus:RecyclableMod": {
+  "${modID}:RecyclableMod": {
     "TEXT": [
       "可回收",
       "",
@@ -1495,7 +1498,7 @@
       "。"
     ]
   },
-  "chimeracardsplus:ReflexMod": {
+  "${modID}:ReflexMod": {
     "TEXT": [
       "本能",
       "",
@@ -1506,7 +1509,7 @@
       "丢弃"
     ]
   },
-  "chimeracardsplus:ReplaceableMod": {
+  "${modID}:ReplaceableMod": {
     "TEXT": [
       "可替换",
       "",
@@ -1517,7 +1520,7 @@
       "丢弃"
     ]
   },
-  "chimeracardsplus:ReplicativeMod": {
+  "${modID}:ReplicativeMod": {
     "TEXT": [
       "复现",
       "",
@@ -1528,7 +1531,7 @@
       "丢弃"
     ]
   },
-  "chimeracardsplus:RupturedMod": {
+  "${modID}:RupturedMod": {
     "TEXT": [
       "撕裂",
       "",
@@ -1538,7 +1541,7 @@
       " NL 失去 2 点生命。获得 1 点 力量 。"
     ]
   },
-  "chimeracardsplus:ScribblyMod": {
+  "${modID}:ScribblyMod": {
     "TEXT": [
       "潦草",
       "",
@@ -1549,7 +1552,7 @@
       " NL 抽牌直到将手牌抽满。"
     ]
   },
-  "chimeracardsplus:SecretMod": {
+  "${modID}:SecretMod": {
     "TEXT": [
       "秘密",
       "",
@@ -1559,7 +1562,7 @@
       " NL 从抽牌堆中选择一张 %s 放入你的手牌。"
     ]
   },
-  "chimeracardsplus:SeparateMod": {
+  "${modID}:SeparateMod": {
     "TEXT": [
       "分隔",
       "",
@@ -1571,7 +1574,7 @@
       " NL 消耗 所有非能力牌。"
     ]
   },
-  "chimeracardsplus:SetupMod": {
+  "${modID}:SetupMod": {
     "TEXT": [
       "部署",
       "",
@@ -1581,7 +1584,7 @@
       " NL 将手牌中的一张牌放到抽牌堆的顶部。在其被打出之前，其耗能变为0。"
     ]
   },
-  "chimeracardsplus:ShacklingMod": {
+  "${modID}:ShacklingMod": {
     "TEXT": [
       "镣铐",
       "",
@@ -1592,7 +1595,7 @@
       " NL 敌人在本回合内失去 5 点 力量 。"
     ]
   },
-  "chimeracardsplus:ShatteringMod": {
+  "${modID}:ShatteringMod": {
     "TEXT": [
       "破碎",
       "",
@@ -1602,7 +1605,7 @@
       " NL 对有 格挡 的敌人额外造成 3 点伤害。"
     ]
   },
-  "chimeracardsplus:ShockingMod": {
+  "${modID}:ShockingMod": {
     "TEXT": [
       "震荡",
       "",
@@ -1613,7 +1616,7 @@
       " NL 给予所有敌人 %s 层 虚弱 和 易伤 。"
     ]
   },
-  "chimeracardsplus:ShriekingMod": {
+  "${modID}:ShriekingMod": {
     "TEXT": [
       "尖叫",
       "",
@@ -1624,7 +1627,7 @@
       " NL 所有敌人失去 3 力量 1回合。"
     ]
   },
-  "chimeracardsplus:ShurikenMod": {
+  "${modID}:ShurikenMod": {
     "TEXT": [
       "手里剑",
       "",
@@ -1636,7 +1639,7 @@
       " （已打出 %d 张攻击牌。）"
     ]
   },
-  "chimeracardsplus:SmilingMod": {
+  "${modID}:SmilingMod": {
     "TEXT": [
       "微笑",
       "",
@@ -1646,7 +1649,7 @@
       " NL 如果这张牌在你的牌组中被转化或移除，获得 50 *金币 。"
     ]
   },
-  "chimeracardsplus:SmoothMod": {
+  "${modID}:SmoothMod": {
     "TEXT": [
       "光滑",
       "",
@@ -1654,7 +1657,7 @@
     ],
     "EXTRA_TEXT": []
   },
-  "chimeracardsplus:SozuMod": {
+  "${modID}:SozuMod": {
     "TEXT": [
       "添水",
       "",
@@ -1664,7 +1667,7 @@
       " NL 如果你在这个回合使用了药水，获得 [E] 。"
     ]
   },
-  "chimeracardsplus:SpecializedMod": {
+  "${modID}:SpecializedMod": {
     "TEXT": [
       "专精",
       "",
@@ -1674,7 +1677,7 @@
       " NL 拾起时复制2张到你的牌组中。"
     ]
   },
-  "chimeracardsplus:SplitMod": {
+  "${modID}:SplitMod": {
     "TEXT": [
       "分离",
       "",
@@ -1688,7 +1691,7 @@
       " NL 如果这张牌杀死了敌人，则获得 [B] [B] [B] 。"
     ]
   },
-  "chimeracardsplus:SpringyMod": {
+  "${modID}:SpringyMod": {
     "TEXT": [
       "弹性",
       "",
@@ -1700,7 +1703,7 @@
       "你在这个回合打出的下2张牌将会被放置到抽牌堆的顶部。"
     ]
   },
-  "chimeracardsplus:StableMod": {
+  "${modID}:StableMod": {
     "TEXT": [
       "稳定",
       "",
@@ -1712,18 +1715,18 @@
       "在2回合中 保留 你的手牌。"
     ]
   },
-  "chimeracardsplus:StarMod": {
+  "${modID}:StarMod": {
     "TEXT": [
       "明星",
       "",
-      "杀死精英敌人时，额外掉落一件遗物。 NL #y消耗 。"
+      "在精英战斗中杀死敌人时，额外掉落一件遗物。 NL #y消耗 。"
     ],
     "EXTRA_TEXT": [
-      " NL 如果这张牌杀死了精英敌人，则额外掉落一件遗物。 NL 消耗 。",
-      " NL 如果这张牌杀死了精英敌人，则额外掉落一件遗物。"
+      " NL 如果这张牌在精英战斗中杀死了敌人，则额外掉落一件遗物。 NL 消耗 。",
+      " NL 如果这张牌在精英战斗中杀死了敌人，则额外掉落一件遗物。"
     ]
   },
-  "chimeracardsplus:LiquidizingMod": {
+  "${modID}:LiquidizingMod": {
     "TEXT": [
       "液化",
       "",
@@ -1734,7 +1737,7 @@
       " NL 如果这张牌杀死了敌人，获得一瓶随机药水。"
     ]
   },
-  "chimeracardsplus:StealthyMod": {
+  "${modID}:StealthyMod": {
     "TEXT": [
       "隐蔽",
       "",
@@ -1745,7 +1748,7 @@
       "丢弃"
     ]
   },
-  "chimeracardsplus:SteamMod": {
+  "${modID}:SteamMod": {
     "TEXT": [
       "蒸汽",
       "",
@@ -1757,7 +1760,7 @@
       "使这张牌在本场战斗中的 格挡 下降2。"
     ]
   },
-  "chimeracardsplus:StormMod": {
+  "${modID}:StormMod": {
     "TEXT": [
       "",
       "风暴",
@@ -1768,7 +1771,7 @@
       "固有 。 NL "
     ]
   },
-  "chimeracardsplus:StrainedMod": {
+  "${modID}:StrainedMod": {
     "TEXT": [
       "牵强",
       "",
@@ -1778,7 +1781,7 @@
       " NL 失去 1 点 力量 。"
     ]
   },
-  "chimeracardsplus:StrategicMod": {
+  "${modID}:StrategicMod": {
     "TEXT": [
       "战略",
       "",
@@ -1789,7 +1792,7 @@
       " NL 抽 2 张牌。"
     ]
   },
-  "chimeracardsplus:StrikeMod": {
+  "${modID}:StrikeMod": {
     "TEXT": [
       "",
       "打击",
@@ -1797,7 +1800,7 @@
     ],
     "EXTRA_TEXT": []
   },
-  "chimeracardsplus:SulfuricMod": {
+  "${modID}:SulfuricMod": {
     "TEXT": [
       "硫磺",
       "",
@@ -1807,7 +1810,7 @@
       " NL 获得2点 力量 ，所有敌人也获得1点 力量 。"
     ]
   },
-  "chimeracardsplus:SuperluminalMod": {
+  "${modID}:SuperluminalMod": {
     "TEXT": [
       "超光速",
       "",
@@ -1819,7 +1822,7 @@
       " （已打出 %d 张牌。）"
     ]
   },
-  "chimeracardsplus:TacticalMod": {
+  "${modID}:TacticalMod": {
     "TEXT": [
       "战术",
       "",
@@ -1832,7 +1835,7 @@
       "丢弃"
     ]
   },
-  "chimeracardsplus:TalkativeMod": {
+  "${modID}:TalkativeMod": {
     "TEXT": [
       "健谈",
       "",
@@ -1842,7 +1845,7 @@
       " NL 你觉得自己有开腔的欲望。"
     ]
   },
-  "chimeracardsplus:TemperamentalMod": {
+  "${modID}:TemperamentalMod": {
     "TEXT": [
       "性情",
       "",
@@ -1852,7 +1855,7 @@
       " NL 直到下个回合，你不能转换 姿态 。"
     ]
   },
-  "chimeracardsplus:TerrifyingMod": {
+  "${modID}:TerrifyingMod": {
     "TEXT": [
       "恐怖",
       "",
@@ -1863,7 +1866,7 @@
       " NL 给予99层 易伤 。"
     ]
   },
-  "chimeracardsplus:ThirdMod": {
+  "${modID}:ThirdMod": {
     "TEXT": [
       "第三",
       "",
@@ -1873,7 +1876,7 @@
       " NL 预见 3 。"
     ]
   },
-  "chimeracardsplus:ThornyMod": {
+  "${modID}:ThornyMod": {
     "TEXT": [
       "多刺",
       "",
@@ -1884,7 +1887,7 @@
       " NL 获得 %s 荆棘 。"
     ]
   },
-  "chimeracardsplus:TingshaMod": {
+  "${modID}:TingshaMod": {
     "TEXT": [
       "铜钹",
       "",
@@ -1895,7 +1898,7 @@
       "丢弃"
     ]
   },
-  "chimeracardsplus:ToughMod": {
+  "${modID}:ToughMod": {
     "TEXT": [
       "结实",
       "",
@@ -1906,7 +1909,7 @@
       "丢弃"
     ]
   },
-  "chimeracardsplus:TranceMod": {
+  "${modID}:TranceMod": {
     "TEXT": [
       "",
       "出神",
@@ -1916,7 +1919,7 @@
       " NL 你在这个回合内不能再抽牌。"
     ]
   },
-  "chimeracardsplus:UnceasingMod": {
+  "${modID}:UnceasingMod": {
     "TEXT": [
       "不休",
       "",
@@ -1926,7 +1929,7 @@
       " NL 如果你没有手牌，抽一张牌。"
     ]
   },
-  "chimeracardsplus:UnfocusedMod": {
+  "${modID}:UnfocusedMod": {
     "TEXT": [
       "失焦",
       "",
@@ -1936,7 +1939,7 @@
       " NL 失去 1 点 集中 。"
     ]
   },
-  "chimeracardsplus:UnstableMod": {
+  "${modID}:UnstableMod": {
     "TEXT": [
       "不稳定",
       "",
@@ -1948,7 +1951,7 @@
       " NL 丢弃所有非能力牌。"
     ]
   },
-  "chimeracardsplus:UpperMod": {
+  "${modID}:UpperMod": {
     "TEXT": [
       "上",
       "",
@@ -1958,7 +1961,7 @@
       " NL 给予 1 层 虚弱 和 易伤 。"
     ]
   },
-  "chimeracardsplus:VajraMod": {
+  "${modID}:VajraMod": {
     "TEXT": [
       "金刚杵",
       "",
@@ -1966,7 +1969,7 @@
     ],
     "EXTRA_TEXT": []
   },
-  "chimeracardsplus:ViolentMod": {
+  "${modID}:ViolentMod": {
     "TEXT": [
       "暴力",
       "",
@@ -1977,7 +1980,7 @@
       " NL 随机将你抽牌堆中 2 张攻击牌加入你的手牌。"
     ]
   },
-  "chimeracardsplus:WaffleMod": {
+  "${modID}:WaffleMod": {
     "TEXT": [
       "华夫饼",
       "",
@@ -1987,7 +1990,7 @@
       " NL 拾起时回复7点生命。"
     ]
   },
-  "chimeracardsplus:WaryMod": {
+  "${modID}:WaryMod": {
     "TEXT": [
       "谨慎",
       "",
@@ -1998,7 +2001,7 @@
       " NL 随机将你抽牌堆中 2 张技能牌加入你的手牌。"
     ]
   },
-  "chimeracardsplus:WhipMod": {
+  "${modID}:WhipMod": {
     "TEXT": [
       "",
       "抽打",
@@ -2008,7 +2011,7 @@
       " NL 如果本场战斗中打出的上一张牌是攻击牌，给予 %s 层 虚弱 。"
     ]
   },
-  "chimeracardsplus:WiseMod": {
+  "${modID}:WiseMod": {
     "TEXT": [
       "智慧",
       "",
@@ -2020,7 +2023,7 @@
       " NL 在你的抽牌堆中加入 X 张 *洞见 。"
     ]
   },
-  "chimeracardsplus:WreathMod": {
+  "${modID}:WreathMod": {
     "TEXT": [
       "",
       "纹",
@@ -2030,7 +2033,7 @@
       " NL 你的下一张攻击牌造成 %s 点额外伤害。"
     ]
   },
-  "chimeracardsplus:EstablishedMod": {
+  "${modID}:EstablishedMod": {
     "TEXT": [
       "确立",
       "",
@@ -2041,7 +2044,7 @@
       " NL 每当这张牌被 保留 时，其在本场战斗的耗能减少 1 。"
     ]
   },
-  "chimeracardsplus:GoldenMod": {
+  "${modID}:GoldenMod": {
     "TEXT": [
       "金色",
       "",
@@ -2054,7 +2057,7 @@
       " NL 获得 X *金币 。"
     ]
   },
-  "chimeracardsplus:OpeningMod": {
+  "${modID}:OpeningMod": {
     "TEXT": [
       "开场",
       "",
@@ -2065,7 +2068,7 @@
       " NL 如果你还没有在这个回合中打出技能牌，则额外获得 3 点 格挡 。"
     ]
   },
-  "chimeracardsplus:PlatedMod": {
+  "${modID}:PlatedMod": {
     "TEXT": [
       "多层",
       "",
@@ -2076,7 +2079,7 @@
       " NL 获得 %s 层 *多层护甲 。"
     ]
   },
-  "chimeracardsplus:FadingMod": {
+  "${modID}:FadingMod": {
     "TEXT": [
       "消逝",
       "",
@@ -2086,7 +2089,7 @@
       " NL 在你击败 boss 后，本牌会从你的牌组中移除。"
     ]
   },
-  "chimeracardsplus:UpliftingMod": {
+  "${modID}:UpliftingMod": {
     "TEXT": [
       "奋进",
       "",
@@ -2096,7 +2099,7 @@
       " NL 你的下一张攻击牌造成未被 格挡 的伤害的额外伤害。"
     ]
   },
-  "chimeracardsplus:OrnamentalMod": {
+  "${modID}:OrnamentalMod": {
     "TEXT": [
       "精致",
       "",
@@ -2108,7 +2111,7 @@
       " （已打出 %d 张攻击牌。）"
     ]
   },
-  "chimeracardsplus:UnawakenedMod": {
+  "${modID}:UnawakenedMod": {
     "TEXT": [
       "未觉醒",
       "",
@@ -2118,7 +2121,7 @@
       " NL 这张卡牌还没有觉醒……"
     ]
   },
-  "chimeracardsplus:AwakenedMod": {
+  "${modID}:AwakenedMod": {
     "TEXT": [
       "已觉醒",
       "",
@@ -2126,7 +2129,7 @@
     ],
     "EXTRA_TEXT": []
   },
-  "chimeracardsplus:FlashyMod": {
+  "${modID}:FlashyMod": {
     "TEXT": [
       "浮华",
       "",
@@ -2136,7 +2139,7 @@
       " NL 如果这张牌造成了未被 格挡 的伤害，则抽 2 张牌。"
     ]
   },
-  "chimeracardsplus:AugerMod": {
+  "${modID}:AugerMod": {
     "TEXT": [
       "螺旋",
       "",
@@ -2146,7 +2149,7 @@
       " NL 如果这张牌造成了未被 格挡 的伤害，则给予 2 层 易伤 。"
     ]
   },
-  "chimeracardsplus:TimeWarpedMod": {
+  "${modID}:TimeWarpedMod": {
     "TEXT": [
       "错时",
       "",
@@ -2158,7 +2161,7 @@
       " （已打出 %d 张牌。）"
     ]
   },
-  "chimeracardsplus:RefluxingMod": {
+  "${modID}:RefluxingMod": {
     "TEXT": [
       "逆流",
       "",
@@ -2168,7 +2171,7 @@
       " NL 如果这张牌造成了未被 格挡 的伤害，则获得 [E] 。"
     ]
   },
-  "chimeracardsplus:CleansingMod": {
+  "${modID}:CleansingMod": {
     "TEXT": [
       "净化",
       "",
@@ -2179,7 +2182,7 @@
       " NL 移除你的一个随机负面效果。"
     ]
   },
-  "chimeracardsplus:RegretfulMod": {
+  "${modID}:RegretfulMod": {
     "TEXT": [
       "悔恨",
       "",
@@ -2189,7 +2192,7 @@
       " NL 在你的回合结束时，失去相当于手牌数量的生命。"
     ]
   },
-  "chimeracardsplus:HesitantMod": {
+  "${modID}:HesitantMod": {
     "TEXT": [
       "犹豫",
       "",
@@ -2199,7 +2202,7 @@
       " NL 在你的回合结束时，获得1层 虚弱 。"
     ]
   },
-  "chimeracardsplus:DecayingMod": {
+  "${modID}:DecayingMod": {
     "TEXT": [
       "腐朽",
       "",
@@ -2209,7 +2212,7 @@
       " NL 在你的回合结束时，受到2点伤害。"
     ]
   },
-  "chimeracardsplus:DrainingMod": {
+  "${modID}:DrainingMod": {
     "TEXT": [
       "枯竭",
       "",
@@ -2219,7 +2222,7 @@
       " NL 每当你抽到这张牌，都失去 1 点生命。"
     ]
   },
-  "chimeracardsplus:BackupMod": {
+  "${modID}:BackupMod": {
     "TEXT": [
       "后备",
       "",
@@ -2229,7 +2232,7 @@
       " NL 每当你抽到这张牌，都抽 1 张牌。"
     ]
   },
-  "chimeracardsplus:JudgeMod": {
+  "${modID}:JudgeMod": {
     "TEXT": [
       "审判",
       "",
@@ -2239,7 +2242,7 @@
       " NL 如果目标敌人的生命值小于等于 %s 点，则将其生命值变为0。"
     ]
   },
-  "chimeracardsplus:StrangeMod": {
+  "${modID}:StrangeMod": {
     "TEXT": [
       "奇怪",
       "",
@@ -2250,7 +2253,7 @@
       " 消耗 。"
     ]
   },
-  "chimeracardsplus:PunishingMod": {
+  "${modID}:PunishingMod": {
     "TEXT": [
       "严厉",
       "",
@@ -2260,7 +2263,7 @@
       "造成 %s 点伤害。 NL 如果敌人有 易伤 状态 ，"
     ]
   },
-  "chimeracardsplus:DevastatingMod": {
+  "${modID}:DevastatingMod": {
     "TEXT": [
       "毁灭",
       "",
@@ -2270,7 +2273,7 @@
       "造成 %s 点伤害。 NL 如果敌人有 虚弱 状态 ，"
     ]
   },
-  "chimeracardsplus:DisgracefulMod": {
+  "${modID}:DisgracefulMod": {
     "TEXT": [
       "可耻",
       "",
@@ -2280,18 +2283,18 @@
       " NL 在你的回合结束时，获得1层 脆弱 。"
     ]
   },
-  "chimeracardsplus:GuilefulMod": {
+  "${modID}:GuilefulMod": {
     "TEXT": [
       "狡诈",
       "",
       "丢弃时打出。"
     ],
     "EXTRA_TEXT": [
-      "chimeracardsplus:奇巧 。 NL ",
+      "${modID}:奇巧 。 NL ",
       "丢弃"
     ]
   },
-  "chimeracardsplus:MartialMod": {
+  "${modID}:MartialMod": {
     "TEXT": [
       "武艺",
       "",
@@ -2301,7 +2304,7 @@
       " NL 若本场战斗上一张打出的牌是攻击牌，抽 2 张牌。"
     ]
   },
-  "chimeracardsplus:CounterMod": {
+  "${modID}:CounterMod": {
     "TEXT": [
       "反击",
       "",
@@ -2311,7 +2314,7 @@
       " NL 给予敌人所造成的未被 格挡 的伤害。"
     ]
   },
-  "chimeracardsplus:SharedMod": {
+  "${modID}:SharedMod": {
     "TEXT": [
       "共享",
       "",
@@ -2321,7 +2324,7 @@
       " NL 给予所有敌人 !B! 点 格挡 。"
     ]
   },
-  "chimeracardsplus:LockingMod": {
+  "${modID}:LockingMod": {
     "TEXT": [
       "紧固",
       "",
@@ -2333,7 +2336,7 @@
       "我已经打出过这张牌了。"
     ]
   },
-  "chimeracardsplus:TransientMod": {
+  "${modID}:TransientMod": {
     "TEXT": [
       "倏忽",
       "",
@@ -2344,7 +2347,7 @@
       " NL 将本牌从你的牌组中移除。"
     ]
   },
-  "chimeracardsplus:TangledMod": {
+  "${modID}:TangledMod": {
     "TEXT": [
       "纠缠",
       "",
@@ -2352,6 +2355,16 @@
     ],
     "EXTRA_TEXT": [
       " NL 你在这个回合不能再打出 攻击牌 。"
+    ]
+  },
+  "${modID}:EnergizedMod": {
+    "TEXT": [
+      "能量",
+      "",
+      "造成的伤害和获得的 #y格挡 减少 #b33% 。 NL 每有一点剩余能量，就打出一次。"
+    ],
+    "EXTRA_TEXT": [
+      "数次，其数量等于剩余的能量。"
     ]
   }
 }

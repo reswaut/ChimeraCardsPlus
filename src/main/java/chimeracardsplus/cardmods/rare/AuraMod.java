@@ -42,7 +42,10 @@ public class AuraMod extends AbstractAugment {
                 && !usesAction(c, PressEndTurnButtonAction.class)
                 && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)
                 && doesntOverride(c, "triggerOnEndOfTurnForPlayingCard")
-                && customCheck(c, AbstractAugment::noCardModDescriptionChanges)));
+                && customCheck(c, (check) ->
+                noCardModDescriptionChanges(check)
+                        && check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1L
+                        && check.rawDescription.chars().noneMatch((ch) -> ch == ',' || ch == '，'))));
     }
 
     @Override

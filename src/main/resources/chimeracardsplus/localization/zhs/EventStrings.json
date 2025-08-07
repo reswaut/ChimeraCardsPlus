@@ -1,5 +1,5 @@
 {
-  "chimeracardsplus:AddictPatches": {
+  "${modID}:AddictPatches": {
     "DESCRIPTIONS": [
       "你猛地出手抢夺 #y遗物。 NL \"你这个 @怪物@ ！\" 他瘫倒在地哀嚎着。 NL NL #p~黑暗的阴影~ 沾染了你的武器，他的 #p咒骂 如蛛网般 ~缠绕~ 其上。"
     ],
@@ -8,7 +8,7 @@
       "[锁定] 需要：2张攻击牌。"
     ]
   },
-  "chimeracardsplus:BackToBasicsPatches": {
+  "${modID}:BackToBasicsPatches": {
     "DESCRIPTIONS": [
       "解法将蕴藏真知。"
     ],
@@ -16,7 +16,7 @@
       "[真知] #g给予所有 #g防御 战略。"
     ]
   },
-  "chimeracardsplus:ForgottenAlterPatches": {
+  "${modID}:ForgottenAlterPatches": {
     "DESCRIPTIONS": [
       "你虔诚地在雕像前跪下。雕像中散发处苍白的光芒， #g~诡异的温暖~ 笼罩了你。 NL NL 但当光芒褪去，你感觉自己的技艺 #p衰退 了——这份祝福伴随着 ~束缚~ 。"
     ],
@@ -26,7 +26,7 @@
       "[锁定] 需要：3张非诅咒牌。"
     ]
   },
-  "chimeracardsplus:GoldenWingPatches": {
+  "${modID}:GoldenWingPatches": {
     "DESCRIPTIONS": [
       "你的手指抚过翅膀上的雕纹， #b好奇 战胜了 #y金币 的诱惑。 NL NL 当你专注时，你感觉到一种 #b~神秘的力量 在石头里嗡嗡作响，等待在最需要的时候觉醒。"
     ],
@@ -36,7 +36,7 @@
       "选择3张牌来增加"
     ]
   },
-  "chimeracardsplus:LabPatches": {
+  "${modID}:LabPatches": {
     "DESCRIPTIONS": [
       "你发现一桶冒着泡的 ~不稳定液体~ ，标签写着\"液化剂\"。冒着风险，你将武器浸入其中。突变剂 @剧烈地嘶嘶作响！@ NL NL 液体溅到你手上， #r灼伤 了你的皮肤，使你猛地缩回手。也许你该更小心点。"
     ],
@@ -46,7 +46,7 @@
       "[锁定] 需要：非基础攻击牌。"
     ]
   },
-  "chimeracardsplus:MoaiHeadPatches": {
+  "${modID}:MoaiHeadPatches": {
     "DESCRIPTIONS": [
       "@砰！@ #r@新鲜的血液@ 从石像中涌出。 NL NL #r~猩红的液体~ 沾满双手，对这 ~活着的~ 远古遗迹施暴动摇了你的信心。"
     ],
@@ -56,7 +56,7 @@
       "[锁定] 需要：非诅咒牌。"
     ]
   },
-  "chimeracardsplus:TheMausoleumPatches": {
+  "${modID}:TheMausoleumPatches": {
     "DESCRIPTIONS": [
       "你的手指握住了一颗脉动的 #y宝石 。猛地一拽，它 ~脱落了~ ！ NL NL 一声 @痛苦的哀嚎@ 从石棺中爆发！声音渗入骨髓，只留下深深的 #p悔恨 。",
       "你的手指握住了一颗脉动的 #y宝石 。猛地一拽，它在你手中 @碎裂@ 并 @崩解@ 。 NL NL 一声 @痛苦的哀嚎@ 从石棺中爆发！声音渗入骨髓，只留下深深的 #p悔恨 。"
@@ -67,7 +67,7 @@
       "[锁定] 需要：非诅咒牌。"
     ]
   },
-  "chimeracardsplus:VampiresPatches": {
+  "${modID}:VampiresPatches": {
     "DESCRIPTIONS": [
     ],
     "OPTIONS": [

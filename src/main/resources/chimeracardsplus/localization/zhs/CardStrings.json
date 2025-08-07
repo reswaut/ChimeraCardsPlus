@@ -1,33 +1,33 @@
 {
-  "chimeracardsplus:BitingPreview": {
+  "${modID}:BitingPreview": {
     "NAME": "噬咬",
     "DESCRIPTION": "伤害 -20%。 NL 回复耗能的生命。"
   },
-  "chimeracardsplus:DecayingPreview": {
+  "${modID}:DecayingPreview": {
     "NAME": "腐朽",
     "DESCRIPTION": "在你的回合结束时，如果在你的手牌中，收到2点伤害。"
   },
-  "chimeracardsplus:DisgracefulPreview": {
+  "${modID}:DisgracefulPreview": {
     "NAME": "可耻",
     "DESCRIPTION": "在你的回合结束时，如果在你的手牌中，获得1层 脆弱 。"
   },
-  "chimeracardsplus:HesitantPreview": {
+  "${modID}:HesitantPreview": {
     "NAME": "犹豫",
     "DESCRIPTION": "在你的回合结束时，如果在你的手牌中，获得1层 虚弱 。"
   },
-  "chimeracardsplus:LiquidizingPreview": {
+  "${modID}:LiquidizingPreview": {
     "NAME": "液化",
     "DESCRIPTION": "杀死敌人时获得一瓶随机药水。 NL 消耗 。"
   },
-  "chimeracardsplus:RegretfulPreview": {
+  "${modID}:RegretfulPreview": {
     "NAME": "悔恨",
     "DESCRIPTION": "在你的回合结束时，如果在你的手牌中，失去手牌数的生命。"
   },
-  "chimeracardsplus:StrategicPreview": {
+  "${modID}:StrategicPreview": {
     "NAME": "战略",
     "DESCRIPTION": "抽 2 张牌。 NL 消耗 。"
   },
-  "chimeracardsplus:UnawakenedPreview": {
+  "${modID}:UnawakenedPreview": {
     "NAME": "未觉醒",
     "DESCRIPTION": "被变化或移除后觉醒。"
   }

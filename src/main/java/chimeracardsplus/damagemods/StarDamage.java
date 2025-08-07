@@ -20,7 +20,7 @@ public class StarDamage extends AbstractDamageModifier {
         if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
                 && targetHit.currentHealth > 0
                 && targetHit.currentHealth - lastDamageTaken <= 0) {
-            if (((AbstractMonster)targetHit).type != AbstractMonster.EnemyType.ELITE) {
+            if (!AbstractDungeon.getCurrRoom().eliteTrigger) {
                 return;
             }
             if (Settings.isEndless && AbstractDungeon.player.hasBlight("MimicInfestation")) {

@@ -31,21 +31,26 @@ public class FinishingMod extends AbstractAugment implements TriggerOnDiscardMod
     }
 
     @Override
+    public float modifyBaseBlock(float block, AbstractCard card) {
+        return block * 2.0F / 3.0F;
+    }
+
+    @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.baseDamage > 1
-                && noShenanigans(c)
-                && usesEnemyTargeting()
-                && c.type == CardType.ATTACK
+        return cardCheck(card, (c) -> (noShenanigans(c)
+                && c.cost >= 0
+                && (c.baseDamage >= 2 || c.baseBlock >= 2)
+                && (c.type == CardType.ATTACK || c.type == CardType.SKILL)
                 && customCheck(c, (check) ->
                     noCardModDescriptionChanges(check)
-                    && check.rawDescription.chars().filter((ch) -> ch == 46 || ch == 12290).count() == 1L)
+                            && check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1L)
         ));
     }
 
-    private int computeHits() {
+    private int computeHits(CardType type) {
         int hits = 0;
         for (AbstractCard c : AbstractDungeon.actionManager.cardsPlayedThisTurn) {
-            if (c.type == CardType.ATTACK) {
+            if (c.type == type) {
                 ++hits;
             }
         }
@@ -69,21 +74,28 @@ public class FinishingMod extends AbstractAugment implements TriggerOnDiscardMod
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        String text = CARD_TEXT[0];
-        if (descriptionHack) {
-            int count = computeHits();
-            text += String.format((count == 1) ? CARD_TEXT[1] : CARD_TEXT[2], count);
+        String text = "";
+        if (card.type == CardType.ATTACK) {
+            text = CARD_TEXT[0];
+            if (descriptionHack) {
+                int count = computeHits(card.type);
+                text += String.format((count == 1) ? CARD_TEXT[1] : CARD_TEXT[2], count);
+            }
+        } else if (card.type == CardType.SKILL) {
+            text = CARD_TEXT[3];
+            if (descriptionHack) {
+                int count = computeHits(card.type);
+                text += String.format((count == 1) ? CARD_TEXT[4] : CARD_TEXT[5], count);
+            }
         }
         return rawDescription.replaceFirst("[.。]", text);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (target instanceof AbstractMonster) {
-            int hits = computeHits() - 1;
-            for (int i = 0; i < hits; ++i) {
-                card.use(AbstractDungeon.player, (AbstractMonster)target);
-            }
+        int hits = computeHits(card.type) - 1;
+        for (int i = 0; i < hits; ++i) {
+            card.use(AbstractDungeon.player, (AbstractMonster) target);
         }
         descriptionHack = false;
         card.initializeDescription();

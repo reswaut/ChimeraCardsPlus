@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.cards.colorless.DarkShackles;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
@@ -65,7 +66,7 @@ public class ShacklingMod extends AbstractAugment {
             @Override
             public void update() {
                 if (cardTarget != null) {
-                    if (!cardTarget.hasPower("Artifact")) {
+                    if (!cardTarget.hasPower(ArtifactPower.POWER_ID)) {
                         this.addToTop(new ApplyPowerAction(cardTarget, AbstractDungeon.player, new GainStrengthPower(cardTarget, 5), 5, true, AbstractGameAction.AttackEffect.NONE));
                     }
                     this.addToTop(new ApplyPowerAction(cardTarget, AbstractDungeon.player, new StrengthPower(cardTarget, -5), -5, true, AbstractGameAction.AttackEffect.NONE));

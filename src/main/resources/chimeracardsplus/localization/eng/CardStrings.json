@@ -1,33 +1,33 @@
 {
-  "chimeracardsplus:BitingPreview": {
+  "${modID}:BitingPreview": {
     "NAME": "Biting",
     "DESCRIPTION": "Damage -20%. NL Heal HP equal to cost."
   },
-  "chimeracardsplus:DecayingPreview": {
+  "${modID}:DecayingPreview": {
     "NAME": "Decaying",
     "DESCRIPTION": "Take 2 damage if in your hand at the end of your turn."
   },
-  "chimeracardsplus:DisgracefulPreview": {
+  "${modID}:DisgracefulPreview": {
     "NAME": "Disgraceful",
     "DESCRIPTION": "Gain 1 Frail if in your hand at the end of your turn."
   },
-  "chimeracardsplus:HesitantPreview": {
+  "${modID}:HesitantPreview": {
     "NAME": "Hesitant",
     "DESCRIPTION": "Gain 1 Weak if in your hand at the end of your turn."
   },
-  "chimeracardsplus:LiquidizingPreview": {
+  "${modID}:LiquidizingPreview": {
     "NAME": "Liquidizing",
     "DESCRIPTION": "Obtain a random potion if this kills an enemy. NL Exhaust."
   },
-  "chimeracardsplus:RegretfulPreview": {
+  "${modID}:RegretfulPreview": {
     "NAME": "Regretful",
     "DESCRIPTION": "Lose HP equal to the number of cards in your hand if in your hand at the end of your turn."
   },
-  "chimeracardsplus:StrategicPreview": {
+  "${modID}:StrategicPreview": {
     "NAME": "Strategic",
     "DESCRIPTION": "Draw 2 cards. NL Exhaust."
   },
-  "chimeracardsplus:UnawakenedPreview": {
+  "${modID}:UnawakenedPreview": {
     "NAME": "Unawakened",
     "DESCRIPTION": "Becomes Awakened when transformed or removed."
   }

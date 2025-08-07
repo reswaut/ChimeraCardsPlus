@@ -1,5 +1,5 @@
 {
-  "chimeracardsplus:AddictPatches": {
+  "${modID}:AddictPatches": {
     "DESCRIPTIONS": [
       "You lash out to seize the #yrelic. NL \"You @MONSTER!\"@ he wails as he crumples down. NL NL #p~Dark~ #p~shadows~ smudge your weapon. His #pcurses ~cling~ to it like cobwebs."
     ],
@@ -8,7 +8,7 @@
       "[Locked] Requires: 2 Attacks."
     ]
   },
-  "chimeracardsplus:BackToBasicsPatches": {
+  "${modID}:BackToBasicsPatches": {
     "DESCRIPTIONS": [
       "The solution holds insight. NL Why not?"
     ],
@@ -16,7 +16,7 @@
       "[Insight] #gGive #gall #gDefends Strategic."
     ]
   },
-  "chimeracardsplus:ForgottenAlterPatches": {
+  "${modID}:ForgottenAlterPatches": {
     "DESCRIPTIONS": [
       "You kneel before the statue in reverence. Pale light emanates from the statue, washing over you with #g~eerie~ #g~warmth.~ NL NL But as the light fades, you feel your techniques #pfalter - the blessing comes with ~strings~ attached."
     ],
@@ -26,7 +26,7 @@
       "[Locked] Requires: 3 non-Curse Cards."
     ]
   },
-  "chimeracardsplus:GoldenWingPatches": {
+  "${modID}:GoldenWingPatches": {
     "DESCRIPTIONS": [
       "You trace your fingers along the wing's carvings, #bcuriosity wins over the lure of #ygold. NL NL As you focus, you feel a #b~mystical~ #b~power~ humming in the stone, waiting to awaken when needed most."
     ],
@@ -36,7 +36,7 @@
       "Choose 3 Cards to Augment."
     ]
   },
-  "chimeracardsplus:LabPatches": {
+  "${modID}:LabPatches": {
     "DESCRIPTIONS": [
       "You discover a bubbling vat of ~volatile~ ~ichor~ labeled \"LIQUIDIZING AGENT\". Risking exposure, you dip your weapon inside. The mutagen @sizzles@ @violently!@ NL NL You recoil as sprays of the ichor splash onto your hand and #rburn through your skin. Perhaps you should be more careful."
     ],
@@ -46,7 +46,7 @@
       "[Locked] Requires: Non-Basic Attack card."
     ]
   },
-  "chimeracardsplus:MoaiHeadPatches": {
+  "${modID}:MoaiHeadPatches": {
     "DESCRIPTIONS": [
       "@POW!@ #r@Fresh@ #r@blood@ gushes from the stone! NL NL As the #r~crimson~ #r~fluid~ coats your hands, your confidence is shaken by the act of violence against this ~living~ ancient monument."
     ],
@@ -56,7 +56,7 @@
       "[Locked] Requires: Non-Curse card."
     ]
   },
-  "chimeracardsplus:TheMausoleumPatches": {
+  "${modID}:TheMausoleumPatches": {
     "DESCRIPTIONS": [
       "Your fingers close around a pulsating #ygem. With a sharp tug, it comes ~free!~ NL NL An @anguished@ @wail@ erupts from the sarcophagus! The sound seeps into your bones, leaving behind only a deep sense of #pregret.",
       "Your fingers close around a pulsating #ygem. With a sharp tug, it @CRACKS@ and @SHATTERS@ in your hand. NL NL An @anguished@ @wail@ erupts from the sarcophagus! The sound seeps into your bones, leaving behind only a deep sense of #pregret."
@@ -67,7 +67,7 @@
       "[Locked] Requires: Non-Curse card."
     ]
   },
-  "chimeracardsplus:VampiresPatches": {
+  "${modID}:VampiresPatches": {
     "DESCRIPTIONS": [
     ],
     "OPTIONS": [

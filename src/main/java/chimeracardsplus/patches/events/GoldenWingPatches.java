@@ -10,9 +10,11 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.events.GenericEventDialog;
 import com.megacrit.cardcrawl.events.exordium.GoldenWing;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import javassist.CtBehavior;
 
 import java.lang.reflect.Field;
 import java.util.Objects;
@@ -100,6 +102,25 @@ public class GoldenWingPatches {
             choseMyOption = true;
             cardsToChoose = Math.min(3, validCards.size());
             AbstractDungeon.gridSelectScreen.open(validCards, cardsToChoose, OPTIONS[2], false, false, false, false);
+        }
+
+        @SpireInsertPatch(
+                locator = Locator.class
+        )
+        public static void Insert(GoldenWing __instance) {
+            if (!ChimeraCardsPlus.enableEventAddons()) {
+                return;
+            }
+            __instance.imageEventText.removeDialogOption(1);
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(GenericEventDialog.class, "updateDialogOption");
+                int[] tmp = LineFinder.findAllInOrder(ctMethodToPatch, finalMatcher);
+                return new int[]{tmp[0] + 1, tmp[1] + 1, tmp[2] + 1};
+            }
         }
     }
 

@@ -1,5 +1,5 @@
 {
-  "chimeracardsplus:AchingMod": {
+  "${modID}:AchingMod": {
     "TEXT": [
       "Aching ",
       "",
@@ -9,7 +9,7 @@
       " NL While in hand, lose 1 HP whenever you play another card."
     ]
   },
-  "chimeracardsplus:AgileMod": {
+  "${modID}:AgileMod": {
     "TEXT": [
       "Agile ",
       "",
@@ -19,7 +19,7 @@
       " NL Gain 3 Dexterity. NL At the end of this turn, lose 3 Dexterity."
     ]
   },
-  "chimeracardsplus:AkabekoMod": {
+  "${modID}:AkabekoMod": {
     "TEXT": [
       "Akabeko ",
       "",
@@ -29,7 +29,7 @@
       " NL Deals 8 more damage if you have not played Attacks this combat."
     ]
   },
-  "chimeracardsplus:ArtOfMod": {
+  "${modID}:ArtOfMod": {
     "TEXT": [
       "Art of ",
       "",
@@ -39,7 +39,7 @@
       " NL If you have not played Attacks this turn, gain [E] next turn."
     ]
   },
-  "chimeracardsplus:AshyMod": {
+  "${modID}:AshyMod": {
     "TEXT": [
       "Ashy ",
       "",
@@ -49,7 +49,7 @@
       " NL If this card is Exhausted, deal 3 damage to ALL enemies."
     ]
   },
-  "chimeracardsplus:AuraMod": {
+  "${modID}:AuraMod": {
     "TEXT": [
       "",
       " Aura",
@@ -61,7 +61,7 @@
       "Innate. "
     ]
   },
-  "chimeracardsplus:BanefulMod": {
+  "${modID}:BanefulMod": {
     "TEXT": [
       "Baneful ",
       "",
@@ -72,17 +72,17 @@
       "Poison"
     ]
   },
-  "chimeracardsplus:BarrageMod": {
+  "${modID}:BarrageMod": {
     "TEXT": [
       "Barrage of ",
       "",
-      "Reduces damage by #b50%. NL Hits once for each #yChanneled Orb."
+      "Reduces damage and #yBlock by #b50%. NL Plays once once for each #yChanneled Orb."
     ],
     "EXTRA_TEXT": [
       " for each Channeled Orb."
     ]
   },
-  "chimeracardsplus:BirdFacedMod": {
+  "${modID}:BirdFacedMod": {
     "TEXT": [
       "Bird-Faced ",
       "",
@@ -92,7 +92,7 @@
       " NL Heal 2 HP."
     ]
   },
-  "chimeracardsplus:BitingMod": {
+  "${modID}:BitingMod": {
     "TEXT": [
       "Biting ",
       "",
@@ -103,7 +103,7 @@
       " NL Heal X HP."
     ]
   },
-  "chimeracardsplus:BladedMod": {
+  "${modID}:BladedMod": {
     "TEXT": [
       "Bladed ",
       "",
@@ -111,7 +111,7 @@
     ],
     "EXTRA_TEXT": []
   },
-  "chimeracardsplus:BlessedMod": {
+  "${modID}:BlessedMod": {
     "TEXT": [
       "Blessed ",
       "",
@@ -122,7 +122,7 @@
       " NL The blessing has lost its power."
     ]
   },
-  "chimeracardsplus:BloodlettingMod": {
+  "${modID}:BloodlettingMod": {
     "TEXT": [
       "Bloodletting ",
       "",
@@ -132,7 +132,7 @@
       " NL Lose 3 HP."
     ]
   },
-  "chimeracardsplus:BootMod": {
+  "${modID}:BootMod": {
     "TEXT": [
       "",
       "'s Boot",
@@ -140,7 +140,7 @@
     ],
     "EXTRA_TEXT": []
   },
-  "chimeracardsplus:BrilliantMod": {
+  "${modID}:BrilliantMod": {
     "TEXT": [
       "Brilliant ",
       "",
@@ -153,7 +153,7 @@
       "Mantra"
     ]
   },
-  "chimeracardsplus:BufferedMod": {
+  "${modID}:BufferedMod": {
     "TEXT": [
       "Buffered ",
       "",
@@ -166,7 +166,7 @@
       " NL Prevent the next %s times you would lose HP."
     ]
   },
-  "chimeracardsplus:BurstyMod": {
+  "${modID}:BurstyMod": {
     "TEXT": [
       "Bursty ",
       "",
@@ -178,7 +178,7 @@
       "This turn, your next !M! Skills are played twice."
     ]
   },
-  "chimeracardsplus:SoulboundMod": {
+  "${modID}:SoulboundMod": {
     "TEXT": [
       "Soulbound ",
       "",
@@ -188,7 +188,7 @@
       "stslib:Soulbound. NL "
     ]
   },
-  "chimeracardsplus:CapaciousMod": {
+  "${modID}:CapaciousMod": {
     "TEXT": [
       "Capacious ",
       "",
@@ -201,7 +201,7 @@
       " NL Gain %s Orb slots."
     ]
   },
-  "chimeracardsplus:CaptainMod": {
+  "${modID}:CaptainMod": {
     "TEXT": [
       "Captain's ",
       "",
@@ -212,7 +212,7 @@
       " NL Gain 10 *Plated *Armor."
     ]
   },
-  "chimeracardsplus:CastMod": {
+  "${modID}:CastMod": {
     "TEXT": [
       "",
       " and Cast",
@@ -222,7 +222,7 @@
       " NL Evoke your next Orb."
     ]
   },
-  "chimeracardsplus:CeramicMod": {
+  "${modID}:CeramicMod": {
     "TEXT": [
       "Ceramic ",
       "",
@@ -232,7 +232,7 @@
       " NL Upon pickup, gain 9 *Gold."
     ]
   },
-  "chimeracardsplus:ChallengingMod": {
+  "${modID}:ChallengingMod": {
     "TEXT": [
       "Challenging ",
       "",
@@ -242,7 +242,7 @@
       " NL Gain 2 Vulnerable. Apply 2 Vulnerable to ALL enemies."
     ]
   },
-  "chimeracardsplus:ChangingMod": {
+  "${modID}:ChangingMod": {
     "TEXT": [
       "Changing ",
       "",
@@ -252,7 +252,7 @@
       " NL Upon pickup, you may Transform another card in your deck."
     ]
   },
-  "chimeracardsplus:ChaoticMod": {
+  "${modID}:ChaoticMod": {
     "TEXT": [
       "Chaotic ",
       "",
@@ -262,7 +262,7 @@
       " NL Channel 1 random Orb."
     ]
   },
-  "chimeracardsplus:ChemicalMod": {
+  "${modID}:ChemicalMod": {
     "TEXT": [
       "Chemical ",
       "",
@@ -272,7 +272,7 @@
       "Increase X by 1. NL "
     ]
   },
-  "chimeracardsplus:ChokingMod": {
+  "${modID}:ChokingMod": {
     "TEXT": [
       "Choking ",
       "",
@@ -282,7 +282,7 @@
       " NL Whenever you play a card this turn, the enemy loses %s HP."
     ]
   },
-  "chimeracardsplus:ClearMod": {
+  "${modID}:ClearMod": {
     "TEXT": [
       "Clear ",
       "",
@@ -292,7 +292,7 @@
       " NL Look at the top 2 cards of your draw pile. Add 1 to your hand and Exhaust the other."
     ]
   },
-  "chimeracardsplus:CollectedMod": {
+  "${modID}:CollectedMod": {
     "TEXT": [
       "Collected ",
       "",
@@ -307,7 +307,7 @@
       " NL Put a *Miracle+ into your hand at the start of your next 3 turns."
     ]
   },
-  "chimeracardsplus:ConcentratedMod": {
+  "${modID}:ConcentratedMod": {
     "TEXT": [
       "Concentrated ",
       "",
@@ -317,7 +317,7 @@
       " NL Discard 3 cards."
     ]
   },
-  "chimeracardsplus:ConclusiveMod": {
+  "${modID}:ConclusiveMod": {
     "TEXT": [
       "Conclusive ",
       "",
@@ -327,7 +327,7 @@
       " NL End your turn."
     ]
   },
-  "chimeracardsplus:ConservedMod": {
+  "${modID}:ConservedMod": {
     "TEXT": [
       "Conserved ",
       "",
@@ -337,7 +337,7 @@
       " NL Energy is conserved for next turn."
     ]
   },
-  "chimeracardsplus:CourageousMod": {
+  "${modID}:CourageousMod": {
     "TEXT": [
       "Courageous ",
       "",
@@ -347,7 +347,7 @@
       " NL Deals 3 more damage in Elite combats."
     ]
   },
-  "chimeracardsplus:CreativeMod": {
+  "${modID}:CreativeMod": {
     "TEXT": [
       "Creative ",
       "",
@@ -358,7 +358,7 @@
       " NL Add a random Upgraded Power into your hand. NL Exhaust."
     ]
   },
-  "chimeracardsplus:CripplingMod": {
+  "${modID}:CripplingMod": {
     "TEXT": [
       "Crippling ",
       "",
@@ -370,7 +370,7 @@
       " NL Apply 1 Weak to ALL enemies."
     ]
   },
-  "chimeracardsplus:CrushingMod": {
+  "${modID}:CrushingMod": {
     "TEXT": [
       "Crushing ",
       "",
@@ -380,7 +380,7 @@
       " NL If the last card played this combat was a Skill, apply %s Vulnerable."
     ]
   },
-  "chimeracardsplus:CubicMod": {
+  "${modID}:CubicMod": {
     "TEXT": [
       "Cubic ",
       "",
@@ -390,7 +390,7 @@
       " NL Lose 1 HP. Draw 1 card."
     ]
   },
-  "chimeracardsplus:CursedMod": {
+  "${modID}:CursedMod": {
     "TEXT": [
       "Cursed ",
       "%s-Cursed ",
@@ -403,7 +403,7 @@
       " NL Upon pickup, add %s into your deck."
     ]
   },
-  "chimeracardsplus:CutThroughMod": {
+  "${modID}:CutThroughMod": {
     "TEXT": [
       "Cut Through ",
       "",
@@ -416,7 +416,7 @@
       "Draw 2 cards."
     ]
   },
-  "chimeracardsplus:DarkMod": {
+  "${modID}:DarkMod": {
     "TEXT": [
       "Dark ",
       "",
@@ -426,17 +426,17 @@
       " NL If this card is Exhausted, draw 1 card."
     ]
   },
-  "chimeracardsplus:DartMod": {
+  "${modID}:DartMod": {
     "TEXT": [
       "Dart ",
       "",
-      "Reduces damage by #b50%. NL Hits once for each Skill in your hand."
+      "Reduces damage and #yBlock by #b50%. NL Plays once for each Skill in your hand."
     ],
     "EXTRA_TEXT": [
       " for each Skill in your hand."
     ]
   },
-  "chimeracardsplus:DeadMod": {
+  "${modID}:DeadMod": {
     "TEXT": [
       "Dead ",
       "",
@@ -446,7 +446,7 @@
       " NL If this card is Exhausted, add a random card into your hand."
     ]
   },
-  "chimeracardsplus:DeepMod": {
+  "${modID}:DeepMod": {
     "TEXT": [
       "Deep ",
       "",
@@ -456,7 +456,7 @@
       " NL Shuffle your discard pile into your draw pile."
     ]
   },
-  "chimeracardsplus:DeterminedMod": {
+  "${modID}:DeterminedMod": {
     "TEXT": [
       "Determined ",
       "",
@@ -466,7 +466,7 @@
       " NL Add 2 *Wounds into your hand."
     ]
   },
-  "chimeracardsplus:DexterousMod": {
+  "${modID}:DexterousMod": {
     "TEXT": [
       "Dexterous ",
       "",
@@ -477,7 +477,7 @@
       " NL Gain %s Dexterity."
     ]
   },
-  "chimeracardsplus:DisarmingMod": {
+  "${modID}:DisarmingMod": {
     "TEXT": [
       "Disarming ",
       "",
@@ -490,7 +490,7 @@
       " NL Enemy loses X Strength."
     ]
   },
-  "chimeracardsplus:DiscoveredMod": {
+  "${modID}:DiscoveredMod": {
     "TEXT": [
       "Discovered ",
       "",
@@ -501,7 +501,7 @@
       "Innate. NL "
     ]
   },
-  "chimeracardsplus:DisorderedMod": {
+  "${modID}:DisorderedMod": {
     "TEXT": [
       "Disordered ",
       "",
@@ -511,7 +511,7 @@
       " NL Play the top card of your draw pile and Exhaust it."
     ]
   },
-  "chimeracardsplus:DistractingMod": {
+  "${modID}:DistractingMod": {
     "TEXT": [
       "Distracting ",
       "",
@@ -522,7 +522,7 @@
       " NL Add a random Upgraded Skill into your hand. NL Exhaust."
     ]
   },
-  "chimeracardsplus:DoppelgangerMod": {
+  "${modID}:DoppelgangerMod": {
     "TEXT": [
       "",
       "'s Doppelganger",
@@ -537,7 +537,7 @@
       " NL Next turn, draw 3 cards and gain [E] [E] [E]."
     ]
   },
-  "chimeracardsplus:DoublingMod": {
+  "${modID}:DoublingMod": {
     "TEXT": [
       "Doubling ",
       "",
@@ -549,7 +549,7 @@
       "This turn, your next !M! Attacks are played twice."
     ]
   },
-  "chimeracardsplus:WearyMod": {
+  "${modID}:WearyMod": {
     "TEXT": [
       "Weary ",
       "",
@@ -559,7 +559,7 @@
       " NL Lose 1 Dexterity."
     ]
   },
-  "chimeracardsplus:DuplicatingMod": {
+  "${modID}:DuplicatingMod": {
     "TEXT": [
       "Duplicating ",
       "",
@@ -570,7 +570,7 @@
       " NL This turn, your next card is played twice."
     ]
   },
-  "chimeracardsplus:EdibleMod": {
+  "${modID}:EdibleMod": {
     "TEXT": [
       "Edible ",
       "",
@@ -582,7 +582,7 @@
       " NL Upon pickup, raise your Max HP by 3."
     ]
   },
-  "chimeracardsplus:EnlightenedMod": {
+  "${modID}:EnlightenedMod": {
     "TEXT": [
       "Enlightened ",
       "",
@@ -592,7 +592,7 @@
       " NL Reduce the cost of a random card in your hand to 1 this turn."
     ]
   },
-  "chimeracardsplus:EntropicMod": {
+  "${modID}:EntropicMod": {
     "TEXT": [
       "Entropic ",
       "",
@@ -603,7 +603,7 @@
       " NL Fill your hand with random Upgraded cards. NL Exhaust."
     ]
   },
-  "chimeracardsplus:ExertedMod": {
+  "${modID}:ExertedMod": {
     "TEXT": [
       "Exerted ",
       "",
@@ -613,7 +613,7 @@
       " NL Draw 1 card. Draw 1 less card next turn."
     ]
   },
-  "chimeracardsplus:ExperiencedMod": {
+  "${modID}:ExperiencedMod": {
     "TEXT": [
       "Experienced ",
       "",
@@ -623,7 +623,7 @@
       " NL Gains 1 additional Block for each Upgraded card in your hand."
     ]
   },
-  "chimeracardsplus:ExpertMod": {
+  "${modID}:ExpertMod": {
     "TEXT": [
       "Expert ",
       "",
@@ -633,7 +633,7 @@
       " NL Draw cards until your have 6 in your hand."
     ]
   },
-  "chimeracardsplus:ExplosionMod": {
+  "${modID}:ExplosionMod": {
     "TEXT": [
       "",
       " Explosion",
@@ -643,7 +643,7 @@
       " NL When the enemy dies, deal damage equal to its Max HP to ALL enemies."
     ]
   },
-  "chimeracardsplus:FairyMod": {
+  "${modID}:FairyMod": {
     "TEXT": [
       "Fairy in ",
       "",
@@ -653,7 +653,7 @@
       " NL When you would die, heal to 10% of your Max HP instead and remove this from your deck."
     ]
   },
-  "chimeracardsplus:FastingMod": {
+  "${modID}:FastingMod": {
     "TEXT": [
       "Fasting ",
       "",
@@ -663,7 +663,7 @@
       " NL Gain 1 less [E] at the start of each turn."
     ]
   },
-  "chimeracardsplus:FeedingMod": {
+  "${modID}:FeedingMod": {
     "TEXT": [
       "Feeding ",
       "",
@@ -674,30 +674,33 @@
       " NL If Fatal, raise your Max HP by %s."
     ]
   },
-  "chimeracardsplus:FiendMod": {
+  "${modID}:FiendMod": {
     "TEXT": [
       "Fiend ",
       "",
-      "Costs [E] [E] more. NL #yExhausts your hand and plays the card once for each card #yExhausted. NL Adds #yExhaust."
+      "Costs [E] [E] more. NL #yExhausts your hand and plays once for each card #yExhausted. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
       "Exhaust your hand. NL ",
       " for each card Exhausted. NL Exhaust."
     ]
   },
-  "chimeracardsplus:FinishingMod": {
+  "${modID}:FinishingMod": {
     "TEXT": [
       "Finishing ",
       "",
-      "Reduces damage by #b33%. NL Hits once for each Attack played this turn."
+      "Reduces damage and #yBlock by #b33%. NL Plays once for each card of the same type played this turn."
     ],
     "EXTRA_TEXT": [
       " for each Attack played this turn.",
       " NL (%d Attack played.)",
-      " NL (%d Attacks played.)"
+      " NL (%d Attacks played.)",
+      " for each Skill played this turn.",
+      " NL (%d Skill played.)",
+      " NL (%d Skills played.)"
     ]
   },
-  "chimeracardsplus:FlamboyantMod": {
+  "${modID}:FlamboyantMod": {
     "TEXT": [
       "Flamboyant ",
       "",
@@ -709,7 +712,7 @@
       " (%d cards played.)"
     ]
   },
-  "chimeracardsplus:FlamingMod": {
+  "${modID}:FlamingMod": {
     "TEXT": [
       "Flaming ",
       "",
@@ -719,7 +722,7 @@
       " NL Whenever you are attacked this turn, deal %s damage back."
     ]
   },
-  "chimeracardsplus:FlickeringMod": {
+  "${modID}:FlickeringMod": {
     "TEXT": [
       "Flickering ",
       "",
@@ -729,7 +732,7 @@
       " NL If this kills an enemy, return it to your hand."
     ]
   },
-  "chimeracardsplus:FocusedMod": {
+  "${modID}:FocusedMod": {
     "TEXT": [
       "Focused ",
       "",
@@ -740,7 +743,7 @@
       " NL Gain %s Focus."
     ]
   },
-  "chimeracardsplus:ForcefulMod": {
+  "${modID}:ForcefulMod": {
     "TEXT": [
       "Forceful ",
       "",
@@ -752,7 +755,7 @@
       "Costs 2 less [B] for each Power card played this combat."
     ]
   },
-  "chimeracardsplus:ForeignMod": {
+  "${modID}:ForeignMod": {
     "TEXT": [
       "Foreign ",
       "",
@@ -765,7 +768,7 @@
       " NL Add a random Upgraded Skill card of any color into your hand. NL Exhaust."
     ]
   },
-  "chimeracardsplus:ForethoughtMod": {
+  "${modID}:ForethoughtMod": {
     "TEXT": [
       "Forethought ",
       "",
@@ -775,7 +778,7 @@
       " NL Put any number of cards from your hand to the bottom of your draw pile. They cost 0 until played."
     ]
   },
-  "chimeracardsplus:ForgetfulMod": {
+  "${modID}:ForgetfulMod": {
     "TEXT": [
       "Forgetful ",
       "",
@@ -785,7 +788,7 @@
       " NL Upon pickup, you may Remove another card in your deck."
     ]
   },
-  "chimeracardsplus:GamblerMod": {
+  "${modID}:GamblerMod": {
     "TEXT": [
       "Gambler's ",
       "",
@@ -796,7 +799,7 @@
       " NL Discard your hand, then draw that many cards."
     ]
   },
-  "chimeracardsplus:GeneticMod": {
+  "${modID}:GeneticMod": {
     "TEXT": [
       "Genetic ",
       "",
@@ -807,7 +810,7 @@
       " NL Permanently increase this card's Block by %s."
     ]
   },
-  "chimeracardsplus:GrandMod": {
+  "${modID}:GrandMod": {
     "TEXT": [
       "Grand ",
       "",
@@ -817,7 +820,7 @@
       " NL Can only be played if there are no cards in your draw pile."
     ]
   },
-  "chimeracardsplus:GrowingMod": {
+  "${modID}:GrowingMod": {
     "TEXT": [
       "Growing ",
       "",
@@ -827,7 +830,7 @@
       " NL Upon pickup, you may Upgrade another card in your deck."
     ]
   },
-  "chimeracardsplus:GuardedMod": {
+  "${modID}:GuardedMod": {
     "TEXT": [
       "Guarded ",
       "",
@@ -839,7 +842,7 @@
       "If this card is Exhausted, NL gain [R] [R] [R]"
     ]
   },
-  "chimeracardsplus:HandMod": {
+  "${modID}:HandMod": {
     "TEXT": [
       "",
       " to the Hand",
@@ -852,7 +855,7 @@
       " NL Whenever you attack this enemy, gain X Block."
     ]
   },
-  "chimeracardsplus:HappyMod": {
+  "${modID}:HappyMod": {
     "TEXT": [
       "Happy ",
       "",
@@ -862,7 +865,7 @@
       " NL If this is your third turn, gain [E]."
     ]
   },
-  "chimeracardsplus:HastyMod": {
+  "${modID}:HastyMod": {
     "TEXT": [
       "Hasty ",
       "",
@@ -872,7 +875,7 @@
       " NL Lose [E]."
     ]
   },
-  "chimeracardsplus:HeadOnMod": {
+  "${modID}:HeadOnMod": {
     "TEXT": [
       "Head-On ",
       "",
@@ -882,7 +885,7 @@
       " NL Put a card from your discard pile on top of your draw pile."
     ]
   },
-  "chimeracardsplus:HeatingMod": {
+  "${modID}:HeatingMod": {
     "TEXT": [
       "Heating ",
       "",
@@ -892,7 +895,7 @@
       "Remove all Block from the enemy. NL "
     ]
   },
-  "chimeracardsplus:HelloMod": {
+  "${modID}:HelloMod": {
     "TEXT": [
       "Hello ",
       "",
@@ -903,7 +906,7 @@
       " NL Add a random Upgraded Common card into your hand. NL Exhaust."
     ]
   },
-  "chimeracardsplus:HoloMod": {
+  "${modID}:HoloMod": {
     "TEXT": [
       "Holo ",
       "",
@@ -916,7 +919,7 @@
       "Put 2 cards from your discard pile into your hand."
     ]
   },
-  "chimeracardsplus:HornMod": {
+  "${modID}:HornMod": {
     "TEXT": [
       "Horn ",
       "",
@@ -926,7 +929,7 @@
       " NL If this kills an enemy, gain [E] and draw 1 card."
     ]
   },
-  "chimeracardsplus:ImmortalityMod": {
+  "${modID}:ImmortalityMod": {
     "TEXT": [
       "",
       " for Immortality",
@@ -937,7 +940,7 @@
       "At the end of your turn, gain %s *Plated *Armor."
     ]
   },
-  "chimeracardsplus:ImpatientMod": {
+  "${modID}:ImpatientMod": {
     "TEXT": [
       "Impatient ",
       "",
@@ -947,7 +950,7 @@
       " NL If you have no Attacks in your hand, draw 2 cards."
     ]
   },
-  "chimeracardsplus:ImpulsiveMod": {
+  "${modID}:ImpulsiveMod": {
     "TEXT": [
       "Impulsive ",
       "",
@@ -957,7 +960,7 @@
       " NL Trigger the passive ability of all Orbs."
     ]
   },
-  "chimeracardsplus:IncantatoryMod": {
+  "${modID}:IncantatoryMod": {
     "TEXT": [
       "Incantatory ",
       "",
@@ -968,7 +971,7 @@
       " NL Gain 1 Ritual."
     ]
   },
-  "chimeracardsplus:IncenseMod": {
+  "${modID}:IncenseMod": {
     "TEXT": [
       "Incense ",
       "",
@@ -978,7 +981,7 @@
       " NL If this is your sixth turn, gain 1 Intangible."
     ]
   },
-  "chimeracardsplus:InescapableMod": {
+  "${modID}:InescapableMod": {
     "TEXT": [
       "Inescapable ",
       "",
@@ -988,7 +991,7 @@
       " NL If this card is Exhausted, put a copy of this card into your hand."
     ]
   },
-  "chimeracardsplus:InfernalMod": {
+  "${modID}:InfernalMod": {
     "TEXT": [
       "Infernal ",
       "",
@@ -999,7 +1002,7 @@
       " NL Add a random Upgraded Attack into your hand. NL Exhaust."
     ]
   },
-  "chimeracardsplus:InflammableMod": {
+  "${modID}:InflammableMod": {
     "TEXT": [
       "Inflammable ",
       "",
@@ -1010,7 +1013,7 @@
       " NL Gain %s Strength."
     ]
   },
-  "chimeracardsplus:InjuriousMod": {
+  "${modID}:InjuriousMod": {
     "TEXT": [
       "Injurious ",
       "",
@@ -1020,7 +1023,7 @@
       " NL Shuffle a *Wound into your draw pile."
     ]
   },
-  "chimeracardsplus:InkyMod": {
+  "${modID}:InkyMod": {
     "TEXT": [
       "Inky ",
       "",
@@ -1032,7 +1035,7 @@
       " (%d cards played.)"
     ]
   },
-  "chimeracardsplus:IntimidatingMod": {
+  "${modID}:IntimidatingMod": {
     "TEXT": [
       "Intimidating ",
       "",
@@ -1043,7 +1046,7 @@
       " NL Apply 1 Weak to ALL enemies."
     ]
   },
-  "chimeracardsplus:IntrospectiveMod": {
+  "${modID}:IntrospectiveMod": {
     "TEXT": [
       "Introspective ",
       "",
@@ -1054,7 +1057,7 @@
       " NL Remove all of your Frail and Vulnerable."
     ]
   },
-  "chimeracardsplus:KunaiMod": {
+  "${modID}:KunaiMod": {
     "TEXT": [
       "Kunai ",
       "",
@@ -1066,7 +1069,7 @@
       " (%d Attacks played.)"
     ]
   },
-  "chimeracardsplus:LearnMod": {
+  "${modID}:LearnMod": {
     "TEXT": [
       "",
       " and Learn",
@@ -1077,7 +1080,7 @@
       " NL If Fatal, Upgrade a random card in your deck."
     ]
   },
-  "chimeracardsplus:LoopyMod": {
+  "${modID}:LoopyMod": {
     "TEXT": [
       "Loopy ",
       "",
@@ -1087,7 +1090,7 @@
       " NL Trigger the passive ability of your next Orb."
     ]
   },
-  "chimeracardsplus:LoudMod": {
+  "${modID}:LoudMod": {
     "TEXT": [
       "Loud ",
       "",
@@ -1099,7 +1102,7 @@
       "This turn, your next !M! Power cards are played twice."
     ]
   },
-  "chimeracardsplus:MadMod": {
+  "${modID}:MadMod": {
     "TEXT": [
       "Mad ",
       "",
@@ -1110,7 +1113,7 @@
       " NL Reduce the cost of a random card in your hand to 0 this combat."
     ]
   },
-  "chimeracardsplus:MagneticMod": {
+  "${modID}:MagneticMod": {
     "TEXT": [
       "Magnetic ",
       "",
@@ -1121,7 +1124,7 @@
       " NL Add a random Upgraded Colorless card into your hand. NL Exhaust."
     ]
   },
-  "chimeracardsplus:MarbleMod": {
+  "${modID}:MarbleMod": {
     "TEXT": [
       "Marble ",
       "",
@@ -1132,7 +1135,7 @@
       " NL Apply 1 Vulnerable to ALL enemies."
     ]
   },
-  "chimeracardsplus:MarkedMod": {
+  "${modID}:MarkedMod": {
     "TEXT": [
       "Marked ",
       "",
@@ -1142,7 +1145,7 @@
       " NL Apply %s *Mark. NL ALL enemies lose HP equal to their *Mark."
     ]
   },
-  "chimeracardsplus:MetallicMod": {
+  "${modID}:MetallicMod": {
     "TEXT": [
       "Metallic ",
       "",
@@ -1153,7 +1156,7 @@
       " NL Gain %s *Metallicize."
     ]
   },
-  "chimeracardsplus:MirroredMod": {
+  "${modID}:MirroredMod": {
     "TEXT": [
       "Mirrored ",
       "",
@@ -1163,7 +1166,7 @@
       " NL Upon pickup, you may Duplicate another card in your deck."
     ]
   },
-  "chimeracardsplus:MummifiedMod": {
+  "${modID}:MummifiedMod": {
     "TEXT": [
       "Mummified ",
       "",
@@ -1173,7 +1176,7 @@
       " NL A random card in your hand costs 0 this turn."
     ]
   },
-  "chimeracardsplus:MutagenicMod": {
+  "${modID}:MutagenicMod": {
     "TEXT": [
       "Mutagenic ",
       "",
@@ -1183,7 +1186,7 @@
       " NL Deals 3 more damage on your first turn."
     ]
   },
-  "chimeracardsplus:NightmareMod": {
+  "${modID}:NightmareMod": {
     "TEXT": [
       "",
       "'s Nightmare",
@@ -1194,7 +1197,7 @@
       "Innate. NL "
     ]
   },
-  "chimeracardsplus:NormalMod": {
+  "${modID}:NormalMod": {
     "TEXT": [
       "Normal ",
       "",
@@ -1206,7 +1209,7 @@
       " (%d cards played.)"
     ]
   },
-  "chimeracardsplus:NunchakuMod": {
+  "${modID}:NunchakuMod": {
     "TEXT": [
       "Nunchaku ",
       "",
@@ -1218,7 +1221,7 @@
       " (%d Attacks played.)"
     ]
   },
-  "chimeracardsplus:ObservantMod": {
+  "${modID}:ObservantMod": {
     "TEXT": [
       "Observant ",
       "",
@@ -1229,7 +1232,7 @@
       " NL If the enemy intends to attack, gain X Strength."
     ]
   },
-  "chimeracardsplus:OpportunisticMod": {
+  "${modID}:OpportunisticMod": {
     "TEXT": [
       "Opportunistic ",
       "",
@@ -1239,7 +1242,7 @@
       " NL If you have no Skills in your hand, draw 2 cards."
     ]
   },
-  "chimeracardsplus:OverclockedMod": {
+  "${modID}:OverclockedMod": {
     "TEXT": [
       "Overclocked ",
       "",
@@ -1249,7 +1252,7 @@
       " NL Add a *Burn into your discard pile."
     ]
   },
-  "chimeracardsplus:PainfulMod": {
+  "${modID}:PainfulMod": {
     "TEXT": [
       "Painful ",
       "",
@@ -1259,7 +1262,7 @@
       " NL Shuffle 2 *Wounds into your draw pile."
     ]
   },
-  "chimeracardsplus:PainlessMod": {
+  "${modID}:PainlessMod": {
     "TEXT": [
       "Painless ",
       "",
@@ -1269,7 +1272,7 @@
       " NL If this card is Exhausted, gain %s Block."
     ]
   },
-  "chimeracardsplus:PanicMod": {
+  "${modID}:PanicMod": {
     "TEXT": [
       "Panic ",
       "",
@@ -1280,7 +1283,7 @@
       " NL You cannot gain Block from cards for 2 turns."
     ]
   },
-  "chimeracardsplus:ParasiticMod": {
+  "${modID}:ParasiticMod": {
     "TEXT": [
       "Parasitic ",
       "",
@@ -1290,7 +1293,7 @@
       " NL If transformed or removed from your deck, lose 3 Max HP."
     ]
   },
-  "chimeracardsplus:PatientMod": {
+  "${modID}:PatientMod": {
     "TEXT": [
       "Patient ",
       "",
@@ -1301,7 +1304,7 @@
       " NL When Retained, increase its damage by %s this combat."
     ]
   },
-  "chimeracardsplus:PerfectMod": {
+  "${modID}:PerfectMod": {
     "TEXT": [
       "Perfect ",
       "",
@@ -1311,7 +1314,7 @@
       " NL Deals %s additional damage for ALL your cards containing \"Strike\"."
     ]
   },
-  "chimeracardsplus:PhantasmalMod": {
+  "${modID}:PhantasmalMod": {
     "TEXT": [
       "Phantasmal ",
       "",
@@ -1321,7 +1324,7 @@
       " NL Next turn, your Attacks deal double damage."
     ]
   },
-  "chimeracardsplus:PocketwatchMod": {
+  "${modID}:PocketwatchMod": {
     "TEXT": [
       "",
       "'s Pocketwatch",
@@ -1333,7 +1336,7 @@
       " (%d cards played.)"
     ]
   },
-  "chimeracardsplus:PointyMod": {
+  "${modID}:PointyMod": {
     "TEXT": [
       "Pointy ",
       "",
@@ -1345,7 +1348,7 @@
       " (%d Attacks played.)"
     ]
   },
-  "chimeracardsplus:PrayerfulMod": {
+  "${modID}:PrayerfulMod": {
     "TEXT": [
       "Prayerful ",
       "",
@@ -1356,7 +1359,7 @@
       " NL Enter Divinity."
     ]
   },
-  "chimeracardsplus:PrayerMod": {
+  "${modID}:PrayerMod": {
     "TEXT": [
       "Prayer's",
       "",
@@ -1367,7 +1370,7 @@
       " NL If this kills an enemy in a normal combat, it drops an additional card reward."
     ]
   },
-  "chimeracardsplus:PredictedMod": {
+  "${modID}:PredictedMod": {
     "TEXT": [
       "Predicted ",
       "",
@@ -1381,7 +1384,7 @@
       " %d+"
     ]
   },
-  "chimeracardsplus:PredictiveMod": {
+  "${modID}:PredictiveMod": {
     "TEXT": [
       "Predictive ",
       "",
@@ -1396,7 +1399,7 @@
       "NL "
     ]
   },
-  "chimeracardsplus:PreservantMod": {
+  "${modID}:PreservantMod": {
     "TEXT": [
       "Preservant ",
       "",
@@ -1407,7 +1410,7 @@
       " NL When Retained, increase its Block by %s this combat."
     ]
   },
-  "chimeracardsplus:ProactiveMod": {
+  "${modID}:ProactiveMod": {
     "TEXT": [
       "Proactive ",
       "",
@@ -1417,7 +1420,7 @@
       " NL Draw 1 card. NL Put a card from your hand on top of your draw pile."
     ]
   },
-  "chimeracardsplus:ProudMod": {
+  "${modID}:ProudMod": {
     "TEXT": [
       "Proud ",
       "",
@@ -1428,7 +1431,7 @@
       " NL At the end of your turn, put a copy of this card on top of your draw pile. NL Exhaust."
     ]
   },
-  "chimeracardsplus:QuickSkillMod": {
+  "${modID}:QuickSkillMod": {
     "TEXT": [
       "Quick ",
       "",
@@ -1438,7 +1441,7 @@
       " NL Draw 1 card."
     ]
   },
-  "chimeracardsplus:RagingMod": {
+  "${modID}:RagingMod": {
     "TEXT": [
       "Raging ",
       "",
@@ -1448,7 +1451,7 @@
       " NL Whenever you play an Attack this turn, gain 3 Block."
     ]
   },
-  "chimeracardsplus:RealityMod": {
+  "${modID}:RealityMod": {
     "TEXT": [
       "",
       " Reality",
@@ -1459,7 +1462,7 @@
       " NL Add a *Safety into your hand."
     ]
   },
-  "chimeracardsplus:ReaperMod": {
+  "${modID}:ReaperMod": {
     "TEXT": [
       "Reaper's ",
       "",
@@ -1470,7 +1473,7 @@
       " NL Heal HP equal to unblocked damage."
     ]
   },
-  "chimeracardsplus:RecklessMod": {
+  "${modID}:RecklessMod": {
     "TEXT": [
       "Reckless ",
       "",
@@ -1480,7 +1483,7 @@
       " NL Shuffle a *Dazed into your draw pile."
     ]
   },
-  "chimeracardsplus:RecyclableMod": {
+  "${modID}:RecyclableMod": {
     "TEXT": [
       "Recyclable ",
       "",
@@ -1495,7 +1498,7 @@
       "."
     ]
   },
-  "chimeracardsplus:ReflexMod": {
+  "${modID}:ReflexMod": {
     "TEXT": [
       "Reflex ",
       "",
@@ -1506,7 +1509,7 @@
       "discard"
     ]
   },
-  "chimeracardsplus:ReplaceableMod": {
+  "${modID}:ReplaceableMod": {
     "TEXT": [
       "Replaceable ",
       "",
@@ -1517,7 +1520,7 @@
       "discard"
     ]
   },
-  "chimeracardsplus:ReplicativeMod": {
+  "${modID}:ReplicativeMod": {
     "TEXT": [
       "Replicative ",
       "",
@@ -1528,7 +1531,7 @@
       "discard"
     ]
   },
-  "chimeracardsplus:RupturedMod": {
+  "${modID}:RupturedMod": {
     "TEXT": [
       "Ruptured ",
       "",
@@ -1538,7 +1541,7 @@
       " NL Lose 2 HP. Gain 1 Strength."
     ]
   },
-  "chimeracardsplus:ScribblyMod": {
+  "${modID}:ScribblyMod": {
     "TEXT": [
       "Scribbly ",
       "",
@@ -1549,7 +1552,7 @@
       " NL Draw cards until your hand is full."
     ]
   },
-  "chimeracardsplus:SecretMod": {
+  "${modID}:SecretMod": {
     "TEXT": [
       "Secret ",
       "",
@@ -1559,7 +1562,7 @@
       " NL Put 1 %s from your draw pile into your hand."
     ]
   },
-  "chimeracardsplus:SeparateMod": {
+  "${modID}:SeparateMod": {
     "TEXT": [
       "Separate ",
       "",
@@ -1571,7 +1574,7 @@
       " NL Exhaust all non-Power cards in your hand."
     ]
   },
-  "chimeracardsplus:SetupMod": {
+  "${modID}:SetupMod": {
     "TEXT": [
       "",
       " Setup",
@@ -1581,7 +1584,7 @@
       " NL Put a card from your hand on top of your draw pile. It costs 0 until played."
     ]
   },
-  "chimeracardsplus:ShacklingMod": {
+  "${modID}:ShacklingMod": {
     "TEXT": [
       "Shackling ",
       "",
@@ -1592,7 +1595,7 @@
       " NL Enemy loses 5 Strength this turn."
     ]
   },
-  "chimeracardsplus:ShatteringMod": {
+  "${modID}:ShatteringMod": {
     "TEXT": [
       "Shattering ",
       "",
@@ -1602,7 +1605,7 @@
       " NL Deals 3 more damage to enemies with Block."
     ]
   },
-  "chimeracardsplus:ShockingMod": {
+  "${modID}:ShockingMod": {
     "TEXT": [
       "Shocking ",
       "",
@@ -1613,7 +1616,7 @@
       " NL Apply %s Weak and Vulnerable to ALL enemies."
     ]
   },
-  "chimeracardsplus:ShriekingMod": {
+  "${modID}:ShriekingMod": {
     "TEXT": [
       "Shrieking ",
       "",
@@ -1624,7 +1627,7 @@
       " NL ALL enemies loses 3 Strength this turn."
     ]
   },
-  "chimeracardsplus:ShurikenMod": {
+  "${modID}:ShurikenMod": {
     "TEXT": [
       "Shuriken ",
       "",
@@ -1636,7 +1639,7 @@
       " (%d Attacks played.)"
     ]
   },
-  "chimeracardsplus:SmilingMod": {
+  "${modID}:SmilingMod": {
     "TEXT": [
       "Smiling ",
       "",
@@ -1646,7 +1649,7 @@
       " NL If transformed or removed from your deck, gain 50 *Gold."
     ]
   },
-  "chimeracardsplus:SmoothMod": {
+  "${modID}:SmoothMod": {
     "TEXT": [
       "Smooth ",
       "",
@@ -1654,7 +1657,7 @@
     ],
     "EXTRA_TEXT": []
   },
-  "chimeracardsplus:SozuMod": {
+  "${modID}:SozuMod": {
     "TEXT": [
       "Sozu ",
       "",
@@ -1664,7 +1667,7 @@
       " NL If you used a potion this turn, gain [E]."
     ]
   },
-  "chimeracardsplus:SpecializedMod": {
+  "${modID}:SpecializedMod": {
     "TEXT": [
       "Specialized ",
       "",
@@ -1674,7 +1677,7 @@
       " NL Upon pickup, add 2 additional copies into your deck."
     ]
   },
-  "chimeracardsplus:SplitMod": {
+  "${modID}:SplitMod": {
     "TEXT": [
       "Split ",
       "",
@@ -1688,7 +1691,7 @@
       " NL If this kills an enemy, gain [B] [B] [B]."
     ]
   },
-  "chimeracardsplus:SpringyMod": {
+  "${modID}:SpringyMod": {
     "TEXT": [
       "Springy ",
       "",
@@ -1700,7 +1703,7 @@
       "Put the next 2 cards you play this turn on top of your draw pile."
     ]
   },
-  "chimeracardsplus:StableMod": {
+  "${modID}:StableMod": {
     "TEXT": [
       "Stable ",
       "",
@@ -1712,18 +1715,18 @@
       "Retain your hand for 2 turns."
     ]
   },
-  "chimeracardsplus:StarMod": {
+  "${modID}:StarMod": {
     "TEXT": [
       "Star ",
       "",
-      "Drops an additional Relic when killing an Elite. NL Adds #yExhaust."
+      "Drops an additional Relic when killing an enemy in Elite combat. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
-      " NL If this kills an Elite, it drops an additional Relic. NL Exhaust.",
-      " NL If this kills an Elite, it drops an additional Relic."
+      " NL If this kills an enemy in an Elite combat, it drops an additional Relic. NL Exhaust.",
+      " NL If this kills an enemy in an Elite combat, it drops an additional Relic."
     ]
   },
-  "chimeracardsplus:LiquidizingMod": {
+  "${modID}:LiquidizingMod": {
     "TEXT": [
       "Liquidizing ",
       "",
@@ -1734,7 +1737,7 @@
       " NL If this kills an enemy, obtain a random potion."
     ]
   },
-  "chimeracardsplus:StealthyMod": {
+  "${modID}:StealthyMod": {
     "TEXT": [
       "Stealthy ",
       "",
@@ -1745,7 +1748,7 @@
       "discard"
     ]
   },
-  "chimeracardsplus:SteamMod": {
+  "${modID}:SteamMod": {
     "TEXT": [
       "Steam ",
       "",
@@ -1757,7 +1760,7 @@
       "Decrease this card's Block by 2 this combat."
     ]
   },
-  "chimeracardsplus:StormMod": {
+  "${modID}:StormMod": {
     "TEXT": [
       "Storm of ",
       "",
@@ -1768,7 +1771,7 @@
       "Innate. NL "
     ]
   },
-  "chimeracardsplus:StrainedMod": {
+  "${modID}:StrainedMod": {
     "TEXT": [
       "Strained ",
       "",
@@ -1778,7 +1781,7 @@
       " NL Lose 1 Strength."
     ]
   },
-  "chimeracardsplus:StrategicMod": {
+  "${modID}:StrategicMod": {
     "TEXT": [
       "Strategic ",
       "",
@@ -1789,7 +1792,7 @@
       " NL Draw 2 cards."
     ]
   },
-  "chimeracardsplus:StrikeMod": {
+  "${modID}:StrikeMod": {
     "TEXT": [
       "",
       " Strike",
@@ -1797,7 +1800,7 @@
     ],
     "EXTRA_TEXT": []
   },
-  "chimeracardsplus:SulfuricMod": {
+  "${modID}:SulfuricMod": {
     "TEXT": [
       "Sulfuric ",
       "",
@@ -1807,7 +1810,7 @@
       " NL Gain 2 Strength and ALL enemies gain 1 Strength."
     ]
   },
-  "chimeracardsplus:SuperluminalMod": {
+  "${modID}:SuperluminalMod": {
     "TEXT": [
       "Superluminal ",
       "",
@@ -1819,7 +1822,7 @@
       " (%d cards played.)"
     ]
   },
-  "chimeracardsplus:TacticalMod": {
+  "${modID}:TacticalMod": {
     "TEXT": [
       "Tactical ",
       "",
@@ -1832,7 +1835,7 @@
       "discard"
     ]
   },
-  "chimeracardsplus:TalkativeMod": {
+  "${modID}:TalkativeMod": {
     "TEXT": [
       "Talkative ",
       "",
@@ -1842,7 +1845,7 @@
       " NL You feel more talkative."
     ]
   },
-  "chimeracardsplus:TemperamentalMod": {
+  "${modID}:TemperamentalMod": {
     "TEXT": [
       "Temperamental ",
       "",
@@ -1852,7 +1855,7 @@
       " NL You cannot change Stances until next turn."
     ]
   },
-  "chimeracardsplus:TerrifyingMod": {
+  "${modID}:TerrifyingMod": {
     "TEXT": [
       "Terrifying ",
       "",
@@ -1863,7 +1866,7 @@
       " NL Apply 99 Vulnerable."
     ]
   },
-  "chimeracardsplus:ThirdMod": {
+  "${modID}:ThirdMod": {
     "TEXT": [
       "Third ",
       "",
@@ -1873,7 +1876,7 @@
       " NL Scry 3."
     ]
   },
-  "chimeracardsplus:ThornyMod": {
+  "${modID}:ThornyMod": {
     "TEXT": [
       "Thorny ",
       "",
@@ -1884,7 +1887,7 @@
       " NL Gain %s Thorns."
     ]
   },
-  "chimeracardsplus:TingshaMod": {
+  "${modID}:TingshaMod": {
     "TEXT": [
       "Tingsha ",
       "",
@@ -1895,7 +1898,7 @@
       "discard"
     ]
   },
-  "chimeracardsplus:ToughMod": {
+  "${modID}:ToughMod": {
     "TEXT": [
       "Tough ",
       "",
@@ -1906,7 +1909,7 @@
       "discard"
     ]
   },
-  "chimeracardsplus:TranceMod": {
+  "${modID}:TranceMod": {
     "TEXT": [
       "",
       " Trance",
@@ -1916,7 +1919,7 @@
       " NL You cannot draw additional cards this turn."
     ]
   },
-  "chimeracardsplus:UnceasingMod": {
+  "${modID}:UnceasingMod": {
     "TEXT": [
       "Unceasing ",
       "",
@@ -1926,7 +1929,7 @@
       " NL If you have no cards in hand, draw 1 card."
     ]
   },
-  "chimeracardsplus:UnfocusedMod": {
+  "${modID}:UnfocusedMod": {
     "TEXT": [
       "Unfocused ",
       "",
@@ -1936,7 +1939,7 @@
       " NL Lose 1 Focus."
     ]
   },
-  "chimeracardsplus:UnstableMod": {
+  "${modID}:UnstableMod": {
     "TEXT": [
       "Unstable ",
       "",
@@ -1948,7 +1951,7 @@
       " NL Discard all non-Power cards in your hand."
     ]
   },
-  "chimeracardsplus:UpperMod": {
+  "${modID}:UpperMod": {
     "TEXT": [
       "Upper ",
       "",
@@ -1958,7 +1961,7 @@
       " NL Apply 1 Weak and Vulnerable."
     ]
   },
-  "chimeracardsplus:VajraMod": {
+  "${modID}:VajraMod": {
     "TEXT": [
       "Vajra ",
       "",
@@ -1966,7 +1969,7 @@
     ],
     "EXTRA_TEXT": []
   },
-  "chimeracardsplus:ViolentMod": {
+  "${modID}:ViolentMod": {
     "TEXT": [
       "Violent ",
       "",
@@ -1977,7 +1980,7 @@
       " NL Put 2 random Attacks from your draw pile into your hand."
     ]
   },
-  "chimeracardsplus:WaffleMod": {
+  "${modID}:WaffleMod": {
     "TEXT": [
       "Waffle ",
       "",
@@ -1987,7 +1990,7 @@
       " NL Upon pickup, heal 7 HP."
     ]
   },
-  "chimeracardsplus:WaryMod": {
+  "${modID}:WaryMod": {
     "TEXT": [
       "Wary ",
       "",
@@ -1998,7 +2001,7 @@
       " NL Put 2 random Skills from your draw pile into your hand."
     ]
   },
-  "chimeracardsplus:WhipMod": {
+  "${modID}:WhipMod": {
     "TEXT": [
       "",
       " and Whip",
@@ -2008,7 +2011,7 @@
       " NL If the last card played this combat was an Attack, apply %s Weak."
     ]
   },
-  "chimeracardsplus:WiseMod": {
+  "${modID}:WiseMod": {
     "TEXT": [
       "Wise ",
       "",
@@ -2020,7 +2023,7 @@
       " NL Shuffle X *Insights into your draw pile."
     ]
   },
-  "chimeracardsplus:WreathMod": {
+  "${modID}:WreathMod": {
     "TEXT": [
       "Wreath of ",
       "",
@@ -2030,7 +2033,7 @@
       " NL Your next Attack deals %s additional damage."
     ]
   },
-  "chimeracardsplus:EstablishedMod": {
+  "${modID}:EstablishedMod": {
     "TEXT": [
       "Established ",
       "",
@@ -2041,7 +2044,7 @@
       " NL When Retained, lower its cost by 1 this combat."
     ]
   },
-  "chimeracardsplus:GoldenMod": {
+  "${modID}:GoldenMod": {
     "TEXT": [
       "Golden ",
       "",
@@ -2054,7 +2057,7 @@
       " NL Gain X *Gold."
     ]
   },
-  "chimeracardsplus:OpeningMod": {
+  "${modID}:OpeningMod": {
     "TEXT": [
       "Opening ",
       "",
@@ -2065,7 +2068,7 @@
       " NL Gains 3 more Block if you have not played Skills this turn."
     ]
   },
-  "chimeracardsplus:PlatedMod": {
+  "${modID}:PlatedMod": {
     "TEXT": [
       "Plated ",
       "",
@@ -2076,7 +2079,7 @@
       " NL Gain %s *Plated *Armor."
     ]
   },
-  "chimeracardsplus:FadingMod": {
+  "${modID}:FadingMod": {
     "TEXT": [
       "Fading ",
       "",
@@ -2086,7 +2089,7 @@
       " NL After you defeat a Boss, remove this from your deck."
     ]
   },
-  "chimeracardsplus:UpliftingMod": {
+  "${modID}:UpliftingMod": {
     "TEXT": [
       "Uplifting ",
       "",
@@ -2096,7 +2099,7 @@
       " NL Your next Attack deals additional damage equal to unblocked damage."
     ]
   },
-  "chimeracardsplus:OrnamentalMod": {
+  "${modID}:OrnamentalMod": {
     "TEXT": [
       "Ornamental ",
       "",
@@ -2108,7 +2111,7 @@
       " (%d Attacks played.)"
     ]
   },
-  "chimeracardsplus:UnawakenedMod": {
+  "${modID}:UnawakenedMod": {
     "TEXT": [
       "Unawakened ",
       "",
@@ -2118,7 +2121,7 @@
       " NL This card hasn't awakened yet..."
     ]
   },
-  "chimeracardsplus:AwakenedMod": {
+  "${modID}:AwakenedMod": {
     "TEXT": [
       "Awakened ",
       "",
@@ -2126,7 +2129,7 @@
     ],
     "EXTRA_TEXT": []
   },
-  "chimeracardsplus:FlashyMod": {
+  "${modID}:FlashyMod": {
     "TEXT": [
       "Flashy ",
       "",
@@ -2136,7 +2139,7 @@
       " NL If this deals unblocked damage, draw 2 cards."
     ]
   },
-  "chimeracardsplus:AugerMod": {
+  "${modID}:AugerMod": {
     "TEXT": [
       "Auger ",
       "",
@@ -2146,7 +2149,7 @@
       " NL If this deals unblocked damage, apply 2 Vulnerable."
     ]
   },
-  "chimeracardsplus:TimeWarpedMod": {
+  "${modID}:TimeWarpedMod": {
     "TEXT": [
       "Time-Warped ",
       "",
@@ -2158,7 +2161,7 @@
       " (%d cards played.)"
     ]
   },
-  "chimeracardsplus:RefluxingMod": {
+  "${modID}:RefluxingMod": {
     "TEXT": [
       "Refluxing ",
       "",
@@ -2168,7 +2171,7 @@
       " NL If this deals unblocked damage, gain [E]."
     ]
   },
-  "chimeracardsplus:CleansingMod": {
+  "${modID}:CleansingMod": {
     "TEXT": [
       "Cleansing ",
       "",
@@ -2179,7 +2182,7 @@
       " NL Lose a random debuff."
     ]
   },
-  "chimeracardsplus:RegretfulMod": {
+  "${modID}:RegretfulMod": {
     "TEXT": [
       "Regretful ",
       "",
@@ -2189,7 +2192,7 @@
       " NL At the end of your turn, lose HP equal to the number of cards in your hand."
     ]
   },
-  "chimeracardsplus:HesitantMod": {
+  "${modID}:HesitantMod": {
     "TEXT": [
       "Hesitant ",
       "",
@@ -2199,7 +2202,7 @@
       " NL At the end of your turn, gain 1 Weak."
     ]
   },
-  "chimeracardsplus:DecayingMod": {
+  "${modID}:DecayingMod": {
     "TEXT": [
       "Decaying ",
       "",
@@ -2209,7 +2212,7 @@
       " NL At the end of your turn, take 2 damage."
     ]
   },
-  "chimeracardsplus:DrainingMod": {
+  "${modID}:DrainingMod": {
     "TEXT": [
       "Draining ",
       "",
@@ -2219,7 +2222,7 @@
       " NL Whenever you draw this card, lose 1 HP."
     ]
   },
-  "chimeracardsplus:BackupMod": {
+  "${modID}:BackupMod": {
     "TEXT": [
       "Backup ",
       "",
@@ -2229,7 +2232,7 @@
       " NL Whenever you draw this card, draw 1 card."
     ]
   },
-  "chimeracardsplus:JudgeMod": {
+  "${modID}:JudgeMod": {
     "TEXT": [
       "",
       " and Judge",
@@ -2239,7 +2242,7 @@
       " NL If the enemy has %s or less HP, set their HP to 0."
     ]
   },
-  "chimeracardsplus:StrangeMod": {
+  "${modID}:StrangeMod": {
     "TEXT": [
       "Strange ",
       "",
@@ -2250,7 +2253,7 @@
       "Exhaust."
     ]
   },
-  "chimeracardsplus:PunishingMod": {
+  "${modID}:PunishingMod": {
     "TEXT": [
       "Punishing ",
       "",
@@ -2260,7 +2263,7 @@
       "Deal %s damage. NL If the enemy has Vulnerable, "
     ]
   },
-  "chimeracardsplus:DevastatingMod": {
+  "${modID}:DevastatingMod": {
     "TEXT": [
       "Devastating ",
       "",
@@ -2270,7 +2273,7 @@
       "Deal %s damage. NL If the enemy has Weak, "
     ]
   },
-  "chimeracardsplus:DisgracefulMod": {
+  "${modID}:DisgracefulMod": {
     "TEXT": [
       "Disgraceful ",
       "",
@@ -2280,18 +2283,18 @@
       " NL At the end of your turn, gain 1 Frail."
     ]
   },
-  "chimeracardsplus:GuilefulMod": {
+  "${modID}:GuilefulMod": {
     "TEXT": [
       "Guileful ",
       "",
       "Plays when discarded."
     ],
     "EXTRA_TEXT": [
-      "chimeracardsplus:Sly. NL ",
+      "${modID}:Sly. NL ",
       "discard"
     ]
   },
-  "chimeracardsplus:MartialMod": {
+  "${modID}:MartialMod": {
     "TEXT": [
       "Martial ",
       "",
@@ -2301,7 +2304,7 @@
       " NL If the last card played this combat was a Attack, draw 2 cards."
     ]
   },
-  "chimeracardsplus:CounterMod": {
+  "${modID}:CounterMod": {
     "TEXT": [
       "Counter ",
       "",
@@ -2311,7 +2314,7 @@
       " NL Give enemy Block equal to unblocked damage."
     ]
   },
-  "chimeracardsplus:SharedMod": {
+  "${modID}:SharedMod": {
     "TEXT": [
       "Shared ",
       "",
@@ -2321,7 +2324,7 @@
       " NL Give ALL enemies !B! Block."
     ]
   },
-  "chimeracardsplus:LockingMod": {
+  "${modID}:LockingMod": {
     "TEXT": [
       "Locking ",
       "",
@@ -2333,7 +2336,7 @@
       "I have already played this card."
     ]
   },
-  "chimeracardsplus:TransientMod": {
+  "${modID}:TransientMod": {
     "TEXT": [
       "Transient ",
       "",
@@ -2344,7 +2347,7 @@
       " NL Remove this card from your deck."
     ]
   },
-  "chimeracardsplus:TangledMod": {
+  "${modID}:TangledMod": {
     "TEXT": [
       "Tangled ",
       "",
@@ -2352,6 +2355,16 @@
     ],
     "EXTRA_TEXT": [
       " NL You cannot play additional Attacks this turn."
+    ]
+  },
+  "${modID}:EnergizedMod": {
+    "TEXT": [
+      "Energized ",
+      "",
+      "Reduces damage and #yBlock by #b33%. NL Plays once for each [E] left."
+    ],
+    "EXTRA_TEXT": [
+      " for each [E] you have."
     ]
   }
 }

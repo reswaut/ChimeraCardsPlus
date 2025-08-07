@@ -27,11 +27,11 @@ public class DevastatingMod extends AbstractAugment implements DynvarCarrier {
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     public static final String DESCRIPTION_KEY = "!" + ID + "!";
     public int val;
-    private boolean upgraded, modified;
+    private boolean modified;
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost > 0 && c.baseDamage > 0 && doesntUpgradeCost() && usesVanillaTargeting(c) && c.type == AbstractCard.CardType.ATTACK && customCheck(c, (check) -> check.rawDescription.chars().filter((ch) -> ch == 46 || ch == 12290).count() == 1L));
+        return cardCheck(card, (c) -> c.cost > 0 && c.baseDamage > 0 && doesntUpgradeCost() && usesVanillaTargeting(c) && c.type == AbstractCard.CardType.ATTACK && customCheck(c, (check) -> check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1L));
     }
 
     public void onInitialApplication(AbstractCard card) {
@@ -159,7 +159,6 @@ public class DevastatingMod extends AbstractAugment implements DynvarCarrier {
     public boolean upgraded(AbstractCard card) {
         this.val = this.getBaseVal(card);
         this.modified = card.timesUpgraded != 0 || card.upgraded;
-        this.upgraded = card.timesUpgraded != 0 || card.upgraded;
-        return this.upgraded;
+        return card.timesUpgraded != 0 || card.upgraded;
     }
 }
