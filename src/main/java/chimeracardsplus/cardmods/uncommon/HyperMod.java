@@ -1,45 +1,55 @@
-package chimeracardsplus.cardmods.rare;
+package chimeracardsplus.cardmods.uncommon;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.interfaces.HealingMod;
-import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
+import chimeracardsplus.powers.StunPlayerPower;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
 
-public class SoulboundMod extends AbstractAugment implements HealingMod {
-    public static final String ID = ChimeraCardsPlus.makeID(SoulboundMod.class.getSimpleName());
+public class HyperMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(HyperMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
     @Override
+    public boolean validCard(AbstractCard card) {
+        return (card.baseDamage >= 1 || card.baseBlock >= 1 || (card.baseMagicNumber >= 1 && doesntDowngradeMagicNoUseChecks(card)))
+                && cardCheck(card, c -> (c.cost != -2 && !usesAction(c, PressEndTurnButtonAction.class)));
+    }
+
+    @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 0.0F) ? (damage * 7.0F / 5.0F) : damage;
+        return (damage >= 1) ? (damage * 3.0F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 0.0F) ? (block * 7.0F / 5.0F) : block;
+        return (block >= 1) ? (block * 3.0F) : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return (magic > 0.0F && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 7.0F / 5.0F) : magic;
+        return (magic >= 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 3.0F) : magic;
     }
 
     @Override
-    public void onInitialApplication(AbstractCard card) {
-        SoulboundField.soulbound.set(card, true);
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StunPlayerPower(AbstractDungeon.player, 2, false)));
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, AbstractAugment::isNormalCard);
+    public void onUpgradeCheck(AbstractCard card) {
+        card.initializeDescription();
     }
 
     @Override
@@ -59,17 +69,17 @@ public class SoulboundMod extends AbstractAugment implements HealingMod {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertBeforeText(rawDescription, CARD_TEXT[0]);
+        return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.RARE;
+        return AugmentRarity.UNCOMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new SoulboundMod();
+        return new HyperMod();
     }
 
     @Override

@@ -6,6 +6,7 @@ import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.interfaces.HealingMod;
+import com.evacipated.cardcrawl.mod.stslib.StSLib;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -58,13 +59,7 @@ public class TransientMod extends AbstractAugment implements DynvarCarrier, Heal
         this.uses -= 1;
         card.initializeDescription();
 
-        AbstractCard cardToRemove = null;
-        for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
-            if (c.uuid.equals(card.uuid)) {
-                cardToRemove = c;
-                break;
-            }
-        }
+        AbstractCard cardToRemove = StSLib.getMasterDeckEquivalent(card);
         if (cardToRemove == null || !CardModifierManager.hasModifier(cardToRemove, ID)) {
             return;
         }

@@ -61,7 +61,7 @@ public class NightmareMod extends AbstractAugment {
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return 3.0F;
+        return -1.0F;
     }
 
     @Override
@@ -99,7 +99,7 @@ public class NightmareMod extends AbstractAugment {
 
         if (preview != null) {
             AbstractCard copy = preview.makeStatEquivalentCopy();
-            this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NightmarePower(AbstractDungeon.player, card.magicNumber, copy)));
+            this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NightmarePower(AbstractDungeon.player, 3, copy)));
         }
 
     }

@@ -9,7 +9,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.EntanglePower;
+import com.megacrit.cardcrawl.powers.watcher.NoSkillsPower;
 
 public class TangledMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(TangledMod.class.getSimpleName());
@@ -24,12 +26,21 @@ public class TangledMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost > 0 && c.type == AbstractCard.CardType.ATTACK && doesntUpgradeCost()));
+        return cardCheck(card, (c) -> (c.cost > 0 && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL) && doesntUpgradeCost()));
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new EntanglePower(AbstractDungeon.player)));
+        AbstractPower powerToApply = null;
+        if (card.type == AbstractCard.CardType.ATTACK) {
+            powerToApply = new EntanglePower(AbstractDungeon.player);
+        } else if (card.type == AbstractCard.CardType.SKILL) {
+            powerToApply = new NoSkillsPower(AbstractDungeon.player);
+        }
+        if (powerToApply != null) {
+            this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, powerToApply));
+            powerToApply.playApplyPowerSfx();
+        }
     }
 
     @Override
@@ -49,7 +60,12 @@ public class TangledMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, CARD_TEXT[0]);
+        if (card.type == AbstractCard.CardType.ATTACK) {
+            return insertAfterText(rawDescription, CARD_TEXT[0]);
+        } else if (card.type == AbstractCard.CardType.SKILL) {
+            return insertAfterText(rawDescription, CARD_TEXT[1]);
+        }
+        return rawDescription;
     }
 
     @Override

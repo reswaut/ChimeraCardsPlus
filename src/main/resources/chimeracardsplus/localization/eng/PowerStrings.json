@@ -1,0 +1,20 @@
+{
+  "${modID}:NoDamagePower": {
+    "NAME": "No Damage",
+    "DESCRIPTIONS": [
+      "You cannot deal attack damage."
+    ]
+  },
+  "${modID}:RetributionPower": {
+    "NAME": "Retribution",
+    "DESCRIPTIONS": [
+      "When attacked, your next attack deals #b%d additional damage."
+    ]
+  },
+  "${modID}:StunPlayerPower": {
+    "NAME": "Stunned",
+    "DESCRIPTIONS": [
+      "You cannot play cards."
+    ]
+  }
+}

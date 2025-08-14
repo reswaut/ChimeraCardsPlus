@@ -62,7 +62,7 @@ public class StormMod extends AbstractAugment {
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return 1.0F;
+        return -1.0F;
     }
 
     @Override
@@ -105,7 +105,7 @@ public class StormMod extends AbstractAugment {
         if (preview != null) {
             AbstractCard copy = preview.makeStatEquivalentCopy();
             int theSize = AbstractDungeon.player.hand.size();
-            this.addToTop(new MakeTempCardInHandAction(copy, card.magicNumber * theSize));
+            this.addToTop(new MakeTempCardInHandAction(copy, theSize));
             this.addToTop(new DiscardAction(AbstractDungeon.player, AbstractDungeon.player, theSize, false));
         }
 

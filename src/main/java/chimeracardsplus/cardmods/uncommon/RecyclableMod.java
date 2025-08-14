@@ -62,9 +62,6 @@ public class RecyclableMod extends AbstractAugment {
             int nextIndex2 = rawDescription.indexOf(CARD_TEXT[4], index);
             if (nextIndex1 == -1 && nextIndex2 == -1) {
                 newDescription.append(rawDescription, index, rawDescription.length());
-                if (!inserted) {
-                    newDescription.append(CARD_TEXT[2]);
-                }
                 break;
             }
             inserted = true;
@@ -92,7 +89,11 @@ public class RecyclableMod extends AbstractAugment {
             newDescription.append(CARD_TEXT[1]);
             index = periodIndex + 1;
         }
-        return String.valueOf(newDescription);
+        String description = String.valueOf(newDescription);
+        if (!inserted) {
+            description = insertAfterText(description, CARD_TEXT[2]);
+        }
+        return description;
     }
 
     @Override

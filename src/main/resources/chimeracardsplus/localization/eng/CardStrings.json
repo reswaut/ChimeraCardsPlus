@@ -17,7 +17,7 @@
   },
   "${modID}:LiquidizingPreview": {
     "NAME": "Liquidizing",
-    "DESCRIPTION": "Obtain a random potion if this kills an enemy. NL Exhaust."
+    "DESCRIPTION": "Obtain a random potion if Fatal. NL Exhaust."
   },
   "${modID}:RegretfulPreview": {
     "NAME": "Regretful",

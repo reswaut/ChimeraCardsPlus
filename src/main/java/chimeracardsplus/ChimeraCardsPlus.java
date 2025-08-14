@@ -10,6 +10,9 @@ import basemod.interfaces.EditKeywordsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
 import chimeracardsplus.interfaces.SpecialNamingRules;
+import chimeracardsplus.powers.NoDamagePower;
+import chimeracardsplus.powers.RetributionPower;
+import chimeracardsplus.powers.StunPlayerPower;
 import chimeracardsplus.util.TextureLoader;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
@@ -26,6 +29,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.EventStrings;
+import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -152,6 +156,10 @@ public class ChimeraCardsPlus implements
         new AutoAdd(modID)
                 .packageFilter("chimeracardsplus.cardmods")
                 .any(AbstractAugment.class, (info, abstractAugment) -> CardAugmentsMod.registerAugment(abstractAugment, modID));
+
+        BaseMod.addPower(NoDamagePower.class, NoDamagePower.POWER_ID);
+        BaseMod.addPower(RetributionPower.class, RetributionPower.POWER_ID);
+        BaseMod.addPower(StunPlayerPower.class, StunPlayerPower.POWER_ID);
     }
 
     @Override
@@ -171,6 +179,8 @@ public class ChimeraCardsPlus implements
                 localizationPath(lang, "CardStrings.json"));
         BaseMod.loadCustomStringsFile(EventStrings.class,
                 localizationPath(lang, "EventStrings.json"));
+        BaseMod.loadCustomStringsFile(PowerStrings.class,
+                localizationPath(lang, "PowerStrings.json"));
         BaseMod.loadCustomStringsFile(UIStrings.class,
                 localizationPath(lang, "ModifierStrings.json"));
         BaseMod.loadCustomStringsFile(UIStrings.class,

@@ -17,27 +17,16 @@ public class GoldenMod extends AbstractAugment implements HealingMod {
     public static final String ID = ChimeraCardsPlus.makeID(GoldenMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
-    private boolean addedExhaust;
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        this.addedExhaust = !card.exhaust;
         card.exhaust = true;
-    }
-
-    @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        if (!card.exhaust) {
-            this.addedExhaust = true;
-            card.exhaust = true;
-            card.initializeDescription();
-        }
     }
 
     @Override
     public boolean validCard(AbstractCard card) {
         return cardCheck(card, (c) -> (c.cost >= -1 && c.cost != 0 &&
-                c.rarity != AbstractCard.CardRarity.BASIC && doesntUpgradeCost()));
+                c.rarity != AbstractCard.CardRarity.BASIC && doesntUpgradeCost() && notExhaust(c) && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
     }
 
     @Override
@@ -66,9 +55,9 @@ public class GoldenMod extends AbstractAugment implements HealingMod {
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         if (card.cost == -1) {
-            return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[2] : CARD_TEXT[3]);
+            return insertAfterText(rawDescription, CARD_TEXT[1]);
         }
-        return insertAfterText(rawDescription, String.format(addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1], card.cost));
+        return insertAfterText(rawDescription, String.format(CARD_TEXT[0], card.cost));
     }
 
     @Override

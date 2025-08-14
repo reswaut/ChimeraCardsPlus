@@ -126,10 +126,10 @@
     "TEXT": [
       "Bloodletting ",
       "",
-      "Costs [E] less. NL Loses #b3 HP."
+      "Costs [E] less. NL Loses #b2 HP."
     ],
     "EXTRA_TEXT": [
-      " NL Lose 3 HP."
+      " NL Lose 2 HP."
     ]
   },
   "${modID}:BootMod": {
@@ -199,17 +199,6 @@
       " NL Gain %s Orb slot.",
       " NL Gain %s Orb slots. NL Exhaust.",
       " NL Gain %s Orb slots."
-    ]
-  },
-  "${modID}:CaptainMod": {
-    "TEXT": [
-      "Captain's ",
-      "",
-      "Gains #b10 #yPlated #yArmor. NL Adds #yExhaust."
-    ],
-    "EXTRA_TEXT": [
-      " NL Gain 10 *Plated *Armor. NL Exhaust.",
-      " NL Gain 10 *Plated *Armor."
     ]
   },
   "${modID}:CastMod": {
@@ -772,7 +761,7 @@
     "TEXT": [
       "Forethought ",
       "",
-      "Costs [E] more. NL Returns any number of cards from your hand to the bottom of your draw pile. Reduces their cost to 0 until played."
+      "Costs [E] more. NL Returns any number of cards from your hand to the bottom of your draw pile. Reduces their cost to #b0 until played."
     ],
     "EXTRA_TEXT": [
       " NL Put any number of cards from your hand to the bottom of your draw pile. They cost 0 until played."
@@ -803,7 +792,7 @@
     "TEXT": [
       "Genetic ",
       "",
-      "Sets #yBlock to #b1. NL Increases #yBlock by #b20% permanently each time played. NL Adds #yExhaust."
+      "Sets #yBlock to #b1. NL Increases #yBlock by #b25% permanently each time played. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
       " NL Permanently increase this card's Block by %s. NL Exhaust.",
@@ -1193,7 +1182,7 @@
       "Costs [E] [E] [E] . NL Adds #b3 copies of the card into your hand next turn. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
-      "Next turn, add !M! copies of %s into your hand. NL Exhaust.",
+      "Next turn, add 3 copies of %s into your hand. NL Exhaust.",
       "Innate. NL "
     ]
   },
@@ -1363,11 +1352,11 @@
     "TEXT": [
       "Prayer's",
       "",
-      "Drops an additional card reward when killing an enemy in a normal combat. NL Adds #yExhaust."
+      "Drops an additional card reward if #yFatal in a normal combat. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
-      " NL If this kills an enemy in a normal combat, it drops an additional card reward. NL Exhaust.",
-      " NL If this kills an enemy in a normal combat, it drops an additional card reward."
+      " NL If Fatal in a normal combat, it drops an additional card reward. NL Exhaust.",
+      " NL If Fatal in a normal combat, it drops an additional card reward."
     ]
   },
   "${modID}:PredictedMod": {
@@ -1578,7 +1567,7 @@
     "TEXT": [
       "",
       " Setup",
-      "Costs [E] more. NL Returns a card from your hand to the top of your draw pile. Reduces its cost to #b0 the next time it is played."
+      "Costs [E] more. NL Returns a card from your hand to the top of your draw pile. Reduces its cost to #b0 until played."
     ],
     "EXTRA_TEXT": [
       " NL Put a card from your hand on top of your draw pile. It costs 0 until played."
@@ -1719,22 +1708,22 @@
     "TEXT": [
       "Star ",
       "",
-      "Drops an additional Relic when killing an enemy in Elite combat. NL Adds #yExhaust."
+      "Drops an additional Relic if #yFatal in an Elite combat. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
-      " NL If this kills an enemy in an Elite combat, it drops an additional Relic. NL Exhaust.",
-      " NL If this kills an enemy in an Elite combat, it drops an additional Relic."
+      " NL If Fatal in an Elite combat, it drops an additional Relic. NL Exhaust.",
+      " NL If Fatal in an Elite combat, it drops an additional Relic."
     ]
   },
   "${modID}:LiquidizingMod": {
     "TEXT": [
       "Liquidizing ",
       "",
-      "Obtains a random potion when killing an enemy. NL Adds #yExhaust."
+      "Obtains a random potion if #yFatal. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
-      " NL If this kills an enemy, obtain a random potion. NL Exhaust.",
-      " NL If this kills an enemy, obtain a random potion."
+      " NL If Fatal, obtain a random potion. NL Exhaust.",
+      " NL If Fatal, obtain a random potion."
     ]
   },
   "${modID}:StealthyMod": {
@@ -1767,7 +1756,7 @@
       "Costs [E] . NL Discards your hand and adds a equal number of the card into your hand."
     ],
     "EXTRA_TEXT": [
-      "Discard your hand. Add !M! %s into your hand for each card discarded.",
+      "Discard your hand. Add 1 %s into your hand for each card discarded.",
       "Innate. NL "
     ]
   },
@@ -2027,7 +2016,7 @@
     "TEXT": [
       "Wreath of ",
       "",
-      "Reduces damage by #b50%. NL Gives your next Attack #b33% of this card's damage."
+      "Reduces damage by #b50%. NL Gains #yVigor equal to #b33% of this card's damage."
     ],
     "EXTRA_TEXT": [
       " NL Your next Attack deals %s additional damage."
@@ -2052,9 +2041,7 @@
     ],
     "EXTRA_TEXT": [
       " NL Gain %d *Gold. NL Exhaust.",
-      " NL Gain %d *Gold.",
-      " NL Gain X *Gold. NL Exhaust.",
-      " NL Gain X *Gold."
+      " NL Gain X *Gold. NL Exhaust."
     ]
   },
   "${modID}:OpeningMod": {
@@ -2093,7 +2080,7 @@
     "TEXT": [
       "Uplifting ",
       "",
-      "Reduces damage by #b60%. NL Gives your next Attack damage equal to unblocked damage dealt."
+      "Reduces damage by #b60%. NL Gains #yVigor equal to unblocked damage dealt."
     ],
     "EXTRA_TEXT": [
       " NL Your next Attack deals additional damage equal to unblocked damage."
@@ -2351,10 +2338,11 @@
     "TEXT": [
       "Tangled ",
       "",
-      "Costs [E] less. NL Gain #b1 #yEntangled."
+      "Costs [E] less. NL Cards of the same type are #yUnplayable this turn."
     ],
     "EXTRA_TEXT": [
-      " NL You cannot play additional Attacks this turn."
+      " NL You cannot play additional Attacks this turn.",
+      " NL You cannot play additional Skills this turn."
     ]
   },
   "${modID}:EnergizedMod": {
@@ -2365,6 +2353,37 @@
     ],
     "EXTRA_TEXT": [
       " for each [E] you have."
+    ]
+  },
+  "${modID}:HyperMod": {
+    "TEXT": [
+      "Hyper ",
+      "",
+      "Increases card values by #b200%. NL Cards are #yUnplayable for #b2 turns."
+    ],
+    "EXTRA_TEXT": [
+      " NL You cannot play cards for 2 turns."
+    ]
+  },
+  "${modID}:RetributiveMod": {
+    "TEXT": [
+      "Retributive ",
+      "",
+      "Reduces #yBlock by #b33%. NL Gains #yVigor equal to #b25% #yBlock when attacked this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you are attacked this turn, your next attack deals %s additional damage."
+    ]
+  },
+  "${modID}:FlusteredMod": {
+    "TEXT": [
+      "Flustered ",
+      "",
+      "Increases damage by #b300%. NL Prevents dealing attack damage for #b2 turns. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL You cannot deal attack damage for 2 turns. NL Exhaust.",
+      " NL You cannot deal attack damage for 2 turns."
     ]
   }
 }

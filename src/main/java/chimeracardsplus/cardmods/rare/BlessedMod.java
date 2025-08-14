@@ -2,10 +2,12 @@ package chimeracardsplus.cardmods.rare;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.interfaces.BonusMod;
 import chimeracardsplus.interfaces.HealingMod;
 import com.badlogic.gdx.graphics.Color;
+import com.evacipated.cardcrawl.mod.stslib.StSLib;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -14,8 +16,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.NeowsLament;
-
-import static basemod.helpers.CardModifierManager.modifiers;
 
 public class BlessedMod extends AbstractAugment implements HealingMod, BonusMod {
     public static final String ID = ChimeraCardsPlus.makeID(BlessedMod.class.getSimpleName());
@@ -50,23 +50,20 @@ public class BlessedMod extends AbstractAugment implements HealingMod, BonusMod 
                 this.used = true;
             }
         }
-        for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
-            if (c.uuid.equals(card.uuid)) {
-                for (AbstractCardModifier mod : modifiers(c)) {
-                    if (mod instanceof BlessedMod) {
-                        ((BlessedMod) mod).used = true;
-                    }
-                }
+        do {
+            AbstractCard c = StSLib.getMasterDeckEquivalent(card);
+            if (c != null && CardModifierManager.hasModifier(c, ID)) {
+                BlessedMod modifier = (BlessedMod) CardModifierManager.getModifiers(c, ID).get(0);
+                modifier.used = true;
                 c.applyPowers();
             }
-        }
+        } while (false);
         for (AbstractCard c : GetAllInBattleInstances.get(card.uuid)) {
-            for (AbstractCardModifier mod : modifiers(c)) {
-                if (mod instanceof BlessedMod) {
-                    ((BlessedMod) mod).used = true;
-                }
+            if (CardModifierManager.hasModifier(c, ID)) {
+                BlessedMod modifier = (BlessedMod) CardModifierManager.getModifiers(c, ID).get(0);
+                modifier.used = true;
+                c.applyPowers();
             }
-            c.applyPowers();
         }
     }
 

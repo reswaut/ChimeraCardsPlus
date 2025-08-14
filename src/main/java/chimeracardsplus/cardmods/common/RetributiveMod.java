@@ -4,18 +4,16 @@ import CardAugments.cardmods.AbstractAugment;
 import CardAugments.cardmods.DynvarCarrier;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.powers.RetributionPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.watcher.MantraPower;
-import com.megacrit.cardcrawl.stances.DivinityStance;
 
-public class PrayerfulMod extends AbstractAugment implements DynvarCarrier {
-    public static final String ID = ChimeraCardsPlus.makeID(PrayerfulMod.class.getSimpleName());
+public class RetributiveMod extends AbstractAugment implements DynvarCarrier {
+    public static final String ID = ChimeraCardsPlus.makeID(RetributiveMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     public static final String DESCRIPTION_KEY = "!" + ID + "!";
@@ -24,25 +22,21 @@ public class PrayerfulMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1
-                && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL));
+        return card.cost >= -1 && card.baseBlock >= 4;
+    }
+
+    @Override
+    public float modifyBaseBlock(float block, AbstractCard card) {
+        return block * 2.0F / 3.0F;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        int value = getBaseVal(card);
-        if (value <= 0) {
-            return;
-        }
-        if (value < 10) {
-            this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new MantraPower(AbstractDungeon.player, value), value));
-        } else {
-            this.addToBot(new ChangeStanceAction(DivinityStance.STANCE_ID));
-        }
+        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new RetributionPower(AbstractDungeon.player, getBaseVal(card)), getBaseVal(card)));
     }
 
     public int getBaseVal(AbstractCard card) {
-        return 1 + getEffectiveUpgrades(card);
+        return (int) (card.baseBlock * 0.25F);
     }
 
     public String key() {
@@ -89,14 +83,7 @@ public class PrayerfulMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        String text = "";
-        int value = getBaseVal(card);
-        if (value >= 10) {
-            text = CARD_TEXT[1];
-        } else if (value > 0) {
-            text = String.format(CARD_TEXT[0], DESCRIPTION_KEY);
-        }
-        return insertAfterText(rawDescription, text);
+        return insertAfterText(rawDescription, String.format(CARD_TEXT[0], DESCRIPTION_KEY));
     }
 
     @Override
@@ -106,7 +93,7 @@ public class PrayerfulMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new PrayerfulMod();
+        return new RetributiveMod();
     }
 
     @Override

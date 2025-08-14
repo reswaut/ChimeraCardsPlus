@@ -1,0 +1,20 @@
+{
+  "${modID}:NoDamagePower": {
+    "NAME": "无法攻击",
+    "DESCRIPTIONS": [
+      "你无法造成攻击伤害。"
+    ]
+  },
+  "${modID}:RetributionPower": {
+    "NAME": "报应",
+    "DESCRIPTIONS": [
+      "每受到一次攻击，你的下一次攻击就造成 #b%d 点额外伤害。"
+    ]
+  },
+  "${modID}:StunPlayerPower": {
+    "NAME": "击晕",
+    "DESCRIPTIONS": [
+      "你不能打出卡牌。"
+    ]
+  }
+}

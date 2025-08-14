@@ -3,16 +3,15 @@ package chimeracardsplus.cardmods.rare;
 import CardAugments.cardmods.AbstractAugment;
 import CardAugments.cardmods.DynvarCarrier;
 import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.interfaces.HealingMod;
+import com.evacipated.cardcrawl.mod.stslib.StSLib;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
-
-import static basemod.helpers.CardModifierManager.modifiers;
 
 public class GeneticMod extends AbstractAugment implements DynvarCarrier, HealingMod {
     public static final String ID = ChimeraCardsPlus.makeID(GeneticMod.class.getSimpleName());
@@ -38,7 +37,7 @@ public class GeneticMod extends AbstractAugment implements DynvarCarrier, Healin
     }
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0 && c.baseBlock >= 5 && c.rarity != AbstractCard.CardRarity.BASIC));
+        return cardCheck(card, (c) -> (c.cost >= 0 && c.baseBlock >= 4 && c.rarity != AbstractCard.CardRarity.BASIC));
     }
 
     @Override
@@ -47,7 +46,7 @@ public class GeneticMod extends AbstractAugment implements DynvarCarrier, Healin
     }
 
     public int getBaseVal(AbstractCard card) {
-        return card.baseBlock / 5;
+        return card.baseBlock / 4;
     }
 
     public String key() {
@@ -95,23 +94,20 @@ public class GeneticMod extends AbstractAugment implements DynvarCarrier, Healin
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         int increment = getBaseVal(card);
-        for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
-            if (c.uuid.equals(card.uuid)) {
-                for (AbstractCardModifier mod : modifiers(c)) {
-                    if (mod instanceof GeneticMod) {
-                        ((GeneticMod) mod).block += increment;
-                    }
-                }
+        do {
+            AbstractCard c = StSLib.getMasterDeckEquivalent(card);
+            if (c != null && CardModifierManager.hasModifier(c, ID)) {
+                GeneticMod modifier = (GeneticMod) CardModifierManager.getModifiers(c, ID).get(0);
+                modifier.block += increment;
                 c.applyPowers();
             }
-        }
+        } while (false);
         for (AbstractCard c : GetAllInBattleInstances.get(card.uuid)) {
-            for (AbstractCardModifier mod : modifiers(c)) {
-                if (mod instanceof GeneticMod) {
-                    ((GeneticMod) mod).block += increment;
-                }
+            if (CardModifierManager.hasModifier(c, ID)) {
+                GeneticMod modifier = (GeneticMod) CardModifierManager.getModifiers(c, ID).get(0);
+                modifier.block += increment;
+                c.applyPowers();
             }
-            c.applyPowers();
         }
     }
 

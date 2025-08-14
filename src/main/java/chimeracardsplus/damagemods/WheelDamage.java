@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.MinionPower;
+import com.megacrit.cardcrawl.powers.UnawakenedPower;
 
 public class WheelDamage extends AbstractDamageModifier {
     public WheelDamage() {
@@ -24,7 +26,10 @@ public class WheelDamage extends AbstractDamageModifier {
         }
         if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
                 && targetHit.currentHealth > 0
-                && targetHit.currentHealth - lastDamageTaken <= 0) {
+                && targetHit.currentHealth - lastDamageTaken <= 0
+                && !targetHit.halfDead
+                && !targetHit.hasPower(MinionPower.POWER_ID)
+                && !targetHit.hasPower(UnawakenedPower.POWER_ID)) {
             AbstractDungeon.getCurrRoom().addCardToRewards();
         }
     }

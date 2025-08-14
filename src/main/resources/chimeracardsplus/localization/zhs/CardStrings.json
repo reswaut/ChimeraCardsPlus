@@ -17,7 +17,7 @@
   },
   "${modID}:LiquidizingPreview": {
     "NAME": "液化",
-    "DESCRIPTION": "杀死敌人时获得一瓶随机药水。 NL 消耗 。"
+    "DESCRIPTION": "斩杀 时获得一瓶随机药水。 NL 消耗 。"
   },
   "${modID}:RegretfulPreview": {
     "NAME": "悔恨",

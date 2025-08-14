@@ -22,7 +22,7 @@ public class SteamMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.baseBlock >= 4 && notExhaust(c) && c.type != AbstractCard.CardType.POWER));
+        return cardCheck(card, (c) -> (c.baseBlock >= 4 && notExhaust(c) && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
     }
 
     @Override

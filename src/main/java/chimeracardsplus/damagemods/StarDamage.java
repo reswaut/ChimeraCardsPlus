@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.MinionPower;
+import com.megacrit.cardcrawl.powers.UnawakenedPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 public class StarDamage extends AbstractDamageModifier {
@@ -19,7 +21,10 @@ public class StarDamage extends AbstractDamageModifier {
     public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature targetHit) {
         if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
                 && targetHit.currentHealth > 0
-                && targetHit.currentHealth - lastDamageTaken <= 0) {
+                && targetHit.currentHealth - lastDamageTaken <= 0
+                && !targetHit.halfDead
+                && !targetHit.hasPower(MinionPower.POWER_ID)
+                && !targetHit.hasPower(UnawakenedPower.POWER_ID)) {
             if (!AbstractDungeon.getCurrRoom().eliteTrigger) {
                 return;
             }
