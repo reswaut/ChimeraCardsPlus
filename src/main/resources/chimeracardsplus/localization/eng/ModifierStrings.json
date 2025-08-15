@@ -126,10 +126,10 @@
     "TEXT": [
       "Bloodletting ",
       "",
-      "Costs [E] less. NL Loses #b2 HP."
+      "Loses #b2 HP instead of costing [E] ."
     ],
     "EXTRA_TEXT": [
-      " NL Lose 2 HP."
+      " NL Lose %d HP."
     ]
   },
   "${modID}:BootMod": {
@@ -2311,9 +2311,9 @@
       " NL Give ALL enemies !B! Block."
     ]
   },
-  "${modID}:LockingMod": {
+  "${modID}:SealedMod": {
     "TEXT": [
-      "Locking ",
+      "Sealed ",
       "",
       "Increases card values by #b100%. NL Becomes #yUnplayable after played."
     ],
@@ -2384,6 +2384,40 @@
     "EXTRA_TEXT": [
       " NL You cannot deal attack damage for 2 turns. NL Exhaust.",
       " NL You cannot deal attack damage for 2 turns."
+    ]
+  },
+  "${modID}:ChronoMod": {
+    "TEXT": [
+      "Chrono ",
+      "",
+      "Reduces damage and #yBlock by #b60%. NL Plays once for each turn in combat."
+    ],
+    "EXTRA_TEXT": [
+      " for each turn in combat.",
+      " NL (%d turn.)",
+      " NL (%d turns.)"
+    ]
+  },
+  "${modID}:IterativeMod": {
+    "TEXT": [
+      "Iterative ",
+      "",
+      "Reduces damage and #yBlock by #b50%. NL Plays once for each time played in combat."
+    ],
+    "EXTRA_TEXT": [
+      " for each time this card is played this combat.",
+      " NL (%d time.)",
+      " NL (%d times.)"
+    ]
+  },
+  "${modID}:ResidualMod": {
+    "TEXT": [
+      "Residual ",
+      "",
+      "Costs [E] [E] [E] . NL Sets your energy to #b4 minus original cost."
+    ],
+    "EXTRA_TEXT": [
+      " NL Set your energy to %d."
     ]
   }
 }

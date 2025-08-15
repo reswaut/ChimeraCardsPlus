@@ -147,6 +147,9 @@
     "CutThroughMod": {
       "Cut Through Fate": "Cut Through² Fate"
     },
+    "DarkMod": {
+      "Dark Embrace": "Dark² Embrace"
+    },
     "DartMod": {
       "Flechettes": "Flechettes²"
     },
@@ -189,8 +192,14 @@
     "IntimidatingMod": {
       "Intimidate": "Intimidate²"
     },
+    "LoopyMod": {
+      "Loop": "Loop²"
+    },
     "LoudMod": {
       "Amplify": "Amplify²"
+    },
+    "PainlessMod": {
+      "Feel No Pain": "Feel No Pain²"
     },
     "PanicMod": {
       "Panic Button": "Panic² Button"

@@ -12,8 +12,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
 
-public class LockingMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(LockingMod.class.getSimpleName());
+public class SealedMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(SealedMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     public boolean played = false;
@@ -90,7 +90,7 @@ public class LockingMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new LockingMod();
+        return new SealedMod();
     }
 
     @Override
