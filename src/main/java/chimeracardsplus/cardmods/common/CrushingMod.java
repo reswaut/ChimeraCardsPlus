@@ -25,17 +25,17 @@ public class CrushingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> ((c.baseDamage > 1 || c.baseBlock > 1) && c.cost != -2 && usesEnemyTargeting()));
+        return cardCheck(card, c -> ((c.baseDamage > 1 || c.baseBlock > 1) && c.cost >= -1 && usesEnemyTargeting()));
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 1) ? (damage * 0.75F) : damage;
+        return (damage >= 0) ? (damage * 0.75F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 1) ? (block * 0.75F) : block;
+        return (block >= 0) ? (block * 0.75F) : block;
     }
 
     @Override

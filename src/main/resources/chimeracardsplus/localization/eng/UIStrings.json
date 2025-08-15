@@ -16,5 +16,30 @@
       "${author}",
       "${project.description}"
     ]
+  },
+  "${modID}:CardByIDFromDeckToHandAction": {
+    "TEXT": [
+      "Choose a Card to Add to Your Hand."
+    ]
+  },
+  "${modID}:FlowAction": {
+    "TEXT": [
+      "Discard"
+    ]
+  },
+  "${modID}:LootAction": {
+    "TEXT": [
+      "Discard"
+    ]
+  },
+  "${modID}:RecycleXAction": {
+    "TEXT": [
+      "Exhaust"
+    ]
+  },
+  "${modID}:ShuffleCardToDrawAction": {
+    "TEXT": [
+      "Shuffle into Your Draw Pile"
+    ]
   }
 }

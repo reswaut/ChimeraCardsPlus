@@ -682,11 +682,11 @@
     ],
     "EXTRA_TEXT": [
       " for each Attack played this turn.",
-      " NL (%d Attack played.)",
-      " NL (%d Attacks played.)",
+      " (%d Attack played.)",
+      " (%d Attacks played.)",
       " for each Skill played this turn.",
-      " NL (%d Skill played.)",
-      " NL (%d Skills played.)"
+      " (%d Skill played.)",
+      " (%d Skills played.)"
     ]
   },
   "${modID}:FlamboyantMod": {
@@ -803,7 +803,7 @@
     "TEXT": [
       "Grand ",
       "",
-      "Increases card values by #b400%. NL The card is #yUnplayable if your deck is not empty."
+      "Increases card values by #b400%. NL #yUnplayable unless your deck is empty."
     ],
     "EXTRA_TEXT": [
       " NL Can only be played if there are no cards in your draw pile."
@@ -1235,10 +1235,10 @@
     "TEXT": [
       "Overclocked ",
       "",
-      "Costs [E] less. NL Adds a #rBurn into your discard pile."
+      "Costs [E] less. NL Adds #b2 #rBurns into your discard pile."
     ],
     "EXTRA_TEXT": [
-      " NL Add a *Burn into your discard pile."
+      " NL Add 2 *Burns into your discard pile."
     ]
   },
   "${modID}:PainfulMod": {
@@ -2394,8 +2394,8 @@
     ],
     "EXTRA_TEXT": [
       " for each turn in combat.",
-      " NL (%d turn.)",
-      " NL (%d turns.)"
+      " (%d turn.)",
+      " (%d turns.)"
     ]
   },
   "${modID}:IterativeMod": {
@@ -2406,18 +2406,102 @@
     ],
     "EXTRA_TEXT": [
       " for each time this card is played this combat.",
-      " NL (%d time.)",
-      " NL (%d times.)"
+      " (%d time.)",
+      " (%d times.)"
     ]
   },
   "${modID}:ResidualMod": {
     "TEXT": [
       "Residual ",
       "",
-      "Costs [E] [E] [E] . NL Sets your energy to #b4 minus original cost."
+      "Costs [E] [E] [E] . NL Sets your Energy to #b4 minus original cost."
     ],
     "EXTRA_TEXT": [
-      " NL Set your energy to %d."
+      " NL Set your Energy to %d."
+    ]
+  },
+  "${modID}:FlowingMod": {
+    "TEXT": [
+      "Flowing ",
+      "",
+      "Discards any number of cards, then draws that many cards next turn. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Discard any number of cards and draw that many next turn. NL Exhaust.",
+      " NL Discard any number of cards and draw that many next turn."
+    ]
+  },
+  "${modID}:MemorableMod": {
+    "TEXT": [
+      "Memorable ",
+      "",
+      "Increases damage and #yBlock by #b25%. NL Shuffles a card into your draw pile."
+    ],
+    "EXTRA_TEXT": [
+      " NL Shuffle a card into your draw pile."
+    ]
+  },
+  "${modID}:LootableMod": {
+    "TEXT": [
+      "Lootable ",
+      "",
+      "Discards #b1 card, then draws cards equal to its cost."
+    ],
+    "EXTRA_TEXT": [
+      " NL Discard 1 card and draw cards equal to its cost."
+    ]
+  },
+  "${modID}:ForStrikeMod": {
+    "TEXT": [
+      "",
+      " for Strike",
+      "Deals #b3 additional damage to enemies who intend to attack."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deals 3 additional damage to enemies who intend to attack."
+    ]
+  },
+  "${modID}:UntappedMod": {
+    "TEXT": [
+      "Untapped ",
+      "",
+      "Draws #b1 additional card next turn for each unused Energy this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL For each unused Energy this turn, draw 1 additional card next turn."
+    ]
+  },
+  "${modID}:TypicalMod": {
+    "TEXT": [
+      "Typical ",
+      "",
+      "Reduces damage and #yBlock by #b40%. NL Plays once for each different type of card played this turn."
+    ],
+    "EXTRA_TEXT": [
+      " for each type of card played this turn."
+    ]
+  },
+  "${modID}:ToxicMod": {
+    "TEXT": [
+      "Toxic ",
+      "",
+      "Triggers the enemy's #yPoison. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Trigger the enemy's Poison. NL Exhaust.",
+      " NL Trigger the enemy's Poison.",
+      "Poison"
+    ]
+  },
+  "${modID}:DistantMod": {
+    "TEXT": [
+      "Distant ",
+      "",
+      "Increases card values by #b200%. NL #yUnplayable unless you don't have Energy left."
+    ],
+    "EXTRA_TEXT": [
+      " NL Can only be played if you have no Energy.",
+      "I have Energy left."
     ]
   }
 }

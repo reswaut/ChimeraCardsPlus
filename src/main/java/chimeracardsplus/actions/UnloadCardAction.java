@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class UnloadCardAction extends AbstractGameAction {
     private final CardType type;
+
     public UnloadCardAction(CardType typeToKeep, AbstractCreature source) {
         this.type = typeToKeep;
         this.source = source;
@@ -18,15 +19,12 @@ public class UnloadCardAction extends AbstractGameAction {
 
     public void update() {
         if (this.duration == Settings.ACTION_DUR_FAST) {
-
             for (AbstractCard c : AbstractDungeon.player.hand.group) {
                 if (c.type != type) {
                     this.addToTop(new DiscardSpecificCardAction(c));
                 }
             }
-
             this.isDone = true;
         }
-
     }
 }

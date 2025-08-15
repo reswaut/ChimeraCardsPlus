@@ -1,63 +1,39 @@
-package chimeracardsplus.cardmods.rare;
+package chimeracardsplus.cardmods.common;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import chimeracardsplus.actions.ShuffleCardToDrawAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.green.GrandFinale;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.GrandFinalEffect;
 
-import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
-
-public class GrandMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(GrandMod.class.getSimpleName());
+public class MemorableMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(MemorableMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return (card.baseDamage >= 1 || card.baseBlock >= 1 || (card.baseMagicNumber >= 1 && doesntDowngradeMagicNoUseChecks(card))) && (card.cost >= -1) && !GrandFinale.ID.equals(card.cardID);
+        return cardCheck(card, c -> ((c.baseDamage >= 4 || c.baseBlock >= 4) && c.cost >= -1));
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage * 5.0F;
+        return (damage >= 0) ? (damage * 1.25F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return block * 5.0F;
-    }
-
-    @Override
-    public float modifyBaseMagic(float magic, AbstractCard card) {
-        return (magic >= 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 5.0F) : magic;
-    }
-
-    @Override
-    public boolean canPlayCard(AbstractCard card) {
-        boolean ret = AbstractDungeon.player.drawPile.isEmpty();
-        if (!ret) {
-            card.cantUseMessage = CardCrawlGame.languagePack.getCardStrings("Grand Finale").UPGRADE_DESCRIPTION;
-        }
-        return ret;
+        return (block >= 0) ? (block * 1.25F) : block;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (Settings.FAST_MODE) {
-            this.addToBot(new VFXAction(new GrandFinalEffect(), 0.7F));
-        } else {
-            this.addToBot(new VFXAction(new GrandFinalEffect(), 1.0F));
-        }
+        this.addToBot(new ShuffleCardToDrawAction());
     }
 
     @Override
@@ -82,12 +58,12 @@ public class GrandMod extends AbstractAugment {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.RARE;
+        return AugmentRarity.COMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new GrandMod();
+        return new MemorableMod();
     }
 
     @Override

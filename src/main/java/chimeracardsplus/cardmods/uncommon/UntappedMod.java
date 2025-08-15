@@ -1,29 +1,29 @@
-package chimeracardsplus.cardmods.rare;
+package chimeracardsplus.cardmods.uncommon;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
+import chimeracardsplus.powers.UntappedPower;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-public class OverclockedMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(OverclockedMod.class.getSimpleName());
+public class UntappedMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(UntappedMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
     @Override
-    public void onInitialApplication(AbstractCard card) {
-        card.cost -= 1;
-        card.costForTurn = card.cost;
+    public boolean validCard(AbstractCard card) {
+        return cardCheck(card, (c) -> c.cost >= 0);
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 1 && doesntUpgradeCost()));
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new UntappedPower(AbstractDungeon.player, 1)));
     }
 
     @Override
@@ -47,18 +47,13 @@ public class OverclockedMod extends AbstractAugment {
     }
 
     @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new MakeTempCardInDiscardAction(new Burn(), 2));
-    }
-
-    @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.RARE;
+        return AugmentRarity.UNCOMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new OverclockedMod();
+        return new UntappedMod();
     }
 
     @Override

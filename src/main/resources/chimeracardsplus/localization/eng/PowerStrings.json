@@ -16,5 +16,11 @@
     "DESCRIPTIONS": [
       "You cannot play cards."
     ]
+  },
+  "${modID}:UntappedPower": {
+    "NAME": "Untapped",
+    "DESCRIPTIONS": [
+      "For each unused Energy this turn, draw #b1 additional card next turn."
+    ]
   }
 }

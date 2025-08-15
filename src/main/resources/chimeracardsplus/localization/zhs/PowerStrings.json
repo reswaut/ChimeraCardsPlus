@@ -16,5 +16,11 @@
     "DESCRIPTIONS": [
       "你不能打出卡牌。"
     ]
+  },
+  "${modID}:UntappedPower": {
+    "NAME": "未利用",
+    "DESCRIPTIONS": [
+      "下回合额外抽本回合多余能量张牌。"
+    ]
   }
 }

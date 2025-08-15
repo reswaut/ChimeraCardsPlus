@@ -16,5 +16,30 @@
       "${author}",
       "${project.description}"
     ]
+  },
+  "${modID}:CardByIDFromDeckToHandAction": {
+    "TEXT": [
+      "选择一张牌放入你的手牌。"
+    ]
+  },
+  "${modID}:FlowAction": {
+    "TEXT": [
+      "丢弃"
+    ]
+  },
+  "${modID}:LootAction": {
+    "TEXT": [
+      "丢弃"
+    ]
+  },
+  "${modID}:RecycleXAction": {
+    "TEXT": [
+      "消耗"
+    ]
+  },
+  "${modID}:ShuffleCardToDrawAction": {
+    "TEXT": [
+      "洗入抽牌堆"
+    ]
   }
 }

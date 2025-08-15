@@ -1,29 +1,40 @@
-package chimeracardsplus.cardmods.rare;
+package chimeracardsplus.cardmods.uncommon;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
+import chimeracardsplus.actions.FlowAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
-public class OverclockedMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(OverclockedMod.class.getSimpleName());
+public class FlowingMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(FlowingMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
+    private boolean addedExhaust = false;
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        card.cost -= 1;
-        card.costForTurn = card.cost;
+        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
+            addedExhaust = true;
+            card.exhaust = true;
+        }
+    }
+
+    @Override
+    public void onUpgradeCheck(AbstractCard card) {
+        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
+            addedExhaust = true;
+            card.exhaust = true;
+        }
+        card.initializeDescription();
     }
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 1 && doesntUpgradeCost()));
+        return cardCheck(card, (c) -> c.cost >= -1);
     }
 
     @Override
@@ -43,22 +54,22 @@ public class OverclockedMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, CARD_TEXT[0]);
+        return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1]);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new MakeTempCardInDiscardAction(new Burn(), 2));
+        this.addToBot(new FlowAction());
     }
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.RARE;
+        return AugmentRarity.UNCOMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new OverclockedMod();
+        return new FlowingMod();
     }
 
     @Override

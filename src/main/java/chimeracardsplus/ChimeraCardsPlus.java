@@ -13,6 +13,7 @@ import chimeracardsplus.interfaces.SpecialNamingRules;
 import chimeracardsplus.powers.NoDamagePower;
 import chimeracardsplus.powers.RetributionPower;
 import chimeracardsplus.powers.StunPlayerPower;
+import chimeracardsplus.powers.UntappedPower;
 import chimeracardsplus.util.TextureLoader;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
@@ -160,6 +161,7 @@ public class ChimeraCardsPlus implements
         BaseMod.addPower(NoDamagePower.class, NoDamagePower.POWER_ID);
         BaseMod.addPower(RetributionPower.class, RetributionPower.POWER_ID);
         BaseMod.addPower(StunPlayerPower.class, StunPlayerPower.POWER_ID);
+        BaseMod.addPower(UntappedPower.class, UntappedPower.POWER_ID);
     }
 
     @Override

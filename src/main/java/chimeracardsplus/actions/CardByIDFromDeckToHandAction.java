@@ -1,5 +1,6 @@
 package chimeracardsplus.actions;
 
+import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -9,8 +10,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
 public class CardByIDFromDeckToHandAction extends AbstractGameAction {
-    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("AnyCardFromDeckToHandAction");
-    public static final String[] TEXT = uiStrings.TEXT;
+    private static final String ID = ChimeraCardsPlus.makeID(CardByIDFromDeckToHandAction.class.getSimpleName());
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
+    private static final String[] TEXT = uiStrings.TEXT;
     private final String cardID;
 
     public CardByIDFromDeckToHandAction(int amount, String cardID) {
