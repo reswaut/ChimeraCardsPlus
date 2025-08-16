@@ -17,8 +17,7 @@ public class ReplicativeMod extends AbstractAugment implements TriggerOnDiscardM
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> !c.hasTag(AbstractCard.CardTags.HEALING))
-                && characterCheck((p) -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
+        return !card.hasTag(AbstractCard.CardTags.HEALING) && characterCheck((p) -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
     }
 
     @Override

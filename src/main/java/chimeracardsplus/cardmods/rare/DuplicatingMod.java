@@ -19,8 +19,7 @@ public class DuplicatingMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost()
-                && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
+        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost() && doesntUpgradeExhaust() && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
     }
 
     @Override
@@ -29,15 +28,6 @@ public class DuplicatingMod extends AbstractAugment {
         card.exhaust = true;
         card.cost += 1;
         card.costForTurn = card.cost;
-    }
-
-    @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        if (!card.exhaust) {
-            addedExhaust = true;
-            card.exhaust = true;
-        }
-        card.initializeDescription();
     }
 
     @Override

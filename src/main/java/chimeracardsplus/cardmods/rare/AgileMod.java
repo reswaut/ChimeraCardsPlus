@@ -19,7 +19,7 @@ public class AgileMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost != -2;
+        return card.cost >= -1;
     }
 
     @Override

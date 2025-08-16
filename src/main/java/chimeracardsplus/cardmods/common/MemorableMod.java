@@ -18,17 +18,17 @@ public class MemorableMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> ((c.baseDamage >= 4 || c.baseBlock >= 4) && c.cost >= -1));
+        return card.cost >= -1 && (card.baseDamage >= 4 || card.baseBlock >= 4);
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage >= 0) ? (damage * 1.25F) : damage;
+        return (damage > 0.0F) ? (damage * 1.25F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block >= 0) ? (block * 1.25F) : block;
+        return (block > 0.0F) ? (block * 1.25F) : block;
     }
 
     @Override

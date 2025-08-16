@@ -15,8 +15,7 @@ public class EdibleMod extends AbstractAugment implements TriggerOnObtainMod {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> isNormalCard(c)
-                && (c.rarity == AbstractCard.CardRarity.COMMON || c.rarity == AbstractCard.CardRarity.UNCOMMON || c.rarity == AbstractCard.CardRarity.RARE));
+        return isNormalCard(card) && (card.rarity == AbstractCard.CardRarity.COMMON || card.rarity == AbstractCard.CardRarity.UNCOMMON || card.rarity == AbstractCard.CardRarity.RARE);
     }
 
     @Override

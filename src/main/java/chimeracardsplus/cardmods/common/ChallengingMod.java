@@ -20,8 +20,9 @@ public class ChallengingMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> c.cost >= -1);
+        return card.cost >= -1;
     }
+
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new VulnerablePower(AbstractDungeon.player, 2, false), 2, true, AbstractGameAction.AttackEffect.NONE));

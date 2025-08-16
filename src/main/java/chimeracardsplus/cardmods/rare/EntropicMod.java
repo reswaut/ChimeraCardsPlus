@@ -23,8 +23,7 @@ public class EntropicMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= 0 && cardCheck(card, AbstractAugment::notExhaust)
-                && (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL);
+        return cardCheck(card, (c) -> c.cost >= 0 && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL) && doesntUpgradeCost() && notExhaust(c));
     }
 
     @Override

@@ -21,8 +21,7 @@ public class BitingMod extends AbstractAugment implements HealingMod {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1 && c.cost != 0 && c.type == AbstractCard.CardType.ATTACK
-                && c.baseDamage > 1 && c.rarity != AbstractCard.CardRarity.BASIC && doesntUpgradeCost()));
+        return cardCheck(card, (c) -> ((c.cost >= 1 || c.cost == -1) && c.type == AbstractCard.CardType.ATTACK && c.baseDamage >= 2 && c.rarity != AbstractCard.CardRarity.BASIC && doesntUpgradeCost()));
     }
 
     @Override
@@ -32,18 +31,19 @@ public class BitingMod extends AbstractAugment implements HealingMod {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (!(card instanceof Bite)) {
-            if (card.cost > 0) {
-                this.addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, card.cost));
-            } else {
-                this.addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, card.energyOnUse));
-            }
+        if (Bite.ID.equals(card.cardID)) {
+            return;
+        }
+        if (card.cost > 0) {
+            this.addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, card.cost));
+        } else if (card.cost == -1) {
+            this.addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, card.energyOnUse));
         }
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (card instanceof Bite) {
+        if (Bite.ID.equals(card.cardID)) {
             return magic + card.cost;
         }
         return magic;
@@ -66,7 +66,7 @@ public class BitingMod extends AbstractAugment implements HealingMod {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof Bite) {
+        if (Bite.ID.equals(card.cardID)) {
             return rawDescription;
         }
         if (card.cost == -1) {

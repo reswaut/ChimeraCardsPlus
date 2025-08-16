@@ -22,13 +22,13 @@ public class RealityMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (card.baseDamage > 12 && card.cost >= 1) {
+        if (card.baseDamage >= 13 && card.cost >= 1) {
             damageReduction = true;
             card.cost -= 1;
             card.costForTurn = card.cost;
             MultiCardPreview.add(card, new Smite());
         }
-        if (card.baseBlock > 12 && card.cost >= 1) {
+        if (card.baseBlock >= 13 && card.cost >= 1) {
             blockReduction = true;
             card.cost -= 1;
             card.costForTurn = card.cost;
@@ -43,12 +43,12 @@ public class RealityMod extends AbstractAugment {
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 1 && damageReduction) ? Math.max(1, damage - 12) : damage;
+        return (damage > 0.0F && damageReduction) ? Math.max(damage - 12.0F, 0.0F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 1 && blockReduction) ? Math.max(1, block - 12) : block;
+        return (block > 0.0F && blockReduction) ? Math.max(block - 12.0F, 0.0F) : block;
     }
 
     @Override

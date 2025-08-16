@@ -23,17 +23,12 @@ public class ConcentratedMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost > 0 && cardCheck(card, (c) -> doesntUpgradeCost());
+        return cardCheck(card, (c) -> c.cost >= 1 && doesntUpgradeCost());
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         this.addToBot(new DiscardAction(AbstractDungeon.player, AbstractDungeon.player, 3, false));
-    }
-
-    @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        card.initializeDescription();
     }
 
     @Override

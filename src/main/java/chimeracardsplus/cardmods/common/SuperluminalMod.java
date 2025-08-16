@@ -26,17 +26,17 @@ public class SuperluminalMod extends AbstractAugment implements DynvarCarrier, T
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage >= 1.0F ? Math.max(damage - 3.0F, 1.0F) : damage;
+        return damage > 0.0F ? Math.max(damage - 3.0F, 0.0F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return block >= 1.0F ? Math.max(block - 3.0F, 1.0F) : block;
+        return block > 0.0F ? Math.max(block - 3.0F, 0.0F) : block;
     }
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> c.cost != -2 && c.baseDamage >= 4 || c.baseBlock >= 4);
+        return card.cost >= -1 && (card.baseDamage >= 4 || card.baseBlock >= 4);
     }
 
     @Override

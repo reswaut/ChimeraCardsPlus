@@ -27,12 +27,12 @@ public class FinishingMod extends AbstractAugment implements TriggerOnDiscardMod
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage * 2.0F / 3.0F;
+        return damage > 0.0F ? damage * 2.0F / 3.0F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return block * 2.0F / 3.0F;
+        return block > 0.0F ? block * 2.0F / 3.0F : block;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class FinishingMod extends AbstractAugment implements TriggerOnDiscardMod
                 && (c.type == CardType.ATTACK || c.type == CardType.SKILL)
                 && customCheck(c, (check) ->
                     noCardModDescriptionChanges(check)
-                            && check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1L)
+                            && check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1)
         ));
     }
 

@@ -12,13 +12,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
-
 public class PredictedMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(PredictedMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
-    private boolean addedExhaust;
+    private boolean addedExhaust, modMagic = false;
     private int energyOnUse;
 
     public PredictedMod() {
@@ -54,6 +52,9 @@ public class PredictedMod extends AbstractAugment {
                 card.initializeDescription();
             }
         }
+        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+            modMagic = true;
+        }
     }
 
     @Override
@@ -67,22 +68,22 @@ public class PredictedMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> (c.cost >= -1) && isNormalCard(c) && noShenanigans(c));
+        return card.cost >= -1 && isNormalCard(card) && noShenanigans(card);
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 1) ? (damage * 4.0F / 3.0F) : damage;
+        return damage > 0.0F ? (damage * 4.0F / 3.0F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 1) ? (block * 4.0F / 3.0F) : block;
+        return block > 0.0F ? (block * 4.0F / 3.0F) : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 4.0F / 3.0F) : magic;
+        return modMagic ? (magic * 4.0F / 3.0F) : magic;
     }
 
     @Override

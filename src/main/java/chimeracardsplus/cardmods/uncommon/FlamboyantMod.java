@@ -26,7 +26,7 @@ public class FlamboyantMod extends AbstractAugment implements TriggerOnDiscardMo
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> c.cost >= -1 && c.baseDamage > 1);
+        return card.cost >= -1 && card.baseDamage >= 2;
     }
 
     @Override

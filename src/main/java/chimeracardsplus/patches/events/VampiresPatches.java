@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.colorless.Bite;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -50,6 +51,7 @@ public class VampiresPatches {
 
             BitingMod augment = new BitingMod();
             ArrayList<AbstractCard> validCards = new ArrayList<>();
+            validCards.add(new Bite());
 
             for (AbstractCard c : CardLibrary.getAllCards()) {
                 if (c.type == AbstractCard.CardType.ATTACK && (c.rarity == AbstractCard.CardRarity.COMMON || c.rarity == AbstractCard.CardRarity.UNCOMMON || c.rarity == AbstractCard.CardRarity.RARE)) {

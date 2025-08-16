@@ -16,17 +16,22 @@ import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 
 import java.util.ArrayList;
 
-import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
-
 public class FadingMod extends AbstractAugment implements HealingMod {
     public static final String ID = ChimeraCardsPlus.makeID(FadingMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
+    private boolean modMagic = false;
+
+    @Override
+    public void onInitialApplication(AbstractCard card) {
+        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+            modMagic = true;
+        }
+    }
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.rarity != AbstractCard.CardRarity.BASIC && isNormalCard(card) &&
-                (card.baseDamage > 0 || card.baseBlock > 0 || (card.baseMagicNumber > 0 && doesntDowngradeMagicNoUseChecks(card)));
+        return card.rarity != AbstractCard.CardRarity.BASIC && isNormalCard(card);
     }
 
     @Override
@@ -41,7 +46,7 @@ public class FadingMod extends AbstractAugment implements HealingMod {
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return (magic > 0.0F && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 2.0F) : magic;
+        return modMagic ? (magic * 2.0F) : magic;
     }
 
     @Override

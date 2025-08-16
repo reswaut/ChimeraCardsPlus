@@ -17,44 +17,48 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
-
 public class CutThroughMod extends AbstractAugment implements DynvarCarrier {
     public static final String ID = ChimeraCardsPlus.makeID(CutThroughMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     public static final String DESCRIPTION_KEY = "!" + ID + "!";
-    public boolean modified;
-    public boolean upgraded;
+    public boolean modified = false, upgraded = false, modMagic = false;
+
+    @Override
+    public void onInitialApplication(AbstractCard card) {
+        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+            modMagic = true;
+        }
+    }
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> c.cost != -2
-                && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL))
-                && (card.baseDamage > 1 || card.baseBlock > 1 || (card.baseMagicNumber > 1 && doesntDowngradeMagicNoUseChecks(card)));
+        return cardCheck(card, c -> c.cost >= -1
+                && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)
+                && (card.baseDamage >= 2 || card.baseBlock >= 2 || (card.baseMagicNumber >= 2 && doesntDowngradeMagic())));
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 1) ? (damage * 0.75F) : damage;
+        return (damage > 0.0F) ? (damage * 0.75F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 1) ? (block * 0.75F) : block;
+        return (block > 0.0F) ? (block * 0.75F) : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (card instanceof CutThroughFate || card instanceof JustLucky || card instanceof ThirdEye) {
+        if (CutThroughFate.ID.equals(card.cardID) || JustLucky.ID.equals(card.cardID) || ThirdEye.ID.equals(card.cardID)) {
             return magic * 0.75F + getBaseVal(card);
         }
-        return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 0.75F) : magic;
+        return modMagic ? (magic * 0.75F) : magic;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (!(card instanceof CutThroughFate || card instanceof JustLucky || card instanceof ThirdEye)) {
+        if (!(CutThroughFate.ID.equals(card.cardID) || JustLucky.ID.equals(card.cardID) || ThirdEye.ID.equals(card.cardID))) {
             this.addToBot(new ScryAction(getBaseVal(card)));
         }
         this.addToBot(new DrawCardAction(AbstractDungeon.player, 1));
@@ -108,10 +112,10 @@ public class CutThroughMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof CutThroughFate) {
+        if (CutThroughFate.ID.equals(card.cardID)) {
             return rawDescription.replace(CARD_TEXT[2], CARD_TEXT[3]);
         }
-        if (card instanceof JustLucky || card instanceof ThirdEye) {
+        if (JustLucky.ID.equals(card.cardID) || ThirdEye.ID.equals(card.cardID)) {
             return insertAfterText(rawDescription, CARD_TEXT[1]);
         }
         return insertAfterText(rawDescription, String.format(CARD_TEXT[0], DESCRIPTION_KEY) + CARD_TEXT[1]);

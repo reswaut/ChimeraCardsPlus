@@ -18,8 +18,7 @@ public class ExpertMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost() && !(c instanceof Expertise) && !drawsCards(c)
-                && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
+        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost() && !(Expertise.ID.equals(c.cardID)) && !drawsCards(c) && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
     }
 
     @Override

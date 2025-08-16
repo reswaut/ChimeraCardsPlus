@@ -16,15 +16,12 @@ public class CourageousMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.baseDamage >= 1 && c.type == AbstractCard.CardType.ATTACK));
+        return card.baseDamage >= 1 && card.type == AbstractCard.CardType.ATTACK;
     }
 
     @Override
     public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        if (AbstractDungeon.getCurrRoom().eliteTrigger) {
-            damage += 3;
-        }
-        return damage;
+        return AbstractDungeon.getCurrRoom().eliteTrigger ? damage + 3 : damage;
     }
 
     @Override

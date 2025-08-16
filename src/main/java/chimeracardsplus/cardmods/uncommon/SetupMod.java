@@ -16,7 +16,7 @@ public class SetupMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= 0 && cardCheck(card, (c) -> doesntUpgradeCost());
+        return cardCheck(card, (c) -> c.cost >= 0 && doesntUpgradeCost());
     }
 
     @Override

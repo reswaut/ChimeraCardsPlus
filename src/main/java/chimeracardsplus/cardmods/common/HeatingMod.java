@@ -33,10 +33,7 @@ public class HeatingMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost != -2 && !(c instanceof Melter)
-                && c.cost >= 0
-                && c.type == AbstractCard.CardType.ATTACK
-                && c.baseDamage >= 2 && usesEnemyTargeting()));
+        return cardCheck(card, (c) -> (c.cost >= -1 && c.type == AbstractCard.CardType.ATTACK && c.baseDamage >= 2 && usesEnemyTargeting() && !Melter.ID.equals(c.cardID)));
     }
 
     @Override

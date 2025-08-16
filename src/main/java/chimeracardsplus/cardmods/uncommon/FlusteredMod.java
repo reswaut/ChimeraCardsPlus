@@ -26,17 +26,8 @@ public class FlusteredMod extends AbstractAugment {
     }
 
     @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        if (!card.exhaust) {
-            this.addedExhaust = true;
-            card.exhaust = true;
-            card.initializeDescription();
-        }
-    }
-
-    @Override
     public boolean validCard(AbstractCard card) {
-        return card.baseDamage >= 1 && card.cost >= -1 && card.type == AbstractCard.CardType.ATTACK;
+        return cardCheck(card, (c) -> c.baseDamage >= 1 && c.cost >= -1 && c.type == AbstractCard.CardType.ATTACK && doesntUpgradeExhaust());
     }
 
     @Override

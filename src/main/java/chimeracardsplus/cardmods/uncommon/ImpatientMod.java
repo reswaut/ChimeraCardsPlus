@@ -1,32 +1,39 @@
-package chimeracardsplus.cardmods.common;
+package chimeracardsplus.cardmods.uncommon;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.utility.ConditionalDrawAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-public class QuickSkillMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(QuickSkillMod.class.getSimpleName());
+public class ImpatientMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(ImpatientMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
     @Override
-    public float modifyBaseBlock(float block, AbstractCard card) {
-        return block * 0.8F;
-    }
-
-    @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost != -2 && (c.baseDamage <= 1 && c.baseBlock > 1)));
+        return card.cost >= -1 && !drawsCards(card) && (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new DrawCardAction(1));
+        this.addToBot(new ConditionalDrawAction(1, AbstractCard.CardType.ATTACK));
+    }
+
+    @Override
+    public Color getGlow(AbstractCard card) {
+        for (AbstractCard c : AbstractDungeon.player.hand.group) {
+            if (c.type == AbstractCard.CardType.ATTACK && !c.uuid.equals(card.uuid)) {
+                return null;
+            }
+        }
+        return Color.GOLD.cpy();
     }
 
     @Override
@@ -51,12 +58,12 @@ public class QuickSkillMod extends AbstractAugment {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.COMMON;
+        return AugmentRarity.UNCOMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new QuickSkillMod();
+        return new ImpatientMod();
     }
 
     @Override

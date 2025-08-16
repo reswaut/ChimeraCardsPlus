@@ -31,7 +31,7 @@ public class DexterousMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1 && c.baseBlock >= 5));
+        return cardCheck(card, (c) -> c.cost >= -1 && c.baseBlock >= 5 && doesntUpgradeExhaust());
     }
 
     @Override
@@ -68,15 +68,6 @@ public class DexterousMod extends AbstractAugment implements DynvarCarrier {
         this.modified = card.timesUpgraded != 0 || card.upgraded;
         this.upgraded = card.timesUpgraded != 0 || card.upgraded;
         return this.upgraded;
-    }
-
-    @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
-            addedExhaust = true;
-            card.exhaust = true;
-        }
-        card.initializeDescription();
     }
 
     @Override

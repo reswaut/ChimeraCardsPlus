@@ -23,7 +23,6 @@ public class ResidualMod extends AbstractAugment {
     public ResidualMod() {
         this(0);
     }
-
     public ResidualMod(int originalCost) {
         this.originalCost = originalCost;
     }

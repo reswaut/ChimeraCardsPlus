@@ -59,7 +59,7 @@ public class PredictiveMod extends AbstractAugment {
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return 1.0F;
+        return -1.0F;
     }
 
     @Override
@@ -86,14 +86,12 @@ public class PredictiveMod extends AbstractAugment {
 
     @Override
     public void onUpgradeCheck(AbstractCard card) {
-
         for (AbstractCard o : MultiCardPreview.multiCardPreview.get(card)) {
             if (CardModifierManager.hasModifier(o, PredictedMod.ID)) {
                 o.upgrade();
                 o.initializeDescription();
             }
         }
-
         card.initializeDescription();
     }
 
@@ -117,7 +115,7 @@ public class PredictiveMod extends AbstractAugment {
                     AbstractDungeon.player.energy.use(card.energyOnUse);
                 }
             }
-            this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NightmarePower(AbstractDungeon.player, card.magicNumber, copy)));
+            this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NightmarePower(AbstractDungeon.player, 1, copy)));
         }
 
     }

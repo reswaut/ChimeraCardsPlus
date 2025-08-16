@@ -748,7 +748,7 @@
     "TEXT": [
       "Foreign ",
       "",
-      "Adds a random card with the same type of any color into your hand. #yUpgrades those cards when #yUpgraded. NL Adds #yExhaust."
+      "Adds a random card with the same type of any color into your hand. #yUpgrades that card when #yUpgraded. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
       " NL Add a random Attack card of any color into your hand. NL Exhaust.",
@@ -933,10 +933,10 @@
     "TEXT": [
       "Impatient ",
       "",
-      "Draws #b2 cards if you have no Attacks in hand."
+      "Draws #b1 cards if you have no Attacks in hand."
     ],
     "EXTRA_TEXT": [
-      " NL If you have no Attacks in your hand, draw 2 cards."
+      " NL If you have no Attacks in your hand, draw 1 card."
     ]
   },
   "${modID}:ImpulsiveMod": {
@@ -1225,10 +1225,10 @@
     "TEXT": [
       "Opportunistic ",
       "",
-      "Draws #b2 cards if you have no Skills in hand."
+      "Draws #b1 cards if you have no Skills in hand."
     ],
     "EXTRA_TEXT": [
-      " NL If you have no Skills in your hand, draw 2 cards."
+      " NL If you have no Skills in your hand, draw 1 card."
     ]
   },
   "${modID}:OverclockedMod": {
@@ -1420,9 +1420,9 @@
       " NL At the end of your turn, put a copy of this card on top of your draw pile. NL Exhaust."
     ]
   },
-  "${modID}:QuickSkillMod": {
+  "${modID}:FastMod": {
     "TEXT": [
-      "Quick ",
+      "Fast ",
       "",
       "Reduces #yBlock by #b20%. NL Draws #b1 card."
     ],
@@ -2041,7 +2041,9 @@
     ],
     "EXTRA_TEXT": [
       " NL Gain %d *Gold. NL Exhaust.",
-      " NL Gain X *Gold. NL Exhaust."
+      " NL Gain %d *Gold.",
+      " NL Gain X *Gold. NL Exhaust.",
+      " NL Gain X *Gold."
     ]
   },
   "${modID}:OpeningMod": {
@@ -2451,10 +2453,10 @@
       " NL Discard 1 card and draw cards equal to its cost."
     ]
   },
-  "${modID}:ForStrikeMod": {
+  "${modID}:PreemptiveMod": {
     "TEXT": [
+      "Preemptive ",
       "",
-      " for Strike",
       "Deals #b3 additional damage to enemies who intend to attack."
     ],
     "EXTRA_TEXT": [

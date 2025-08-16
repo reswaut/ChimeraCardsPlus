@@ -23,9 +23,7 @@ public class ReaperMod extends AbstractAugment implements HealingMod {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1 && c.baseDamage >= 4
-                && c.rarity != AbstractCard.CardRarity.BASIC
-                && c.type == AbstractCard.CardType.ATTACK);
+        return cardCheck(card, (c) -> c.cost >= -1 && c.baseDamage >= 4 && c.rarity != AbstractCard.CardRarity.BASIC && doesntUpgradeExhaust());
     }
 
     @Override
@@ -53,12 +51,6 @@ public class ReaperMod extends AbstractAugment implements HealingMod {
             DamageModifierManager.removeModifier(card, m);
         }
         DamageModifierManager.addModifier(card, new ReaperDamage());
-        
-        if (!card.exhaust) {
-            this.addedExhaust = true;
-            card.exhaust = true;
-            card.initializeDescription();
-        }
     }
 
     @Override

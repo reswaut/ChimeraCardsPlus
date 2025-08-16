@@ -76,14 +76,12 @@ public class NightmareMod extends AbstractAugment {
 
     @Override
     public void onUpgradeCheck(AbstractCard card) {
-
         for (AbstractCard o : MultiCardPreview.multiCardPreview.get(card)) {
             if (CardModifierManager.hasModifier(o, PreviewedMod.ID)) {
                 o.upgrade();
                 o.initializeDescription();
             }
         }
-
         card.initializeDescription();
     }
 

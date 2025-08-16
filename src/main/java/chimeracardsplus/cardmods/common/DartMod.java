@@ -25,12 +25,12 @@ public class DartMod extends AbstractAugment {
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage * 0.5F;
+        return damage > 0.0F ? damage * 0.5F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return block * 0.5F;
+        return block > 0.0F ? block * 0.5F : block;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class DartMod extends AbstractAugment {
                 && (c.baseDamage >= 2 || c.baseBlock >= 2)
                 && customCheck(c, (check) ->
                     noCardModDescriptionChanges(check)
-                            && check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1L)
+                            && check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1)
         ));
     }
 

@@ -35,9 +35,10 @@ public class GeneticMod extends AbstractAugment implements DynvarCarrier, Healin
         addedExhaust = !card.exhaust;
         card.exhaust = true;
     }
+
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0 && c.baseBlock >= 4 && c.rarity != AbstractCard.CardRarity.BASIC));
+        return cardCheck(card, (c) -> c.cost >= 0 && c.baseBlock >= 4 && c.rarity != AbstractCard.CardRarity.BASIC && doesntUpgradeExhaust());
     }
 
     @Override
@@ -113,15 +114,6 @@ public class GeneticMod extends AbstractAugment implements DynvarCarrier, Healin
 
     @Override
     public void onApplyPowers(AbstractCard card) {
-        card.initializeDescription();
-    }
-
-    @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        if (!card.exhaust) {
-            addedExhaust = true;
-            card.exhaust = true;
-        }
         card.initializeDescription();
     }
 

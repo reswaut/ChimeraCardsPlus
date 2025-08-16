@@ -13,10 +13,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.rooms.ShopRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
-import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
 import static com.megacrit.cardcrawl.core.CardCrawlGame.isInARun;
 
 public class CursedMod extends AbstractAugment implements TriggerOnObtainMod {
@@ -24,10 +23,11 @@ public class CursedMod extends AbstractAugment implements TriggerOnObtainMod {
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     private String curseID;
+    private boolean modMagic = false;
 
     public CursedMod() {
+        this(null);
     }
-
     public CursedMod(String curseID) {
         this.curseID = curseID;
     }
@@ -40,28 +40,29 @@ public class CursedMod extends AbstractAugment implements TriggerOnObtainMod {
         if (curseID != null) {
             MultiCardPreview.add(card, CardLibrary.getCard(curseID));
         }
-    }
-
-    @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 0) ? (damage * 2.0F) : damage;
-    }
-
-    @Override
-    public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 0) ? (block * 2.0F) : block;
-    }
-
-    @Override
-    public float modifyBaseMagic(float magic, AbstractCard card) {
-        return (magic > 0 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 2.0F) : magic;
+        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+            modMagic = true;
+        }
     }
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.rarity != AbstractCard.CardRarity.BASIC && c.type != AbstractCard.CardType.CURSE)
-                && (card.baseBlock > 0 || card.baseDamage > 0 || (card.baseMagicNumber > 0 && doesntDowngradeMagicNoUseChecks(card)))
-                && !(AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() instanceof ShopRoom);
+        return cardCheck(card, (c) -> (c.baseDamage >= 1 || c.baseBlock >= 1 || (c.baseMagicNumber >= 1 && doesntDowngradeMagic())) && c.rarity != AbstractCard.CardRarity.BASIC && c.type != AbstractCard.CardType.CURSE) && AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() instanceof MonsterRoom;
+    }
+
+    @Override
+    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+        return (damage > 0.0F) ? (damage * 2.0F) : damage;
+    }
+
+    @Override
+    public float modifyBaseBlock(float block, AbstractCard card) {
+        return (block > 0.0F) ? (block * 2.0F) : block;
+    }
+
+    @Override
+    public float modifyBaseMagic(float magic, AbstractCard card) {
+        return modMagic ? (magic * 2.0F) : magic;
     }
 
     @Override

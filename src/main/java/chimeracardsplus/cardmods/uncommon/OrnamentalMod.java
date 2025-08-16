@@ -20,7 +20,7 @@ public class OrnamentalMod extends AbstractAugment implements TriggerOnDiscardMo
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.type == AbstractCard.CardType.ATTACK && c.cost >= -1 && c.baseBlock == -1));
+        return card.type == AbstractCard.CardType.ATTACK && card.cost >= -1 && card.baseBlock == -1;
     }
 
     @Override

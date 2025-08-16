@@ -22,8 +22,7 @@ public class DistractingMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && cardCheck(card, AbstractAugment::notExhaust)
-                && (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL);
+        return cardCheck(card, (c) -> (c.cost >= -1 && notExhaust(c) && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
     }
 
     @Override

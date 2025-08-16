@@ -35,13 +35,12 @@ public class ShockingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost()
-                && (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL)));
+        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost() && doesntUpgradeExhaust() && (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL)));
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (card instanceof Shockwave) {
+        if (Shockwave.ID.equals(card.cardID)) {
             return magic + getBaseVal(card);
         }
         return magic;
@@ -74,15 +73,6 @@ public class ShockingMod extends AbstractAugment implements DynvarCarrier {
     }
 
     @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        if (!card.exhaust) {
-            addedExhaust = true;
-            card.exhaust = true;
-        }
-        card.initializeDescription();
-    }
-
-    @Override
     public String getPrefix() {
         return TEXT[0];
     }
@@ -99,7 +89,7 @@ public class ShockingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof Shockwave) {
+        if (Shockwave.ID.equals(card.cardID)) {
             return rawDescription;
         }
         return insertAfterText(rawDescription, String.format(addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1], DESCRIPTION_KEY));
@@ -107,11 +97,12 @@ public class ShockingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (!(card instanceof Shockwave)) {
-            for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                this.addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new WeakPower(mo, getBaseVal(card), false), getBaseVal(card), true, AbstractGameAction.AttackEffect.NONE));
-                this.addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new VulnerablePower(mo, getBaseVal(card), false), getBaseVal(card), true, AbstractGameAction.AttackEffect.NONE));
-            }
+        if (Shockwave.ID.equals(card.cardID)) {
+            return;
+        }
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            this.addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new WeakPower(mo, getBaseVal(card), false), getBaseVal(card), true, AbstractGameAction.AttackEffect.NONE));
+            this.addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new VulnerablePower(mo, getBaseVal(card), false), getBaseVal(card), true, AbstractGameAction.AttackEffect.NONE));
         }
     }
 

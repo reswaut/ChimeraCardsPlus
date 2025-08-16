@@ -31,23 +31,12 @@ public class ShacklingMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1
-                && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)
-                && usesEnemyTargeting()));
-    }
-
-    @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        if (!card.exhaust) {
-            addedExhaust = true;
-            card.exhaust = true;
-        }
-        card.initializeDescription();
+        return cardCheck(card, (c) -> (c.cost >= -1 && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL) && doesntUpgradeExhaust() && usesEnemyTargeting()));
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (card instanceof DarkShackles) {
+        if (DarkShackles.ID.equals(card.cardID)) {
             return magic + 5.0F;
         }
         return magic;
@@ -55,7 +44,7 @@ public class ShacklingMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature cardTarget, UseCardAction action) {
-        if (card instanceof DarkShackles) {
+        if (DarkShackles.ID.equals(card.cardID)) {
             return;
         }
         this.addToBot(new AbstractGameAction() {
@@ -93,7 +82,7 @@ public class ShacklingMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof DarkShackles) {
+        if (DarkShackles.ID.equals(card.cardID)) {
             return rawDescription;
         }
         return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1]);

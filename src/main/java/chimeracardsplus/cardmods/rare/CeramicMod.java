@@ -15,7 +15,7 @@ public class CeramicMod extends AbstractAugment implements TriggerOnObtainMod {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.rarity != AbstractCard.CardRarity.BASIC && c.type != AbstractCard.CardType.CURSE);
+        return card.rarity != AbstractCard.CardRarity.BASIC && card.type != AbstractCard.CardType.CURSE;
     }
 
     @Override

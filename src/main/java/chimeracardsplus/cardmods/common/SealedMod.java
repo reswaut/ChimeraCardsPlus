@@ -10,32 +10,37 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
-
 public class SealedMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(SealedMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
-    public boolean played = false;
+    private boolean played = false, modMagic = false;
+
+    @Override
+    public void onInitialApplication(AbstractCard card) {
+        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+            modMagic = true;
+        }
+    }
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return (card.baseDamage > 0 || card.baseBlock > 0 || (card.baseMagicNumber > 0 && doesntDowngradeMagicNoUseChecks(card))) && cardCheck(card, c -> c.cost > -2 && notExhaust(c)) && (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL);
+        return cardCheck(card, (c) -> c.cost >= -1 && (c.baseDamage >= 1 || c.baseBlock >= 1 || (c.baseMagicNumber >= 1 && doesntDowngradeMagic())) && notExhaust(c) && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL));
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 0) ? (damage * 2.0F) : damage;
+        return (damage > 0.0F) ? (damage * 2.0F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 0) ? (block * 2.0F) : block;
+        return (block > 0.0F) ? (block * 2.0F) : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return (magic > 0 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 2.0F) : magic;
+        return modMagic ? (magic * 2.0F) : magic;
     }
 
     @Override
@@ -55,11 +60,6 @@ public class SealedMod extends AbstractAugment {
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         played = true;
-        card.initializeDescription();
-    }
-
-    @Override
-    public void onUpgradeCheck(AbstractCard card) {
         card.initializeDescription();
     }
 

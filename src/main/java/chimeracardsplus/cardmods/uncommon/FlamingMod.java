@@ -36,7 +36,7 @@ public class FlamingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (card instanceof FlameBarrier) {
+        if (FlameBarrier.ID.equals(card.cardID)) {
             return magic + getBaseVal(card);
         }
         return magic;
@@ -44,14 +44,15 @@ public class FlamingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (!(card instanceof FlameBarrier)) {
-            if (Settings.FAST_MODE) {
-                this.addToBot(new VFXAction(AbstractDungeon.player, new FlameBarrierEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY), 0.1F));
-            } else {
-                this.addToBot(new VFXAction(AbstractDungeon.player, new FlameBarrierEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY), 0.5F));
-            }
-            this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FlameBarrierPower(AbstractDungeon.player, getBaseVal(card)), getBaseVal(card)));
+        if (FlameBarrier.ID.equals(card.cardID)) {
+            return;
         }
+        if (Settings.FAST_MODE) {
+            this.addToBot(new VFXAction(AbstractDungeon.player, new FlameBarrierEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY), 0.1F));
+        } else {
+            this.addToBot(new VFXAction(AbstractDungeon.player, new FlameBarrierEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY), 0.5F));
+        }
+        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FlameBarrierPower(AbstractDungeon.player, getBaseVal(card)), getBaseVal(card)));
     }
 
     public int getBaseVal(AbstractCard card) {
@@ -102,7 +103,7 @@ public class FlamingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof FlameBarrier) {
+        if (FlameBarrier.ID.equals(card.cardID)) {
             return rawDescription;
         }
         return insertAfterText(rawDescription, String.format(CARD_TEXT[0], DESCRIPTION_KEY));

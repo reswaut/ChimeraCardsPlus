@@ -18,8 +18,7 @@ public class ScribblyMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost() && !drawsCards(c)
-                && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
+        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost() && doesntUpgradeExhaust() && !drawsCards(c) && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
     }
 
     @Override
@@ -28,15 +27,6 @@ public class ScribblyMod extends AbstractAugment {
         card.costForTurn = card.cost;
         this.addedExhaust = !card.exhaust;
         card.exhaust = true;
-    }
-
-    @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        if (!card.exhaust) {
-            this.addedExhaust = true;
-            card.exhaust = true;
-            card.initializeDescription();
-        }
     }
 
     @Override

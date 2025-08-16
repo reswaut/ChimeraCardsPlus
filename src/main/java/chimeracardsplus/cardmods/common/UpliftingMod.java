@@ -41,7 +41,7 @@ public class UpliftingMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0 && c.baseDamage >= 3 && c.type == AbstractCard.CardType.ATTACK));
+        return card.cost >= -1 && card.baseDamage >= 3 && card.type == AbstractCard.CardType.ATTACK;
     }
 
     @Override

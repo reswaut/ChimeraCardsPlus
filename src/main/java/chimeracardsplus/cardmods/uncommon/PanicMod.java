@@ -25,17 +25,8 @@ public class PanicMod extends AbstractAugment {
     }
 
     @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        if (!card.exhaust) {
-            this.addedExhaust = true;
-            card.exhaust = true;
-            card.initializeDescription();
-        }
-    }
-
-    @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (card instanceof PanicButton) {
+        if (PanicButton.ID.equals(card.cardID)) {
             return magic + 2.0F;
         }
         return magic;
@@ -43,14 +34,15 @@ public class PanicMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.baseBlock >= 1 && card.cost >= -1 && (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL);
+        return cardCheck(card, (c) -> c.baseBlock >= 1 && c.cost >= -1 && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL) && doesntUpgradeExhaust());
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (!(card instanceof PanicButton)) {
-            this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NoBlockPower(AbstractDungeon.player, 2, false), 2));
+        if (PanicButton.ID.equals(card.cardID)) {
+            return;
         }
+        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NoBlockPower(AbstractDungeon.player, 2, false), 2));
     }
 
     @Override
@@ -75,7 +67,7 @@ public class PanicMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof PanicButton) {
+        if (PanicButton.ID.equals(card.cardID)) {
             return rawDescription;
         }
         return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1]);

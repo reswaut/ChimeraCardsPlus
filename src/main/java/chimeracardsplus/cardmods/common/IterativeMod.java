@@ -17,16 +17,24 @@ public class IterativeMod extends AbstractAugment implements TriggerOnDiscardMod
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     private boolean descriptionHack = false;
-    private int count = 0;
+    private int count;
+
+    public IterativeMod() {
+        this(0);
+    }
+
+    public IterativeMod(int count) {
+        this.count = count;
+    }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage * 0.5F;
+        return damage > 0.0F ? damage * 0.5F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return block * 0.5F;
+        return block > 0.0F ? block * 0.5F : block;
     }
 
     @Override
@@ -36,7 +44,7 @@ public class IterativeMod extends AbstractAugment implements TriggerOnDiscardMod
                 && (c.baseDamage >= 2 || c.baseBlock >= 2)
                 && customCheck(c, (check) ->
                 noCardModDescriptionChanges(check)
-                        && check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1L)
+                        && check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1)
         ));
     }
 
@@ -108,7 +116,7 @@ public class IterativeMod extends AbstractAugment implements TriggerOnDiscardMod
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new IterativeMod();
+        return new IterativeMod(count);
     }
 
     @Override

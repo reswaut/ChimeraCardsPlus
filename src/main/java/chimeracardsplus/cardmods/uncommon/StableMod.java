@@ -32,12 +32,12 @@ public class StableMod extends AbstractAugment {
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 1) ? (damage * 4.0F / 3.0F) : damage;
+        return (damage > 0.0F) ? (damage * 4.0F / 3.0F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 1) ? (block * 4.0F / 3.0F) : block;
+        return (block > 0.0F) ? (block * 4.0F / 3.0F) : block;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class StableMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof Equilibrium) {
+        if (Equilibrium.ID.equals(card.cardID)) {
             return rawDescription.replace(CARD_TEXT[1], CARD_TEXT[2]);
         }
         return insertAfterText(rawDescription, CARD_TEXT[0]);

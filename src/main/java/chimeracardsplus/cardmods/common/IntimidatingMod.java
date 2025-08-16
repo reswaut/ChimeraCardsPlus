@@ -30,17 +30,8 @@ public class IntimidatingMod extends AbstractAugment {
     }
 
     @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        if (!card.exhaust) {
-            this.addedExhaust = true;
-            card.exhaust = true;
-            card.initializeDescription();
-        }
-    }
-
-    @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (card instanceof Intimidate) {
+        if (Intimidate.ID.equals(card.cardID)) {
             return magic + 1;
         }
         return magic;
@@ -48,8 +39,7 @@ public class IntimidatingMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1
-                && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
+        return cardCheck(card, (c) -> c.cost >= -1 && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL) && doesntUpgradeExhaust());
     }
 
     @Override
@@ -69,19 +59,20 @@ public class IntimidatingMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof Intimidate) {
+        if (Intimidate.ID.equals(card.cardID)) {
             return rawDescription;
         }
         return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1]);
     }
 
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (!(card instanceof Intimidate)) {
-            this.addToBot(new SFXAction("INTIMIDATE"));
-            this.addToBot(new VFXAction(AbstractDungeon.player, new IntimidateEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY), 1.0F));
-            for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                this.addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new WeakPower(mo, 1, false), 1, true, AbstractGameAction.AttackEffect.NONE));
-            }
+        if (!Intimidate.ID.equals(card.cardID)) {
+            return;
+        }
+        this.addToBot(new SFXAction("INTIMIDATE"));
+        this.addToBot(new VFXAction(AbstractDungeon.player, new IntimidateEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY), 1.0F));
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            this.addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new WeakPower(mo, 1, false), 1, true, AbstractGameAction.AttackEffect.NONE));
         }
     }
 

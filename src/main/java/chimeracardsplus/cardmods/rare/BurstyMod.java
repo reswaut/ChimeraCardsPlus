@@ -30,7 +30,7 @@ public class BurstyMod extends AbstractAugment {
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (card instanceof Burst) {
+        if (Burst.ID.equals(card.cardID)) {
             return magic + 1;
         }
         return magic;
@@ -38,9 +38,10 @@ public class BurstyMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (!(card instanceof Burst)) {
-            this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new BurstPower(AbstractDungeon.player, 1), 1));
+        if (Burst.ID.equals(card.cardID)) {
+            return;
         }
+        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new BurstPower(AbstractDungeon.player, 1), 1));
     }
 
     @Override
@@ -60,7 +61,7 @@ public class BurstyMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof Burst) {
+        if (Burst.ID.equals(card.cardID)) {
             return rawDescription.replace(CARD_TEXT[1], CARD_TEXT[2]);
         }
         return insertAfterText(rawDescription, CARD_TEXT[0]);

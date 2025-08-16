@@ -41,7 +41,7 @@ public class CripplingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (card instanceof CripplingPoison) {
+        if (CripplingPoison.ID.equals(card.cardID)) {
             return magic + getBaseVal(card);
         }
         return magic;
@@ -99,7 +99,7 @@ public class CripplingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof CripplingPoison) {
+        if (CripplingPoison.ID.equals(card.cardID)) {
             return insertAfterText(rawDescription, String.format(CARD_TEXT[2]));
         }
         return insertAfterText(rawDescription, String.format(addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1], DESCRIPTION_KEY));
@@ -108,7 +108,7 @@ public class CripplingMod extends AbstractAugment implements DynvarCarrier {
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (!(card instanceof CripplingPoison)) {
+            if (!CripplingPoison.ID.equals(card.cardID)) {
                 this.addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new PoisonPower(mo, AbstractDungeon.player, getBaseVal(card)), getBaseVal(card), true, AbstractGameAction.AttackEffect.NONE));
             }
             this.addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new WeakPower(mo, 1, false), 1, true, AbstractGameAction.AttackEffect.NONE));

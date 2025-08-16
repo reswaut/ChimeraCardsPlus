@@ -41,12 +41,12 @@ public class AugerMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1 && c.baseDamage >= 2));
+        return card.cost >= -1 && card.baseDamage >= 2;
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage >= 0.0F) ? (damage * 2.0F / 3.0F) : damage;
+        return damage * 2.0F / 3.0F;
     }
 
     @Override

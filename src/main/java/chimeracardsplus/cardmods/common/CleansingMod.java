@@ -1,4 +1,4 @@
-package chimeracardsplus.cardmods.rare;
+package chimeracardsplus.cardmods.common;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
@@ -30,17 +30,8 @@ public class CleansingMod extends AbstractAugment {
     }
 
     @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
-            addedExhaust = true;
-            card.exhaust = true;
-        }
-        card.initializeDescription();
-    }
-
-    @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1);
+        return cardCheck(card, (c) -> c.cost >= -1 && doesntUpgradeExhaust());
     }
 
     @Override
@@ -80,7 +71,7 @@ public class CleansingMod extends AbstractAugment {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.RARE;
+        return AugmentRarity.COMMON;
     }
 
     @Override

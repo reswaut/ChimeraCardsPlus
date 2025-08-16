@@ -35,7 +35,7 @@ public class GuardedMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof Sentinel) {
+        if (Sentinel.ID.equals(card.cardID)) {
             return rawDescription.replace(CARD_TEXT[1], CARD_TEXT[2]);
         }
         return insertAfterText(rawDescription, CARD_TEXT[0]);

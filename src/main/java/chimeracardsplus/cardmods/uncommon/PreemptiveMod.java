@@ -8,8 +8,8 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class ForStrikeMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(ForStrikeMod.class.getSimpleName());
+public class PreemptiveMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(PreemptiveMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
@@ -53,7 +53,7 @@ public class ForStrikeMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ForStrikeMod();
+        return new PreemptiveMod();
     }
 
     @Override

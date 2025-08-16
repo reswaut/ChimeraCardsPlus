@@ -28,17 +28,7 @@ public class TerrifyingMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= 0 && cardCheck(card, (c) -> doesntUpgradeCost() && usesEnemyTargeting())
-                && (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL);
-    }
-
-    @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        if (!card.exhaust) {
-            addedExhaust = true;
-            card.exhaust = true;
-        }
-        card.initializeDescription();
+        return cardCheck(card, (c) -> c.cost >= 0 && doesntUpgradeCost() && usesEnemyTargeting() && doesntUpgradeExhaust() && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL));
     }
 
     @Override

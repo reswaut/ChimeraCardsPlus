@@ -20,7 +20,7 @@ public class StealthyMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= 0 && cardCheck(card, (c) -> doesntUpgradeCost()) && characterCheck((p) -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
+        return cardCheck(card, (c) -> c.cost >= 0 && doesntUpgradeCost()) && characterCheck((p) -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
     }
 
     @Override

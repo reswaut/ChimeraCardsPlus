@@ -15,7 +15,7 @@ public class ShatteringMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.baseDamage >= 1 && c.type == AbstractCard.CardType.ATTACK));
+        return card.baseDamage >= 1 && card.type == AbstractCard.CardType.ATTACK;
     }
 
     @Override

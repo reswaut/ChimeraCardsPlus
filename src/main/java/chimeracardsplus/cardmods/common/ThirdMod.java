@@ -24,23 +24,22 @@ public class ThirdMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return (card.baseDamage > 1 || card.baseBlock > 1) && cardCheck(card, c -> (c.cost != -2)
-                        && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL));
+        return (card.baseDamage >= 2 || card.baseBlock >= 2) && card.cost >= -1 && (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL);
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage >= 0.0F) ? (damage * 0.75F) : damage;
+        return (damage > 0.0F) ? (damage * 0.75F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block >= 0.0F) ? (block * 0.75F) : block;
+        return (block > 0.0F) ? (block * 0.75F) : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (card instanceof CutThroughFate || card instanceof JustLucky || card instanceof ThirdEye) {
+        if (CutThroughFate.ID.equals(card.cardID) || JustLucky.ID.equals(card.cardID) || ThirdEye.ID.equals(card.cardID)) {
             return magic + 3;
         }
         return magic;
@@ -48,16 +47,11 @@ public class ThirdMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (card instanceof CutThroughFate || card instanceof JustLucky || card instanceof ThirdEye) {
+        if (CutThroughFate.ID.equals(card.cardID) || JustLucky.ID.equals(card.cardID) || ThirdEye.ID.equals(card.cardID)) {
             return;
         }
         this.addToBot(new VFXAction(new ThirdEyeEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY)));
         this.addToBot(new ScryAction(3));
-    }
-
-    @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        card.initializeDescription();
     }
 
     @Override
@@ -77,7 +71,7 @@ public class ThirdMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof CutThroughFate || card instanceof JustLucky || card instanceof ThirdEye) {
+        if (CutThroughFate.ID.equals(card.cardID) || JustLucky.ID.equals(card.cardID) || ThirdEye.ID.equals(card.cardID)) {
             return rawDescription;
         }
         return insertAfterText(rawDescription, CARD_TEXT[0]);

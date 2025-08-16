@@ -4,6 +4,7 @@ import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -18,28 +19,28 @@ public class UnceasingMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> c.cost >= -1 && !drawsCards(c)
-                && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL));
+        return card.cost >= -1 && !drawsCards(card) && (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        for (AbstractCard c : AbstractDungeon.player.hand.group) {
-            if (!card.uuid.equals(c.uuid)) {
-                return;
+        this.addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                for (AbstractCard c : AbstractDungeon.player.hand.group) {
+                    if (!card.uuid.equals(c.uuid)) {
+                        return;
+                    }
+                }
+                this.addToTop(new DrawCardAction(1));
+                this.isDone = true;
             }
-        }
-        this.addToTop(new DrawCardAction(1));
+        });
     }
 
     @Override
     public Color getGlow(AbstractCard card) {
         return AbstractDungeon.player.hand.size() <= 1 ? Color.GOLD.cpy() : null;
-    }
-
-    @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        card.initializeDescription();
     }
 
     @Override

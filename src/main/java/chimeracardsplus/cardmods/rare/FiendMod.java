@@ -33,7 +33,7 @@ public class FiendMod extends AbstractAugment {
                 && (c.type == CardType.ATTACK || c.type == CardType.SKILL)
                 && customCheck(c, (check) ->
                 noCardModDescriptionChanges(check)
-                        && check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1L
+                        && check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1
                         && check.rawDescription.chars().noneMatch((ch) -> ch == ',' || ch == '，'))
         ));
     }

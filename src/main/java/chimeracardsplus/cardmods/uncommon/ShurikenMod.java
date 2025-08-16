@@ -21,7 +21,7 @@ public class ShurikenMod extends AbstractAugment implements TriggerOnDiscardMod 
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.type == AbstractCard.CardType.ATTACK && c.cost >= -1));
+        return card.type == AbstractCard.CardType.ATTACK && card.cost >= -1;
     }
 
     @Override

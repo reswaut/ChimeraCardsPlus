@@ -21,9 +21,7 @@ public class LearnMod extends AbstractAugment implements HealingMod {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost()
-                && c.rarity != AbstractCard.CardRarity.BASIC
-                && c.type == AbstractCard.CardType.ATTACK));
+        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost() && doesntUpgradeExhaust() && c.rarity != AbstractCard.CardRarity.BASIC && c.type == AbstractCard.CardType.ATTACK));
     }
 
     @Override
@@ -48,12 +46,6 @@ public class LearnMod extends AbstractAugment implements HealingMod {
             DamageModifierManager.removeModifier(card, m);
         }
         DamageModifierManager.addModifier(card, new LearnDamage());
-
-        if (!card.exhaust) {
-            this.addedExhaust = true;
-            card.exhaust = true;
-            card.initializeDescription();
-        }
     }
 
     @Override

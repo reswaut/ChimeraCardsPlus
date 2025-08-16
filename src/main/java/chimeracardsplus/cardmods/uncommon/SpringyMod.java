@@ -21,17 +21,17 @@ public class SpringyMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> (c.cost != -2 && (c.baseDamage > 1 || c.baseBlock > 1)));
+        return card.cost >= -1 && (card.baseDamage >= 2 || card.baseBlock >= 2);
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 1) ? (damage * 0.75F) : damage;
+        return (damage > 0.0F) ? (damage * 0.75F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 1) ? (block * 0.75F) : block;
+        return (block > 0.0F) ? (block * 0.75F) : block;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class SpringyMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof Rebound) {
+        if (Rebound.ID.equals(card.cardID)) {
             return rawDescription.replace(CARD_TEXT[1], CARD_TEXT[2]);
         }
         return insertAfterText(rawDescription, CARD_TEXT[0]);

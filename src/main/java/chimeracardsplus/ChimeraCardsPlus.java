@@ -56,12 +56,14 @@ public class ChimeraCardsPlus implements
     public static SpireConfig config;
     public static ModPanel settingsPanel;
     private static final String EVENT_ADDONS_PLUS_KEY = "EventAddonsPlus";
-    private static boolean enableEventAddonsPlus = true;
     private static final String SPECIAL_NAMING_KEY = "CompactNaming";
+    private static final String CARD_FIXES_KEY = "CardFixes";
+    private static boolean enableEventAddonsPlus = true;
+    private static boolean enableSpecialNaming = false;
+    private static boolean enableCardFixes = true;
     public static SpecialNamingRules specialNamingRules;
     private static UIStrings uiStrings;
     private static String[] TEXT;
-    private static boolean enableSpecialNaming = false;
 
     public static String makeID(String id) {
         return modID + ":" + id;
@@ -78,11 +80,13 @@ public class ChimeraCardsPlus implements
         Properties defaultSettings = new Properties();
         defaultSettings.setProperty(EVENT_ADDONS_PLUS_KEY, String.valueOf(enableEventAddonsPlus));
         defaultSettings.setProperty(SPECIAL_NAMING_KEY, String.valueOf(enableSpecialNaming));
+        defaultSettings.setProperty(CARD_FIXES_KEY, String.valueOf(enableCardFixes));
 
         try {
             config = new SpireConfig(modID, FILE_NAME, defaultSettings);
             enableEventAddonsPlus = config.getBool(EVENT_ADDONS_PLUS_KEY);
             enableSpecialNaming = config.getBool(SPECIAL_NAMING_KEY);
+            enableCardFixes = config.getBool(CARD_FIXES_KEY);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -91,16 +95,32 @@ public class ChimeraCardsPlus implements
     public static boolean enableEventAddons() {
         return enableEventAddonsPlus;
     }
-
     public static boolean enableSpecialNaming() {
         return enableSpecialNaming;
+    }
+
+    public static boolean enableCardFixes() {
+        return enableCardFixes;
     }
 
     private static void setupSettingsPanel() {
         settingsPanel = new ModPanel();
 
         float yPos = Settings.HEIGHT * 0.5f / Settings.scale + 200.0f;
-        ModLabeledToggleButton enableEventsButton = new ModLabeledToggleButton(TEXT[1], 350.0F, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, config.getBool(EVENT_ADDONS_PLUS_KEY), settingsPanel, (label) -> {
+        ModLabeledToggleButton enableCardFixesButton = new ModLabeledToggleButton(TEXT[1], TEXT[2], 350.0F, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, enableCardFixes, settingsPanel, (label) -> {
+        }, (button) -> {
+            config.setBool(CARD_FIXES_KEY, button.enabled);
+            enableCardFixes = button.enabled;
+            try {
+                config.save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        settingsPanel.addUIElement(enableCardFixesButton);
+
+        yPos -= 50.0f;
+        ModLabeledToggleButton enableEventsButton = new ModLabeledToggleButton(TEXT[3], TEXT[4], 350.0F, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, enableEventAddonsPlus, settingsPanel, (label) -> {
         }, (button) -> {
             config.setBool(EVENT_ADDONS_PLUS_KEY, button.enabled);
             enableEventAddonsPlus = button.enabled;
@@ -113,7 +133,7 @@ public class ChimeraCardsPlus implements
         settingsPanel.addUIElement(enableEventsButton);
 
         yPos -= 50.0f;
-        ModLabeledToggleButton enableSpecialNamingButton = new ModLabeledToggleButton(TEXT[2], 350.0F, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, config.getBool(SPECIAL_NAMING_KEY), settingsPanel, (label) -> {
+        ModLabeledToggleButton enableSpecialNamingButton = new ModLabeledToggleButton(TEXT[5], TEXT[6], 350.0F, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, enableSpecialNaming, settingsPanel, (label) -> {
         }, (button) -> {
             config.setBool(SPECIAL_NAMING_KEY, button.enabled);
             enableSpecialNaming = button.enabled;
@@ -161,8 +181,7 @@ public class ChimeraCardsPlus implements
 
         CardAugmentsMod.registerMod(modID, TEXT[0]);
 
-        new AutoAdd(modID)
-                .packageFilter("chimeracardsplus.cardmods")
+        new AutoAdd(modID).packageFilter("chimeracardsplus.cardmods")
                 .any(AbstractAugment.class, (info, abstractAugment) -> CardAugmentsMod.registerAugment(abstractAugment, modID));
 
         BaseMod.addPower(NoDamagePower.class, NoDamagePower.POWER_ID);

@@ -12,31 +12,37 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
-
 public class DeterminedMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(DeterminedMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
+    private boolean modMagic = false;
+
+    @Override
+    public void onInitialApplication(AbstractCard card) {
+        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+            modMagic = true;
+        }
+    }
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && (card.baseDamage > 1 || card.baseBlock > 1 || (card.baseMagicNumber > 1 && doesntDowngradeMagicNoUseChecks(card)));
+        return cardCheck(card, (c) -> c.cost >= -1 && (c.baseDamage >= 2 || c.baseBlock >= 2 || (c.baseMagicNumber >= 2 && doesntDowngradeMagic())));
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 1) ? (damage * 5.0F / 3.0F) : damage;
+        return (damage > 0.0F) ? (damage * 5.0F / 3.0F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 1) ? (block * 5.0F / 3.0F) : block;
+        return (block > 0.0F) ? (block * 5.0F / 3.0F) : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 5.0F / 3.0F) : magic;
+        return modMagic ? (magic * 5.0F / 3.0F) : magic;
     }
 
     @Override

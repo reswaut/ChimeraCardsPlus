@@ -6,6 +6,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.unique.ForethoughtAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.colorless.Forethought;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
@@ -16,7 +17,7 @@ public class ForethoughtMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= 0 && cardCheck(card, (c) -> doesntUpgradeCost());
+        return cardCheck(card, (c) -> c.cost >= 0 && doesntUpgradeCost() && Forethought.ID.equals(c.cardID));
     }
 
     @Override

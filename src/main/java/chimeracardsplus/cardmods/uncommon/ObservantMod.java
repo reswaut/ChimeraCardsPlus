@@ -14,32 +14,38 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
-import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
-
 public class ObservantMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(ObservantMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
+    private boolean modMagic = false;
+
+    @Override
+    public void onInitialApplication(AbstractCard card) {
+        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+            modMagic = true;
+        }
+    }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 1) ? (damage * 2.0F / 3.0F) : damage;
+        return (damage > 0.0F) ? (damage * 2.0F / 3.0F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 1) ? (block * 2.0F / 3.0F) : block;
+        return (block > 0.0F) ? (block * 2.0F / 3.0F) : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 2.0F / 3.0F) : magic;
+        return modMagic ? (magic * 2.0F / 3.0F) : magic;
     }
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return (card.baseDamage > 1 || card.baseBlock > 1 || (card.baseMagicNumber > 1 && doesntDowngradeMagicNoUseChecks(card)))
-                && cardCheck(card, (c) -> ((c.cost == -1 || c.cost >= 1) && doesntUpgradeCost() && usesEnemyTargeting() && !(c instanceof SpotWeakness)));
+        return cardCheck(card, (c) -> ((c.cost == -1 || c.cost >= 1) && doesntUpgradeCost() &&
+                (c.baseDamage >= 2 || c.baseBlock >= 2 || (c.baseMagicNumber >= 2 && doesntDowngradeMagic())) && usesEnemyTargeting() && !SpotWeakness.ID.equals(c.cardID) && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
     }
 
     @Override

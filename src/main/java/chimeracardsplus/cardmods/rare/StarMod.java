@@ -39,17 +39,11 @@ public class StarMod extends AbstractAugment implements HealingMod {
             DamageModifierManager.removeModifier(card, m);
         }
         DamageModifierManager.addModifier(card, new StarDamage());
-
-        if (!card.exhaust) {
-            this.addedExhaust = true;
-            card.exhaust = true;
-            card.initializeDescription();
-        }
     }
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1 && c.type == AbstractCard.CardType.ATTACK && c.rarity != AbstractCard.CardRarity.BASIC));
+        return cardCheck(card, (c) -> c.cost >= -1 && c.type == AbstractCard.CardType.ATTACK && c.rarity != AbstractCard.CardRarity.BASIC && doesntUpgradeExhaust());
     }
 
     @Override

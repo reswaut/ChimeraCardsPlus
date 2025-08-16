@@ -14,7 +14,7 @@ public class DarkMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> notExhaust(card));
+        return notExhaust(card);
     }
 
     @Override

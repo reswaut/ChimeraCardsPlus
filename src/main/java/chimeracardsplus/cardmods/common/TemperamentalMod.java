@@ -21,18 +21,17 @@ public class TemperamentalMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.color == AbstractCard.CardColor.PURPLE && c.cost >= -1
-                && usesAction(c, ChangeStanceAction.class) && (c.baseDamage >= 3 || c.baseBlock >= 3));
+        return card.color == AbstractCard.CardColor.PURPLE && card.cost >= -1 && usesAction(card, ChangeStanceAction.class) && (card.baseDamage >= 3 || card.baseBlock >= 3);
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage >= 3.0F) ? (damage * 4.0F / 3.0F) : damage;
+        return (damage > 0.0F) ? (damage * 4.0F / 3.0F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block >= 3.0F) ? (block * 4.0F / 3.0F) : block;
+        return (block > 0.0F) ? (block * 4.0F / 3.0F) : block;
     }
 
     @Override

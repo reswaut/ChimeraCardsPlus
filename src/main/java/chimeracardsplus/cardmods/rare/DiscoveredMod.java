@@ -24,7 +24,6 @@ public class DiscoveredMod extends AbstractAugment implements HealingMod {
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     private boolean inherentHack = true;
 
-    // This modifier should be applied first.
     public DiscoveredMod() {
         this.priority = -100;
     }
@@ -76,14 +75,12 @@ public class DiscoveredMod extends AbstractAugment implements HealingMod {
 
     @Override
     public void onUpgradeCheck(AbstractCard card) {
-
         for (AbstractCard o : MultiCardPreview.multiCardPreview.get(card)) {
             if (CardModifierManager.hasModifier(o, PreviewedMod.ID)) {
                 o.upgrade();
                 o.initializeDescription();
             }
         }
-
         card.initializeDescription();
     }
 

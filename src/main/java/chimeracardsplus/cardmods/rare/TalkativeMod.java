@@ -20,7 +20,7 @@ public class TalkativeMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1);
+        return card.cost >= -1;
     }
 
     @Override

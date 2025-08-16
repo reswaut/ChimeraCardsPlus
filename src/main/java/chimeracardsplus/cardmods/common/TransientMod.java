@@ -16,27 +16,31 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 
-import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
-
 public class TransientMod extends AbstractAugment implements DynvarCarrier, HealingMod {
     public static final String ID = ChimeraCardsPlus.makeID(TransientMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     public static final String DESCRIPTION_KEY = "!" + ID + "!";
     private int uses;
+    private boolean modMagic = false;
 
     public TransientMod() {
         this.uses = 5;
     }
-
     public TransientMod(int uses) {
         this.uses = uses;
     }
 
     @Override
+    public void onInitialApplication(AbstractCard card) {
+        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+            modMagic = true;
+        }
+    }
+
+    @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && card.rarity != AbstractCard.CardRarity.BASIC && isNormalCard(card) &&
-                (card.baseDamage > 0 || card.baseBlock > 0 || (card.baseMagicNumber > 0 && doesntDowngradeMagicNoUseChecks(card)));
+        return cardCheck(card, (c) -> c.cost >= -1 && (c.baseDamage >= 1 || c.baseBlock >= 1 || (c.baseMagicNumber >= 1 && doesntDowngradeMagic())) && c.rarity != AbstractCard.CardRarity.BASIC && isNormalCard(c));
     }
 
     @Override
@@ -51,7 +55,7 @@ public class TransientMod extends AbstractAugment implements DynvarCarrier, Heal
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return (magic > 0.0F && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 2.0F) : magic;
+        return modMagic ? (magic * 2.0F) : magic;
     }
 
     @Override

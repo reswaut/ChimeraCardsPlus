@@ -1,4 +1,4 @@
-package chimeracardsplus.cardmods.rare;
+package chimeracardsplus.cardmods.uncommon;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
@@ -11,26 +11,25 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-public class ImpatientMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(ImpatientMod.class.getSimpleName());
+public class OpportunisticMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(OpportunisticMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1 && !drawsCards(c)
-                && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
+        return card.cost >= -1 && !drawsCards(card) && (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new ConditionalDrawAction(2, AbstractCard.CardType.ATTACK));
+        this.addToBot(new ConditionalDrawAction(1, AbstractCard.CardType.SKILL));
     }
 
     @Override
     public Color getGlow(AbstractCard card) {
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
-            if (c.type == AbstractCard.CardType.ATTACK && !c.uuid.equals(card.uuid)) {
+            if (c.type == AbstractCard.CardType.SKILL && !c.uuid.equals(card.uuid)) {
                 return null;
             }
         }
@@ -59,12 +58,12 @@ public class ImpatientMod extends AbstractAugment {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.RARE;
+        return AugmentRarity.UNCOMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ImpatientMod();
+        return new OpportunisticMod();
     }
 
     @Override

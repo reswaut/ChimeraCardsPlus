@@ -17,15 +17,12 @@ public class MutagenicMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.baseDamage >= 1 && c.type == AbstractCard.CardType.ATTACK));
+        return card.baseDamage >= 1 && card.type == AbstractCard.CardType.ATTACK;
     }
 
     @Override
     public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        if (GameActionManager.turn <= 1) {
-            damage += 3.0F;
-        }
-        return damage;
+        return GameActionManager.turn <= 1 ? damage + 3.0F : damage;
     }
 
     @Override

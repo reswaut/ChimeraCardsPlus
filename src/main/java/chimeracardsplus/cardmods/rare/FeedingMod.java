@@ -28,9 +28,7 @@ public class FeedingMod extends AbstractAugment implements DynvarCarrier, Healin
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1 && c.baseDamage >= 2
-                && c.rarity != AbstractCard.CardRarity.BASIC
-                && c.type == AbstractCard.CardType.ATTACK));
+        return card.cost >= -1 && card.baseDamage >= 2 && card.rarity != AbstractCard.CardRarity.BASIC && card.type == AbstractCard.CardType.ATTACK;
     }
 
     @Override
@@ -40,7 +38,7 @@ public class FeedingMod extends AbstractAugment implements DynvarCarrier, Healin
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (card instanceof Feed) {
+        if (Feed.ID.equals(card.cardID)) {
             return magic + getBaseVal(card);
         }
         return magic;
@@ -48,33 +46,35 @@ public class FeedingMod extends AbstractAugment implements DynvarCarrier, Healin
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (!(card instanceof Feed)) {
-            DamageModifierManager.addModifier(card, new FeedDamage(this.getBaseVal(card)));
-            this.addedExhaust = !card.exhaust;
-            card.exhaust = true;
+        if (Feed.ID.equals(card.cardID)) {
+            return;
         }
+        DamageModifierManager.addModifier(card, new FeedDamage(this.getBaseVal(card)));
+        this.addedExhaust = !card.exhaust;
+        card.exhaust = true;
     }
 
     @Override
     public void onUpgradeCheck(AbstractCard card) {
-        if (!(card instanceof Feed)) {
-            List<AbstractDamageModifier> mods = DamageModifierManager.modifiers(card);
-            List<AbstractDamageModifier> toRemove = new ArrayList<>();
-            for (AbstractDamageModifier m : mods) {
-                if (m instanceof FeedDamage) {
-                    toRemove.add(m);
-                }
+        if (Feed.ID.equals(card.cardID)) {
+            return;
+        }
+        List<AbstractDamageModifier> mods = DamageModifierManager.modifiers(card);
+        List<AbstractDamageModifier> toRemove = new ArrayList<>();
+        for (AbstractDamageModifier m : mods) {
+            if (m instanceof FeedDamage) {
+                toRemove.add(m);
             }
-            for (AbstractDamageModifier m : toRemove) {
-                DamageModifierManager.removeModifier(card, m);
-            }
-            DamageModifierManager.addModifier(card, new FeedDamage(this.getBaseVal(card)));
+        }
+        for (AbstractDamageModifier m : toRemove) {
+            DamageModifierManager.removeModifier(card, m);
+        }
+        DamageModifierManager.addModifier(card, new FeedDamage(this.getBaseVal(card)));
 
-            if (!card.exhaust) {
-                this.addedExhaust = true;
-                card.exhaust = true;
-                card.initializeDescription();
-            }
+        if (!card.exhaust) {
+            this.addedExhaust = true;
+            card.exhaust = true;
+            card.initializeDescription();
         }
     }
 
@@ -121,7 +121,7 @@ public class FeedingMod extends AbstractAugment implements DynvarCarrier, Healin
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof Feed) {
+        if (Feed.ID.equals(card.cardID)) {
             return rawDescription;
         }
         return insertAfterText(rawDescription, String.format(this.addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1], DESCRIPTION_KEY));

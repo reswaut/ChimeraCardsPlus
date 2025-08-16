@@ -33,17 +33,17 @@ public class FocusedMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return allowOrbMods() && cardCheck(card, (c) -> (c.cost >= -1 && (c.baseDamage >= 8 || c.baseBlock >= 8)));
+        return allowOrbMods() && cardCheck(card, (c) -> c.cost >= -1 && (c.baseDamage >= 8 || c.baseBlock >= 8) && doesntUpgradeExhaust());
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage >= 1.0F ? Math.max(1.0F, damage - getBaseValDamage(card) * 7.0F) : damage;
+        return damage >= 0.0F ? Math.max(damage - getBaseValDamage(card) * 7.0F, 0.0F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return block >= 1.0F ? Math.max(1.0F, block - getBaseValBlock(card) * 7.0F) : block;
+        return block >= 0.0F ? Math.max(block - getBaseValBlock(card) * 7.0F, 0.0F) : block;
     }
 
     @Override
@@ -83,15 +83,6 @@ public class FocusedMod extends AbstractAugment implements DynvarCarrier {
         this.modified = card.timesUpgraded != 0 || card.upgraded;
         this.upgraded = card.timesUpgraded != 0 || card.upgraded;
         return this.upgraded;
-    }
-
-    @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
-            addedExhaust = true;
-            card.exhaust = true;
-        }
-        card.initializeDescription();
     }
 
     @Override

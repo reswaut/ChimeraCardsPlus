@@ -5,7 +5,6 @@ import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.interfaces.BonusMod;
-import chimeracardsplus.interfaces.HealingMod;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.StSLib;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -17,7 +16,7 @@ import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.NeowsLament;
 
-public class BlessedMod extends AbstractAugment implements HealingMod, BonusMod {
+public class BlessedMod extends AbstractAugment implements BonusMod {
     public static final String ID = ChimeraCardsPlus.makeID(BlessedMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
@@ -32,12 +31,10 @@ public class BlessedMod extends AbstractAugment implements HealingMod, BonusMod 
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1
-                && isNormalCard(c)))
-                && characterCheck((p) -> {
+        return card.cost >= -1 && isNormalCard(card) && characterCheck((p) -> {
             AbstractRelic relic = p.getRelic(NeowsLament.ID);
-                    return (relic != null) && relic.counter > 1;
-                });
+            return (relic != null) && relic.counter > 1;
+        });
     }
 
     @Override

@@ -11,42 +11,42 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
-
 public class ConclusiveMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(ConclusiveMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
+    private boolean modMagic = false;
+
+    @Override
+    public void onInitialApplication(AbstractCard card) {
+        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+            modMagic = true;
+        }
+    }
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return (card.baseDamage > 1 || card.baseBlock > 1 || (card.baseMagicNumber > 1 && doesntDowngradeMagicNoUseChecks(card)))
-                && cardCheck(card, c -> (c.cost != -2 && !usesAction(c, PressEndTurnButtonAction.class)));
+        return cardCheck(card, (c) -> (c.baseDamage >= 2 || c.baseBlock >= 2 || (c.baseMagicNumber >= 2 && doesntDowngradeMagic())) && c.cost >= -1 && !usesAction(c, PressEndTurnButtonAction.class));
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 1) ? (damage * 1.5F) : damage;
+        return (damage > 0.0F) ? (damage * 1.5F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 1) ? (block * 1.5F) : block;
+        return (block > 0.0F) ? (block * 1.5F) : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 1.5F) : magic;
+        return modMagic ? (magic * 1.5F) : magic;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         this.addToBot(new PressEndTurnButtonAction());
-    }
-
-    @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        card.initializeDescription();
     }
 
     @Override

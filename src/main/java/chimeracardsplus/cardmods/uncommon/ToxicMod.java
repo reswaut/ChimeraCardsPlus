@@ -25,17 +25,8 @@ public class ToxicMod extends AbstractAugment {
     }
 
     @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        if (!card.exhaust) {
-            addedExhaust = true;
-            card.exhaust = true;
-        }
-        card.initializeDescription();
-    }
-
-    @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> (c.cost >= -1 && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL) && usesEnemyTargeting())) && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[2]));
+        return cardCheck(card, c -> c.cost >= -1 && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL) && usesEnemyTargeting() && doesntUpgradeExhaust()) && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[2]));
     }
 
     @Override

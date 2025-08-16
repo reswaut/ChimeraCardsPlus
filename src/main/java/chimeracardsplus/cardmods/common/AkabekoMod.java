@@ -17,31 +17,17 @@ public class AkabekoMod extends AbstractAugment {
 
     @Override
     public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        int count = 0;
-        for (AbstractCard c : AbstractDungeon.actionManager.cardsPlayedThisCombat) {
-            if (c.type == AbstractCard.CardType.ATTACK) {
-                count += 1;
-                if (count >= 2) {
-                    return damage;
-                }
-            }
-        }
-        return damage + 8;
+        return AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().filter((c) -> c.type == AbstractCard.CardType.ATTACK).count() <= 1 ? damage + 8 : damage;
     }
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> (c.baseDamage >= 1 && c.type == AbstractCard.CardType.ATTACK));
+        return card.baseDamage >= 1 && card.type == AbstractCard.CardType.ATTACK;
     }
 
     @Override
     public Color getGlow(AbstractCard card) {
-        for (AbstractCard c : AbstractDungeon.actionManager.cardsPlayedThisCombat) {
-            if (c.type == AbstractCard.CardType.ATTACK) {
-                return null;
-            }
-        }
-        return Color.GOLD.cpy();
+        return AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().noneMatch((c) -> c.type == AbstractCard.CardType.ATTACK) ? Color.GOLD.cpy() : null;
     }
 
     @Override

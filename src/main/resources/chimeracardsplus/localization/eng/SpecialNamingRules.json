@@ -156,11 +156,17 @@
     "DeepMod": {
       "Deep Breath": "Deep² Breath"
     },
+    "DeterminedMod": {
+      "Power Through": "Power Through²"
+    },
     "DiscoveredMod": {
       "Discovery": "Discovery²"
     },
     "DoublingMod": {
       "Double Tap": "Double² Tap"
+    },
+    "ExplosionMod": {
+      "Corpse Explosion": "Corpse Explosion²"
     },
     "FastingMod": {
       "Fasting": "Fasting²"
@@ -185,6 +191,9 @@
     },
     "HoloMod": {
       "Hologram": "Hologram²"
+    },
+    "InescapableMod": {
+      "Necronomicurse": "Necronomicurse²"
     },
     "InjuriousMod": {
       "Wild Strike": "Wild² Strike"

@@ -25,17 +25,8 @@ public class GamblerMod extends AbstractAugment {
     }
 
     @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
-            addedExhaust = true;
-            card.exhaust = true;
-        }
-        card.initializeDescription();
-    }
-
-    @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1 && !(c instanceof CalculatedGamble));
+        return cardCheck(card, (c) -> c.cost >= -1 && !CalculatedGamble.ID.equals(c.cardID) && doesntUpgradeExhaust());
     }
 
     @Override

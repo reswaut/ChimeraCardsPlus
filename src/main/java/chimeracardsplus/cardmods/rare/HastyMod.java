@@ -22,13 +22,7 @@ public class HastyMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 1 && doesntUpgradeCost()
-                && (card.type != AbstractCard.CardType.POWER)));
-    }
-
-    @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        card.initializeDescription();
+        return cardCheck(card, (c) -> (c.cost >= 1 && doesntUpgradeCost() && c.type != AbstractCard.CardType.POWER));
     }
 
     @Override

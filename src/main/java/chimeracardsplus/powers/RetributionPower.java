@@ -24,7 +24,7 @@ public class RetributionPower extends AbstractPower {
         this.amount = amount;
         this.type = PowerType.BUFF;
         this.updateDescription();
-        this.loadRegion("flameBarrier");
+        this.loadRegion("master_smite");
     }
 
     @Override

@@ -19,7 +19,7 @@ public class MartialMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost > 0;
+        return card.cost >= 1;
     }
 
     @Override

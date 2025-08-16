@@ -34,7 +34,7 @@ public class JudgeMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage >= 0.0F) ? (damage * 0.75F) : damage;
+        return (damage > 0.0F) ? (damage * 0.75F) : damage;
     }
 
     @Override

@@ -14,7 +14,7 @@ public class ExperiencedMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.baseBlock >= 1);
+        return card.baseBlock >= 1;
     }
 
     @Override

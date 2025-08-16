@@ -20,7 +20,7 @@ public class ProactiveMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1 && !(c instanceof Warcry || c instanceof ThinkingAhead)));
+        return card.cost >= -1 && !(Warcry.ID.equals(card.cardID) || ThinkingAhead.ID.equals(card.cardID));
     }
 
     @Override

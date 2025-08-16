@@ -18,7 +18,7 @@ public class UntappedMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= 0);
+        return card.cost >= 0;
     }
 
     @Override

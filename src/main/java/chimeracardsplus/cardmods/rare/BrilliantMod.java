@@ -24,7 +24,7 @@ public class BrilliantMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> c.baseDamage >= 1) && characterCheck((p) -> hasCardWithKeywordInDeck(p, CARD_TEXT[3]));
+        return card.baseDamage >= 1 && characterCheck((p) -> hasCardWithKeywordInDeck(p, CARD_TEXT[3]));
     }
 
     @Override
@@ -44,7 +44,7 @@ public class BrilliantMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof Brilliance) {
+        if (Brilliance.ID.equals(card.cardID)) {
             return rawDescription.replace(CARD_TEXT[1], CARD_TEXT[2]);
         }
         return insertAfterText(rawDescription, CARD_TEXT[0]);

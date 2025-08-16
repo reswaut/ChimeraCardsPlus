@@ -6,7 +6,6 @@ import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.powers.StunPlayerPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -14,42 +13,42 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
-
 public class HyperMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(HyperMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
+    private boolean modMagic = false;
+
+    @Override
+    public void onInitialApplication(AbstractCard card) {
+        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+            modMagic = true;
+        }
+    }
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return (card.baseDamage >= 1 || card.baseBlock >= 1 || (card.baseMagicNumber >= 1 && doesntDowngradeMagicNoUseChecks(card)))
-                && cardCheck(card, c -> (c.cost != -2 && !usesAction(c, PressEndTurnButtonAction.class)));
+        return cardCheck(card, c -> c.cost >= -1 && (c.baseDamage >= 1 || c.baseBlock >= 1 || (c.baseMagicNumber >= 1 && doesntDowngradeMagic())));
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage >= 1) ? (damage * 3.0F) : damage;
+        return damage > 0.0F ? (damage * 3.0F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block >= 1) ? (block * 3.0F) : block;
+        return block > 0.0F ? (block * 3.0F) : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return (magic >= 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 3.0F) : magic;
+        return modMagic ? (magic * 3.0F) : magic;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StunPlayerPower(AbstractDungeon.player, 2, false)));
-    }
-
-    @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        card.initializeDescription();
     }
 
     @Override

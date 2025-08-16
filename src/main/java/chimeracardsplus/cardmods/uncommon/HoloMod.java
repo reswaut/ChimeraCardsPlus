@@ -27,7 +27,7 @@ public class HoloMod extends AbstractAugment {
             addedExhaust = !card.exhaust;
             card.exhaust = true;
         }
-        if (card instanceof Hologram) {
+        if (Hologram.ID.equals(card.cardID)) {
             InterruptUseCardFieldPatches.InterceptUseField.interceptUse.set(card, true);
         }
     }
@@ -43,22 +43,22 @@ public class HoloMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost != -2 && (c.baseDamage >= 3 || c.baseBlock >= 3)));
+        return card.cost >= -1 && (card.baseDamage >= 3 || card.baseBlock >= 3);
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage >= 3) ? (damage / 3.0F) : damage;
+        return (damage > 0.0F) ? (damage / 3.0F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block >= 3) ? (block / 3.0F) : block;
+        return (block > 0.0F) ? (block / 3.0F) : block;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (card instanceof Hologram) {
+        if (Hologram.ID.equals(card.cardID)) {
             this.addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, card.block));
             this.addToBot(new BetterDiscardPileToHandAction(2));
             return;
@@ -83,7 +83,7 @@ public class HoloMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof Hologram) {
+        if (Hologram.ID.equals(card.cardID)) {
             return rawDescription.replace(CARD_TEXT[2], CARD_TEXT[3]);
         }
         return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1]);

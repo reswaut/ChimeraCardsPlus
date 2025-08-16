@@ -21,12 +21,12 @@ public class ChronoMod extends AbstractAugment implements TriggerOnDiscardMod {
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage >= 0.0F ? damage * 0.25F : damage;
+        return damage > 0.0F ? damage * 0.25F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return block >= 0.0F ? block * 0.25F : block;
+        return block > 0.0F ? block * 0.25F : block;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ChronoMod extends AbstractAugment implements TriggerOnDiscardMod {
                 && (c.baseDamage >= 4 || c.baseBlock >= 4)
                 && customCheck(c, (check) ->
                 noCardModDescriptionChanges(check)
-                        && check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1L)
+                        && check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1)
         ));
     }
 

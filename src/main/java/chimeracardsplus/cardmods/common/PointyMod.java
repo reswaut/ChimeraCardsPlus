@@ -21,7 +21,7 @@ public class PointyMod extends AbstractAugment implements TriggerOnDiscardMod {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.type == AbstractCard.CardType.ATTACK && c.baseDamage >= 1 && c.cost >= -1));
+        return card.type == AbstractCard.CardType.ATTACK && card.baseDamage >= 1 && card.cost >= -1;
     }
 
     @Override

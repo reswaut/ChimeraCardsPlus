@@ -30,7 +30,7 @@ public class ChokingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (card instanceof Choke) {
+        if (Choke.ID.equals(card.cardID)) {
             return magic + getBaseVal(card);
         }
         return magic;
@@ -38,9 +38,7 @@ public class ChokingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= -1
-                && card.baseDamage > 1
-                && cardCheck(card, (c) -> usesEnemyTargeting());
+        return cardCheck(card, (c) -> c.cost >= -1 && c.baseDamage >= 2 && usesEnemyTargeting());
     }
 
     public int getBaseVal(AbstractCard card) {
@@ -91,7 +89,7 @@ public class ChokingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof Choke) {
+        if (Choke.ID.equals(card.cardID)) {
             return rawDescription;
         }
         return insertAfterText(rawDescription, String.format(CARD_TEXT[0], DESCRIPTION_KEY));
@@ -99,9 +97,10 @@ public class ChokingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (!(card instanceof Choke) && target != null) {
-            this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new ChokePower(target, getBaseVal(card)), getBaseVal(card)));
+        if (Choke.ID.equals(card.cardID) || target == null) {
+            return;
         }
+        this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new ChokePower(target, getBaseVal(card)), getBaseVal(card)));
     }
 
     @Override

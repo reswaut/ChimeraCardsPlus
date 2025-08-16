@@ -22,7 +22,7 @@ public class CastMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return allowOrbMods() && cardCheck(card, (c) -> c.cost >= -1);
+        return allowOrbMods() && card.cost >= -1;
     }
 
     @Override

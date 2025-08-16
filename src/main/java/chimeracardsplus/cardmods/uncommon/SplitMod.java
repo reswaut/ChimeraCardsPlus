@@ -22,8 +22,7 @@ public class SplitMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 1 && c.baseDamage >= 4 && c.type == AbstractCard.CardType.ATTACK
-                && doesntUpgradeCost()));
+        return cardCheck(card, (c) -> (c.cost >= 1 && doesntUpgradeCost() && c.baseDamage >= 4 && c.type == AbstractCard.CardType.ATTACK));
     }
 
     @Override
@@ -70,14 +69,14 @@ public class SplitMod extends AbstractAugment {
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         int cost = card.cost;
-        if (card instanceof Sunder) {
+        if (Sunder.ID.equals(card.cardID)) {
             cost += 3;
         }
         if (cost <= 0) {
             return rawDescription;
         }
         String text = (cost <= 3) ? CARD_TEXT[cost - 1] : String.format(CARD_TEXT[3], cost);
-        if (card instanceof Sunder) {
+        if (Sunder.ID.equals(card.cardID)) {
             return rawDescription.replace(CARD_TEXT[4], text);
         }
         return insertAfterText(rawDescription, text);

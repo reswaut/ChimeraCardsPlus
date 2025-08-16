@@ -27,12 +27,12 @@ public class PerfectMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> isStrike(c) && c.baseDamage > 1);
+        return isStrike(card) && card.baseDamage >= 2;
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        if (isInARun() && (card instanceof PerfectedStrike)) {
+        if (isInARun() && PerfectedStrike.ID.equals(card.cardID)) {
             float realBaseDamage = card.baseDamage - card.magicNumber * PerfectedStrike.countCards();
             return damage - realBaseDamage * 0.5F;
         }
@@ -41,7 +41,7 @@ public class PerfectMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        if (card instanceof PerfectedStrike) {
+        if (PerfectedStrike.ID.equals(card.cardID)) {
             return damage;
         }
         return damage + getBaseVal(card) * PerfectedStrike.countCards();
@@ -49,7 +49,7 @@ public class PerfectMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (card instanceof PerfectedStrike) {
+        if (PerfectedStrike.ID.equals(card.cardID)) {
             return magic + getBaseVal(card);
         }
         return magic;
@@ -61,7 +61,7 @@ public class PerfectMod extends AbstractAugment implements DynvarCarrier {
             upgrades = multiplier.length - 1;
         }
         int realBaseDamage = card.baseDamage;
-        if (isInARun() && (card instanceof PerfectedStrike)) {
+        if (isInARun() && PerfectedStrike.ID.equals(card.cardID)) {
             realBaseDamage -= card.magicNumber * PerfectedStrike.countCards();
         }
         return (realBaseDamage - 1) / multiplier[upgrades] + 1;
@@ -111,7 +111,7 @@ public class PerfectMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof PerfectedStrike) {
+        if (PerfectedStrike.ID.equals(card.cardID)) {
             return rawDescription;
         }
         return insertAfterText(rawDescription, String.format(CARD_TEXT[0], DESCRIPTION_KEY));

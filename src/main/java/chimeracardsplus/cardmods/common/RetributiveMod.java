@@ -36,7 +36,7 @@ public class RetributiveMod extends AbstractAugment implements DynvarCarrier {
     }
 
     public int getBaseVal(AbstractCard card) {
-        return (int) (card.baseBlock * 0.25F);
+        return card.baseBlock / 4;
     }
 
     public String key() {

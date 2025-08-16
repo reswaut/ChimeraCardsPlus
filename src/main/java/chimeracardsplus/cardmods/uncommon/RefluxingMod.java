@@ -48,7 +48,7 @@ public class RefluxingMod extends AbstractAugment {
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage >= 0.0F) ? (damage * 4.0F / 3.0F) : damage;
+        return damage * 4.0F / 3.0F;
     }
 
     @Override

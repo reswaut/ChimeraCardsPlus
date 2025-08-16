@@ -41,7 +41,7 @@ public class FlashyMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1 && c.baseDamage >= 2));
+        return card.cost >= -1 && card.baseDamage >= 2;
     }
 
     @Override

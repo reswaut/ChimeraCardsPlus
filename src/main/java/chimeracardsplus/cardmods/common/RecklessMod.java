@@ -25,17 +25,17 @@ public class RecklessMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1 && (c.baseDamage > 1 || c.baseBlock > 1)));
+        return card.cost >= -1 && (card.baseDamage >= 2 || card.baseBlock >= 2);
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 1) ? (damage * 1.25F) : damage;
+        return (damage > 0.0F) ? (damage * 1.25F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 1) ? (block * 1.25F) : block;
+        return (block > 0.0F) ? (block * 1.25F) : block;
     }
 
     @Override

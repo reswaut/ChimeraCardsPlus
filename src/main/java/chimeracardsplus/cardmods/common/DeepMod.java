@@ -3,6 +3,7 @@ package chimeracardsplus.cardmods.common;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
 import com.megacrit.cardcrawl.actions.common.ShuffleAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -18,15 +19,21 @@ public class DeepMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1);
+        return card.cost >= -1;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (!AbstractDungeon.player.discardPile.isEmpty()) {
-            this.addToBot(new EmptyDeckShuffleAction());
-            this.addToBot(new ShuffleAction(AbstractDungeon.player.drawPile, false));
-        }
+        this.addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if (!AbstractDungeon.player.discardPile.isEmpty()) {
+                    this.addToBot(new EmptyDeckShuffleAction());
+                    this.addToBot(new ShuffleAction(AbstractDungeon.player.drawPile, false));
+                }
+                this.isDone = true;
+            }
+        });
     }
 
     @Override

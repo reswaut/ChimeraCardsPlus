@@ -21,7 +21,7 @@ public class DoppelgangerMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= 0 && c.cost < 3 && doesntUpgradeCost());
+        return cardCheck(card, (c) -> c.cost >= 0 && c.cost < 3 && doesntUpgradeCost() && doesntUpgradeExhaust());
     }
 
     @Override
@@ -33,15 +33,6 @@ public class DoppelgangerMod extends AbstractAugment {
         effect = 3 - card.cost;
         card.cost = 3;
         card.costForTurn = card.cost;
-    }
-
-    @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
-            addedExhaust = true;
-            card.exhaust = true;
-        }
-        card.initializeDescription();
     }
 
     @Override

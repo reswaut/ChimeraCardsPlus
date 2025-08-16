@@ -23,17 +23,17 @@ public class UpperMod extends AbstractAugment {
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 1) ? (damage * 0.80F) : damage;
+        return (damage > 0.0F) ? (damage * 0.80F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 1) ? (block * 0.80F) : block;
+        return (block > 0.0F) ? (block * 0.80F) : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (card instanceof Uppercut) {
+        if (Uppercut.ID.equals(card.cardID)) {
             return magic + 1;
         }
         return magic;
@@ -41,7 +41,7 @@ public class UpperMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1 && (c.baseDamage > 1 || c.baseBlock > 1) && usesEnemyTargeting()));
+        return cardCheck(card, (c) -> (c.cost >= -1 && (c.baseDamage >= 2 || c.baseBlock >= 2) && usesEnemyTargeting()));
     }
 
     @Override
@@ -61,7 +61,7 @@ public class UpperMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof Uppercut) {
+        if (Uppercut.ID.equals(card.cardID)) {
             return rawDescription;
         }
         return insertAfterText(rawDescription, CARD_TEXT[0]);
@@ -69,12 +69,11 @@ public class UpperMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (!(card instanceof Uppercut)) {
-            if (target != null) {
-                this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new WeakPower(target, 1, false), 1, true, AbstractGameAction.AttackEffect.NONE));
-                this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new VulnerablePower(target, 1, false), 1, true, AbstractGameAction.AttackEffect.NONE));
-            }
+        if (Uppercut.ID.equals(card.cardID) || target == null) {
+            return;
         }
+        this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new WeakPower(target, 1, false), 1, true, AbstractGameAction.AttackEffect.NONE));
+        this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new VulnerablePower(target, 1, false), 1, true, AbstractGameAction.AttackEffect.NONE));
     }
 
     @Override

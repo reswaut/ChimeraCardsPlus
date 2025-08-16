@@ -28,26 +28,17 @@ public class IncantatoryMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1 && c.baseDamage > 7);
+        return cardCheck(card, (c) -> c.cost >= -1 && c.baseDamage >= 8 && doesntUpgradeExhaust());
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage >= 8.0F) ? (damage - 7.0F) : 1.0F;
+        return Math.max(damage - 7.0F, 0.0F);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         new CultistPotion().use(AbstractDungeon.player);
-    }
-
-    @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
-            addedExhaust = true;
-            card.exhaust = true;
-        }
-        card.initializeDescription();
     }
 
     @Override

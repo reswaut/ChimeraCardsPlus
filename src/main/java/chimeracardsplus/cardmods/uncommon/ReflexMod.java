@@ -23,7 +23,7 @@ public class ReflexMod extends AbstractAugment implements TriggerOnDiscardMod {
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (card instanceof Reflex) {
+        if (Reflex.ID.equals(card.cardID)) {
             return magic + 1;
         }
         return magic;
@@ -46,16 +46,17 @@ public class ReflexMod extends AbstractAugment implements TriggerOnDiscardMod {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof Reflex) {
+        if (Reflex.ID.equals(card.cardID)) {
             return rawDescription;
         }
         return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 
     public void onManualDiscard(AbstractCard card) {
-        if (!(card instanceof Reflex)) {
-            this.addToBot(new DrawCardAction(1));
+        if (Reflex.ID.equals(card.cardID)) {
+            return;
         }
+        this.addToBot(new DrawCardAction(1));
     }
 
     public void onMoveToDiscard(AbstractCard card) {

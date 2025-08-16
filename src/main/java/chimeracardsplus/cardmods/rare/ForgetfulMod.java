@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.rooms.ShopRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 
 import java.util.Arrays;
@@ -45,8 +45,7 @@ public class ForgetfulMod extends AbstractAugment implements TriggerOnObtainMod,
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> isNormalCard(c) && c.rarity != AbstractCard.CardRarity.BASIC)
-                && !(AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() instanceof ShopRoom);
+        return isNormalCard(card) && card.rarity != AbstractCard.CardRarity.BASIC && AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() instanceof MonsterRoom;
     }
 
     @Override

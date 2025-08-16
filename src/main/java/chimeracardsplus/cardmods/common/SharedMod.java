@@ -19,7 +19,7 @@ public class SharedMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1 && c.baseBlock >= 2));
+        return card.cost >= -1 && card.baseBlock >= 2;
     }
 
     @Override
@@ -27,12 +27,10 @@ public class SharedMod extends AbstractAugment {
         return block * 1.4F;
     }
 
-
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         this.addToBot(new AbstractGameAction() {
             private final int block;
-
             {
                 this.block = card.block;
             }

@@ -19,9 +19,7 @@ public class ExplosionMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.cost >= 0
-                && card.type == AbstractCard.CardType.SKILL
-                && cardCheck(card, (c) -> doesntUpgradeCost() && usesEnemyTargeting());
+        return cardCheck(card, (c) -> c.cost >= 0 && doesntUpgradeCost() && usesEnemyTargeting());
     }
 
     @Override

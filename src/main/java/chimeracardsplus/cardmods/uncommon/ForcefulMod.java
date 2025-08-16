@@ -13,12 +13,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
 
-import static chimeracardsplus.util.CardCheckHelpers.doesntDowngradeMagicNoUseChecks;
-
 public class ForcefulMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(ForcefulMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
+    private boolean modMagic = false;
 
     @Override
     public void onInitialApplication(AbstractCard card) {
@@ -32,12 +31,16 @@ public class ForcefulMod extends AbstractAugment {
                 }
             }
         }
+
+        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+            modMagic = true;
+        }
     }
 
     // Needs to be affordable
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> (c.cost >= 0) && doesntUpgradeCost()) && characterCheck(p -> {
+        return cardCheck(card, c -> c.cost >= 0 && doesntUpgradeCost()) && characterCheck(p -> {
             ArrayList<AbstractCard> deck = p.masterDeck.group;
             int dest = card.cost;
             for (AbstractCard c : deck) {
@@ -51,17 +54,17 @@ public class ForcefulMod extends AbstractAugment {
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 1) ? (damage * 4.0F / 3.0F) : damage;
+        return (damage > 0.0F) ? (damage * 4.0F / 3.0F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 1) ? (block * 4.0F / 3.0F) : block;
+        return (block > 0.0F) ? (block * 4.0F / 3.0F) : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return (magic > 1 && doesntDowngradeMagicNoUseChecks(card)) ? (magic * 4.0F / 3.0F) : magic;
+        return modMagic ? (magic * 4.0F / 3.0F) : magic;
     }
 
     @Override
@@ -88,7 +91,7 @@ public class ForcefulMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card instanceof ForceField) {
+        if (ForceField.ID.equals(card.cardID)) {
             return rawDescription.replace(CARD_TEXT[1], CARD_TEXT[2]);
         }
         return insertAfterText(rawDescription, CARD_TEXT[0]);
