@@ -45,7 +45,7 @@ public class EstablishedMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return CARD_TEXT[0] + insertAfterText(rawDescription, CARD_TEXT[1]);
+        return insertAfterText(insertBeforeText(rawDescription, CARD_TEXT[0]), CARD_TEXT[1]);
     }
 
     @Override

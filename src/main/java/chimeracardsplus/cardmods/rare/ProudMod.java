@@ -22,9 +22,7 @@ public class ProudMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (notExhaust(c) && notInnate(c) && doesntUpgradeExhaust() && doesntUpgradeInnate()
-                && c.cost >= 0 && doesntUpgradeCost() && !c.hasTag(AbstractCard.CardTags.HEALING)
-                && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
+        return cardCheck(card, (c) -> (notExhaust(c) && notInnate(c) && notEthereal(c) && c.cost >= 0 && doesntUpgradeCost() && !c.hasTag(AbstractCard.CardTags.HEALING) && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
     }
 
     @Override
@@ -44,7 +42,7 @@ public class ProudMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return CARD_TEXT[0] + insertAfterText(rawDescription, CARD_TEXT[1]);
+        return insertAfterText(insertBeforeText(rawDescription, CARD_TEXT[0]), CARD_TEXT[1]);
     }
 
     @Override

@@ -3,16 +3,17 @@ package chimeracardsplus.cardmods.common;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.interfaces.TriggerOnUsePotionMod;
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-public class SozuMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(SozuMod.class.getSimpleName());
+public class DodecahedralMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(DodecahedralMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
     public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
@@ -23,14 +24,20 @@ public class SozuMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (TriggerOnUsePotionMod.CardModifierOnUsePotionManager.usedPotionThisTurn) {
-            this.addToBot(new GainEnergyAction(1));
-        }
+        this.addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if (AbstractDungeon.player.currentHealth >= AbstractDungeon.player.maxHealth) {
+                    this.addToBot(new GainEnergyAction(1));
+                }
+                this.isDone = true;
+            }
+        });
     }
 
     @Override
     public Color getGlow(AbstractCard card) {
-        return TriggerOnUsePotionMod.CardModifierOnUsePotionManager.usedPotionThisTurn ? Color.GOLD.cpy() : null;
+        return AbstractDungeon.player.currentHealth >= AbstractDungeon.player.maxHealth ? Color.GOLD.cpy() : null;
     }
 
     @Override
@@ -60,7 +67,7 @@ public class SozuMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new SozuMod();
+        return new DodecahedralMod();
     }
 
     @Override

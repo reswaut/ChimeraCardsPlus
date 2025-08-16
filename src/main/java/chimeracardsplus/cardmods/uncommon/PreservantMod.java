@@ -29,8 +29,7 @@ public class PreservantMod extends AbstractAugment implements DynvarCarrier {
     }
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0 && c.baseBlock >= 4 && notRetain(c) && notEthereal(c)
-                && doesntOverride(c, "triggerOnEndOfTurnForPlayingCard")));
+        return cardCheck(card, (c) -> (c.cost >= -1 && c.baseBlock >= 4 && notRetain(c) && notEthereal(c) && doesntOverride(c, "triggerOnEndOfTurnForPlayingCard")));
     }
 
     @Override
@@ -87,7 +86,7 @@ public class PreservantMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return CARD_TEXT[0] + insertAfterText(rawDescription, String.format(CARD_TEXT[1], DESCRIPTION_KEY));
+        return insertAfterText(insertBeforeText(rawDescription, CARD_TEXT[0]), String.format(CARD_TEXT[1], DESCRIPTION_KEY));
     }
 
     @Override

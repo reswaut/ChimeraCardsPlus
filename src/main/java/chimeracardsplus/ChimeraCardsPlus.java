@@ -6,10 +6,9 @@ import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.ModLabeledToggleButton;
 import basemod.ModPanel;
-import basemod.interfaces.EditKeywordsSubscriber;
-import basemod.interfaces.EditStringsSubscriber;
-import basemod.interfaces.PostInitializeSubscriber;
+import basemod.interfaces.*;
 import chimeracardsplus.interfaces.SpecialNamingRules;
+import chimeracardsplus.interfaces.TriggerOnUsePotionMod;
 import chimeracardsplus.powers.NoDamagePower;
 import chimeracardsplus.powers.RetributionPower;
 import chimeracardsplus.powers.StunPlayerPower;
@@ -32,6 +31,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -43,6 +44,9 @@ import java.util.Properties;
 public class ChimeraCardsPlus implements
         EditKeywordsSubscriber,
         EditStringsSubscriber,
+        OnStartBattleSubscriber,
+        OnPlayerTurnStartSubscriber,
+        PostPotionUseSubscriber,
         PostInitializeSubscriber {
     private static final String resourcesFolder = checkResourcesPath();
     private static final String FILE_NAME = "chimera_cards_plus_config";
@@ -122,6 +126,10 @@ public class ChimeraCardsPlus implements
         settingsPanel.addUIElement(enableSpecialNamingButton);
     }
 
+    private static String getLangString() {
+        return Settings.language.name().toLowerCase();
+    }
+
     private static String checkResourcesPath() {
         String name = ChimeraCardsPlus.class.getName();
         name = name.substring(0, name.indexOf('.'));
@@ -137,11 +145,10 @@ public class ChimeraCardsPlus implements
                 "\tat the top of the " + ChimeraCardsPlus.class.getSimpleName() + " java file.");
     }
 
-    private static String getLangString() {
-        return Settings.language.name().toLowerCase();
+    @Override
+    public void receiveOnPlayerTurnStart() {
+        TriggerOnUsePotionMod.CardModifierOnUsePotionManager.onPlayerTurnStart();
     }
-
-    /*----------Localization----------*/
 
     @Override
     public void receivePostInitialize() {
@@ -162,6 +169,16 @@ public class ChimeraCardsPlus implements
         BaseMod.addPower(RetributionPower.class, RetributionPower.POWER_ID);
         BaseMod.addPower(StunPlayerPower.class, StunPlayerPower.POWER_ID);
         BaseMod.addPower(UntappedPower.class, UntappedPower.POWER_ID);
+    }
+
+    @Override
+    public void receiveOnBattleStart(AbstractRoom room) {
+        TriggerOnUsePotionMod.CardModifierOnUsePotionManager.onBattleStart(room);
+    }
+
+    @Override
+    public void receivePostPotionUse(AbstractPotion potion) {
+        TriggerOnUsePotionMod.CardModifierOnUsePotionManager.onUsePotion(potion);
     }
 
     @Override

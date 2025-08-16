@@ -102,7 +102,7 @@ public class AuraMod extends AbstractAugment {
                 .replace("!M!", String.valueOf(Math.max(1, card.baseMagicNumber / 4)))
                 .toCharArray();
         c[0] = Character.toLowerCase(c[0]);
-        return CARD_TEXT[0] + insertAfterText(rawDescription, CARD_TEXT[1] + new String(c));
+        return insertAfterText(insertBeforeText(rawDescription, CARD_TEXT[0]), CARD_TEXT[1] + new String(c));
     }
 
     @Override

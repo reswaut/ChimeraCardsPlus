@@ -126,7 +126,7 @@
     "TEXT": [
       "Bloodletting ",
       "",
-      "Loses #b2 HP instead of costing [E] ."
+      "Loses #b2 HP per [E] instead of costing [E] ."
     ],
     "EXTRA_TEXT": [
       " NL Lose %d HP."
@@ -1650,7 +1650,7 @@
     "TEXT": [
       "Sozu ",
       "",
-      "After you use a potion, gains [E] this turn."
+      "Gains [E] if you used a potion this turn."
     ],
     "EXTRA_TEXT": [
       " NL If you used a potion this turn, gain [E]."
@@ -2390,7 +2390,7 @@
     "TEXT": [
       "Chrono ",
       "",
-      "Reduces damage and #yBlock by #b60%. NL Plays once for each turn in combat."
+      "Reduces damage and #yBlock by #b75%. NL Plays once for each turn in combat."
     ],
     "EXTRA_TEXT": [
       " for each turn in combat.",
@@ -2502,6 +2502,16 @@
     "EXTRA_TEXT": [
       " NL Can only be played if you have no Energy.",
       "I have Energy left."
+    ]
+  },
+  "${modID}:DodecahedralMod": {
+    "TEXT": [
+      "Dodecahedral ",
+      "",
+      "Gains [E] if your HP is full."
+    ],
+    "EXTRA_TEXT": [
+      " NL If your HP is full, gain [E]."
     ]
   }
 }
