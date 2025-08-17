@@ -11,17 +11,18 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FocusPower;
 
 public class FocusedMod extends AbstractAugment implements DynvarCarrier {
     public static final String ID = ChimeraCardsPlus.makeID(FocusedMod.class.getSimpleName());
-    public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
-    public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
-    public static final String DESCRIPTION_KEY = "!" + ID + "!";
-    public boolean modified;
-    public boolean upgraded;
-    private boolean addedExhaust = false;
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
+    private static final String[] TEXT = uiStrings.TEXT;
+    private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
+    private static final String DESCRIPTION_KEY = "!" + ID + "!";
+    private boolean modified = false;
+    private boolean addedExhaust = true;
 
     @Override
     public void onInitialApplication(AbstractCard card) {
@@ -81,8 +82,7 @@ public class FocusedMod extends AbstractAugment implements DynvarCarrier {
 
     public boolean upgraded(AbstractCard card) {
         this.modified = card.timesUpgraded != 0 || card.upgraded;
-        this.upgraded = card.timesUpgraded != 0 || card.upgraded;
-        return this.upgraded;
+        return this.modified;
     }
 
     @Override

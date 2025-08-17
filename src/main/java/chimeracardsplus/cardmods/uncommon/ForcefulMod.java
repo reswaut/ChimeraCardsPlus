@@ -9,14 +9,16 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.blue.ForceField;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
 
 public class ForcefulMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(ForcefulMod.class.getSimpleName());
-    public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
-    public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
+    private static final String[] TEXT = uiStrings.TEXT;
+    private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
     private boolean modMagic = false;
 
     @Override

@@ -9,14 +9,16 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.CultistPotion;
 
 public class IncantatoryMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(IncantatoryMod.class.getSimpleName());
-    public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
-    public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
-    private boolean addedExhaust = false;
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
+    private static final String[] TEXT = uiStrings.TEXT;
+    private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
+    private boolean addedExhaust = true;
 
     @Override
     public void onInitialApplication(AbstractCard card) {

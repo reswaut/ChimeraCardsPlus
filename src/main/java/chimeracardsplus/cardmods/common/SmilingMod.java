@@ -7,11 +7,13 @@ import chimeracardsplus.interfaces.TriggerOnPurgeMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.UIStrings;
 
 public class SmilingMod extends AbstractAugment implements TriggerOnPurgeMod {
     public static final String ID = ChimeraCardsPlus.makeID(SmilingMod.class.getSimpleName());
-    public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
-    public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
+    private static final String[] TEXT = uiStrings.TEXT;
+    private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
     public boolean validCard(AbstractCard card) {

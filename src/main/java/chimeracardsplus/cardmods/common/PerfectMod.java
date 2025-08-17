@@ -8,18 +8,19 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.red.PerfectedStrike;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static com.megacrit.cardcrawl.core.CardCrawlGame.isInARun;
 
 public class PerfectMod extends AbstractAugment implements DynvarCarrier {
     public static final String ID = ChimeraCardsPlus.makeID(PerfectMod.class.getSimpleName());
-    public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
-    public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
-    public static final String DESCRIPTION_KEY = "!" + ID + "!";
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
+    private static final String[] TEXT = uiStrings.TEXT;
+    private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
+    private static final String DESCRIPTION_KEY = "!" + ID + "!";
     public static final int[] multiplier = { 6, 4, 3, 2 };
-    public boolean modified;
-    public boolean upgraded;
+    private boolean modified = false;
 
     public static boolean isStrike(AbstractCard c) {
         return c.hasTag(AbstractCard.CardTags.STRIKE);
@@ -85,8 +86,7 @@ public class PerfectMod extends AbstractAugment implements DynvarCarrier {
 
     public boolean upgraded(AbstractCard card) {
         this.modified = card.timesUpgraded != 0 || card.upgraded;
-        this.upgraded = card.timesUpgraded != 0 || card.upgraded;
-        return this.upgraded;
+        return this.modified;
     }
 
     @Override

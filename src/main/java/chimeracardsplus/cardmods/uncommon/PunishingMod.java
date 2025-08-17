@@ -18,20 +18,22 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 public class PunishingMod extends AbstractAugment implements DynvarCarrier {
     public static final String ID = ChimeraCardsPlus.makeID(PunishingMod.class.getSimpleName());
-    public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
-    public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
-    public static final String DESCRIPTION_KEY = "!" + ID + "!";
-    public int val;
-    private boolean upgraded, modified;
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
+    private static final String[] TEXT = uiStrings.TEXT;
+    private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
+    private static final String DESCRIPTION_KEY = "!" + ID + "!";
+    public int val = 0;
+    private boolean modified = false;
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost > 0 && c.baseDamage > 0 && doesntUpgradeCost() && usesVanillaTargeting(c) && c.type == AbstractCard.CardType.ATTACK && customCheck(c, (check) -> check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1));
+        return cardCheck(card, (c) -> c.cost > 0 && c.baseDamage >= 2 && doesntUpgradeCost() && usesVanillaTargeting(c) && c.type == AbstractCard.CardType.ATTACK && customCheck(c, (check) -> check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1));
     }
 
     public void onInitialApplication(AbstractCard card) {
@@ -159,7 +161,6 @@ public class PunishingMod extends AbstractAugment implements DynvarCarrier {
     public boolean upgraded(AbstractCard card) {
         this.val = this.getBaseVal(card);
         this.modified = card.timesUpgraded != 0 || card.upgraded;
-        this.upgraded = card.timesUpgraded != 0 || card.upgraded;
-        return this.upgraded;
+        return this.modified;
     }
 }

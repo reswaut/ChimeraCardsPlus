@@ -15,13 +15,9 @@ public class StrikeMod extends AbstractAugment {
         card.tags.add(AbstractCard.CardTags.STRIKE);
     }
 
-    public static boolean isStrike(AbstractCard c) {
-        return c.hasTag(AbstractCard.CardTags.STRIKE);
-    }
-
     @Override
     public boolean validCard(AbstractCard card) {
-        return card.type == AbstractCard.CardType.ATTACK && card.baseDamage > 0 && !isStrike(card);
+        return card.type == AbstractCard.CardType.ATTACK && !card.hasTag(AbstractCard.CardTags.STRIKE);
     }
 
     @Override

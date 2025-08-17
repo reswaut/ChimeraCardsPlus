@@ -98,7 +98,6 @@ public class ChimeraCardsPlus implements
     public static boolean enableSpecialNaming() {
         return enableSpecialNaming;
     }
-
     public static boolean enableCardFixes() {
         return enableCardFixes;
     }

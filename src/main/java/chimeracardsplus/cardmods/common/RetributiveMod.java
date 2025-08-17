@@ -11,14 +11,15 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.UIStrings;
 
 public class RetributiveMod extends AbstractAugment implements DynvarCarrier {
     public static final String ID = ChimeraCardsPlus.makeID(RetributiveMod.class.getSimpleName());
-    public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
-    public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
-    public static final String DESCRIPTION_KEY = "!" + ID + "!";
-    public boolean modified;
-    public boolean upgraded;
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
+    private static final String[] TEXT = uiStrings.TEXT;
+    private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
+    private static final String DESCRIPTION_KEY = "!" + ID + "!";
+    private boolean modified = false;
 
     @Override
     public boolean validCard(AbstractCard card) {
@@ -57,8 +58,7 @@ public class RetributiveMod extends AbstractAugment implements DynvarCarrier {
 
     public boolean upgraded(AbstractCard card) {
         this.modified = card.timesUpgraded != 0 || card.upgraded;
-        this.upgraded = card.timesUpgraded != 0 || card.upgraded;
-        return this.upgraded;
+        return this.modified;
     }
 
     @Override

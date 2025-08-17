@@ -12,12 +12,15 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 
 public class TimeWarpedMod extends AbstractAugment implements TriggerOnDiscardMod {
     public static final String ID = ChimeraCardsPlus.makeID(TimeWarpedMod.class.getSimpleName());
-    public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
-    public static final String[] CARD_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
+    private static final String[] TEXT = uiStrings.TEXT;
+    private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
     private boolean descriptionHack = false;
 
     @Override
@@ -53,6 +56,8 @@ public class TimeWarpedMod extends AbstractAugment implements TriggerOnDiscardMo
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (AbstractDungeon.actionManager.cardsPlayedThisCombat.size() == 12) {
+            CardCrawlGame.sound.play("POWER_TIME_WARP", 0.05F);
+            AbstractDungeon.topLevelEffectsQueue.add(new TimeWarpTurnEndEffect());
             this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, 2)));
             this.addToBot(new PressEndTurnButtonAction());
         }

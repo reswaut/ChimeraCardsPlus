@@ -449,7 +449,7 @@
     "TEXT": [
       "Determined ",
       "",
-      "Increases card values by #b67%. NL Adds two #rWounds into your hand."
+      "Increases damage and #yBlock by #b67%. NL Adds two #rWounds into your hand."
     ],
     "EXTRA_TEXT": [
       " NL Add 2 *Wounds into your hand."
@@ -803,7 +803,7 @@
     "TEXT": [
       "Grand ",
       "",
-      "Increases card values by #b400%. NL #yUnplayable unless your deck is empty."
+      "Increases card values by #b300%. NL #yUnplayable unless your deck is empty."
     ],
     "EXTRA_TEXT": [
       " NL Can only be played if there are no cards in your draw pile."
@@ -916,17 +916,6 @@
     ],
     "EXTRA_TEXT": [
       " NL If this kills an enemy, gain [E] and draw 1 card."
-    ]
-  },
-  "${modID}:ImmortalityMod": {
-    "TEXT": [
-      "",
-      " for Immortality",
-      "Makes your wildest dreams come true."
-    ],
-    "EXTRA_TEXT": [
-      "Choose one: NL Gain !B! Plated Armor, !D! Strength, or !M! Gold. NL Exhaust.",
-      "At the end of your turn, gain %s *Plated *Armor."
     ]
   },
   "${modID}:ImpatientMod": {
@@ -1388,9 +1377,9 @@
       "NL "
     ]
   },
-  "${modID}:PreservantMod": {
+  "${modID}:PerseverantMod": {
     "TEXT": [
-      "Preservant ",
+      "Perseverant ",
       "",
       "Adds #yRetain. NL Reduces #yBlock by #b50%. NL Increases #yBlock by #b25% when #yRetained."
     ],
@@ -2499,7 +2488,7 @@
     "TEXT": [
       "Distant ",
       "",
-      "Increases card values by #b200%. NL #yUnplayable unless you don't have Energy left."
+      "Increases card values by #b300%. NL #yUnplayable unless you don't have Energy left."
     ],
     "EXTRA_TEXT": [
       " NL Can only be played if you have no Energy.",
