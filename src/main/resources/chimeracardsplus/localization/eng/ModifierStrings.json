@@ -1681,9 +1681,9 @@
       "Put the next 2 cards you play this turn on top of your draw pile."
     ]
   },
-  "${modID}:StableMod": {
+  "${modID}:EquilibrialMod": {
     "TEXT": [
-      "Stable ",
+      "Equilibrial ",
       "",
       "Costs [E] more. NL Increases damage and #yBlock by #b33%. NL #yRetains your hand this turn."
     ],

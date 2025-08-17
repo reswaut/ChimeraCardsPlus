@@ -15,8 +15,8 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EquilibriumPower;
 
-public class StableMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(StableMod.class.getSimpleName());
+public class EquilibrialMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(EquilibrialMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
@@ -77,7 +77,7 @@ public class StableMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new StableMod();
+        return new EquilibrialMod();
     }
 
     @Override

@@ -244,7 +244,7 @@
     "SpringyMod": {
       "弹回": "弹回²"
     },
-    "StableMod": {
+    "EquilibrialMod": {
       "均衡": "均衡²"
     },
     "StealthyMod": {
@@ -261,6 +261,9 @@
     },
     "TacticalMod": {
       "战术大师": "战术²大师"
+    },
+    "ThirdMod": {
+      "天眼": "天²眼"
     },
     "UpperMod": {
       "上勾拳": "上²勾拳"

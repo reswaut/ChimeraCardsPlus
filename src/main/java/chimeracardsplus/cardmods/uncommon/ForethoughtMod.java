@@ -19,7 +19,7 @@ public class ForethoughtMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= 0 && doesntUpgradeCost() && Forethought.ID.equals(c.cardID));
+        return cardCheck(card, (c) -> c.cost >= 0 && doesntUpgradeCost() && !Forethought.ID.equals(c.cardID));
     }
 
     @Override
