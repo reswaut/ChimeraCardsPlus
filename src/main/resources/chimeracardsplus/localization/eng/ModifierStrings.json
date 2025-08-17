@@ -1304,8 +1304,8 @@
   },
   "${modID}:PocketwatchMod": {
     "TEXT": [
+      "Pocketwatch ",
       "",
-      "'s Pocketwatch",
       "Draws #b3 cards next turn if this is the fourth card played in a turn."
     ],
     "EXTRA_TEXT": [
@@ -1395,7 +1395,7 @@
       "Draws #b1 card. NL Returns #b1 card from your hand to the top of your draw pile."
     ],
     "EXTRA_TEXT": [
-      " NL Draw 1 card. NL Put a card from your hand on top of your draw pile."
+      " NL Draw 1 card. NL Put 1 card from your hand on top of your draw pile."
     ]
   },
   "${modID}:ProudMod": {
@@ -1960,8 +1960,8 @@
   },
   "${modID}:WaffleMod": {
     "TEXT": [
-      "Waffle ",
       "",
+      "'s Waffle",
       "Heals #b7 HP upon pickup."
     ],
     "EXTRA_TEXT": [

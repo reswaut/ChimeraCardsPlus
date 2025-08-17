@@ -47,7 +47,7 @@ public class MirroredMod extends AbstractAugment implements TriggerOnObtainMod, 
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return isNormalCard(card) && card.rarity != AbstractCard.CardRarity.BASIC && AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() instanceof MonsterRoom;
+        return isNormalCard(card) && card.rarity != AbstractCard.CardRarity.BASIC && (!CardCrawlGame.isInARun() || (AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() instanceof MonsterRoom));
     }
 
     @Override
