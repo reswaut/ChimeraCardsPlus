@@ -6,7 +6,8 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -23,7 +24,7 @@ public class TypicalMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
         return damage > 0.0F ? damage * 0.6F : damage;
     }
 
@@ -33,14 +34,13 @@ public class TypicalMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (noShenanigans(c)
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> noShenanigans(c)
                 && c.cost >= 0
                 && (c.baseDamage >= 2 || c.baseBlock >= 2)
-                && customCheck(c, (check) ->
+                && customCheck(c, check ->
                 noCardModDescriptionChanges(check)
-                        && check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1)
-        ));
+                        && check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L));
     }
 
     @Override
@@ -64,17 +64,8 @@ public class TypicalMod extends AbstractAugment {
     }
 
     @Override
-    public void onUse(AbstractCard card, AbstractCreature cardTarget, UseCardAction action) {
-        addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                int hits = AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().map((c) -> c.type).collect(Collectors.toCollection(HashSet<AbstractCard.CardType>::new)).size();
-                for (int i = 0; i < hits - 1; ++i) {
-                    card.use(AbstractDungeon.player, (AbstractMonster) cardTarget);
-                }
-                this.isDone = true;
-            }
-        });
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        addToBot(new UseCardPerTypeAction(card, target));
     }
 
     @Override
@@ -90,5 +81,24 @@ public class TypicalMod extends AbstractAugment {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    private static class UseCardPerTypeAction extends AbstractGameAction {
+        private final AbstractCard card;
+        private final AbstractCreature cardTarget;
+
+        private UseCardPerTypeAction(AbstractCard card, AbstractCreature cardTarget) {
+            this.card = card;
+            this.cardTarget = cardTarget;
+        }
+
+        @Override
+        public void update() {
+            int hits = AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().map(c -> c.type).collect(Collectors.toCollection(HashSet<CardType>::new)).size();
+            for (int i = 0; i < hits - 1; ++i) {
+                card.use(AbstractDungeon.player, (AbstractMonster) cardTarget);
+            }
+            isDone = true;
+        }
     }
 }

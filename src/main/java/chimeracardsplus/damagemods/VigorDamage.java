@@ -12,20 +12,23 @@ import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
 public class VigorDamage extends AbstractDamageModifier {
     public VigorDamage() {
-        this.priority = 32767;
+        priority = 32767;
     }
 
-    public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature targetHit) {
-        if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
-                && targetHit.currentHealth > 0 && !targetHit.halfDead) {
+    @Override
+    public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature target) {
+        if (target instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
+                && target.currentHealth > 0 && !target.halfDead) {
             addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new VigorPower(AbstractDungeon.player, lastDamageTaken)));
         }
     }
 
+    @Override
     public boolean isInherent() {
         return true;
     }
 
+    @Override
     public AbstractDamageModifier makeCopy() {
         return new VigorDamage();
     }

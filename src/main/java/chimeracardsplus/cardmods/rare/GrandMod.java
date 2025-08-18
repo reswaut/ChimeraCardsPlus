@@ -6,7 +6,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.cards.green.GrandFinale;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -25,18 +25,18 @@ public class GrandMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+        if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
             modMagic = true;
         }
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1 && (c.baseDamage >= 1 || c.baseBlock >= 1 || (c.baseMagicNumber >= 1 && doesntDowngradeMagic())) && !GrandFinale.ID.equals(c.cardID)));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= -1 && (c.baseDamage >= 1 || c.baseBlock >= 1 || c.baseMagicNumber >= 1 && doesntDowngradeMagic()) && !GrandFinale.ID.equals(c.cardID));
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
         return damage > 0.0F ? damage * 4.0F : damage;
     }
 
@@ -47,7 +47,7 @@ public class GrandMod extends AbstractAugment {
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return modMagic ? (magic * 4.0F) : magic;
+        return modMagic ? magic * 4.0F : magic;
     }
 
     @Override
@@ -62,9 +62,9 @@ public class GrandMod extends AbstractAugment {
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (Settings.FAST_MODE) {
-            this.addToBot(new VFXAction(new GrandFinalEffect(), 0.7F));
+            addToBot(new VFXAction(new GrandFinalEffect(), 0.7F));
         } else {
-            this.addToBot(new VFXAction(new GrandFinalEffect(), 1.0F));
+            addToBot(new VFXAction(new GrandFinalEffect(), 1.0F));
         }
     }
 

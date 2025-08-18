@@ -8,11 +8,15 @@ import chimeracardsplus.interfaces.HealingMod;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LearnMod extends AbstractAugment implements HealingMod {
     public static final String ID = ChimeraCardsPlus.makeID(LearnMod.class.getSimpleName());
@@ -22,8 +26,8 @@ public class LearnMod extends AbstractAugment implements HealingMod {
     private boolean addedExhaust = true;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost() && doesntUpgradeExhaust() && c.rarity != AbstractCard.CardRarity.BASIC && c.type == AbstractCard.CardType.ATTACK));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 0 && doesntUpgradeCost() && doesntUpgradeExhaust() && c.rarity != CardRarity.BASIC && c.type == CardType.ATTACK);
     }
 
     @Override
@@ -31,19 +35,14 @@ public class LearnMod extends AbstractAugment implements HealingMod {
         DamageModifierManager.addModifier(card, new LearnDamage());
         card.cost += 1;
         card.costForTurn = card.cost;
-        this.addedExhaust = !card.exhaust;
+        addedExhaust = !card.exhaust;
         card.exhaust = true;
     }
 
     @Override
     public void onUpgradeCheck(AbstractCard card) {
         List<AbstractDamageModifier> mods = DamageModifierManager.modifiers(card);
-        List<AbstractDamageModifier> toRemove = new ArrayList<>();
-        for (AbstractDamageModifier m : mods) {
-            if (m instanceof LearnDamage) {
-                toRemove.add(m);
-            }
-        }
+        Collection<AbstractDamageModifier> toRemove = mods.stream().filter(m -> m instanceof LearnDamage).collect(Collectors.toCollection(() -> new ArrayList<>(1)));
         for (AbstractDamageModifier m : toRemove) {
             DamageModifierManager.removeModifier(card, m);
         }

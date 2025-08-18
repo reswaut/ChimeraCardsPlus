@@ -1742,7 +1742,7 @@
     "TEXT": [
       "Storm of ",
       "",
-      "Costs [E] . NL Discards your hand and adds a equal number of the card into your hand."
+      "Costs [E] . NL Discards your hand and adds an equal number of the card into your hand."
     ],
     "EXTRA_TEXT": [
       "Discard your hand. Add 1 %s into your hand for each card discarded.",
@@ -2276,10 +2276,10 @@
     "TEXT": [
       "Martial ",
       "",
-      "Draws #b2 cards if the last card played was a Attack."
+      "Draws #b2 cards if the last card played was an Attack."
     ],
     "EXTRA_TEXT": [
-      " NL If the last card played this combat was a Attack, draw 2 cards."
+      " NL If the last card played this combat was an Attack, draw 2 cards."
     ]
   },
   "${modID}:CounterMod": {
@@ -2503,6 +2503,17 @@
     ],
     "EXTRA_TEXT": [
       " NL If your HP is full, gain [E]."
+    ]
+  },
+  "${modID}:EvolutionaryMod": {
+    "TEXT": [
+      "Evolutionary ",
+      "",
+      "Costs [E] more. NL Shuffles #b3 copies of the card into your draw pile. They cost #b0 this combat. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      "Shuffle 3 copies of %s into your draw pile. They cost 0 this combat. NL Exhaust.",
+      "Innate. NL "
     ]
   }
 }

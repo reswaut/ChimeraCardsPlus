@@ -7,11 +7,14 @@ import chimeracardsplus.damagemods.FlickerDamage;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FlickeringMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(FlickeringMod.class.getSimpleName());
@@ -20,8 +23,8 @@ public class FlickeringMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1 && c.type == AbstractCard.CardType.ATTACK && notExhaust(c)));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= -1 && c.type == CardType.ATTACK && notExhaust(c));
     }
 
     @Override
@@ -29,14 +32,10 @@ public class FlickeringMod extends AbstractAugment {
         DamageModifierManager.addModifier(card, new FlickerDamage(card));
     }
 
+    @Override
     public void onUpgradeCheck(AbstractCard card) {
         List<AbstractDamageModifier> mods = DamageModifierManager.modifiers(card);
-        List<AbstractDamageModifier> toRemove = new ArrayList<>();
-        for (AbstractDamageModifier m : mods) {
-            if (m instanceof FlickerDamage) {
-                toRemove.add(m);
-            }
-        }
+        Collection<AbstractDamageModifier> toRemove = mods.stream().filter(m -> m instanceof FlickerDamage).collect(Collectors.toCollection(() -> new ArrayList<>(1)));
         for (AbstractDamageModifier m : toRemove) {
             DamageModifierManager.removeModifier(card, m);
         }

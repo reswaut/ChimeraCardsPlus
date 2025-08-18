@@ -7,7 +7,8 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardColor;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -22,23 +23,23 @@ public class TemperamentalMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.color == AbstractCard.CardColor.PURPLE && card.cost >= -1 && usesAction(card, ChangeStanceAction.class) && (card.baseDamage >= 3 || card.baseBlock >= 3);
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.color == CardColor.PURPLE && abstractCard.cost >= -1 && usesAction(abstractCard, ChangeStanceAction.class) && (abstractCard.baseDamage >= 3 || abstractCard.baseBlock >= 3);
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 0.0F) ? (damage * 4.0F / 3.0F) : damage;
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage > 0.0F ? damage * 4.0F / 3.0F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 0.0F) ? (block * 4.0F / 3.0F) : block;
+        return block > 0.0F ? block * 4.0F / 3.0F : block;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new CannotChangeStancePower(AbstractDungeon.player)));
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new CannotChangeStancePower(AbstractDungeon.player)));
     }
 
     @Override

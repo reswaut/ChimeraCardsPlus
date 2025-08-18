@@ -3,7 +3,7 @@ package chimeracardsplus.cardmods.rare;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -20,8 +20,8 @@ public class ExplosionMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= 0 && doesntUpgradeCost() && usesEnemyTargeting());
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 0 && doesntUpgradeCost() && usesEnemyTargeting());
     }
 
     @Override
@@ -32,7 +32,7 @@ public class ExplosionMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new CorpseExplosionPower(target), 1, AbstractGameAction.AttackEffect.POISON));
+        addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new CorpseExplosionPower(target), 1, AttackEffect.POISON));
     }
 
     @Override

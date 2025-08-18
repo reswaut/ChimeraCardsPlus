@@ -6,7 +6,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.interfaces.HealingMod;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -20,30 +20,30 @@ public class SoulboundMod extends AbstractAugment implements HealingMod {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        SoulboundField.soulbound.set(card, true);
-        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+        SoulboundField.soulbound.set(card, Boolean.TRUE);
+        if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
             modMagic = true;
         }
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.baseDamage >= 3 || c.baseBlock >= 3 || (c.baseMagicNumber >= 3 && doesntDowngradeMagic())) && isNormalCard(c));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> (c.baseDamage >= 3 || c.baseBlock >= 3 || c.baseMagicNumber >= 3 && doesntDowngradeMagic()) && isNormalCard(c));
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 0.0F) ? (damage * 7.0F / 5.0F) : damage;
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage > 0.0F ? damage * 7.0F / 5.0F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 0.0F) ? (block * 7.0F / 5.0F) : block;
+        return block > 0.0F ? block * 7.0F / 5.0F : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return modMagic ? (magic * 7.0F / 5.0F) : magic;
+        return modMagic ? magic * 7.0F / 5.0F : magic;
     }
 
     @Override

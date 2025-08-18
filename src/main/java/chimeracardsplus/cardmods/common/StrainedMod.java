@@ -6,7 +6,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -21,12 +21,12 @@ public class StrainedMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && card.baseDamage >= 2;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1 && abstractCard.baseDamage >= 2;
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
         return damage * 1.5F;
     }
 
@@ -52,7 +52,7 @@ public class StrainedMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
                 new StrengthPower(AbstractDungeon.player, -1)));
     }
 

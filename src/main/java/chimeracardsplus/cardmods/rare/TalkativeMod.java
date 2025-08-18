@@ -21,19 +21,19 @@ public class TalkativeMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         int roll = MathUtils.random(2);
         if (roll == 0) {
-            this.addToBot(new SFXAction("VO_CULTIST_1A"));
+            addToBot(new SFXAction("VO_CULTIST_1A"));
         } else if (roll == 1) {
-            this.addToBot(new SFXAction("VO_CULTIST_1B"));
+            addToBot(new SFXAction("VO_CULTIST_1B"));
         } else {
-            this.addToBot(new SFXAction("VO_CULTIST_1C"));
+            addToBot(new SFXAction("VO_CULTIST_1C"));
         }
         AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Byrd.DIALOG[0], 1.2F, 1.2F));
     }

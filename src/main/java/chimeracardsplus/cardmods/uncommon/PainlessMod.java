@@ -15,42 +15,42 @@ public class PainlessMod extends AbstractAugment implements DynvarCarrier {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private static final String DESCRIPTION_KEY = "!" + ID + "!";
-    private boolean modified = false;
+    private static final String DESCRIPTION_KEY = '!' + ID + '!';
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> notExhaust(c) && notEthereal(c));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> notExhaust(c) && notEthereal(c));
     }
 
-    public int getBaseVal(AbstractCard card) {
-        return 3 + this.getEffectiveUpgrades(card);
-    }
 
+    @Override
     public String key() {
         return ID;
     }
 
-    public int val(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int val(AbstractCard abstractCard) {
+        return baseVal(abstractCard);
     }
 
-    public int baseVal(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int baseVal(AbstractCard abstractCard) {
+        return 3 + getEffectiveUpgrades(abstractCard);
     }
 
-    public boolean modified(AbstractCard card) {
-        return this.modified;
+    @Override
+    public boolean modified(AbstractCard abstractCard) {
+        return false;
     }
 
-    public boolean upgraded(AbstractCard card) {
-        this.modified = card.timesUpgraded != 0 || card.upgraded;
-        return this.modified;
+    @Override
+    public boolean upgraded(AbstractCard abstractCard) {
+        return abstractCard.timesUpgraded != 0 || abstractCard.upgraded;
     }
 
     @Override
     public void onExhausted(AbstractCard card) {
-        this.addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, getBaseVal(card)));
+        addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, baseVal(card)));
     }
 
     @Override

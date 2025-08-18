@@ -19,8 +19,8 @@ public class LoopyMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return allowOrbMods() && card.cost >= -1;
+    public boolean validCard(AbstractCard abstractCard) {
+        return allowOrbMods() && abstractCard.cost >= -1;
     }
 
     @Override

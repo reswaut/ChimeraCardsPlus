@@ -24,8 +24,8 @@ public class OverclockedMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 1 && doesntUpgradeCost()));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 1 && doesntUpgradeCost());
     }
 
     @Override
@@ -50,7 +50,7 @@ public class OverclockedMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new MakeTempCardInDiscardAction(new Burn(), 2));
+        addToBot(new MakeTempCardInDiscardAction(new Burn(), 2));
     }
 
     @Override

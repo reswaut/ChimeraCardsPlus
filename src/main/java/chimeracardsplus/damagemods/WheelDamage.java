@@ -7,37 +7,41 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.AbstractMonster.EnemyType;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.UnawakenedPower;
 
 public class WheelDamage extends AbstractDamageModifier {
     public WheelDamage() {
-        this.priority = 32767;
+        priority = 32767;
     }
 
-    public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature targetHit) {
+    @Override
+    public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature target) {
         if (AbstractDungeon.getCurrRoom().eliteTrigger) {
             return;
         }
         for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
-            if (m.type == AbstractMonster.EnemyType.BOSS) {
+            if (m.type == EnemyType.BOSS) {
                 return;
             }
         }
-        if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
-                && targetHit.currentHealth > 0
-                && targetHit.currentHealth - lastDamageTaken <= 0
-                && !targetHit.halfDead
-                && !targetHit.hasPower(MinionPower.POWER_ID)
-                && !targetHit.hasPower(UnawakenedPower.POWER_ID)) {
+        if (target instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
+                && target.currentHealth > 0
+                && target.currentHealth - lastDamageTaken <= 0
+                && !target.halfDead
+                && !target.hasPower(MinionPower.POWER_ID)
+                && !target.hasPower(UnawakenedPower.POWER_ID)) {
             AbstractDungeon.getCurrRoom().addCardToRewards();
         }
     }
 
+    @Override
     public boolean isInherent() {
         return true;
     }
 
+    @Override
     public AbstractDamageModifier makeCopy() {
         return new WheelDamage();
     }

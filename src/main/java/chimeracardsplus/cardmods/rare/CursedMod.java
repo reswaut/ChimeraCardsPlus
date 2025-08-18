@@ -7,7 +7,9 @@ import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPrevie
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.interfaces.TriggerOnObtainMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -16,8 +18,6 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
-
-import static com.megacrit.cardcrawl.core.CardCrawlGame.isInARun;
 
 public class CursedMod extends AbstractAugment implements TriggerOnObtainMod {
     public static final String ID = ChimeraCardsPlus.makeID(CursedMod.class.getSimpleName());
@@ -36,35 +36,35 @@ public class CursedMod extends AbstractAugment implements TriggerOnObtainMod {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (curseID == null && isInARun()) {
+        if (curseID == null && CardCrawlGame.isInARun()) {
             curseID = AbstractDungeon.returnRandomCurse().cardID;
         }
         if (curseID != null) {
             MultiCardPreview.add(card, CardLibrary.getCard(curseID));
         }
-        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+        if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
             modMagic = true;
         }
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.baseDamage >= 1 || c.baseBlock >= 1 || (c.baseMagicNumber >= 1 && doesntDowngradeMagic())) && c.rarity != AbstractCard.CardRarity.BASIC && c.type != AbstractCard.CardType.CURSE) && (!CardCrawlGame.isInARun() || (AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() instanceof MonsterRoom));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> (c.baseDamage >= 1 || c.baseBlock >= 1 || c.baseMagicNumber >= 1 && doesntDowngradeMagic()) && c.rarity != CardRarity.BASIC && c.type != CardType.CURSE) && (!CardCrawlGame.isInARun() || AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() instanceof MonsterRoom);
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 0.0F) ? (damage * 2.0F) : damage;
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage > 0.0F ? damage * 2.0F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 0.0F) ? (block * 2.0F) : block;
+        return block > 0.0F ? block * 2.0F : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return modMagic ? (magic * 2.0F) : magic;
+        return modMagic ? magic * 2.0F : magic;
     }
 
     @Override
@@ -72,7 +72,7 @@ public class CursedMod extends AbstractAugment implements TriggerOnObtainMod {
         if (curseID == null) {
             curseID = AbstractDungeon.returnRandomCurse().cardID;
         }
-        AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(CardLibrary.getCopy(curseID), (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
+        AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(CardLibrary.getCopy(curseID), (float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2));
     }
 
     @Override

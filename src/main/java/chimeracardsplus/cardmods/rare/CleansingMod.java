@@ -6,15 +6,15 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 
 import java.util.ArrayList;
-
-import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.miscRng;
+import java.util.stream.Collectors;
 
 public class CleansingMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(CleansingMod.class.getSimpleName());
@@ -25,30 +25,27 @@ public class CleansingMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
+        if (!card.exhaust && card.type != CardType.POWER) {
             addedExhaust = true;
             card.exhaust = true;
+        } else {
+            addedExhaust = false;
         }
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1 && doesntUpgradeExhaust());
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= -1 && doesntUpgradeExhaust());
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        ArrayList<String> debuffs = new ArrayList<>();
-        for (AbstractPower p : AbstractDungeon.player.powers) {
-            if (p.type == AbstractPower.PowerType.DEBUFF) {
-                debuffs.add(p.ID);
-            }
-        }
+        ArrayList<String> debuffs = AbstractDungeon.player.powers.stream().filter(p -> p.type == PowerType.DEBUFF).map(p -> p.ID).collect(Collectors.toCollection(() -> new ArrayList<>(4)));
         if (debuffs.isEmpty()) {
             return;
         }
-        this.addToBot(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player,
-                debuffs.get(miscRng.random(0, debuffs.size() - 1))));
+        addToBot(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player,
+                debuffs.get(AbstractDungeon.miscRng.random(0, debuffs.size() - 1))));
     }
 
     @Override

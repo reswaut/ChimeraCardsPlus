@@ -9,6 +9,7 @@ import chimeracardsplus.interfaces.HealingMod;
 import com.evacipated.cardcrawl.mod.stslib.StSLib;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
@@ -19,16 +20,15 @@ public class GeneticMod extends AbstractAugment implements DynvarCarrier, Healin
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private static final String DESCRIPTION_KEY = "!" + ID + "!";
-    private boolean modified = false;
-    private boolean addedExhaust = false;
+    private static final String DESCRIPTION_KEY = '!' + ID + '!';
+    private boolean addedExhaust = true;
     private int block;
 
     public GeneticMod() {
-        this.block = 1;
+        block = 1;
     }
     public GeneticMod(int baseBlock) {
-        this.block = baseBlock;
+        block = baseBlock;
     }
 
     @Override
@@ -38,8 +38,8 @@ public class GeneticMod extends AbstractAugment implements DynvarCarrier, Healin
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= 0 && c.baseBlock >= 4 && c.rarity != AbstractCard.CardRarity.BASIC && doesntUpgradeExhaust());
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 0 && c.baseBlock >= 4 && c.rarity != CardRarity.BASIC && doesntUpgradeExhaust());
     }
 
     @Override
@@ -47,29 +47,29 @@ public class GeneticMod extends AbstractAugment implements DynvarCarrier, Healin
         return this.block;
     }
 
-    public int getBaseVal(AbstractCard card) {
-        return card.baseBlock / 4;
-    }
-
+    @Override
     public String key() {
         return ID;
     }
 
-    public int val(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int val(AbstractCard abstractCard) {
+        return baseVal(abstractCard);
     }
 
-    public int baseVal(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int baseVal(AbstractCard abstractCard) {
+        return abstractCard.baseBlock / 4;
     }
 
-    public boolean modified(AbstractCard card) {
-        return this.modified;
+    @Override
+    public boolean modified(AbstractCard abstractCard) {
+        return false;
     }
 
-    public boolean upgraded(AbstractCard card) {
-        this.modified = card.timesUpgraded != 0 || card.upgraded;
-        return this.modified;
+    @Override
+    public boolean upgraded(AbstractCard abstractCard) {
+        return abstractCard.timesUpgraded != 0 || abstractCard.upgraded;
     }
 
     @Override
@@ -94,7 +94,7 @@ public class GeneticMod extends AbstractAugment implements DynvarCarrier, Healin
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        int increment = getBaseVal(card);
+        int increment = baseVal(card);
         do {
             AbstractCard c = StSLib.getMasterDeckEquivalent(card);
             if (c != null && CardModifierManager.hasModifier(c, ID)) {

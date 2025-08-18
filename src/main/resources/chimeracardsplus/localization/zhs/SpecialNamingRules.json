@@ -1,274 +1,278 @@
 {
   "NAME_DICT": {
-    "AllOutMod": {
+    "CardAugments:AllOutMod": {
       "全力攻击": "全力²攻击"
     },
-    "ShivMod": {
+    "CardAugments:ShivMod": {
       "斗篷与匕首": "斗篷与匕首²"
     },
-    "RollMod": {
+    "CardAugments:RollMod": {
       "闪躲翻滚": "闪躲翻滚²"
     },
-    "TearMod": {
+    "CardAugments:TearMod": {
       "狂乱撕扯": "狂乱撕扯²"
     },
-    "AngryMod": {
+    "CardAugments:AngryMod": {
       "愤怒": "愤怒²"
     },
-    "ArmedMod": {
+    "CardAugments:ArmedMod": {
       "武装": "武装²"
     },
-    "BashMod": {
+    "CardAugments:BashMod": {
       "痛击": "痛击²"
     },
-    "BlurryMod": {
+    "CardAugments:BlurryMod": {
       "残影": "残影²"
     },
-    "BowlingMod": {
+    "CardAugments:BowlingMod": {
       "碰撞连击": "碰撞²连击"
     },
-    "ChargedMod": {
+    "CardAugments:ChargedMod": {
       "充电": "充电²"
     },
-    "ClawfulMod": {
+    "CardAugments:ClawfulMod": {
       "爪击": "爪击²"
     },
-    "ElectroMod": {
+    "CardAugments:ElectroMod": {
       "球状闪电": "球状闪电²"
     },
-    "EndlessMod": {
+    "CardAugments:EndlessMod": {
       "无尽苦痛": "无尽²苦痛"
     },
-    "FlexMod": {
+    "CardAugments:FlexMod": {
       "活动肌肉": "活动²肌肉"
     },
-    "FlyingMod": {
+    "CardAugments:FlyingMod": {
       "飞膝": "飞²膝"
     },
-    "FollowUpMod": {
+    "CardAugments:FollowUpMod": {
       "追击": "追击²"
     },
-    "ForOneMod": {
+    "CardAugments:ForOneMod": {
       "万物一心": "万物一心²"
     },
-    "GlassMod": {
+    "CardAugments:GlassMod": {
       "玻璃刀刃": "玻璃²刀刃"
     },
-    "GritMod": {
+    "CardAugments:GritMod": {
       "坚毅": "坚毅²"
     },
-    "HeavyMod": {
+    "CardAugments:HeavyMod": {
       "重刃": "重²刃"
     },
-    "HemoMod": {
+    "CardAugments:HemoMod": {
       "御血术": "御血²术"
     },
-    "LuckyMod": {
+    "CardAugments:LuckyMod": {
       "幸运一击": "幸运²一击"
     },
-    "NoxiousMod": {
+    "CardAugments:NoxiousMod": {
       "毒雾": "毒²雾"
     },
-    "GreedMod": {
+    "CardAugments:GreedMod": {
       "贪婪之手": "贪婪²之手"
     },
-    "OmegaMod": {
+    "CardAugments:OmegaMod": {
       "欧米伽": "欧米伽²"
     },
-    "PoisonedMod": {
+    "CardAugments:PoisonedMod": {
       "带毒刺击": "带毒²刺击"
     },
-    "PredatoryMod": {
+    "CardAugments:PredatoryMod": {
       "猎杀者": "猎杀²者"
     },
-    "PreparedMod": {
+    "CardAugments:PreparedMod": {
       "早有准备": "早有准备²"
     },
-    "QuickMod": {
+    "CardAugments:QuickMod": {
       "快斩": "快²斩"
     },
-    "RampedMod": {
+    "CardAugments:RampedMod": {
       "暴走": "暴走²"
     },
-    "SanctifiedMod": {
+    "CardAugments:SanctifiedMod": {
       "圣洁": "圣洁²"
     },
-    "StreamlinedMod": {
+    "CardAugments:StreamlinedMod": {
       "精简改良": "精简²改良"
     },
-    "SuckerMod": {
+    "CardAugments:SuckerMod": {
       "突然一拳": "突然²一拳"
     },
-    "SurvivorMod": {
+    "CardAugments:SurvivorMod": {
       "生存者": "生存者²"
     },
-    "SwivelMod": {
+    "CardAugments:SwivelMod": {
       "旋身": "旋身²"
     },
-    "WallopMod": {
+    "CardAugments:WallopMod": {
       "当头棒喝": "当头²棒喝"
     },
-    "WaveMod": {
+    "CardAugments:WaveMod": {
       "铁斩波": "铁斩波²"
     },
-    "LearnMod": {
+    "${modID}:LearnMod": {
       "勤学精进": "勤学²精进"
     },
-    "WhipMod": {
+    "${modID}:WhipMod": {
       "腰带抽打": "腰带抽打²"
     },
-    "BanefulMod": {
+    "${modID}:BanefulMod": {
       "灾祸": "灾祸²"
     },
-    "BarrageMod": {
+    "${modID}:BarrageMod": {
       "弹幕齐射": "弹幕²齐射"
     },
-    "BitingMod": {
+    "${modID}:BitingMod": {
       "噬咬": "噬咬²"
     },
-    "BrilliantMod": {
+    "${modID}:BrilliantMod": {
       "光辉": "光辉²"
     },
-    "BurstyMod": {
+    "${modID}:BurstyMod": {
       "爆发": "爆发²"
     },
-    "ChaoticMod": {
+    "${modID}:ChaoticMod": {
       "混沌": "混沌²"
     },
-    "ChokingMod": {
+    "${modID}:ChokingMod": {
       "勒脖": "勒脖²"
     },
-    "CripplingMod": {
+    "${modID}:CripplingMod": {
       "致残毒云": "致残²毒云"
     },
-    "CrushingMod": {
+    "${modID}:CrushingMod": {
       "粉碎关节": "粉碎²关节"
     },
-    "CutThroughMod": {
+    "${modID}:CutThroughMod": {
       "斩破命运": "斩破²命运"
     },
-    "DarkMod": {
+    "${modID}:DarkMod": {
       "黑暗之拥": "黑暗²之拥"
     },
-    "DartMod": {
+    "${modID}:DartMod": {
       "飞镖": "飞镖²"
     },
-    "DeepMod": {
+    "${modID}:DeepMod": {
       "深呼吸": "深²呼吸"
     },
-    "DeterminedMod": {
+    "${modID}:DeterminedMod": {
       "硬撑": "硬撑²"
     },
-    "DiscoveredMod": {
+    "${modID}:DiscoveredMod": {
       "发现": "发现²"
     },
-    "DoublingMod": {
+    "${modID}:DoublingMod": {
       "双发": "双发²"
     },
-    "ExplosionMod": {
+    "${modID}:EquilibrialMod": {
+      "均衡": "均衡²"
+    },
+    "${modID}:ExplosionMod": {
       "尸爆术": "尸爆²术"
     },
-    "FastingMod": {
+    "${modID}:EvolutionaryMod": {
+      "结茧": "结茧²",
+      "羽化": "羽化²"
+    },
+    "${modID}:FastingMod": {
       "斋戒": "斋戒²"
     },
-    "FeedingMod": {
+    "${modID}:FeedingMod": {
       "狂宴": "狂宴²"
     },
-    "FinishingMod": {
+    "${modID}:FinishingMod": {
       "终结技": "终结²技"
     },
-    "FlamingMod": {
+    "${modID}:FlamingMod": {
       "火焰屏障": "火焰²屏障"
     },
-    "ForcefulMod": {
+    "${modID}:ForcefulMod": {
       "力场": "力²场"
     },
-    "GuardedMod": {
+    "${modID}:GuardedMod": {
       "哨卫": "哨卫²"
     },
-    "HeadOnMod": {
+    "${modID}:HeadOnMod": {
       "头槌": "头槌²"
     },
-    "HoloMod": {
+    "${modID}:HoloMod": {
       "全息影像": "全息²影像"
     },
-    "InjuriousMod": {
+    "${modID}:InjuriousMod": {
       "狂野打击": "狂野²打击"
     },
-    "IntimidatingMod": {
+    "${modID}:IntimidatingMod": {
       "威吓": "威吓²"
     },
-    "LoopyMod": {
+    "${modID}:LoopyMod": {
       "循环": "循环²"
     },
-    "LoudMod": {
+    "${modID}:LoudMod": {
       "增幅": "增幅²"
     },
-    "PainlessMod": {
+    "${modID}:PainlessMod": {
       "无惧疼痛": "无惧疼痛²"
     },
-    "PanicMod": {
+    "${modID}:PanicMod": {
       "应急按钮": "应急²按钮"
     },
-    "PerfectMod": {
+    "${modID}:PerfectMod": {
       "完美打击": "完美²打击"
     },
-    "ReaperMod": {
+    "${modID}:ReaperMod": {
       "死亡收割": "死亡收割²"
     },
-    "RecklessMod": {
+    "${modID}:RecklessMod": {
       "无谋冲锋": "无谋²冲锋"
     },
-    "ReflexMod": {
+    "${modID}:ReflexMod": {
       "本能反应": "本能²反应"
     },
-    "RupturedMod": {
+    "${modID}:RupturedMod": {
       "撕裂": "撕裂²"
     },
-    "SecretMod": {
+    "${modID}:SecretMod": {
       "秘密技法": "秘密²技法",
       "秘密武器": "秘密²武器"
     },
-    "ShacklingMod": {
+    "${modID}:ShacklingMod": {
       "黑暗镣铐": "黑暗镣铐²"
     },
-    "ShockingMod": {
+    "${modID}:ShockingMod": {
       "震荡波": "震荡²波"
     },
-    "ShriekingMod": {
+    "${modID}:ShriekingMod": {
       "尖啸": "尖啸²"
     },
-    "SplitMod": {
+    "${modID}:SplitMod": {
       "分离": "分离²"
     },
-    "SpringyMod": {
+    "${modID}:SpringyMod": {
       "弹回": "弹回²"
     },
-    "EquilibrialMod": {
-      "均衡": "均衡²"
-    },
-    "StealthyMod": {
+    "${modID}:StealthyMod": {
       "隐秘打击": "隐秘²打击"
     },
-    "SteamMod": {
+    "${modID}:SteamMod": {
       "蒸汽护壁": "蒸汽²护壁"
     },
-    "StrategicMod": {
+    "${modID}:StrategicMod": {
       "战略大师": "战略²大师"
     },
-    "SuperluminalMod": {
+    "${modID}:SuperluminalMod": {
       "超越光速": "超越光速²"
     },
-    "TacticalMod": {
+    "${modID}:TacticalMod": {
       "战术大师": "战术²大师"
     },
-    "ThirdMod": {
+    "${modID}:ThirdMod": {
       "天眼": "天²眼"
     },
-    "UpperMod": {
+    "${modID}:UpperMod": {
       "上勾拳": "上²勾拳"
     },
-    "ViolentMod": {
+    "${modID}:ViolentMod": {
       "暴力": "暴力²"
     }
   }

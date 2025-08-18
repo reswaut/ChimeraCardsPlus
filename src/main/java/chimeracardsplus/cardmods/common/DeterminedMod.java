@@ -6,7 +6,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -20,18 +20,18 @@ public class DeterminedMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && (card.baseDamage >= 2 || card.baseBlock >= 2);
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1 && (abstractCard.baseDamage >= 2 || abstractCard.baseBlock >= 2);
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 0.0F) ? (damage * 5.0F / 3.0F) : damage;
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage > 0.0F ? damage * 5.0F / 3.0F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 0.0F) ? (block * 5.0F / 3.0F) : block;
+        return block > 0.0F ? block * 5.0F / 3.0F : block;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class DeterminedMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new MakeTempCardInHandAction(new Wound(), 2));
+        addToBot(new MakeTempCardInHandAction(new Wound(), 2));
     }
 
     @Override

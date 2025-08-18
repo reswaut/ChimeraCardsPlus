@@ -19,8 +19,8 @@ public class WearyMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && card.baseBlock >= 2;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1 && abstractCard.baseBlock >= 2;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class WearyMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
                 new DexterityPower(AbstractDungeon.player, -1)));
     }
 

@@ -6,6 +6,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -23,8 +24,8 @@ public class MagneticMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1 && notExhaust(c) && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= -1 && notExhaust(c) && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
     }
 
     @Override
@@ -58,7 +59,7 @@ public class MagneticMod extends AbstractAugment {
         if (card.upgraded && c.canUpgrade()) {
             c.upgrade();
         }
-        this.addToBot(new MakeTempCardInHandAction(c, true));
+        addToBot(new MakeTempCardInHandAction(c, true));
     }
 
     @Override

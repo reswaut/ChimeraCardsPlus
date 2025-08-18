@@ -17,39 +17,40 @@ public class LootAction extends AbstractGameAction {
     private static final String[] TEXT = uiStrings.TEXT;
 
     public LootAction() {
-        this.actionType = ActionType.DISCARD;
-        this.startDuration = Settings.ACTION_DUR_XFAST;
-        this.duration = this.startDuration;
+        actionType = ActionType.DISCARD;
+        startDuration = Settings.ACTION_DUR_XFAST;
+        duration = startDuration;
     }
 
     private static void discard(AbstractCard card) {
         AbstractDungeon.player.hand.moveToDiscardPile(card);
         card.triggerOnManualDiscard();
         GameActionManager.incrementDiscard(false);
-        int drawAmount = (card.costForTurn == -1) ? EnergyPanel.getCurrentEnergy() : card.costForTurn;
+        int drawAmount = card.costForTurn == -1 ? EnergyPanel.getCurrentEnergy() : card.costForTurn;
         if (drawAmount > 0) {
             AbstractDungeon.actionManager.addToBottom(new DrawCardAction(drawAmount));
         }
     }
 
+    @Override
     public void update() {
-        if (this.duration == this.startDuration) {
+        if (duration >= startDuration) {
             if (AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
-                this.isDone = true;
+                isDone = true;
                 return;
             }
             if (AbstractDungeon.player.hand.isEmpty()) {
-                this.isDone = true;
+                isDone = true;
                 return;
             }
             if (AbstractDungeon.player.hand.size() == 1) {
                 discard(AbstractDungeon.player.hand.getTopCard());
-                this.isDone = true;
+                isDone = true;
                 return;
             }
             AbstractDungeon.handCardSelectScreen.open(TEXT[0], 1, false);
             AbstractDungeon.player.hand.applyPowers();
-            this.tickDuration();
+            tickDuration();
             return;
         }
         if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
@@ -58,6 +59,6 @@ public class LootAction extends AbstractGameAction {
             }
             AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
         }
-        this.tickDuration();
+        tickDuration();
     }
 }

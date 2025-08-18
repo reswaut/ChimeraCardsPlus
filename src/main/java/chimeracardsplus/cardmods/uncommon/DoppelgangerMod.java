@@ -6,6 +6,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -22,15 +23,17 @@ public class DoppelgangerMod extends AbstractAugment {
     private boolean addedExhaust = true;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= 0 && c.cost < 3 && doesntUpgradeCost() && doesntUpgradeExhaust());
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 0 && c.cost < 3 && doesntUpgradeCost() && doesntUpgradeExhaust());
     }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
+        if (!card.exhaust && card.type != CardType.POWER) {
             addedExhaust = true;
             card.exhaust = true;
+        } else {
+            addedExhaust = false;
         }
         effect = 3 - card.cost;
         card.cost = 3;
@@ -39,8 +42,8 @@ public class DoppelgangerMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new EnergizedPower(AbstractDungeon.player, effect), effect));
-        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DrawCardNextTurnPower(AbstractDungeon.player, effect), effect));
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new EnergizedPower(AbstractDungeon.player, effect), effect));
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DrawCardNextTurnPower(AbstractDungeon.player, effect), effect));
     }
 
     @Override

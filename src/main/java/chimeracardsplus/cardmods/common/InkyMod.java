@@ -21,8 +21,8 @@ public class InkyMod extends AbstractAugment implements TriggerOnDiscardMod {
     private boolean descriptionHack = false;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class InkyMod extends AbstractAugment implements TriggerOnDiscardMod {
         String text = CARD_TEXT[0];
         if (descriptionHack) {
             int count = AbstractDungeon.actionManager.cardsPlayedThisCombat.size();
-            text += String.format((count == 1) ? CARD_TEXT[1] : CARD_TEXT[2], count);
+            text += String.format(count == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count);
         }
         return insertAfterText(rawDescription, text);
     }
@@ -53,7 +53,7 @@ public class InkyMod extends AbstractAugment implements TriggerOnDiscardMod {
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (AbstractDungeon.actionManager.cardsPlayedThisCombat.size() == 10) {
-            this.addToBot(new DrawCardAction(1));
+            addToBot(new DrawCardAction(1));
         }
         descriptionHack = false;
         card.initializeDescription();

@@ -19,20 +19,20 @@ public class SozuMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (TriggerOnUsePotionMod.CardModifierOnUsePotionManager.usedPotionThisTurn) {
-            this.addToBot(new GainEnergyAction(1));
+        if (TriggerOnUsePotionMod.usedPotionThisTurn) {
+            addToBot(new GainEnergyAction(1));
         }
     }
 
     @Override
     public Color getGlow(AbstractCard card) {
-        return TriggerOnUsePotionMod.CardModifierOnUsePotionManager.usedPotionThisTurn ? Color.GOLD.cpy() : null;
+        return TriggerOnUsePotionMod.usedPotionThisTurn ? Color.GOLD.cpy() : null;
     }
 
     @Override

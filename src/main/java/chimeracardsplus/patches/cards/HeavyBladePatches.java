@@ -1,6 +1,6 @@
 package chimeracardsplus.patches.cards;
 
-import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.CardModifierPatches;
+import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.CardModifierPatches.CardModifierOnApplyPowers;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
@@ -16,6 +16,6 @@ public class HeavyBladePatches {
         if (!ChimeraCardsPlus.enableCardFixes()) {
             return;
         }
-        CardModifierPatches.CardModifierOnApplyPowers.Prefix(__instance);
+        CardModifierOnApplyPowers.Prefix(__instance);
     }
 }

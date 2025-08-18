@@ -8,25 +8,28 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class FlickerDamage extends AbstractDamageModifier {
-    AbstractCard hiddenCard;
+    private final AbstractCard hiddenCard;
 
     public FlickerDamage(AbstractCard card) {
-        this.priority = 32767;
-        this.hiddenCard = card;
+        priority = 32767;
+        hiddenCard = card;
     }
 
-    public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature targetHit) {
-        if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
-                && targetHit.currentHealth > 0
-                && targetHit.currentHealth - lastDamageTaken <= 0) {
+    @Override
+    public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature target) {
+        if (target instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
+                && target.currentHealth > 0
+                && target.currentHealth - lastDamageTaken <= 0) {
             hiddenCard.returnToHand = true;
         }
     }
 
+    @Override
     public boolean isInherent() {
         return true;
     }
 
+    @Override
     public AbstractDamageModifier makeCopy() {
         return new FlickerDamage(hiddenCard);
     }

@@ -1,4 +1,4 @@
-package chimeracardsplus.ui;
+package chimeracardsplus.uis;
 
 import basemod.IUIElement;
 import chimeracardsplus.ChimeraCardsPlus;
@@ -8,13 +8,13 @@ import com.megacrit.cardcrawl.helpers.TipHelper;
 
 public class HealingModTooltip implements IUIElement {
     public static final String ID = ChimeraCardsPlus.makeID(HealingModTooltip.class.getSimpleName());
-    public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
-    public static String tooltipTitle = TEXT[0];
-    public static String tooltipDescription = TEXT[1];
-    public float x = 0.0F, y = 0.0F;
+    private static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
+    private static final String tooltipTitle = TEXT[0];
+    private static final String tooltipDescription = TEXT[1];
+    private float x = 0.0F, y = 0.0F;
 
     @Override
-    public void render(SpriteBatch sb) {
+    public void render(SpriteBatch spriteBatch) {
         TipHelper.renderGenericTip(x, y, tooltipTitle, tooltipDescription);
     }
 
@@ -34,27 +34,27 @@ public class HealingModTooltip implements IUIElement {
 
     @Override
     public void set(float xPos, float yPos) {
-        this.x = xPos;
-        this.y = yPos;
+        x = xPos;
+        y = yPos;
     }
 
     @Override
     public float getX() {
-        return this.x;
+        return x;
     }
 
     @Override
     public void setX(float xPos) {
-        this.x = xPos;
+        x = xPos;
     }
 
     @Override
     public float getY() {
-        return this.y;
+        return y;
     }
 
     @Override
     public void setY(float yPos) {
-        this.y = yPos;
+        y = yPos;
     }
 }

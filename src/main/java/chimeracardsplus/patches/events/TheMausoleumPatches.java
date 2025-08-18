@@ -1,6 +1,8 @@
 package chimeracardsplus.patches.events;
 
 import basemod.ReflectionHacks;
+import basemod.ReflectionHacks.RMethod;
+import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.special.RegretfulMod;
 import chimeracardsplus.cards.preview.RegretfulPreview;
@@ -18,23 +20,19 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static basemod.ReflectionHacks.getCachedField;
-import static basemod.helpers.CardModifierManager.addModifier;
-
 public class TheMausoleumPatches {
     private static final String ID = ChimeraCardsPlus.makeID(TheMausoleumPatches.class.getSimpleName());
     private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString(ID);
     private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     private static final String[] OPTIONS = eventStrings.OPTIONS;
-    private static int myIndex;
+    private static int myIndex = 0;
     private static int goldAmt = 0;
 
     private static int calcGoldAmt() {
         if (AbstractDungeon.ascensionLevel < 15) {
             return 200;
-        } else {
-            return 150;
         }
+        return 150;
     }
 
     @SpirePatch(
@@ -93,10 +91,10 @@ public class TheMausoleumPatches {
             }
 
             try {
-                Field field = getCachedField(TheMausoleum.class, "screen");
-                ReflectionHacks.RMethod valueOf = ReflectionHacks.privateStaticMethod(field.getType(), "valueOf", String.class);
+                Field field = ReflectionHacks.getCachedField(TheMausoleum.class, "screen");
+                RMethod valueOf = ReflectionHacks.privateStaticMethod(field.getType(), "valueOf", String.class);
                 field.set(__instance, valueOf.invoke(null, "RESULT"));
-            } catch (ReflectiveOperationException e) {
+            } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
             return SpireReturn.Return();
@@ -109,9 +107,9 @@ public class TheMausoleumPatches {
                 return;
             }
             AbstractCard cardToApply = applicableCards.get(AbstractDungeon.miscRng.random(applicableCards.size() - 1));
-            addModifier(cardToApply, augment);
+            CardModifierManager.addModifier(cardToApply, augment);
             AbstractDungeon.player.bottledCardUpgradeCheck(cardToApply);
-            AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(cardToApply.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
+            AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(cardToApply.makeStatEquivalentCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
         }
     }
 }

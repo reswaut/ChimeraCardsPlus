@@ -2,7 +2,7 @@ package chimeracardsplus.cardmods.rare;
 
 import CardAugments.cardmods.AbstractAugment;
 import CardAugments.cardmods.util.PreviewedMod;
-import CardAugments.patches.InterruptUseCardFieldPatches;
+import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import CardAugments.util.FormatHelper;
 import CardAugments.util.PortraitHelper;
 import basemod.abstracts.AbstractCardModifier;
@@ -13,7 +13,9 @@ import chimeracardsplus.actions.DiscoverModAction;
 import chimeracardsplus.interfaces.HealingMod;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardTarget;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
@@ -27,31 +29,31 @@ public class DiscoveredMod extends AbstractAugment implements HealingMod {
     private boolean inherentHack = true;
 
     public DiscoveredMod() {
-        this.priority = -100;
+        priority = -100;
     }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        this.inherentHack = true;
+        inherentHack = true;
         AbstractCard preview = card.makeStatEquivalentCopy();
-        this.inherentHack = false;
+        inherentHack = false;
         CardModifierManager.addModifier(preview, new PreviewedMod());
         MultiCardPreview.add(card, preview);
-        InterruptUseCardFieldPatches.InterceptUseField.interceptUse.set(card, true);
+        InterceptUseField.interceptUse.set(card, Boolean.TRUE);
         card.isEthereal = false;
         card.selfRetain = false;
         card.exhaust = true;
         card.cost = 1;
         card.costForTurn = card.cost;
-        card.target = AbstractCard.CardTarget.NONE;
-        if (card.type != AbstractCard.CardType.SKILL) {
-            card.type = AbstractCard.CardType.SKILL;
+        card.target = CardTarget.NONE;
+        if (card.type != CardType.SKILL) {
+            card.type = CardType.SKILL;
             PortraitHelper.setMaskedPortrait(card);
         }
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
         return -1.0F;
     }
 
@@ -66,8 +68,8 @@ public class DiscoveredMod extends AbstractAugment implements HealingMod {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (isNormalCard(c) && doesntUpgradeCost() && noShenanigans(c)));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> isNormalCard(c) && doesntUpgradeCost() && noShenanigans(c));
     }
 
     @Override
@@ -88,14 +90,8 @@ public class DiscoveredMod extends AbstractAugment implements HealingMod {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        AbstractCard preview = null;
-        for (AbstractCard o : MultiCardPreview.multiCardPreview.get(card)) {
-            if (CardModifierManager.hasModifier(o, PreviewedMod.ID)) {
-                preview = o;
-                break;
-            }
-        }
-        this.addToBot(new DiscoverModAction(preview));
+        AbstractCard preview = MultiCardPreview.multiCardPreview.get(card).stream().filter(o -> CardModifierManager.hasModifier(o, PreviewedMod.ID)).findFirst().orElse(null);
+        addToBot(new DiscoverModAction(preview));
     }
 
     @Override
@@ -123,8 +119,9 @@ public class DiscoveredMod extends AbstractAugment implements HealingMod {
         return new DiscoveredMod();
     }
 
+    @Override
     public boolean isInherent(AbstractCard card) {
-        return this.inherentHack;
+        return inherentHack;
     }
 
     @Override

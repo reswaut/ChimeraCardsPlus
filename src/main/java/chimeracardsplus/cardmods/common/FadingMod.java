@@ -8,7 +8,8 @@ import chimeracardsplus.interfaces.HealingMod;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
@@ -16,6 +17,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class FadingMod extends AbstractAugment implements HealingMod {
     public static final String ID = ChimeraCardsPlus.makeID(FadingMod.class.getSimpleName());
@@ -26,29 +29,29 @@ public class FadingMod extends AbstractAugment implements HealingMod {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+        if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
             modMagic = true;
         }
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.rarity != AbstractCard.CardRarity.BASIC && isNormalCard(card);
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.rarity != CardRarity.BASIC && isNormalCard(abstractCard);
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 0.0F) ? (damage * 2.0F) : damage;
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage > 0.0F ? damage * 2.0F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 0.0F) ? (block * 2.0F) : block;
+        return block > 0.0F ? block * 2.0F : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return modMagic ? (magic * 2.0F) : magic;
+        return modMagic ? magic * 2.0F : magic;
     }
 
     @Override
@@ -93,12 +96,7 @@ public class FadingMod extends AbstractAugment implements HealingMod {
     public static class RemoveFadingCardOnBossVictoryPatch {
         @SpirePostfixPatch
         public static void Postfix() {
-            ArrayList<AbstractCard> targetCards = new ArrayList<>();
-            for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
-                if (CardModifierManager.hasModifier(card, FadingMod.ID)) {
-                    targetCards.add(card);
-                }
-            }
+            Collection<AbstractCard> targetCards = AbstractDungeon.player.masterDeck.group.stream().filter(card -> CardModifierManager.hasModifier(card, ID)).collect(Collectors.toCollection(() -> new ArrayList<>(16)));
             for (AbstractCard card : targetCards) {
                 AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(card));
                 AbstractDungeon.player.masterDeck.removeCard(card);

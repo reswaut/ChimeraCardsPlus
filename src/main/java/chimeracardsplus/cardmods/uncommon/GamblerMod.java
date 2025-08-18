@@ -6,6 +6,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.unique.CalculatedGambleAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.green.CalculatedGamble;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -20,15 +21,17 @@ public class GamblerMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
+        if (!card.exhaust && card.type != CardType.POWER) {
             addedExhaust = true;
             card.exhaust = true;
+        } else {
+            addedExhaust = false;
         }
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1 && !CalculatedGamble.ID.equals(c.cardID) && doesntUpgradeExhaust());
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= -1 && !CalculatedGamble.ID.equals(c.cardID) && doesntUpgradeExhaust());
     }
 
     @Override
@@ -53,7 +56,7 @@ public class GamblerMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new CalculatedGambleAction(false));
+        addToBot(new CalculatedGambleAction(false));
     }
 
     @Override

@@ -4,13 +4,12 @@ import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.interfaces.TriggerOnDiscardMod;
+import chimeracardsplus.util.CardCheckHelpers;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.green.Tactician;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
-
-import static chimeracardsplus.util.CardCheckHelpers.hasCardWithKeywordInDeck;
 
 public class TacticalMod extends AbstractAugment implements TriggerOnDiscardMod {
     public static final String ID = ChimeraCardsPlus.makeID(TacticalMod.class.getSimpleName());
@@ -19,8 +18,8 @@ public class TacticalMod extends AbstractAugment implements TriggerOnDiscardMod 
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return characterCheck((p) -> hasCardWithKeywordInDeck(p, CARD_TEXT[3]));
+    public boolean validCard(AbstractCard abstractCard) {
+        return characterCheck(p -> CardCheckHelpers.hasCardWithKeywordInDeck(p, CARD_TEXT[3]));
     }
 
     @Override
@@ -46,10 +45,12 @@ public class TacticalMod extends AbstractAugment implements TriggerOnDiscardMod 
         return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 
+    @Override
     public void onManualDiscard(AbstractCard card) {
-        this.addToBot(new GainEnergyAction(1));
+        addToBot(new GainEnergyAction(1));
     }
 
+    @Override
     public void onMoveToDiscard(AbstractCard card) {
     }
 

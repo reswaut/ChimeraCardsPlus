@@ -7,7 +7,8 @@ import chimeracardsplus.interfaces.TriggerOnDiscardMod;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -22,8 +23,8 @@ public class PointyMod extends AbstractAugment implements TriggerOnDiscardMod {
     private boolean descriptionHack = false;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.type == AbstractCard.CardType.ATTACK && card.baseDamage >= 1 && card.cost >= -1;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.type == CardType.ATTACK && abstractCard.baseDamage >= 1 && abstractCard.cost >= -1;
     }
 
     @Override
@@ -45,8 +46,8 @@ public class PointyMod extends AbstractAugment implements TriggerOnDiscardMod {
     public String modifyDescription(String rawDescription, AbstractCard card) {
         String text = CARD_TEXT[0];
         if (descriptionHack) {
-            int count = (int) AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().filter((c) -> c != null && c.type == AbstractCard.CardType.ATTACK).count();
-            text += String.format((count == 1) ? CARD_TEXT[1] : CARD_TEXT[2], count);
+            int count = (int) AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().filter(c -> c != null && c.type == CardType.ATTACK).count();
+            text += String.format(count == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count);
         }
         return insertAfterText(rawDescription, text);
     }
@@ -74,9 +75,9 @@ public class PointyMod extends AbstractAugment implements TriggerOnDiscardMod {
     }
 
     @Override
-    public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+    public float modifyDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
         int count = (int) AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().filter(
-                (c) -> c != null && c.type == AbstractCard.CardType.ATTACK).count();
+                c -> c != null && c.type == CardType.ATTACK).count();
         if (AbstractDungeon.actionManager.cardQueue.stream().noneMatch(item -> item.card != null && item.card.uuid.equals(card.uuid))) {
             count += 1;
         }
@@ -88,7 +89,7 @@ public class PointyMod extends AbstractAugment implements TriggerOnDiscardMod {
 
     @Override
     public Color getGlow(AbstractCard card) {
-        if (AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().filter((c) -> c != null && c.type == AbstractCard.CardType.ATTACK).count() == 9) {
+        if (AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().filter(c -> c != null && c.type == CardType.ATTACK).count() == 9L) {
             return Color.GOLD.cpy();
         }
         return null;

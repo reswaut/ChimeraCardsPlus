@@ -14,8 +14,8 @@ public class SmoothMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.baseBlock >= 1;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.baseBlock >= 1;
     }
 
     @Override

@@ -6,6 +6,8 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -24,8 +26,8 @@ public class ForeignMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1 && notExhaust(c) && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= -1 && notExhaust(c) && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
     }
 
     @Override
@@ -51,9 +53,9 @@ public class ForeignMod extends AbstractAugment {
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         String text = "";
-        if (card.type == AbstractCard.CardType.ATTACK) {
+        if (card.type == CardType.ATTACK) {
             text = card.upgraded ? CARD_TEXT[1] : CARD_TEXT[0];
-        } else if (card.type == AbstractCard.CardType.SKILL) {
+        } else if (card.type == CardType.SKILL) {
             text = card.upgraded ? CARD_TEXT[3] : CARD_TEXT[2];
         }
         return insertAfterText(rawDescription, text);
@@ -62,19 +64,19 @@ public class ForeignMod extends AbstractAugment {
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         int roll = AbstractDungeon.cardRandomRng.random(99);
-        AbstractCard.CardRarity cardRarity;
+        CardRarity cardRarity;
         if (roll < 55) {
-            cardRarity = AbstractCard.CardRarity.COMMON;
+            cardRarity = CardRarity.COMMON;
         } else if (roll < 85) {
-            cardRarity = AbstractCard.CardRarity.UNCOMMON;
+            cardRarity = CardRarity.UNCOMMON;
         } else {
-            cardRarity = AbstractCard.CardRarity.RARE;
+            cardRarity = CardRarity.RARE;
         }
         AbstractCard c = CardLibrary.getAnyColorCard(card.type, cardRarity);
         if (card.upgraded && c.canUpgrade()) {
             c.upgrade();
         }
-        this.addToBot(new MakeTempCardInHandAction(c, true));
+        addToBot(new MakeTempCardInHandAction(c, true));
     }
 
     @Override

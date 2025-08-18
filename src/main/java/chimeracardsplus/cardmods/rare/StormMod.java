@@ -2,7 +2,7 @@ package chimeracardsplus.cardmods.rare;
 
 import CardAugments.cardmods.AbstractAugment;
 import CardAugments.cardmods.util.PreviewedMod;
-import CardAugments.patches.InterruptUseCardFieldPatches;
+import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import CardAugments.util.FormatHelper;
 import CardAugments.util.PortraitHelper;
 import basemod.abstracts.AbstractCardModifier;
@@ -13,7 +13,9 @@ import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardTarget;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -29,31 +31,31 @@ public class StormMod extends AbstractAugment {
 
     // This modifier should apply first.
     public StormMod() {
-        this.priority = -100;
+        priority = -100;
     }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        this.inherentHack = true;
+        inherentHack = true;
         AbstractCard preview = card.makeStatEquivalentCopy();
-        this.inherentHack = false;
+        inherentHack = false;
         CardModifierManager.addModifier(preview, new PreviewedMod());
         MultiCardPreview.add(card, preview);
-        InterruptUseCardFieldPatches.InterceptUseField.interceptUse.set(card, true);
+        InterceptUseField.interceptUse.set(card, Boolean.TRUE);
         card.isEthereal = false;
         card.selfRetain = false;
         card.exhaust = false;
         card.cost = 1;
         card.costForTurn = card.cost;
-        card.target = AbstractCard.CardTarget.NONE;
-        if (card.type != AbstractCard.CardType.SKILL) {
-            card.type = AbstractCard.CardType.SKILL;
+        card.target = CardTarget.NONE;
+        if (card.type != CardType.SKILL) {
+            card.type = CardType.SKILL;
             PortraitHelper.setMaskedPortrait(card);
         }
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
         return -1.0F;
     }
 
@@ -68,8 +70,8 @@ public class StormMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> ((c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL) && notExhaust(c) && noShenanigans(c) && c.cost == 0 && doesntUpgradeCost())
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> (c.type == CardType.ATTACK || c.type == CardType.SKILL) && notExhaust(c) && noShenanigans(c) && c.cost == 0 && doesntUpgradeCost()
         );
     }
 
@@ -102,8 +104,8 @@ public class StormMod extends AbstractAugment {
         if (preview != null) {
             AbstractCard copy = preview.makeStatEquivalentCopy();
             int theSize = AbstractDungeon.player.hand.size();
-            this.addToTop(new MakeTempCardInHandAction(copy, theSize));
-            this.addToTop(new DiscardAction(AbstractDungeon.player, AbstractDungeon.player, theSize, false));
+            addToTop(new MakeTempCardInHandAction(copy, theSize));
+            addToTop(new DiscardAction(AbstractDungeon.player, AbstractDungeon.player, theSize, false));
         }
 
     }
@@ -133,8 +135,9 @@ public class StormMod extends AbstractAugment {
         return new StormMod();
     }
 
+    @Override
     public boolean isInherent(AbstractCard card) {
-        return this.inherentHack;
+        return inherentHack;
     }
 
     @Override

@@ -12,19 +12,20 @@ public class UnloadCardAction extends AbstractGameAction {
     private final CardType type;
 
     public UnloadCardAction(CardType typeToKeep, AbstractCreature source) {
-        this.type = typeToKeep;
+        type = typeToKeep;
         this.source = source;
-        this.duration = Settings.ACTION_DUR_FAST;
+        duration = Settings.ACTION_DUR_FAST;
     }
 
+    @Override
     public void update() {
-        if (this.duration == Settings.ACTION_DUR_FAST) {
+        if (duration >= Settings.ACTION_DUR_FAST) {
             for (AbstractCard c : AbstractDungeon.player.hand.group) {
                 if (c.type != type) {
-                    this.addToTop(new DiscardSpecificCardAction(c));
+                    addToTop(new DiscardSpecificCardAction(c));
                 }
             }
-            this.isDone = true;
+            isDone = true;
         }
     }
 }

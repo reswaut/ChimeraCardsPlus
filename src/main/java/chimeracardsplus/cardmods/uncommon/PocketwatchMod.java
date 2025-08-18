@@ -22,14 +22,14 @@ public class PocketwatchMod extends AbstractAugment implements TriggerOnDiscardM
     private boolean descriptionHack = true;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (AbstractDungeon.actionManager.cardsPlayedThisTurn.size() == 4) {
-            this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DrawCardNextTurnPower(AbstractDungeon.player, 3)));
+            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DrawCardNextTurnPower(AbstractDungeon.player, 3)));
         }
         descriptionHack = false;
         card.initializeDescription();
@@ -79,7 +79,7 @@ public class PocketwatchMod extends AbstractAugment implements TriggerOnDiscardM
         String text = CARD_TEXT[0];
         if (descriptionHack) {
             int count = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
-            text += String.format((count == 1) ? CARD_TEXT[1] : CARD_TEXT[2], count);
+            text += String.format(count == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count);
         }
         return insertAfterText(rawDescription, text);
     }

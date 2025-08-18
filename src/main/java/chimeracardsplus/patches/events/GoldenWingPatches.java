@@ -1,12 +1,17 @@
 package chimeracardsplus.patches.events;
 
 import basemod.ReflectionHacks;
+import basemod.ReflectionHacks.RMethod;
+import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.rare.UnawakenedMod;
 import chimeracardsplus.cards.preview.UnawakenedPreview;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.lib.Matcher.MethodCallMatcher;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -14,22 +19,19 @@ import com.megacrit.cardcrawl.events.GenericEventDialog;
 import com.megacrit.cardcrawl.events.exordium.GoldenWing;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import javassist.CannotCompileException;
 import javassist.CtBehavior;
 
 import java.lang.reflect.Field;
 import java.util.Objects;
-
-import static basemod.ReflectionHacks.getCachedField;
-import static basemod.helpers.CardModifierManager.addModifier;
 
 public class GoldenWingPatches {
     private static final String ID = ChimeraCardsPlus.makeID(GoldenWingPatches.class.getSimpleName());
     private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString(ID);
     private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     private static final String[] OPTIONS = eventStrings.OPTIONS;
-    private static int myIndex;
-    private static boolean choseMyOption = false;
-    private static int cardsToChoose = 3;
+    private static int myIndex = 0, cardsToChoose = 3;
+    private static boolean choseVanillaOption = true;
 
     @SpirePatch(
             clz = GoldenWing.class,
@@ -44,7 +46,7 @@ public class GoldenWingPatches {
             UnawakenedMod augment = new UnawakenedMod();
             __instance.imageEventText.removeDialogOption(__instance.imageEventText.optionList.size() - 1);
             myIndex = __instance.imageEventText.optionList.size();
-            if (AbstractDungeon.player.masterDeck.group.stream().filter(augment::canApplyTo).count() >= 3) {
+            if (AbstractDungeon.player.masterDeck.group.stream().filter(augment::canApplyTo).count() >= 3L) {
                 __instance.imageEventText.setDialogOption(OPTIONS[0], new UnawakenedPreview());
             } else {
                 __instance.imageEventText.setDialogOption(OPTIONS[1], true);
@@ -79,10 +81,10 @@ public class GoldenWingPatches {
 
             __instance.showProceedScreen(DESCRIPTIONS[0]);
             try {
-                Field field = getCachedField(GoldenWing.class, "screen");
-                ReflectionHacks.RMethod valueOf = ReflectionHacks.privateStaticMethod(field.getType(), "valueOf", String.class);
+                Field field = ReflectionHacks.getCachedField(GoldenWing.class, "screen");
+                RMethod valueOf = ReflectionHacks.privateStaticMethod(field.getType(), "valueOf", String.class);
                 field.set(__instance, valueOf.invoke(null, "MAP"));
-            } catch (ReflectiveOperationException e) {
+            } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
             return SpireReturn.Return();
@@ -90,7 +92,7 @@ public class GoldenWingPatches {
 
         private static void applyModifiers() {
             UnawakenedMod augment = new UnawakenedMod();
-            CardGroup validCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+            CardGroup validCards = new CardGroup(CardGroupType.UNSPECIFIED);
             for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
                 if (augment.canApplyTo(c)) {
                     validCards.addToTop(c);
@@ -99,7 +101,7 @@ public class GoldenWingPatches {
             if (cardsToChoose == 0) {
                 return;
             }
-            choseMyOption = true;
+            choseVanillaOption = false;
             cardsToChoose = Math.min(3, validCards.size());
             AbstractDungeon.gridSelectScreen.open(validCards, cardsToChoose, OPTIONS[2], false, false, false, false);
         }
@@ -116,9 +118,9 @@ public class GoldenWingPatches {
 
         private static class Locator extends SpireInsertLocator {
             @Override
-            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
-                Matcher finalMatcher = new Matcher.MethodCallMatcher(GenericEventDialog.class, "updateDialogOption");
-                int[] tmp = LineFinder.findAllInOrder(ctMethodToPatch, finalMatcher);
+            public int[] Locate(CtBehavior ctBehavior) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new MethodCallMatcher(GenericEventDialog.class, "updateDialogOption");
+                int[] tmp = LineFinder.findAllInOrder(ctBehavior, finalMatcher);
                 return new int[]{tmp[0] + 1, tmp[1] + 1, tmp[2] + 1};
             }
         }
@@ -134,33 +136,33 @@ public class GoldenWingPatches {
             if (!ChimeraCardsPlus.enableEventAddons()) {
                 return SpireReturn.Continue();
             }
-            if (!choseMyOption) {
+            if (choseVanillaOption) {
                 return SpireReturn.Continue();
             }
             if (!AbstractDungeon.isScreenUp && AbstractDungeon.gridSelectScreen.selectedCards.size() >= cardsToChoose) {
                 AbstractCard card1 = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
-                addModifier(card1, new UnawakenedMod());
+                CardModifierManager.addModifier(card1, new UnawakenedMod());
                 AbstractDungeon.player.bottledCardUpgradeCheck(card1);
                 if (cardsToChoose == 1) {
-                    AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(card1.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
+                    AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(card1.makeStatEquivalentCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                 } else {
                     AbstractCard card2 = AbstractDungeon.gridSelectScreen.selectedCards.get(1);
-                    addModifier(card2, new UnawakenedMod());
+                    CardModifierManager.addModifier(card2, new UnawakenedMod());
                     AbstractDungeon.player.bottledCardUpgradeCheck(card2);
                     if (cardsToChoose == 2) {
-                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(card1.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F - 190.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
-                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(card2.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F + 190.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
+                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(card1.makeStatEquivalentCopy(), Settings.WIDTH / 2.0F - 190.0F * Settings.scale, Settings.HEIGHT / 2.0F));
+                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(card2.makeStatEquivalentCopy(), Settings.WIDTH / 2.0F + 190.0F * Settings.scale, Settings.HEIGHT / 2.0F));
                     } else {
                         AbstractCard card3 = AbstractDungeon.gridSelectScreen.selectedCards.get(2);
-                        addModifier(card3, new UnawakenedMod());
+                        CardModifierManager.addModifier(card3, new UnawakenedMod());
                         AbstractDungeon.player.bottledCardUpgradeCheck(card3);
-                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(card1.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F - 380.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
-                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(card2.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
-                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(card3.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F + 380.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
+                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(card1.makeStatEquivalentCopy(), Settings.WIDTH / 2.0F - 380.0F * Settings.scale, Settings.HEIGHT / 2.0F));
+                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(card2.makeStatEquivalentCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(card3.makeStatEquivalentCopy(), Settings.WIDTH / 2.0F + 380.0F * Settings.scale, Settings.HEIGHT / 2.0F));
                     }
                 }
                 AbstractDungeon.gridSelectScreen.selectedCards.clear();
-                choseMyOption = false;
+                choseVanillaOption = true;
                 return SpireReturn.Return();
             }
             return SpireReturn.Continue();

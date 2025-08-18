@@ -5,7 +5,9 @@ import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.interfaces.TriggerPreDeathMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -20,8 +22,8 @@ public class FairyMod extends AbstractAugment implements TriggerPreDeathMod {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return isNormalCard(card) && card.rarity != AbstractCard.CardRarity.BASIC;
+    public boolean validCard(AbstractCard abstractCard) {
+        return isNormalCard(abstractCard) && abstractCard.rarity != CardRarity.BASIC;
     }
 
     @Override
@@ -30,7 +32,7 @@ public class FairyMod extends AbstractAugment implements TriggerPreDeathMod {
             return false;
         }
 
-        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        CardGroup group = new CardGroup(CardGroupType.UNSPECIFIED);
         group.group.add(card);
         // It is intended to be able to remove bottled card.
         CardGroup retGroup = group.getPurgeableCards();
@@ -41,7 +43,7 @@ public class FairyMod extends AbstractAugment implements TriggerPreDeathMod {
         player.currentHealth = 0;
         player.heal(Math.max(1, (int) (player.maxHealth / 10.0F)), true);
 
-        AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(card, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
+        AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(card, (float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2));
         AbstractDungeon.player.masterDeck.removeCard(card);
 
         return true;

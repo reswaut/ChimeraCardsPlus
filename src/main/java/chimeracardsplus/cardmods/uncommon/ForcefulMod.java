@@ -4,15 +4,14 @@ import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.cards.blue.ForceField;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
-import java.util.ArrayList;
 
 public class ForcefulMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(ForcefulMod.class.getSimpleName());
@@ -28,25 +27,25 @@ public class ForcefulMod extends AbstractAugment {
 
         if (CardCrawlGame.dungeon != null && AbstractDungeon.currMapNode != null) {
             for (AbstractCard c : AbstractDungeon.actionManager.cardsPlayedThisCombat) {
-                if (c.type == AbstractCard.CardType.POWER) {
+                if (c.type == CardType.POWER) {
                     card.updateCost(-1);
                 }
             }
         }
 
-        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+        if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
             modMagic = true;
         }
     }
 
     // Needs to be affordable
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> c.cost >= 0 && doesntUpgradeCost()) && characterCheck(p -> {
-            ArrayList<AbstractCard> deck = p.masterDeck.group;
-            int dest = card.cost;
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 0 && doesntUpgradeCost()) && characterCheck(p -> {
+            Iterable<AbstractCard> deck = p.masterDeck.group;
+            int dest = abstractCard.cost;
             for (AbstractCard c : deck) {
-                if (c.type == AbstractCard.CardType.POWER) {
+                if (c.type == CardType.POWER) {
                     --dest;
                 }
             }
@@ -55,23 +54,23 @@ public class ForcefulMod extends AbstractAugment {
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 0.0F) ? (damage * 4.0F / 3.0F) : damage;
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage > 0.0F ? damage * 4.0F / 3.0F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 0.0F) ? (block * 4.0F / 3.0F) : block;
+        return block > 0.0F ? block * 4.0F / 3.0F : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return modMagic ? (magic * 4.0F / 3.0F) : magic;
+        return modMagic ? magic * 4.0F / 3.0F : magic;
     }
 
     @Override
     public void onOtherCardPlayed(AbstractCard card, AbstractCard otherCard, CardGroup group) {
-        if (otherCard.type == AbstractCard.CardType.POWER) {
+        if (otherCard.type == CardType.POWER) {
             card.updateCost(-1);
         }
     }

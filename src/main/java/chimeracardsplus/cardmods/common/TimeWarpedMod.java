@@ -24,8 +24,8 @@ public class TimeWarpedMod extends AbstractAugment implements TriggerOnDiscardMo
     private boolean descriptionHack = false;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class TimeWarpedMod extends AbstractAugment implements TriggerOnDiscardMo
         String text = CARD_TEXT[0];
         if (descriptionHack) {
             int count = AbstractDungeon.actionManager.cardsPlayedThisCombat.size();
-            text += String.format((count == 1) ? CARD_TEXT[1] : CARD_TEXT[2], count);
+            text += String.format(count == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count);
         }
         return insertAfterText(rawDescription, text);
     }
@@ -58,8 +58,8 @@ public class TimeWarpedMod extends AbstractAugment implements TriggerOnDiscardMo
         if (AbstractDungeon.actionManager.cardsPlayedThisCombat.size() == 12) {
             CardCrawlGame.sound.play("POWER_TIME_WARP", 0.05F);
             AbstractDungeon.topLevelEffectsQueue.add(new TimeWarpTurnEndEffect());
-            this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, 2)));
-            this.addToBot(new PressEndTurnButtonAction());
+            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, 2)));
+            addToBot(new PressEndTurnButtonAction());
         }
         descriptionHack = false;
         card.initializeDescription();

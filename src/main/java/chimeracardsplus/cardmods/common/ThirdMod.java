@@ -7,7 +7,8 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.ScryAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.cards.purple.CutThroughFate;
 import com.megacrit.cardcrawl.cards.purple.JustLucky;
 import com.megacrit.cardcrawl.cards.purple.ThirdEye;
@@ -18,6 +19,8 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ThirdEyeEffect;
 
+import java.util.stream.Stream;
+
 public class ThirdMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(ThirdMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
@@ -25,35 +28,35 @@ public class ThirdMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return (card.baseDamage >= 2 || card.baseBlock >= 2) && card.cost >= -1 && (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL);
+    public boolean validCard(AbstractCard abstractCard) {
+        return (abstractCard.baseDamage >= 2 || abstractCard.baseBlock >= 2) && abstractCard.cost >= -1 && (abstractCard.type == CardType.ATTACK || abstractCard.type == CardType.SKILL);
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 0.0F) ? (damage * 0.75F) : damage;
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage > 0.0F ? damage * 0.75F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 0.0F) ? (block * 0.75F) : block;
+        return block > 0.0F ? block * 0.75F : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (CutThroughFate.ID.equals(card.cardID) || JustLucky.ID.equals(card.cardID) || ThirdEye.ID.equals(card.cardID)) {
-            return magic + 3;
+        if (Stream.of(CutThroughFate.ID, JustLucky.ID, ThirdEye.ID).anyMatch(s -> s.equals(card.cardID))) {
+            return magic + 3.0F;
         }
         return magic;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (CutThroughFate.ID.equals(card.cardID) || JustLucky.ID.equals(card.cardID) || ThirdEye.ID.equals(card.cardID)) {
+        if (Stream.of(CutThroughFate.ID, JustLucky.ID, ThirdEye.ID).anyMatch(s -> s.equals(card.cardID))) {
             return;
         }
-        this.addToBot(new VFXAction(new ThirdEyeEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY)));
-        this.addToBot(new ScryAction(3));
+        addToBot(new VFXAction(new ThirdEyeEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY)));
+        addToBot(new ScryAction(3));
     }
 
     @Override
@@ -73,7 +76,7 @@ public class ThirdMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (CutThroughFate.ID.equals(card.cardID) || JustLucky.ID.equals(card.cardID) || ThirdEye.ID.equals(card.cardID)) {
+        if (Stream.of(CutThroughFate.ID, JustLucky.ID, ThirdEye.ID).anyMatch(s -> s.equals(card.cardID))) {
             return rawDescription;
         }
         return insertAfterText(rawDescription, CARD_TEXT[0]);

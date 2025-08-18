@@ -1,14 +1,14 @@
 package chimeracardsplus.cardmods.common;
 
 import CardAugments.cardmods.AbstractAugment;
-import CardAugments.patches.InterruptUseCardFieldPatches;
+import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.interfaces.TriggerOnDiscardMod;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -22,14 +22,13 @@ public class FinishingMod extends AbstractAugment implements TriggerOnDiscardMod
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
     private boolean descriptionHack = false;
 
-    @Override
-    public void onInitialApplication(AbstractCard card) {
-        InterruptUseCardFieldPatches.InterceptUseField.interceptUse.set(card, true);
+    private static int computeHits(CardType type) {
+        return (int) AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c.type == type).count();
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage > 0.0F ? damage * 2.0F / 3.0F : damage;
+    public void onInitialApplication(AbstractCard card) {
+        InterceptUseField.interceptUse.set(card, Boolean.TRUE);
     }
 
     @Override
@@ -38,25 +37,19 @@ public class FinishingMod extends AbstractAugment implements TriggerOnDiscardMod
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (noShenanigans(c)
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage > 0.0F ? damage * 2.0F / 3.0F : damage;
+    }
+
+    @Override
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> noShenanigans(c)
                 && c.cost >= 0
                 && (c.baseDamage >= 2 || c.baseBlock >= 2)
                 && (c.type == CardType.ATTACK || c.type == CardType.SKILL)
-                && customCheck(c, (check) ->
+                && customCheck(c, check ->
                     noCardModDescriptionChanges(check)
-                            && check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1)
-        ));
-    }
-
-    private int computeHits(CardType type) {
-        int hits = 0;
-        for (AbstractCard c : AbstractDungeon.actionManager.cardsPlayedThisTurn) {
-            if (c.type == type) {
-                ++hits;
-            }
-        }
-        return hits;
+                            && check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L));
     }
 
     @Override
@@ -81,13 +74,13 @@ public class FinishingMod extends AbstractAugment implements TriggerOnDiscardMod
             text = CARD_TEXT[0];
             if (descriptionHack) {
                 int count = computeHits(card.type);
-                text += String.format((count == 1) ? CARD_TEXT[1] : CARD_TEXT[2], count);
+                text += String.format(count == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count);
             }
         } else if (card.type == CardType.SKILL) {
             text = CARD_TEXT[3];
             if (descriptionHack) {
                 int count = computeHits(card.type);
-                text += String.format((count == 1) ? CARD_TEXT[4] : CARD_TEXT[5], count);
+                text += String.format(count == 1 ? CARD_TEXT[4] : CARD_TEXT[5], count);
             }
         }
         return rawDescription.replaceFirst("[.。]", text);

@@ -10,7 +10,8 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.actions.watcher.JudgementAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
@@ -23,54 +24,53 @@ public class JudgeMod extends AbstractAugment implements DynvarCarrier {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private static final String DESCRIPTION_KEY = "!" + ID + "!";
-    private boolean modified = false;
+    private static final String DESCRIPTION_KEY = '!' + ID + '!';
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1
-                && c.baseDamage >= 2 && c.type == AbstractCard.CardType.ATTACK
-                && usesEnemyTargeting()));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= -1
+                && c.baseDamage >= 2 && c.type == CardType.ATTACK
+                && usesEnemyTargeting());
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 0.0F) ? (damage * 0.75F) : damage;
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage > 0.0F ? damage * 0.75F : damage;
     }
 
     @Override
-    public void onUse(AbstractCard card, AbstractCreature cardTarget, UseCardAction action) {
-        if (cardTarget != null) {
-            this.addToBot(new VFXAction(new WeightyImpactEffect(cardTarget.hb.cX, cardTarget.hb.cY, Color.GOLD.cpy())));
-            this.addToBot(new WaitAction(0.8F));
-            this.addToBot(new VFXAction(new GiantTextEffect(cardTarget.hb.cX, cardTarget.hb.cY)));
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        if (target != null) {
+            addToBot(new VFXAction(new WeightyImpactEffect(target.hb.cX, target.hb.cY, Color.GOLD.cpy())));
+            addToBot(new WaitAction(0.8F));
+            addToBot(new VFXAction(new GiantTextEffect(target.hb.cX, target.hb.cY)));
         }
-        this.addToBot(new JudgementAction(cardTarget, getBaseVal(card)));
+        addToBot(new JudgementAction(target, baseVal(card)));
     }
 
-    public int getBaseVal(AbstractCard card) {
-        return card.baseDamage * 3 / 4;
-    }
-
+    @Override
     public String key() {
         return ID;
     }
 
-    public int val(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int val(AbstractCard abstractCard) {
+        return baseVal(abstractCard);
     }
 
-    public int baseVal(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int baseVal(AbstractCard abstractCard) {
+        return abstractCard.baseDamage * 3 / 4;
     }
 
-    public boolean modified(AbstractCard card) {
-        return this.modified;
+    @Override
+    public boolean modified(AbstractCard abstractCard) {
+        return false;
     }
 
-    public boolean upgraded(AbstractCard card) {
-        this.modified = card.timesUpgraded != 0 || card.upgraded;
-        return this.modified;
+    @Override
+    public boolean upgraded(AbstractCard abstractCard) {
+        return abstractCard.timesUpgraded != 0 || abstractCard.upgraded;
     }
 
     @Override

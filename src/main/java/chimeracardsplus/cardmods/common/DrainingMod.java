@@ -6,7 +6,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
@@ -21,34 +21,34 @@ public class DrainingMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+        if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
             modMagic = true;
         }
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 0.0F) ? (damage * 1.4F) : damage;
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage > 0.0F ? damage * 1.4F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 0.0F) ? (block * 1.4F) : block;
+        return block > 0.0F ? block * 1.4F : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return modMagic ? (magic * 1.4F) : magic;
+        return modMagic ? magic * 1.4F : magic;
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.baseDamage >= 3 || c.baseBlock >= 3 || (c.baseMagicNumber >= 3 && doesntDowngradeMagic()));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.baseDamage >= 3 || c.baseBlock >= 3 || c.baseMagicNumber >= 3 && doesntDowngradeMagic());
     }
 
     @Override
     public void onDrawn(AbstractCard card) {
-        this.addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, 1));
+        addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, 1));
         card.flash(Color.RED);
     }
 

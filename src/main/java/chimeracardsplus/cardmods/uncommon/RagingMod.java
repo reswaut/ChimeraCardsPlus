@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.powers.RagePower;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
+import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect.ShockWaveType;
 
 public class RagingMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(RagingMod.class.getSimpleName());
@@ -23,8 +24,8 @@ public class RagingMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && card.baseBlock >= 2;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1 && abstractCard.baseBlock >= 2;
     }
 
     @Override
@@ -34,9 +35,9 @@ public class RagingMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new SFXAction("RAGE"));
-        this.addToBot(new VFXAction(AbstractDungeon.player, new ShockWaveEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, Color.ORANGE, ShockWaveEffect.ShockWaveType.CHAOTIC), 1.0F));
-        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new RagePower(AbstractDungeon.player, 3), 3));
+        addToBot(new SFXAction("RAGE"));
+        addToBot(new VFXAction(AbstractDungeon.player, new ShockWaveEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, Color.ORANGE, ShockWaveType.CHAOTIC), 1.0F));
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new RagePower(AbstractDungeon.player, 3), 3));
     }
 
     @Override

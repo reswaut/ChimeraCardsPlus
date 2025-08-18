@@ -3,11 +3,11 @@ package chimeracardsplus.cardmods.common;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.cards.red.Uppercut;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -24,26 +24,26 @@ public class UpperMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 0.0F) ? (damage * 0.80F) : damage;
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage > 0.0F ? damage * 0.80F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 0.0F) ? (block * 0.80F) : block;
+        return block > 0.0F ? block * 0.80F : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
         if (Uppercut.ID.equals(card.cardID)) {
-            return magic + 1;
+            return magic + 1.0F;
         }
         return magic;
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1 && (c.baseDamage >= 2 || c.baseBlock >= 2) && usesEnemyTargeting()));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= -1 && (c.baseDamage >= 2 || c.baseBlock >= 2) && usesEnemyTargeting());
     }
 
     @Override
@@ -74,8 +74,8 @@ public class UpperMod extends AbstractAugment {
         if (Uppercut.ID.equals(card.cardID) || target == null) {
             return;
         }
-        this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new WeakPower(target, 1, false), 1, true, AbstractGameAction.AttackEffect.NONE));
-        this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new VulnerablePower(target, 1, false), 1, true, AbstractGameAction.AttackEffect.NONE));
+        addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new WeakPower(target, 1, false), 1, true, AttackEffect.NONE));
+        addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new VulnerablePower(target, 1, false), 1, true, AttackEffect.NONE));
     }
 
     @Override

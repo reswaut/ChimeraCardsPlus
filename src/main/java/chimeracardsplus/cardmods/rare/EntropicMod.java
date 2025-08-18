@@ -6,6 +6,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.actions.FillHandAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
@@ -24,8 +25,8 @@ public class EntropicMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= 0 && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL) && doesntUpgradeCost() && notExhaust(c));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 0 && (c.type == CardType.ATTACK || c.type == CardType.SKILL) && doesntUpgradeCost() && notExhaust(c));
     }
 
     @Override
@@ -55,7 +56,7 @@ public class EntropicMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new FillHandAction(getEffectiveUpgrades(card) > 0));
+        addToBot(new FillHandAction(card.timesUpgraded != 0 || card.upgraded));
     }
 
     @Override

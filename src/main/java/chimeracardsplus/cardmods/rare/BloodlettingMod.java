@@ -46,14 +46,14 @@ public class BloodlettingMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost > 0;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost > 0;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (hpCost > 0) {
-            this.addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, hpCost * 2));
+            addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, hpCost * 2));
         }
     }
 

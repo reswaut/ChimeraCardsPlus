@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -21,8 +22,8 @@ public class OrnamentalMod extends AbstractAugment implements TriggerOnDiscardMo
     private boolean descriptionHack = false;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.type == AbstractCard.CardType.ATTACK && card.cost >= -1 && card.baseBlock == -1;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.type == CardType.ATTACK && abstractCard.cost >= -1 && abstractCard.baseBlock == -1;
     }
 
     @Override
@@ -49,16 +50,16 @@ public class OrnamentalMod extends AbstractAugment implements TriggerOnDiscardMo
     public String modifyDescription(String rawDescription, AbstractCard card) {
         String text = CARD_TEXT[0];
         if (descriptionHack) {
-            int count = (int) AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter((c) -> c != null && c.type == AbstractCard.CardType.ATTACK).count();
-            text += String.format((count == 1) ? CARD_TEXT[1] : CARD_TEXT[2], count);
+            int count = (int) AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.ATTACK).count();
+            text += String.format(count == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count);
         }
         return insertAfterText(rawDescription, text);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter((c) -> c != null && c.type == AbstractCard.CardType.ATTACK).count() == 3) {
-            this.addToBot(new GainBlockAction(AbstractDungeon.player, card.block));
+        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.ATTACK).count() == 3L) {
+            addToBot(new GainBlockAction(AbstractDungeon.player, card.block));
         }
         descriptionHack = false;
         card.initializeDescription();
@@ -82,7 +83,7 @@ public class OrnamentalMod extends AbstractAugment implements TriggerOnDiscardMo
 
     @Override
     public Color getGlow(AbstractCard card) {
-        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter((c) -> c != null && c.type == AbstractCard.CardType.ATTACK).count() == 2) {
+        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.ATTACK).count() == 2L) {
             return Color.GOLD.cpy();
         }
         return null;

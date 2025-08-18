@@ -7,9 +7,8 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-
-import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.cardRandomRng;
 
 public class StrangeMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(StrangeMod.class.getSimpleName());
@@ -23,19 +22,19 @@ public class StrangeMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.exhaust && doesntUpgradeExhaust() && c.cost >= -1);
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.exhaust && doesntUpgradeExhaust() && c.cost >= -1);
     }
 
     @Override
     public boolean onBattleStart(AbstractCard card) {
-        card.exhaust = cardRandomRng.randomBoolean();
+        card.exhaust = AbstractDungeon.cardRandomRng.randomBoolean();
         return false;
     }
 
     @Override
     public void onCreatedMidCombat(AbstractCard card) {
-        card.exhaust = cardRandomRng.randomBoolean();
+        card.exhaust = AbstractDungeon.cardRandomRng.randomBoolean();
     }
 
     @Override
@@ -64,8 +63,8 @@ public class StrangeMod extends AbstractAugment {
     }
 
     @Override
-    public void onUse(AbstractCard card, AbstractCreature cardTarget, UseCardAction action) {
-        card.exhaust = cardRandomRng.randomBoolean();
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        card.exhaust = AbstractDungeon.cardRandomRng.randomBoolean();
     }
 
     @Override

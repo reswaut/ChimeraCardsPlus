@@ -13,24 +13,27 @@ import com.megacrit.cardcrawl.vfx.combat.FlyingOrbEffect;
 
 public class ReaperDamage extends AbstractDamageModifier {
     public ReaperDamage() {
-        this.priority = 32767;
+        priority = 32767;
     }
 
-    public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature targetHit) {
-        if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
+    @Override
+    public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature target) {
+        if (target instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
                 && AbstractDungeon.player.equals(info.owner)
-                && targetHit.currentHealth > 0 && !targetHit.halfDead) {
+                && target.currentHealth > 0 && !target.halfDead) {
             for (int j = 0; j < lastDamageTaken / 2 && j < 10; j++) {
-                addToBot(new VFXAction(new FlyingOrbEffect(targetHit.hb.cX, targetHit.hb.cY)));
+                addToBot(new VFXAction(new FlyingOrbEffect(target.hb.cX, target.hb.cY)));
             }
             addToBot(new HealAction(info.owner, info.owner, lastDamageTaken));
         }
     }
 
+    @Override
     public boolean isInherent() {
         return true;
     }
 
+    @Override
     public AbstractDamageModifier makeCopy() {
         return new ReaperDamage();
     }

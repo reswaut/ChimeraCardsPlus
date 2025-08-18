@@ -4,12 +4,12 @@ import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.interfaces.TriggerOnDiscardMod;
+import chimeracardsplus.util.CardCheckHelpers;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
-
-import static chimeracardsplus.util.CardCheckHelpers.hasCardWithKeywordInDeck;
 
 public class ReplicativeMod extends AbstractAugment implements TriggerOnDiscardMod {
     public static final String ID = ChimeraCardsPlus.makeID(ReplicativeMod.class.getSimpleName());
@@ -18,8 +18,8 @@ public class ReplicativeMod extends AbstractAugment implements TriggerOnDiscardM
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return !card.hasTag(AbstractCard.CardTags.HEALING) && characterCheck((p) -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
+    public boolean validCard(AbstractCard abstractCard) {
+        return !abstractCard.hasTag(CardTags.HEALING) && characterCheck(p -> CardCheckHelpers.hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ReplicativeMod extends AbstractAugment implements TriggerOnDiscardM
 
     @Override
     public void onManualDiscard(AbstractCard card) {
-        this.addToBot(new MakeTempCardInHandAction(card.makeStatEquivalentCopy(), true));
+        addToBot(new MakeTempCardInHandAction(card.makeStatEquivalentCopy(), true));
     }
 
     @Override

@@ -3,14 +3,13 @@ package chimeracardsplus.cardmods.rare;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.actions.MartialAction;
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
 public class MartialMod extends AbstractAugment {
@@ -20,13 +19,13 @@ public class MartialMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= 1;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= 1;
     }
 
     @Override
     public Color getGlow(AbstractCard card) {
-        if (lastCardPlayedCheck((c) -> c.type == AbstractCard.CardType.ATTACK)) {
+        if (lastCardPlayedCheck(c -> c.type == CardType.ATTACK)) {
             return Color.GOLD.cpy();
         }
         return null;
@@ -34,15 +33,7 @@ public class MartialMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                if (AbstractDungeon.actionManager.cardsPlayedThisCombat.size() >= 2 && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 2).type == AbstractCard.CardType.ATTACK) {
-                    this.addToTop(new DrawCardAction(2));
-                }
-                this.isDone = true;
-            }
-        });
+        addToBot(new MartialAction(2));
     }
 
     @Override

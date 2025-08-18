@@ -1,7 +1,7 @@
 package chimeracardsplus.cardmods.rare;
 
 import CardAugments.cardmods.AbstractAugment;
-import CardAugments.patches.InterruptUseCardFieldPatches;
+import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -19,13 +19,13 @@ public class ChemicalMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost == -1 && doesntUpgradeCost()));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost == -1 && doesntUpgradeCost());
     }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        InterruptUseCardFieldPatches.InterceptUseField.interceptUse.set(card, true);
+        InterceptUseField.interceptUse.set(card, Boolean.TRUE);
     }
 
     @Override

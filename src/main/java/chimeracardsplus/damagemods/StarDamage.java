@@ -11,20 +11,21 @@ import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.UnawakenedPower;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier;
 
 public class StarDamage extends AbstractDamageModifier {
     public StarDamage() {
-        this.priority = 32767;
+        priority = 32767;
     }
 
-    public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature targetHit) {
-        if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
-                && targetHit.currentHealth > 0
-                && targetHit.currentHealth - lastDamageTaken <= 0
-                && !targetHit.halfDead
-                && !targetHit.hasPower(MinionPower.POWER_ID)
-                && !targetHit.hasPower(UnawakenedPower.POWER_ID)) {
+    @Override
+    public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature target) {
+        if (target instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
+                && target.currentHealth > 0
+                && target.currentHealth - lastDamageTaken <= 0
+                && !target.halfDead
+                && !target.hasPower(MinionPower.POWER_ID)
+                && !target.hasPower(UnawakenedPower.POWER_ID)) {
             if (!AbstractDungeon.getCurrRoom().eliteTrigger) {
                 return;
             }
@@ -35,18 +36,20 @@ public class StarDamage extends AbstractDamageModifier {
             if (ModHelper.isModEnabled("Elite Swarm")) {
                 roll += 10;
             }
-            AbstractRelic.RelicTier tier = AbstractRelic.RelicTier.COMMON;
+            RelicTier tier = RelicTier.COMMON;
             if (roll >= 50) {
-                tier = (roll > 82 ? AbstractRelic.RelicTier.RARE : AbstractRelic.RelicTier.UNCOMMON);
+                tier = roll > 82 ? RelicTier.RARE : RelicTier.UNCOMMON;
             }
             AbstractDungeon.getCurrRoom().addNoncampRelicToRewards(tier);
         }
     }
 
+    @Override
     public boolean isInherent() {
         return true;
     }
 
+    @Override
     public AbstractDamageModifier makeCopy() {
         return new StarDamage();
     }

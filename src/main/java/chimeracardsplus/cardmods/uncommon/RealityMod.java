@@ -7,7 +7,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.cards.tempCards.Safety;
 import com.megacrit.cardcrawl.cards.tempCards.Smite;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -39,27 +39,27 @@ public class RealityMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> (c.cost >= 1 && doesntUpgradeCost() && (c.baseDamage > 12 || c.baseBlock > 12)));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 1 && doesntUpgradeCost() && (c.baseDamage > 12 || c.baseBlock > 12));
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 0.0F && damageReduction) ? Math.max(damage - 12.0F, 0.0F) : damage;
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage > 0.0F && damageReduction ? Math.max(damage - 12.0F, 0.0F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 0.0F && blockReduction) ? Math.max(block - 12.0F, 0.0F) : block;
+        return block > 0.0F && blockReduction ? Math.max(block - 12.0F, 0.0F) : block;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (damageReduction) {
-            this.addToBot(new MakeTempCardInHandAction(new Smite(), 1));
+            addToBot(new MakeTempCardInHandAction(new Smite(), 1));
         }
         if (blockReduction) {
-            this.addToBot(new MakeTempCardInHandAction(new Safety(), 1));
+            addToBot(new MakeTempCardInHandAction(new Safety(), 1));
         }
     }
 

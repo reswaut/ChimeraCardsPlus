@@ -4,6 +4,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -17,24 +18,25 @@ public class CardByIDFromDeckToHandAction extends AbstractGameAction {
 
     public CardByIDFromDeckToHandAction(int amount, String cardID) {
         this.cardID = cardID;
-        this.setValues(AbstractDungeon.player, AbstractDungeon.player, amount);
-        this.actionType = ActionType.CARD_MANIPULATION;
-        this.duration = Settings.ACTION_DUR_MED;
+        this.amount = amount;
+        actionType = ActionType.CARD_MANIPULATION;
+        duration = Settings.ACTION_DUR_MED;
     }
 
+    @Override
     public void update() {
         AbstractCard card;
-        if (this.duration == Settings.ACTION_DUR_MED) {
-            CardGroup tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        if (duration >= Settings.ACTION_DUR_MED) {
+            CardGroup tmp = new CardGroup(CardGroupType.UNSPECIFIED);
 
             for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
-                if (c.cardID.equals(this.cardID)) {
+                if (c.cardID.equals(cardID)) {
                     tmp.addToRandomSpot(c);
                 }
             }
 
             if (tmp.isEmpty()) {
-                this.isDone = true;
+                isDone = true;
             } else if (tmp.size() == 1) {
                 card = tmp.getTopCard();
                 if (AbstractDungeon.player.hand.size() == 10) {
@@ -54,10 +56,10 @@ public class CardByIDFromDeckToHandAction extends AbstractGameAction {
                     AbstractDungeon.player.hand.applyPowers();
                 }
 
-                this.isDone = true;
+                isDone = true;
             } else {
-                AbstractDungeon.gridSelectScreen.open(tmp, this.amount, TEXT[0], false);
-                this.tickDuration();
+                AbstractDungeon.gridSelectScreen.open(tmp, amount, TEXT[0], false);
+                tickDuration();
             }
         } else {
             if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
@@ -80,7 +82,7 @@ public class CardByIDFromDeckToHandAction extends AbstractGameAction {
                 AbstractDungeon.player.hand.refreshHandLayout();
             }
 
-            this.tickDuration();
+            tickDuration();
         }
     }
 }

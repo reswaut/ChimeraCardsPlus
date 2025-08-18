@@ -8,7 +8,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.actions.watcher.CrushJointsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.cards.purple.CrushJoints;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -20,28 +21,27 @@ public class CrushingMod extends AbstractAugment implements DynvarCarrier {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private static final String DESCRIPTION_KEY = "!" + ID + "!";
-    private boolean modified = false;
+    private static final String DESCRIPTION_KEY = '!' + ID + '!';
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> ((c.baseDamage >= 2 || c.baseBlock >= 2) && c.cost >= -1 && usesEnemyTargeting()));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> (c.baseDamage >= 2 || c.baseBlock >= 2) && c.cost >= -1 && usesEnemyTargeting());
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 0.0F) ? (damage * 0.75F) : damage;
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage > 0.0F ? damage * 0.75F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 0.0F) ? (block * 0.75F) : block;
+        return block > 0.0F ? block * 0.75F : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
         if (CrushJoints.ID.equals(card.cardID)) {
-            return magic + getBaseVal(card);
+            return magic + baseVal(card);
         }
         return magic;
     }
@@ -51,40 +51,40 @@ public class CrushingMod extends AbstractAugment implements DynvarCarrier {
         if (CrushJoints.ID.equals(card.cardID) || target == null) {
             return;
         }
-        this.addToBot(new CrushJointsAction((AbstractMonster) target, getBaseVal(card)));
+        addToBot(new CrushJointsAction((AbstractMonster) target, baseVal(card)));
     }
 
     @Override
     public Color getGlow(AbstractCard card) {
-        if (CrushJoints.ID.equals(card.cardID) || !lastCardPlayedCheck((c) -> c.type == AbstractCard.CardType.SKILL)) {
+        if (CrushJoints.ID.equals(card.cardID) || !lastCardPlayedCheck(c -> c.type == CardType.SKILL)) {
             return null;
         }
         return Color.GOLD.cpy();
     }
 
-    public int getBaseVal(AbstractCard card) {
-        return 1 + getEffectiveUpgrades(card);
-    }
-
+    @Override
     public String key() {
         return ID;
     }
 
-    public int val(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int val(AbstractCard abstractCard) {
+        return baseVal(abstractCard);
     }
 
-    public int baseVal(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int baseVal(AbstractCard abstractCard) {
+        return 1 + getEffectiveUpgrades(abstractCard);
     }
 
-    public boolean modified(AbstractCard card) {
-        return this.modified;
+    @Override
+    public boolean modified(AbstractCard abstractCard) {
+        return false;
     }
 
-    public boolean upgraded(AbstractCard card) {
-        this.modified = card.timesUpgraded != 0 || card.upgraded;
-        return this.modified;
+    @Override
+    public boolean upgraded(AbstractCard abstractCard) {
+        return abstractCard.timesUpgraded != 0 || abstractCard.upgraded;
     }
 
     @Override

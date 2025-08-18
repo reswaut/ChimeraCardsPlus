@@ -1,7 +1,7 @@
 package chimeracardsplus.cardmods.rare;
 
 import CardAugments.cardmods.AbstractAugment;
-import CardAugments.patches.InterruptUseCardFieldPatches;
+import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
@@ -22,22 +22,21 @@ public class FiendMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        InterruptUseCardFieldPatches.InterceptUseField.interceptUse.set(card, true);
+        InterceptUseField.interceptUse.set(card, Boolean.TRUE);
         card.exhaust = true;
         card.cost += 2;
         card.costForTurn = card.cost;
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (notExhaust(c)
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> notExhaust(c)
                 && c.cost >= 0 && doesntUpgradeCost()
                 && (c.type == CardType.ATTACK || c.type == CardType.SKILL)
-                && customCheck(c, (check) ->
+                && customCheck(c, check ->
                 noCardModDescriptionChanges(check)
-                        && check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1
-                        && check.rawDescription.chars().noneMatch((ch) -> ch == ',' || ch == '，'))
-        ));
+                        && check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L
+                        && check.rawDescription.chars().noneMatch(ch -> ch == ',' || ch == '，')));
     }
 
     @Override
@@ -67,7 +66,7 @@ public class FiendMod extends AbstractAugment {
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
             if (!card.uuid.equals(c.uuid)) {
                 count += 1;
-                this.addToTop(new ExhaustSpecificCardAction(c, AbstractDungeon.player.hand));
+                addToTop(new ExhaustSpecificCardAction(c, AbstractDungeon.player.hand));
             }
         }
 

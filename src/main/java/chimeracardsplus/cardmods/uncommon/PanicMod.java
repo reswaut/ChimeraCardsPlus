@@ -6,6 +6,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.colorless.PanicButton;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -22,7 +23,7 @@ public class PanicMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        this.addedExhaust = !card.exhaust;
+        addedExhaust = !card.exhaust;
         card.exhaust = true;
     }
 
@@ -35,8 +36,8 @@ public class PanicMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.baseBlock >= 1 && c.cost >= -1 && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL) && doesntUpgradeExhaust());
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.baseBlock >= 1 && c.cost >= -1 && (c.type == CardType.ATTACK || c.type == CardType.SKILL) && doesntUpgradeExhaust());
     }
 
     @Override
@@ -44,7 +45,7 @@ public class PanicMod extends AbstractAugment {
         if (PanicButton.ID.equals(card.cardID)) {
             return;
         }
-        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NoBlockPower(AbstractDungeon.player, 2, false), 2));
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NoBlockPower(AbstractDungeon.player, 2, false), 2));
     }
 
     @Override

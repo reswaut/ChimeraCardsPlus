@@ -16,8 +16,8 @@ public class CardModifierOnDiscardPatch {
     public static class TriggerOnManualDiscardPatch {
         public static void doPatch(ClassFinder finder, ClassPool pool) throws NotFoundException, CannotCompileException {
             ChimeraCardsPlus.logger.info("- Trigger on Manual Discard Patch:");
-            AndClassFilter filter = new AndClassFilter(new NotClassFilter(new InterfaceOnlyClassFilter()), new SubclassClassFilter(AbstractCard.class));
-            ArrayList<ClassInfo> clzList = new ArrayList<>();
+            ClassFilter filter = new AndClassFilter(new NotClassFilter(new InterfaceOnlyClassFilter()), new SubclassClassFilter(AbstractCard.class));
+            ArrayList<ClassInfo> clzList = new ArrayList<>(512);
             finder.findClasses(clzList, filter);
             ChimeraCardsPlus.logger.info("\t- Potential targets found ({}).", clzList.size());
             CtClass ctClass = pool.get(AbstractCard.class.getName());
@@ -39,7 +39,7 @@ public class CardModifierOnDiscardPatch {
         }
 
         public static void ManualDiscardTrigger(CtClass ctClass, CtMethod method) throws CannotCompileException {
-            if (method.getName().equals("triggerOnManualDiscard")) {
+            if ("triggerOnManualDiscard".equals(method.getName())) {
                 ChimeraCardsPlus.logger.info("- Patching {}", ctClass.getName());
                 method.insertAfter(TriggerOnManualDiscardPatch.class.getName() + ".Postfix(this);");
             }

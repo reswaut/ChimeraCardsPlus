@@ -4,10 +4,11 @@ import CardAugments.cardmods.AbstractAugment;
 import CardAugments.cardmods.DynvarCarrier;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.green.CripplingPoison;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -22,8 +23,7 @@ public class CripplingMod extends AbstractAugment implements DynvarCarrier {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private static final String DESCRIPTION_KEY = "!" + ID + "!";
-    private boolean modified = false;
+    private static final String DESCRIPTION_KEY = '!' + ID + '!';
     private boolean addedExhaust = true;
 
     @Override
@@ -35,51 +35,51 @@ public class CripplingMod extends AbstractAugment implements DynvarCarrier {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= 0 && doesntUpgradeCost()
-                && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL));
-    }
-
-    @Override
-    public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (CripplingPoison.ID.equals(card.cardID)) {
-            return magic + getBaseVal(card);
-        }
-        return magic;
-    }
-
-    public int getBaseVal(AbstractCard card) {
-        return 3 + 2 * this.getEffectiveUpgrades(card);
-    }
-
-    public String key() {
-        return ID;
-    }
-
-    public int val(AbstractCard card) {
-        return this.getBaseVal(card);
-    }
-
-    public int baseVal(AbstractCard card) {
-        return this.getBaseVal(card);
-    }
-
-    public boolean modified(AbstractCard card) {
-        return this.modified;
-    }
-
-    public boolean upgraded(AbstractCard card) {
-        this.modified = card.timesUpgraded != 0 || card.upgraded;
-        return this.modified;
-    }
-
-    @Override
     public void onUpgradeCheck(AbstractCard card) {
         if (!card.exhaust) {
             addedExhaust = true;
             card.exhaust = true;
         }
         card.initializeDescription();
+    }
+
+    @Override
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 0 && doesntUpgradeCost()
+                && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
+    }
+
+    @Override
+    public float modifyBaseMagic(float magic, AbstractCard card) {
+        if (CripplingPoison.ID.equals(card.cardID)) {
+            return magic + baseVal(card);
+        }
+        return magic;
+    }
+
+    @Override
+    public String key() {
+        return ID;
+    }
+
+    @Override
+    public int val(AbstractCard abstractCard) {
+        return baseVal(abstractCard);
+    }
+
+    @Override
+    public int baseVal(AbstractCard abstractCard) {
+        return 3 + 2 * getEffectiveUpgrades(abstractCard);
+    }
+
+    @Override
+    public boolean modified(AbstractCard abstractCard) {
+        return false;
+    }
+
+    @Override
+    public boolean upgraded(AbstractCard abstractCard) {
+        return abstractCard.timesUpgraded != 0 || abstractCard.upgraded;
     }
 
     @Override
@@ -109,9 +109,9 @@ public class CripplingMod extends AbstractAugment implements DynvarCarrier {
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (!CripplingPoison.ID.equals(card.cardID)) {
-                this.addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new PoisonPower(mo, AbstractDungeon.player, getBaseVal(card)), getBaseVal(card), true, AbstractGameAction.AttackEffect.NONE));
+                addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new PoisonPower(mo, AbstractDungeon.player, baseVal(card)), baseVal(card), true, AttackEffect.NONE));
             }
-            this.addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new WeakPower(mo, 1, false), 1, true, AbstractGameAction.AttackEffect.NONE));
+            addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new WeakPower(mo, 1, false), 1, true, AttackEffect.NONE));
         }
     }
 

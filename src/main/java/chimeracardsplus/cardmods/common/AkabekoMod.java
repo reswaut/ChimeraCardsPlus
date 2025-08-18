@@ -5,7 +5,8 @@ import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
@@ -18,18 +19,18 @@ public class AkabekoMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().filter((c) -> c.type == AbstractCard.CardType.ATTACK).count() <= 1 ? damage + 8 : damage;
+    public float modifyDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().filter(c -> c.type == CardType.ATTACK).count() <= 1L ? damage + 8.0F : damage;
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.baseDamage >= 1 && card.type == AbstractCard.CardType.ATTACK;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.baseDamage >= 1 && abstractCard.type == CardType.ATTACK;
     }
 
     @Override
     public Color getGlow(AbstractCard card) {
-        return AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().noneMatch((c) -> c.type == AbstractCard.CardType.ATTACK) ? Color.GOLD.cpy() : null;
+        return AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().noneMatch(c -> c.type == CardType.ATTACK) ? Color.GOLD.cpy() : null;
     }
 
     @Override

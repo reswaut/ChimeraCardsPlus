@@ -1,29 +1,28 @@
 package chimeracardsplus.util;
 
+import chimeracardsplus.ChimeraCardsPlus;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
 import java.util.HashMap;
 
-import static chimeracardsplus.ChimeraCardsPlus.imagePath;
-import static chimeracardsplus.ChimeraCardsPlus.logger;
-
 public class TextureLoader {
-    private static final HashMap<String, Texture> textures = new HashMap<>();
+    private final HashMap<String, Texture> textures = new HashMap<>(16);
 
-    public static Texture getTexture(final String filePath) {
+    public Texture getTexture(String filePath) {
         return getTexture(filePath, true);
     }
 
-    public static Texture getTexture(final String filePath, boolean linear) {
+    public Texture getTexture(String filePath, boolean linear) {
         if (textures.get(filePath) == null) {
             try {
                 loadTexture(filePath, linear);
             } catch (GdxRuntimeException e) {
-                logger.info("Failed to find texture {}", filePath, e);
-                Texture missing = getTextureNull(imagePath("missing.png"), false);
+                ChimeraCardsPlus.logger.info("Failed to find texture {}", filePath, e);
+                Texture missing = getTextureNull(ChimeraCardsPlus.imagePath("missing.png"), false);
                 if (missing == null) {
-                    logger.info("missing.png is missing, should be at {}", imagePath("missing.png"));
+                    ChimeraCardsPlus.logger.info("missing.png is missing, should be at {}", ChimeraCardsPlus.imagePath("missing.png"));
                 }
                 return missing;
             }
@@ -36,11 +35,11 @@ public class TextureLoader {
         return t;
     }
 
-    public static Texture getTextureNull(final String filePath) {
+    public Texture getTextureNull(String filePath) {
         return getTextureNull(filePath, true);
     }
 
-    public static Texture getTextureNull(final String filePath, boolean linear) {
+    public Texture getTextureNull(String filePath, boolean linear) {
         if (!textures.containsKey(filePath)) {
             try {
                 loadTexture(filePath, linear);
@@ -56,18 +55,18 @@ public class TextureLoader {
         return t;
     }
 
-    private static void loadTexture(final String textureString) throws GdxRuntimeException {
+    private void loadTexture(String textureString) {
         loadTexture(textureString, false);
     }
 
-    private static void loadTexture(final String textureString, boolean linearFilter) throws GdxRuntimeException {
+    private void loadTexture(String textureString, boolean linearFilter) {
         Texture texture = new Texture(textureString);
         if (linearFilter) {
-            texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+            texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
         } else {
-            texture.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
+            texture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
         }
-        logger.info("Loaded texture {}", textureString);
+        ChimeraCardsPlus.logger.info("Loaded texture {}", textureString);
         textures.put(textureString, texture);
     }
 }

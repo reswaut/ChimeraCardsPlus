@@ -13,19 +13,19 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 public class UntappedPower extends AbstractPower {
     public static final String POWER_ID = ChimeraCardsPlus.makeID(UntappedPower.class.getSimpleName());
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String NAME = powerStrings.NAME;
-    public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+    private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
+    private static final String NAME = powerStrings.NAME;
+    private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public UntappedPower(AbstractCreature creature, int amount) {
-        this.name = NAME;
-        this.ID = POWER_ID;
-        this.owner = creature;
+        name = NAME;
+        ID = POWER_ID;
+        owner = creature;
         this.amount = amount;
-        this.type = PowerType.BUFF;
-        this.isTurnBased = true;
-        this.updateDescription();
-        this.loadRegion("controlled_change");
+        type = PowerType.BUFF;
+        isTurnBased = true;
+        updateDescription();
+        loadRegion("controlled_change");
     }
 
     @Override
@@ -33,19 +33,19 @@ public class UntappedPower extends AbstractPower {
         if (!isPlayer) {
             return;
         }
-        if (this.amount == 0) {
-            this.addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
+        if (amount == 0) {
+            addToBot(new RemoveSpecificPowerAction(owner, owner, POWER_ID));
         } else {
-            this.addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+            addToBot(new ReducePowerAction(owner, owner, POWER_ID, 1));
             int energyLeft = EnergyPanel.getCurrentEnergy();
             if (energyLeft > 0) {
-                this.addToBot(new ApplyPowerAction(this.owner, this.owner, new DrawCardNextTurnPower(this.owner, energyLeft)));
+                addToBot(new ApplyPowerAction(owner, owner, new DrawCardNextTurnPower(owner, energyLeft)));
             }
         }
     }
 
     @Override
     public void updateDescription() {
-        this.description = powerStrings.DESCRIPTIONS[0];
+        description = powerStrings.DESCRIPTIONS[0];
     }
 }

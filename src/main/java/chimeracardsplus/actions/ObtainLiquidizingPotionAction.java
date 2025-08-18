@@ -23,17 +23,20 @@ public class ObtainLiquidizingPotionAction extends ObtainPotionAction {
     public static class DontClearObtainPotionActionPatch {
         @SpireInstrumentPatch
         public static ExprEditor Instrument() {
-            return new ExprEditor() {
-                public void edit(Instanceof i) throws CannotCompileException {
-                    try {
-                        if (i.getType().getName().equals(HealAction.class.getName())) {
-                            i.replace("{ $_ = $proceed($$) || ($1 instanceof " + ObtainLiquidizingPotionAction.class.getName() + "); }");
-                        }
-                    } catch (NotFoundException e) {
-                        throw new RuntimeException(e);
+            return new ObtainPotionExpr();
+        }
+
+        private static class ObtainPotionExpr extends ExprEditor {
+            @Override
+            public void edit(Instanceof i) throws CannotCompileException {
+                try {
+                    if (i.getType().getName().equals(HealAction.class.getName())) {
+                        i.replace("{ $_ = $proceed($$) || ($1 instanceof " + ObtainLiquidizingPotionAction.class.getName() + "); }");
                     }
+                } catch (NotFoundException e) {
+                    e.printStackTrace();
                 }
-            };
+            }
         }
     }
 }

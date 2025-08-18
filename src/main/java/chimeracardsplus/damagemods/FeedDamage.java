@@ -14,26 +14,29 @@ public class FeedDamage extends AbstractDamageModifier {
     private final int maxHp;
 
     public FeedDamage(int maxHp) {
-        this.priority = 32767;
+        priority = 32767;
         this.maxHp = maxHp;
     }
 
-    public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature targetHit) {
-        if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
-                && targetHit.currentHealth > 0
-                && targetHit.currentHealth - lastDamageTaken <= 0
-                && !targetHit.halfDead
-                && !targetHit.hasPower(MinionPower.POWER_ID)
-                && !targetHit.hasPower(UnawakenedPower.POWER_ID)) {
-            AbstractDungeon.player.increaseMaxHp(this.maxHp, false);
+    @Override
+    public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature target) {
+        if (target instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
+                && target.currentHealth > 0
+                && target.currentHealth - lastDamageTaken <= 0
+                && !target.halfDead
+                && !target.hasPower(MinionPower.POWER_ID)
+                && !target.hasPower(UnawakenedPower.POWER_ID)) {
+            AbstractDungeon.player.increaseMaxHp(maxHp, false);
         }
     }
 
+    @Override
     public boolean isInherent() {
         return true;
     }
 
+    @Override
     public AbstractDamageModifier makeCopy() {
-        return new chimeracardsplus.damagemods.FeedDamage(this.maxHp);
+        return new FeedDamage(maxHp);
     }
 }

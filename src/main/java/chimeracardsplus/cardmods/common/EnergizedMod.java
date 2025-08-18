@@ -1,13 +1,13 @@
 package chimeracardsplus.cardmods.common;
 
 import CardAugments.cardmods.AbstractAugment;
-import CardAugments.patches.InterruptUseCardFieldPatches;
+import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -23,11 +23,11 @@ public class EnergizedMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        InterruptUseCardFieldPatches.InterceptUseField.interceptUse.set(card, true);
+        InterceptUseField.interceptUse.set(card, Boolean.TRUE);
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
         return damage > 0.0F ? damage * 2.0F / 3.0F : damage;
     }
 
@@ -37,12 +37,11 @@ public class EnergizedMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (noShenanigans(c)
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> noShenanigans(c)
                 && c.cost >= 0
                 && (c.baseDamage >= 2 || c.baseBlock >= 2)
-                && customCheck(c, (check) -> noCardModDescriptionChanges(check) && check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1)
-        ));
+                && customCheck(c, check -> noCardModDescriptionChanges(check) && check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L));
     }
 
     @Override
@@ -66,17 +65,8 @@ public class EnergizedMod extends AbstractAugment {
     }
 
     @Override
-    public void onUse(AbstractCard card, AbstractCreature cardTarget, UseCardAction action) {
-        addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                int hits = EnergyPanel.getCurrentEnergy();
-                for (int i = 0; i < hits; ++i) {
-                    card.use(AbstractDungeon.player, (AbstractMonster) cardTarget);
-                }
-                this.isDone = true;
-            }
-        });
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        addToBot(new UseCardPerEnergyAction(card, target));
     }
 
     @Override
@@ -92,5 +82,23 @@ public class EnergizedMod extends AbstractAugment {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    private static class UseCardPerEnergyAction extends AbstractGameAction {
+        private final AbstractCard card;
+
+        private UseCardPerEnergyAction(AbstractCard card, AbstractCreature target) {
+            this.card = card;
+            this.target = target;
+        }
+
+        @Override
+        public void update() {
+            int hits = EnergyPanel.getCurrentEnergy();
+            for (int i = 0; i < hits; ++i) {
+                card.use(AbstractDungeon.player, (AbstractMonster) target);
+            }
+            isDone = true;
+        }
     }
 }

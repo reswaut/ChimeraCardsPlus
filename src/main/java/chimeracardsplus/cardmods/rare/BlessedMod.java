@@ -25,17 +25,17 @@ public class BlessedMod extends AbstractAugment implements BonusMod {
     private boolean used;
 
     public BlessedMod() {
-        this.used = false;
+        used = false;
     }
     public BlessedMod(boolean used) {
         this.used = used;
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && isNormalCard(card) && characterCheck((p) -> {
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1 && isNormalCard(abstractCard) && characterCheck(p -> {
             AbstractRelic relic = p.getRelic(NeowsLament.ID);
-            return (relic != null) && relic.counter > 1;
+            return relic != null && relic.counter > 1;
         });
     }
 
@@ -46,7 +46,7 @@ public class BlessedMod extends AbstractAugment implements BonusMod {
             if (relic != null && relic.counter > 0) {
                 relic.flash();
                 relic.counter += 1;
-                this.used = true;
+                used = true;
             }
         }
         do {

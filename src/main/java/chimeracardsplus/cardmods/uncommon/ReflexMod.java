@@ -4,13 +4,12 @@ import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.interfaces.TriggerOnDiscardMod;
+import chimeracardsplus.util.CardCheckHelpers;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.green.Reflex;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
-
-import static chimeracardsplus.util.CardCheckHelpers.hasCardWithKeywordInDeck;
 
 public class ReflexMod extends AbstractAugment implements TriggerOnDiscardMod {
     public static final String ID = ChimeraCardsPlus.makeID(ReflexMod.class.getSimpleName());
@@ -19,14 +18,14 @@ public class ReflexMod extends AbstractAugment implements TriggerOnDiscardMod {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return characterCheck((p) -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
+    public boolean validCard(AbstractCard abstractCard) {
+        return characterCheck(p -> CardCheckHelpers.hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
         if (Reflex.ID.equals(card.cardID)) {
-            return magic + 1;
+            return magic + 1.0F;
         }
         return magic;
     }
@@ -54,13 +53,15 @@ public class ReflexMod extends AbstractAugment implements TriggerOnDiscardMod {
         return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 
+    @Override
     public void onManualDiscard(AbstractCard card) {
         if (Reflex.ID.equals(card.cardID)) {
             return;
         }
-        this.addToBot(new DrawCardAction(1));
+        addToBot(new DrawCardAction(1));
     }
 
+    @Override
     public void onMoveToDiscard(AbstractCard card) {
     }
 

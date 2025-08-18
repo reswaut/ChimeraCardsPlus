@@ -23,14 +23,14 @@ public class CastMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return allowOrbMods() && card.cost >= -1;
+    public boolean validCard(AbstractCard abstractCard) {
+        return allowOrbMods() && abstractCard.cost >= -1;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new AnimateOrbAction(1));
-        this.addToBot(new EvokeOrbAction(1));
+        addToBot(new AnimateOrbAction(1));
+        addToBot(new EvokeOrbAction(1));
     }
 
     @Override

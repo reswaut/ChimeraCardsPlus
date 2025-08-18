@@ -7,6 +7,8 @@ import chimeracardsplus.interfaces.HealingMod;
 import com.megacrit.cardcrawl.actions.common.GainGoldAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -23,21 +25,21 @@ public class GoldenMod extends AbstractAugment implements HealingMod {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        this.addedExhaust = !card.exhaust;
+        addedExhaust = !card.exhaust;
         card.exhaust = true;
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> ((c.cost >= 1 || c.cost == -1) && doesntUpgradeCost() && c.rarity != AbstractCard.CardRarity.BASIC && doesntUpgradeExhaust() && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> (c.cost >= 1 || c.cost == -1) && doesntUpgradeCost() && c.rarity != CardRarity.BASIC && doesntUpgradeExhaust() && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        int gold = (card.cost > 0) ? card.cost : card.energyOnUse;
+        int gold = card.cost > 0 ? card.cost : card.energyOnUse;
         AbstractDungeon.effectList.add(new RainingGoldEffect(gold, true));
         AbstractDungeon.effectsQueue.add(new SpotlightPlayerEffect());
-        this.addToBot(new GainGoldAction(gold));
+        addToBot(new GainGoldAction(gold));
     }
 
     @Override

@@ -5,7 +5,10 @@ import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
@@ -15,6 +18,7 @@ public class ProudMod extends AbstractAugment {
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
+    @Override
     public void onInitialApplication(AbstractCard card) {
         card.isInnate = true;
         card.exhaust = true;
@@ -23,8 +27,8 @@ public class ProudMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (notExhaust(c) && notInnate(c) && notEthereal(c) && c.cost >= 0 && doesntUpgradeCost() && !c.hasTag(AbstractCard.CardTags.HEALING) && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> notExhaust(c) && notInnate(c) && notEthereal(c) && c.cost >= 0 && doesntUpgradeCost() && !c.hasTag(CardTags.HEALING) && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
     }
 
     @Override
@@ -49,10 +53,10 @@ public class ProudMod extends AbstractAugment {
 
     @Override
     public void atEndOfTurn(AbstractCard card, CardGroup group) {
-        if (group.type != CardGroup.CardGroupType.HAND) {
+        if (group.type != CardGroupType.HAND) {
             return;
         }
-        this.addToBot(new MakeTempCardInDrawPileAction(card.makeStatEquivalentCopy(), 1, false, true));
+        addToBot(new MakeTempCardInDrawPileAction(card.makeStatEquivalentCopy(), 1, false, true));
     }
 
     @Override

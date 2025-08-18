@@ -9,7 +9,8 @@ import chimeracardsplus.interfaces.HealingMod;
 import com.evacipated.cardcrawl.mod.stslib.StSLib;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -22,12 +23,12 @@ public class TransientMod extends AbstractAugment implements DynvarCarrier, Heal
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private static final String DESCRIPTION_KEY = "!" + ID + "!";
+    private static final String DESCRIPTION_KEY = '!' + ID + '!';
     private int uses;
     private boolean modMagic = false;
 
     public TransientMod() {
-        this.uses = 5;
+        uses = 5;
     }
     public TransientMod(int uses) {
         this.uses = uses;
@@ -35,34 +36,34 @@ public class TransientMod extends AbstractAugment implements DynvarCarrier, Heal
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+        if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
             modMagic = true;
         }
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && card.rarity != AbstractCard.CardRarity.BASIC && isNormalCard(card);
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1 && abstractCard.rarity != CardRarity.BASIC && isNormalCard(abstractCard);
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 0.0F) ? (damage * 2.0F) : damage;
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage > 0.0F ? damage * 2.0F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 0.0F) ? (block * 2.0F) : block;
+        return block > 0.0F ? block * 2.0F : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return modMagic ? (magic * 2.0F) : magic;
+        return modMagic ? magic * 2.0F : magic;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.uses -= 1;
+        uses -= 1;
         card.initializeDescription();
 
         AbstractCard cardToRemove = StSLib.getMasterDeckEquivalent(card);
@@ -125,32 +126,28 @@ public class TransientMod extends AbstractAugment implements DynvarCarrier, Heal
         return ID;
     }
 
-    public int getBaseVal(AbstractCard card) {
-        return 5 + this.getEffectiveUpgrades(card);
-    }
-
     @Override
     public String key() {
         return ID;
     }
 
     @Override
-    public int val(AbstractCard card) {
+    public int val(AbstractCard abstractCard) {
         return uses;
     }
 
     @Override
-    public int baseVal(AbstractCard card) {
-        return 5 + getEffectiveUpgrades(card);
+    public int baseVal(AbstractCard abstractCard) {
+        return 5 + getEffectiveUpgrades(abstractCard);
     }
 
     @Override
-    public boolean modified(AbstractCard card) {
-        return val(card) != getBaseVal(card);
+    public boolean modified(AbstractCard abstractCard) {
+        return val(abstractCard) != baseVal(abstractCard);
     }
 
     @Override
-    public boolean upgraded(AbstractCard card) {
-        return card.timesUpgraded != 0 || card.upgraded;
+    public boolean upgraded(AbstractCard abstractCard) {
+        return abstractCard.timesUpgraded != 0 || abstractCard.upgraded;
     }
 }

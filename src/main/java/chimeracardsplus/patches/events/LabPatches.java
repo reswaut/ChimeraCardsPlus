@@ -1,12 +1,15 @@
 package chimeracardsplus.patches.events;
 
 import basemod.ReflectionHacks;
+import basemod.ReflectionHacks.RMethod;
+import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.rare.LiquidizingMod;
 import chimeracardsplus.cards.preview.LiquidizingPreview;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -19,23 +22,19 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static basemod.ReflectionHacks.getCachedField;
-import static basemod.helpers.CardModifierManager.addModifier;
-
 public class LabPatches {
     private static final String ID = ChimeraCardsPlus.makeID(LabPatches.class.getSimpleName());
     private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString(ID);
     private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     private static final String[] OPTIONS = eventStrings.OPTIONS;
-    private static int myIndex;
+    private static int myIndex = 0;
     private static int damageAmt = 0;
 
     private static int calcHpLoss() {
         if (AbstractDungeon.ascensionLevel < 15) {
             return (int) (AbstractDungeon.player.maxHealth * 0.08F);
-        } else {
-            return (int) (AbstractDungeon.player.maxHealth * 0.1F);
         }
+        return (int) (AbstractDungeon.player.maxHealth * 0.1F);
     }
 
     @SpirePatch(
@@ -83,14 +82,14 @@ public class LabPatches {
 
             applyModifiers();
             CardCrawlGame.sound.play("BLOOD_SPLAT");
-            AbstractDungeon.player.damage(new DamageInfo(null, damageAmt, DamageInfo.DamageType.HP_LOSS));
+            AbstractDungeon.player.damage(new DamageInfo(null, damageAmt, DamageType.HP_LOSS));
 
             __instance.showProceedScreen(DESCRIPTIONS[0]);
             try {
-                Field field = getCachedField(Lab.class, "screen");
-                ReflectionHacks.RMethod valueOf = ReflectionHacks.privateStaticMethod(field.getType(), "valueOf", String.class);
+                Field field = ReflectionHacks.getCachedField(Lab.class, "screen");
+                RMethod valueOf = ReflectionHacks.privateStaticMethod(field.getType(), "valueOf", String.class);
                 field.set(__instance, valueOf.invoke(null, "COMPLETE"));
-            } catch (ReflectiveOperationException e) {
+            } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
             return SpireReturn.Return();
@@ -103,9 +102,9 @@ public class LabPatches {
                 return;
             }
             AbstractCard cardToApply = applicableCards.get(AbstractDungeon.miscRng.random(applicableCards.size() - 1));
-            addModifier(cardToApply, augment);
+            CardModifierManager.addModifier(cardToApply, augment);
             AbstractDungeon.player.bottledCardUpgradeCheck(cardToApply);
-            AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(cardToApply.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
+            AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(cardToApply.makeStatEquivalentCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
         }
     }
 }

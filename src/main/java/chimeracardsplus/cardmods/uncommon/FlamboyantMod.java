@@ -7,7 +7,7 @@ import chimeracardsplus.interfaces.TriggerOnDiscardMod;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -22,13 +22,13 @@ public class FlamboyantMod extends AbstractAugment implements TriggerOnDiscardMo
     private boolean descriptionHack = false;
 
     @Override
-    public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return AbstractDungeon.actionManager.cardsPlayedThisTurn.size() > 5 ? (damage * 1.5F) : damage;
+    public float modifyDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return AbstractDungeon.actionManager.cardsPlayedThisTurn.size() > 5 ? damage * 1.5F : damage;
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && card.baseDamage >= 2;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1 && abstractCard.baseDamage >= 2;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class FlamboyantMod extends AbstractAugment implements TriggerOnDiscardMo
         String text = CARD_TEXT[0];
         if (descriptionHack) {
             int count = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
-            text += String.format((count == 1) ? CARD_TEXT[1] : CARD_TEXT[2], count);
+            text += String.format(count == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count);
         }
         return insertAfterText(rawDescription, text);
     }

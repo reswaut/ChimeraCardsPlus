@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -21,12 +21,11 @@ public class SuperluminalMod extends AbstractAugment implements DynvarCarrier, T
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private static final String DESCRIPTION_KEY = "!" + ID + "!";
-    private boolean modified = false;
+    private static final String DESCRIPTION_KEY = '!' + ID + '!';
     private boolean descriptionHack = false;
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
         return damage > 0.0F ? Math.max(damage - 3.0F, 0.0F) : damage;
     }
 
@@ -36,14 +35,14 @@ public class SuperluminalMod extends AbstractAugment implements DynvarCarrier, T
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && (card.baseDamage >= 4 || card.baseBlock >= 4);
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1 && (abstractCard.baseDamage >= 4 || abstractCard.baseBlock >= 4);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.size() - 1 < getBaseVal(card)) {
-            this.addToBot(new DrawCardAction(AbstractDungeon.player, 1));
+        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.size() - 1 < baseVal(card)) {
+            addToBot(new DrawCardAction(AbstractDungeon.player, 1));
         }
         descriptionHack = false;
         card.initializeDescription();
@@ -67,32 +66,32 @@ public class SuperluminalMod extends AbstractAugment implements DynvarCarrier, T
 
     @Override
     public Color getGlow(AbstractCard card) {
-        return AbstractDungeon.actionManager.cardsPlayedThisTurn.size() < getBaseVal(card) ? Color.GOLD.cpy() : null;
+        return AbstractDungeon.actionManager.cardsPlayedThisTurn.size() < baseVal(card) ? Color.GOLD.cpy() : null;
     }
 
-    public int getBaseVal(AbstractCard card) {
-        return 3 + this.getEffectiveUpgrades(card);
-    }
-
+    @Override
     public String key() {
         return ID;
     }
 
-    public int val(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int val(AbstractCard abstractCard) {
+        return baseVal(abstractCard);
     }
 
-    public int baseVal(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int baseVal(AbstractCard abstractCard) {
+        return 3 + getEffectiveUpgrades(abstractCard);
     }
 
-    public boolean modified(AbstractCard card) {
-        return this.modified;
+    @Override
+    public boolean modified(AbstractCard abstractCard) {
+        return false;
     }
 
-    public boolean upgraded(AbstractCard card) {
-        this.modified = card.timesUpgraded != 0 || card.upgraded;
-        return this.modified;
+    @Override
+    public boolean upgraded(AbstractCard abstractCard) {
+        return abstractCard.timesUpgraded != 0 || abstractCard.upgraded;
     }
 
     @Override
@@ -120,7 +119,7 @@ public class SuperluminalMod extends AbstractAugment implements DynvarCarrier, T
         String text = String.format(CARD_TEXT[0], DESCRIPTION_KEY);
         if (descriptionHack) {
             int count = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
-            text += String.format((count == 1) ? CARD_TEXT[1] : CARD_TEXT[2], count);
+            text += String.format(count == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count);
         }
         return insertAfterText(rawDescription, text);
     }

@@ -3,10 +3,11 @@ package chimeracardsplus.cardmods.uncommon;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
@@ -17,8 +18,8 @@ public class AshyMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> notExhaust(c) && notEthereal(c));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> notExhaust(c) && notEthereal(c));
     }
 
     @Override
@@ -43,7 +44,7 @@ public class AshyMod extends AbstractAugment {
 
     @Override
     public void onExhausted(AbstractCard card) {
-        this.addToBot(new DamageAllEnemiesAction(null, DamageInfo.createDamageMatrix(3, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE));
+        addToBot(new DamageAllEnemiesAction(null, DamageInfo.createDamageMatrix(3, true), DamageType.THORNS, AttackEffect.FIRE));
     }
 
     @Override

@@ -12,20 +12,23 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 public class DrilledDamage extends AbstractDamageModifier {
     public DrilledDamage() {
-        this.priority = 32767;
+        priority = 32767;
     }
 
-    public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature targetHit) {
-        if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
-                && targetHit.currentHealth > 0 && !targetHit.halfDead && lastDamageTaken > 0) {
-            addToBot(new ApplyPowerAction(targetHit, AbstractDungeon.player, new VulnerablePower(targetHit, 2, false)));
+    @Override
+    public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature target) {
+        if (target instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
+                && target.currentHealth > 0 && !target.halfDead && lastDamageTaken > 0) {
+            addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new VulnerablePower(target, 2, false)));
         }
     }
 
+    @Override
     public boolean isInherent() {
         return true;
     }
 
+    @Override
     public AbstractDamageModifier makeCopy() {
         return new DrilledDamage();
     }

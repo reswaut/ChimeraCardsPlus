@@ -1,7 +1,7 @@
 package chimeracardsplus.cardmods.common;
 
 import CardAugments.cardmods.AbstractAugment;
-import CardAugments.patches.InterruptUseCardFieldPatches;
+import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import CardAugments.util.FormatHelper;
 import CardAugments.util.PortraitHelper;
 import basemod.abstracts.AbstractCardModifier;
@@ -12,7 +12,9 @@ import chimeracardsplus.cardmods.special.PredictedMod;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardTarget;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -28,29 +30,29 @@ public class PredictiveMod extends AbstractAugment {
     private boolean inherentHack = true;
 
     public PredictiveMod() {
-        this.priority = -100;
+        priority = -100;
     }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        this.inherentHack = true;
+        inherentHack = true;
         AbstractCard preview = card.makeStatEquivalentCopy();
-        this.inherentHack = false;
+        inherentHack = false;
         CardModifierManager.addModifier(preview, new PredictedMod());
         MultiCardPreview.add(card, preview);
-        InterruptUseCardFieldPatches.InterceptUseField.interceptUse.set(card, true);
-        if (card.type == AbstractCard.CardType.POWER) {
+        InterceptUseField.interceptUse.set(card, Boolean.TRUE);
+        if (card.type == CardType.POWER) {
             card.exhaust = true;
         }
-        card.target = AbstractCard.CardTarget.NONE;
-        if (card.type != AbstractCard.CardType.SKILL) {
-            card.type = AbstractCard.CardType.SKILL;
+        card.target = CardTarget.NONE;
+        if (card.type != CardType.SKILL) {
+            card.type = CardType.SKILL;
             PortraitHelper.setMaskedPortrait(card);
         }
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
         return -1.0F;
     }
 
@@ -65,23 +67,23 @@ public class PredictiveMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> (c.cost >= -1) && isNormalCard(c) && noShenanigans(c));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= -1 && isNormalCard(c) && noShenanigans(c));
     }
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        String front_text = "";
+        String frontText = "";
         if (card.isInnate) {
-            front_text += CARD_TEXT[1];
+            frontText += CARD_TEXT[1];
         }
         if (card.selfRetain) {
-            front_text += CARD_TEXT[2];
+            frontText += CARD_TEXT[2];
         }
         if (card.isEthereal) {
-            front_text += CARD_TEXT[3];
+            frontText += CARD_TEXT[3];
         }
-        return (front_text.isEmpty() ? "" : (front_text + CARD_TEXT[5]))
+        return (frontText.isEmpty() ? "" : frontText + CARD_TEXT[5])
                 + String.format(CARD_TEXT[0], FormatHelper.prefixWords(card.name, "*"))
                 + (card.exhaust ? CARD_TEXT[4] : "");
     }
@@ -99,14 +101,7 @@ public class PredictiveMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        AbstractCard preview = null;
-
-        for (AbstractCard o : MultiCardPreview.multiCardPreview.get(card)) {
-            if (CardModifierManager.hasModifier(o, PredictedMod.ID)) {
-                preview = o;
-                break;
-            }
-        }
+        AbstractCard preview = MultiCardPreview.multiCardPreview.get(card).stream().filter(o -> CardModifierManager.hasModifier(o, PredictedMod.ID)).findFirst().orElse(null);
 
         if (preview != null) {
             AbstractCard copy = preview.makeStatEquivalentCopy();
@@ -117,7 +112,7 @@ public class PredictiveMod extends AbstractAugment {
                     AbstractDungeon.player.energy.use(card.energyOnUse);
                 }
             }
-            this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NightmarePower(AbstractDungeon.player, 1, copy)));
+            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NightmarePower(AbstractDungeon.player, 1, copy)));
         }
 
     }
@@ -147,8 +142,9 @@ public class PredictiveMod extends AbstractAugment {
         return new PredictiveMod();
     }
 
+    @Override
     public boolean isInherent(AbstractCard card) {
-        return this.inherentHack;
+        return inherentHack;
     }
 
     @Override

@@ -1,12 +1,13 @@
 package chimeracardsplus.cardmods.special;
 
 import CardAugments.cardmods.AbstractAugment;
-import CardAugments.patches.InterruptUseCardFieldPatches;
+import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -22,7 +23,7 @@ public class PredictedMod extends AbstractAugment {
     private int energyOnUse;
 
     public PredictedMod() {
-        this.energyOnUse = -1;
+        energyOnUse = -1;
     }
 
     public PredictedMod(int energyOnUse) {
@@ -41,27 +42,29 @@ public class PredictedMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
+        if (!card.exhaust && card.type != CardType.POWER) {
             addedExhaust = true;
             card.exhaust = true;
+        } else {
+            addedExhaust = false;
         }
         card.freeToPlayOnce = true;
         if (card.cost == -1) {
-            InterruptUseCardFieldPatches.InterceptUseField.interceptUse.set(card, true);
+            InterceptUseField.interceptUse.set(card, Boolean.TRUE);
             if (energyOnUse >= 0) {
                 card.cost = energyOnUse;
                 card.costForTurn = energyOnUse;
                 card.initializeDescription();
             }
         }
-        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+        if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
             modMagic = true;
         }
     }
 
     @Override
     public void onUpgradeCheck(AbstractCard card) {
-        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
+        if (!card.exhaust && card.type != CardType.POWER) {
             addedExhaust = true;
             card.exhaust = true;
         }
@@ -69,23 +72,23 @@ public class PredictedMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && isNormalCard(card) && noShenanigans(card);
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1 && isNormalCard(abstractCard) && noShenanigans(abstractCard);
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage > 0.0F ? (damage * 4.0F / 3.0F) : damage;
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage > 0.0F ? damage * 4.0F / 3.0F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return block > 0.0F ? (block * 4.0F / 3.0F) : block;
+        return block > 0.0F ? block * 4.0F / 3.0F : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return modMagic ? (magic * 4.0F / 3.0F) : magic;
+        return modMagic ? magic * 4.0F / 3.0F : magic;
     }
 
     @Override
@@ -105,7 +108,7 @@ public class PredictedMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (!InterruptUseCardFieldPatches.InterceptUseField.interceptUse.get(card)) {
+        if (!InterceptUseField.interceptUse.get(card)) {
             return;
         }
         card.energyOnUse = energyOnUse;

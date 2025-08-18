@@ -2,7 +2,7 @@ package chimeracardsplus.actions;
 
 import CardAugments.CardAugmentsMod;
 import CardAugments.cardmods.AbstractAugment;
-import CardAugments.patches.RolledModFieldPatches;
+import CardAugments.patches.RolledModFieldPatches.RolledModField;
 import basemod.helpers.CardModifierManager;
 import chimeracardsplus.interfaces.HealingMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -15,25 +15,28 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class DiscoverModAction extends AbstractGameAction {
-    private boolean retrieveCard = false;
+    private boolean retrieveCard = true;
     private final AbstractCard baseCard;
 
     public DiscoverModAction(AbstractCard card) {
-        this.baseCard = card;
-        this.actionType = ActionType.CARD_MANIPULATION;
-        this.duration = Settings.ACTION_DUR_FAST;
+        baseCard = card;
+        actionType = ActionType.CARD_MANIPULATION;
+        duration = Settings.ACTION_DUR_FAST;
     }
 
+    @Override
     public void update() {
-        if (this.duration == Settings.ACTION_DUR_FAST) {
-            ArrayList<AbstractCard> generatedCards = this.generateCardChoices();
+        if (duration >= Settings.ACTION_DUR_FAST) {
+            ArrayList<AbstractCard> generatedCards = generateCardChoices();
             AbstractDungeon.cardRewardScreen.customCombatOpen(generatedCards, CardRewardScreen.TEXT[1], false);
-            this.tickDuration();
+            tickDuration();
         } else {
-            if (!this.retrieveCard) {
+            if (retrieveCard) {
                 if (AbstractDungeon.cardRewardScreen.discoveryCard != null) {
                     AbstractCard disCard = AbstractDungeon.cardRewardScreen.discoveryCard.makeStatEquivalentCopy();
                     if (AbstractDungeon.player.hasPower(MasterRealityPower.POWER_ID)) {
@@ -42,29 +45,29 @@ public class DiscoverModAction extends AbstractGameAction {
 
                     disCard.current_x = -1000.0F * Settings.xScale;
                     if (AbstractDungeon.player.hand.size() < 10) {
-                        AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(disCard, (float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
+                        AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(disCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                     } else {
-                        AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(disCard, (float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
+                        AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(disCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                     }
 
                     AbstractDungeon.cardRewardScreen.discoveryCard = null;
                 }
 
-                this.retrieveCard = true;
+                retrieveCard = false;
             }
 
-            this.tickDuration();
+            tickDuration();
         }
     }
 
     private ArrayList<AbstractCard> generateCardChoices() {
-        ArrayList<AbstractAugment> filter = CardAugmentsMod.getAllValidMods(baseCard).stream().filter((mod) -> !(mod instanceof HealingMod)).collect(Collectors.toCollection(ArrayList::new));
-        ArrayList<AbstractCard> ret = new ArrayList<>();
+        List<AbstractAugment> filter = CardAugmentsMod.getAllValidMods(baseCard).stream().filter(mod -> !(mod instanceof HealingMod)).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<AbstractCard> ret = new ArrayList<>(4);
         if (filter.isEmpty()) {
             ret.add(baseCard);
             return ret;
         }
-        ArrayList<Integer> derp = new ArrayList<>();
+        Collection<Integer> derp = new ArrayList<>(4);
         while (derp.size() < Math.min(3, filter.size())) {
             int tmp = AbstractDungeon.miscRng.random(0, filter.size() - 1);
             if (!derp.contains(tmp)) {
@@ -74,7 +77,7 @@ public class DiscoverModAction extends AbstractGameAction {
         for (int id : derp) {
             AbstractCard card = baseCard.makeStatEquivalentCopy();
             CardModifierManager.addModifier(card, filter.get(id).makeCopy());
-            RolledModFieldPatches.RolledModField.rolled.set(card, true);
+            RolledModField.rolled.set(card, Boolean.TRUE);
             ret.add(card);
         }
         return ret;

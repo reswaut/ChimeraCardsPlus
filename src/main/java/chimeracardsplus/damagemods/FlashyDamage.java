@@ -12,21 +12,24 @@ public class FlashyDamage extends AbstractDamageModifier {
     private final int cardDraw;
 
     public FlashyDamage(int cardDraw) {
-        this.priority = 32767;
+        priority = 32767;
         this.cardDraw = cardDraw;
     }
 
-    public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature targetHit) {
-        if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
-                && targetHit.currentHealth > 0 && !targetHit.halfDead && lastDamageTaken > 0) {
+    @Override
+    public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature target) {
+        if (target instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
+                && target.currentHealth > 0 && !target.halfDead && lastDamageTaken > 0) {
             addToBot(new DrawCardAction(cardDraw));
         }
     }
 
+    @Override
     public boolean isInherent() {
         return true;
     }
 
+    @Override
     public AbstractDamageModifier makeCopy() {
         return new FlashyDamage(cardDraw);
     }

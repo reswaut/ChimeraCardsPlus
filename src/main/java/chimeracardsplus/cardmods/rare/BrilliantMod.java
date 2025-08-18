@@ -3,15 +3,14 @@ package chimeracardsplus.cardmods.rare;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.util.CardCheckHelpers;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.cards.purple.Brilliance;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
-import static chimeracardsplus.util.CardCheckHelpers.hasCardWithKeywordInDeck;
 
 public class BrilliantMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(BrilliantMod.class.getSimpleName());
@@ -20,13 +19,13 @@ public class BrilliantMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+    public float modifyDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
         return damage + AbstractDungeon.actionManager.mantraGained;
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.baseDamage >= 1 && characterCheck((p) -> hasCardWithKeywordInDeck(p, CARD_TEXT[3]));
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.baseDamage >= 1 && characterCheck(p -> CardCheckHelpers.hasCardWithKeywordInDeck(p, CARD_TEXT[3]));
     }
 
     @Override

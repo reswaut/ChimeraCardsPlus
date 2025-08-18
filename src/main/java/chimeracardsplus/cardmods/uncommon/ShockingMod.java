@@ -4,10 +4,11 @@ import CardAugments.cardmods.AbstractAugment;
 import CardAugments.cardmods.DynvarCarrier;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.red.Shockwave;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -22,8 +23,7 @@ public class ShockingMod extends AbstractAugment implements DynvarCarrier {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private static final String DESCRIPTION_KEY = "!" + ID + "!";
-    private boolean modified = false;
+    private static final String DESCRIPTION_KEY = '!' + ID + '!';
     private boolean addedExhaust = true;
 
     @Override
@@ -35,41 +35,41 @@ public class ShockingMod extends AbstractAugment implements DynvarCarrier {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost() && doesntUpgradeExhaust() && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 0 && doesntUpgradeCost() && doesntUpgradeExhaust() && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
         if (Shockwave.ID.equals(card.cardID)) {
-            return magic + getBaseVal(card);
+            return magic + baseVal(card);
         }
         return magic;
     }
 
-    public int getBaseVal(AbstractCard card) {
-        return 2 + this.getEffectiveUpgrades(card);
-    }
-
+    @Override
     public String key() {
         return ID;
     }
 
-    public int val(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int val(AbstractCard abstractCard) {
+        return baseVal(abstractCard);
     }
 
-    public int baseVal(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int baseVal(AbstractCard abstractCard) {
+        return 2 + getEffectiveUpgrades(abstractCard);
     }
 
-    public boolean modified(AbstractCard card) {
-        return this.modified;
+    @Override
+    public boolean modified(AbstractCard abstractCard) {
+        return false;
     }
 
-    public boolean upgraded(AbstractCard card) {
-        this.modified = card.timesUpgraded != 0 || card.upgraded;
-        return this.modified;
+    @Override
+    public boolean upgraded(AbstractCard abstractCard) {
+        return abstractCard.timesUpgraded != 0 || abstractCard.upgraded;
     }
 
     @Override
@@ -101,8 +101,8 @@ public class ShockingMod extends AbstractAugment implements DynvarCarrier {
             return;
         }
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            this.addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new WeakPower(mo, getBaseVal(card), false), getBaseVal(card), true, AbstractGameAction.AttackEffect.NONE));
-            this.addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new VulnerablePower(mo, getBaseVal(card), false), getBaseVal(card), true, AbstractGameAction.AttackEffect.NONE));
+            addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new WeakPower(mo, baseVal(card), false), baseVal(card), true, AttackEffect.NONE));
+            addToBot(new ApplyPowerAction(mo, AbstractDungeon.player, new VulnerablePower(mo, baseVal(card), false), baseVal(card), true, AttackEffect.NONE));
         }
     }
 

@@ -15,29 +15,25 @@ import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class LearnDamage extends AbstractDamageModifier {
 
     public LearnDamage() {
-        this.priority = 32767;
+        priority = 32767;
     }
 
-    public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature targetHit) {
-        if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
-                && targetHit.currentHealth > 0
-                && targetHit.currentHealth - lastDamageTaken <= 0
-                && !targetHit.halfDead
-                && !targetHit.hasPower(MinionPower.POWER_ID)
-                && !targetHit.hasPower(UnawakenedPower.POWER_ID)) {
-            ArrayList<AbstractCard> possibleCards = new ArrayList<>();
+    @Override
+    public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature target) {
+        if (target instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
+                && target.currentHealth > 0
+                && target.currentHealth - lastDamageTaken <= 0
+                && !target.halfDead
+                && !target.hasPower(MinionPower.POWER_ID)
+                && !target.hasPower(UnawakenedPower.POWER_ID)) {
+            ArrayList<AbstractCard> possibleCards = AbstractDungeon.player.masterDeck.group.stream().filter(AbstractCard::canUpgrade).collect(Collectors.toCollection(() -> new ArrayList<>(64)));
+
             AbstractCard theCard = null;
-
-            for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
-                if (c.canUpgrade()) {
-                    possibleCards.add(c);
-                }
-            }
-
             if (!possibleCards.isEmpty()) {
                 theCard = possibleCards.get(AbstractDungeon.miscRng.random(0, possibleCards.size() - 1));
                 theCard.upgrade();
@@ -45,17 +41,19 @@ public class LearnDamage extends AbstractDamageModifier {
             }
 
             if (theCard != null) {
-                AbstractDungeon.effectsQueue.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
+                AbstractDungeon.effectsQueue.add(new UpgradeShineEffect(Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                 AbstractDungeon.topLevelEffectsQueue.add(new ShowCardBrieflyEffect(theCard.makeStatEquivalentCopy()));
                 addToTop(new WaitAction(Settings.ACTION_DUR_MED));
             }
         }
     }
 
+    @Override
     public boolean isInherent() {
         return true;
     }
 
+    @Override
     public AbstractDamageModifier makeCopy() {
         return new LearnDamage();
     }

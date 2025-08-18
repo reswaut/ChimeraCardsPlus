@@ -6,7 +6,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.interfaces.TriggerOnDiscardMod;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -29,7 +29,7 @@ public class IterativeMod extends AbstractAugment implements TriggerOnDiscardMod
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
         return damage > 0.0F ? damage * 0.5F : damage;
     }
 
@@ -39,14 +39,13 @@ public class IterativeMod extends AbstractAugment implements TriggerOnDiscardMod
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (noShenanigans(c)
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> noShenanigans(c)
                 && c.cost >= 0
                 && (c.baseDamage >= 2 || c.baseBlock >= 2)
-                && customCheck(c, (check) ->
+                && customCheck(c, check ->
                 noCardModDescriptionChanges(check)
-                        && check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1)
-        ));
+                        && check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L));
     }
 
     @Override
@@ -79,7 +78,7 @@ public class IterativeMod extends AbstractAugment implements TriggerOnDiscardMod
     public String modifyDescription(String rawDescription, AbstractCard card) {
         String text = CARD_TEXT[0];
         if (descriptionHack) {
-            text += String.format((count + 1 == 1) ? CARD_TEXT[1] : CARD_TEXT[2], count + 1);
+            text += String.format(count + 1 == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count + 1);
         }
         return rawDescription.replaceFirst("[.。]", text);
     }

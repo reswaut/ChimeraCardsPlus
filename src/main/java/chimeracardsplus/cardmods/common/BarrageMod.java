@@ -1,12 +1,12 @@
 package chimeracardsplus.cardmods.common;
 
 import CardAugments.cardmods.AbstractAugment;
-import CardAugments.patches.InterruptUseCardFieldPatches;
+import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -22,11 +22,11 @@ public class BarrageMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        InterruptUseCardFieldPatches.InterceptUseField.interceptUse.set(card, true);
+        InterceptUseField.interceptUse.set(card, Boolean.TRUE);
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
         return damage > 0.0F ? damage * 0.5F : damage;
     }
 
@@ -36,14 +36,13 @@ public class BarrageMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return allowOrbMods() && cardCheck(card, (c) -> (noShenanigans(c)
+    public boolean validCard(AbstractCard abstractCard) {
+        return allowOrbMods() && cardCheck(abstractCard, c -> noShenanigans(c)
                 && c.cost >= 0
                 && (c.baseDamage >= 2 || c.baseBlock >= 2)
-                && customCheck(c, (check) ->
+                && customCheck(c, check ->
                     noCardModDescriptionChanges(check)
-                            && check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1)
-        ));
+                            && check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L));
     }
 
     @Override
@@ -68,19 +67,14 @@ public class BarrageMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        int hits = 0;
-        for (int i = 0; i < AbstractDungeon.player.orbs.size(); ++i) {
-            if (!(AbstractDungeon.player.orbs.get(i) instanceof EmptyOrbSlot)) {
-                ++hits;
-            }
-        }
+        int hits = (int) AbstractDungeon.player.orbs.stream().filter(orb -> !(orb instanceof EmptyOrbSlot)).count();
         for (int i = 0; i < hits; ++i) {
             card.use(AbstractDungeon.player, (AbstractMonster) target);
         }
     }
 
     @Override
-    public AbstractAugment.AugmentRarity getModRarity() {
+    public AugmentRarity getModRarity() {
         return AugmentRarity.COMMON;
     }
 

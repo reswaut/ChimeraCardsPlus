@@ -14,22 +14,23 @@ public class ShuffleCardToDrawAction extends AbstractGameAction {
     private static final String[] TEXT = uiStrings.TEXT;
 
     public ShuffleCardToDrawAction() {
-        this.duration = Settings.ACTION_DUR_FAST;
-        this.actionType = ActionType.CARD_MANIPULATION;
+        duration = Settings.ACTION_DUR_FAST;
+        actionType = ActionType.CARD_MANIPULATION;
     }
 
+    @Override
     public void update() {
-        if (this.duration == Settings.ACTION_DUR_FAST) {
+        if (duration >= Settings.ACTION_DUR_FAST) {
             if (AbstractDungeon.player.hand.isEmpty()) {
-                this.isDone = true;
+                isDone = true;
             } else if (AbstractDungeon.player.hand.size() == 1) {
                 AbstractCard c = AbstractDungeon.player.hand.getTopCard();
                 AbstractDungeon.player.hand.moveToDeck(c, true);
                 AbstractDungeon.player.hand.refreshHandLayout();
-                this.isDone = true;
+                isDone = true;
             } else {
                 AbstractDungeon.handCardSelectScreen.open(TEXT[0], 1, false);
-                this.tickDuration();
+                tickDuration();
             }
         } else {
             if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
@@ -39,7 +40,7 @@ public class ShuffleCardToDrawAction extends AbstractGameAction {
                 AbstractDungeon.player.hand.refreshHandLayout();
                 AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
             }
-            this.tickDuration();
+            tickDuration();
         }
     }
 }

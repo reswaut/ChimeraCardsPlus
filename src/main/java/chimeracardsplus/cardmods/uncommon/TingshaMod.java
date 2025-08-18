@@ -4,15 +4,15 @@ import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.interfaces.TriggerOnDiscardMod;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import chimeracardsplus.util.CardCheckHelpers;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-
-import static chimeracardsplus.util.CardCheckHelpers.hasCardWithKeywordInDeck;
 
 public class TingshaMod extends AbstractAugment implements TriggerOnDiscardMod {
     public static final String ID = ChimeraCardsPlus.makeID(TingshaMod.class.getSimpleName());
@@ -21,8 +21,8 @@ public class TingshaMod extends AbstractAugment implements TriggerOnDiscardMod {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return characterCheck((p) -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
+    public boolean validCard(AbstractCard abstractCard) {
+        return characterCheck(p -> CardCheckHelpers.hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
     }
 
     @Override
@@ -47,7 +47,7 @@ public class TingshaMod extends AbstractAugment implements TriggerOnDiscardMod {
 
     @Override
     public void onManualDiscard(AbstractCard card) {
-        this.addToBot(new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, 3, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
+        addToBot(new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, 3, DamageType.THORNS), AttackEffect.FIRE));
     }
 
     @Override

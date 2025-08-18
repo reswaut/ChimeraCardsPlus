@@ -1,7 +1,7 @@
 package chimeracardsplus.cardmods.rare;
 
 import CardAugments.cardmods.AbstractAugment;
-import CardAugments.patches.RolledModFieldPatches;
+import CardAugments.patches.RolledModFieldPatches.RolledModField;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPreview;
@@ -22,7 +22,7 @@ public class UnawakenedMod extends AbstractAugment implements TriggerOnPurgeMod 
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
+    public boolean validCard(AbstractCard abstractCard) {
         return true;
     }
 
@@ -38,24 +38,18 @@ public class UnawakenedMod extends AbstractAugment implements TriggerOnPurgeMod 
 
     @Override
     public void onRemoveFromMasterDeck(AbstractCard card) {
-        AbstractCard AwakenedCard = null;
-        for (AbstractCard o : MultiCardPreview.multiCardPreview.get(card)) {
-            if (CardModifierManager.hasModifier(o, AwakenedMod.ID)) {
-                AwakenedCard = o.makeStatEquivalentCopy();
-                break;
-            }
-        }
-        if (AwakenedCard == null) {
-            AwakenedCard = card.makeCopy();
+        AbstractCard awakenedCard = MultiCardPreview.multiCardPreview.get(card).stream().filter(o -> CardModifierManager.hasModifier(o, AwakenedMod.ID)).findFirst().map(AbstractCard::makeStatEquivalentCopy).orElse(null);
+        if (awakenedCard == null) {
+            awakenedCard = card.makeCopy();
             for (int i = 0; i < card.timesUpgraded; ++i) {
-                if (AwakenedCard.canUpgrade()) {
-                    AwakenedCard.upgrade();
+                if (awakenedCard.canUpgrade()) {
+                    awakenedCard.upgrade();
                 }
             }
-            CardModifierManager.addModifier(AwakenedCard, new AwakenedMod());
+            CardModifierManager.addModifier(awakenedCard, new AwakenedMod());
         }
-        RolledModFieldPatches.RolledModField.rolled.set(AwakenedCard, true);
-        AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(AwakenedCard, (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
+        RolledModField.rolled.set(awakenedCard, Boolean.TRUE);
+        AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(awakenedCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
     }
 
     @Override

@@ -18,18 +18,19 @@ public class FlowAction extends AbstractGameAction {
     private static final String[] TEXT = uiStrings.TEXT;
 
     public FlowAction() {
-        this.actionType = ActionType.CARD_MANIPULATION;
-        this.duration = DEFAULT_DURATION;
+        actionType = ActionType.CARD_MANIPULATION;
+        duration = DEFAULT_DURATION;
     }
 
+    @Override
     public void update() {
-        if (this.duration == DEFAULT_DURATION) {
+        if (duration >= DEFAULT_DURATION) {
             AbstractDungeon.handCardSelectScreen.open(TEXT[0], 99, true, true);
-            this.addToBot(new WaitAction(Settings.ACTION_DUR_FAST));
+            addToBot(new WaitAction(Settings.ACTION_DUR_FAST));
         } else {
             if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
                 if (!AbstractDungeon.handCardSelectScreen.selectedCards.group.isEmpty()) {
-                    this.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DrawCardNextTurnPower(AbstractDungeon.player, AbstractDungeon.handCardSelectScreen.selectedCards.group.size())));
+                    addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DrawCardNextTurnPower(AbstractDungeon.player, AbstractDungeon.handCardSelectScreen.selectedCards.group.size())));
 
                     for (AbstractCard c : AbstractDungeon.handCardSelectScreen.selectedCards.group) {
                         AbstractDungeon.player.hand.moveToDiscardPile(c);
@@ -40,6 +41,6 @@ public class FlowAction extends AbstractGameAction {
                 AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
             }
         }
-        this.tickDuration();
+        tickDuration();
     }
 }

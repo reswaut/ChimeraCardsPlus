@@ -7,6 +7,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -18,56 +19,62 @@ public class BufferedMod extends AbstractAugment implements DynvarCarrier {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private static final String DESCRIPTION_KEY = "!" + ID + "!";
-    private boolean modified = false;
-    private boolean addedExhaust = false;
+    private static final String DESCRIPTION_KEY = '!' + ID + '!';
+    private boolean addedExhaust = true;
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
+        if (!card.exhaust && card.type != CardType.POWER) {
             addedExhaust = true;
             card.exhaust = true;
+        } else {
+            addedExhaust = false;
         }
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> card.cost >= -1 && card.baseBlock >= 11 && doesntUpgradeExhaust());
+    public void onUpgradeCheck(AbstractCard card) {
+        card.initializeDescription();
+    }
+
+    @Override
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> abstractCard.cost >= -1 && abstractCard.baseBlock >= 11 && doesntUpgradeExhaust());
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return Math.max(0.0F, block - getBaseVal(card) * 10.0F);
+        return Math.max(block - baseVal(card) * 10.0F, 0.0F);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new BufferPower(AbstractDungeon.player, getBaseVal(card)), getBaseVal(card)));
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new BufferPower(AbstractDungeon.player, baseVal(card)), baseVal(card)));
     }
 
-    public int getBaseVal(AbstractCard card) {
-        return Math.max(card.baseBlock - 1, 0) / 10;
-    }
-
+    @Override
     public String key() {
         return ID;
     }
 
-    public int val(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int val(AbstractCard abstractCard) {
+        return baseVal(abstractCard);
     }
 
-    public int baseVal(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int baseVal(AbstractCard abstractCard) {
+        return Math.max(abstractCard.baseBlock - 1, 0) / 10;
     }
 
-    public boolean modified(AbstractCard card) {
-        return this.modified;
+    @Override
+    public boolean modified(AbstractCard abstractCard) {
+        return false;
     }
 
-    public boolean upgraded(AbstractCard card) {
-        this.modified = card.timesUpgraded != 0 || card.upgraded;
-        return this.modified;
+    @Override
+    public boolean upgraded(AbstractCard abstractCard) {
+        return abstractCard.timesUpgraded != 0 || abstractCard.upgraded;
     }
 
     @Override
@@ -87,12 +94,13 @@ public class BufferedMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        String text = "";
-        if (getBaseVal(card) <= 0) {
+        if (baseVal(card) <= 0) {
             return rawDescription;
-        } else if (getBaseVal(card) == 1) {
+        }
+        String text = "";
+        if (baseVal(card) == 1) {
             text = addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1];
-        } else if (getBaseVal(card) >= 2) {
+        } else if (baseVal(card) >= 2) {
             text = String.format(addedExhaust ? CARD_TEXT[2] : CARD_TEXT[3], DESCRIPTION_KEY);
         }
         return insertAfterText(rawDescription, text);

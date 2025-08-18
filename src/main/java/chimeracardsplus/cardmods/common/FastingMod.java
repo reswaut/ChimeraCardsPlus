@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.purple.Fasting;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -23,8 +24,8 @@ public class FastingMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 1 && doesntUpgradeCost() && c.type == AbstractCard.CardType.POWER));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 1 && doesntUpgradeCost() && c.type == CardType.POWER);
     }
 
     @Override
@@ -36,9 +37,9 @@ public class FastingMod extends AbstractAugment {
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (!Fasting.ID.equals(card.cardID)) {
-            this.addToBot(new VFXAction(new FastingEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, Color.CHARTREUSE)));
+            addToBot(new VFXAction(new FastingEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, Color.CHARTREUSE)));
         }
-        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new EnergyDownPower(AbstractDungeon.player, 1, true), 1));
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new EnergyDownPower(AbstractDungeon.player, 1, true), 1));
     }
 
     @Override

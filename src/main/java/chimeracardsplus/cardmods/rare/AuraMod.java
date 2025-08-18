@@ -6,7 +6,8 @@ import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
@@ -24,39 +25,39 @@ public class AuraMod extends AbstractAugment {
         this(false);
     }
     public AuraMod(boolean token) {
-        this.priority = -100;
+        priority = -100;
         this.token = token;
     }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
         card.selfRetain = true;
-        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+        if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
             modMagic = true;
         }
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0 &&
-                (c.baseDamage >= 4 || c.baseBlock >= 4 || (c.baseMagicNumber >= 4 && doesntDowngradeMagic())) &&
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 0 &&
+                (c.baseDamage >= 4 || c.baseBlock >= 4 || c.baseMagicNumber >= 4 && doesntDowngradeMagic()) &&
                 notRetain(c) && notExhaust(c) && notEthereal(c) && noShenanigans(c) &&
                 !usesAction(c, PressEndTurnButtonAction.class) &&
-                (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL) &&
+                (c.type == CardType.ATTACK || c.type == CardType.SKILL) &&
                 doesntOverride(c, "triggerOnEndOfTurnForPlayingCard") &&
-                customCheck(c, (check) -> noCardModDescriptionChanges(check) &&
-                        check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1 &&
-                        check.rawDescription.chars().noneMatch((ch) -> ch == ',' || ch == '，'))));
+                customCheck(c, check -> noCardModDescriptionChanges(check) &&
+                        check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L &&
+                        check.rawDescription.chars().noneMatch(ch -> ch == ',' || ch == '，')));
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 0.0F) ? damage / (token ? 4.0F : 2.0F) : damage;
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage > 0.0F ? damage / (token ? 4.0F : 2.0F) : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 0.0F) ? block / (token ? 4.0F : 2.0F) : block;
+        return block > 0.0F ? block / (token ? 4.0F : 2.0F) : block;
     }
 
     @Override

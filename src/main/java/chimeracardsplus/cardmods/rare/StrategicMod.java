@@ -6,6 +6,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.colorless.MasterOfStrategy;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -20,7 +21,7 @@ public class StrategicMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        this.addedExhaust = !card.exhaust;
+        addedExhaust = !card.exhaust;
         card.exhaust = true;
     }
 
@@ -33,8 +34,8 @@ public class StrategicMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= -1 && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL) && doesntUpgradeExhaust());
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= -1 && (c.type == CardType.ATTACK || c.type == CardType.SKILL) && doesntUpgradeExhaust());
     }
 
     @Override
@@ -42,7 +43,7 @@ public class StrategicMod extends AbstractAugment {
         if (MasterOfStrategy.ID.equals(card.cardID)) {
             return;
         }
-        this.addToBot(new DrawCardAction(2));
+        addToBot(new DrawCardAction(2));
     }
 
     @Override

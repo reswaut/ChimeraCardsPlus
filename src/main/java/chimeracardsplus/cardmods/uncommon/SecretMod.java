@@ -18,13 +18,13 @@ public class SecretMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new CardByIDFromDeckToHandAction(1, card.cardID));
+        addToBot(new CardByIDFromDeckToHandAction(1, card.cardID));
     }
 
     @Override

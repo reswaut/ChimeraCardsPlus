@@ -1,280 +1,284 @@
 {
   "NAME_DICT": {
-    "AllOutMod": {
+    "CardAugments:AllOutMod": {
       "All-Out Attack": "All-Out² Attack"
     },
-    "ShivMod": {
+    "CardAugments:ShivMod": {
       "Cloak and Dagger": "Cloak and Dagger²"
     },
-    "GloomMod": {
+    "CardAugments:GloomMod": {
       "Doom and Gloom": "Doom and Gloom²"
     },
-    "RollMod": {
+    "CardAugments:RollMod": {
       "Dodge and Roll": "Dodge and Roll²"
     },
-    "TearMod": {
+    "CardAugments:TearMod": {
       "Rip and Tear": "Rip and Tear²"
     },
-    "AngryMod": {
+    "CardAugments:AngryMod": {
       "Anger": "Anger²"
     },
-    "ArmedMod": {
+    "CardAugments:ArmedMod": {
       "Armaments": "Armaments²"
     },
-    "BashMod": {
+    "CardAugments:BashMod": {
       "Bash": "Bash²"
     },
-    "BlurryMod": {
+    "CardAugments:BlurryMod": {
       "Blur": "Blur²"
     },
-    "BowlingMod": {
+    "CardAugments:BowlingMod": {
       "Bowling Bash": "Bowling² Bash"
     },
-    "ChargedMod": {
+    "CardAugments:ChargedMod": {
       "Charge Battery": "Charge² Battery"
     },
-    "ClawfulMod": {
+    "CardAugments:ClawfulMod": {
       "Claw": "Claw²"
     },
-    "EndlessMod": {
+    "CardAugments:EndlessMod": {
       "Endless Agony": "Endless² Agony"
     },
-    "FlexMod": {
+    "CardAugments:FlexMod": {
       "Flex": "Flex²"
     },
-    "FlyingMod": {
+    "CardAugments:FlyingMod": {
       "Flying Knee": "Flying² Knee"
     },
-    "FollowUpMod": {
+    "CardAugments:FollowUpMod": {
       "Follow-Up": "Follow-Up²"
     },
-    "ForOneMod": {
+    "CardAugments:ForOneMod": {
       "All for One": "All for One²"
     },
-    "GlassMod": {
+    "CardAugments:GlassMod": {
       "Glass Knife": "Glass² Knife"
     },
-    "GritMod": {
+    "CardAugments:GritMod": {
       "True Grit": "True Grit²"
     },
-    "HeavyMod": {
+    "CardAugments:HeavyMod": {
       "Heavy Blade": "Heavy² Blade"
     },
-    "HemoMod": {
+    "CardAugments:HemoMod": {
       "Hemokinesis": "Hemokinesis²"
     },
-    "LuckyMod": {
+    "CardAugments:LuckyMod": {
       "Just Lucky": "Just Lucky²"
     },
-    "NoxiousMod": {
+    "CardAugments:NoxiousMod": {
       "Noxious Fumes": "Noxious² Fumes"
     },
-    "GreedMod": {
+    "CardAugments:GreedMod": {
       "Hand of Greed": "Hand of Greed²"
     },
-    "OmegaMod": {
+    "CardAugments:OmegaMod": {
       "Omega": "Omega²"
     },
-    "PoisonedMod": {
+    "CardAugments:PoisonedMod": {
       "Poisoned Stab": "Poisoned² Stab"
     },
-    "PredatoryMod": {
+    "CardAugments:PredatoryMod": {
       "Predator": "Predator²"
     },
-    "PreparedMod": {
+    "CardAugments:PreparedMod": {
       "Prepared": "Prepared²"
     },
-    "QuickMod": {
+    "CardAugments:QuickMod": {
       "Quick Slash": "Quick² Slash"
     },
-    "RampedMod": {
+    "CardAugments:RampedMod": {
       "Rampage": "Rampage²"
     },
-    "SanctifiedMod": {
+    "CardAugments:SanctifiedMod": {
       "Sanctity": "Sanctity²"
     },
-    "StreamlinedMod": {
+    "CardAugments:StreamlinedMod": {
       "Streamline": "Streamline²"
     },
-    "SuckerMod": {
+    "CardAugments:SuckerMod": {
       "Sucker Punch": "Sucker² Punch"
     },
-    "SurvivorMod": {
+    "CardAugments:SurvivorMod": {
       "Survivor": "Survivor²"
     },
-    "SwivelMod": {
+    "CardAugments:SwivelMod": {
       "Swivel": "Swivel²"
     },
-    "WallopMod": {
+    "CardAugments:WallopMod": {
       "Wallop": "Wallop²"
     },
-    "WaveMod": {
+    "CardAugments:WaveMod": {
       "Iron Wave": "Iron Wave²"
     },
-    "LearnMod": {
+    "${modID}:LearnMod": {
       "Lesson Learned": "Lesson Learned²"
     },
-    "WhipMod": {
+    "${modID}:WhipMod": {
       "Sash Whip": "Sash Whip²"
     },
-    "BanefulMod": {
+    "${modID}:BanefulMod": {
       "Bane": "Bane²"
     },
-    "BarrageMod": {
+    "${modID}:BarrageMod": {
       "Barrage": "Barrage²"
     },
-    "BitingMod": {
+    "${modID}:BitingMod": {
       "Bite": "Bite²"
     },
-    "BrilliantMod": {
+    "${modID}:BrilliantMod": {
       "Brilliance": "Brilliance²"
     },
-    "BurstyMod": {
+    "${modID}:BurstyMod": {
       "Burst": "Burst²"
     },
-    "ChaoticMod": {
+    "${modID}:ChaoticMod": {
       "Chaos": "Chaos²"
     },
-    "ChokingMod": {
+    "${modID}:ChokingMod": {
       "Choke": "Choke²"
     },
-    "CripplingMod": {
+    "${modID}:CripplingMod": {
       "Crippling Cloud": "Crippling² Cloud"
     },
-    "CrushingMod": {
+    "${modID}:CrushingMod": {
       "Crush Joints": "Crush² Joints"
     },
-    "CutThroughMod": {
+    "${modID}:CutThroughMod": {
       "Cut Through Fate": "Cut Through² Fate"
     },
-    "DarkMod": {
+    "${modID}:DarkMod": {
       "Dark Embrace": "Dark² Embrace"
     },
-    "DartMod": {
+    "${modID}:DartMod": {
       "Flechettes": "Flechettes²"
     },
-    "DeepMod": {
+    "${modID}:DeepMod": {
       "Deep Breath": "Deep² Breath"
     },
-    "DeterminedMod": {
+    "${modID}:DeterminedMod": {
       "Power Through": "Power Through²"
     },
-    "DiscoveredMod": {
+    "${modID}:DiscoveredMod": {
       "Discovery": "Discovery²"
     },
-    "DoublingMod": {
+    "${modID}:DoublingMod": {
       "Double Tap": "Double² Tap"
     },
-    "ExplosionMod": {
+    "${modID}:EquilibrialMod": {
+      "Equilibrium": "Equilibrium²"
+    },
+    "${modID}:EvolutionaryMod": {
+      "Chrysalis": "Chrysalis²",
+      "Metamorphosis": "Metamorphosis²"
+    },
+    "${modID}:ExplosionMod": {
       "Corpse Explosion": "Corpse Explosion²"
     },
-    "FastingMod": {
+    "${modID}:FastingMod": {
       "Fasting": "Fasting²"
     },
-    "FeedingMod": {
+    "${modID}:FeedingMod": {
       "Feed": "Feed²"
     },
-    "FinishingMod": {
+    "${modID}:FinishingMod": {
       "Finisher": "Finisher²"
     },
-    "FlamingMod": {
+    "${modID}:FlamingMod": {
       "Flame Barrier": "Flame² Barrier"
     },
-    "ForcefulMod": {
+    "${modID}:ForcefulMod": {
       "Force Field": "Force² Field"
     },
-    "GuardedMod": {
+    "${modID}:GuardedMod": {
       "Sentinel": "Sentinel²"
     },
-    "HeadOnMod": {
+    "${modID}:HeadOnMod": {
       "Headbutt": "Headbutt²"
     },
-    "HoloMod": {
+    "${modID}:HoloMod": {
       "Hologram": "Hologram²"
     },
-    "InescapableMod": {
+    "${modID}:InescapableMod": {
       "Necronomicurse": "Necronomicurse²"
     },
-    "InjuriousMod": {
+    "${modID}:InjuriousMod": {
       "Wild Strike": "Wild² Strike"
     },
-    "IntimidatingMod": {
+    "${modID}:IntimidatingMod": {
       "Intimidate": "Intimidate²"
     },
-    "LoopyMod": {
+    "${modID}:LoopyMod": {
       "Loop": "Loop²"
     },
-    "LoudMod": {
+    "${modID}:LoudMod": {
       "Amplify": "Amplify²"
     },
-    "PainlessMod": {
+    "${modID}:PainlessMod": {
       "Feel No Pain": "Feel No Pain²"
     },
-    "PanicMod": {
+    "${modID}:PanicMod": {
       "Panic Button": "Panic² Button"
     },
-    "PerfectMod": {
+    "${modID}:PerfectMod": {
       "Perfected Strike": "Perfected² Strike"
     },
-    "PrayerfulMod": {
+    "${modID}:PrayerfulMod": {
       "Pray": "Pray²"
     },
-    "ReaperMod": {
+    "${modID}:ReaperMod": {
       "Reaper": "Reaper²"
     },
-    "RecklessMod": {
+    "${modID}:RecklessMod": {
       "Reckless Charge": "Reckless² Charge"
     },
-    "ReflexMod": {
+    "${modID}:ReflexMod": {
       "Reflex": "Reflex²"
     },
-    "RupturedMod": {
+    "${modID}:RupturedMod": {
       "Rupture": "Rupture²"
     },
-    "SecretMod": {
+    "${modID}:SecretMod": {
       "Secret Technique": "Secret² Technique",
       "Secret Weapon": "Secret² Weapon"
     },
-    "ShacklingMod": {
+    "${modID}:ShacklingMod": {
       "Dark Shackles": "Dark Shackles²"
     },
-    "ShockingMod": {
+    "${modID}:ShockingMod": {
       "Shockwave": "Shockwave²"
     },
-    "ShriekingMod": {
+    "${modID}:ShriekingMod": {
       "Piercing Wail": "Piercing² Wail"
     },
-    "SplitMod": {
+    "${modID}:SplitMod": {
       "Sunder": "Sunder²"
     },
-    "SpringyMod": {
+    "${modID}:SpringyMod": {
       "Rebound": "Rebound²"
     },
-    "EquilibrialMod": {
-      "Equilibrium": "Equilibrium²"
-    },
-    "StealthyMod": {
+    "${modID}:StealthyMod": {
       "Sneaky Strike": "Sneaky² Strike"
     },
-    "SteamMod": {
+    "${modID}:SteamMod": {
       "Steam Barrier": "Steam² Barrier"
     },
-    "StrategicMod": {
+    "${modID}:StrategicMod": {
       "Master of Strategy": "Master of Strategy²"
     },
-    "SuperluminalMod": {
+    "${modID}:SuperluminalMod": {
       "FTL": "FTL²"
     },
-    "TacticalMod": {
+    "${modID}:TacticalMod": {
       "Tactician": "Tactician²"
     },
-    "ThirdMod": {
+    "${modID}:ThirdMod": {
       "Third Eye": "Third² Eye"
     },
-    "UpperMod": {
+    "${modID}:UpperMod": {
       "Uppercut": "Uppercut²"
     },
-    "ViolentMod": {
+    "${modID}:ViolentMod": {
       "Violence": "Violence²"
     }
   }

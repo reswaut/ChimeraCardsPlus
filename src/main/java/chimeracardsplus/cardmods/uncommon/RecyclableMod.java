@@ -1,7 +1,7 @@
 package chimeracardsplus.cardmods.uncommon;
 
 import CardAugments.cardmods.AbstractAugment;
-import CardAugments.patches.InterruptUseCardFieldPatches;
+import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.actions.RecycleXAction;
@@ -21,20 +21,20 @@ public class RecyclableMod extends AbstractAugment {
 
     // This modifier should be applied first.
     public RecyclableMod() {
-        this.priority = -100;
+        priority = -100;
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost == -1 && doesntUpgradeCost() && noShenanigans(c)));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost == -1 && doesntUpgradeCost() && noShenanigans(c));
     }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        this.inherentHack = true;
+        inherentHack = true;
         hiddenCard = card.makeStatEquivalentCopy();
-        this.inherentHack = false;
-        InterruptUseCardFieldPatches.InterceptUseField.interceptUse.set(card, true);
+        inherentHack = false;
+        InterceptUseField.interceptUse.set(card, Boolean.TRUE);
         card.cost = 1;
         card.costForTurn = card.cost;
     }
@@ -57,7 +57,7 @@ public class RecyclableMod extends AbstractAugment {
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         int index = 0;
-        boolean inserted = false;
+        boolean shouldInsert = true;
         StringBuilder newDescription = new StringBuilder(CARD_TEXT[0]);
         while (index < rawDescription.length()) {
             int nextIndex1 = rawDescription.indexOf(CARD_TEXT[3], index);
@@ -66,7 +66,7 @@ public class RecyclableMod extends AbstractAugment {
                 newDescription.append(rawDescription, index, rawDescription.length());
                 break;
             }
-            inserted = true;
+            shouldInsert = false;
             if (nextIndex1 == -1) {
                 nextIndex1 = rawDescription.length();
             }
@@ -75,24 +75,18 @@ public class RecyclableMod extends AbstractAugment {
             }
             int nextIndex = Math.min(nextIndex1, nextIndex2);
             int periodIndex = rawDescription.indexOf(CARD_TEXT[5], nextIndex);
-
-            if (periodIndex == -1) {
-                newDescription.append(rawDescription, index, rawDescription.length());
-                if (newDescription.toString().endsWith("]")) {
-                    newDescription.append(" ");
-                }
-                newDescription.append(CARD_TEXT[1]);
-                break;
-            }
-            newDescription.append(rawDescription, index, periodIndex);
-            if (newDescription.toString().endsWith("]")) {
-                newDescription.append(" ");
+            newDescription.append(rawDescription, index, periodIndex == -1 ? rawDescription.length() : periodIndex);
+            if (!newDescription.toString().isEmpty() && newDescription.toString().charAt(newDescription.toString().length() - 1) == ']') {
+                newDescription.append(' ');
             }
             newDescription.append(CARD_TEXT[1]);
+            if (periodIndex == -1) {
+                break;
+            }
             index = periodIndex + 1;
         }
         String description = String.valueOf(newDescription);
-        if (!inserted) {
+        if (shouldInsert) {
             description = insertAfterText(description, CARD_TEXT[2]);
         }
         return description;
@@ -113,7 +107,7 @@ public class RecyclableMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new RecycleXAction(hiddenCard, target));
+        addToBot(new RecycleXAction(hiddenCard, target));
     }
 
     @Override
@@ -126,8 +120,9 @@ public class RecyclableMod extends AbstractAugment {
         return new RecyclableMod();
     }
 
+    @Override
     public boolean isInherent(AbstractCard card) {
-        return this.inherentHack;
+        return inherentHack;
     }
 
     @Override

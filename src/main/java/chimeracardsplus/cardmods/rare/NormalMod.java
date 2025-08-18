@@ -16,7 +16,7 @@ public class NormalMod extends AbstractAugment implements TriggerOnDiscardMod {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    boolean descriptionHack = false;
+    private boolean descriptionHack = false;
 
     @Override
     public void onInitialApplication(AbstractCard card) {
@@ -25,8 +25,8 @@ public class NormalMod extends AbstractAugment implements TriggerOnDiscardMod {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 1 && doesntUpgradeCost()));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 1 && doesntUpgradeCost());
     }
 
     @Override
@@ -49,7 +49,7 @@ public class NormalMod extends AbstractAugment implements TriggerOnDiscardMod {
         String text = CARD_TEXT[0];
         if (descriptionHack) {
             int count = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
-            text += String.format((count == 1) ? CARD_TEXT[1] : CARD_TEXT[2], count);
+            text += String.format(count == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count);
         }
         return insertAfterText(rawDescription, text);
     }

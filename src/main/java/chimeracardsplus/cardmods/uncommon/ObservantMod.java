@@ -6,7 +6,8 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.cards.red.SpotWeakness;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -24,30 +25,30 @@ public class ObservantMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (cardCheck(card, (c) -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+        if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
             modMagic = true;
         }
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 0.0F) ? (damage * 2.0F / 3.0F) : damage;
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage > 0.0F ? damage * 2.0F / 3.0F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 0.0F) ? (block * 2.0F / 3.0F) : block;
+        return block > 0.0F ? block * 2.0F / 3.0F : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return modMagic ? (magic * 2.0F / 3.0F) : magic;
+        return modMagic ? magic * 2.0F / 3.0F : magic;
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> ((c.cost == -1 || c.cost >= 1) && doesntUpgradeCost() &&
-                (c.baseDamage >= 2 || c.baseBlock >= 2 || (c.baseMagicNumber >= 2 && doesntDowngradeMagic())) && usesEnemyTargeting() && !SpotWeakness.ID.equals(c.cardID) && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL)));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> (c.cost == -1 || c.cost >= 1) && doesntUpgradeCost() &&
+                (c.baseDamage >= 2 || c.baseBlock >= 2 || c.baseMagicNumber >= 2 && doesntDowngradeMagic()) && usesEnemyTargeting() && !SpotWeakness.ID.equals(c.cardID) && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
     }
 
     @Override
@@ -76,6 +77,7 @@ public class ObservantMod extends AbstractAugment {
         return insertAfterText(rawDescription, text);
     }
 
+    @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (card.cost == 0 || card.cost <= -2) {
             return;
@@ -85,9 +87,9 @@ public class ObservantMod extends AbstractAugment {
         }
         AbstractMonster m = (AbstractMonster) target;
         if (m.getIntentBaseDmg() >= 0) {
-            this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
-                    new StrengthPower(AbstractDungeon.player, (card.cost > 0) ? card.cost : card.energyOnUse),
-                    (card.cost > 0) ? card.cost : card.energyOnUse));
+            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
+                    new StrengthPower(AbstractDungeon.player, card.cost > 0 ? card.cost : card.energyOnUse),
+                    card.cost > 0 ? card.cost : card.energyOnUse));
         }
     }
 

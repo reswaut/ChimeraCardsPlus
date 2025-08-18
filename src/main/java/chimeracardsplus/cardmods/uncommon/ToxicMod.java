@@ -3,15 +3,14 @@ package chimeracardsplus.cardmods.uncommon;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import chimeracardsplus.actions.PoisonTriggerAction;
+import chimeracardsplus.util.CardCheckHelpers;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.powers.PoisonPower;
-
-import static chimeracardsplus.util.CardCheckHelpers.hasCardWithKeywordInDeck;
 
 public class ToxicMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(ToxicMod.class.getSimpleName());
@@ -27,8 +26,8 @@ public class ToxicMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> c.cost >= -1 && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL) && usesEnemyTargeting() && doesntUpgradeExhaust()) && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[2]));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= -1 && (c.type == CardType.ATTACK || c.type == CardType.SKILL) && usesEnemyTargeting() && doesntUpgradeExhaust()) && characterCheck(p -> CardCheckHelpers.hasCardWithKeywordInDeck(p, CARD_TEXT[2]));
     }
 
     @Override
@@ -52,17 +51,9 @@ public class ToxicMod extends AbstractAugment {
     }
 
     @Override
-    public void onUse(AbstractCard card, AbstractCreature cardTarget, UseCardAction action) {
-        if (cardTarget != null) {
-            this.addToBot(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    if (cardTarget.hasPower(PoisonPower.POWER_ID)) {
-                        cardTarget.getPower(PoisonPower.POWER_ID).atStartOfTurn();
-                    }
-                    this.isDone = true;
-                }
-            });
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        if (target != null) {
+            addToBot(new PoisonTriggerAction(target));
         }
     }
 

@@ -7,7 +7,9 @@ import chimeracardsplus.interfaces.HealingMod;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.cards.colorless.Bite;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -22,12 +24,12 @@ public class BitingMod extends AbstractAugment implements HealingMod {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> ((c.cost >= 1 || c.cost == -1) && c.type == AbstractCard.CardType.ATTACK && c.baseDamage >= 2 && c.rarity != AbstractCard.CardRarity.BASIC && doesntUpgradeCost()));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> (c.cost >= 1 || c.cost == -1) && c.type == CardType.ATTACK && c.baseDamage >= 2 && c.rarity != CardRarity.BASIC && doesntUpgradeCost());
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
         return damage * 0.8F;
     }
 
@@ -37,9 +39,9 @@ public class BitingMod extends AbstractAugment implements HealingMod {
             return;
         }
         if (card.cost > 0) {
-            this.addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, card.cost));
+            addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, card.cost));
         } else if (card.cost == -1) {
-            this.addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, card.energyOnUse));
+            addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, card.energyOnUse));
         }
     }
 

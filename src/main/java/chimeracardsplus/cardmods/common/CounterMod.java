@@ -7,13 +7,16 @@ import chimeracardsplus.damagemods.GiveBlockDamage;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CounterMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(CounterMod.class.getSimpleName());
@@ -22,12 +25,12 @@ public class CounterMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && card.type == AbstractCard.CardType.ATTACK && card.baseDamage >= 3;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1 && abstractCard.type == CardType.ATTACK && abstractCard.baseDamage >= 3;
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
         return damage * 1.4F;
     }
 
@@ -39,12 +42,7 @@ public class CounterMod extends AbstractAugment {
     @Override
     public void onUpgradeCheck(AbstractCard card) {
         List<AbstractDamageModifier> mods = DamageModifierManager.modifiers(card);
-        List<AbstractDamageModifier> toRemove = new ArrayList<>();
-        for (AbstractDamageModifier m : mods) {
-            if (m instanceof GiveBlockDamage) {
-                toRemove.add(m);
-            }
-        }
+        Collection<AbstractDamageModifier> toRemove = mods.stream().filter(m -> m instanceof GiveBlockDamage).collect(Collectors.toCollection(() -> new ArrayList<>(1)));
         for (AbstractDamageModifier m : toRemove) {
             DamageModifierManager.removeModifier(card, m);
         }

@@ -3,15 +3,12 @@ package chimeracardsplus.cardmods.common;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import chimeracardsplus.actions.ShareBlockAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class SharedMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(SharedMod.class.getSimpleName());
@@ -20,8 +17,8 @@ public class SharedMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && card.baseBlock >= 3;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1 && abstractCard.baseBlock >= 3;
     }
 
     @Override
@@ -31,19 +28,7 @@ public class SharedMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        int block = card.block;
-        this.addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                for (int i = AbstractDungeon.getMonsters().monsters.size(); i-- > 0; ) {
-                    AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
-                    if (!mo.isDeadOrEscaped()) {
-                        this.addToTop(new GainBlockAction(mo, block));
-                    }
-                }
-                this.isDone = true;
-            }
-        });
+        addToBot(new ShareBlockAction(card.block));
     }
 
     @Override

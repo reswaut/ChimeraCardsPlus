@@ -1,14 +1,14 @@
 package chimeracardsplus.cardmods.uncommon;
 
 import CardAugments.cardmods.AbstractAugment;
-import CardAugments.patches.InterruptUseCardFieldPatches;
+import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.BetterDiscardPileToHandAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.cards.blue.Hologram;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -25,12 +25,14 @@ public class HoloMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (getEffectiveUpgrades(card) == 0) {
+        if (card.timesUpgraded != 0 || card.upgraded) {
+            addedExhaust = false;
+        } else {
             addedExhaust = !card.exhaust;
             card.exhaust = true;
         }
         if (Hologram.ID.equals(card.cardID)) {
-            InterruptUseCardFieldPatches.InterceptUseField.interceptUse.set(card, true);
+            InterceptUseField.interceptUse.set(card, Boolean.TRUE);
         }
     }
 
@@ -44,28 +46,28 @@ public class HoloMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && (card.baseDamage >= 3 || card.baseBlock >= 3);
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1 && (abstractCard.baseDamage >= 3 || abstractCard.baseBlock >= 3);
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return (damage > 0.0F) ? (damage / 3.0F) : damage;
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage > 0.0F ? damage / 3.0F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return (block > 0.0F) ? (block / 3.0F) : block;
+        return block > 0.0F ? block / 3.0F : block;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (Hologram.ID.equals(card.cardID)) {
-            this.addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, card.block));
-            this.addToBot(new BetterDiscardPileToHandAction(2));
+            addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, card.block));
+            addToBot(new BetterDiscardPileToHandAction(2));
             return;
         }
-        this.addToBot(new BetterDiscardPileToHandAction(1));
+        addToBot(new BetterDiscardPileToHandAction(1));
     }
 
     @Override

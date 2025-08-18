@@ -1,13 +1,16 @@
 package chimeracardsplus.patches.events;
 
 
-import CardAugments.patches.RolledModFieldPatches;
+import CardAugments.patches.RolledModFieldPatches.RolledModField;
+import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.rare.BitingMod;
 import chimeracardsplus.cards.preview.BitingPreview;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.colorless.Bite;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -22,27 +25,26 @@ import javassist.*;
 import javassist.bytecode.DuplicateMemberException;
 
 import java.util.ArrayList;
-
-import static basemod.helpers.CardModifierManager.addModifier;
+import java.util.stream.Stream;
 
 public class VampiresPatches {
     private static final String ID = ChimeraCardsPlus.makeID(VampiresPatches.class.getSimpleName());
     private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString(ID);
     private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     private static final String[] OPTIONS = eventStrings.OPTIONS;
-    private static int myIndex;
+    private static int myIndex = 0;
     private static int hpAmt = 0;
-    private static boolean choseMyOption = false;
+    private static boolean choseVanillaOption = true;
 
     private static int calcHp() {
-        return Math.min(AbstractDungeon.player.maxHealth - 1, MathUtils.ceil((float) AbstractDungeon.player.maxHealth * 0.06F));
+        return Math.min(AbstractDungeon.player.maxHealth - 1, MathUtils.ceil(AbstractDungeon.player.maxHealth * 0.06F));
     }
 
     public static void updateEvent(Vampires __instance) {
         if (!ChimeraCardsPlus.enableEventAddons()) {
             return;
         }
-        if (!choseMyOption) {
+        if (choseVanillaOption) {
             return;
         }
         if (!AbstractDungeon.isScreenUp && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
@@ -50,11 +52,11 @@ public class VampiresPatches {
             AbstractDungeon.player.masterDeck.removeCard(card);
 
             BitingMod augment = new BitingMod();
-            ArrayList<AbstractCard> validCards = new ArrayList<>();
+            ArrayList<AbstractCard> validCards = new ArrayList<>(512);
             validCards.add(new Bite());
 
             for (AbstractCard c : CardLibrary.getAllCards()) {
-                if (c.type == AbstractCard.CardType.ATTACK && (c.rarity == AbstractCard.CardRarity.COMMON || c.rarity == AbstractCard.CardRarity.UNCOMMON || c.rarity == AbstractCard.CardRarity.RARE)) {
+                if (c.type == CardType.ATTACK && Stream.of(CardRarity.COMMON, CardRarity.UNCOMMON, CardRarity.RARE).anyMatch(cardRarity -> c.rarity == cardRarity)) {
                     AbstractCard copy = c.makeStatEquivalentCopy();
                     if (augment.canApplyTo(copy)) {
                         validCards.add(copy);
@@ -63,9 +65,9 @@ public class VampiresPatches {
             }
 
             AbstractCard transformedCard = validCards.get(AbstractDungeon.miscRng.random(0, validCards.size() - 1));
-            addModifier(transformedCard, augment);
-            RolledModFieldPatches.RolledModField.rolled.set(transformedCard, true);
-            AbstractDungeon.effectsQueue.add(new ShowCardAndObtainEffect(transformedCard, (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
+            CardModifierManager.addModifier(transformedCard, augment);
+            RolledModField.rolled.set(transformedCard, Boolean.TRUE);
+            AbstractDungeon.effectsQueue.add(new ShowCardAndObtainEffect(transformedCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
         }
     }
@@ -82,11 +84,11 @@ public class VampiresPatches {
             }
             __instance.imageEventText.removeDialogOption(__instance.imageEventText.optionList.size() - 1);
             myIndex = __instance.imageEventText.optionList.size();
-            if (!CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards()).isEmpty()) {
+            if (CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards()).isEmpty()) {
+                __instance.imageEventText.setDialogOption(OPTIONS[2], true);
+            } else {
                 hpAmt = calcHp();
                 __instance.imageEventText.setDialogOption(OPTIONS[0] + hpAmt + OPTIONS[1], new BitingPreview());
-            } else {
-                __instance.imageEventText.setDialogOption(OPTIONS[2], true);
             }
             __instance.imageEventText.setDialogOption(Vampires.OPTIONS[2]);
         }
@@ -123,7 +125,7 @@ public class VampiresPatches {
 
         private static void applyModifiers() {
             AbstractDungeon.gridSelectScreen.open(CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards()), 1, Transmogrifier.OPTIONS[2], false, false, false, false);
-            choseMyOption = true;
+            choseVanillaOption = false;
         }
     }
 

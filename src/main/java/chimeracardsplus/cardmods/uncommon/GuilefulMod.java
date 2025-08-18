@@ -5,12 +5,11 @@ import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.actions.PlayDiscardedCardAction;
 import chimeracardsplus.interfaces.TriggerOnDiscardMod;
+import chimeracardsplus.util.CardCheckHelpers;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-
-import static chimeracardsplus.util.CardCheckHelpers.hasCardWithKeywordInDeck;
 
 public class GuilefulMod extends AbstractAugment implements TriggerOnDiscardMod {
     public static final String ID = ChimeraCardsPlus.makeID(GuilefulMod.class.getSimpleName());
@@ -19,9 +18,9 @@ public class GuilefulMod extends AbstractAugment implements TriggerOnDiscardMod 
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return characterCheck((p) -> hasCardWithKeywordInDeck(p, CARD_TEXT[1])) &&
-                cardCheck(card, (c) -> c.cost == 1 && doesntUpgradeCost());
+    public boolean validCard(AbstractCard abstractCard) {
+        return characterCheck(p -> CardCheckHelpers.hasCardWithKeywordInDeck(p, CARD_TEXT[1])) &&
+                cardCheck(abstractCard, c -> c.cost == 1 && doesntUpgradeCost());
     }
 
     @Override
@@ -44,10 +43,12 @@ public class GuilefulMod extends AbstractAugment implements TriggerOnDiscardMod 
         return insertBeforeText(rawDescription, CARD_TEXT[0]);
     }
 
+    @Override
     public void onManualDiscard(AbstractCard card) {
-        this.addToBot(new PlayDiscardedCardAction(card, AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng)));
+        addToBot(new PlayDiscardedCardAction(card, AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng)));
     }
 
+    @Override
     public void onMoveToDiscard(AbstractCard card) {
     }
 

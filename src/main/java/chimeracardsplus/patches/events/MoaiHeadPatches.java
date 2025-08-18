@@ -1,6 +1,7 @@
 package chimeracardsplus.patches.events;
 
 
+import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.special.HesitantMod;
 import chimeracardsplus.cards.preview.HesitantPreview;
@@ -16,22 +17,19 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import static basemod.helpers.CardModifierManager.addModifier;
-
 public class MoaiHeadPatches {
     private static final String ID = ChimeraCardsPlus.makeID(MoaiHeadPatches.class.getSimpleName());
     private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString(ID);
     private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     private static final String[] OPTIONS = eventStrings.OPTIONS;
-    private static int myIndex;
+    private static int myIndex = 0;
     private static int hpAmt = 0;
 
     private static int calcHp() {
         if (AbstractDungeon.ascensionLevel < 15) {
             return 10;
-        } else {
-            return 7;
         }
+        return 7;
     }
 
     @SpirePatch(
@@ -93,15 +91,15 @@ public class MoaiHeadPatches {
                 return;
             }
             if (applicableCards.size() == 1) {
-                addModifier(applicableCards.get(0), augment);
+                CardModifierManager.addModifier(applicableCards.get(0), augment);
                 AbstractDungeon.player.bottledCardUpgradeCheck(applicableCards.get(0));
                 AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(applicableCards.get(0).makeStatEquivalentCopy()));
                 return;
             }
             AbstractCard cardToApply = applicableCards.get(AbstractDungeon.miscRng.random(applicableCards.size() - 1));
-            addModifier(cardToApply, augment);
+            CardModifierManager.addModifier(cardToApply, augment);
             AbstractDungeon.player.bottledCardUpgradeCheck(cardToApply);
-            AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(cardToApply.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
+            AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(cardToApply.makeStatEquivalentCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
         }
     }
 }

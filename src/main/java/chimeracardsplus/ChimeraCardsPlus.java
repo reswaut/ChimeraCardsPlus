@@ -2,10 +2,7 @@ package chimeracardsplus;
 
 import CardAugments.CardAugmentsMod;
 import CardAugments.cardmods.AbstractAugment;
-import basemod.AutoAdd;
-import basemod.BaseMod;
-import basemod.ModLabeledToggleButton;
-import basemod.ModPanel;
+import basemod.*;
 import basemod.interfaces.*;
 import chimeracardsplus.interfaces.SpecialNamingRules;
 import chimeracardsplus.interfaces.TriggerOnUsePotionMod;
@@ -14,7 +11,7 @@ import chimeracardsplus.powers.RetributionPower;
 import chimeracardsplus.powers.StunPlayerPower;
 import chimeracardsplus.powers.UntappedPower;
 import chimeracardsplus.util.TextureLoader;
-import com.badlogic.gdx.Files;
+import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglFileHandle;
 import com.badlogic.gdx.files.FileHandle;
@@ -38,6 +35,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 import java.util.Properties;
 
 @SpireInitializer
@@ -53,29 +51,25 @@ public class ChimeraCardsPlus implements
     private static final String DEFAULT_LANGUAGE = "eng";
     public static final String modID = "chimeracardsplus";
     public static final Logger logger = LogManager.getLogger(modID);
-    public static SpireConfig config;
-    public static ModPanel settingsPanel;
+    public static final SpecialNamingRules specialNamingRules = new SpecialNamingRules();
+    public static final TextureLoader textureLoader = new TextureLoader();
     private static final String EVENT_ADDONS_PLUS_KEY = "EventAddonsPlus";
     private static final String SPECIAL_NAMING_KEY = "CompactNaming";
     private static final String CARD_FIXES_KEY = "CardFixes";
     private static boolean enableEventAddonsPlus = true;
     private static boolean enableSpecialNaming = false;
     private static boolean enableCardFixes = true;
-    public static SpecialNamingRules specialNamingRules;
-    private static UIStrings uiStrings;
-    private static String[] TEXT;
+    private static SpireConfig config = null;
+    private static ModPanel settingsPanel = null;
+    private static UIStrings uiStrings = null;
+    private static String[] TEXT = null;
 
     public static String makeID(String id) {
-        return modID + ":" + id;
+        return modID + ':' + id;
     }
 
     public static void initialize() {
-        new ChimeraCardsPlus();
-    }
-
-    public ChimeraCardsPlus() {
-        BaseMod.subscribe(this);
-        logger.info("{} subscribed to BaseMod.", modID);
+        BaseMod.subscribe(new ChimeraCardsPlus());
 
         Properties defaultSettings = new Properties();
         defaultSettings.setProperty(EVENT_ADDONS_PLUS_KEY, String.valueOf(enableEventAddonsPlus));
@@ -106,8 +100,8 @@ public class ChimeraCardsPlus implements
         settingsPanel = new ModPanel();
 
         float yPos = Settings.HEIGHT * 0.5f / Settings.scale + 200.0f;
-        ModLabeledToggleButton enableCardFixesButton = new ModLabeledToggleButton(TEXT[1], TEXT[2], 350.0F, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, enableCardFixes, settingsPanel, (label) -> {
-        }, (button) -> {
+        IUIElement enableCardFixesButton = new ModLabeledToggleButton(TEXT[1], TEXT[2], 350.0F, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, enableCardFixes, settingsPanel, label -> {
+        }, button -> {
             config.setBool(CARD_FIXES_KEY, button.enabled);
             enableCardFixes = button.enabled;
             try {
@@ -119,8 +113,8 @@ public class ChimeraCardsPlus implements
         settingsPanel.addUIElement(enableCardFixesButton);
 
         yPos -= 50.0f;
-        ModLabeledToggleButton enableEventsButton = new ModLabeledToggleButton(TEXT[3], TEXT[4], 350.0F, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, enableEventAddonsPlus, settingsPanel, (label) -> {
-        }, (button) -> {
+        IUIElement enableEventsButton = new ModLabeledToggleButton(TEXT[3], TEXT[4], 350.0F, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, enableEventAddonsPlus, settingsPanel, label -> {
+        }, button -> {
             config.setBool(EVENT_ADDONS_PLUS_KEY, button.enabled);
             enableEventAddonsPlus = button.enabled;
             try {
@@ -132,8 +126,8 @@ public class ChimeraCardsPlus implements
         settingsPanel.addUIElement(enableEventsButton);
 
         yPos -= 50.0f;
-        ModLabeledToggleButton enableSpecialNamingButton = new ModLabeledToggleButton(TEXT[5], TEXT[6], 350.0F, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, enableSpecialNaming, settingsPanel, (label) -> {
-        }, (button) -> {
+        IUIElement enableSpecialNamingButton = new ModLabeledToggleButton(TEXT[5], TEXT[6], 350.0F, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, enableSpecialNaming, settingsPanel, label -> {
+        }, button -> {
             config.setBool(SPECIAL_NAMING_KEY, button.enabled);
             enableSpecialNaming = button.enabled;
             try {
@@ -146,14 +140,14 @@ public class ChimeraCardsPlus implements
     }
 
     private static String getLangString() {
-        return Settings.language.name().toLowerCase();
+        return Settings.language.name().toLowerCase(Locale.ROOT);
     }
 
     private static String checkResourcesPath() {
         String name = ChimeraCardsPlus.class.getName();
         name = name.substring(0, name.indexOf('.'));
 
-        FileHandle resources = new LwjglFileHandle(name, Files.FileType.Internal);
+        FileHandle resources = new LwjglFileHandle(name, FileType.Internal);
         if (resources.child("images").exists() && resources.child("localization").exists()) {
             return name;
         }
@@ -164,54 +158,12 @@ public class ChimeraCardsPlus implements
                 "\tat the top of the " + ChimeraCardsPlus.class.getSimpleName() + " java file.");
     }
 
-    @Override
-    public void receiveOnPlayerTurnStart() {
-        TriggerOnUsePotionMod.CardModifierOnUsePotionManager.onPlayerTurnStart();
-    }
-
-    @Override
-    public void receivePostInitialize() {
-        Texture badgeTexture = TextureLoader.getTexture(imagePath("badge.png"));
+    private static void loadUIStrings() {
         uiStrings = CardCrawlGame.languagePack.getUIString(makeID("ModConfigs"));
         TEXT = uiStrings.TEXT;
-
-        setupSettingsPanel();
-        BaseMod.registerModBadge(badgeTexture, uiStrings.EXTRA_TEXT[0], uiStrings.EXTRA_TEXT[1], uiStrings.EXTRA_TEXT[2], settingsPanel);
-
-        CardAugmentsMod.registerMod(modID, TEXT[0]);
-
-        new AutoAdd(modID).packageFilter("chimeracardsplus.cardmods")
-                .any(AbstractAugment.class, (info, abstractAugment) -> CardAugmentsMod.registerAugment(abstractAugment, modID));
-
-        BaseMod.addPower(NoDamagePower.class, NoDamagePower.POWER_ID);
-        BaseMod.addPower(RetributionPower.class, RetributionPower.POWER_ID);
-        BaseMod.addPower(StunPlayerPower.class, StunPlayerPower.POWER_ID);
-        BaseMod.addPower(UntappedPower.class, UntappedPower.POWER_ID);
     }
 
-    @Override
-    public void receiveOnBattleStart(AbstractRoom room) {
-        TriggerOnUsePotionMod.CardModifierOnUsePotionManager.onBattleStart(room);
-    }
-
-    @Override
-    public void receivePostPotionUse(AbstractPotion potion) {
-        TriggerOnUsePotionMod.CardModifierOnUsePotionManager.onUsePotion(potion);
-    }
-
-    @Override
-    public void receiveEditStrings() {
-        loadLocalization(DEFAULT_LANGUAGE);
-        if (!DEFAULT_LANGUAGE.equals(getLangString())) {
-            try {
-                loadLocalization(getLangString());
-            } catch (GdxRuntimeException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private void loadLocalization(String lang) {
+    private static void loadLocalization(String lang) {
         BaseMod.loadCustomStringsFile(CardStrings.class,
                 localizationPath(lang, "CardStrings.json"));
         BaseMod.loadCustomStringsFile(EventStrings.class,
@@ -226,7 +178,63 @@ public class ChimeraCardsPlus implements
     }
 
     public static String localizationPath(String lang, String file) {
-        return resourcesFolder + "/localization/" + lang + "/" + file;
+        return resourcesFolder + "/localization/" + lang + '/' + file;
+    }
+
+    private static void loadKeywords(String lang) {
+        Gson gson = new Gson();
+        String json = Gdx.files.internal(localizationPath(lang, "KeywordStrings.json")).readString(String.valueOf(StandardCharsets.UTF_8));
+        Keyword[] keywords = gson.fromJson(json, Keyword[].class);
+        if (keywords != null) {
+            for (Keyword keyword : keywords) {
+                BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+            }
+        }
+    }
+
+    private static void loadSpecialNamingRules(String lang) {
+        Gson gson = new Gson();
+        String json = Gdx.files.internal(localizationPath(lang, "SpecialNamingRules.json")).readString(String.valueOf(StandardCharsets.UTF_8));
+        SpecialNamingRules rules = gson.fromJson(json, SpecialNamingRules.class);
+        if (rules != null) {
+            specialNamingRules.addRules(rules);
+        }
+    }
+
+    @Override
+    public void receiveEditStrings() {
+        loadLocalization(DEFAULT_LANGUAGE);
+        if (!DEFAULT_LANGUAGE.equals(getLangString())) {
+            try {
+                loadLocalization(getLangString());
+            } catch (GdxRuntimeException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void receiveOnPlayerTurnStart() {
+        TriggerOnUsePotionMod.onPlayerTurnStart();
+    }
+
+    @Override
+    public void receivePostInitialize() {
+        Texture badgeTexture = textureLoader.getTexture(imagePath("badge.png"));
+        loadUIStrings();
+
+        setupSettingsPanel();
+        BaseMod.registerModBadge(badgeTexture, uiStrings.EXTRA_TEXT[0], uiStrings.EXTRA_TEXT[1], uiStrings.EXTRA_TEXT[2], settingsPanel);
+
+        CardAugmentsMod.registerMod(modID, TEXT[0]);
+
+        new AutoAdd(modID).packageFilter("chimeracardsplus.cardmods")
+                .any(AbstractAugment.class, (info, abstractAugment) -> CardAugmentsMod.registerAugment(abstractAugment, modID));
+
+        BaseMod.addPower(NoDamagePower.class, NoDamagePower.POWER_ID);
+        BaseMod.addPower(RetributionPower.class, RetributionPower.POWER_ID);
+        BaseMod.addPower(StunPlayerPower.class, StunPlayerPower.POWER_ID);
+        BaseMod.addPower(UntappedPower.class, UntappedPower.POWER_ID);
     }
 
     public static String imagePath(String file) {
@@ -245,27 +253,13 @@ public class ChimeraCardsPlus implements
         }
     }
 
-    private void loadKeywords(String lang) {
-        Gson gson = new Gson();
-        String json = Gdx.files.internal(localizationPath(lang, "KeywordStrings.json")).readString(String.valueOf(StandardCharsets.UTF_8));
-        Keyword[] keywords = gson.fromJson(json, Keyword[].class);
-        if (keywords != null) {
-            for (Keyword keyword : keywords) {
-                BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
-            }
-        }
+    @Override
+    public void receiveOnBattleStart(AbstractRoom abstractRoom) {
+        TriggerOnUsePotionMod.onBattleStart(abstractRoom);
     }
 
-    private void loadSpecialNamingRules(String lang) {
-        Gson gson = new Gson();
-        String json = Gdx.files.internal(localizationPath(lang, "SpecialNamingRules.json")).readString(String.valueOf(StandardCharsets.UTF_8));
-        SpecialNamingRules rules = gson.fromJson(json, SpecialNamingRules.class);
-        if (rules != null) {
-            if (specialNamingRules == null) {
-                specialNamingRules = rules;
-            } else {
-                specialNamingRules.addRules(rules);
-            }
-        }
+    @Override
+    public void receivePostPotionUse(AbstractPotion abstractPotion) {
+        TriggerOnUsePotionMod.usedPotion(abstractPotion);
     }
 }

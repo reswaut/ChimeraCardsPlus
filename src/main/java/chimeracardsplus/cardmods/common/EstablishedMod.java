@@ -14,6 +14,7 @@ public class EstablishedMod extends AbstractAugment {
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
+    @Override
     public void onInitialApplication(AbstractCard card) {
         card.selfRetain = true;
         card.cost += 2;
@@ -21,13 +22,13 @@ public class EstablishedMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, c -> (c.cost >= 1 && doesntUpgradeCost() && notRetain(c) && notEthereal(c) && doesntOverride(c, "triggerOnEndOfTurnForPlayingCard")));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 1 && doesntUpgradeCost() && notRetain(c) && notEthereal(c) && doesntOverride(c, "triggerOnEndOfTurnForPlayingCard"));
     }
 
     @Override
     public void onRetained(AbstractCard card) {
-        this.addToBot(new ReduceCostAction(card));
+        addToBot(new ReduceCostAction(card));
     }
 
     @Override
@@ -51,8 +52,8 @@ public class EstablishedMod extends AbstractAugment {
     }
 
     @Override
-    public AbstractAugment.AugmentRarity getModRarity() {
-        return AbstractAugment.AugmentRarity.COMMON;
+    public AugmentRarity getModRarity() {
+        return AugmentRarity.COMMON;
     }
 
     @Override

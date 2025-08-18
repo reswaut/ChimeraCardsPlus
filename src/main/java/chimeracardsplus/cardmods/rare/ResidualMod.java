@@ -5,15 +5,14 @@ import CardAugments.patches.InfiniteUpgradesPatches;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.actions.SetEnergyAction;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 public class ResidualMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(ResidualMod.class.getSimpleName());
@@ -54,19 +53,13 @@ public class ResidualMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= 0 && card.cost <= 4;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= 0 && abstractCard.cost <= 4;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                EnergyPanel.setEnergy(getEnergyLeft());
-                this.isDone = true;
-            }
-        });
+        addToBot(new SetEnergyAction(getEnergyLeft()));
     }
 
     @Override

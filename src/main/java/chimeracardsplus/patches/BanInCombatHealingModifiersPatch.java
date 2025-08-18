@@ -2,29 +2,36 @@ package chimeracardsplus.patches;
 
 import CardAugments.CardAugmentsMod;
 import CardAugments.cardmods.AbstractAugment;
-import CardAugments.patches.OnCardGeneratedPatches;
+import CardAugments.cardmods.AbstractAugment.AugmentRarity;
+import CardAugments.patches.OnCardGeneratedPatches.CreatedCards;
+import CardAugments.patches.OnCardGeneratedPatches.DiscoveryStyleCards;
 import CardAugments.screens.ModifierScreen;
+import basemod.IUIElement;
 import basemod.ReflectionHacks;
 import chimeracardsplus.interfaces.HealingMod;
-import chimeracardsplus.ui.HealingModTooltip;
+import chimeracardsplus.uis.HealingModTooltip;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.lib.Matcher.FieldAccessMatcher;
+import com.evacipated.cardcrawl.modthespire.lib.Matcher.MethodCallMatcher;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.screens.options.DropdownMenu;
+import javassist.CannotCompileException;
 import javassist.CtBehavior;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class BanInCombatHealingModifiersPatch {
-    public static HealingModTooltip healingModTooltip = new HealingModTooltip();
+    public static final IUIElement healingModTooltip = new HealingModTooltip();
     private static boolean inCombatRoll = false;
     private static boolean isHealingMod = false;
 
     @SpirePatch(
-            clz = OnCardGeneratedPatches.DiscoveryStyleCards.class,
+            clz = DiscoveryStyleCards.class,
             method = "roll"
     )
     public static class DiscoveryStyleCardsDoublePatch {
@@ -40,7 +47,7 @@ public class BanInCombatHealingModifiersPatch {
     }
 
     @SpirePatch(
-            clz = OnCardGeneratedPatches.CreatedCards.class,
+            clz = CreatedCards.class,
             method = "roll"
     )
     public static class CreatedCardsDoublePatch {
@@ -60,21 +67,18 @@ public class BanInCombatHealingModifiersPatch {
             method = "applyWeightedCardMod"
     )
     public static class ApplyInCombatModPatch {
-        @SpireInsertPatch(
-                locator = Locator.class,
-                localvars = {"validMods"}
-        )
-        public static void Insert(AbstractCard c, AbstractAugment.AugmentRarity rarity, int index, @ByRef ArrayList<AbstractAugment>[] validMods) {
+        @SpireInsertPatch(locator = Locator.class, localvars = "validMods")
+        public static void Insert(AbstractCard c, AugmentRarity rarity, int index, @ByRef ArrayList<AbstractAugment>[] validMods) {
             if (inCombatRoll) {
-                validMods[0] = validMods[0].stream().filter((mod) -> !(mod instanceof HealingMod)).collect(Collectors.toCollection(ArrayList::new));
+                validMods[0] = validMods[0].stream().filter(mod -> !(mod instanceof HealingMod)).collect(Collectors.toCollection(ArrayList::new));
             }
         }
 
         private static class Locator extends SpireInsertLocator {
             @Override
-            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
-                Matcher finalMatcher = new Matcher.MethodCallMatcher(ArrayList.class, "isEmpty");
-                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
+            public int[] Locate(CtBehavior ctBehavior) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new MethodCallMatcher(ArrayList.class, "isEmpty");
+                return LineFinder.findInOrder(ctBehavior, finalMatcher);
             }
         }
     }
@@ -86,8 +90,8 @@ public class BanInCombatHealingModifiersPatch {
     public static class PositionHealingModTooltipPatch {
         @SpirePostfixPatch
         public static void Postfix() {
-            float HB_X = ReflectionHacks.getPrivateStatic(ModifierScreen.class, "HB_X");
-            float DISABLE_Y = ReflectionHacks.getPrivateStatic(ModifierScreen.class, "DISABLE_Y");
+            float HB_X = ReflectionHacks.<Float>getPrivateStatic(ModifierScreen.class, "HB_X");
+            float DISABLE_Y = ReflectionHacks.<Float>getPrivateStatic(ModifierScreen.class, "DISABLE_Y");
             healingModTooltip.set(HB_X - 110.0F * Settings.scale, DISABLE_Y - 60.0F * Settings.scale);
         }
     }
@@ -130,19 +134,16 @@ public class BanInCombatHealingModifiersPatch {
             method = "changedSelectionTo"
     )
     public static class IsHealingModPatch {
-        @SpireInsertPatch(
-                locator = Locator.class,
-                localvars = {"selectedAugment"}
-        )
+        @SpireInsertPatch(locator = Locator.class, localvars = "selectedAugment")
         public static void Insert(AbstractAugment selectedAugment) {
             isHealingMod = selectedAugment instanceof HealingMod;
         }
 
         private static class Locator extends SpireInsertLocator {
             @Override
-            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
-                Matcher finalMatcher = new Matcher.FieldAccessMatcher(ModifierScreen.class, "modifierDisabled");
-                return LineFinder.findAllInOrder(ctMethodToPatch, finalMatcher);
+            public int[] Locate(CtBehavior ctBehavior) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new FieldAccessMatcher(ModifierScreen.class, "modifierDisabled");
+                return LineFinder.findAllInOrder(ctBehavior, finalMatcher);
             }
         }
     }

@@ -10,21 +10,24 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class GiveBlockDamage extends AbstractDamageModifier {
     public GiveBlockDamage() {
-        this.priority = 32767;
+        priority = 32767;
     }
 
-    public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature targetHit) {
-        if (targetHit instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
-                && targetHit.currentHealth > 0
-                && targetHit.currentHealth - lastDamageTaken > 0 && !targetHit.halfDead && lastDamageTaken >= 1) {
-            addToBot(new GainBlockAction(targetHit, lastDamageTaken));
+    @Override
+    public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature target) {
+        if (target instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
+                && target.currentHealth > 0
+                && target.currentHealth - lastDamageTaken > 0 && !target.halfDead && lastDamageTaken >= 1) {
+            addToBot(new GainBlockAction(target, lastDamageTaken));
         }
     }
 
+    @Override
     public boolean isInherent() {
         return true;
     }
 
+    @Override
     public AbstractDamageModifier makeCopy() {
         return new GiveBlockDamage();
     }

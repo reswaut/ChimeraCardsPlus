@@ -9,38 +9,41 @@ import chimeracardsplus.interfaces.HealingMod;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.cards.red.Feed;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FeedingMod extends AbstractAugment implements DynvarCarrier, HealingMod {
     public static final String ID = ChimeraCardsPlus.makeID(FeedingMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private static final String DESCRIPTION_KEY = "!" + ID + "!";
-    private boolean modified = false;
-    private boolean addedExhaust = false;
+    private static final String DESCRIPTION_KEY = '!' + ID + '!';
+    private boolean addedExhaust = true;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && card.baseDamage >= 2 && card.rarity != AbstractCard.CardRarity.BASIC && card.type == AbstractCard.CardType.ATTACK;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1 && abstractCard.baseDamage >= 2 && abstractCard.rarity != CardRarity.BASIC && abstractCard.type == CardType.ATTACK;
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
         return damage * 0.75F;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
         if (Feed.ID.equals(card.cardID)) {
-            return magic + getBaseVal(card);
+            return magic + baseVal(card);
         }
         return magic;
     }
@@ -50,8 +53,8 @@ public class FeedingMod extends AbstractAugment implements DynvarCarrier, Healin
         if (Feed.ID.equals(card.cardID)) {
             return;
         }
-        DamageModifierManager.addModifier(card, new FeedDamage(this.getBaseVal(card)));
-        this.addedExhaust = !card.exhaust;
+        DamageModifierManager.addModifier(card, new FeedDamage(baseVal(card)));
+        addedExhaust = !card.exhaust;
         card.exhaust = true;
     }
 
@@ -61,47 +64,42 @@ public class FeedingMod extends AbstractAugment implements DynvarCarrier, Healin
             return;
         }
         List<AbstractDamageModifier> mods = DamageModifierManager.modifiers(card);
-        List<AbstractDamageModifier> toRemove = new ArrayList<>();
-        for (AbstractDamageModifier m : mods) {
-            if (m instanceof FeedDamage) {
-                toRemove.add(m);
-            }
-        }
+        Collection<AbstractDamageModifier> toRemove = mods.stream().filter(m -> m instanceof FeedDamage).collect(Collectors.toCollection(() -> new ArrayList<>(1)));
         for (AbstractDamageModifier m : toRemove) {
             DamageModifierManager.removeModifier(card, m);
         }
-        DamageModifierManager.addModifier(card, new FeedDamage(this.getBaseVal(card)));
+        DamageModifierManager.addModifier(card, new FeedDamage(baseVal(card)));
 
         if (!card.exhaust) {
-            this.addedExhaust = true;
+            addedExhaust = true;
             card.exhaust = true;
             card.initializeDescription();
         }
     }
 
-    public int getBaseVal(AbstractCard card) {
-        return 2 + getEffectiveUpgrades(card);
-    }
-
+    @Override
     public String key() {
         return ID;
     }
 
-    public int val(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int val(AbstractCard abstractCard) {
+        return baseVal(abstractCard);
     }
 
-    public int baseVal(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int baseVal(AbstractCard abstractCard) {
+        return 2 + getEffectiveUpgrades(abstractCard);
     }
 
-    public boolean modified(AbstractCard card) {
-        return this.modified;
+    @Override
+    public boolean modified(AbstractCard abstractCard) {
+        return false;
     }
 
-    public boolean upgraded(AbstractCard card) {
-        this.modified = card.timesUpgraded != 0 || card.upgraded;
-        return this.modified;
+    @Override
+    public boolean upgraded(AbstractCard abstractCard) {
+        return abstractCard.timesUpgraded != 0 || abstractCard.upgraded;
     }
 
     @Override
@@ -124,7 +122,7 @@ public class FeedingMod extends AbstractAugment implements DynvarCarrier, Healin
         if (Feed.ID.equals(card.cardID)) {
             return rawDescription;
         }
-        return insertAfterText(rawDescription, String.format(this.addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1], DESCRIPTION_KEY));
+        return insertAfterText(rawDescription, String.format(addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1], DESCRIPTION_KEY));
     }
 
     @Override

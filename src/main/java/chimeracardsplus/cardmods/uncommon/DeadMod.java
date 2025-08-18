@@ -16,8 +16,8 @@ public class DeadMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> notExhaust(c) && notEthereal(c));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> notExhaust(c) && notEthereal(c));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class DeadMod extends AbstractAugment {
 
     @Override
     public void onExhausted(AbstractCard card) {
-        this.addToBot(new MakeTempCardInHandAction(AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy(), false));
+        addToBot(new MakeTempCardInHandAction(AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy(), false));
     }
 
     @Override

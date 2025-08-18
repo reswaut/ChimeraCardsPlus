@@ -5,6 +5,7 @@ import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
@@ -15,8 +16,8 @@ public class InescapableMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> notExhaust(c) && notEthereal(c) && !c.hasTag(AbstractCard.CardTags.HEALING));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> notExhaust(c) && notEthereal(c) && !c.hasTag(CardTags.HEALING));
     }
 
     @Override
@@ -41,7 +42,7 @@ public class InescapableMod extends AbstractAugment {
 
     @Override
     public void onExhausted(AbstractCard card) {
-        this.addToBot(new MakeTempCardInHandAction(card.makeStatEquivalentCopy(), true));
+        addToBot(new MakeTempCardInHandAction(card.makeStatEquivalentCopy(), true));
     }
 
     @Override

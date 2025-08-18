@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.actions.watcher.TriggerMarksAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.cards.purple.PressurePoints;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -24,21 +24,16 @@ public class MarkedMod extends AbstractAugment implements DynvarCarrier {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private static final String DESCRIPTION_KEY = "!" + ID + "!";
-    private boolean modified = false;
+    private static final String DESCRIPTION_KEY = '!' + ID + '!';
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0 && c.baseDamage >= 3 && usesEnemyTargeting()));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 0 && c.baseDamage >= 3 && usesEnemyTargeting());
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
         return damage / 3.0F;
-    }
-
-    public int getBaseVal(AbstractCard card) {
-        return card.baseDamage / 3;
     }
 
     @Override
@@ -46,30 +41,34 @@ public class MarkedMod extends AbstractAugment implements DynvarCarrier {
         if (target == null) {
             return;
         }
-        this.addToBot(new VFXAction(new PressurePointEffect(target.hb.cX, target.hb.cY)));
-        this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new MarkPower(target, getBaseVal(card)), getBaseVal(card)));
-        this.addToBot(new TriggerMarksAction(new PressurePoints()));
+        addToBot(new VFXAction(new PressurePointEffect(target.hb.cX, target.hb.cY)));
+        addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new MarkPower(target, baseVal(card)), baseVal(card)));
+        addToBot(new TriggerMarksAction(new PressurePoints()));
     }
 
+    @Override
     public String key() {
         return ID;
     }
 
-    public int val(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int val(AbstractCard abstractCard) {
+        return baseVal(abstractCard);
     }
 
-    public int baseVal(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int baseVal(AbstractCard abstractCard) {
+        return abstractCard.baseDamage / 3;
     }
 
-    public boolean modified(AbstractCard card) {
-        return this.modified;
+    @Override
+    public boolean modified(AbstractCard abstractCard) {
+        return false;
     }
 
-    public boolean upgraded(AbstractCard card) {
-        this.modified = card.timesUpgraded != 0 || card.upgraded;
-        return this.modified;
+    @Override
+    public boolean upgraded(AbstractCard abstractCard) {
+        return abstractCard.timesUpgraded != 0 || abstractCard.upgraded;
     }
 
     @Override

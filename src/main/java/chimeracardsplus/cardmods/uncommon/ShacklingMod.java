@@ -3,20 +3,14 @@ package chimeracardsplus.cardmods.uncommon;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import chimeracardsplus.actions.ApplyStrengthDownAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.colorless.DarkShackles;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
-import com.megacrit.cardcrawl.powers.GainStrengthPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-
-import static com.megacrit.cardcrawl.actions.AbstractGameAction.ActionType.DEBUFF;
 
 public class ShacklingMod extends AbstractAugment {
     public static final String ID = ChimeraCardsPlus.makeID(ShacklingMod.class.getSimpleName());
@@ -32,8 +26,8 @@ public class ShacklingMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1 && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL) && doesntUpgradeExhaust() && usesEnemyTargeting()));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= -1 && (c.type == CardType.ATTACK || c.type == CardType.SKILL) && doesntUpgradeExhaust() && usesEnemyTargeting());
     }
 
     @Override
@@ -45,26 +39,11 @@ public class ShacklingMod extends AbstractAugment {
     }
 
     @Override
-    public void onUse(AbstractCard card, AbstractCreature cardTarget, UseCardAction action) {
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (DarkShackles.ID.equals(card.cardID)) {
             return;
         }
-        this.addToBot(new AbstractGameAction() {
-            {
-                this.actionType = DEBUFF;
-            }
-
-            @Override
-            public void update() {
-                if (cardTarget != null) {
-                    if (!cardTarget.hasPower(ArtifactPower.POWER_ID)) {
-                        this.addToTop(new ApplyPowerAction(cardTarget, AbstractDungeon.player, new GainStrengthPower(cardTarget, 5), 5, true, AbstractGameAction.AttackEffect.NONE));
-                    }
-                    this.addToTop(new ApplyPowerAction(cardTarget, AbstractDungeon.player, new StrengthPower(cardTarget, -5), -5, true, AbstractGameAction.AttackEffect.NONE));
-                }
-                this.isDone = true;
-            }
-        });
+        addToBot(new ApplyStrengthDownAction(target, 5));
     }
 
     @Override

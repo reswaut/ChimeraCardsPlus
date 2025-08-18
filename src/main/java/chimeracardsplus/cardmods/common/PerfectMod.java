@@ -5,35 +5,33 @@ import CardAugments.cardmods.DynvarCarrier;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.cards.red.PerfectedStrike;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
-import static com.megacrit.cardcrawl.core.CardCrawlGame.isInARun;
 
 public class PerfectMod extends AbstractAugment implements DynvarCarrier {
     public static final String ID = ChimeraCardsPlus.makeID(PerfectMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private static final String DESCRIPTION_KEY = "!" + ID + "!";
-    public static final int[] multiplier = { 6, 4, 3, 2 };
-    private boolean modified = false;
+    private static final String DESCRIPTION_KEY = '!' + ID + '!';
+    private static final int[] multiplier = {6, 4, 3, 2};
 
     public static boolean isStrike(AbstractCard c) {
-        return c.hasTag(AbstractCard.CardTags.STRIKE);
+        return c.hasTag(CardTags.STRIKE);
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return isStrike(card) && card.baseDamage >= 2;
+    public boolean validCard(AbstractCard abstractCard) {
+        return isStrike(abstractCard) && abstractCard.baseDamage >= 2;
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        if (isInARun() && PerfectedStrike.ID.equals(card.cardID)) {
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        if (CardCrawlGame.isInARun() && PerfectedStrike.ID.equals(card.cardID)) {
             float realBaseDamage = card.baseDamage - card.magicNumber * PerfectedStrike.countCards();
             return damage - realBaseDamage * 0.5F;
         }
@@ -41,52 +39,52 @@ public class PerfectMod extends AbstractAugment implements DynvarCarrier {
     }
 
     @Override
-    public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+    public float modifyDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
         if (PerfectedStrike.ID.equals(card.cardID)) {
             return damage;
         }
-        return damage + getBaseVal(card) * PerfectedStrike.countCards();
+        return damage + baseVal(card) * PerfectedStrike.countCards();
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
         if (PerfectedStrike.ID.equals(card.cardID)) {
-            return magic + getBaseVal(card);
+            return magic + baseVal(card);
         }
         return magic;
     }
 
-    public int getBaseVal(AbstractCard card) {
-        int upgrades = this.getEffectiveUpgrades(card);
-        if (upgrades >= multiplier.length) {
-            upgrades = multiplier.length - 1;
-        }
-        int realBaseDamage = card.baseDamage;
-        if (isInARun() && PerfectedStrike.ID.equals(card.cardID)) {
-            realBaseDamage -= card.magicNumber * PerfectedStrike.countCards();
-        }
-        return (realBaseDamage - 1) / multiplier[upgrades] + 1;
-    }
-
+    @Override
     public String key() {
         return ID;
     }
 
-    public int val(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int val(AbstractCard abstractCard) {
+        return baseVal(abstractCard);
     }
 
-    public int baseVal(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int baseVal(AbstractCard abstractCard) {
+        int upgrades = getEffectiveUpgrades(abstractCard);
+        if (upgrades >= multiplier.length) {
+            upgrades = multiplier.length - 1;
+        }
+        int realBaseDamage = abstractCard.baseDamage;
+        if (CardCrawlGame.isInARun() && PerfectedStrike.ID.equals(abstractCard.cardID)) {
+            realBaseDamage -= abstractCard.magicNumber * PerfectedStrike.countCards();
+        }
+        return (realBaseDamage - 1) / multiplier[upgrades] + 1;
     }
 
-    public boolean modified(AbstractCard card) {
-        return this.modified;
+    @Override
+    public boolean modified(AbstractCard abstractCard) {
+        return false;
     }
 
-    public boolean upgraded(AbstractCard card) {
-        this.modified = card.timesUpgraded != 0 || card.upgraded;
-        return this.modified;
+    @Override
+    public boolean upgraded(AbstractCard abstractCard) {
+        return abstractCard.timesUpgraded != 0 || abstractCard.upgraded;
     }
 
     @Override

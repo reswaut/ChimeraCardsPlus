@@ -6,18 +6,20 @@ import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.interfaces.TriggerOnObtainMod;
 import chimeracardsplus.interfaces.TriggerOnUpdateObjectsMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon.CurrentScreen;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Collection;
+import java.util.EnumSet;
 
 public class GrowingMod extends AbstractAugment implements TriggerOnObtainMod, TriggerOnUpdateObjectsMod {
     public static final String ID = ChimeraCardsPlus.makeID(GrowingMod.class.getSimpleName());
@@ -25,29 +27,29 @@ public class GrowingMod extends AbstractAugment implements TriggerOnObtainMod, T
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
     public static final String UI_TEXT = CardCrawlGame.languagePack.getEventString("Upgrade Shrine").OPTIONS[2];
-    private final Set<AbstractDungeon.CurrentScreen> VALID_SCREENS = new HashSet<>(Arrays.asList(
-            AbstractDungeon.CurrentScreen.COMBAT_REWARD,
-            AbstractDungeon.CurrentScreen.MAP,
-            AbstractDungeon.CurrentScreen.NONE,
-            AbstractDungeon.CurrentScreen.SHOP,
-            AbstractDungeon.CurrentScreen.VICTORY
+    private static final Collection<CurrentScreen> VALID_SCREENS = EnumSet.copyOf(Arrays.asList(
+            CurrentScreen.COMBAT_REWARD,
+            CurrentScreen.MAP,
+            CurrentScreen.NONE,
+            CurrentScreen.SHOP,
+            CurrentScreen.VICTORY
     ));
-    private AbstractDungeon.CurrentScreen prevScreen;
+    private CurrentScreen prevScreen = null;
     private boolean pickup, cardsSelected;
 
     public GrowingMod() {
-        this.pickup = false;
-        this.cardsSelected = true;
+        pickup = false;
+        cardsSelected = true;
     }
 
     public GrowingMod(boolean pickup) {
         this.pickup = pickup;
-        this.cardsSelected = true;
+        cardsSelected = true;
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return isNormalCard(card) && card.rarity != AbstractCard.CardRarity.BASIC && (!CardCrawlGame.isInARun() || (AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() instanceof MonsterRoom));
+    public boolean validCard(AbstractCard abstractCard) {
+        return isNormalCard(abstractCard) && abstractCard.rarity != CardRarity.BASIC && (!CardCrawlGame.isInARun() || AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() instanceof MonsterRoom);
     }
 
     @Override
@@ -60,8 +62,8 @@ public class GrowingMod extends AbstractAugment implements TriggerOnObtainMod, T
         if (AbstractDungeon.getCurrMapNode() == null) {
             return false;
         }
-        AbstractRoom.RoomPhase phase = AbstractDungeon.getCurrRoom().phase;
-        if (cardsSelected && pickup && phase != AbstractRoom.RoomPhase.INCOMPLETE && phase != AbstractRoom.RoomPhase.COMBAT && VALID_SCREENS.contains(AbstractDungeon.screen)) {
+        RoomPhase phase = AbstractDungeon.getCurrRoom().phase;
+        if (cardsSelected && pickup && phase != RoomPhase.INCOMPLETE && phase != RoomPhase.COMBAT && VALID_SCREENS.contains(AbstractDungeon.screen)) {
             prevScreen = AbstractDungeon.screen;
             pickup = false;
             CardGroup group = AbstractDungeon.player.masterDeck.getUpgradableCards();
@@ -69,7 +71,7 @@ public class GrowingMod extends AbstractAugment implements TriggerOnObtainMod, T
             AbstractDungeon.gridSelectScreen.open(group, 1, UI_TEXT, true, false, true, false);
             AbstractDungeon.dynamicBanner.hide();
             cardsSelected = false;
-            AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.INCOMPLETE;
+            AbstractDungeon.getCurrRoom().phase = RoomPhase.INCOMPLETE;
         }
         if (!cardsSelected && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
             cardsSelected = true;
@@ -77,17 +79,17 @@ public class GrowingMod extends AbstractAugment implements TriggerOnObtainMod, T
             c.untip();
             c.unhover();
 
-            AbstractDungeon.effectsQueue.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
+            AbstractDungeon.effectsQueue.add(new UpgradeShineEffect(Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
             c.upgrade();
             AbstractDungeon.player.bottledCardUpgradeCheck(c);
 
-            AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
+            AbstractDungeon.getCurrRoom().phase = RoomPhase.COMPLETE;
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
             return true;
         }
         if (!cardsSelected && AbstractDungeon.screen == prevScreen) {
             cardsSelected = true;
-            AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
+            AbstractDungeon.getCurrRoom().phase = RoomPhase.COMPLETE;
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
         }
         return false;
@@ -120,7 +122,7 @@ public class GrowingMod extends AbstractAugment implements TriggerOnObtainMod, T
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new GrowingMod(this.pickup);
+        return new GrowingMod(pickup);
     }
 
     @Override

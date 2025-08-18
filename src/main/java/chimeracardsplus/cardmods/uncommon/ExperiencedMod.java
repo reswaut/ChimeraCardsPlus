@@ -15,18 +15,13 @@ public class ExperiencedMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.baseBlock >= 1;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.baseBlock >= 1;
     }
 
     @Override
     public float modifyBlock(float block, AbstractCard card) {
-        int amount = 0;
-        for (AbstractCard c : AbstractDungeon.player.hand.group) {
-            if (!card.uuid.equals(c.uuid) && getEffectiveUpgrades(c) > 0) {
-                ++amount;
-            }
-        }
+        int amount = (int) AbstractDungeon.player.hand.group.stream().filter(c -> !card.uuid.equals(c.uuid) && (c.timesUpgraded != 0 || c.upgraded)).count();
         return block + amount;
     }
 

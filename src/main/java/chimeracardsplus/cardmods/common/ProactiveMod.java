@@ -21,14 +21,14 @@ public class ProactiveMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && !(Warcry.ID.equals(card.cardID) || ThinkingAhead.ID.equals(card.cardID));
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1 && !(Warcry.ID.equals(abstractCard.cardID) || ThinkingAhead.ID.equals(abstractCard.cardID));
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new DrawCardAction(AbstractDungeon.player, 1));
-        this.addToBot(new PutOnDeckAction(AbstractDungeon.player, AbstractDungeon.player, 1, false));
+        addToBot(new DrawCardAction(AbstractDungeon.player, 1));
+        addToBot(new PutOnDeckAction(AbstractDungeon.player, AbstractDungeon.player, 1, false));
     }
 
     @Override

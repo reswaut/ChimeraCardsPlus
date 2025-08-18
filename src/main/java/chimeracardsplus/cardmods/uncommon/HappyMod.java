@@ -19,14 +19,14 @@ public class HappyMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (GameActionManager.turn == 3) {
-            this.addToBot(new GainEnergyAction(1));
+            addToBot(new GainEnergyAction(1));
         }
     }
 

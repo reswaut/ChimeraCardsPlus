@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.utility.ConditionalDrawAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -19,19 +20,19 @@ public class ImpatientMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && !drawsCards(card) && (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL);
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1 && !drawsCards(abstractCard) && (abstractCard.type == CardType.ATTACK || abstractCard.type == CardType.SKILL);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new ConditionalDrawAction(1, AbstractCard.CardType.ATTACK));
+        addToBot(new ConditionalDrawAction(1, CardType.ATTACK));
     }
 
     @Override
     public Color getGlow(AbstractCard card) {
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
-            if (c.type == AbstractCard.CardType.ATTACK && !c.uuid.equals(card.uuid)) {
+            if (c.type == CardType.ATTACK && !c.uuid.equals(card.uuid)) {
                 return null;
             }
         }

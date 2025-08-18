@@ -2,18 +2,20 @@ package chimeracardsplus.cardmods.uncommon;
 
 import CardAugments.cardmods.AbstractAugment;
 import CardAugments.cardmods.DynvarCarrier;
-import CardAugments.patches.InterruptUseCardFieldPatches;
+import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import CardAugments.util.CalcHelper;
 import CardAugments.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
-import basemod.helpers.CardBorderGlowManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardTarget;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -22,47 +24,54 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 
+import java.util.Locale;
+
 public class PunishingMod extends AbstractAugment implements DynvarCarrier {
     public static final String ID = ChimeraCardsPlus.makeID(PunishingMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private static final String DESCRIPTION_KEY = "!" + ID + "!";
-    public int val = 0;
+    private static final String DESCRIPTION_KEY = '!' + ID + '!';
+    private int val = 0;
     private boolean modified = false;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost > 0 && c.baseDamage >= 2 && doesntUpgradeCost() && usesVanillaTargeting(c) && c.type == AbstractCard.CardType.ATTACK && customCheck(c, (check) -> check.rawDescription.chars().filter((ch) -> ch == '.' || ch == '。').count() == 1));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost > 0 && c.baseDamage >= 2 && doesntUpgradeCost() && usesVanillaTargeting(c) && c.type == CardType.ATTACK && customCheck(c, check -> check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L));
     }
 
+    @Override
     public void onInitialApplication(AbstractCard card) {
-        this.val = this.getBaseVal(card);
-        --card.cost;
+        val = baseVal(card);
+        card.cost -= 1;
         card.costForTurn = card.cost;
-        InterruptUseCardFieldPatches.InterceptUseField.interceptUse.set(card, true);
-        if (card.target != AbstractCard.CardTarget.SELF_AND_ENEMY && card.target != AbstractCard.CardTarget.ENEMY) {
-            card.target = AbstractCard.CardTarget.ENEMY;
+        InterceptUseField.interceptUse.set(card, Boolean.TRUE);
+        if (card.target != CardTarget.SELF_AND_ENEMY && card.target != CardTarget.ENEMY) {
+            card.target = CardTarget.ENEMY;
         }
     }
 
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+    @Override
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
         return damage * 0.5F;
     }
 
+    @Override
     public void updateDynvar(AbstractCard card) {
-        this.val = this.getBaseVal(card);
-        this.modified = false;
+        val = baseVal(card);
+        modified = false;
     }
 
+    @Override
     public void onApplyPowers(AbstractCard card) {
-        this.val = CalcHelper.applyPowers(this.getBaseVal(card));
-        this.modified = this.val != this.getBaseVal(card);
+        val = CalcHelper.applyPowers(baseVal(card));
+        modified = val != baseVal(card);
     }
 
+    @Override
     public void onCalculateCardDamage(AbstractCard card, AbstractMonster mo) {
-        this.val = CalcHelper.calculateCardDamage(this.getBaseVal(card), mo);
-        this.modified = this.val != this.getBaseVal(card);
+        val = CalcHelper.calculateCardDamage(baseVal(card), mo);
+        modified = val != baseVal(card);
     }
 
     @Override
@@ -82,21 +91,22 @@ public class PunishingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (Character.isAlphabetic(rawDescription.charAt(0))) {
-            String word = rawDescription.split(" ")[0].replaceAll("[^a-zA-Z0-9]", "");
-            if (!GameDictionary.keywords.containsKey(word.toLowerCase())) {
-                char[] c = rawDescription.toCharArray();
+        String description = rawDescription;
+        if (Character.isAlphabetic(description.charAt(0))) {
+            String word = description.split(" ")[0].replaceAll("[^a-zA-Z0-9]", "");
+            if (!GameDictionary.keywords.containsKey(word.toLowerCase(Locale.ROOT))) {
+                char[] c = description.toCharArray();
                 c[0] = Character.toLowerCase(c[0]);
-                rawDescription = new String(c);
+                description = new String(c);
             }
         }
 
-        return String.format(CARD_TEXT[0], DESCRIPTION_KEY) + rawDescription;
+        return String.format(CARD_TEXT[0], DESCRIPTION_KEY) + description;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new DamageAction(target, new DamageInfo(AbstractDungeon.player, this.val, card.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+        addToBot(new DamageAction(target, new DamageInfo(AbstractDungeon.player, val, card.damageTypeForTurn), AttackEffect.BLUNT_HEAVY));
         if (target instanceof AbstractMonster && target.hasPower(VulnerablePower.POWER_ID)) {
             card.use(AbstractDungeon.player, (AbstractMonster) target);
         }
@@ -112,20 +122,12 @@ public class PunishingMod extends AbstractAugment implements DynvarCarrier {
         return new PunishingMod();
     }
 
-    public CardBorderGlowManager.GlowInfo getGlowInfo() {
-        return new CardBorderGlowManager.GlowInfo() {
-            public boolean test(AbstractCard abstractCard) {
-                return PunishingMod.this.hasThisMod(abstractCard) && Wiz.isInCombat() && AbstractDungeon.getMonsters().monsters.stream().anyMatch((m) -> !m.isDeadOrEscaped() && m.hasPower(VulnerablePower.POWER_ID));
-            }
-
-            public Color getColor(AbstractCard abstractCard) {
-                return Color.GOLD.cpy();
-            }
-
-            public String glowID() {
-                return PunishingMod.ID + "Glow";
-            }
-        };
+    @Override
+    public Color getGlow(AbstractCard card) {
+        if (hasThisMod(card) && Wiz.isInCombat() && AbstractDungeon.getMonsters().monsters.stream().anyMatch(m -> !m.isDeadOrEscaped() && m.hasPower(VulnerablePower.POWER_ID))) {
+            return Color.GOLD.cpy();
+        }
+        return null;
     }
 
     @Override
@@ -138,29 +140,25 @@ public class PunishingMod extends AbstractAugment implements DynvarCarrier {
         return ID;
     }
 
-    public int getBaseVal(AbstractCard card) {
-        return 5 + this.getEffectiveUpgrades(card) * 2;
+    @Override
+    public int val(AbstractCard abstractCard) {
+        return val;
     }
 
     @Override
-    public int val(AbstractCard card) {
-        return this.val;
+    public int baseVal(AbstractCard abstractCard) {
+        return 5 + getEffectiveUpgrades(abstractCard) * 2;
     }
 
     @Override
-    public int baseVal(AbstractCard card) {
-        return this.getBaseVal(card);
+    public boolean modified(AbstractCard abstractCard) {
+        return modified;
     }
 
     @Override
-    public boolean modified(AbstractCard card) {
-        return this.modified;
-    }
-
-    @Override
-    public boolean upgraded(AbstractCard card) {
-        this.val = this.getBaseVal(card);
-        this.modified = card.timesUpgraded != 0 || card.upgraded;
-        return this.modified;
+    public boolean upgraded(AbstractCard abstractCard) {
+        val = baseVal(abstractCard);
+        modified = abstractCard.timesUpgraded != 0 || abstractCard.upgraded;
+        return modified;
     }
 }

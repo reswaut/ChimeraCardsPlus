@@ -1,11 +1,13 @@
 package chimeracardsplus.patches.events;
 
 
+import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.special.DisgracefulMod;
 import chimeracardsplus.cards.preview.DisgracefulPreview;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -19,14 +21,12 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import static basemod.helpers.CardModifierManager.addModifier;
-
 public class AddictPatches {
     private static final String ID = ChimeraCardsPlus.makeID(AddictPatches.class.getSimpleName());
     private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString(ID);
     private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     private static final String[] OPTIONS = eventStrings.OPTIONS;
-    private static int myIndex;
+    private static int myIndex = 0;
 
     @SpirePatch(
             clz = Addict.class,
@@ -41,7 +41,7 @@ public class AddictPatches {
             DisgracefulMod augment = new DisgracefulMod();
             __instance.imageEventText.removeDialogOption(__instance.imageEventText.optionList.size() - 1);
             myIndex = __instance.imageEventText.optionList.size();
-            if (AbstractDungeon.player.masterDeck.group.stream().filter((c) -> augment.canApplyTo(c) && c.type == AbstractCard.CardType.ATTACK).count() >= 2) {
+            if (AbstractDungeon.player.masterDeck.group.stream().filter(c -> augment.canApplyTo(c) && c.type == CardType.ATTACK).count() >= 2L) {
                 __instance.imageEventText.setDialogOption(OPTIONS[0], new DisgracefulPreview());
             } else {
                 __instance.imageEventText.setDialogOption(OPTIONS[1], true);
@@ -82,23 +82,23 @@ public class AddictPatches {
 
         private static void applyModifiers() {
             DisgracefulMod augment = new DisgracefulMod();
-            ArrayList<AbstractCard> applicableCards = AbstractDungeon.player.masterDeck.group.stream().filter((c) -> augment.canApplyTo(c) && c.type == AbstractCard.CardType.ATTACK).collect(Collectors.toCollection(ArrayList::new));
+            ArrayList<AbstractCard> applicableCards = AbstractDungeon.player.masterDeck.group.stream().filter(c -> augment.canApplyTo(c) && c.type == CardType.ATTACK).collect(Collectors.toCollection(ArrayList::new));
             if (applicableCards.isEmpty()) {
                 return;
             }
             if (applicableCards.size() == 1) {
-                addModifier(applicableCards.get(0), augment);
+                CardModifierManager.addModifier(applicableCards.get(0), augment);
                 AbstractDungeon.player.bottledCardUpgradeCheck(applicableCards.get(0));
                 AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(applicableCards.get(0).makeStatEquivalentCopy()));
                 return;
             }
             Collections.shuffle(applicableCards, new Random(AbstractDungeon.miscRng.randomLong()));
-            addModifier(applicableCards.get(0), augment);
-            addModifier(applicableCards.get(1), new DisgracefulMod());
+            CardModifierManager.addModifier(applicableCards.get(0), augment);
+            CardModifierManager.addModifier(applicableCards.get(1), new DisgracefulMod());
             AbstractDungeon.player.bottledCardUpgradeCheck(applicableCards.get(0));
             AbstractDungeon.player.bottledCardUpgradeCheck(applicableCards.get(1));
-            AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(applicableCards.get(0).makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F - 190.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
-            AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(applicableCards.get(1).makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F + 190.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
+            AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(applicableCards.get(0).makeStatEquivalentCopy(), Settings.WIDTH / 2.0F - 190.0F * Settings.scale, Settings.HEIGHT / 2.0F));
+            AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(applicableCards.get(1).makeStatEquivalentCopy(), Settings.WIDTH / 2.0F + 190.0F * Settings.scale, Settings.HEIGHT / 2.0F));
         }
     }
 }

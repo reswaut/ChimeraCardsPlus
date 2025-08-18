@@ -4,10 +4,11 @@ import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
@@ -19,16 +20,16 @@ public class RegretfulMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return isNormalCard(card);
+    public boolean validCard(AbstractCard abstractCard) {
+        return isNormalCard(abstractCard);
     }
 
     @Override
     public void atEndOfTurn(AbstractCard card, CardGroup group) {
-        if (group.type != CardGroup.CardGroupType.HAND) {
+        if (group.type != CardGroupType.HAND) {
             return;
         }
-        this.addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, AbstractDungeon.player.hand.size(), AbstractGameAction.AttackEffect.FIRE));
+        addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, AbstractDungeon.player.hand.size(), AttackEffect.FIRE));
         card.flash(Color.RED);
     }
 

@@ -20,8 +20,8 @@ public class BurstyMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= 0 && doesntUpgradeCost()));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 0 && doesntUpgradeCost());
     }
 
     @Override
@@ -33,7 +33,7 @@ public class BurstyMod extends AbstractAugment {
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
         if (Burst.ID.equals(card.cardID)) {
-            return magic + 1;
+            return magic + 1.0F;
         }
         return magic;
     }
@@ -43,7 +43,7 @@ public class BurstyMod extends AbstractAugment {
         if (Burst.ID.equals(card.cardID)) {
             return;
         }
-        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new BurstPower(AbstractDungeon.player, 1), 1));
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new BurstPower(AbstractDungeon.player, 1), 1));
     }
 
     @Override

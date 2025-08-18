@@ -18,8 +18,8 @@ public class ForethoughtMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= 0 && doesntUpgradeCost() && !Forethought.ID.equals(c.cardID));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 0 && doesntUpgradeCost() && !Forethought.ID.equals(c.cardID));
     }
 
     @Override
@@ -30,7 +30,7 @@ public class ForethoughtMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new ForethoughtAction(true));
+        addToBot(new ForethoughtAction(true));
     }
 
     @Override

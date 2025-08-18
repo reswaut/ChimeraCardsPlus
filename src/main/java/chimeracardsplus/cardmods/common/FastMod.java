@@ -22,13 +22,13 @@ public class FastMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.baseBlock >= 2;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.baseBlock >= 2;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new DrawCardAction(1));
+        addToBot(new DrawCardAction(1));
     }
 
     @Override

@@ -7,7 +7,8 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -20,26 +21,25 @@ public class FocusedMod extends AbstractAugment implements DynvarCarrier {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private static final String DESCRIPTION_KEY = "!" + ID + "!";
-    private boolean modified = false;
+    private static final String DESCRIPTION_KEY = '!' + ID + '!';
     private boolean addedExhaust = true;
+
+    private static int getBaseValDamage(AbstractCard card) {
+        return Math.max(card.baseDamage - 1, 0) / 7;
+    }
+
+    private static int getBaseValBlock(AbstractCard card) {
+        return Math.max(card.baseBlock - 1, 0) / 7;
+    }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (!card.exhaust && card.type != AbstractCard.CardType.POWER) {
+        if (!card.exhaust && card.type != CardType.POWER) {
             addedExhaust = true;
             card.exhaust = true;
+        } else {
+            addedExhaust = false;
         }
-    }
-
-    @Override
-    public boolean validCard(AbstractCard card) {
-        return allowOrbMods() && cardCheck(card, (c) -> c.cost >= -1 && (c.baseDamage >= 8 || c.baseBlock >= 8) && doesntUpgradeExhaust());
-    }
-
-    @Override
-    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage >= 0.0F ? Math.max(damage - getBaseValDamage(card) * 7.0F, 0.0F) : damage;
     }
 
     @Override
@@ -48,41 +48,43 @@ public class FocusedMod extends AbstractAugment implements DynvarCarrier {
     }
 
     @Override
+    public boolean validCard(AbstractCard abstractCard) {
+        return allowOrbMods() && cardCheck(abstractCard, c -> c.cost >= -1 && (c.baseDamage >= 8 || c.baseBlock >= 8) && doesntUpgradeExhaust());
+    }
+
+    @Override
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage >= 0.0F ? Math.max(damage - getBaseValDamage(card) * 7.0F, 0.0F) : damage;
+    }
+
+    @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FocusPower(AbstractDungeon.player, getBaseVal(card)), getBaseVal(card)));
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FocusPower(AbstractDungeon.player, baseVal(card))));
     }
 
-    private int getBaseValDamage(AbstractCard card) {
-        return Math.max(card.baseDamage - 1, 0) / 7;
-    }
-
-    private int getBaseValBlock(AbstractCard card) {
-        return Math.max(card.baseBlock - 1, 0) / 7;
-    }
-
-    public int getBaseVal(AbstractCard card) {
-        return getBaseValDamage(card) + getBaseValBlock(card);
-    }
-
+    @Override
     public String key() {
         return ID;
     }
 
-    public int val(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int val(AbstractCard abstractCard) {
+        return baseVal(abstractCard);
     }
 
-    public int baseVal(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int baseVal(AbstractCard abstractCard) {
+        return getBaseValDamage(abstractCard) + getBaseValBlock(abstractCard);
     }
 
-    public boolean modified(AbstractCard card) {
-        return this.modified;
+    @Override
+    public boolean modified(AbstractCard abstractCard) {
+        return false;
     }
 
-    public boolean upgraded(AbstractCard card) {
-        this.modified = card.timesUpgraded != 0 || card.upgraded;
-        return this.modified;
+    @Override
+    public boolean upgraded(AbstractCard abstractCard) {
+        return abstractCard.timesUpgraded != 0 || abstractCard.upgraded;
     }
 
     @Override

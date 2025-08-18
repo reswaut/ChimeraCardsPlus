@@ -3,10 +3,11 @@ package chimeracardsplus.cardmods.rare;
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -29,8 +30,8 @@ public class TerrifyingMod extends AbstractAugment {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> c.cost >= 0 && doesntUpgradeCost() && usesEnemyTargeting() && doesntUpgradeExhaust() && (c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 0 && doesntUpgradeCost() && usesEnemyTargeting() && doesntUpgradeExhaust() && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
     }
 
     @Override
@@ -55,7 +56,7 @@ public class TerrifyingMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new VulnerablePower(target, 99, false), 99, true, AbstractGameAction.AttackEffect.NONE));
+        addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new VulnerablePower(target, 99, false), 99, true, AttackEffect.NONE));
     }
 
     @Override

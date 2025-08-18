@@ -13,14 +13,12 @@ public class PerseverantMod extends AbstractAugment implements DynvarCarrier {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private static final String DESCRIPTION_KEY = "!" + ID + "!";
-    private boolean modified = false;
+    private static final String DESCRIPTION_KEY = '!' + ID + '!';
     private int turnsRetained;
 
     public PerseverantMod() {
-        this.turnsRetained = 0;
+        turnsRetained = 0;
     }
-
     public PerseverantMod(int turnsRetained) {
         this.turnsRetained = turnsRetained;
     }
@@ -31,13 +29,13 @@ public class PerseverantMod extends AbstractAugment implements DynvarCarrier {
     }
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return cardCheck(card, (c) -> (c.cost >= -1 && c.baseBlock >= 4 && notRetain(c) && notEthereal(c) && doesntOverride(c, "triggerOnEndOfTurnForPlayingCard")));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= -1 && c.baseBlock >= 4 && notRetain(c) && notEthereal(c) && doesntOverride(c, "triggerOnEndOfTurnForPlayingCard"));
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return Math.max(block + this.getBaseVal(card) * (this.turnsRetained - 2), 0.0F);
+        return Math.max(block + baseVal(card) * (turnsRetained - 2), 0.0F);
     }
 
     @Override
@@ -46,29 +44,29 @@ public class PerseverantMod extends AbstractAugment implements DynvarCarrier {
         card.applyPowers();
     }
 
-    public int getBaseVal(AbstractCard card) {
-        return card.baseBlock / 4;
-    }
-
+    @Override
     public String key() {
         return ID;
     }
 
-    public int val(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int val(AbstractCard abstractCard) {
+        return baseVal(abstractCard);
     }
 
-    public int baseVal(AbstractCard card) {
-        return this.getBaseVal(card);
+    @Override
+    public int baseVal(AbstractCard abstractCard) {
+        return abstractCard.baseBlock / 4;
     }
 
-    public boolean modified(AbstractCard card) {
-        return this.modified;
+    @Override
+    public boolean modified(AbstractCard abstractCard) {
+        return false;
     }
 
-    public boolean upgraded(AbstractCard card) {
-        this.modified = card.timesUpgraded != 0 || card.upgraded;
-        return this.modified;
+    @Override
+    public boolean upgraded(AbstractCard abstractCard) {
+        return abstractCard.timesUpgraded != 0 || abstractCard.upgraded;
     }
 
     @Override

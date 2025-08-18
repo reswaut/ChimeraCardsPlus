@@ -5,7 +5,8 @@ import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
@@ -18,28 +19,28 @@ public class OpeningMod extends AbstractAugment {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard card) {
-        return card.cost >= -1 && (card.baseDamage >= 1 && card.type == AbstractCard.CardType.ATTACK) || (card.baseBlock >= 1 && card.type == AbstractCard.CardType.SKILL);
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1 && abstractCard.baseDamage >= 1 && abstractCard.type == CardType.ATTACK || abstractCard.baseBlock >= 1 && abstractCard.type == CardType.SKILL;
     }
 
     @Override
-    public float modifyDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        if (card.type != AbstractCard.CardType.ATTACK) {
+    public float modifyDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        if (card.type != CardType.ATTACK) {
             return damage;
         }
-        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter((c) -> c != null && c.type == AbstractCard.CardType.ATTACK).count() == 1) {
-            return damage + 3;
+        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.ATTACK).count() == 1L) {
+            return damage + 3.0F;
         }
         return damage;
     }
 
     @Override
     public float modifyBlock(float block, AbstractCard card) {
-        if (card.type != AbstractCard.CardType.SKILL) {
+        if (card.type != CardType.SKILL) {
             return block;
         }
-        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter((c) -> c != null && c.type == AbstractCard.CardType.SKILL).count() == 1) {
-            return block + 3;
+        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.SKILL).count() == 1L) {
+            return block + 3.0F;
         }
         return block;
     }
@@ -61,10 +62,10 @@ public class OpeningMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (card.type == AbstractCard.CardType.ATTACK) {
+        if (card.type == CardType.ATTACK) {
             return insertAfterText(rawDescription, CARD_TEXT[0]);
         }
-        if (card.type == AbstractCard.CardType.SKILL) {
+        if (card.type == CardType.SKILL) {
             return insertAfterText(rawDescription, CARD_TEXT[1]);
         }
         return rawDescription;
@@ -72,7 +73,7 @@ public class OpeningMod extends AbstractAugment {
 
     @Override
     public Color getGlow(AbstractCard card) {
-        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().noneMatch((c) -> c.type == card.type)) {
+        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().noneMatch(c -> c.type == card.type)) {
             return Color.GOLD.cpy();
         }
         return null;
