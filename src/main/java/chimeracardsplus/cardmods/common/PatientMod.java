@@ -1,25 +1,27 @@
-package chimeracardsplus.cardmods.uncommon;
+package chimeracardsplus.cardmods.common;
 
 import CardAugments.cardmods.AbstractAugment;
 import CardAugments.cardmods.DynvarCarrier;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class PerseverantMod extends AbstractAugment implements DynvarCarrier {
-    public static final String ID = ChimeraCardsPlus.makeID(PerseverantMod.class.getSimpleName());
+public class PatientMod extends AbstractAugment implements DynvarCarrier {
+    public static final String ID = ChimeraCardsPlus.makeID(PatientMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
     private static final String DESCRIPTION_KEY = '!' + ID + '!';
     private int turnsRetained;
 
-    public PerseverantMod() {
+    public PatientMod() {
         turnsRetained = 0;
     }
-    public PerseverantMod(int turnsRetained) {
+    public PatientMod(int turnsRetained) {
         this.turnsRetained = turnsRetained;
     }
 
@@ -30,12 +32,12 @@ public class PerseverantMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= -1 && c.baseBlock >= 4 && notRetain(c) && notEthereal(c) && doesntOverride(c, "triggerOnEndOfTurnForPlayingCard"));
+        return cardCheck(abstractCard, c -> c.cost >= -1 && c.baseDamage >= 4 && notRetain(c) && notEthereal(c) && doesntOverride(c, "triggerOnEndOfTurnForPlayingCard"));
     }
 
     @Override
-    public float modifyBaseBlock(float block, AbstractCard card) {
-        return Math.max(block + baseVal(card) * (turnsRetained - 2), 0.0F);
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return Math.max(damage + baseVal(card) * (turnsRetained - 2), 0.0F);
     }
 
     @Override
@@ -56,7 +58,7 @@ public class PerseverantMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public int baseVal(AbstractCard abstractCard) {
-        return abstractCard.baseBlock / 4;
+        return abstractCard.baseDamage / 4;
     }
 
     @Override
@@ -101,12 +103,12 @@ public class PerseverantMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.UNCOMMON;
+        return AugmentRarity.COMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new PerseverantMod(turnsRetained);
+        return new PatientMod(turnsRetained);
     }
 
     @Override

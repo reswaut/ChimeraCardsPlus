@@ -4,31 +4,29 @@ import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.interfaces.TriggerOnDiscardMod;
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-public class OrnamentalMod extends AbstractAugment implements TriggerOnDiscardMod {
-    public static final String ID = ChimeraCardsPlus.makeID(OrnamentalMod.class.getSimpleName());
+public class NormalMod extends AbstractAugment implements TriggerOnDiscardMod {
+    public static final String ID = ChimeraCardsPlus.makeID(NormalMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
     private boolean descriptionHack = false;
 
     @Override
-    public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.type == CardType.ATTACK && abstractCard.cost >= -1 && abstractCard.baseBlock == -1;
+    public void onInitialApplication(AbstractCard card) {
+        card.cost -= 1;
+        card.costForTurn = card.cost;
     }
 
     @Override
-    public float modifyBaseBlock(float block, AbstractCard card) {
-        return 4.0F;
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 1 && doesntUpgradeCost());
     }
 
     @Override
@@ -50,7 +48,7 @@ public class OrnamentalMod extends AbstractAugment implements TriggerOnDiscardMo
     public String modifyDescription(String rawDescription, AbstractCard card) {
         String text = CARD_TEXT[0];
         if (descriptionHack) {
-            int count = (int) AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.ATTACK).count();
+            int count = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
             text += String.format(count == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count);
         }
         return insertAfterText(rawDescription, text);
@@ -58,9 +56,6 @@ public class OrnamentalMod extends AbstractAugment implements TriggerOnDiscardMo
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.ATTACK).count() == 3L) {
-            addToBot(new GainBlockAction(AbstractDungeon.player, card.block));
-        }
         descriptionHack = false;
         card.initializeDescription();
     }
@@ -82,11 +77,8 @@ public class OrnamentalMod extends AbstractAugment implements TriggerOnDiscardMo
     }
 
     @Override
-    public Color getGlow(AbstractCard card) {
-        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.ATTACK).count() == 2L) {
-            return Color.GOLD.cpy();
-        }
-        return null;
+    public boolean betterCanPlay(AbstractCard cardWithThisMod, AbstractCard cardToCheck) {
+        return AbstractDungeon.actionManager.cardsPlayedThisTurn.size() < 3;
     }
 
     @Override
@@ -96,7 +88,7 @@ public class OrnamentalMod extends AbstractAugment implements TriggerOnDiscardMo
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new OrnamentalMod();
+        return new NormalMod();
     }
 
     @Override

@@ -15,7 +15,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTarget;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -37,23 +36,16 @@ public class DevastatingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost > 0 && c.baseDamage >= 2 && doesntUpgradeCost() && usesVanillaTargeting(c) && c.type == CardType.ATTACK && customCheck(c, check -> check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L));
+        return cardCheck(abstractCard, c -> c.cost >= 1 && usesVanillaTargeting(c) && c.type == CardType.ATTACK && customCheck(c, check -> check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L));
     }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
         val = baseVal(card);
-        card.cost -= 1;
-        card.costForTurn = card.cost;
         InterceptUseField.interceptUse.set(card, Boolean.TRUE);
         if (card.target != CardTarget.SELF_AND_ENEMY && card.target != CardTarget.ENEMY) {
             card.target = CardTarget.ENEMY;
         }
-    }
-
-    @Override
-    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage * 0.5F;
     }
 
     @Override

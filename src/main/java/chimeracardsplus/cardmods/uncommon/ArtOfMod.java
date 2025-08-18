@@ -2,51 +2,39 @@ package chimeracardsplus.cardmods.uncommon;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
-import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPreview;
 import chimeracardsplus.ChimeraCardsPlus;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
-import com.megacrit.cardcrawl.cards.tempCards.Miracle;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.powers.CollectPower;
+import com.megacrit.cardcrawl.powers.EnergizedPower;
 
-public class CollectedMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(CollectedMod.class.getSimpleName());
+public class ArtOfMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(ArtOfMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private int effect = 0;
-    private boolean addedExhaust = true;
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= 0 && c.cost < 3 && doesntUpgradeCost() && doesntUpgradeExhaust());
-    }
-
-    @Override
-    public void onInitialApplication(AbstractCard card) {
-        if (!card.exhaust && card.type != CardType.POWER) {
-            addedExhaust = true;
-            card.exhaust = true;
-        } else {
-            addedExhaust = false;
-        }
-        AbstractCard miracle = new Miracle();
-        miracle.upgrade();
-        MultiCardPreview.add(card, miracle);
-        effect = 3 - card.cost;
-        card.cost = 3;
-        card.costForTurn = card.cost;
+        return abstractCard.cost >= -1 && abstractCard.type == CardType.ATTACK;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new CollectPower(AbstractDungeon.player, effect), effect));
+        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.ATTACK).count() <= 1L) {
+            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new EnergizedPower(AbstractDungeon.player, 1)));
+        }
+    }
+
+    @Override
+    public Color getGlow(AbstractCard card) {
+        return AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().noneMatch(c -> c != null && c.type == CardType.ATTACK) ? Color.GOLD.cpy() : null;
     }
 
     @Override
@@ -66,10 +54,7 @@ public class CollectedMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (effect <= 0 || effect > 3) {
-            return rawDescription;
-        }
-        return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[effect - 1] : CARD_TEXT[effect - 1 + 3]);
+        return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 
     @Override
@@ -79,7 +64,7 @@ public class CollectedMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new CollectedMod();
+        return new ArtOfMod();
     }
 
     @Override

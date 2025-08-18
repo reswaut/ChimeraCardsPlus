@@ -1,4 +1,4 @@
-package chimeracardsplus.cardmods.uncommon;
+package chimeracardsplus.cardmods.common;
 
 import CardAugments.cardmods.AbstractAugment;
 import CardAugments.cardmods.DynvarCarrier;
@@ -110,7 +110,7 @@ public class FlamingMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.UNCOMMON;
+        return AugmentRarity.COMMON;
     }
 
     @Override

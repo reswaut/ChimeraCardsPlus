@@ -99,9 +99,9 @@ public class AuraMod extends AbstractAugment {
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         char[] c = rawDescription.replace(CARD_TEXT[2], "")
-                .replace("!D!", String.valueOf(Math.max(1, card.baseDamage / 4)))
-                .replace("!B!", String.valueOf(Math.max(1, card.baseBlock / 4)))
-                .replace("!M!", String.valueOf(Math.max(1, card.baseMagicNumber / 4)))
+                .replace("!D!", String.valueOf(card.baseDamage / 4))
+                .replace("!B!", String.valueOf(card.baseBlock / 4))
+                .replace("!M!", String.valueOf(card.baseMagicNumber / 4))
                 .toCharArray();
         c[0] = Character.toLowerCase(c[0]);
         return insertAfterText(insertBeforeText(rawDescription, CARD_TEXT[0]), CARD_TEXT[1] + new String(c));

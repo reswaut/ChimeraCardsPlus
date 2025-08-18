@@ -6,45 +6,32 @@ import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
-import com.megacrit.cardcrawl.cards.blue.Equilibrium;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.EquilibriumPower;
+import com.megacrit.cardcrawl.powers.NoDrawPower;
 
-public class EquilibrialMod extends AbstractAugment {
-    public static final String ID = ChimeraCardsPlus.makeID(EquilibrialMod.class.getSimpleName());
+public class TranceMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(TranceMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= 0 && doesntUpgradeCost());
-    }
-
-    @Override
     public void onInitialApplication(AbstractCard card) {
-        card.cost += 1;
+        card.cost -= 1;
         card.costForTurn = card.cost;
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage > 0.0F ? damage * 4.0F / 3.0F : damage;
-    }
-
-    @Override
-    public float modifyBaseBlock(float block, AbstractCard card) {
-        return block > 0.0F ? block * 4.0F / 3.0F : block;
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost > 0 && drawsCards(c) && doesntUpgradeCost());
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new EquilibriumPower(AbstractDungeon.player, 1), 1));
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NoDrawPower(AbstractDungeon.player)));
     }
 
     @Override
@@ -64,9 +51,6 @@ public class EquilibrialMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (Equilibrium.ID.equals(card.cardID)) {
-            return rawDescription.replace(CARD_TEXT[1], CARD_TEXT[2]);
-        }
         return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 
@@ -77,7 +61,7 @@ public class EquilibrialMod extends AbstractAugment {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new EquilibrialMod();
+        return new TranceMod();
     }
 
     @Override

@@ -5,19 +5,22 @@ import CardAugments.cardmods.DynvarCarrier;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.actions.watcher.HeadStompAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
+import com.megacrit.cardcrawl.actions.watcher.JudgementAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
-import com.megacrit.cardcrawl.cards.purple.SashWhip;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.GiantTextEffect;
+import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 
-public class WhipMod extends AbstractAugment implements DynvarCarrier {
-    public static final String ID = ChimeraCardsPlus.makeID(WhipMod.class.getSimpleName());
+public class JudgeMod extends AbstractAugment implements DynvarCarrier {
+    public static final String ID = ChimeraCardsPlus.makeID(JudgeMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
@@ -25,7 +28,9 @@ public class WhipMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> (c.baseDamage >= 2 || c.baseBlock >= 2) && c.cost >= -1 && usesEnemyTargeting());
+        return cardCheck(abstractCard, c -> c.cost >= -1
+                && c.baseDamage >= 2 && c.type == CardType.ATTACK
+                && usesEnemyTargeting());
     }
 
     @Override
@@ -34,32 +39,13 @@ public class WhipMod extends AbstractAugment implements DynvarCarrier {
     }
 
     @Override
-    public float modifyBaseBlock(float block, AbstractCard card) {
-        return block > 0.0F ? block * 0.75F : block;
-    }
-
-    @Override
-    public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (SashWhip.ID.equals(card.cardID)) {
-            return magic + baseVal(card);
-        }
-        return magic;
-    }
-
-    @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (SashWhip.ID.equals(card.cardID) || target == null) {
-            return;
+        if (target != null) {
+            addToBot(new VFXAction(new WeightyImpactEffect(target.hb.cX, target.hb.cY, Color.GOLD.cpy())));
+            addToBot(new WaitAction(0.8F));
+            addToBot(new VFXAction(new GiantTextEffect(target.hb.cX, target.hb.cY)));
         }
-        addToBot(new HeadStompAction((AbstractMonster) target, baseVal(card)));
-    }
-
-    @Override
-    public Color getGlow(AbstractCard card) {
-        if (SashWhip.ID.equals(card.cardID) || !lastCardPlayedCheck(c -> c.type == CardType.ATTACK)) {
-            return null;
-        }
-        return Color.GOLD.cpy();
+        addToBot(new JudgementAction(target, baseVal(card)));
     }
 
     @Override
@@ -74,7 +60,7 @@ public class WhipMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public int baseVal(AbstractCard abstractCard) {
-        return 1 + getEffectiveUpgrades(abstractCard);
+        return abstractCard.baseDamage * 3 / 4;
     }
 
     @Override
@@ -85,11 +71,6 @@ public class WhipMod extends AbstractAugment implements DynvarCarrier {
     @Override
     public boolean upgraded(AbstractCard abstractCard) {
         return abstractCard.timesUpgraded != 0 || abstractCard.upgraded;
-    }
-
-    @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        card.initializeDescription();
     }
 
     @Override
@@ -109,9 +90,6 @@ public class WhipMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (SashWhip.ID.equals(card.cardID)) {
-            return rawDescription;
-        }
         return insertAfterText(rawDescription, String.format(CARD_TEXT[0], DESCRIPTION_KEY));
     }
 
@@ -122,7 +100,7 @@ public class WhipMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new WhipMod();
+        return new JudgeMod();
     }
 
     @Override

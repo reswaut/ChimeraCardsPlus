@@ -1,32 +1,37 @@
-package chimeracardsplus.cardmods.rare;
+package chimeracardsplus.cardmods.uncommon;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.interfaces.TriggerOnDiscardMod;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 
-public class NormalMod extends AbstractAugment implements TriggerOnDiscardMod {
-    public static final String ID = ChimeraCardsPlus.makeID(NormalMod.class.getSimpleName());
+public class TerrifyingMod extends AbstractAugment {
+    public static final String ID = ChimeraCardsPlus.makeID(TerrifyingMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private boolean descriptionHack = false;
+    private boolean addedExhaust = true;
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        card.cost -= 1;
+        addedExhaust = !card.exhaust;
+        card.exhaust = true;
+        card.cost += 1;
         card.costForTurn = card.cost;
     }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= 1 && doesntUpgradeCost());
+        return cardCheck(abstractCard, c -> c.cost >= 0 && doesntUpgradeCost() && usesEnemyTargeting() && doesntUpgradeExhaust() && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
     }
 
     @Override
@@ -46,49 +51,22 @@ public class NormalMod extends AbstractAugment implements TriggerOnDiscardMod {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        String text = CARD_TEXT[0];
-        if (descriptionHack) {
-            int count = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
-            text += String.format(count == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count);
-        }
-        return insertAfterText(rawDescription, text);
+        return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1]);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        descriptionHack = false;
-        card.initializeDescription();
-    }
-
-    @Override
-    public void onApplyPowers(AbstractCard card) {
-        descriptionHack = true;
-        card.initializeDescription();
-    }
-
-    @Override
-    public void onMoveToDiscard(AbstractCard card) {
-        descriptionHack = false;
-        card.initializeDescription();
-    }
-
-    @Override
-    public void onManualDiscard(AbstractCard card) {
-    }
-
-    @Override
-    public boolean betterCanPlay(AbstractCard cardWithThisMod, AbstractCard cardToCheck) {
-        return AbstractDungeon.actionManager.cardsPlayedThisTurn.size() < 3;
+        addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new VulnerablePower(target, 99, false), 99, true, AttackEffect.NONE));
     }
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.RARE;
+        return AugmentRarity.UNCOMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new NormalMod();
+        return new TerrifyingMod();
     }
 
     @Override

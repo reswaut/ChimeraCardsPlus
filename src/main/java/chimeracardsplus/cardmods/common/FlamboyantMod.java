@@ -1,30 +1,34 @@
-package chimeracardsplus.cardmods.uncommon;
+package chimeracardsplus.cardmods.common;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.interfaces.TriggerOnDiscardMod;
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class KunaiMod extends AbstractAugment implements TriggerOnDiscardMod {
-    public static final String ID = ChimeraCardsPlus.makeID(KunaiMod.class.getSimpleName());
+public class FlamboyantMod extends AbstractAugment implements TriggerOnDiscardMod {
+    public static final String ID = ChimeraCardsPlus.makeID(FlamboyantMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
     private boolean descriptionHack = false;
 
     @Override
+    public float modifyDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return AbstractDungeon.actionManager.cardsPlayedThisTurn.size() > 5 ? damage * 1.5F : damage;
+    }
+
+    @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.type == CardType.ATTACK && abstractCard.cost >= -1;
+        return abstractCard.cost >= -1 && abstractCard.baseDamage >= 2;
     }
 
     @Override
@@ -46,7 +50,7 @@ public class KunaiMod extends AbstractAugment implements TriggerOnDiscardMod {
     public String modifyDescription(String rawDescription, AbstractCard card) {
         String text = CARD_TEXT[0];
         if (descriptionHack) {
-            int count = (int) AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.ATTACK).count();
+            int count = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
             text += String.format(count == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count);
         }
         return insertAfterText(rawDescription, text);
@@ -54,9 +58,6 @@ public class KunaiMod extends AbstractAugment implements TriggerOnDiscardMod {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.ATTACK).count() == 3L) {
-            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DexterityPower(AbstractDungeon.player, 1)));
-        }
         descriptionHack = false;
         card.initializeDescription();
     }
@@ -79,20 +80,17 @@ public class KunaiMod extends AbstractAugment implements TriggerOnDiscardMod {
 
     @Override
     public Color getGlow(AbstractCard card) {
-        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.ATTACK).count() == 2L) {
-            return Color.GOLD.cpy();
-        }
-        return null;
+        return AbstractDungeon.actionManager.cardsPlayedThisTurn.size() >= 5 ? Color.GOLD.cpy() : null;
     }
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.UNCOMMON;
+        return AugmentRarity.COMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new KunaiMod();
+        return new FlamboyantMod();
     }
 
     @Override

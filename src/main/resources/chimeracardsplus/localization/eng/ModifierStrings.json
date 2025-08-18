@@ -2235,7 +2235,7 @@
     "TEXT": [
       "Punishing ",
       "",
-      "Costs [E] less. NL Reduces damage by #b50%. NL Deals #b5(7) damage, then triggers card effect if the enemy has #yVulnerable."
+      "Deals #b5(7) damage, then triggers card effect if the enemy has #yVulnerable."
     ],
     "EXTRA_TEXT": [
       "Deal %s damage. NL If the enemy has Vulnerable, "
@@ -2245,7 +2245,7 @@
     "TEXT": [
       "Devastating ",
       "",
-      "Costs [E] less. NL Reduces damage by #b50%. NL Deals #b5(7) damage, then triggers card effect if the enemy has #yWeak."
+      "Deals #b5(7) damage, then triggers card effect if the enemy has #yWeak."
     ],
     "EXTRA_TEXT": [
       "Deal %s damage. NL If the enemy has Weak, "

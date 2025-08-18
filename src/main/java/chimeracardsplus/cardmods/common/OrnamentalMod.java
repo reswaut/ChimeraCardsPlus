@@ -1,34 +1,34 @@
-package chimeracardsplus.cardmods.uncommon;
+package chimeracardsplus.cardmods.common;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.interfaces.TriggerOnDiscardMod;
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class FlamboyantMod extends AbstractAugment implements TriggerOnDiscardMod {
-    public static final String ID = ChimeraCardsPlus.makeID(FlamboyantMod.class.getSimpleName());
+public class OrnamentalMod extends AbstractAugment implements TriggerOnDiscardMod {
+    public static final String ID = ChimeraCardsPlus.makeID(OrnamentalMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
     private boolean descriptionHack = false;
 
     @Override
-    public float modifyDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return AbstractDungeon.actionManager.cardsPlayedThisTurn.size() > 5 ? damage * 1.5F : damage;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.type == CardType.ATTACK && abstractCard.cost >= -1 && abstractCard.baseBlock == -1;
     }
 
     @Override
-    public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.cost >= -1 && abstractCard.baseDamage >= 2;
+    public float modifyBaseBlock(float block, AbstractCard card) {
+        return 4.0F;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class FlamboyantMod extends AbstractAugment implements TriggerOnDiscardMo
     public String modifyDescription(String rawDescription, AbstractCard card) {
         String text = CARD_TEXT[0];
         if (descriptionHack) {
-            int count = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
+            int count = (int) AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.ATTACK).count();
             text += String.format(count == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count);
         }
         return insertAfterText(rawDescription, text);
@@ -58,6 +58,9 @@ public class FlamboyantMod extends AbstractAugment implements TriggerOnDiscardMo
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.ATTACK).count() == 3L) {
+            addToBot(new GainBlockAction(AbstractDungeon.player, card.block));
+        }
         descriptionHack = false;
         card.initializeDescription();
     }
@@ -80,17 +83,20 @@ public class FlamboyantMod extends AbstractAugment implements TriggerOnDiscardMo
 
     @Override
     public Color getGlow(AbstractCard card) {
-        return AbstractDungeon.actionManager.cardsPlayedThisTurn.size() >= 5 ? Color.GOLD.cpy() : null;
+        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.ATTACK).count() == 2L) {
+            return Color.GOLD.cpy();
+        }
+        return null;
     }
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.UNCOMMON;
+        return AugmentRarity.COMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new FlamboyantMod();
+        return new OrnamentalMod();
     }
 
     @Override

@@ -19,7 +19,7 @@ public class PocketwatchMod extends AbstractAugment implements TriggerOnDiscardM
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private boolean descriptionHack = true;
+    private boolean descriptionHack = false;
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
