@@ -1,8 +1,8 @@
 package chimeracardsplus.cardmods.uncommon;
 
-import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
-public class RupturedMod extends AbstractAugment {
+public class RupturedMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(RupturedMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -63,5 +63,10 @@ public class RupturedMod extends AbstractAugment {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.NORMAL;
     }
 }

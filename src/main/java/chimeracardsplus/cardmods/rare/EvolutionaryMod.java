@@ -1,6 +1,5 @@
 package chimeracardsplus.cardmods.rare;
 
-import CardAugments.cardmods.AbstractAugment;
 import CardAugments.cardmods.util.PreviewedMod;
 import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import CardAugments.util.FormatHelper;
@@ -9,6 +8,7 @@ import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPreview;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -20,7 +20,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class EvolutionaryMod extends AbstractAugment {
+public class EvolutionaryMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(EvolutionaryMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -43,7 +43,7 @@ public class EvolutionaryMod extends AbstractAugment {
             preview.isCostModified = true;
         }
         MultiCardPreview.add(card, preview);
-        InterceptUseField.interceptUse.set(card, Boolean.TRUE);
+        InterceptUseField.interceptUse.set(card, true);
         card.isEthereal = false;
         card.selfRetain = false;
         card.exhaust = true;
@@ -141,5 +141,10 @@ public class EvolutionaryMod extends AbstractAugment {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.NORMAL;
     }
 }

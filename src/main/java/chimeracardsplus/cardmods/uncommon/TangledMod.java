@@ -1,8 +1,8 @@
 package chimeracardsplus.cardmods.uncommon;
 
-import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.EntanglePower;
 import com.megacrit.cardcrawl.powers.watcher.NoSkillsPower;
 
-public class TangledMod extends AbstractAugment {
+public class TangledMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(TangledMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -85,5 +85,10 @@ public class TangledMod extends AbstractAugment {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.NORMAL;
     }
 }

@@ -1,14 +1,14 @@
 package chimeracardsplus.cardmods.uncommon;
 
-import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-public class ExperiencedMod extends AbstractAugment {
+public class ExperiencedMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(ExperiencedMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -58,5 +58,10 @@ public class ExperiencedMod extends AbstractAugment {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.NORMAL;
     }
 }

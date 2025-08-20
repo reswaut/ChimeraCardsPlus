@@ -1,9 +1,8 @@
 package chimeracardsplus.cardmods.rare;
 
-import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.interfaces.HealingMod;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
@@ -11,7 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class SoulboundMod extends AbstractAugment implements HealingMod {
+public class SoulboundMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(SoulboundMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -20,7 +19,7 @@ public class SoulboundMod extends AbstractAugment implements HealingMod {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        SoulboundField.soulbound.set(card, Boolean.TRUE);
+        SoulboundField.soulbound.set(card, true);
         if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
             modMagic = true;
         }
@@ -79,5 +78,10 @@ public class SoulboundMod extends AbstractAugment implements HealingMod {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.HEALING;
     }
 }

@@ -1,6 +1,5 @@
 package chimeracardsplus.cardmods.rare;
 
-import CardAugments.cardmods.AbstractAugment;
 import CardAugments.cardmods.util.PreviewedMod;
 import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import CardAugments.util.FormatHelper;
@@ -9,6 +8,7 @@ import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPreview;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -22,7 +22,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class StormMod extends AbstractAugment {
+public class StormMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(StormMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -41,7 +41,7 @@ public class StormMod extends AbstractAugment {
         inherentHack = false;
         CardModifierManager.addModifier(preview, new PreviewedMod());
         MultiCardPreview.add(card, preview);
-        InterceptUseField.interceptUse.set(card, Boolean.TRUE);
+        InterceptUseField.interceptUse.set(card, true);
         card.isEthereal = false;
         card.selfRetain = false;
         card.exhaust = false;
@@ -143,5 +143,10 @@ public class StormMod extends AbstractAugment {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.NORMAL;
     }
 }

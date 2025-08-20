@@ -1,9 +1,9 @@
 package chimeracardsplus.cardmods.common;
 
-import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.util.CardCheckHelpers;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.helpers.CardCheckHelpers;
 import com.megacrit.cardcrawl.actions.unique.BaneAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class BanefulMod extends AbstractAugment {
+public class BanefulMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(BanefulMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -73,5 +73,10 @@ public class BanefulMod extends AbstractAugment {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.NORMAL;
     }
 }

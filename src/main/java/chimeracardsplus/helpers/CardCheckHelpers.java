@@ -1,4 +1,4 @@
-package chimeracardsplus.util;
+package chimeracardsplus.helpers;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 

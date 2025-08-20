@@ -1,4 +1,4 @@
-package chimeracardsplus.util;
+package chimeracardsplus.helpers;
 
 import chimeracardsplus.ChimeraCardsPlus;
 import com.badlogic.gdx.graphics.Texture;

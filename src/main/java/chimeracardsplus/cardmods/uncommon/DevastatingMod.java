@@ -1,12 +1,12 @@
 package chimeracardsplus.cardmods.uncommon;
 
-import CardAugments.cardmods.AbstractAugment;
 import CardAugments.cardmods.DynvarCarrier;
 import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import CardAugments.util.CalcHelper;
 import CardAugments.util.Wiz;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -25,7 +25,7 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 
 import java.util.Locale;
 
-public class DevastatingMod extends AbstractAugment implements DynvarCarrier {
+public class DevastatingMod extends AbstractAugmentPlus implements DynvarCarrier {
     public static final String ID = ChimeraCardsPlus.makeID(DevastatingMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -42,7 +42,7 @@ public class DevastatingMod extends AbstractAugment implements DynvarCarrier {
     @Override
     public void onInitialApplication(AbstractCard card) {
         val = baseVal(card);
-        InterceptUseField.interceptUse.set(card, Boolean.TRUE);
+        InterceptUseField.interceptUse.set(card, true);
         if (card.target != CardTarget.SELF_AND_ENEMY && card.target != CardTarget.ENEMY) {
             card.target = CardTarget.ENEMY;
         }
@@ -125,6 +125,11 @@ public class DevastatingMod extends AbstractAugment implements DynvarCarrier {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.NORMAL;
     }
 
     @Override

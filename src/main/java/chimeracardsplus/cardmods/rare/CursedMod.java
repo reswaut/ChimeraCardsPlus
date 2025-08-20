@@ -1,11 +1,10 @@
 package chimeracardsplus.cardmods.rare;
 
-import CardAugments.cardmods.AbstractAugment;
 import CardAugments.util.FormatHelper;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPreview;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.interfaces.TriggerOnObtainMod;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
@@ -19,7 +18,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
-public class CursedMod extends AbstractAugment implements TriggerOnObtainMod {
+public class CursedMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(CursedMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -68,11 +67,12 @@ public class CursedMod extends AbstractAugment implements TriggerOnObtainMod {
     }
 
     @Override
-    public void onObtain(AbstractCard card) {
+    public boolean onObtain(AbstractCard card) {
         if (curseID == null) {
             curseID = AbstractDungeon.returnRandomCurse().cardID;
         }
         AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(CardLibrary.getCopy(curseID), (float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2));
+        return false;
     }
 
     @Override
@@ -117,5 +117,10 @@ public class CursedMod extends AbstractAugment implements TriggerOnObtainMod {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.HEALING;
     }
 }

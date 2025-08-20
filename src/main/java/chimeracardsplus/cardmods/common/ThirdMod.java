@@ -1,8 +1,8 @@
 package chimeracardsplus.cardmods.common;
 
-import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.ScryAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -21,7 +21,7 @@ import com.megacrit.cardcrawl.vfx.combat.ThirdEyeEffect;
 
 import java.util.stream.Stream;
 
-public class ThirdMod extends AbstractAugment {
+public class ThirdMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(ThirdMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -95,5 +95,10 @@ public class ThirdMod extends AbstractAugment {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.NORMAL;
     }
 }

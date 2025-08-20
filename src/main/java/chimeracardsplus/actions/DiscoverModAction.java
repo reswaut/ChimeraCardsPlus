@@ -4,7 +4,8 @@ import CardAugments.CardAugmentsMod;
 import CardAugments.cardmods.AbstractAugment;
 import CardAugments.patches.RolledModFieldPatches.RolledModField;
 import basemod.helpers.CardModifierManager;
-import chimeracardsplus.interfaces.HealingMod;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.cardmods.AbstractAugmentPlus.AugmentBonusLevel;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
@@ -17,7 +18,6 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class DiscoverModAction extends AbstractGameAction {
     private boolean retrieveCard = true;
@@ -61,7 +61,7 @@ public class DiscoverModAction extends AbstractGameAction {
     }
 
     private ArrayList<AbstractCard> generateCardChoices() {
-        List<AbstractAugment> filter = CardAugmentsMod.getAllValidMods(baseCard).stream().filter(mod -> !(mod instanceof HealingMod)).collect(Collectors.toCollection(ArrayList::new));
+        List<AbstractAugment> filter = AbstractAugmentPlus.filterModsByBonusLevel(CardAugmentsMod.getAllValidMods(baseCard), AugmentBonusLevel.NORMAL);
         ArrayList<AbstractCard> ret = new ArrayList<>(4);
         if (filter.isEmpty()) {
             ret.add(baseCard);
@@ -77,7 +77,7 @@ public class DiscoverModAction extends AbstractGameAction {
         for (int id : derp) {
             AbstractCard card = baseCard.makeStatEquivalentCopy();
             CardModifierManager.addModifier(card, filter.get(id).makeCopy());
-            RolledModField.rolled.set(card, Boolean.TRUE);
+            RolledModField.rolled.set(card, true);
             ret.add(card);
         }
         return ret;

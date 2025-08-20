@@ -115,10 +115,10 @@
     "TEXT": [
       "Blessed ",
       "",
-      "Carries an ancient blessing."
+      "Carries an #pAncient #pBlessing."
     ],
     "EXTRA_TEXT": [
-      " NL Receive an ancient blessing.",
+      " NL Receive a blessing.",
       " NL The blessing has lost its power."
     ]
   },
@@ -215,7 +215,7 @@
     "TEXT": [
       "Ceramic ",
       "",
-      "Gains #b9 #yGold upon pick."
+      "Gains #b9 #yGold upon pickup."
     ],
     "EXTRA_TEXT": [
       " NL Upon pickup, gain 9 *Gold."
@@ -636,7 +636,7 @@
     "TEXT": [
       "Fairy in ",
       "",
-      "When you would die, heals to #b10% of your Max HP instead and remove the card from your deck."
+      "When you would die, heals to #b10% of your Max HP instead and removes the card from your deck."
     ],
     "EXTRA_TEXT": [
       " NL When you would die, heal to 10% of your Max HP instead and remove this from your deck."
@@ -736,7 +736,7 @@
     "TEXT": [
       "Forceful ",
       "",
-      "Costs [E] [E] more. NL Costs [E] less for each Power played in combat. NL Increases card values by #b33%."
+      "Costs [E] [E] more. NL Costs [E] less for each Power played in combat. NL Increases damage and #yBlock by #b33%."
     ],
     "EXTRA_TEXT": [
       " NL Costs 1 less [E] for each Power card played this combat.",
@@ -1652,7 +1652,7 @@
       "Adds #b2 additional copies into your deck upon pickup."
     ],
     "EXTRA_TEXT": [
-      " NL Upon pickup, add 2 additional copies into your deck."
+      " NL Upon pickup, gain 2 additional copies."
     ]
   },
   "${modID}:SplitMod": {
@@ -2514,6 +2514,16 @@
     "EXTRA_TEXT": [
       "Shuffle 3 copies of %s into your draw pile. They cost 0 this combat. NL Exhaust.",
       "Innate. NL "
+    ]
+  },
+  "${modID}:AlchemicalMod": {
+    "TEXT": [
+      "Alchemical ",
+      "",
+      "Obtains a random potion upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, obtain a random potion."
     ]
   }
 }

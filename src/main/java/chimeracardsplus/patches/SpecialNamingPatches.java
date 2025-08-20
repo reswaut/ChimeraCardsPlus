@@ -13,7 +13,7 @@ import java.util.Map;
         clz = AbstractAugment.class,
         method = "modifyName"
 )
-public class SpecialNamingPatch {
+public class SpecialNamingPatches {
     @SpirePrefixPatch
     public static SpireReturn<String> Prefix(AbstractAugment __instance, String cardName, AbstractCard card) {
         if (!ChimeraCardsPlus.enableSpecialNaming()) {

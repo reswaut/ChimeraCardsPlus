@@ -1,9 +1,8 @@
 package chimeracardsplus.cardmods.common;
 
-import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.interfaces.TriggerOnDiscardMod;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -14,7 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class ChronoMod extends AbstractAugment implements TriggerOnDiscardMod {
+public class ChronoMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(ChronoMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -89,10 +88,6 @@ public class ChronoMod extends AbstractAugment implements TriggerOnDiscardMod {
     }
 
     @Override
-    public void onManualDiscard(AbstractCard card) {
-    }
-
-    @Override
     public AugmentRarity getModRarity() {
         return AugmentRarity.COMMON;
     }
@@ -105,5 +100,10 @@ public class ChronoMod extends AbstractAugment implements TriggerOnDiscardMod {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.NORMAL;
     }
 }

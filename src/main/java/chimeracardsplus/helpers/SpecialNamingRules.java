@@ -1,4 +1,4 @@
-package chimeracardsplus.interfaces;
+package chimeracardsplus.helpers;
 
 import java.util.HashMap;
 import java.util.Map;

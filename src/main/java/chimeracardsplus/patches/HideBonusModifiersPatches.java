@@ -3,7 +3,8 @@ package chimeracardsplus.patches;
 import CardAugments.cardmods.AbstractAugment;
 import CardAugments.screens.ModifierScreen;
 import basemod.ReflectionHacks;
-import chimeracardsplus.interfaces.BonusMod;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.cardmods.AbstractAugmentPlus.AugmentBonusLevel;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.lib.Matcher.MethodCallMatcher;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
@@ -13,19 +14,31 @@ import javassist.CtBehavior;
 
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @SpirePatch(
         clz = ModifierScreen.class,
         method = "getAugmentStrings"
 )
-public class HideBonusModifiersPatch {
+public class HideBonusModifiersPatches {
     @SpireInsertPatch(locator = Locator.class, localvars = "ret")
     public static void Insert(ModifierScreen __instance, @ByRef ArrayList<String>[] ret) {
-        if (!Settings.isDebug) {
-            Map<String, AbstractAugment> augmentMap = ReflectionHacks.getPrivate(__instance, ModifierScreen.class, "augmentMap");
-            ret[0] = ret[0].stream().filter(s -> !(augmentMap.get(s) instanceof BonusMod)).collect(Collectors.toCollection(ArrayList::new));
+        if (Settings.isDebug) {
+            return;
         }
+        Map<String, AbstractAugment> augmentMap = ReflectionHacks.getPrivate(__instance, ModifierScreen.class, "augmentMap");
+        ArrayList<String> tmp = new ArrayList<>(512);
+        for (String s : ret[0]) {
+            AbstractAugment augment = augmentMap.get(s);
+            if (!(augment instanceof AbstractAugmentPlus)) {
+                tmp.add(s);
+                continue;
+            }
+            AbstractAugmentPlus augmentPlus = (AbstractAugmentPlus) augment;
+            if (augmentPlus.getModBonusLevel() != AugmentBonusLevel.BONUS) {
+                tmp.add(s);
+            }
+        }
+        ret[0] = tmp;
     }
 
     private static class Locator extends SpireInsertLocator {

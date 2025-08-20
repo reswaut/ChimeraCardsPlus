@@ -1,9 +1,8 @@
 package chimeracardsplus.cardmods.uncommon;
 
-import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.interfaces.TriggerOnDiscardMod;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -11,7 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-public class NormalMod extends AbstractAugment implements TriggerOnDiscardMod {
+public class NormalMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(NormalMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -73,10 +72,6 @@ public class NormalMod extends AbstractAugment implements TriggerOnDiscardMod {
     }
 
     @Override
-    public void onManualDiscard(AbstractCard card) {
-    }
-
-    @Override
     public boolean betterCanPlay(AbstractCard cardWithThisMod, AbstractCard cardToCheck) {
         return AbstractDungeon.actionManager.cardsPlayedThisTurn.size() < 3;
     }
@@ -94,5 +89,10 @@ public class NormalMod extends AbstractAugment implements TriggerOnDiscardMod {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.NORMAL;
     }
 }

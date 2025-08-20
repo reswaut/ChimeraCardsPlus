@@ -1,5 +1,5 @@
 {
-  "${modID}:HealingModTooltip": {
+  "${modID}:RenderHealingTipPatches": {
     "TEXT": [
       "Run-Scale Modifier",
       "This Modifier will not be generated during combat."

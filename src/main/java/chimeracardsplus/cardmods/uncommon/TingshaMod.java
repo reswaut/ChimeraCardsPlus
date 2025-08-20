@@ -1,10 +1,9 @@
 package chimeracardsplus.cardmods.uncommon;
 
-import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.interfaces.TriggerOnDiscardMod;
-import chimeracardsplus.util.CardCheckHelpers;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.helpers.CardCheckHelpers;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -14,7 +13,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-public class TingshaMod extends AbstractAugment implements TriggerOnDiscardMod {
+public class TingshaMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(TingshaMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -51,10 +50,6 @@ public class TingshaMod extends AbstractAugment implements TriggerOnDiscardMod {
     }
 
     @Override
-    public void onMoveToDiscard(AbstractCard card) {
-    }
-
-    @Override
     public AugmentRarity getModRarity() {
         return AugmentRarity.UNCOMMON;
     }
@@ -67,5 +62,10 @@ public class TingshaMod extends AbstractAugment implements TriggerOnDiscardMod {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.NORMAL;
     }
 }

@@ -1,9 +1,9 @@
 package chimeracardsplus.cardmods.special;
 
-import CardAugments.cardmods.AbstractAugment;
 import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class PredictedMod extends AbstractAugment {
+public class PredictedMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(PredictedMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -50,7 +50,7 @@ public class PredictedMod extends AbstractAugment {
         }
         card.freeToPlayOnce = true;
         if (card.cost == -1) {
-            InterceptUseField.interceptUse.set(card, Boolean.TRUE);
+            InterceptUseField.interceptUse.set(card, true);
             if (energyOnUse >= 0) {
                 card.cost = energyOnUse;
                 card.costForTurn = energyOnUse;
@@ -137,5 +137,10 @@ public class PredictedMod extends AbstractAugment {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.NORMAL;
     }
 }

@@ -1,9 +1,8 @@
 package chimeracardsplus.cardmods.rare;
 
-import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.interfaces.TriggerOnObtainMod;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,7 +11,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 
 import java.util.stream.Stream;
 
-public class EdibleMod extends AbstractAugment implements TriggerOnObtainMod {
+public class EdibleMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(EdibleMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -24,7 +23,7 @@ public class EdibleMod extends AbstractAugment implements TriggerOnObtainMod {
     }
 
     @Override
-    public void onObtain(AbstractCard card) {
+    public boolean onObtain(AbstractCard card) {
         if (card.rarity == CardRarity.COMMON) {
             AbstractDungeon.player.increaseMaxHp(1, false);
         } else if (card.rarity == CardRarity.UNCOMMON) {
@@ -32,6 +31,7 @@ public class EdibleMod extends AbstractAugment implements TriggerOnObtainMod {
         } else if (card.rarity == CardRarity.RARE) {
             AbstractDungeon.player.increaseMaxHp(3, false);
         }
+        return false;
     }
 
     @Override
@@ -76,5 +76,10 @@ public class EdibleMod extends AbstractAugment implements TriggerOnObtainMod {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.HEALING;
     }
 }

@@ -1,17 +1,17 @@
 package chimeracardsplus.cardmods.uncommon;
 
-import CardAugments.cardmods.AbstractAugment;
 import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.actions.RecycleXAction;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-public class RecyclableMod extends AbstractAugment {
+public class RecyclableMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(RecyclableMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -34,7 +34,7 @@ public class RecyclableMod extends AbstractAugment {
         inherentHack = true;
         hiddenCard = card.makeStatEquivalentCopy();
         inherentHack = false;
-        InterceptUseField.interceptUse.set(card, Boolean.TRUE);
+        InterceptUseField.interceptUse.set(card, true);
         card.cost = 1;
         card.costForTurn = card.cost;
     }
@@ -128,5 +128,10 @@ public class RecyclableMod extends AbstractAugment {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.NORMAL;
     }
 }

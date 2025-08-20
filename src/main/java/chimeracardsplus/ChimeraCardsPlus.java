@@ -1,16 +1,16 @@
 package chimeracardsplus;
 
 import CardAugments.CardAugmentsMod;
-import CardAugments.cardmods.AbstractAugment;
 import basemod.*;
 import basemod.interfaces.*;
-import chimeracardsplus.interfaces.SpecialNamingRules;
-import chimeracardsplus.interfaces.TriggerOnUsePotionMod;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.helpers.PotionUseHelper;
+import chimeracardsplus.helpers.SpecialNamingRules;
+import chimeracardsplus.helpers.TextureLoader;
 import chimeracardsplus.powers.NoDamagePower;
 import chimeracardsplus.powers.RetributionPower;
 import chimeracardsplus.powers.StunPlayerPower;
 import chimeracardsplus.powers.UntappedPower;
-import chimeracardsplus.util.TextureLoader;
 import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglFileHandle;
@@ -52,7 +52,7 @@ public class ChimeraCardsPlus implements
     public static final String modID = "chimeracardsplus";
     public static final Logger logger = LogManager.getLogger(modID);
     public static final SpecialNamingRules specialNamingRules = new SpecialNamingRules();
-    public static final TextureLoader textureLoader = new TextureLoader();
+    private static final TextureLoader textureLoader = new TextureLoader();
     private static final String EVENT_ADDONS_PLUS_KEY = "EventAddonsPlus";
     private static final String SPECIAL_NAMING_KEY = "CompactNaming";
     private static final String CARD_FIXES_KEY = "CardFixes";
@@ -215,7 +215,7 @@ public class ChimeraCardsPlus implements
 
     @Override
     public void receiveOnPlayerTurnStart() {
-        TriggerOnUsePotionMod.onPlayerTurnStart();
+        PotionUseHelper.onPlayerTurnStart();
     }
 
     @Override
@@ -229,7 +229,7 @@ public class ChimeraCardsPlus implements
         CardAugmentsMod.registerMod(modID, TEXT[0]);
 
         new AutoAdd(modID).packageFilter("chimeracardsplus.cardmods")
-                .any(AbstractAugment.class, (info, abstractAugment) -> CardAugmentsMod.registerAugment(abstractAugment, modID));
+                .any(AbstractAugmentPlus.class, (info, augment) -> CardAugmentsMod.registerAugment(augment, modID));
 
         BaseMod.addPower(NoDamagePower.class, NoDamagePower.POWER_ID);
         BaseMod.addPower(RetributionPower.class, RetributionPower.POWER_ID);
@@ -255,11 +255,11 @@ public class ChimeraCardsPlus implements
 
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
-        TriggerOnUsePotionMod.onBattleStart(abstractRoom);
+        PotionUseHelper.onBattleStart(abstractRoom);
     }
 
     @Override
     public void receivePostPotionUse(AbstractPotion abstractPotion) {
-        TriggerOnUsePotionMod.usedPotion(abstractPotion);
+        PotionUseHelper.onUsePotion(abstractPotion);
     }
 }

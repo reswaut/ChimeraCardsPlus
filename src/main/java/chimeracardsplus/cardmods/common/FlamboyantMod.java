@@ -1,9 +1,8 @@
 package chimeracardsplus.cardmods.common;
 
-import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.interfaces.TriggerOnDiscardMod;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -14,7 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class FlamboyantMod extends AbstractAugment implements TriggerOnDiscardMod {
+public class FlamboyantMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(FlamboyantMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -75,10 +74,6 @@ public class FlamboyantMod extends AbstractAugment implements TriggerOnDiscardMo
     }
 
     @Override
-    public void onManualDiscard(AbstractCard card) {
-    }
-
-    @Override
     public Color getGlow(AbstractCard card) {
         return AbstractDungeon.actionManager.cardsPlayedThisTurn.size() >= 5 ? Color.GOLD.cpy() : null;
     }
@@ -96,5 +91,10 @@ public class FlamboyantMod extends AbstractAugment implements TriggerOnDiscardMo
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.NORMAL;
     }
 }

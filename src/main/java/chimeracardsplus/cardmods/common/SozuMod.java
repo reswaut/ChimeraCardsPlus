@@ -1,9 +1,9 @@
 package chimeracardsplus.cardmods.common;
 
-import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.interfaces.TriggerOnUsePotionMod;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.helpers.PotionUseHelper;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-public class SozuMod extends AbstractAugment {
+public class SozuMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(SozuMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -25,14 +25,14 @@ public class SozuMod extends AbstractAugment {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (TriggerOnUsePotionMod.usedPotionThisTurn) {
+        if (PotionUseHelper.usedPotionThisTurn) {
             addToBot(new GainEnergyAction(1));
         }
     }
 
     @Override
     public Color getGlow(AbstractCard card) {
-        return TriggerOnUsePotionMod.usedPotionThisTurn ? Color.GOLD.cpy() : null;
+        return PotionUseHelper.usedPotionThisTurn ? Color.GOLD.cpy() : null;
     }
 
     @Override
@@ -68,5 +68,10 @@ public class SozuMod extends AbstractAugment {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.NORMAL;
     }
 }

@@ -1,10 +1,8 @@
 package chimeracardsplus.cardmods.rare;
 
-import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.interfaces.TriggerOnObtainMod;
-import chimeracardsplus.interfaces.TriggerOnUpdateObjectsMod;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -22,7 +20,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.EnumSet;
 
-public class MirroredMod extends AbstractAugment implements TriggerOnObtainMod, TriggerOnUpdateObjectsMod {
+public class MirroredMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(MirroredMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -42,7 +40,6 @@ public class MirroredMod extends AbstractAugment implements TriggerOnObtainMod, 
         pickup = false;
         cardsSelected = true;
     }
-
     public MirroredMod(boolean pickup) {
         this.pickup = pickup;
         cardsSelected = true;
@@ -54,12 +51,13 @@ public class MirroredMod extends AbstractAugment implements TriggerOnObtainMod, 
     }
 
     @Override
-    public void onObtain(AbstractCard card) {
+    public boolean onObtain(AbstractCard card) {
         pickup = true;
+        return false;
     }
 
     @Override
-    public boolean onUpdateObjects(AbstractCard card) {
+    public boolean onRoomUpdateObjects(AbstractCard card) {
         if (AbstractDungeon.getCurrMapNode() == null) {
             return false;
         }
@@ -134,5 +132,10 @@ public class MirroredMod extends AbstractAugment implements TriggerOnObtainMod, 
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.HEALING;
     }
 }

@@ -1,21 +1,19 @@
 package chimeracardsplus.cardmods.rare;
 
-import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.interfaces.TriggerPreDeathMod;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 
-public class FairyMod extends AbstractAugment implements TriggerPreDeathMod {
+public class FairyMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(FairyMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -27,8 +25,8 @@ public class FairyMod extends AbstractAugment implements TriggerPreDeathMod {
     }
 
     @Override
-    public boolean preDeath(AbstractCard card, AbstractPlayer player) {
-        if (player.currentHealth > 0) {
+    public boolean preDeath(AbstractCard card) {
+        if (AbstractDungeon.player.currentHealth > 0) {
             return false;
         }
 
@@ -40,8 +38,8 @@ public class FairyMod extends AbstractAugment implements TriggerPreDeathMod {
             return false;
         }
 
-        player.currentHealth = 0;
-        player.heal(Math.max(1, (int) (player.maxHealth / 10.0F)), true);
+        AbstractDungeon.player.currentHealth = 0;
+        AbstractDungeon.player.heal(Math.max(1, (int) (AbstractDungeon.player.maxHealth / 10.0F)), true);
 
         AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(card, (float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2));
         AbstractDungeon.player.masterDeck.removeCard(card);
@@ -82,5 +80,10 @@ public class FairyMod extends AbstractAugment implements TriggerPreDeathMod {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.HEALING;
     }
 }

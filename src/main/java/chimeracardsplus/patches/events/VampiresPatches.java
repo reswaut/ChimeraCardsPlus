@@ -66,7 +66,7 @@ public class VampiresPatches {
 
             AbstractCard transformedCard = validCards.get(AbstractDungeon.miscRng.random(0, validCards.size() - 1));
             CardModifierManager.addModifier(transformedCard, augment);
-            RolledModField.rolled.set(transformedCard, Boolean.TRUE);
+            RolledModField.rolled.set(transformedCard, true);
             AbstractDungeon.effectsQueue.add(new ShowCardAndObtainEffect(transformedCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
         }

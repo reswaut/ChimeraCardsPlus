@@ -1,9 +1,8 @@
 package chimeracardsplus.cardmods.common;
 
-import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.interfaces.TriggerOnDiscardMod;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -16,7 +15,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 
-public class TimeWarpedMod extends AbstractAugment implements TriggerOnDiscardMod {
+public class TimeWarpedMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(TimeWarpedMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
@@ -78,10 +77,6 @@ public class TimeWarpedMod extends AbstractAugment implements TriggerOnDiscardMo
     }
 
     @Override
-    public void onManualDiscard(AbstractCard card) {
-    }
-
-    @Override
     public Color getGlow(AbstractCard card) {
         if (AbstractDungeon.actionManager.cardsPlayedThisCombat.size() == 11) {
             return Color.GOLD.cpy();
@@ -102,5 +97,10 @@ public class TimeWarpedMod extends AbstractAugment implements TriggerOnDiscardMo
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.NORMAL;
     }
 }

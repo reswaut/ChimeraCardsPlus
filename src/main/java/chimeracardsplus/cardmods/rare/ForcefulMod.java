@@ -1,8 +1,8 @@
 package chimeracardsplus.cardmods.rare;
 
-import CardAugments.cardmods.AbstractAugment;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -13,12 +13,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class ForcefulMod extends AbstractAugment {
+public class ForcefulMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(ForcefulMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private boolean modMagic = false;
 
     @Override
     public void onInitialApplication(AbstractCard card) {
@@ -32,25 +31,12 @@ public class ForcefulMod extends AbstractAugment {
                 }
             }
         }
-
-        if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
-            modMagic = true;
-        }
     }
 
     // Needs to be affordable
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= 0 && doesntUpgradeCost()) && characterCheck(p -> {
-            Iterable<AbstractCard> deck = p.masterDeck.group;
-            int dest = abstractCard.cost;
-            for (AbstractCard c : deck) {
-                if (c.type == CardType.POWER) {
-                    --dest;
-                }
-            }
-            return dest <= 1;
-        });
+        return cardCheck(abstractCard, c -> (c.cost >= 1 || c.cost == 0 && (c.baseDamage >= 3 || c.baseBlock >= 3)) && doesntUpgradeCost()) && characterCheck(p -> abstractCard.cost + 2 <= p.masterDeck.group.stream().filter(card -> card.type == CardType.POWER).count() + 3);
     }
 
     @Override
@@ -61,11 +47,6 @@ public class ForcefulMod extends AbstractAugment {
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
         return block > 0.0F ? block * 4.0F / 3.0F : block;
-    }
-
-    @Override
-    public float modifyBaseMagic(float magic, AbstractCard card) {
-        return modMagic ? magic * 4.0F / 3.0F : magic;
     }
 
     @Override
@@ -111,5 +92,10 @@ public class ForcefulMod extends AbstractAugment {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public AugmentBonusLevel getModBonusLevel() {
+        return AugmentBonusLevel.NORMAL;
     }
 }
