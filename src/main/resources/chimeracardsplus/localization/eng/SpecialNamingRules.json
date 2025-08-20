@@ -214,6 +214,9 @@
     "${modID}:LoudMod": {
       "Amplify": "Amplify²"
     },
+    "${modID}:OverclockedMod": {
+      "Overclock": "Overclock²"
+    },
     "${modID}:PainlessMod": {
       "Feel No Pain": "Feel No Pain²"
     },

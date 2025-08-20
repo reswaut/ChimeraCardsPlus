@@ -1,34 +1,29 @@
-package chimeracardsplus.cardmods.common;
+package chimeracardsplus.cardmods.rare;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.PutOnDeckAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.colorless.ThinkingAhead;
-import com.megacrit.cardcrawl.cards.red.Warcry;
-import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class ProactiveMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(ProactiveMod.class.getSimpleName());
+public class ThirstingMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(ThirstingMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.cost >= -1 && !(Warcry.ID.equals(abstractCard.cardID) || ThinkingAhead.ID.equals(abstractCard.cardID));
+    public float modifyDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return target.currentHealth * 2.0F <= target.maxHealth ? damage * 1.5F : damage;
     }
 
     @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        addToBot(new DrawCardAction(AbstractDungeon.player, 1));
-        addToBot(new PutOnDeckAction(AbstractDungeon.player, AbstractDungeon.player, 1, false));
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.baseDamage >= 1 && abstractCard.type == CardType.ATTACK;
     }
 
     @Override
@@ -53,12 +48,12 @@ public class ProactiveMod extends AbstractAugmentPlus {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.COMMON;
+        return AugmentRarity.RARE;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ProactiveMod();
+        return new ThirstingMod();
     }
 
     @Override

@@ -211,6 +211,9 @@
     "${modID}:LoudMod": {
       "增幅": "增幅²"
     },
+    "${modID}:OverclockedMod": {
+      "超频": "超频²"
+    },
     "${modID}:PainlessMod": {
       "无惧疼痛": "无惧疼痛²"
     },

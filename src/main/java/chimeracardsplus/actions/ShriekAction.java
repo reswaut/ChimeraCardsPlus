@@ -20,13 +20,13 @@ public class ShriekAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        for (int i = AbstractDungeon.getMonsters().monsters.size(); i > 0; --i) {
+        for (int i = AbstractDungeon.getMonsters().monsters.size() - 1; i >= 0; --i) {
             AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
             if (!mo.hasPower("Artifact")) {
                 addToTop(new ApplyPowerAction(mo, AbstractDungeon.player, new GainStrengthPower(mo, amount), amount, true, AttackEffect.NONE));
             }
         }
-        for (int i = AbstractDungeon.getMonsters().monsters.size(); i > 0; --i) {
+        for (int i = AbstractDungeon.getMonsters().monsters.size() - 1; i >= 0; --i) {
             AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
             addToTop(new ApplyPowerAction(mo, AbstractDungeon.player, new StrengthPower(mo, -amount), -amount, true, AttackEffect.NONE));
         }

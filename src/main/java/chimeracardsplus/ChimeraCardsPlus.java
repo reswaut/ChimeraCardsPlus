@@ -140,7 +140,7 @@ public class ChimeraCardsPlus implements
     }
 
     private static String getLangString() {
-        return Settings.language.name().toLowerCase(Locale.ROOT);
+        return Settings.language.name().toLowerCase(Locale.getDefault());
     }
 
     private static String checkResourcesPath() {

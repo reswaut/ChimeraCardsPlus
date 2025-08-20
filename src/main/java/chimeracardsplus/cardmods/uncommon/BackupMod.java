@@ -1,35 +1,33 @@
-package chimeracardsplus.cardmods.common;
+package chimeracardsplus.cardmods.uncommon;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.powers.DrawReductionPower;
 
-public class ExertedMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(ExertedMod.class.getSimpleName());
+public class BackupMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(BackupMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.cost >= -1;
+    public void onInitialApplication(AbstractCard card) {
+        card.cost += 1;
+        card.costForTurn = card.cost;
     }
 
     @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 0 && doesntUpgradeCost());
+    }
+
+    @Override
+    public void onDrawn(AbstractCard card) {
         addToBot(new DrawCardAction(1));
-        DrawReductionPower power = new DrawReductionPower(AbstractDungeon.player, 1);
-        power.atEndOfRound();
-        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, power));
     }
 
     @Override
@@ -54,12 +52,12 @@ public class ExertedMod extends AbstractAugmentPlus {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.COMMON;
+        return AugmentRarity.UNCOMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ExertedMod();
+        return new BackupMod();
     }
 
     @Override

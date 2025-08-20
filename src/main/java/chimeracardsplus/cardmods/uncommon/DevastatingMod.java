@@ -86,7 +86,7 @@ public class DevastatingMod extends AbstractAugmentPlus implements DynvarCarrier
         String description = rawDescription;
         if (Character.isAlphabetic(description.charAt(0))) {
             String word = description.split(" ")[0].replaceAll("[^a-zA-Z0-9]", "");
-            if (!GameDictionary.keywords.containsKey(word.toLowerCase(Locale.ROOT))) {
+            if (!GameDictionary.keywords.containsKey(word.toLowerCase(Locale.getDefault()))) {
                 char[] c = description.toCharArray();
                 c[0] = Character.toLowerCase(c[0]);
                 description = new String(c);

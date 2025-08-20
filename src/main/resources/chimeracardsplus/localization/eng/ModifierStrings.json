@@ -1224,10 +1224,10 @@
     "TEXT": [
       "Overclocked ",
       "",
-      "Costs [E] less. NL Adds #b2 #rBurns into your discard pile."
+      "Increases card values by #b50%. NL Adds a #rBurn into your discard pile."
     ],
     "EXTRA_TEXT": [
-      " NL Add 2 *Burns into your discard pile."
+      " NL Add a *Burn into your discard pile."
     ]
   },
   "${modID}:PainfulMod": {
@@ -2446,10 +2446,10 @@
     "TEXT": [
       "Preemptive ",
       "",
-      "Deals #b3 additional damage to enemies who intend to attack."
+      "Deals #b3 more damage to enemies who intend to attack."
     ],
     "EXTRA_TEXT": [
-      " NL Deals 3 additional damage to enemies who intend to attack."
+      " NL Deals 3 more damage to enemies who intend to attack."
     ]
   },
   "${modID}:UntappedMod": {
@@ -2524,6 +2524,26 @@
     ],
     "EXTRA_TEXT": [
       " NL Upon pickup, obtain a random potion."
+    ]
+  },
+  "${modID}:ThirstingMod": {
+    "TEXT": [
+      "Thirsting ",
+      "",
+      "Increases damage by #b50% if the enemy is under half HP."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deals 50% more damage if the enemy is at or under 50% HP."
+    ]
+  },
+  "${modID}:VolatileMod": {
+    "TEXT": [
+      "Volatile ",
+      "",
+      "Costs [E] less. NL Adds a #rBurn+ into your hand when drawn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you draw this card, add a *Burn+ into your hand."
     ]
   }
 }
