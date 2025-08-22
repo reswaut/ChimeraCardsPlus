@@ -23,7 +23,7 @@ public class WaffleMod extends AbstractAugmentPlus {
     @Override
     public boolean onObtain(AbstractCard card) {
         AbstractDungeon.player.heal(7);
-        return false;
+        return true;
     }
 
     @Override

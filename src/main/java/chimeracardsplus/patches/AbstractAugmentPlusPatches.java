@@ -37,7 +37,7 @@ public class AbstractAugmentPlusPatches {
                     continue;
                 }
                 AbstractAugmentPlus augmentPlus = (AbstractAugmentPlus) modifier;
-                if (!augmentPlus.onObtain(card)) {
+                if (augmentPlus.onObtain(card)) {
                     augmentsToRemove.add(augmentPlus);
                 }
             }

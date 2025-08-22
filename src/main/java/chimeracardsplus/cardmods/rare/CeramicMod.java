@@ -23,7 +23,7 @@ public class CeramicMod extends AbstractAugmentPlus {
     @Override
     public boolean onObtain(AbstractCard card) {
         AbstractDungeon.player.gainGold(9);
-        return false;
+        return true;
     }
 
     @Override

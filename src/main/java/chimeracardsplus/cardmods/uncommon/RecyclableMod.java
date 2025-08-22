@@ -59,23 +59,24 @@ public class RecyclableMod extends AbstractAugmentPlus {
         int index = 0;
         boolean shouldInsert = true;
         StringBuilder newDescription = new StringBuilder(CARD_TEXT[0]);
-        while (index < rawDescription.length()) {
+        int length = rawDescription.length();
+        while (index < length) {
             int nextIndex1 = rawDescription.indexOf(CARD_TEXT[3], index);
             int nextIndex2 = rawDescription.indexOf(CARD_TEXT[4], index);
             if (nextIndex1 == -1 && nextIndex2 == -1) {
-                newDescription.append(rawDescription, index, rawDescription.length());
+                newDescription.append(rawDescription, index, length);
                 break;
             }
             shouldInsert = false;
             if (nextIndex1 == -1) {
-                nextIndex1 = rawDescription.length();
+                nextIndex1 = length;
             }
             if (nextIndex2 == -1) {
-                nextIndex2 = rawDescription.length();
+                nextIndex2 = length;
             }
             int nextIndex = Math.min(nextIndex1, nextIndex2);
             int periodIndex = rawDescription.indexOf(CARD_TEXT[5], nextIndex);
-            newDescription.append(rawDescription, index, periodIndex == -1 ? rawDescription.length() : periodIndex);
+            newDescription.append(rawDescription, index, periodIndex == -1 ? length : periodIndex);
             if (!newDescription.toString().isEmpty() && newDescription.toString().charAt(newDescription.toString().length() - 1) == ']') {
                 newDescription.append(' ');
             }

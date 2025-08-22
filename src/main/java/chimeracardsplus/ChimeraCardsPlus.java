@@ -4,6 +4,7 @@ import CardAugments.CardAugmentsMod;
 import basemod.*;
 import basemod.interfaces.*;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.cardmods.AbstractAugmentPlus.AugmentBonusLevel;
 import chimeracardsplus.helpers.DrawPileShuffleHelper;
 import chimeracardsplus.helpers.PotionUseHelper;
 import chimeracardsplus.helpers.SpecialNamingRules;
@@ -41,8 +42,9 @@ import java.util.Properties;
 public class ChimeraCardsPlus implements
         EditKeywordsSubscriber,
         EditStringsSubscriber,
-        OnStartBattleSubscriber,
         OnPlayerTurnStartSubscriber,
+        OnStartBattleSubscriber,
+        PostBattleSubscriber,
         PostPotionUseSubscriber,
         PostInitializeSubscriber {
     private static final String resourcesFolder = checkResourcesPath();
@@ -62,6 +64,7 @@ public class ChimeraCardsPlus implements
     private static ModPanel settingsPanel = null;
     private static UIStrings uiStrings = null;
     private static String[] TEXT = null;
+    private static boolean isInCombat = false;
 
     public static String makeID(String id) {
         return modID + ':' + id;
@@ -217,19 +220,20 @@ public class ChimeraCardsPlus implements
         PotionUseHelper.onPlayerTurnStart();
     }
 
+    private static void registerAugment(AbstractAugmentPlus augment) {
+        CardAugmentsMod.registerAugment(augment, modID);
+        if (augment.getModBonusLevel() != AugmentBonusLevel.NORMAL) {
+            CardAugmentsMod.registerCustomBan(augment.identifier(null), card -> !Settings.isDebug && isInCombat);
+        }
+    }
+
     @Override
     public void receivePostInitialize() {
         Texture badgeTexture = textureLoader.getTexture(imagePath("badge.png"));
         loadUIStrings();
-
         setupSettingsPanel();
+
         BaseMod.registerModBadge(badgeTexture, uiStrings.EXTRA_TEXT[0], uiStrings.EXTRA_TEXT[1], uiStrings.EXTRA_TEXT[2], settingsPanel);
-
-        CardAugmentsMod.registerMod(modID, TEXT[0]);
-
-        new AutoAdd(modID).packageFilter("chimeracardsplus.cardmods")
-                .any(AbstractAugmentPlus.class, (info, augment) -> CardAugmentsMod.registerAugment(augment, modID));
-
         BaseMod.addPower(DeceptionPower.class, DeceptionPower.POWER_ID);
         BaseMod.addPower(LoseFocusPower.class, LoseFocusPower.POWER_ID);
         BaseMod.addPower(NoDamagePower.class, NoDamagePower.POWER_ID);
@@ -237,6 +241,10 @@ public class ChimeraCardsPlus implements
         BaseMod.addPower(StunPlayerPower.class, StunPlayerPower.POWER_ID);
         BaseMod.addPower(UntappedPower.class, UntappedPower.POWER_ID);
         BaseMod.addPower(VelvetChokerPower.class, VelvetChokerPower.POWER_ID);
+
+        CardAugmentsMod.registerMod(modID, TEXT[0]);
+        new AutoAdd(modID).packageFilter("chimeracardsplus.cardmods")
+                .any(AbstractAugmentPlus.class, (info, augment) -> registerAugment(augment));
     }
 
     public static String imagePath(String file) {
@@ -260,6 +268,12 @@ public class ChimeraCardsPlus implements
         PotionUseHelper.onBattleStart(abstractRoom);
         DrawPileShuffleHelper.onBattleStart(abstractRoom);
         AbstractDungeon.player.addPower(new AbstractAugmentPlusHelperPower(AbstractDungeon.player));
+        isInCombat = true;
+    }
+
+    @Override
+    public void receivePostBattle(AbstractRoom abstractRoom) {
+        isInCombat = false;
     }
 
     @Override

@@ -52,7 +52,7 @@ public class ForgetfulMod extends AbstractAugmentPlus {
     @Override
     public boolean onObtain(AbstractCard card) {
         pickup = true;
-        return false;
+        return true;
     }
 
     @Override

@@ -31,7 +31,7 @@ public class EdibleMod extends AbstractAugmentPlus {
         } else if (card.rarity == CardRarity.RARE) {
             AbstractDungeon.player.increaseMaxHp(3, false);
         }
-        return false;
+        return true;
     }
 
     @Override

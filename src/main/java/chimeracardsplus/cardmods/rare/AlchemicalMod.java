@@ -24,7 +24,7 @@ public class AlchemicalMod extends AbstractAugmentPlus {
     @Override
     public boolean onObtain(AbstractCard card) {
         AbstractDungeon.effectsQueue.add(new ObtainPotionEffect(AbstractDungeon.returnRandomPotion()));
-        return false;
+        return true;
     }
 
     @Override

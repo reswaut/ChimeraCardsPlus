@@ -39,7 +39,7 @@ public class SpecializedMod extends AbstractAugmentPlus {
             AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(card1, Settings.WIDTH / 2.0F - 190.0F * Settings.scale, Settings.HEIGHT / 2.0F));
             AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(card2, Settings.WIDTH / 2.0F + 190.0F * Settings.scale, Settings.HEIGHT / 2.0F));
         }
-        return false;
+        return true;
     }
 
     @Override

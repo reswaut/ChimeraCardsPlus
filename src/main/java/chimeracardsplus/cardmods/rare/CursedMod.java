@@ -53,7 +53,7 @@ public class CursedMod extends AbstractAugmentPlus {
             curseID = AbstractDungeon.returnRandomCurse().cardID;
         }
         AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(CardLibrary.getCopy(curseID), (float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2));
-        return true;
+        return false;
     }
 
     @Override
