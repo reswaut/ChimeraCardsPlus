@@ -9,22 +9,22 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.watcher.VigorPower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 
-public class RetributionPower extends AbstractPower {
-    public static final String POWER_ID = ChimeraCardsPlus.makeID(RetributionPower.class.getSimpleName());
+public class DeceptionPower extends AbstractPower {
+    public static final String POWER_ID = ChimeraCardsPlus.makeID(DeceptionPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     private static final String NAME = powerStrings.NAME;
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public RetributionPower(AbstractCreature owner, int amount) {
+    public DeceptionPower(AbstractCreature owner, int amount) {
         name = NAME;
         ID = POWER_ID;
         this.owner = owner;
         this.amount = amount;
         type = PowerType.BUFF;
         updateDescription();
-        loadRegion("master_smite");
+        loadRegion("channel");
     }
 
     @Override
@@ -34,13 +34,11 @@ public class RetributionPower extends AbstractPower {
     }
 
     @Override
-    public int onAttacked(DamageInfo info, int damageAmount) {
-        if (info.owner != null && info.type != DamageType.THORNS && info.type != DamageType.HP_LOSS && !info.owner.equals(owner)) {
+    public void wasHPLost(DamageInfo info, int damageAmount) {
+        if (info.owner != null && info.type != DamageType.THORNS && info.type != DamageType.HP_LOSS && !info.owner.equals(owner) && damageAmount > 0) {
             flash();
-            addToTop(new ApplyPowerAction(owner, owner, new VigorPower(owner, amount)));
+            addToBot(new ApplyPowerAction(info.owner, owner, new WeakPower(info.owner, amount, true)));
         }
-
-        return damageAmount;
     }
 
     @Override

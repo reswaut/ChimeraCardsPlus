@@ -21,7 +21,7 @@ public class ExperiencedMod extends AbstractAugmentPlus {
 
     @Override
     public float modifyBlock(float block, AbstractCard card) {
-        int amount = (int) AbstractDungeon.player.hand.group.stream().filter(c -> !card.uuid.equals(c.uuid) && (c.timesUpgraded != 0 || c.upgraded)).count();
+        int amount = Math.toIntExact(AbstractDungeon.player.hand.group.stream().filter(c -> !card.uuid.equals(c.uuid) && (c.timesUpgraded != 0 || c.upgraded)).count());
         return block + amount;
     }
 

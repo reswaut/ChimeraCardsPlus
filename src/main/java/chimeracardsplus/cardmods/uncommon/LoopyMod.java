@@ -3,14 +3,13 @@ package chimeracardsplus.cardmods.uncommon;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import com.evacipated.cardcrawl.mod.stslib.actions.defect.TriggerPassiveAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
-import com.megacrit.cardcrawl.relics.GoldPlatedCables;
 
 public class LoopyMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(LoopyMod.class.getSimpleName());
@@ -25,14 +24,8 @@ public class LoopyMod extends AbstractAugmentPlus {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (AbstractDungeon.player.orbs.isEmpty() || AbstractDungeon.player.orbs.get(0) instanceof EmptyOrbSlot) {
-            return;
-        }
-        AbstractDungeon.player.orbs.get(0).onStartOfTurn();
-        AbstractDungeon.player.orbs.get(0).onEndOfTurn();
-        if (AbstractDungeon.player.hasRelic(GoldPlatedCables.ID)) {
-            AbstractDungeon.player.orbs.get(0).onStartOfTurn();
-            AbstractDungeon.player.orbs.get(0).onEndOfTurn();
+        if (!AbstractDungeon.player.orbs.isEmpty()) {
+            addToBot(new TriggerPassiveAction());
         }
     }
 

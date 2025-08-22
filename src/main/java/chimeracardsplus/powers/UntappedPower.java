@@ -17,10 +17,10 @@ public class UntappedPower extends AbstractPower {
     private static final String NAME = powerStrings.NAME;
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public UntappedPower(AbstractCreature creature, int amount) {
+    public UntappedPower(AbstractCreature owner, int amount) {
         name = NAME;
         ID = POWER_ID;
-        owner = creature;
+        this.owner = owner;
         this.amount = amount;
         type = PowerType.BUFF;
         isTurnBased = true;
@@ -30,9 +30,6 @@ public class UntappedPower extends AbstractPower {
 
     @Override
     public void atEndOfTurn(boolean isPlayer) {
-        if (!isPlayer) {
-            return;
-        }
         if (amount == 0) {
             addToBot(new RemoveSpecificPowerAction(owner, owner, POWER_ID));
         } else {
@@ -46,6 +43,6 @@ public class UntappedPower extends AbstractPower {
 
     @Override
     public void updateDescription() {
-        description = powerStrings.DESCRIPTIONS[0];
+        description = DESCRIPTIONS[0];
     }
 }

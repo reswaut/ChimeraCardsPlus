@@ -6,7 +6,6 @@ import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -28,7 +27,7 @@ public class FlamboyantMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.baseDamage >= 1 && abstractCard.type == CardType.ATTACK;
+        return abstractCard.cost >= -1 && abstractCard.baseDamage >= 1;
     }
 
     @Override

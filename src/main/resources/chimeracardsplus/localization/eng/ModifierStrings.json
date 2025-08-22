@@ -384,8 +384,8 @@
       "Cursed ",
       "%s-Cursed ",
       "",
-      "Increases card values by #b100%. NL Adds a #rCurse into your deck upon pickup.",
-      "Increases card values by #b100%%. NL Adds %s into your deck upon pickup."
+      "Costs [E] less. NL Adds a #rCurse into your deck upon pickup.",
+      "Costs [E] less. NL Adds %s into your deck upon pickup."
     ],
     "EXTRA_TEXT": [
       " NL Upon pickup, add a *Curse into your deck.",
@@ -1339,7 +1339,7 @@
   },
   "${modID}:PrayerMod": {
     "TEXT": [
-      "Prayer's",
+      "Prayer's ",
       "",
       "Drops an additional card reward if #yFatal in a normal combat. NL Adds #yExhaust."
     ],
@@ -2544,6 +2544,58 @@
     ],
     "EXTRA_TEXT": [
       " NL Whenever you draw this card, add a *Burn+ into your hand."
+    ]
+  },
+  "${modID}:DeceptiveMod": {
+    "TEXT": [
+      "Deceptive ",
+      "",
+      "Reduces #yBlock by #b33%. NL Applies #b2 #yWeak back when taking unblocked attack damage this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you take unblocked attack damage turn, apply 2 Weak back."
+    ]
+  },
+  "${modID}:TallyingMod": {
+    "TEXT": [
+      "Tallying ",
+      "",
+      "Plays once for each time you shuffled your draw pile this combat."
+    ],
+    "EXTRA_TEXT": [
+      " for each time you shuffled your draw pile this combat.",
+      " (%d shuffle.)",
+      " (%d shuffles.)"
+    ]
+  },
+  "${modID}:VelvetMod": {
+    "TEXT": [
+      "Velvet ",
+      "",
+      "Costs [E] less. NL You cannot play more than #b6 cards per turn for #b2 turns."
+    ],
+    "EXTRA_TEXT": [
+      " NL You cannot play more than 6 cards per turn for 2 turns."
+    ]
+  },
+  "${modID}:BreakableMod": {
+    "TEXT": [
+      "Breakable ",
+      "",
+      "Increases card values by #b100%. NL Loses #b1 Max HP."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose 1 Max HP."
+    ]
+  },
+  "${modID}:AttentiveMod": {
+    "TEXT": [
+      "Attentive ",
+      "",
+      "Gains #b2 #yFocus this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain 2 Focus. NL At the end of this turn, lose 2 Focus."
     ]
   }
 }

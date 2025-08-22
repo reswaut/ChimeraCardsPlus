@@ -50,7 +50,7 @@ public class HyperMod extends AbstractAugmentPlus {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StunPlayerPower(AbstractDungeon.player, 2, false)));
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StunPlayerPower(AbstractDungeon.player, 2)));
     }
 
     @Override

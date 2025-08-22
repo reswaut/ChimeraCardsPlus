@@ -2,14 +2,15 @@ package chimeracardsplus.cardmods.common;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.actions.UseCardMultipleTimesAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -33,7 +34,7 @@ public class ChronoMod extends AbstractAugmentPlus {
     @Override
     public boolean validCard(AbstractCard abstractCard) {
         return cardCheck(abstractCard, c -> noShenanigans(c)
-                && c.cost >= 0
+                && c.cost >= 0 && (c.type == CardType.ATTACK || c.type == CardType.SKILL)
                 && (c.baseDamage >= 4 || c.baseBlock >= 4)
                 && customCheck(c, check ->
                 noCardModDescriptionChanges(check)
@@ -67,10 +68,7 @@ public class ChronoMod extends AbstractAugmentPlus {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        int hits = GameActionManager.turn - 1;
-        for (int i = 0; i < hits; ++i) {
-            card.use(AbstractDungeon.player, (AbstractMonster) target);
-        }
+        addToBot(new UseCardMultipleTimesAction(card, target, () -> GameActionManager.turn - 1));
         descriptionHack = false;
         card.initializeDescription();
     }

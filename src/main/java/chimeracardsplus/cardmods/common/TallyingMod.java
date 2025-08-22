@@ -1,29 +1,35 @@
 package chimeracardsplus.cardmods.common;
 
+import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.actions.UseCardMultipleTimesAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import com.badlogic.gdx.graphics.Color;
+import chimeracardsplus.helpers.DrawPileShuffleHelper;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class PointyMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(PointyMod.class.getSimpleName());
+public class TallyingMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(TallyingMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
     private boolean descriptionHack = false;
 
     @Override
+    public void onInitialApplication(AbstractCard card) {
+        InterceptUseField.interceptUse.set(card, true);
+    }
+
+    @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.type == CardType.ATTACK && abstractCard.baseDamage >= 1 && abstractCard.cost >= -1;
+        return cardCheck(abstractCard, c -> noShenanigans(c)
+                && c.cost >= -1 && (c.type == CardType.ATTACK || c.type == CardType.SKILL)
+                && customCheck(c, check -> noCardModDescriptionChanges(check) && check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L));
     }
 
     @Override
@@ -45,14 +51,15 @@ public class PointyMod extends AbstractAugmentPlus {
     public String modifyDescription(String rawDescription, AbstractCard card) {
         String text = CARD_TEXT[0];
         if (descriptionHack) {
-            int count = Math.toIntExact(AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().filter(c -> c != null && c.type == CardType.ATTACK).count());
+            int count = DrawPileShuffleHelper.drawPileShufflesThisCombat;
             text += String.format(count == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count);
         }
-        return insertAfterText(rawDescription, text);
+        return rawDescription.replaceFirst("[.。]", text);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        addToBot(new UseCardMultipleTimesAction(card, target, () -> DrawPileShuffleHelper.drawPileShufflesThisCombat));
         descriptionHack = false;
         card.initializeDescription();
     }
@@ -70,34 +77,13 @@ public class PointyMod extends AbstractAugmentPlus {
     }
 
     @Override
-    public float modifyDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        int count = Math.toIntExact(AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().filter(
-                c -> c != null && c.type == CardType.ATTACK).count());
-        if (AbstractDungeon.actionManager.cardQueue.stream().noneMatch(item -> item.card != null && item.card.uuid.equals(card.uuid))) {
-            count += 1;
-        }
-        if (count == 10) {
-            return damage * 2.0F;
-        }
-        return damage;
-    }
-
-    @Override
-    public Color getGlow(AbstractCard card) {
-        if (AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().filter(c -> c != null && c.type == CardType.ATTACK).count() == 9L) {
-            return Color.GOLD.cpy();
-        }
-        return null;
-    }
-
-    @Override
     public AugmentRarity getModRarity() {
         return AugmentRarity.COMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new PointyMod();
+        return new TallyingMod();
     }
 
     @Override

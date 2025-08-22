@@ -49,6 +49,9 @@ public abstract class AbstractAugmentPlus extends AbstractAugment {
     public void onUsePotion(AbstractCard card, CardGroup group, AbstractPotion potion) {
     }
 
+    public void onShuffle(AbstractCard card, CardGroup group) {
+    }
+
     public boolean preDeath(AbstractCard card) {
         return false;
     }

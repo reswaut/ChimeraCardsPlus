@@ -1,4 +1,16 @@
 {
+  "${modID}:DeceptionPower": {
+    "NAME": "蒙骗",
+    "DESCRIPTIONS": [
+      "受到攻击伤害而失去生命时，给予 #b%d 层 #y虚弱 。"
+    ]
+  },
+  "${modID}:LoseFocusPower": {
+    "NAME": "集中下降",
+    "DESCRIPTIONS": [
+      "在你的回合结束时，失去 #b%d 点 #y集中 。"
+    ]
+  },
   "${modID}:NoDamagePower": {
     "NAME": "无法攻击",
     "DESCRIPTIONS": [
@@ -14,13 +26,21 @@
   "${modID}:StunPlayerPower": {
     "NAME": "击晕",
     "DESCRIPTIONS": [
-      "你不能打出卡牌。"
+      "你不能打出卡牌。",
+      "我不能打出卡牌。"
     ]
   },
   "${modID}:UntappedPower": {
     "NAME": "未利用",
     "DESCRIPTIONS": [
       "下回合额外抽本回合多余能量张牌。"
+    ]
+  },
+  "${modID}:VelvetChokerPower": {
+    "NAME": "窒息",
+    "DESCRIPTIONS": [
+      "这个回合，你不能打出超过 #b6 张牌。你已经打出了 #b%d 张牌。",
+      "我只能打出最多 NL #r6 张牌。"
     ]
   }
 }

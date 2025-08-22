@@ -26,7 +26,7 @@ public class TranceMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost > 0 && drawsCards(c) && doesntUpgradeCost());
+        return cardCheck(abstractCard, c -> c.cost >= 1 && drawsCards(c) && doesntUpgradeCost());
     }
 
     @Override

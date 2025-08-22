@@ -1,4 +1,16 @@
 {
+  "${modID}:DeceptionPower": {
+    "NAME": "Deception",
+    "DESCRIPTIONS": [
+      "When receiving unblocked attack damage, apply #b%d #yWeak back."
+    ]
+  },
+  "${modID}:LoseFocusPower": {
+    "NAME": "Focus Down",
+    "DESCRIPTIONS": [
+      "At the end of this turn, lose #b%d #yFocus."
+    ]
+  },
   "${modID}:NoDamagePower": {
     "NAME": "No Damage",
     "DESCRIPTIONS": [
@@ -14,13 +26,21 @@
   "${modID}:StunPlayerPower": {
     "NAME": "Stunned",
     "DESCRIPTIONS": [
-      "You cannot play cards."
+      "You cannot play cards.",
+      "I cannot play cards."
     ]
   },
   "${modID}:UntappedPower": {
     "NAME": "Untapped",
     "DESCRIPTIONS": [
       "For each unused Energy this turn, draw #b1 additional card next turn."
+    ]
+  },
+  "${modID}:VelvetChokerPower": {
+    "NAME": "Choked",
+    "DESCRIPTIONS": [
+      "You cannot play more than #b6 cards this turn. You have played #b%d.",
+      "I can only play up to NL #r6 cards this turn."
     ]
   }
 }

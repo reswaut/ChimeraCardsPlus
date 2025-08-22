@@ -1,46 +1,41 @@
-package chimeracardsplus.cardmods.uncommon;
+package chimeracardsplus.cardmods.common;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import chimeracardsplus.powers.NoDamagePower;
+import chimeracardsplus.powers.DeceptionPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class FlusteredMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(FlusteredMod.class.getSimpleName());
+public class DeceptiveMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(DeceptiveMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private boolean addedExhaust = true;
-
-    @Override
-    public void onInitialApplication(AbstractCard card) {
-        addedExhaust = !card.exhaust;
-        card.exhaust = true;
-    }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.baseDamage >= 1 && c.cost >= -1 && c.type == CardType.ATTACK && doesntUpgradeExhaust());
+        return abstractCard.cost >= -1 && abstractCard.baseBlock >= 4;
+    }
+
+    @Override
+    public float modifyBaseBlock(float block, AbstractCard card) {
+        return block * 2.0F / 3.0F;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NoDamagePower(AbstractDungeon.player, 2), 2));
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DeceptionPower(AbstractDungeon.player, 2)));
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage * 4.0F;
+    public void onUpgradeCheck(AbstractCard card) {
+        card.initializeDescription();
     }
 
     @Override
@@ -60,17 +55,17 @@ public class FlusteredMod extends AbstractAugmentPlus {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1]);
+        return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.UNCOMMON;
+        return AugmentRarity.COMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new FlusteredMod();
+        return new DeceptiveMod();
     }
 
     @Override

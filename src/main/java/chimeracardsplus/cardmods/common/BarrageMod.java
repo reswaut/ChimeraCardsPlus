@@ -3,9 +3,11 @@ package chimeracardsplus.cardmods.common;
 import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.actions.UseCardMultipleTimesAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -38,7 +40,7 @@ public class BarrageMod extends AbstractAugmentPlus {
     @Override
     public boolean validCard(AbstractCard abstractCard) {
         return allowOrbMods() && cardCheck(abstractCard, c -> noShenanigans(c)
-                && c.cost >= 0
+                && c.cost >= 0 && (c.type == CardType.ATTACK || c.type == CardType.SKILL)
                 && (c.baseDamage >= 2 || c.baseBlock >= 2)
                 && customCheck(c, check ->
                     noCardModDescriptionChanges(check)
@@ -67,10 +69,7 @@ public class BarrageMod extends AbstractAugmentPlus {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        int hits = (int) AbstractDungeon.player.orbs.stream().filter(orb -> !(orb instanceof EmptyOrbSlot)).count();
-        for (int i = 0; i < hits; ++i) {
-            card.use(AbstractDungeon.player, (AbstractMonster) target);
-        }
+        addToBot(new UseCardMultipleTimesAction(card, target, () -> Math.toIntExact(AbstractDungeon.player.orbs.stream().filter(orb -> !(orb instanceof EmptyOrbSlot)).count())));
     }
 
     @Override

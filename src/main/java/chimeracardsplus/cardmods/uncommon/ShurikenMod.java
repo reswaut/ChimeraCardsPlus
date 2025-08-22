@@ -45,7 +45,7 @@ public class ShurikenMod extends AbstractAugmentPlus {
     public String modifyDescription(String rawDescription, AbstractCard card) {
         String text = CARD_TEXT[0];
         if (descriptionHack) {
-            int count = (int) AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.ATTACK).count();
+            int count = Math.toIntExact(AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.ATTACK).count());
             text += String.format(count == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count);
         }
         return insertAfterText(rawDescription, text);

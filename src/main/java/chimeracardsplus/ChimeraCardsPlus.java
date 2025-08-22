@@ -4,13 +4,11 @@ import CardAugments.CardAugmentsMod;
 import basemod.*;
 import basemod.interfaces.*;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.helpers.DrawPileShuffleHelper;
 import chimeracardsplus.helpers.PotionUseHelper;
 import chimeracardsplus.helpers.SpecialNamingRules;
 import chimeracardsplus.helpers.TextureLoader;
-import chimeracardsplus.powers.NoDamagePower;
-import chimeracardsplus.powers.RetributionPower;
-import chimeracardsplus.powers.StunPlayerPower;
-import chimeracardsplus.powers.UntappedPower;
+import chimeracardsplus.powers.*;
 import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglFileHandle;
@@ -23,6 +21,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.EventStrings;
@@ -231,10 +230,13 @@ public class ChimeraCardsPlus implements
         new AutoAdd(modID).packageFilter("chimeracardsplus.cardmods")
                 .any(AbstractAugmentPlus.class, (info, augment) -> CardAugmentsMod.registerAugment(augment, modID));
 
+        BaseMod.addPower(DeceptionPower.class, DeceptionPower.POWER_ID);
+        BaseMod.addPower(LoseFocusPower.class, LoseFocusPower.POWER_ID);
         BaseMod.addPower(NoDamagePower.class, NoDamagePower.POWER_ID);
         BaseMod.addPower(RetributionPower.class, RetributionPower.POWER_ID);
         BaseMod.addPower(StunPlayerPower.class, StunPlayerPower.POWER_ID);
         BaseMod.addPower(UntappedPower.class, UntappedPower.POWER_ID);
+        BaseMod.addPower(VelvetChokerPower.class, VelvetChokerPower.POWER_ID);
     }
 
     public static String imagePath(String file) {
@@ -256,6 +258,8 @@ public class ChimeraCardsPlus implements
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         PotionUseHelper.onBattleStart(abstractRoom);
+        DrawPileShuffleHelper.onBattleStart(abstractRoom);
+        AbstractDungeon.player.addPower(new AbstractAugmentPlusHelperPower(AbstractDungeon.player));
     }
 
     @Override

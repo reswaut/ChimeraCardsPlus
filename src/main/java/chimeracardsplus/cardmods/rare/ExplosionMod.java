@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -21,7 +22,7 @@ public class ExplosionMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= 0 && doesntUpgradeCost() && usesEnemyTargeting());
+        return cardCheck(abstractCard, c -> c.cost >= 0 && c.type == CardType.SKILL && doesntUpgradeCost() && usesEnemyTargeting());
     }
 
     @Override

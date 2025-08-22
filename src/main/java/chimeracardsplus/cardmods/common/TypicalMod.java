@@ -2,8 +2,8 @@ package chimeracardsplus.cardmods.common;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.actions.UseCardMultipleTimesAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
@@ -36,7 +36,7 @@ public class TypicalMod extends AbstractAugmentPlus {
     @Override
     public boolean validCard(AbstractCard abstractCard) {
         return cardCheck(abstractCard, c -> noShenanigans(c)
-                && c.cost >= 0
+                && c.cost >= 0 && (c.type == CardType.ATTACK || c.type == CardType.SKILL)
                 && (c.baseDamage >= 2 || c.baseBlock >= 2)
                 && customCheck(c, check ->
                 noCardModDescriptionChanges(check)
@@ -65,7 +65,7 @@ public class TypicalMod extends AbstractAugmentPlus {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        addToBot(new UseCardPerTypeAction(card, target));
+        addToBot(new UseCardMultipleTimesAction(card, target, () -> AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> !card.uuid.equals(c.uuid)).map(c -> c.type).collect(Collectors.toCollection(HashSet<CardType>::new)).size() - 1));
     }
 
     @Override
@@ -86,24 +86,5 @@ public class TypicalMod extends AbstractAugmentPlus {
     @Override
     public AugmentBonusLevel getModBonusLevel() {
         return AugmentBonusLevel.NORMAL;
-    }
-
-    private static class UseCardPerTypeAction extends AbstractGameAction {
-        private final AbstractCard card;
-        private final AbstractCreature cardTarget;
-
-        private UseCardPerTypeAction(AbstractCard card, AbstractCreature cardTarget) {
-            this.card = card;
-            this.cardTarget = cardTarget;
-        }
-
-        @Override
-        public void update() {
-            int hits = AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().map(c -> c.type).collect(Collectors.toCollection(HashSet<CardType>::new)).size();
-            for (int i = 0; i < hits - 1; ++i) {
-                card.use(AbstractDungeon.player, (AbstractMonster) cardTarget);
-            }
-            isDone = true;
-        }
     }
 }
