@@ -23,13 +23,16 @@ import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.events.city.TheLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.EventRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -94,7 +97,6 @@ public class ChimeraCardsPlus implements
     public static boolean enableSpecialNaming() {
         return enableSpecialNaming;
     }
-
     public static boolean enableBaseGameFixes() {
         return enableBaseGameFixes;
     }
@@ -224,7 +226,16 @@ public class ChimeraCardsPlus implements
     private static void registerAugment(AbstractAugmentPlus augment) {
         CardAugmentsMod.registerAugment(augment, modID);
         if (augment.getModBonusLevel() != AugmentBonusLevel.NORMAL) {
-            CardAugmentsMod.registerCustomBan(augment.identifier(null), card -> !Settings.isDebug && isInCombat);
+            String id = augment.identifier(null);
+            CardAugmentsMod.registerCustomBan(id, card -> !Settings.isDebug && isInCombat);
+            CardAugmentsMod.registerCustomBan(id, card -> {
+                MapRoomNode node = AbstractDungeon.getCurrMapNode();
+                if (node == null) {
+                    return false;
+                }
+                AbstractRoom room = node.getRoom();
+                return room instanceof EventRoom && room.event instanceof TheLibrary;
+            });
         }
     }
 

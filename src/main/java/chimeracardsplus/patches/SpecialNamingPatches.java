@@ -1,36 +1,85 @@
 package chimeracardsplus.patches;
 
+import CardAugments.CardAugmentsMod;
 import CardAugments.cardmods.AbstractAugment;
+import basemod.helpers.TooltipInfo;
 import chimeracardsplus.ChimeraCardsPlus;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
+import chimeracardsplus.helpers.SpecialNamingRules.SpecialName;
+import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.lib.Matcher.NewExprMatcher;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
 
+import java.util.List;
 import java.util.Map;
 
-@SpirePatch(
-        clz = AbstractAugment.class,
-        method = "modifyName"
-)
 public class SpecialNamingPatches {
-    @SpirePrefixPatch
-    public static SpireReturn<String> Prefix(AbstractAugment __instance, String cardName, AbstractCard card) {
-        if (!ChimeraCardsPlus.enableSpecialNaming()) {
-            return SpireReturn.Continue();
+    @SpirePatch(
+            clz = AbstractAugment.class,
+            method = SpirePatch.CLASS
+    )
+    public static class SpecialNamingTooltipField {
+        public static SpireField<TooltipInfo> specialNamingTooltip = new SpireField<>(() -> null);
+    }
+
+    @SpirePatch(
+            clz = AbstractAugment.class,
+            method = "modifyName"
+    )
+    public static class ModifyNamesPatch {
+        @SpirePrefixPatch
+        public static SpireReturn<String> Prefix(AbstractAugment __instance, String cardName, AbstractCard card) {
+            if (!ChimeraCardsPlus.enableSpecialNaming()) {
+                return SpireReturn.Continue();
+            }
+            if (ChimeraCardsPlus.specialNamingRules.NAME_DICT == null) {
+                return SpireReturn.Continue();
+            }
+            Map<String, SpecialName> rules = ChimeraCardsPlus.specialNamingRules.NAME_DICT.get(__instance.identifier(card));
+            if (rules == null) {
+                return SpireReturn.Continue();
+            }
+            String[] nameParts = AbstractAugment.removeUpgradeText(cardName);
+            SpecialName specialName = rules.get(nameParts[0]);
+            if (specialName == null) {
+                return SpireReturn.Continue();
+            }
+            String replacedName = specialName.NAME;
+            if (replacedName == null) {
+                return SpireReturn.Continue();
+            }
+            if (CardAugmentsMod.enableTooltips && specialName.DESCRIPTION != null && !specialName.DESCRIPTION.isEmpty()) {
+                SpecialNamingTooltipField.specialNamingTooltip.set(__instance, new TooltipInfo(replacedName, specialName.DESCRIPTION));
+            }
+            return SpireReturn.Return(replacedName + nameParts[1]);
         }
-        if (ChimeraCardsPlus.specialNamingRules.NAME_DICT == null) {
-            return SpireReturn.Continue();
+    }
+
+    @SpirePatch(
+            clz = AbstractAugment.class,
+            method = "additionalTooltips"
+    )
+    public static class SpecialNamingTooltipPatches {
+        @SpireInsertPatch(
+                locator = Locator.class,
+                localvars = "tips"
+        )
+        public static void Insert(AbstractAugment __instance, AbstractCard card, List<TooltipInfo> tips) {
+            TooltipInfo tooltip = SpecialNamingTooltipField.specialNamingTooltip.get(__instance);
+            if (tooltip != null) {
+                tips.add(tooltip);
+            }
         }
-        Map<String, String> rules = ChimeraCardsPlus.specialNamingRules.NAME_DICT.get(__instance.identifier(card));
-        if (rules == null) {
-            return SpireReturn.Continue();
+
+        public static class Locator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctBehavior) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new NewExprMatcher(TooltipInfo.class);
+                int[] tmp = LineFinder.findInOrder(ctBehavior, finalMatcher);
+                return new int[]{tmp[0] + 1};
+            }
         }
-        String[] nameParts = AbstractAugment.removeUpgradeText(cardName);
-        String replacedName = rules.get(nameParts[0]);
-        if (replacedName == null) {
-            return SpireReturn.Continue();
-        }
-        return SpireReturn.Return(replacedName + nameParts[1]);
     }
 }

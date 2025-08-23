@@ -1,282 +1,586 @@
 {
   "NAME_DICT": {
     "CardAugments:AllOutMod": {
-      "全力攻击": "全力²攻击"
+      "全力攻击": {
+        "NAME": "全力²攻击",
+        "DESCRIPTION": "合并 #y全力 和 #y全力攻击 。"
+      }
     },
     "CardAugments:ShivMod": {
-      "斗篷与匕首": "斗篷与匕首²"
+      "斗篷与匕首": {
+        "NAME": "斗篷与匕首²",
+        "DESCRIPTION": "合并 #y与匕首 和 #y斗篷与匕首 。"
+      }
     },
     "CardAugments:RollMod": {
-      "闪躲翻滚": "闪躲翻滚²"
+      "闪躲翻滚": {
+        "NAME": "闪躲翻滚²",
+        "DESCRIPTION": "合并 #y翻滚 和 #y闪躲翻滚 。"
+      }
     },
     "CardAugments:TearMod": {
-      "狂乱撕扯": "狂乱撕扯²"
+      "狂乱撕扯": {
+        "NAME": "狂乱撕扯²",
+        "DESCRIPTION": "合并 #y撕扯 和 #y狂乱撕扯 。"
+      }
     },
     "CardAugments:AngryMod": {
-      "愤怒": "愤怒²"
+      "愤怒": {
+        "NAME": "愤怒²",
+        "DESCRIPTION": "合并 #y愤怒 和 #y愤怒 。"
+      }
     },
     "CardAugments:ArmedMod": {
-      "武装": "武装²"
+      "武装": {
+        "NAME": "武装²",
+        "DESCRIPTION": "合并 #y武装 和 #y武装 。"
+      }
     },
     "CardAugments:BashMod": {
-      "痛击": "痛击²"
+      "痛击": {
+        "NAME": "痛击²",
+        "DESCRIPTION": "合并 #y痛击 和 #y痛击 。"
+      }
     },
     "CardAugments:BlurryMod": {
-      "残影": "残影²"
+      "残影": {
+        "NAME": "残影²",
+        "DESCRIPTION": "合并 #y残影 和 #y残影 。"
+      }
     },
     "CardAugments:BowlingMod": {
-      "碰撞连击": "碰撞²连击"
+      "碰撞连击": {
+        "NAME": "碰撞²连击",
+        "DESCRIPTION": "合并 #y碰撞 和 #y碰撞连击 。"
+      }
     },
     "CardAugments:ChargedMod": {
-      "充电": "充电²"
+      "充电": {
+        "NAME": "充电²",
+        "DESCRIPTION": "合并 #y充电 和 #y充电 。"
+      }
     },
     "CardAugments:ClawfulMod": {
-      "爪击": "爪击²"
+      "爪击": {
+        "NAME": "爪击²",
+        "DESCRIPTION": "合并 #y爪击 和 #y爪击 。"
+      }
     },
     "CardAugments:ElectroMod": {
-      "球状闪电": "球状闪电²"
+      "球状闪电": {
+        "NAME": "球状闪电²",
+        "DESCRIPTION": "合并 #y闪电 和 #y球状闪电 。"
+      }
     },
     "CardAugments:EndlessMod": {
-      "无尽苦痛": "无尽²苦痛"
+      "无尽苦痛": {
+        "NAME": "无尽²苦痛",
+        "DESCRIPTION": "合并 #y无尽 和 #y无尽苦痛 。"
+      }
     },
     "CardAugments:FlexMod": {
-      "活动肌肉": "活动²肌肉"
+      "活动肌肉": {
+        "NAME": "活动²肌肉",
+        "DESCRIPTION": "合并 #y活动 和 #y活动肌肉 。"
+      }
     },
     "CardAugments:FlyingMod": {
-      "飞膝": "飞²膝"
+      "飞膝": {
+        "NAME": "飞²膝",
+        "DESCRIPTION": "合并 #y飞 和 #y飞膝 。"
+      }
     },
     "CardAugments:FollowUpMod": {
-      "追击": "追击²"
+      "追击": {
+        "NAME": "追击²",
+        "DESCRIPTION": "合并 #y追击 和 #y追击 。"
+      }
     },
     "CardAugments:ForOneMod": {
-      "万物一心": "万物一心²"
+      "万物一心": {
+        "NAME": "万物一心²",
+        "DESCRIPTION": "合并 #y一心 和 #y万物一心 。"
+      }
     },
     "CardAugments:GlassMod": {
-      "玻璃刀刃": "玻璃²刀刃"
+      "玻璃刀刃": {
+        "NAME": "玻璃²刀刃",
+        "DESCRIPTION": "合并 #y玻璃 和 #y玻璃刀刃 。"
+      }
     },
     "CardAugments:GritMod": {
-      "坚毅": "坚毅²"
+      "坚毅": {
+        "NAME": "坚毅²",
+        "DESCRIPTION": "合并 #y坚毅 和 #y坚毅 。"
+      }
     },
     "CardAugments:HeavyMod": {
-      "重刃": "重²刃"
+      "重刃": {
+        "NAME": "重²刃",
+        "DESCRIPTION": "合并 #y重 和 #y重刃 。"
+      }
     },
     "CardAugments:HemoMod": {
-      "御血术": "御血²术"
+      "御血术": {
+        "NAME": "御血²术",
+        "DESCRIPTION": "合并 #y御血 和 #y御血术 。"
+      }
     },
     "CardAugments:LuckyMod": {
-      "幸运一击": "幸运²一击"
+      "幸运一击": {
+        "NAME": "幸运²一击",
+        "DESCRIPTION": "合并 #y幸运 和 #y幸运一击 。"
+      }
     },
     "CardAugments:NoxiousMod": {
-      "毒雾": "毒²雾"
+      "毒雾": {
+        "NAME": "毒²雾",
+        "DESCRIPTION": "合并 #y泛毒 和 #y毒雾 。"
+      }
     },
     "CardAugments:GreedMod": {
-      "贪婪之手": "贪婪²之手"
+      "贪婪之手": {
+        "NAME": "贪婪²之手",
+        "DESCRIPTION": "合并 #y贪婪 和 #y贪婪之手 。"
+      }
     },
     "CardAugments:OmegaMod": {
-      "欧米伽": "欧米伽²"
+      "欧米伽": {
+        "NAME": "欧米伽²",
+        "DESCRIPTION": "合并 #y欧米伽 和 #y欧米伽 。"
+      }
     },
     "CardAugments:PoisonedMod": {
-      "带毒刺击": "带毒²刺击"
+      "带毒刺击": {
+        "NAME": "带毒²刺击",
+        "DESCRIPTION": "合并 #y带毒 和 #y带毒刺击 。"
+      }
     },
     "CardAugments:PredatoryMod": {
-      "猎杀者": "猎杀²者"
+      "猎杀者": {
+        "NAME": "猎杀²者",
+        "DESCRIPTION": "合并 #y猎杀 和 #y猎杀者 。"
+      }
     },
     "CardAugments:PreparedMod": {
-      "早有准备": "早有准备²"
+      "早有准备": {
+        "NAME": "早有准备²",
+        "DESCRIPTION": "合并 #y准备 和 #y早有准备 。"
+      }
     },
     "CardAugments:QuickMod": {
-      "快斩": "快²斩"
+      "快斩": {
+        "NAME": "快²斩",
+        "DESCRIPTION": "合并 #y快速 和 #y快斩 。"
+      }
     },
     "CardAugments:RampedMod": {
-      "暴走": "暴走²"
+      "暴走": {
+        "NAME": "暴走²",
+        "DESCRIPTION": "合并 #y暴走 和 #y暴走 。"
+      }
     },
     "CardAugments:SanctifiedMod": {
-      "圣洁": "圣洁²"
+      "圣洁": {
+        "NAME": "圣洁²",
+        "DESCRIPTION": "合并 #y圣洁 和 #y圣洁 。"
+      }
     },
     "CardAugments:StreamlinedMod": {
-      "精简改良": "精简²改良"
+      "精简改良": {
+        "NAME": "精简²改良",
+        "DESCRIPTION": "合并 #y精简 和 #y精简改良 。"
+      }
     },
     "CardAugments:SuckerMod": {
-      "突然一拳": "突然²一拳"
+      "突然一拳": {
+        "NAME": "突然²一拳",
+        "DESCRIPTION": "合并 #y突然 和 #y突然一拳 。"
+      }
     },
     "CardAugments:SurvivorMod": {
-      "生存者": "生存者²"
+      "生存者": {
+        "NAME": "生存者²",
+        "DESCRIPTION": "合并 #y生存者 和 #y生存者 。"
+      }
     },
     "CardAugments:SwivelMod": {
-      "旋身": "旋身²"
+      "旋身": {
+        "NAME": "旋身²",
+        "DESCRIPTION": "合并 #y旋身 和 #y旋身 。"
+      }
     },
     "CardAugments:WallopMod": {
-      "当头棒喝": "当头²棒喝"
+      "当头棒喝": {
+        "NAME": "当头²棒喝",
+        "DESCRIPTION": "合并 #y当头 和 #y当头棒喝 。"
+      }
     },
     "CardAugments:WaveMod": {
-      "铁斩波": "铁斩波²"
+      "铁斩波": {
+        "NAME": "铁斩波²",
+        "DESCRIPTION": "合并 #y铁斩波 和 #y铁斩波 。"
+      }
+    },
+    "${modID}:AlchemicalMod": {
+      "炼制药水": {
+        "NAME": "炼制药水²",
+        "DESCRIPTION": "合并 #y炼药 和 #y炼制药水 。"
+      }
     },
     "${modID}:LearnMod": {
-      "勤学精进": "勤学²精进"
+      "勤学精进": {
+        "NAME": "勤学²精进",
+        "DESCRIPTION": "合并 #y勤学 和 #y勤学精进 。"
+      }
     },
     "${modID}:WhipMod": {
-      "腰带抽打": "腰带抽打²"
+      "腰带抽打": {
+        "NAME": "腰带抽打²",
+        "DESCRIPTION": "合并 #y抽打 和 #y腰带抽打 。"
+      }
     },
     "${modID}:BanefulMod": {
-      "灾祸": "灾祸²"
+      "灾祸": {
+        "NAME": "灾祸²",
+        "DESCRIPTION": "合并 #y灾祸 和 #y灾祸 。"
+      }
     },
     "${modID}:BarrageMod": {
-      "弹幕齐射": "弹幕²齐射"
+      "弹幕齐射": {
+        "NAME": "弹幕²齐射",
+        "DESCRIPTION": "合并 #y弹幕 和 #y弹幕齐射 。"
+      }
     },
     "${modID}:BitingMod": {
-      "噬咬": "噬咬²"
+      "噬咬": {
+        "NAME": "噬咬²",
+        "DESCRIPTION": "合并 #y噬咬 和 #y噬咬 。"
+      }
     },
     "${modID}:BrilliantMod": {
-      "光辉": "光辉²"
+      "光辉": {
+        "NAME": "光辉²",
+        "DESCRIPTION": "合并 #y光辉 和 #y光辉 。"
+      }
     },
     "${modID}:BurstyMod": {
-      "爆发": "爆发²"
+      "爆发": {
+        "NAME": "爆发²",
+        "DESCRIPTION": "合并 #y爆发 和 #y爆发 。"
+      }
+    },
+    "${modID}:CastMod": {
+      "双重释放": {
+        "NAME": "双重释放²",
+        "DESCRIPTION": "合并 #y并释放 和 #y双重释放 。"
+      },
+      "Multicast": {
+        "NAME": "多重释放²",
+        "DESCRIPTION": "合并 #y并释放 和 #y多重释放 。"
+      }
     },
     "${modID}:ChaoticMod": {
-      "混沌": "混沌²"
+      "混沌": {
+        "NAME": "混沌²",
+        "DESCRIPTION": "合并 #y混沌 和 #y混沌 。"
+      }
     },
     "${modID}:ChokingMod": {
-      "勒脖": "勒脖²"
+      "勒脖": {
+        "NAME": "勒脖²",
+        "DESCRIPTION": "合并 #y勒脖 和 #y勒脖 。"
+      }
     },
     "${modID}:CripplingMod": {
-      "致残毒云": "致残²毒云"
+      "致残毒云": {
+        "NAME": "致残²毒云",
+        "DESCRIPTION": "合并 #y致残 和 #y致残毒云 。"
+      }
     },
     "${modID}:CrushingMod": {
-      "粉碎关节": "粉碎²关节"
+      "粉碎关节": {
+        "NAME": "粉碎²关节",
+        "DESCRIPTION": "合并 #y粉碎 和 #y粉碎关节 。"
+      }
     },
     "${modID}:CutThroughMod": {
-      "斩破命运": "斩破²命运"
+      "斩破命运": {
+        "NAME": "斩破²命运",
+        "DESCRIPTION": "合并 #y斩破 和 #y斩破命运 。"
+      }
     },
     "${modID}:DarkMod": {
-      "黑暗之拥": "黑暗²之拥"
+      "黑暗之拥": {
+        "NAME": "黑暗²之拥",
+        "DESCRIPTION": "合并 #y昏暗 和 #y黑暗之拥 。"
+      }
     },
     "${modID}:DartMod": {
-      "飞镖": "飞镖²"
+      "飞镖": {
+        "NAME": "飞镖²",
+        "DESCRIPTION": "合并 #y飞镖 和 #y飞镖 。"
+      }
     },
     "${modID}:DeepMod": {
-      "深呼吸": "深²呼吸"
+      "深呼吸": {
+        "NAME": "深²呼吸",
+        "DESCRIPTION": "合并 #y深 和 #y深呼吸 。"
+      }
     },
     "${modID}:DeterminedMod": {
-      "硬撑": "硬撑²"
+      "硬撑": {
+        "NAME": "硬撑²",
+        "DESCRIPTION": "合并 #y硬撑 和 #y硬撑 。"
+      }
     },
     "${modID}:DiscoveredMod": {
-      "发现": "发现²"
+      "发现": {
+        "NAME": "发现²",
+        "DESCRIPTION": "合并 #y发现 和 #y发现 。"
+      }
     },
     "${modID}:DoublingMod": {
-      "双发": "双发²"
+      "双发": {
+        "NAME": "双发²",
+        "DESCRIPTION": "合并 #y双发 和 #y双发 。"
+      }
     },
     "${modID}:EquilibrialMod": {
-      "均衡": "均衡²"
+      "均衡": {
+        "NAME": "均衡²",
+        "DESCRIPTION": "合并 #y均衡 和 #y均衡 。"
+      }
+    },
+    "${modID}:Established": {
+      "确立基础": {
+        "NAME": "确立²基础",
+        "DESCRIPTION": "合并 #y确立 和 #y确立基础 。"
+      }
     },
     "${modID}:ExplosionMod": {
-      "尸爆术": "尸爆²术"
+      "尸爆术": {
+        "NAME": "尸爆²术",
+        "DESCRIPTION": "合并 #y爆炸 和 #y尸爆术 。"
+      }
     },
     "${modID}:EvolutionaryMod": {
-      "结茧": "结茧²",
-      "羽化": "羽化²"
+      "结茧": {
+        "NAME": "结茧²",
+        "DESCRIPTION": "合并 #y演变 和 #y结茧 。"
+      },
+      "羽化": {
+        "NAME": "羽化²",
+        "DESCRIPTION": "合并 #y演变 和 #y羽化 。"
+      }
     },
     "${modID}:FastingMod": {
-      "斋戒": "斋戒²"
+      "斋戒": {
+        "NAME": "斋戒²",
+        "DESCRIPTION": "合并 #y斋戒 和 #y斋戒 。"
+      }
     },
     "${modID}:FeedingMod": {
-      "狂宴": "狂宴²"
+      "狂宴": {
+        "NAME": "狂宴²",
+        "DESCRIPTION": "合并 #y狂宴 和 #y狂宴 。"
+      }
     },
     "${modID}:FinishingMod": {
-      "终结技": "终结²技"
+      "终结技": {
+        "NAME": "终结²技",
+        "DESCRIPTION": "合并 #y终结 和 #y终结技 。"
+      }
     },
     "${modID}:FlamingMod": {
-      "火焰屏障": "火焰²屏障"
+      "火焰屏障": {
+        "NAME": "火焰²屏障",
+        "DESCRIPTION": "合并 #y火焰 和 #y火焰屏障 。"
+      }
     },
     "${modID}:ForcefulMod": {
-      "力场": "力²场"
+      "力场": {
+        "NAME": "力²场",
+        "DESCRIPTION": "合并 #y有力 和 #y力场 。"
+      }
     },
     "${modID}:GuardedMod": {
-      "哨卫": "哨卫²"
+      "哨卫": {
+        "NAME": "哨卫²",
+        "DESCRIPTION": "合并 #y哨卫 和 #y哨卫 。"
+      }
     },
     "${modID}:HeadOnMod": {
-      "头槌": "头槌²"
+      "头槌": {
+        "NAME": "头槌²",
+        "DESCRIPTION": "合并 #y迎头 和 #y头槌 。"
+      }
     },
     "${modID}:HoloMod": {
-      "全息影像": "全息²影像"
+      "全息影像": {
+        "NAME": "全息²影像",
+        "DESCRIPTION": "合并 #y全息 和 #y全息影像 。"
+      }
     },
     "${modID}:InjuriousMod": {
-      "狂野打击": "狂野²打击"
+      "狂野打击": {
+        "NAME": "狂野²打击",
+        "DESCRIPTION": "合并 #y致伤 和 #y狂野打击 。"
+      }
     },
     "${modID}:IntimidatingMod": {
-      "威吓": "威吓²"
+      "威吓": {
+        "NAME": "威吓²",
+        "DESCRIPTION": "合并 #y威吓 和 #y威吓 。"
+      }
     },
     "${modID}:LoopyMod": {
-      "循环": "循环²"
+      "循环": {
+        "NAME": "循环²",
+        "DESCRIPTION": "合并 #y循环 和 #y循环 。"
+      }
     },
     "${modID}:LoudMod": {
-      "增幅": "增幅²"
+      "增幅": {
+        "NAME": "增幅²",
+        "DESCRIPTION": "合并 #y增幅 和 #y增幅 。"
+      }
     },
     "${modID}:OverclockedMod": {
-      "超频": "超频²"
+      "超频": {
+        "NAME": "超频²",
+        "DESCRIPTION": "合并 #y超频 和 #y超频 。"
+      }
     },
     "${modID}:PainlessMod": {
-      "无惧疼痛": "无惧疼痛²"
+      "无惧疼痛": {
+        "NAME": "无惧疼痛²",
+        "DESCRIPTION": "合并 #y无痛 和 #y无惧疼痛 。"
+      }
     },
     "${modID}:PanicMod": {
-      "应急按钮": "应急²按钮"
+      "应急按钮": {
+        "NAME": "应急²按钮",
+        "DESCRIPTION": "合并 #y应急 和 #y应急按钮 。"
+      }
     },
     "${modID}:PerfectMod": {
-      "完美打击": "完美²打击"
+      "完美打击": {
+        "NAME": "完美²打击",
+        "DESCRIPTION": "合并 #y无瑕 和 #y完美打击 。"
+      }
     },
     "${modID}:ReaperMod": {
-      "死亡收割": "死亡收割²"
+      "死亡收割": {
+        "NAME": "死亡收割²",
+        "DESCRIPTION": "合并 #y收割 和 #y死亡收割 。"
+      }
     },
     "${modID}:RecklessMod": {
-      "无谋冲锋": "无谋²冲锋"
+      "无谋冲锋": {
+        "NAME": "无谋²冲锋",
+        "DESCRIPTION": "合并 #y无谋 和 #y无谋冲锋 。"
+      }
     },
     "${modID}:ReflexMod": {
-      "本能反应": "本能²反应"
+      "本能反应": {
+        "NAME": "本能²反应",
+        "DESCRIPTION": "合并 #y本能 和 #y本能反应 。"
+      }
     },
     "${modID}:RupturedMod": {
-      "撕裂": "撕裂²"
+      "撕裂": {
+        "NAME": "撕裂²",
+        "DESCRIPTION": "合并 #y撕裂 和 #y撕裂 。"
+      }
     },
     "${modID}:SecretMod": {
-      "秘密技法": "秘密²技法",
-      "秘密武器": "秘密²武器"
+      "秘密技法": {
+        "NAME": "秘密²技法",
+        "DESCRIPTION": "合并 #y秘密 和 #y秘密技法 。"
+      },
+      "秘密武器": {
+        "NAME": "秘密²武器",
+        "DESCRIPTION": "合并 #y秘密 和 #y秘密武器 。"
+      }
     },
     "${modID}:ShacklingMod": {
-      "黑暗镣铐": "黑暗镣铐²"
+      "黑暗镣铐": {
+        "NAME": "黑暗镣铐²",
+        "DESCRIPTION": "合并 #y镣铐 和 #y黑暗镣铐 。"
+      }
     },
     "${modID}:ShockingMod": {
-      "震荡波": "震荡²波"
+      "震荡波": {
+        "NAME": "震荡²波",
+        "DESCRIPTION": "合并 #y震荡 和 #y震荡波 。"
+      }
     },
     "${modID}:ShriekingMod": {
-      "尖啸": "尖啸²"
+      "尖啸": {
+        "NAME": "尖啸²",
+        "DESCRIPTION": "合并 #y尖啸 和 #y尖啸 。"
+      }
     },
     "${modID}:SplitMod": {
-      "分离": "分离²"
+      "分离": {
+        "NAME": "分离²",
+        "DESCRIPTION": "合并 #y分离 和 #y分离 。"
+      }
     },
     "${modID}:SpringyMod": {
-      "弹回": "弹回²"
+      "弹回": {
+        "NAME": "弹回²",
+        "DESCRIPTION": "合并 #y弹性 和 #y弹回 。"
+      }
     },
     "${modID}:StealthyMod": {
-      "隐秘打击": "隐秘²打击"
+      "隐秘打击": {
+        "NAME": "隐秘²打击",
+        "DESCRIPTION": "合并 #y隐蔽 和 #y隐秘打击 。"
+      }
     },
     "${modID}:SteamMod": {
-      "蒸汽护壁": "蒸汽²护壁"
+      "蒸汽护壁": {
+        "NAME": "蒸汽²护壁",
+        "DESCRIPTION": "合并 #y蒸汽 和 #y蒸汽护壁 。"
+      }
     },
     "${modID}:StrategicMod": {
-      "战略大师": "战略²大师"
+      "战略大师": {
+        "NAME": "战略²大师",
+        "DESCRIPTION": "合并 #y战略 和 #y战略大师 。"
+      }
     },
     "${modID}:SuperluminalMod": {
-      "超越光速": "超越光速²"
+      "超越光速": {
+        "NAME": "超越光速²",
+        "DESCRIPTION": "合并 #y超光速 和 #y超越光速 。"
+      }
     },
     "${modID}:TacticalMod": {
-      "战术大师": "战术²大师"
+      "战术大师": {
+        "NAME": "战术²大师",
+        "DESCRIPTION": "合并 #y战术 和 #y战术大师 。"
+      }
     },
     "${modID}:ThirdMod": {
-      "天眼": "天²眼"
+      "天眼": {
+        "NAME": "天²眼",
+        "DESCRIPTION": "合并 #y天 和 #y天眼 。"
+      }
     },
     "${modID}:UpperMod": {
-      "上勾拳": "上²勾拳"
+      "上勾拳": {
+        "NAME": "上²勾拳",
+        "DESCRIPTION": "合并 #y上 和 #y上勾拳 。"
+      }
     },
     "${modID}:ViolentMod": {
-      "暴力": "暴力²"
+      "暴力": {
+        "NAME": "暴力²",
+        "DESCRIPTION": "合并 #y暴力 和 #y暴力 。"
+      }
     }
   }
 }

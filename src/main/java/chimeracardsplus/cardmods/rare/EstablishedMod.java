@@ -1,4 +1,4 @@
-package chimeracardsplus.cardmods.common;
+package chimeracardsplus.cardmods.rare;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
@@ -53,7 +53,7 @@ public class EstablishedMod extends AbstractAugmentPlus {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.COMMON;
+        return AugmentRarity.RARE;
     }
 
     @Override

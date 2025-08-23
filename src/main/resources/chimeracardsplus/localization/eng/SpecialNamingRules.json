@@ -1,288 +1,598 @@
 {
   "NAME_DICT": {
     "CardAugments:AllOutMod": {
-      "All-Out Attack": "All-Out² Attack"
+      "All-Out Attack": {
+        "NAME": "All-Out² Attack",
+        "DESCRIPTION": "Merged #yAll-Out with #yAll-Out #yAttack."
+      }
     },
     "CardAugments:ShivMod": {
-      "Cloak and Dagger": "Cloak and Dagger²"
+      "Cloak and Dagger": {
+        "NAME": "Cloak and Dagger²",
+        "DESCRIPTION": "Merged #yand #yDagger with #yCloak #yand #yDagger."
+      }
     },
     "CardAugments:GloomMod": {
-      "Doom and Gloom": "Doom and Gloom²"
+      "Doom and Gloom": {
+        "NAME": "Doom and Gloom²",
+        "DESCRIPTION": "Merged #yand #yGloom with #yDoom #yand #yGloom."
+      }
     },
     "CardAugments:RollMod": {
-      "Dodge and Roll": "Dodge and Roll²"
+      "Dodge and Roll": {
+        "NAME": "Dodge and Roll²",
+        "DESCRIPTION": "Merged #yand #yRoll with #yDodge #yand #yRoll."
+      }
     },
     "CardAugments:TearMod": {
-      "Rip and Tear": "Rip and Tear²"
+      "Rip and Tear": {
+        "NAME": "Rip and Tear²",
+        "DESCRIPTION": "Merged #yand #yTear with #yRip #yand #yTear."
+      }
     },
     "CardAugments:AngryMod": {
-      "Anger": "Anger²"
+      "Anger": {
+        "NAME": "Anger²",
+        "DESCRIPTION": "Merged #yAngry with #yAnger."
+      }
     },
     "CardAugments:ArmedMod": {
-      "Armaments": "Armaments²"
+      "Armaments": {
+        "NAME": "Armaments²",
+        "DESCRIPTION": "Merged #yArmed with #yArmaments."
+      }
     },
     "CardAugments:BashMod": {
-      "Bash": "Bash²"
+      "Bash": {
+        "NAME": "Bash²",
+        "DESCRIPTION": "Merged #yBashing with #yBash."
+      }
     },
     "CardAugments:BlurryMod": {
-      "Blur": "Blur²"
+      "Blur": {
+        "NAME": "Blur²",
+        "DESCRIPTION": "Merged #yBlurry with #yBlur."
+      }
     },
     "CardAugments:BowlingMod": {
-      "Bowling Bash": "Bowling² Bash"
+      "Bowling Bash": {
+        "NAME": "Bowling² Bash",
+        "DESCRIPTION": "Merged #yBowling with #yBowling #yBash."
+      }
     },
     "CardAugments:ChargedMod": {
-      "Charge Battery": "Charge² Battery"
+      "Charge Battery": {
+        "NAME": "Charge² Battery",
+        "DESCRIPTION": "Merged #yCharged with #yCharge #yBattery."
+      }
     },
     "CardAugments:ClawfulMod": {
-      "Claw": "Claw²"
+      "Claw": {
+        "NAME": "Claw²",
+        "DESCRIPTION": "Merged #yClawful with #yClaw."
+      }
     },
     "CardAugments:EndlessMod": {
-      "Endless Agony": "Endless² Agony"
+      "Endless Agony": {
+        "NAME": "Endless² Agony",
+        "DESCRIPTION": "Merged #yEndless with #yEndless #yAgony."
+      }
     },
     "CardAugments:FlexMod": {
-      "Flex": "Flex²"
+      "Flex": {
+        "NAME": "Flex²",
+        "DESCRIPTION": "Merged #yFlexed with #yFlex."
+      }
     },
     "CardAugments:FlyingMod": {
-      "Flying Knee": "Flying² Knee"
+      "Flying Knee": {
+        "NAME": "Flying² Knee",
+        "DESCRIPTION": "Merged #yFlying with #yFlying #yKnee."
+      }
     },
     "CardAugments:FollowUpMod": {
-      "Follow-Up": "Follow-Up²"
+      "Follow-Up": {
+        "NAME": "Follow-Up²",
+        "DESCRIPTION": "Merged #yFollowing with #yFollow-Up."
+      }
     },
     "CardAugments:ForOneMod": {
-      "All for One": "All for One²"
+      "All for One": {
+        "NAME": "All for One²",
+        "DESCRIPTION": "Merged #yfor #yOne with #yAll #yfor #yOne."
+      }
     },
     "CardAugments:GlassMod": {
-      "Glass Knife": "Glass² Knife"
+      "Glass Knife": {
+        "NAME": "Glass² Knife",
+        "DESCRIPTION": "Merged #yGlass with #yGlass #yKnife."
+      }
     },
     "CardAugments:GritMod": {
-      "True Grit": "True Grit²"
+      "True Grit": {
+        "NAME": "True Grit²",
+        "DESCRIPTION": "Merged #yGritty with #yTrue Grit."
+      }
     },
     "CardAugments:HeavyMod": {
-      "Heavy Blade": "Heavy² Blade"
+      "Heavy Blade": {
+        "NAME": "Heavy² Blade",
+        "DESCRIPTION": "Merged #yHeavy with #yHeavy #yBlade."
+      }
     },
     "CardAugments:HemoMod": {
-      "Hemokinesis": "Hemokinesis²"
+      "Hemokinesis": {
+        "NAME": "Hemokinesis²",
+        "DESCRIPTION": "Merged #yHemo with #yHemokinesis."
+      }
     },
     "CardAugments:LuckyMod": {
-      "Just Lucky": "Just Lucky²"
+      "Just Lucky": {
+        "NAME": "Just Lucky²",
+        "DESCRIPTION": "Merged #yLucky with #yJust #yLucky."
+      }
     },
     "CardAugments:NoxiousMod": {
-      "Noxious Fumes": "Noxious² Fumes"
+      "Noxious Fumes": {
+        "NAME": "Noxious² Fumes",
+        "DESCRIPTION": "Merged #yNoxious with #yNoxious #yFumes."
+      }
     },
     "CardAugments:GreedMod": {
-      "Hand of Greed": "Hand of Greed²"
+      "Hand of Greed": {
+        "NAME": "Hand of Greed²",
+        "DESCRIPTION": "Merged #yof #yGreed with #yHand #yof #yGreed."
+      }
     },
     "CardAugments:OmegaMod": {
-      "Omega": "Omega²"
+      "Omega": {
+        "NAME": "Omega²",
+        "DESCRIPTION": "Merged #yOmega with #yOmega."
+      }
     },
     "CardAugments:PoisonedMod": {
-      "Poisoned Stab": "Poisoned² Stab"
+      "Poisoned Stab": {
+        "NAME": "Poisoned² Stab",
+        "DESCRIPTION": "Merged #yPoisoned with #yPoisoned #yStab."
+      }
     },
     "CardAugments:PredatoryMod": {
-      "Predator": "Predator²"
+      "Predator": {
+        "NAME": "Predator²",
+        "DESCRIPTION": "Merged #yPredatory with #yPredator."
+      }
     },
     "CardAugments:PreparedMod": {
-      "Prepared": "Prepared²"
+      "Prepared": {
+        "NAME": "Prepared²",
+        "DESCRIPTION": "Merged #yPrepared with #yPrepared."
+      }
     },
     "CardAugments:QuickMod": {
-      "Quick Slash": "Quick² Slash"
+      "Quick Slash": {
+        "NAME": "Quick² Slash",
+        "DESCRIPTION": "Merged #yQuick with #yQuick #ySlash."
+      }
     },
     "CardAugments:RampedMod": {
-      "Rampage": "Rampage²"
+      "Rampage": {
+        "NAME": "Rampage²",
+        "DESCRIPTION": "Merged #yRamped with #yRampage."
+      }
     },
     "CardAugments:SanctifiedMod": {
-      "Sanctity": "Sanctity²"
+      "Sanctity": {
+        "NAME": "Sanctity²",
+        "DESCRIPTION": "Merged #ySanctified with #ySanctity."
+      }
     },
     "CardAugments:StreamlinedMod": {
-      "Streamline": "Streamline²"
+      "Streamline": {
+        "NAME": "Streamline²",
+        "DESCRIPTION": "Merged #yStreamlined with #yStreamline."
+      }
     },
     "CardAugments:SuckerMod": {
-      "Sucker Punch": "Sucker² Punch"
+      "Sucker Punch": {
+        "NAME": "Sucker² Punch",
+        "DESCRIPTION": "Merged #ySucker with #ySucker #yPunch."
+      }
     },
     "CardAugments:SurvivorMod": {
-      "Survivor": "Survivor²"
+      "Survivor": {
+        "NAME": "Survivor²",
+        "DESCRIPTION": "Merged #ySurvivor's with #ySurvivor."
+      }
     },
     "CardAugments:SwivelMod": {
-      "Swivel": "Swivel²"
+      "Swivel": {
+        "NAME": "Swivel²",
+        "DESCRIPTION": "Merged #ySwivelled with #ySwivel."
+      }
     },
     "CardAugments:WallopMod": {
-      "Wallop": "Wallop²"
+      "Wallop": {
+        "NAME": "Wallop²",
+        "DESCRIPTION": "Merged #yWalloping with #yWallop."
+      }
     },
     "CardAugments:WaveMod": {
-      "Iron Wave": "Iron Wave²"
+      "Iron Wave": {
+        "NAME": "Iron Wave²",
+        "DESCRIPTION": "Merged #yWave with #yIron #yWave."
+      }
+    },
+    "${modID}:AlchemicalMod": {
+      "Alchemize": {
+        "NAME": "Alchemize²",
+        "DESCRIPTION": "Merged #yAlchemical with #yAlchemize."
+      }
     },
     "${modID}:LearnMod": {
-      "Lesson Learned": "Lesson Learned²"
+      "Lesson Learned": {
+        "NAME": "Lesson Learned²",
+        "DESCRIPTION": "Merged #yand #yLearn with #yLesson #yLearned."
+      }
     },
     "${modID}:WhipMod": {
-      "Sash Whip": "Sash Whip²"
+      "Sash Whip": {
+        "NAME": "Sash Whip²",
+        "DESCRIPTION": "Merged #yand #yWhip with #ySash #yWhip."
+      }
     },
     "${modID}:BanefulMod": {
-      "Bane": "Bane²"
+      "Bane": {
+        "NAME": "Bane²",
+        "DESCRIPTION": "Merged #yBaneful with #yBane."
+      }
     },
     "${modID}:BarrageMod": {
-      "Barrage": "Barrage²"
+      "Barrage": {
+        "NAME": "Barrage²",
+        "DESCRIPTION": "Merged #yBarrage #yof with #yBarrage."
+      }
     },
     "${modID}:BitingMod": {
-      "Bite": "Bite²"
+      "Bite": {
+        "NAME": "Bite²",
+        "DESCRIPTION": "Merged #yBiting with #yBite."
+      }
     },
     "${modID}:BrilliantMod": {
-      "Brilliance": "Brilliance²"
+      "Brilliance": {
+        "NAME": "Brilliance²",
+        "DESCRIPTION": "Merged #yBrilliant with #yBrilliance."
+      }
     },
     "${modID}:BurstyMod": {
-      "Burst": "Burst²"
+      "Burst": {
+        "NAME": "Burst²",
+        "DESCRIPTION": "Merged #yBursty with #yBurst."
+      }
+    },
+    "${modID}:CastMod": {
+      "Dualcast": {
+        "NAME": "Dualcast²",
+        "DESCRIPTION": "Merged #yand #yCast with #yDualcast."
+      },
+      "Multicast": {
+        "NAME": "Multicast²",
+        "DESCRIPTION": "Merged #yand #yCast with #yMulticast."
+      }
     },
     "${modID}:ChaoticMod": {
-      "Chaos": "Chaos²"
+      "Chaos": {
+        "NAME": "Chaos²",
+        "DESCRIPTION": "Merged #yChaotic with #yChaos."
+      }
     },
     "${modID}:ChokingMod": {
-      "Choke": "Choke²"
+      "Choke": {
+        "NAME": "Choke²",
+        "DESCRIPTION": "Merged #yChoking with #yChoke."
+      }
     },
     "${modID}:CripplingMod": {
-      "Crippling Cloud": "Crippling² Cloud"
+      "Crippling Cloud": {
+        "NAME": "Crippling² Cloud",
+        "DESCRIPTION": "Merged #yCrippling with #yCrippling #yCloud."
+      }
     },
     "${modID}:CrushingMod": {
-      "Crush Joints": "Crush² Joints"
+      "Crush Joints": {
+        "NAME": "Crush² Joints",
+        "DESCRIPTION": "Merged #yCrushing with #yCrush #yJoints."
+      }
     },
     "${modID}:CutThroughMod": {
-      "Cut Through Fate": "Cut Through² Fate"
+      "Cut Through Fate": {
+        "NAME": "Cut Through² Fate",
+        "DESCRIPTION": "Merged #yCut #yThrough with #yCut #yThrough #yFate."
+      }
     },
     "${modID}:DarkMod": {
-      "Dark Embrace": "Dark² Embrace"
+      "Dark Embrace": {
+        "NAME": "Dark² Embrace",
+        "DESCRIPTION": "Merged #yDark with #yDark #yEmbrace."
+      }
     },
     "${modID}:DartMod": {
-      "Flechettes": "Flechettes²"
+      "Flechettes": {
+        "NAME": "Flechettes²",
+        "DESCRIPTION": "Merged #yDart with #yFlechettes."
+      }
     },
     "${modID}:DeepMod": {
-      "Deep Breath": "Deep² Breath"
+      "Deep Breath": {
+        "NAME": "Deep² Breath",
+        "DESCRIPTION": "Merged #yDeep with #yDeep #yBreath."
+      }
     },
     "${modID}:DeterminedMod": {
-      "Power Through": "Power Through²"
+      "Power Through": {
+        "NAME": "Power Through²",
+        "DESCRIPTION": "Merged #yDetermined with #yPower #yThrough."
+      }
     },
     "${modID}:DiscoveredMod": {
-      "Discovery": "Discovery²"
+      "Discovery": {
+        "NAME": "Discovery²",
+        "DESCRIPTION": "Merged #yDiscovered with #yDiscovery."
+      }
     },
     "${modID}:DoublingMod": {
-      "Double Tap": "Double² Tap"
+      "Double Tap": {
+        "NAME": "Double² Tap",
+        "DESCRIPTION": "Merged #yDoubling with #yDouble #yTap."
+      }
     },
     "${modID}:EquilibrialMod": {
-      "Equilibrium": "Equilibrium²"
+      "Equilibrium": {
+        "NAME": "Equilibrium²",
+        "DESCRIPTION": "Merged #yEquilibrial with #yEquilibrium."
+      }
+    },
+    "${modID}:Established": {
+      "Establishment": {
+        "NAME": "Establishment²",
+        "DESCRIPTION": "Merged #yEstablished with #yEstablishment."
+      }
     },
     "${modID}:EvolutionaryMod": {
-      "Chrysalis": "Chrysalis²",
-      "Metamorphosis": "Metamorphosis²"
+      "Chrysalis": {
+        "NAME": "Chrysalis²",
+        "DESCRIPTION": "Merged #yEvolutionary with #yChrysalis."
+      },
+      "Metamorphosis": {
+        "NAME": "Metamorphosis²",
+        "DESCRIPTION": "Merged #yEvolutionary with #yMetamorphosis."
+      }
     },
     "${modID}:ExplosionMod": {
-      "Corpse Explosion": "Corpse Explosion²"
+      "Corpse Explosion": {
+        "NAME": "Corpse Explosion²",
+        "DESCRIPTION": "Merged #yExplosion with #yCorpse #yExplosion."
+      }
     },
     "${modID}:FastingMod": {
-      "Fasting": "Fasting²"
+      "Fasting": {
+        "NAME": "Fasting²",
+        "DESCRIPTION": "Merged #yFasting with #yFasting."
+      }
     },
     "${modID}:FeedingMod": {
-      "Feed": "Feed²"
+      "Feed": {
+        "NAME": "Feed²",
+        "DESCRIPTION": "Merged #yFeeding with #yFeed."
+      }
     },
     "${modID}:FinishingMod": {
-      "Finisher": "Finisher²"
+      "Finisher": {
+        "NAME": "Finisher²",
+        "DESCRIPTION": "Merged #yFinishing with #yFinisher."
+      }
     },
     "${modID}:FlamingMod": {
-      "Flame Barrier": "Flame² Barrier"
+      "Flame Barrier": {
+        "NAME": "Flame² Barrier",
+        "DESCRIPTION": "Merged #yFlaming with #yFlame #yBarrier."
+      }
     },
     "${modID}:ForcefulMod": {
-      "Force Field": "Force² Field"
+      "Force Field": {
+        "NAME": "Force² Field",
+        "DESCRIPTION": "Merged #yForceful with #yForce #yField."
+      }
     },
     "${modID}:GuardedMod": {
-      "Sentinel": "Sentinel²"
+      "Sentinel": {
+        "NAME": "Sentinel²",
+        "DESCRIPTION": "Merged #yGuarded with #ySentinel."
+      }
     },
     "${modID}:HeadOnMod": {
-      "Headbutt": "Headbutt²"
+      "Headbutt": {
+        "NAME": "Headbutt²",
+        "DESCRIPTION": "Merged #yHead-On with #yHeadbutt."
+      }
     },
     "${modID}:HoloMod": {
-      "Hologram": "Hologram²"
+      "Hologram": {
+        "NAME": "Hologram²",
+        "DESCRIPTION": "Merged #yHolo with #yHologram."
+      }
     },
     "${modID}:InescapableMod": {
-      "Necronomicurse": "Necronomicurse²"
+      "Necronomicurse": {
+        "NAME": "Necronomicurse²",
+        "DESCRIPTION": "Merged #yInescapable with #yNecronomicurse."
+      }
     },
     "${modID}:InjuriousMod": {
-      "Wild Strike": "Wild² Strike"
+      "Wild Strike": {
+        "NAME": "Wild² Strike",
+        "DESCRIPTION": "Merged #yInjurious with #yWild #yStrike."
+      }
     },
     "${modID}:IntimidatingMod": {
-      "Intimidate": "Intimidate²"
+      "Intimidate": {
+        "NAME": "Intimidate²",
+        "DESCRIPTION": "Merged #yIntimidating with #yIntimidate."
+      }
     },
     "${modID}:LoopyMod": {
-      "Loop": "Loop²"
+      "Loop": {
+        "NAME": "Loop²",
+        "DESCRIPTION": "Merged #yLoopy with #yLoop."
+      }
     },
     "${modID}:LoudMod": {
-      "Amplify": "Amplify²"
+      "Amplify": {
+        "NAME": "Amplify²",
+        "DESCRIPTION": "Merged #yLoud with #yAmplify."
+      }
     },
     "${modID}:OverclockedMod": {
-      "Overclock": "Overclock²"
+      "Overclock": {
+        "NAME": "Overclock²",
+        "DESCRIPTION": "Merged #yOverclocked with #yOverclock."
+      }
     },
     "${modID}:PainlessMod": {
-      "Feel No Pain": "Feel No Pain²"
+      "Feel No Pain": {
+        "NAME": "Feel No Pain²",
+        "DESCRIPTION": "Merged #yPainless with #yFeel #yNo #yPain."
+      }
     },
     "${modID}:PanicMod": {
-      "Panic Button": "Panic² Button"
+      "Panic Button": {
+        "NAME": "Panic² Button",
+        "DESCRIPTION": "Merged #yPanic with #yPanic #yButton."
+      }
     },
     "${modID}:PerfectMod": {
-      "Perfected Strike": "Perfected² Strike"
+      "Perfected Strike": {
+        "NAME": "Perfected² Strike",
+        "DESCRIPTION": "Merged #yPerfect with #yPerfected #yStrike."
+      }
     },
     "${modID}:PrayerfulMod": {
-      "Pray": "Pray²"
+      "Pray": {
+        "NAME": "Pray²",
+        "DESCRIPTION": "Merged #yPrayerful with #yPray."
+      }
     },
     "${modID}:ReaperMod": {
-      "Reaper": "Reaper²"
+      "Reaper": {
+        "NAME": "Reaper²",
+        "DESCRIPTION": "Merged #yReaper's with #yReaper."
+      }
     },
     "${modID}:RecklessMod": {
-      "Reckless Charge": "Reckless² Charge"
+      "Reckless Charge": {
+        "NAME": "Reckless² Charge",
+        "DESCRIPTION": "Merged #yReckless with #yReckless #yCharge."
+      }
     },
     "${modID}:ReflexMod": {
-      "Reflex": "Reflex²"
+      "Reflex": {
+        "NAME": "Reflex²",
+        "DESCRIPTION": "Merged #yReflex with #yReflex."
+      }
     },
     "${modID}:RupturedMod": {
-      "Rupture": "Rupture²"
+      "Rupture": {
+        "NAME": "Rupture²",
+        "DESCRIPTION": "Merged #yRuptured with #yRupture."
+      }
     },
     "${modID}:SecretMod": {
-      "Secret Technique": "Secret² Technique",
-      "Secret Weapon": "Secret² Weapon"
+      "Secret Technique": {
+        "NAME": "Secret² Technique",
+        "DESCRIPTION": "Merged #ySecret with #ySecret #yTechnique."
+      },
+      "Secret Weapon": {
+        "NAME": "Secret² Weapon",
+        "DESCRIPTION": "Merged #ySecret with #ySecret #yWeapon."
+      }
     },
     "${modID}:ShacklingMod": {
-      "Dark Shackles": "Dark Shackles²"
+      "Dark Shackles": {
+        "NAME": "Dark Shackles²",
+        "DESCRIPTION": "Merged #yShackling with #yDark #yShackles."
+      }
     },
     "${modID}:ShockingMod": {
-      "Shockwave": "Shockwave²"
+      "Shockwave": {
+        "NAME": "Shockwave²",
+        "DESCRIPTION": "Merged #yShocking with #yShockwave."
+      }
     },
     "${modID}:ShriekingMod": {
-      "Piercing Wail": "Piercing² Wail"
+      "Piercing Wail": {
+        "NAME": "Piercing² Wail",
+        "DESCRIPTION": "Merged #yPiercing with #yPiercing #yWail."
+      }
     },
     "${modID}:SplitMod": {
-      "Sunder": "Sunder²"
+      "Sunder": {
+        "NAME": "Sunder²",
+        "DESCRIPTION": "Merged #ySplit with #ySunder."
+      }
     },
     "${modID}:SpringyMod": {
-      "Rebound": "Rebound²"
+      "Rebound": {
+        "NAME": "Rebound²",
+        "DESCRIPTION": "Merged #ySpringy with #yRebound."
+      }
     },
     "${modID}:StealthyMod": {
-      "Sneaky Strike": "Sneaky² Strike"
+      "Sneaky Strike": {
+        "NAME": "Sneaky² Strike",
+        "DESCRIPTION": "Merged #yStealthy with #ySneaky #yStrike."
+      }
     },
     "${modID}:SteamMod": {
-      "Steam Barrier": "Steam² Barrier"
+      "Steam Barrier": {
+        "NAME": "Steam² Barrier",
+        "DESCRIPTION": "Merged #ySteam with #ySteam #yBarrier."
+      }
     },
     "${modID}:StrategicMod": {
-      "Master of Strategy": "Master of Strategy²"
+      "Master of Strategy": {
+        "NAME": "Master of Strategy²",
+        "DESCRIPTION": "Merged #yStrategic with #yMaster #yof #yStrategy."
+      }
     },
     "${modID}:SuperluminalMod": {
-      "FTL": "FTL²"
+      "FTL": {
+        "NAME": "FTL²",
+        "DESCRIPTION": "Merged #ySuperluminal with #yFTL."
+      }
     },
     "${modID}:TacticalMod": {
-      "Tactician": "Tactician²"
+      "Tactician": {
+        "NAME": "Tactician²",
+        "DESCRIPTION": "Merged #yTactical with #yTactician."
+      }
     },
     "${modID}:ThirdMod": {
-      "Third Eye": "Third² Eye"
+      "Third Eye": {
+        "NAME": "Third² Eye",
+        "DESCRIPTION": "Merged #yThird with #yThird #yEye."
+      }
     },
     "${modID}:UpperMod": {
-      "Uppercut": "Uppercut²"
+      "Uppercut": {
+        "NAME": "Uppercut²",
+        "DESCRIPTION": "Merged #yUpper with #yUppercut."
+      }
     },
     "${modID}:ViolentMod": {
-      "Violence": "Violence²"
+      "Violence": {
+        "NAME": "Violence²",
+        "DESCRIPTION": "Merged #yViolent with #yViolence."
+      }
     }
   }
 }

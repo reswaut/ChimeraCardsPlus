@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class SpecialNamingRules {
-    public Map<String, Map<String, String>> NAME_DICT = null;
+    public Map<String, Map<String, SpecialName>> NAME_DICT = null;
 
     public void addRules(SpecialNamingRules newRules) {
         if (NAME_DICT == null) {
@@ -13,13 +13,18 @@ public class SpecialNamingRules {
             NAME_DICT.putAll(newRules.NAME_DICT);
             return;
         }
-        for (Entry<String, Map<String, String>> entry : newRules.NAME_DICT.entrySet()) {
-            Map<String, String> rule = NAME_DICT.get(entry.getKey());
+        for (Entry<String, Map<String, SpecialName>> entry : newRules.NAME_DICT.entrySet()) {
+            Map<String, SpecialName> rule = NAME_DICT.get(entry.getKey());
             if (rule == null) {
                 NAME_DICT.put(entry.getKey(), entry.getValue());
             } else {
                 rule.putAll(entry.getValue());
             }
         }
+    }
+
+    public static class SpecialName {
+        public String NAME;
+        public String DESCRIPTION;
     }
 }

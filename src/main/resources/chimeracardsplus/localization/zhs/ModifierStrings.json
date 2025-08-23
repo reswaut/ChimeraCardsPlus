@@ -1564,8 +1564,8 @@
   },
   "${modID}:ShacklingMod": {
     "TEXT": [
-      "镣铐",
       "",
+      "镣铐",
       "敌人在本回合内失去 #b5 点 力量 。 NL #y消耗 。"
     ],
     "EXTRA_TEXT": [
