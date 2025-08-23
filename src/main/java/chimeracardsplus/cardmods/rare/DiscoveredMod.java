@@ -1,6 +1,5 @@
 package chimeracardsplus.cardmods.rare;
 
-import CardAugments.cardmods.util.PreviewedMod;
 import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import CardAugments.util.FormatHelper;
 import CardAugments.util.PortraitHelper;
@@ -10,6 +9,7 @@ import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPrevie
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.actions.DiscoverModAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.helpers.LabelMod;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTarget;
@@ -26,6 +26,7 @@ public class DiscoveredMod extends AbstractAugmentPlus {
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
     private boolean inherentHack = true;
+    private final String labelID = LabelMod.makeLabelModID(ID);
 
     public DiscoveredMod() {
         priority = -100;
@@ -36,7 +37,7 @@ public class DiscoveredMod extends AbstractAugmentPlus {
         inherentHack = true;
         AbstractCard preview = card.makeStatEquivalentCopy();
         inherentHack = false;
-        CardModifierManager.addModifier(preview, new PreviewedMod());
+        CardModifierManager.addModifier(preview, new LabelMod(labelID));
         MultiCardPreview.add(card, preview);
         InterceptUseField.interceptUse.set(card, true);
         card.isEthereal = false;
@@ -79,7 +80,7 @@ public class DiscoveredMod extends AbstractAugmentPlus {
     @Override
     public void onUpgradeCheck(AbstractCard card) {
         for (AbstractCard o : MultiCardPreview.multiCardPreview.get(card)) {
-            if (CardModifierManager.hasModifier(o, PreviewedMod.ID)) {
+            if (CardModifierManager.hasModifier(o, labelID)) {
                 o.upgrade();
                 o.initializeDescription();
             }
@@ -89,7 +90,7 @@ public class DiscoveredMod extends AbstractAugmentPlus {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        AbstractCard preview = MultiCardPreview.multiCardPreview.get(card).stream().filter(o -> CardModifierManager.hasModifier(o, PreviewedMod.ID)).findFirst().orElse(null);
+        AbstractCard preview = MultiCardPreview.multiCardPreview.get(card).stream().filter(o -> CardModifierManager.hasModifier(o, labelID)).findFirst().orElse(null);
         addToBot(new DiscoverModAction(preview));
     }
 

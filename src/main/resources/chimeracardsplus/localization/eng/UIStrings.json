@@ -8,8 +8,8 @@
   "${modID}:ModConfigs": {
     "TEXT": [
       "Enable Chimera Cards+ Content",
-      "Enable Card Fixes",
-      "Change the mechanisms of some cards to make them work with Chimera Modifiers. Does not change card effects.",
+      "Enable Fixes for Cards & Relics",
+      "Change the mechanisms of some cards and relics to make them work with Chimera Modifiers. Does not change their effects.",
       "Enable Event Addons+",
       "Add more new options in Events.",
       "Enable Special Naming",

@@ -16,8 +16,6 @@ public class RecyclableMod extends AbstractAugmentPlus {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private boolean inherentHack = true;
-    private AbstractCard hiddenCard = null;
 
     // This modifier should be applied first.
     public RecyclableMod() {
@@ -31,9 +29,6 @@ public class RecyclableMod extends AbstractAugmentPlus {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        inherentHack = true;
-        hiddenCard = card.makeStatEquivalentCopy();
-        inherentHack = false;
         InterceptUseField.interceptUse.set(card, true);
         card.cost = 1;
         card.costForTurn = card.cost;
@@ -94,21 +89,8 @@ public class RecyclableMod extends AbstractAugmentPlus {
     }
 
     @Override
-    public void onApplyPowers(AbstractCard card) {
-        hiddenCard.applyPowers();
-        hiddenCard.initializeDescription();
-    }
-
-    @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        hiddenCard.upgrade();
-        hiddenCard.initializeDescription();
-        card.initializeDescription();
-    }
-
-    @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        addToBot(new RecycleXAction(hiddenCard, target));
+        addToBot(new RecycleXAction(card, target));
     }
 
     @Override
@@ -119,11 +101,6 @@ public class RecyclableMod extends AbstractAugmentPlus {
     @Override
     public AbstractCardModifier makeCopy() {
         return new RecyclableMod();
-    }
-
-    @Override
-    public boolean isInherent(AbstractCard card) {
-        return inherentHack;
     }
 
     @Override

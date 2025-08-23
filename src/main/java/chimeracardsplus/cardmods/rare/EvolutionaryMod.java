@@ -1,6 +1,5 @@
 package chimeracardsplus.cardmods.rare;
 
-import CardAugments.cardmods.util.PreviewedMod;
 import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import CardAugments.util.FormatHelper;
 import CardAugments.util.PortraitHelper;
@@ -9,6 +8,7 @@ import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPreview;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.helpers.LabelMod;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -26,6 +26,7 @@ public class EvolutionaryMod extends AbstractAugmentPlus {
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
     private boolean inherentHack = true;
+    private final String labelID = LabelMod.makeLabelModID(ID);
 
     public EvolutionaryMod() {
         priority = -100;
@@ -36,7 +37,7 @@ public class EvolutionaryMod extends AbstractAugmentPlus {
         inherentHack = true;
         AbstractCard preview = card.makeStatEquivalentCopy();
         inherentHack = false;
-        CardModifierManager.addModifier(preview, new PreviewedMod());
+        CardModifierManager.addModifier(preview, new LabelMod(labelID));
         if (preview.cost > 0) {
             preview.cost = 0;
             preview.costForTurn = 0;
@@ -84,7 +85,7 @@ public class EvolutionaryMod extends AbstractAugmentPlus {
     @Override
     public void onUpgradeCheck(AbstractCard card) {
         for (AbstractCard o : MultiCardPreview.multiCardPreview.get(card)) {
-            if (CardModifierManager.hasModifier(o, PreviewedMod.ID)) {
+            if (CardModifierManager.hasModifier(o, labelID)) {
                 o.upgrade();
                 o.initializeDescription();
             }
@@ -97,7 +98,7 @@ public class EvolutionaryMod extends AbstractAugmentPlus {
         AbstractCard preview = null;
 
         for (AbstractCard o : MultiCardPreview.multiCardPreview.get(card)) {
-            if (CardModifierManager.hasModifier(o, PreviewedMod.ID)) {
+            if (CardModifierManager.hasModifier(o, labelID)) {
                 preview = o;
             }
         }

@@ -1,6 +1,7 @@
 package chimeracardsplus.cardmods.rare;
 
 import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -52,7 +53,7 @@ public class ChangingMod extends AbstractAugmentPlus {
     @Override
     public boolean onObtain(AbstractCard card) {
         pickup = true;
-        return true;
+        return false;
     }
 
     @Override
@@ -80,16 +81,18 @@ public class ChangingMod extends AbstractAugmentPlus {
             AbstractDungeon.player.masterDeck.removeCard(c);
             AbstractDungeon.transformCard(c, false, AbstractDungeon.miscRng);
             AbstractCard transCard = AbstractDungeon.getTransformedCard();
-            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(transCard, c.current_x, c.current_y));
+            AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(transCard, c.current_x, c.current_y));
 
             AbstractDungeon.getCurrRoom().phase = RoomPhase.COMPLETE;
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
+            CardModifierManager.removeSpecificModifier(card, this, false);
             return true;
         }
         if (!cardsSelected && AbstractDungeon.screen == prevScreen) {
             cardsSelected = true;
             AbstractDungeon.getCurrRoom().phase = RoomPhase.COMPLETE;
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
+            CardModifierManager.removeSpecificModifier(card, this, false);
         }
         return false;
     }

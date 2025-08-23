@@ -56,18 +56,18 @@ public class ChimeraCardsPlus implements
     private static final TextureLoader textureLoader = new TextureLoader();
     private static final String EVENT_ADDONS_PLUS_KEY = "EventAddonsPlus";
     private static final String SPECIAL_NAMING_KEY = "CompactNaming";
-    private static final String CARD_FIXES_KEY = "CardFixes";
+    private static final String BASE_GAME_FIXES_KEY = "CardFixes";
     private static boolean enableEventAddonsPlus = true;
     private static boolean enableSpecialNaming = false;
-    private static boolean enableCardFixes = true;
+    private static boolean enableBaseGameFixes = true;
     private static SpireConfig config = null;
     private static ModPanel settingsPanel = null;
     private static UIStrings uiStrings = null;
     private static String[] TEXT = null;
     private static boolean isInCombat = false;
 
-    public static String makeID(String id) {
-        return modID + ':' + id;
+    public static String makeID(String name) {
+        return modID + ':' + name;
     }
 
     public static void initialize() {
@@ -76,13 +76,13 @@ public class ChimeraCardsPlus implements
         Properties defaultSettings = new Properties();
         defaultSettings.setProperty(EVENT_ADDONS_PLUS_KEY, String.valueOf(enableEventAddonsPlus));
         defaultSettings.setProperty(SPECIAL_NAMING_KEY, String.valueOf(enableSpecialNaming));
-        defaultSettings.setProperty(CARD_FIXES_KEY, String.valueOf(enableCardFixes));
+        defaultSettings.setProperty(BASE_GAME_FIXES_KEY, String.valueOf(enableBaseGameFixes));
 
         try {
             config = new SpireConfig(modID, FILE_NAME, defaultSettings);
             enableEventAddonsPlus = config.getBool(EVENT_ADDONS_PLUS_KEY);
             enableSpecialNaming = config.getBool(SPECIAL_NAMING_KEY);
-            enableCardFixes = config.getBool(CARD_FIXES_KEY);
+            enableBaseGameFixes = config.getBool(BASE_GAME_FIXES_KEY);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -94,18 +94,19 @@ public class ChimeraCardsPlus implements
     public static boolean enableSpecialNaming() {
         return enableSpecialNaming;
     }
-    public static boolean enableCardFixes() {
-        return enableCardFixes;
+
+    public static boolean enableBaseGameFixes() {
+        return enableBaseGameFixes;
     }
 
     private static void setupSettingsPanel() {
         settingsPanel = new ModPanel();
 
         float yPos = Settings.HEIGHT * 0.5f / Settings.scale + 200.0f;
-        IUIElement enableCardFixesButton = new ModLabeledToggleButton(TEXT[1], TEXT[2], 350.0F, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, enableCardFixes, settingsPanel, label -> {
+        IUIElement enableCardFixesButton = new ModLabeledToggleButton(TEXT[1], TEXT[2], 350.0F, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, enableBaseGameFixes, settingsPanel, label -> {
         }, button -> {
-            config.setBool(CARD_FIXES_KEY, button.enabled);
-            enableCardFixes = button.enabled;
+            config.setBool(BASE_GAME_FIXES_KEY, button.enabled);
+            enableBaseGameFixes = button.enabled;
             try {
                 config.save();
             } catch (IOException e) {

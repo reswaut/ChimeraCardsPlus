@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.cards.purple.WindmillStrike;
 public class WindmillStrikePatches {
     @SpirePrefixPatch
     public static SpireReturn<Void> Prefix(WindmillStrike __instance) {
-        if (!ChimeraCardsPlus.enableCardFixes()) {
+        if (!ChimeraCardsPlus.enableBaseGameFixes()) {
             return SpireReturn.Continue();
         }
         __instance.baseDamage += __instance.magicNumber;

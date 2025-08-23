@@ -1,7 +1,7 @@
 package chimeracardsplus.patches;
 
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.patches.AbstractAugmentPlusPatches.CardModifierOnDiscardPatch;
+import chimeracardsplus.patches.AbstractAugmentPlusPatches.DynamicAbstractCardPatches;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.ModInfo;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
@@ -32,7 +32,7 @@ public class DynamicPatchTrigger {
             }
         }
         ClassPool pool = ctBehavior.getDeclaringClass().getClassPool();
-        CardModifierOnDiscardPatch.doPatch(finder, pool);
+        DynamicAbstractCardPatches.doPatches(finder, pool);
         ChimeraCardsPlus.logger.info("Dynamic patches complete.");
     }
 }

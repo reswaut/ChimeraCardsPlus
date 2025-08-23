@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.cards.purple.Perseverance;
 public class PerseverancePatches {
     @SpirePrefixPatch
     public static SpireReturn<Void> Prefix(Perseverance __instance) {
-        if (!ChimeraCardsPlus.enableCardFixes()) {
+        if (!ChimeraCardsPlus.enableBaseGameFixes()) {
             return SpireReturn.Continue();
         }
         __instance.baseBlock += __instance.magicNumber;

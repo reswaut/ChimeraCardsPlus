@@ -1,6 +1,7 @@
 package chimeracardsplus.cardmods.rare;
 
 import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -53,7 +54,7 @@ public class MirroredMod extends AbstractAugmentPlus {
     @Override
     public boolean onObtain(AbstractCard card) {
         pickup = true;
-        return true;
+        return false;
     }
 
     @Override
@@ -85,16 +86,18 @@ public class MirroredMod extends AbstractAugmentPlus {
             copy.inBottleFlame = false;
             copy.inBottleLightning = false;
             copy.inBottleTornado = false;
-            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(copy, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+            AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(copy, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 
             AbstractDungeon.getCurrRoom().phase = RoomPhase.COMPLETE;
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
+            CardModifierManager.removeSpecificModifier(card, this, false);
             return true;
         }
         if (!cardsSelected && AbstractDungeon.screen == prevScreen) {
             cardsSelected = true;
             AbstractDungeon.getCurrRoom().phase = RoomPhase.COMPLETE;
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
+            CardModifierManager.removeSpecificModifier(card, this, false);
         }
         return false;
     }
