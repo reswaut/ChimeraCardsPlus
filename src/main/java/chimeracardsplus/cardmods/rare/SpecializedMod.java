@@ -32,8 +32,6 @@ public class SpecializedMod extends AbstractAugmentPlus {
         if (cardToAdd != null) {
             AbstractCard card1 = cardToAdd.makeStatEquivalentCopy();
             AbstractCard card2 = cardToAdd.makeStatEquivalentCopy();
-//            AbstractDungeon.player.masterDeck.addToTop(card1);
-//            AbstractDungeon.player.masterDeck.addToTop(card2);
             RolledModField.rolled.set(card1, true);
             RolledModField.rolled.set(card2, true);
             AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(card1, Settings.WIDTH / 2.0F - 190.0F * Settings.scale, Settings.HEIGHT / 2.0F));

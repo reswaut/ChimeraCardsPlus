@@ -1,37 +1,29 @@
 package chimeracardsplus.cardmods.common;
 
 import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.relics.SpiritPoop;
 
-public class SozuMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(SozuMod.class.getSimpleName());
+public class PoopyMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(PoopyMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.cost >= -1;
-    }
-
-    @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (ChimeraCardsPlus.potionUseHelper.usedPotionThisTurn) {
-            addToBot(new GainEnergyAction(1));
-        }
-    }
-
-    @Override
-    public Color getGlow(AbstractCard card) {
-        return ChimeraCardsPlus.potionUseHelper.usedPotionThisTurn ? Color.GOLD.cpy() : null;
+        return abstractCard.type == CardType.CURSE && abstractCard.rarity == CardRarity.CURSE;
     }
 
     @Override
@@ -61,7 +53,7 @@ public class SozuMod extends AbstractAugmentPlus {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new SozuMod();
+        return new PoopyMod();
     }
 
     @Override
@@ -71,6 +63,20 @@ public class SozuMod extends AbstractAugmentPlus {
 
     @Override
     public AugmentBonusLevel getModBonusLevel() {
-        return AugmentBonusLevel.NORMAL;
+        return AugmentBonusLevel.HEALING;
+    }
+
+    @SpirePatch(
+            clz = AbstractPlayer.class,
+            method = "hasRelic"
+    )
+    public static class EquivalentFrozenEyePatches {
+        @SpirePrefixPatch
+        public static SpireReturn<Boolean> Prefix(AbstractPlayer __instace, String targetID) {
+            if (targetID.equals(SpiritPoop.ID) && __instace.masterDeck.group.stream().anyMatch(card -> CardModifierManager.modifiers(card).stream().anyMatch(mod -> mod.identifier(card).equals(ID)))) {
+                return SpireReturn.Return(true);
+            }
+            return SpireReturn.Continue();
+        }
     }
 }

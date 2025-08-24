@@ -3,7 +3,6 @@ package chimeracardsplus.cardmods.rare;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import chimeracardsplus.helpers.CardCheckHelpers;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.cards.purple.Brilliance;
@@ -25,7 +24,7 @@ public class BrilliantMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.baseDamage >= 1 && characterCheck(p -> CardCheckHelpers.hasCardWithKeywordInDeck(p, CARD_TEXT[3]));
+        return abstractCard.baseDamage >= 1 && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[3]));
     }
 
     @Override

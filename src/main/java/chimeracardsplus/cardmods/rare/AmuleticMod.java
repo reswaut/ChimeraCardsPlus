@@ -1,28 +1,30 @@
-package chimeracardsplus.cardmods.common;
+package chimeracardsplus.cardmods.rare;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class VajraMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(VajraMod.class.getSimpleName());
+public class AmuleticMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(AmuleticMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.baseDamage >= 1;
+        return abstractCard.type == CardType.CURSE && abstractCard.rarity == CardRarity.CURSE;
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage + 1.0F;
+    public boolean onObtain(AbstractCard card) {
+        AbstractDungeon.player.increaseMaxHp(6, false);
+        return true;
     }
 
     @Override
@@ -42,17 +44,17 @@ public class VajraMod extends AbstractAugmentPlus {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return rawDescription;
+        return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.COMMON;
+        return AugmentRarity.RARE;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new VajraMod();
+        return new AmuleticMod();
     }
 
     @Override
@@ -62,6 +64,6 @@ public class VajraMod extends AbstractAugmentPlus {
 
     @Override
     public AugmentBonusLevel getModBonusLevel() {
-        return AugmentBonusLevel.NORMAL;
+        return AugmentBonusLevel.HEALING;
     }
 }

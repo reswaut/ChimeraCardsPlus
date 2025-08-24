@@ -48,20 +48,18 @@ public class BlessedMod extends AbstractAugmentPlus {
                 used = true;
             }
         }
-        do {
-            AbstractCard c = StSLib.getMasterDeckEquivalent(card);
-            if (c != null && CardModifierManager.hasModifier(c, ID)) {
-                BlessedMod modifier = (BlessedMod) CardModifierManager.getModifiers(c, ID).get(0);
-                modifier.used = true;
-                c.applyPowers();
-            }
-        } while (false);
         for (AbstractCard c : GetAllInBattleInstances.get(card.uuid)) {
             if (CardModifierManager.hasModifier(c, ID)) {
                 BlessedMod modifier = (BlessedMod) CardModifierManager.getModifiers(c, ID).get(0);
                 modifier.used = true;
                 c.applyPowers();
             }
+        }
+        AbstractCard c = StSLib.getMasterDeckEquivalent(card);
+        if (c != null && CardModifierManager.hasModifier(c, ID)) {
+            BlessedMod modifier = (BlessedMod) CardModifierManager.getModifiers(c, ID).get(0);
+            modifier.used = true;
+            c.applyPowers();
         }
     }
 

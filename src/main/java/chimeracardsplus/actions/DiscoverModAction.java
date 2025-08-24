@@ -32,32 +32,26 @@ public class DiscoverModAction extends AbstractGameAction {
     @Override
     public void update() {
         if (duration >= Settings.ACTION_DUR_FAST) {
-            ArrayList<AbstractCard> generatedCards = generateCardChoices();
-            AbstractDungeon.cardRewardScreen.customCombatOpen(generatedCards, CardRewardScreen.TEXT[1], false);
-            tickDuration();
-        } else {
-            if (retrieveCard) {
-                if (AbstractDungeon.cardRewardScreen.discoveryCard != null) {
-                    AbstractCard disCard = AbstractDungeon.cardRewardScreen.discoveryCard.makeStatEquivalentCopy();
-                    if (AbstractDungeon.player.hasPower(MasterRealityPower.POWER_ID)) {
-                        disCard.upgrade();
-                    }
-
-                    disCard.current_x = -1000.0F * Settings.xScale;
-                    if (AbstractDungeon.player.hand.size() < 10) {
-                        AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(disCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-                    } else {
-                        AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(disCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-                    }
-
-                    AbstractDungeon.cardRewardScreen.discoveryCard = null;
+            AbstractDungeon.cardRewardScreen.customCombatOpen(generateCardChoices(), CardRewardScreen.TEXT[1], false);
+        } else if (retrieveCard) {
+            if (AbstractDungeon.cardRewardScreen.discoveryCard != null) {
+                AbstractCard disCard = AbstractDungeon.cardRewardScreen.discoveryCard.makeStatEquivalentCopy();
+                if (AbstractDungeon.player.hasPower(MasterRealityPower.POWER_ID)) {
+                    disCard.upgrade();
                 }
 
-                retrieveCard = false;
-            }
+                disCard.current_x = -1000.0F * Settings.xScale;
+                if (AbstractDungeon.player.hand.size() < 10) {
+                    AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(disCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+                } else {
+                    AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(disCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+                }
 
-            tickDuration();
+                AbstractDungeon.cardRewardScreen.discoveryCard = null;
+            }
+            retrieveCard = false;
         }
+        tickDuration();
     }
 
     private ArrayList<AbstractCard> generateCardChoices() {
@@ -68,11 +62,12 @@ public class DiscoverModAction extends AbstractGameAction {
             return ret;
         }
         Collection<Integer> derp = new ArrayList<>(4);
-        while (derp.size() < Math.min(3, filter.size())) {
-            int tmp = AbstractDungeon.miscRng.random(0, filter.size() - 1);
-            if (!derp.contains(tmp)) {
-                derp.add(tmp);
-            }
+        for (int i = Math.min(3, filter.size()); i > 0; --i) {
+            int tmp;
+            do {
+                tmp = AbstractDungeon.miscRng.random(0, filter.size() - 1);
+            } while (derp.contains(tmp));
+            derp.add(tmp);
         }
         for (int id : derp) {
             AbstractCard card = baseCard.makeStatEquivalentCopy();

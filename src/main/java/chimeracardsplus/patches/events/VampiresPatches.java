@@ -40,8 +40,8 @@ public class VampiresPatches {
         return Math.min(AbstractDungeon.player.maxHealth - 1, MathUtils.ceil(AbstractDungeon.player.maxHealth * 0.06F));
     }
 
-    public static void updateEvent(Vampires __instance) {
-        if (!ChimeraCardsPlus.enableEventAddons()) {
+    public static void updateEvent() {
+        if (!ChimeraCardsPlus.configs.enableEventAddons()) {
             return;
         }
         if (choseVanillaOption) {
@@ -79,7 +79,7 @@ public class VampiresPatches {
     public static class EventInit {
         @SpirePostfixPatch
         public static void Postfix(Vampires __instance) {
-            if (!ChimeraCardsPlus.enableEventAddons()) {
+            if (!ChimeraCardsPlus.configs.enableEventAddons()) {
                 return;
             }
             __instance.imageEventText.removeDialogOption(__instance.imageEventText.optionList.size() - 1);
@@ -101,7 +101,7 @@ public class VampiresPatches {
     private static class ButtonLogic {
         @SpirePrefixPatch
         private static SpireReturn<Void> Prefix(Vampires __instance, @ByRef int[] buttonPressed, @ByRef int[] ___screenNum) {
-            if (!ChimeraCardsPlus.enableEventAddons()) {
+            if (!ChimeraCardsPlus.configs.enableEventAddons()) {
                 return SpireReturn.Continue();
             }
             if (___screenNum[0] != 0) {
@@ -147,7 +147,7 @@ public class VampiresPatches {
                 updateMethod = ctClass.getDeclaredMethod("update");
             }
 
-            updateMethod.insertAfter(VampiresPatches.class.getName() + ".updateEvent($0);");
+            updateMethod.insertAfter(VampiresPatches.class.getName() + ".updateEvent();");
         }
     }
 }

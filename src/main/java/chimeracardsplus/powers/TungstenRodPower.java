@@ -3,13 +3,9 @@ package chimeracardsplus.powers;
 import basemod.ReflectionHacks;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.effects.BetterSilentGainPowerEffect;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -22,27 +18,24 @@ import com.megacrit.cardcrawl.vfx.combat.FlashPowerEffect;
 
 import java.util.List;
 
-public class VelvetChokerPower extends TwoAmountPower {
-    public static final String POWER_ID = ChimeraCardsPlus.makeID(VelvetChokerPower.class.getSimpleName());
+public class TungstenRodPower extends AbstractPower {
+    public static final String POWER_ID = ChimeraCardsPlus.makeID(TungstenRodPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     private static final String NAME = powerStrings.NAME;
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     private final int img_width, img_height;
     private List<AbstractGameEffect> effect = null;
-    private float flashTimer = -1.0F;
 
-    public VelvetChokerPower(AbstractCreature owner, int amount) {
+    public TungstenRodPower(AbstractCreature owner, int amount) {
         name = NAME;
         ID = POWER_ID;
         this.owner = owner;
         this.amount = amount;
-        type = PowerType.DEBUFF;
-        isTurnBased = true;
+        type = PowerType.BUFF;
         updateDescription();
-        img = ImageMaster.loadImage("images/relics/redChoker.png");
+        img = ImageMaster.loadImage("images/relics/tungsten.png");
         img_width = img.getWidth();
         img_height = img.getHeight();
-        updateCardsUsedThisTurn();
     }
 
     private void updateEffect() {
@@ -51,47 +44,26 @@ public class VelvetChokerPower extends TwoAmountPower {
         }
     }
 
-    private void updateCardsUsedThisTurn() {
-        amount2 = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
-        updateDescription();
-        if (amount2 >= 6 && flashTimer < 0.0F) {
-            updateEffect();
+    @Override
+    public void atStartOfTurn() {
+        addToBot(new RemoveSpecificPowerAction(owner, owner, POWER_ID));
+    }
+
+    @Override
+    public int onLoseHp(int damageAmount) {
+        if (damageAmount > 0) {
             if (effect != null) {
-                flashTimer = 1.0F;
                 effect.add(new BetterSilentGainPowerEffect(img, img_width, img_height));
                 AbstractDungeon.effectList.add(new FlashPowerEffect(this));
             }
+            return Math.max(damageAmount - amount, 0);
         }
-    }
-
-    @Override
-    public void update(int slot) {
-        super.update(slot);
-        flashTimer -= Gdx.graphics.getDeltaTime();
-    }
-
-    @Override
-    public void atStartOfTurn() {
-        if (amount == 0) {
-            addToBot(new RemoveSpecificPowerAction(owner, owner, POWER_ID));
-        } else {
-            addToBot(new ReducePowerAction(owner, owner, POWER_ID, 1));
-        }
-    }
-
-    @Override
-    public boolean canPlayCard(AbstractCard card) {
-        updateCardsUsedThisTurn();
-        if (amount2 >= 6) {
-            card.cantUseMessage = DESCRIPTIONS[1];
-            return false;
-        }
-        return true;
+        return damageAmount;
     }
 
     @Override
     public void updateDescription() {
-        description = String.format(DESCRIPTIONS[0], amount2);
+        description = String.format(DESCRIPTIONS[0], amount);
     }
 
     @Override

@@ -35,7 +35,7 @@ public class AddictPatches {
     public static class EventInit {
         @SpirePostfixPatch
         public static void Postfix(Addict __instance) {
-            if (!ChimeraCardsPlus.enableEventAddons()) {
+            if (!ChimeraCardsPlus.configs.enableEventAddons()) {
                 return;
             }
             DisgracefulMod augment = new DisgracefulMod();
@@ -57,7 +57,7 @@ public class AddictPatches {
     private static class ButtonLogic {
         @SpirePrefixPatch
         private static SpireReturn<Void> Prefix(Addict __instance, @ByRef int[] buttonPressed, @ByRef int[] ___screenNum, float ___drawX, float ___drawY) {
-            if (!ChimeraCardsPlus.enableEventAddons()) {
+            if (!ChimeraCardsPlus.configs.enableEventAddons()) {
                 return SpireReturn.Continue();
             }
             if (___screenNum[0] != 0) {

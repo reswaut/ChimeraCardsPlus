@@ -3,7 +3,6 @@ package chimeracardsplus.cardmods.rare;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import chimeracardsplus.helpers.CardCheckHelpers;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
@@ -18,7 +17,7 @@ public class ReplicativeMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return !abstractCard.hasTag(CardTags.HEALING) && characterCheck(p -> CardCheckHelpers.hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
+        return !abstractCard.hasTag(CardTags.HEALING) && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
     }
 
     @Override

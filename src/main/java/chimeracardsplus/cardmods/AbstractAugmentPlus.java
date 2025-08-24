@@ -3,16 +3,19 @@ package chimeracardsplus.cardmods;
 import CardAugments.cardmods.AbstractAugment;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public abstract class AbstractAugmentPlus extends AbstractAugment {
-    public static ArrayList<AbstractAugment> filterModsByBonusLevel(ArrayList<AbstractAugment> augments, AugmentBonusLevel filterLevel) {
+    public static List<AbstractAugment> filterModsByBonusLevel(List<AbstractAugment> augments, AugmentBonusLevel filterLevel) {
         if (filterLevel == AugmentBonusLevel.BONUS) {
             return augments;
         }
-        ArrayList<AbstractAugment> ret = new ArrayList<>(augments.size());
+        List<AbstractAugment> ret = new ArrayList<>(augments.size());
         for (AbstractAugment augment : augments) {
             if (!(augment instanceof AbstractAugmentPlus)) {
                 ret.add(augment);
@@ -25,6 +28,10 @@ public abstract class AbstractAugmentPlus extends AbstractAugment {
             }
         }
         return ret;
+    }
+
+    public static boolean hasCardWithKeywordInDeck(AbstractPlayer p, String keyword) {
+        return p.masterDeck.group.stream().anyMatch(card -> card.rawDescription.toLowerCase(Locale.getDefault()).contains(keyword.toLowerCase(Locale.getDefault())));
     }
 
     public abstract AugmentBonusLevel getModBonusLevel();

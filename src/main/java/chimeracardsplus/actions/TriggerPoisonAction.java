@@ -4,8 +4,8 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 
-public class PoisonTriggerAction extends AbstractGameAction {
-    public PoisonTriggerAction(AbstractCreature target) {
+public class TriggerPoisonAction extends AbstractGameAction {
+    public TriggerPoisonAction(AbstractCreature target) {
         this.target = target;
     }
 

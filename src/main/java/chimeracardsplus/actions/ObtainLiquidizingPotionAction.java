@@ -1,5 +1,6 @@
 package chimeracardsplus.actions;
 
+import chimeracardsplus.ChimeraCardsPlus;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInstrumentPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.actions.GameActionManager;
@@ -30,11 +31,11 @@ public class ObtainLiquidizingPotionAction extends ObtainPotionAction {
             @Override
             public void edit(Instanceof i) throws CannotCompileException {
                 try {
-                    if (i.getType().getName().equals(HealAction.class.getName())) {
+                    if (HealAction.class.getName().equals(i.getType().getName())) {
                         i.replace("{ $_ = $proceed($$) || ($1 instanceof " + ObtainLiquidizingPotionAction.class.getName() + "); }");
                     }
                 } catch (NotFoundException e) {
-                    e.printStackTrace();
+                    ChimeraCardsPlus.logger.error("Failed to set Liquidization to Post-Combat actions.", e);
                 }
             }
         }

@@ -4,7 +4,6 @@ import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.actions.PlayDiscardedCardAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import chimeracardsplus.helpers.CardCheckHelpers;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -18,7 +17,7 @@ public class GuilefulMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return characterCheck(p -> CardCheckHelpers.hasCardWithKeywordInDeck(p, CARD_TEXT[1])) &&
+        return characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[1])) &&
                 cardCheck(abstractCard, c -> c.cost == 1 && doesntUpgradeCost());
     }
 

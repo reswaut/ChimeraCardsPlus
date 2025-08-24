@@ -1,31 +1,32 @@
 package chimeracardsplus.cardmods.uncommon;
 
+import CardAugments.util.FormatHelper;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.green.Reflex;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.helpers.GameDictionary;
+import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-public class ReflexMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(ReflexMod.class.getSimpleName());
+public class MedicalMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(MedicalMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public boolean validCard(AbstractCard abstractCard) {
-        return characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
+    public void onInitialApplication(AbstractCard card) {
+        card.cost = 0;
+        card.costForTurn = card.cost;
+        card.exhaust = true;
     }
 
     @Override
-    public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (Reflex.ID.equals(card.cardID)) {
-            return magic + 1.0F;
-        }
-        return magic;
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.type == CardType.STATUS && c.cost == -2 && doesntUpgradeCost());
     }
 
     @Override
@@ -45,18 +46,14 @@ public class ReflexMod extends AbstractAugmentPlus {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (Reflex.ID.equals(card.cardID)) {
-            return rawDescription;
+        String description = rawDescription;
+        for (String s : GameDictionary.UNPLAYABLE.NAMES) {
+            description = description.replace(FormatHelper.capitalize(s) + LocalizedStrings.PERIOD + " NL ", "");
+            description = description.replace(FormatHelper.capitalize(s) + ' ' + LocalizedStrings.PERIOD + " NL ", "");
+            description = description.replace(FormatHelper.capitalize(s) + LocalizedStrings.PERIOD, "");
+            description = description.replace(FormatHelper.capitalize(s) + ' ' + LocalizedStrings.PERIOD, "");
         }
-        return insertAfterText(rawDescription, CARD_TEXT[0]);
-    }
-
-    @Override
-    public void onManualDiscard(AbstractCard card) {
-        if (Reflex.ID.equals(card.cardID)) {
-            return;
-        }
-        addToBot(new DrawCardAction(1));
+        return insertAfterText(description, CARD_TEXT[0]);
     }
 
     @Override
@@ -66,7 +63,7 @@ public class ReflexMod extends AbstractAugmentPlus {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ReflexMod();
+        return new MedicalMod();
     }
 
     @Override

@@ -79,11 +79,11 @@ public class AbstractAugmentPlusPatches {
 
     public static class DynamicAbstractCardPatches {
         public static void doPatches(ClassFinder finder, ClassPool pool) throws NotFoundException, CannotCompileException {
-            ChimeraCardsPlus.logger.info("- Chimera Cards+ dynamic patches:");
+            ChimeraCardsPlus.logger.info("- Dynamic AbstractCard patches started.");
             ClassFilter filter = new AndClassFilter(new NotClassFilter(new InterfaceOnlyClassFilter()), new SubclassClassFilter(AbstractCard.class));
             ArrayList<ClassInfo> clzList = new ArrayList<>(512);
             finder.findClasses(clzList, filter);
-            ChimeraCardsPlus.logger.info("\t- Potential targets found ({}).", clzList.size());
+            ChimeraCardsPlus.logger.info("- Potential targets found ({}).", clzList.size());
             CtClass ctClass = pool.get(AbstractCard.class.getName());
             for (CtMethod m : ctClass.getDeclaredMethods()) {
                 checkMethodPatches(ctClass, m);
@@ -95,11 +95,10 @@ public class AbstractAugmentPlusPatches {
                         checkMethodPatches(ctClass, m);
                     }
                 } catch (NotFoundException e) {
-                    ChimeraCardsPlus.logger.error("\t\t- Class not found: {}", classInfo.getClassName());
-                    e.printStackTrace();
+                    ChimeraCardsPlus.logger.error("- Class not found: {}", classInfo.getClassName(), e);
                 }
             }
-            ChimeraCardsPlus.logger.info("- Chimera Cards+ dynamic patches complete.");
+            ChimeraCardsPlus.logger.info("- Dynamic AbstractCard patches complete.");
         }
 
         private static void checkMethodPatches(CtClass ctClass, CtMethod method) throws CannotCompileException {

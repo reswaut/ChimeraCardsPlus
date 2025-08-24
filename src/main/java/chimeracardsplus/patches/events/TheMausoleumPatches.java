@@ -42,7 +42,7 @@ public class TheMausoleumPatches {
     public static class EventInit {
         @SpirePostfixPatch
         public static void Postfix(TheMausoleum __instance) {
-            if (!ChimeraCardsPlus.enableEventAddons()) {
+            if (!ChimeraCardsPlus.configs.enableEventAddons()) {
                 return;
             }
             RegretfulMod augment = new RegretfulMod();
@@ -65,7 +65,7 @@ public class TheMausoleumPatches {
     private static class ButtonLogic {
         @SpirePrefixPatch
         private static SpireReturn<Void> Prefix(TheMausoleum __instance, @ByRef int[] buttonPressed) {
-            if (!ChimeraCardsPlus.enableEventAddons()) {
+            if (!ChimeraCardsPlus.configs.enableEventAddons()) {
                 return SpireReturn.Continue();
             }
             String screen = ReflectionHacks.getPrivate(__instance, TheMausoleum.class, "screen").toString();
@@ -95,7 +95,7 @@ public class TheMausoleumPatches {
                 RMethod valueOf = ReflectionHacks.privateStaticMethod(field.getType(), "valueOf", String.class);
                 field.set(__instance, valueOf.invoke(null, "RESULT"));
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
+                ChimeraCardsPlus.logger.error("Failed to set event screen.", e);
             }
             return SpireReturn.Return();
         }

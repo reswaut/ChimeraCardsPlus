@@ -18,7 +18,7 @@ public class PerfectMod extends AbstractAugmentPlus implements DynvarCarrier {
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
     private static final String DESCRIPTION_KEY = '!' + ID + '!';
-    private static final int[] multiplier = {6, 4, 3, 2};
+    private static final int[] multiplier = {6, 5, 4, 3, 2};
 
     public static boolean isStrike(AbstractCard c) {
         return c.hasTag(CardTags.STRIKE);
@@ -74,7 +74,7 @@ public class PerfectMod extends AbstractAugmentPlus implements DynvarCarrier {
         if (CardCrawlGame.isInARun() && PerfectedStrike.ID.equals(abstractCard.cardID)) {
             realBaseDamage -= abstractCard.magicNumber * PerfectedStrike.countCards();
         }
-        return (realBaseDamage - 1) / multiplier[upgrades] + 1;
+        return Math.max(realBaseDamage / multiplier[upgrades], 1);
     }
 
     @Override

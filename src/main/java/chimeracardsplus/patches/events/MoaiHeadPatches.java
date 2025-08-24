@@ -39,7 +39,7 @@ public class MoaiHeadPatches {
     public static class EventInit {
         @SpirePostfixPatch
         public static void Postfix(MoaiHead __instance) {
-            if (!ChimeraCardsPlus.enableEventAddons()) {
+            if (!ChimeraCardsPlus.configs.enableEventAddons()) {
                 return;
             }
             HesitantMod augment = new HesitantMod();
@@ -62,7 +62,7 @@ public class MoaiHeadPatches {
     private static class ButtonLogic {
         @SpirePrefixPatch
         private static SpireReturn<Void> Prefix(MoaiHead __instance, @ByRef int[] buttonPressed, @ByRef int[] ___screenNum) {
-            if (!ChimeraCardsPlus.enableEventAddons()) {
+            if (!ChimeraCardsPlus.configs.enableEventAddons()) {
                 return SpireReturn.Continue();
             }
             if (___screenNum[0] != 0) {

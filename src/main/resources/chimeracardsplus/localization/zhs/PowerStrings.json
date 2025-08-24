@@ -5,6 +5,18 @@
       "受到攻击伤害而失去生命时，给予 #b%d 层 #y虚弱 。"
     ]
   },
+  "${modID}:FrozenEyePower": {
+    "NAME": "预知",
+    "DESCRIPTIONS": [
+      "观看 抽牌堆 时，卡牌将按顺序排列。"
+    ]
+  },
+  "${modID}:LetterOpenerPower": {
+    "NAME": "锋利",
+    "DESCRIPTIONS": [
+      "你在这回合每打出一张攻击牌，对所有敌人造成 #b%d 点伤害。"
+    ]
+  },
   "${modID}:LoseFocusPower": {
     "NAME": "集中下降",
     "DESCRIPTIONS": [
@@ -28,6 +40,12 @@
     "DESCRIPTIONS": [
       "你不能打出卡牌。",
       "我不能打出卡牌。"
+    ]
+  },
+  "${modID}:TungstenRodPower": {
+    "NAME": "伤害减少",
+    "DESCRIPTIONS": [
+      "本回合你每次失去生命时，减少失去的生命值 #b%d 点。"
     ]
   },
   "${modID}:UntappedPower": {

@@ -2,47 +2,43 @@ package chimeracardsplus.powers;
 
 import basemod.ReflectionHacks;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.effects.BetterSilentGainPowerEffect;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.FrozenEye;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.combat.FlashPowerEffect;
 
 import java.util.List;
 
-public class VelvetChokerPower extends TwoAmountPower {
-    public static final String POWER_ID = ChimeraCardsPlus.makeID(VelvetChokerPower.class.getSimpleName());
+public class FrozenEyePower extends AbstractPower {
+    public static final String POWER_ID = ChimeraCardsPlus.makeID(FrozenEyePower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     private static final String NAME = powerStrings.NAME;
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     private final int img_width, img_height;
     private List<AbstractGameEffect> effect = null;
-    private float flashTimer = -1.0F;
 
-    public VelvetChokerPower(AbstractCreature owner, int amount) {
+    public FrozenEyePower(AbstractCreature owner, int amount) {
         name = NAME;
         ID = POWER_ID;
         this.owner = owner;
         this.amount = amount;
-        type = PowerType.DEBUFF;
-        isTurnBased = true;
+        type = PowerType.BUFF;
         updateDescription();
-        img = ImageMaster.loadImage("images/relics/redChoker.png");
+        img = ImageMaster.loadImage("images/relics/frozenEye.png");
         img_width = img.getWidth();
         img_height = img.getHeight();
-        updateCardsUsedThisTurn();
     }
 
     private void updateEffect() {
@@ -51,27 +47,8 @@ public class VelvetChokerPower extends TwoAmountPower {
         }
     }
 
-    private void updateCardsUsedThisTurn() {
-        amount2 = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
-        updateDescription();
-        if (amount2 >= 6 && flashTimer < 0.0F) {
-            updateEffect();
-            if (effect != null) {
-                flashTimer = 1.0F;
-                effect.add(new BetterSilentGainPowerEffect(img, img_width, img_height));
-                AbstractDungeon.effectList.add(new FlashPowerEffect(this));
-            }
-        }
-    }
-
     @Override
-    public void update(int slot) {
-        super.update(slot);
-        flashTimer -= Gdx.graphics.getDeltaTime();
-    }
-
-    @Override
-    public void atStartOfTurn() {
+    public void atEndOfTurn(boolean isPlayer) {
         if (amount == 0) {
             addToBot(new RemoveSpecificPowerAction(owner, owner, POWER_ID));
         } else {
@@ -80,18 +57,8 @@ public class VelvetChokerPower extends TwoAmountPower {
     }
 
     @Override
-    public boolean canPlayCard(AbstractCard card) {
-        updateCardsUsedThisTurn();
-        if (amount2 >= 6) {
-            card.cantUseMessage = DESCRIPTIONS[1];
-            return false;
-        }
-        return true;
-    }
-
-    @Override
     public void updateDescription() {
-        description = String.format(DESCRIPTIONS[0], amount2);
+        description = DESCRIPTIONS[0];
     }
 
     @Override
@@ -103,6 +70,20 @@ public class VelvetChokerPower extends TwoAmountPower {
             for (AbstractGameEffect e : effect) {
                 e.render(sb, x, y);
             }
+        }
+    }
+
+    @SpirePatch(
+            clz = AbstractPlayer.class,
+            method = "hasRelic"
+    )
+    public static class EquivalentFrozenEyePatches {
+        @SpirePrefixPatch
+        public static SpireReturn<Boolean> Prefix(AbstractPlayer __instace, String targetID) {
+            if (targetID.equals(FrozenEye.ID) && __instace.hasPower(POWER_ID)) {
+                return SpireReturn.Return(true);
+            }
+            return SpireReturn.Continue();
         }
     }
 }

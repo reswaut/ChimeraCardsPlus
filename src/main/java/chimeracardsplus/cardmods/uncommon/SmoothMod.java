@@ -1,29 +1,26 @@
-package chimeracardsplus.cardmods.common;
+package chimeracardsplus.cardmods.uncommon;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class BootMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(BootMod.class.getSimpleName());
+public class SmoothMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(SmoothMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.baseDamage >= 1 && abstractCard.baseDamage < 5 && abstractCard.type == CardType.ATTACK;
+        return abstractCard.baseBlock >= 1;
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return Math.max(damage, 5.0F);
+    public float modifyBaseBlock(float block, AbstractCard card) {
+        return block + 1.0F;
     }
 
     @Override
@@ -48,12 +45,12 @@ public class BootMod extends AbstractAugmentPlus {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.COMMON;
+        return AugmentRarity.UNCOMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new BootMod();
+        return new SmoothMod();
     }
 
     @Override

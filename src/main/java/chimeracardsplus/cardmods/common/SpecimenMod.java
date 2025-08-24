@@ -1,9 +1,8 @@
 package chimeracardsplus.cardmods.common;
 
-import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.actions.UseCardMultipleTimesAction;
+import chimeracardsplus.actions.TransferPoisonAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -12,23 +11,15 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-public class TallyingMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(TallyingMod.class.getSimpleName());
+public class SpecimenMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(SpecimenMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private boolean descriptionHack = false;
-
-    @Override
-    public void onInitialApplication(AbstractCard card) {
-        InterceptUseField.interceptUse.set(card, true);
-    }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> noShenanigans(c)
-                && c.cost >= -1 && (c.type == CardType.ATTACK || c.type == CardType.SKILL)
-                && customCheck(c, check -> noCardModDescriptionChanges(check) && check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L));
+        return cardCheck(abstractCard, c -> c.cost >= -1 && (c.type == CardType.ATTACK || c.type == CardType.SKILL) && usesEnemyTargeting()) && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
     }
 
     @Override
@@ -48,31 +39,14 @@ public class TallyingMod extends AbstractAugmentPlus {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        String text = CARD_TEXT[0];
-        if (descriptionHack) {
-            int count = ChimeraCardsPlus.drawPileShuffleHelper.drawPileShufflesThisCombat;
-            text += String.format(count == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count);
-        }
-        return rawDescription.replaceFirst("[.。]", text);
+        return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        addToBot(new UseCardMultipleTimesAction(card, target, () -> ChimeraCardsPlus.drawPileShuffleHelper.drawPileShufflesThisCombat));
-        descriptionHack = false;
-        card.initializeDescription();
-    }
-
-    @Override
-    public void onApplyPowers(AbstractCard card) {
-        descriptionHack = true;
-        card.initializeDescription();
-    }
-
-    @Override
-    public void onMoveToDiscard(AbstractCard card) {
-        descriptionHack = false;
-        card.initializeDescription();
+        if (target != null) {
+            addToBot(new TransferPoisonAction(target));
+        }
     }
 
     @Override
@@ -82,7 +56,7 @@ public class TallyingMod extends AbstractAugmentPlus {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new TallyingMod();
+        return new SpecimenMod();
     }
 
     @Override

@@ -18,12 +18,12 @@ import java.net.URISyntaxException;
 
 @SpirePatch(
         clz = CardCrawlGame.class,
-        method = "<ctor>"
+        method = SpirePatch.CONSTRUCTOR
 )
 public class DynamicPatchTrigger {
     @SpireRawPatch
     public static void Raw(CtBehavior ctBehavior) throws NotFoundException, CannotCompileException, URISyntaxException {
-        ChimeraCardsPlus.logger.info("Starting dynamic patches.");
+        ChimeraCardsPlus.logger.info("Dynamic patches started.");
         ClassFinder finder = new ClassFinder();
         finder.add(new File(Loader.STS_JAR));
         for (ModInfo modInfo : Loader.MODINFOS) {

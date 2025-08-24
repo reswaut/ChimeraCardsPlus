@@ -18,7 +18,7 @@ import java.util.Iterator;
 public class PandorasBoxPatches {
     @SpireInsertPatch(locator = Locator.class, localvars = "e")
     public static void Insert(PandorasBox __instance, AbstractCard e) {
-        if (!ChimeraCardsPlus.enableBaseGameFixes()) {
+        if (!ChimeraCardsPlus.configs.enableBaseGameFixes()) {
             return;
         }
         e.onRemoveFromMasterDeck();

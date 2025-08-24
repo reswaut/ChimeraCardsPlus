@@ -3,7 +3,6 @@ package chimeracardsplus.cardmods.uncommon;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import chimeracardsplus.helpers.CardCheckHelpers;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.green.Tactician;
@@ -18,7 +17,7 @@ public class TacticalMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return characterCheck(p -> CardCheckHelpers.hasCardWithKeywordInDeck(p, CARD_TEXT[3]));
+        return characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[3]));
     }
 
     @Override

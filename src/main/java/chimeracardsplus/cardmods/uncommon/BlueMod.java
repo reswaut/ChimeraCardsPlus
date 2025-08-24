@@ -1,32 +1,42 @@
 package chimeracardsplus.cardmods.uncommon;
 
+import CardAugments.util.FormatHelper;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.actions.TriggerPoisonAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.GameDictionary;
+import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-public class ToxicMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(ToxicMod.class.getSimpleName());
+public class BlueMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(BlueMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private boolean addedExhaust = true;
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        addedExhaust = !card.exhaust;
+        card.cost = 0;
+        card.costForTurn = card.cost;
         card.exhaust = true;
     }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= -1 && (c.type == CardType.ATTACK || c.type == CardType.SKILL) && usesEnemyTargeting() && doesntUpgradeExhaust()) && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[2]));
+        return cardCheck(abstractCard, c -> c.type == CardType.CURSE && c.cost == -2 && doesntUpgradeCost());
+    }
+
+    @Override
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, 1, AttackEffect.FIRE));
     }
 
     @Override
@@ -46,14 +56,14 @@ public class ToxicMod extends AbstractAugmentPlus {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1]);
-    }
-
-    @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (target != null) {
-            addToBot(new TriggerPoisonAction(target));
+        String description = rawDescription;
+        for (String s : GameDictionary.UNPLAYABLE.NAMES) {
+            description = description.replace(FormatHelper.capitalize(s) + LocalizedStrings.PERIOD + " NL ", "");
+            description = description.replace(FormatHelper.capitalize(s) + ' ' + LocalizedStrings.PERIOD + " NL ", "");
+            description = description.replace(FormatHelper.capitalize(s) + LocalizedStrings.PERIOD, "");
+            description = description.replace(FormatHelper.capitalize(s) + ' ' + LocalizedStrings.PERIOD, "");
         }
+        return insertAfterText(description, CARD_TEXT[0]);
     }
 
     @Override
@@ -63,7 +73,7 @@ public class ToxicMod extends AbstractAugmentPlus {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ToxicMod();
+        return new BlueMod();
     }
 
     @Override

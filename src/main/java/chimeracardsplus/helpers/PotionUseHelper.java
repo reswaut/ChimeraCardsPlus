@@ -10,17 +10,18 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 public class PotionUseHelper {
-    public static boolean usedPotionThisCombat = false;
-    public static boolean usedPotionThisTurn = false;
+    public boolean usedPotionThisCombat = false;
+    public boolean usedPotionThisTurn = false;
 
-    public static void onPlayerTurnStart() {
+    public void onPlayerTurnStart() {
         usedPotionThisTurn = false;
     }
-    public static void onBattleStart(AbstractRoom room) {
+
+    public void onBattleStart(AbstractRoom room) {
         usedPotionThisCombat = false;
     }
 
-    public static void onUsePotion(AbstractPotion potion) {
+    public void onUsePotion(AbstractPotion potion) {
         usedPotionThisCombat = true;
         usedPotionThisTurn = true;
         for (AbstractCard card : AbstractDungeon.player.hand.group) {

@@ -8,6 +8,9 @@ public class SpecialNamingRules {
     public Map<String, Map<String, SpecialName>> NAME_DICT = null;
 
     public void addRules(SpecialNamingRules newRules) {
+        if (newRules == null) {
+            return;
+        }
         if (NAME_DICT == null) {
             NAME_DICT = new HashMap<>(512);
             NAME_DICT.putAll(newRules.NAME_DICT);
@@ -24,7 +27,7 @@ public class SpecialNamingRules {
     }
 
     public static class SpecialName {
-        public String NAME;
-        public String DESCRIPTION;
+        public String NAME = null;
+        public String DESCRIPTION = null;
     }
 }

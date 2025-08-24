@@ -34,7 +34,7 @@ public class BackToBasicsPatches {
     public static class EventInit {
         @SpirePostfixPatch
         public static void Postfix(BackToBasics __instance) {
-            if (!ChimeraCardsPlus.enableEventAddons()) {
+            if (!ChimeraCardsPlus.configs.enableEventAddons()) {
                 return;
             }
             myIndex = __instance.imageEventText.optionList.size();
@@ -49,7 +49,7 @@ public class BackToBasicsPatches {
     private static class ButtonLogic {
         @SpirePrefixPatch
         private static SpireReturn<Void> Prefix(BackToBasics __instance, @ByRef int[] buttonPressed) {
-            if (!ChimeraCardsPlus.enableEventAddons()) {
+            if (!ChimeraCardsPlus.configs.enableEventAddons()) {
                 return SpireReturn.Continue();
             }
             String screen = ReflectionHacks.getPrivate(__instance, BackToBasics.class, "screen").toString();
@@ -73,7 +73,7 @@ public class BackToBasicsPatches {
                 RMethod valueOf = ReflectionHacks.privateStaticMethod(field.getType(), "valueOf", String.class);
                 field.set(__instance, valueOf.invoke(null, "COMPLETE"));
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
+                ChimeraCardsPlus.logger.error("Failed to set event screen.", e);
             }
             return SpireReturn.Return();
         }

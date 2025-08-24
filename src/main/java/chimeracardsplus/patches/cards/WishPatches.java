@@ -25,7 +25,7 @@ public class WishPatches {
             localvars = "stanceChoices"
     )
     public static void Insert(Wish __instance, AbstractPlayer p, AbstractMonster m, List<AbstractCard> stanceChoices) {
-        if (!ChimeraCardsPlus.enableBaseGameFixes()) {
+        if (!ChimeraCardsPlus.configs.enableBaseGameFixes()) {
             return;
         }
         stanceChoices.get(0).baseMagicNumber = (int) CardModifierManager.onModifyBaseDamage(__instance.baseDamage, __instance, null);

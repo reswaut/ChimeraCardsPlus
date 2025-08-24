@@ -33,12 +33,12 @@ public class IncantatoryMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= -1 && c.baseDamage >= 8 && doesntUpgradeExhaust());
+        return cardCheck(abstractCard, c -> c.cost >= -1 && c.baseDamage >= 13 && doesntUpgradeExhaust());
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return Math.max(damage - 7.0F, 0.0F);
+        return Math.max(damage - 12.0F, 0.0F);
     }
 
     @Override

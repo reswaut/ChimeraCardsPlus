@@ -170,7 +170,7 @@
     "TEXT": [
       "Bursty ",
       "",
-      "Costs [E] more. NL Copies the next Skill played this turn."
+      "Costs [E] more. NL Gains #b1 #yBurst."
     ],
     "EXTRA_TEXT": [
       " NL This turn, your next Skill is played twice.",
@@ -285,7 +285,7 @@
     "TEXT": [
       "Collected ",
       "",
-      "Increases cost to [E] [E] [E] . NL Adds an #yUpgraded #yMiracle into hand in a number of following turns equal to the increased cost. NL Adds #yExhaust."
+      "Increases cost to [E] [E] [E] . NL Gains #yCollect equal to the increase. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
       " NL Put a *Miracle+ into your hand at the start of your next turn. NL Exhaust.",
@@ -515,7 +515,7 @@
     "TEXT": [
       "",
       "'s Doppelganger",
-      "Increases cost to [E] [E] [E] . NL Next turn, draws card and gains [E] equal to the increased cost. NL Adds #yExhaust."
+      "Increases cost to [E] [E] [E] . NL Next turn, draws card and gains [E] equal to the increase. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
       " NL Next turn, draw 1 card and gain [E]. NL Exhaust.",
@@ -530,7 +530,7 @@
     "TEXT": [
       "Doubling ",
       "",
-      "Costs [E] more. NL Copies the next Attack played this turn."
+      "Costs [E] more. NL Gains #b1 #yDouble #yTap."
     ],
     "EXTRA_TEXT": [
       " NL This turn, your next Attack is played twice.",
@@ -552,7 +552,7 @@
     "TEXT": [
       "Duplicating ",
       "",
-      "Costs [E] more. NL Copies the next card played this turn. NL Adds #yExhaust."
+      "Costs [E] more. NL Gains #b1 #yDuplication. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
       " NL This turn, your next card is played twice. NL Exhaust.",
@@ -626,7 +626,7 @@
     "TEXT": [
       "",
       " Explosion",
-      "Costs [E] more. NL When the enemy dies, deals damage equal to its Max HP to ALL enemies."
+      "Costs [E] more. NL Applies #b1 #yCorpse #yExplosion."
     ],
     "EXTRA_TEXT": [
       " NL When the enemy dies, deal damage equal to its Max HP to ALL enemies."
@@ -646,7 +646,7 @@
     "TEXT": [
       "Fasting ",
       "",
-      "Costs [E] less. NL Gains [E] less at the start of each turn."
+      "Costs [E] less. NL Gains #b1 #yFasting."
     ],
     "EXTRA_TEXT": [
       " NL Gain 1 less [E] at the start of each turn."
@@ -705,7 +705,7 @@
     "TEXT": [
       "Flaming ",
       "",
-      "Reduces #yBlock by #b25%. NL Deals damage equal to #b25% #yBlock back when attacked this turn."
+      "Reduces #yBlock by #b25%. NL Gains #yFlame #yBarrier equal to #b25% #yBlock."
     ],
     "EXTRA_TEXT": [
       " NL Whenever you are attacked this turn, deal %s damage back."
@@ -835,7 +835,7 @@
     "TEXT": [
       "",
       " to the Hand",
-      "Reduces card values by #b33%. NL Gains #yBlock equal to the cost whenever you attack the enemy. NL Adds #yExhaust."
+      "Reduces card values by #b33%. NL Applies #yBlock #yReturn equal to the cost. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
       " NL Whenever you attack this enemy, gain %d Block. NL Exhaust.",
@@ -942,7 +942,7 @@
     "TEXT": [
       "Incantatory ",
       "",
-      "Decreases #yDamage by #b7. NL Gains #b1 #yRitual. NL Adds #yExhaust."
+      "Decreases #yDamage by #b12. NL Gains #b1 #yRitual. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
       " NL Gain 1 Ritual. NL Exhaust.",
@@ -1072,7 +1072,7 @@
     "TEXT": [
       "Loud ",
       "",
-      "Costs [E] more. NL Copies the next Power played this turn."
+      "Costs [E] more. NL Gains #b1 #yAmplify."
     ],
     "EXTRA_TEXT": [
       " NL This turn, your next Power card is played twice.",
@@ -1254,7 +1254,7 @@
     "TEXT": [
       "Panic ",
       "",
-      "Increases #yBlock by #b300%. NL Prevents gaining #yBlock from cards for #b2 turns. NL Adds #yExhaust."
+      "Increases #yBlock by #b300%. NL Gains #b2 #yNo #yBlock. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
       " NL You cannot gain Block from cards for 2 turns. NL Exhaust.",
@@ -1286,7 +1286,7 @@
     "TEXT": [
       "Perfect ",
       "",
-      "Reduces damage by #b50%, but increases damage by #b17%(25%) for each of your \"Strike\" card."
+      "Reduces damage by #b50%, but increases damage by #b17%(20%) for each of your \"Strike\" card."
     ],
     "EXTRA_TEXT": [
       " NL Deals %s additional damage for ALL your cards containing \"Strike\"."
@@ -1296,7 +1296,7 @@
     "TEXT": [
       "Phantasmal ",
       "",
-      "Costs [E] more. NL Doubles Attack damage next turn."
+      "Costs [E] more. NL Gains #b1 #yPhantasmal."
     ],
     "EXTRA_TEXT": [
       " NL Next turn, your Attacks deal double damage."
@@ -1423,7 +1423,7 @@
     "TEXT": [
       "Raging ",
       "",
-      "Reduces #yBlock by #b20%. NL Gains #b3 #yBlock whenever you play an Attack this turn."
+      "Reduces #yBlock by #b20%. NL Gains #b1 #yRage."
     ],
     "EXTRA_TEXT": [
       " NL Whenever you play an Attack this turn, gain 3 Block."
@@ -1673,7 +1673,7 @@
     "TEXT": [
       "Springy ",
       "",
-      "Reduces damage and #yBlock by #b25%. NL Returns the next card you play this turn to the top of your draw pile."
+      "Reduces damage and #yBlock by #b25%. NL Gains #b1 #yRebound."
     ],
     "EXTRA_TEXT": [
       " NL Put the next card you play this turn on top of your draw pile.",
@@ -1685,7 +1685,7 @@
     "TEXT": [
       "Equilibrial ",
       "",
-      "Costs [E] more. NL Increases damage and #yBlock by #b33%. NL #yRetains your hand this turn."
+      "Costs [E] more. NL Increases damage and #yBlock by #b33%. NL Gains #b1 #yEquilibrium."
     ],
     "EXTRA_TEXT": [
       " NL Retain your hand this turn.",
@@ -1891,7 +1891,7 @@
     "TEXT": [
       "",
       " Trance",
-      "Costs [E] less. NL You cannot draw additional cards this turn."
+      "Costs [E] less. NL Gains #b1 #yNo #yDraw."
     ],
     "EXTRA_TEXT": [
       " NL You cannot draw additional cards this turn."
@@ -2596,6 +2596,107 @@
     ],
     "EXTRA_TEXT": [
       " NL Gain 2 Focus. NL At the end of this turn, lose 2 Focus."
+    ]
+  },
+  "${modID}:WavyMod": {
+    "TEXT": [
+      "Wavy ",
+      "",
+      "Reduces #yBlock by #b40%. NL Gains #b1 #yWave #yof #ythe #yHand."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you gain Block this turn, apply 1 Weak to ALL enemies."
+    ]
+  },
+  "${modID}:SharpMod": {
+    "TEXT": [
+      "Sharp ",
+      "",
+      "Reduces damage by #b20%. NL Deals #b3 damage to ALL enemies whenever you play play a Skill this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you play a Skill this turn, deal 3 damage to ALL enemies."
+    ]
+  },
+  "${modID}:BlueMod": {
+    "TEXT": [
+      "Blue ",
+      "",
+      "Costs #b0. NL Becomes playable. NL Loses #b1 HP. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose 1 HP. NL Exhaust."
+    ]
+  },
+  "${modID}:MedicalMod": {
+    "TEXT": [
+      "Medical ",
+      "",
+      "Costs #b0. NL Becomes playable. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Exhaust."
+    ]
+  },
+  "${modID}:DuVuMod": {
+    "TEXT": [
+      "Du-Vu ",
+      "",
+      "Gains #b1 #yStrength at the start of each combat."
+    ],
+    "EXTRA_TEXT": [
+      " NL At the start of each combat, gain 1 Strength."
+    ]
+  },
+  "${modID}:AmuleticMod": {
+    "TEXT": [
+      "Amuletic ",
+      "",
+      "Gains #b6 Max HP upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, gain 6 Max HP."
+    ]
+  },
+  "${modID}:PoopyMod": {
+    "TEXT": [
+      "Poopy ",
+      "",
+      "It's unpleasant."
+    ],
+    "EXTRA_TEXT": [
+      " NL It's unpleasant."
+    ]
+  },
+  "${modID}:FrozenMod": {
+    "TEXT": [
+      "Frozen ",
+      "",
+      "For #b2 turns, when viewing your draw pile, the cards are shown in order."
+    ],
+    "EXTRA_TEXT": [
+      " NL Cards in your draw pile are shown in order for 2 turns."
+    ]
+  },
+  "${modID}:TungstenMod": {
+    "TEXT": [
+      "Tungsten ",
+      "",
+      "Reduces #yBlock by #b20%. NL Whenever you would lose HP this turn, lose 1 less."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you would lose HP this turn, lose 1 less."
+    ]
+  },
+  "${modID}:SpecimenMod": {
+    "TEXT": [
+      "Specimen of ",
+      "",
+      "Transfers the enemy's #yPoison to another random enemy."
+    ],
+    "EXTRA_TEXT": [
+      " NL Transfer the enemy's Poison to another random enemy.",
+      "Poison"
     ]
   }
 }

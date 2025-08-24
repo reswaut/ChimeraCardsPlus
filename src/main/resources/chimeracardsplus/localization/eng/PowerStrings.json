@@ -5,6 +5,18 @@
       "When receiving unblocked attack damage, apply #b%d #yWeak back."
     ]
   },
+  "${modID}:FrozenEyePower": {
+    "NAME": "Foresee",
+    "DESCRIPTIONS": [
+      "When viewing your draw pile, the cards are shown in order."
+    ]
+  },
+  "${modID}:LetterOpenerPower": {
+    "NAME": "Sharpened",
+    "DESCRIPTIONS": [
+      "Whenever you play an #yAttack this turn, deal #b%d damage to ALL enemies."
+    ]
+  },
   "${modID}:LoseFocusPower": {
     "NAME": "Focus Down",
     "DESCRIPTIONS": [
@@ -28,6 +40,12 @@
     "DESCRIPTIONS": [
       "You cannot play cards.",
       "I cannot play cards."
+    ]
+  },
+  "${modID}:TungstenRodPower": {
+    "NAME": "Reduce Damage",
+    "DESCRIPTIONS": [
+      "Whenever you would lose HP this turn, lose #b%d less."
     ]
   },
   "${modID}:UntappedPower": {

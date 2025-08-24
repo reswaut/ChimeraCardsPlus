@@ -40,7 +40,7 @@ public class GoldenWingPatches {
     public static class EventInit {
         @SpirePostfixPatch
         public static void Postfix(GoldenWing __instance) {
-            if (!ChimeraCardsPlus.enableEventAddons()) {
+            if (!ChimeraCardsPlus.configs.enableEventAddons()) {
                 return;
             }
             UnawakenedMod augment = new UnawakenedMod();
@@ -62,7 +62,7 @@ public class GoldenWingPatches {
     private static class ButtonLogic {
         @SpirePrefixPatch
         private static SpireReturn<Void> Prefix(GoldenWing __instance, @ByRef int[] buttonPressed) {
-            if (!ChimeraCardsPlus.enableEventAddons()) {
+            if (!ChimeraCardsPlus.configs.enableEventAddons()) {
                 return SpireReturn.Continue();
             }
             String screen = ReflectionHacks.getPrivate(__instance, GoldenWing.class, "screen").toString();
@@ -85,7 +85,7 @@ public class GoldenWingPatches {
                 RMethod valueOf = ReflectionHacks.privateStaticMethod(field.getType(), "valueOf", String.class);
                 field.set(__instance, valueOf.invoke(null, "MAP"));
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
+                ChimeraCardsPlus.logger.error("Failed to set event screen.", e);
             }
             return SpireReturn.Return();
         }
@@ -110,7 +110,7 @@ public class GoldenWingPatches {
                 locator = Locator.class
         )
         public static void Insert(GoldenWing __instance) {
-            if (!ChimeraCardsPlus.enableEventAddons()) {
+            if (!ChimeraCardsPlus.configs.enableEventAddons()) {
                 return;
             }
             __instance.imageEventText.removeDialogOption(1);
@@ -133,7 +133,7 @@ public class GoldenWingPatches {
     private static class AugmentLogic {
         @SpirePrefixPatch
         private static SpireReturn<Void> Prefix(GoldenWing __instance) {
-            if (!ChimeraCardsPlus.enableEventAddons()) {
+            if (!ChimeraCardsPlus.configs.enableEventAddons()) {
                 return SpireReturn.Continue();
             }
             if (choseVanillaOption) {

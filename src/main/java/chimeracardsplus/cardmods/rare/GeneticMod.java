@@ -94,20 +94,18 @@ public class GeneticMod extends AbstractAugmentPlus implements DynvarCarrier {
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         int increment = baseVal(card);
-        do {
-            AbstractCard c = StSLib.getMasterDeckEquivalent(card);
-            if (c != null && CardModifierManager.hasModifier(c, ID)) {
-                GeneticMod modifier = (GeneticMod) CardModifierManager.getModifiers(c, ID).get(0);
-                modifier.block += increment;
-                c.applyPowers();
-            }
-        } while (false);
         for (AbstractCard c : GetAllInBattleInstances.get(card.uuid)) {
             if (CardModifierManager.hasModifier(c, ID)) {
                 GeneticMod modifier = (GeneticMod) CardModifierManager.getModifiers(c, ID).get(0);
                 modifier.block += increment;
                 c.applyPowers();
             }
+        }
+        AbstractCard c = StSLib.getMasterDeckEquivalent(card);
+        if (c != null && CardModifierManager.hasModifier(c, ID)) {
+            GeneticMod modifier = (GeneticMod) CardModifierManager.getModifiers(c, ID).get(0);
+            modifier.block += increment;
+            c.applyPowers();
         }
     }
 

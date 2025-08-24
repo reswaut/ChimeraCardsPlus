@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.cards.red.HeavyBlade;
 public class HeavyBladePatches {
     @SpirePrefixPatch
     public static void Prefix(HeavyBlade __instance) {
-        if (!ChimeraCardsPlus.enableBaseGameFixes()) {
+        if (!ChimeraCardsPlus.configs.enableBaseGameFixes()) {
             return;
         }
         CardModifierOnApplyPowers.Prefix(__instance);

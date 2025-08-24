@@ -41,7 +41,7 @@ public class ForgottenAlterPatches {
     public static class EventInit {
         @SpirePostfixPatch
         public static void Postfix(ForgottenAltar __instance) {
-            if (!ChimeraCardsPlus.enableEventAddons()) {
+            if (!ChimeraCardsPlus.configs.enableEventAddons()) {
                 return;
             }
             DecayingMod augment = new DecayingMod();
@@ -62,7 +62,7 @@ public class ForgottenAlterPatches {
     private static class ButtonLogic {
         @SpirePrefixPatch
         private static SpireReturn<Void> Prefix(ForgottenAltar __instance, @ByRef int[] buttonPressed, int ___screenNum) {
-            if (!ChimeraCardsPlus.enableEventAddons()) {
+            if (!ChimeraCardsPlus.configs.enableEventAddons()) {
                 return SpireReturn.Continue();
             }
             if (___screenNum != 0) {

@@ -9,13 +9,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 public class DrawPileShuffleHelper {
-    public static int drawPileShufflesThisCombat = 0;
+    public int drawPileShufflesThisCombat = 0;
 
-    public static void onBattleStart(AbstractRoom room) {
+    public void onBattleStart(AbstractRoom room) {
         drawPileShufflesThisCombat = 0;
     }
 
-    public static void onShuffle() {
+    public void onShuffle() {
         drawPileShufflesThisCombat += 1;
         for (AbstractCard card : AbstractDungeon.player.hand.group) {
             onShuffle(card, AbstractDungeon.player.hand);

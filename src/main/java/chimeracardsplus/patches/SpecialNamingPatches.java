@@ -21,7 +21,7 @@ public class SpecialNamingPatches {
             method = SpirePatch.CLASS
     )
     public static class SpecialNamingTooltipField {
-        public static SpireField<TooltipInfo> specialNamingTooltip = new SpireField<>(() -> null);
+        public static final SpireField<TooltipInfo> specialNamingTooltip = new SpireField<>(() -> null);
     }
 
     @SpirePatch(
@@ -31,7 +31,7 @@ public class SpecialNamingPatches {
     public static class ModifyNamesPatch {
         @SpirePrefixPatch
         public static SpireReturn<String> Prefix(AbstractAugment __instance, String cardName, AbstractCard card) {
-            if (!ChimeraCardsPlus.enableSpecialNaming()) {
+            if (!ChimeraCardsPlus.configs.enableSpecialNaming()) {
                 return SpireReturn.Continue();
             }
             if (ChimeraCardsPlus.specialNamingRules.NAME_DICT == null) {
