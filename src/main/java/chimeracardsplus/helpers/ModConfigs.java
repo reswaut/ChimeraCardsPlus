@@ -1,9 +1,11 @@
 package chimeracardsplus.helpers;
 
+import basemod.BaseMod;
 import basemod.IUIElement;
 import basemod.ModLabeledToggleButton;
 import basemod.ModPanel;
 import chimeracardsplus.ChimeraCardsPlus;
+import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -22,7 +24,7 @@ public class ModConfigs {
     private boolean enableSpecialNaming = false;
     private boolean enableBaseGameFixes = true;
     private SpireConfig config = null;
-    private String name = null, author = null, desc = null, labelText = null;
+    private String labelText = null;
 
     public boolean enableEventAddons() {
         return enableEventAddonsPlus;
@@ -53,13 +55,10 @@ public class ModConfigs {
         }
     }
 
-    public ModPanel setupModPanel() {
+    public void setupModPanel(Texture badgeTexture) {
         UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ChimeraCardsPlus.makeID(ModConfigs.class.getSimpleName()));
         String[] TEXT = uiStrings.TEXT;
         String[] EXTRA_TEXT = uiStrings.EXTRA_TEXT;
-        name = EXTRA_TEXT[0];
-        author = EXTRA_TEXT[1];
-        desc = EXTRA_TEXT[2];
         labelText = TEXT[0];
 
         ModPanel settingsPanel = new ModPanel();
@@ -103,19 +102,7 @@ public class ModConfigs {
         });
         settingsPanel.addUIElement(enableSpecialNamingButton);
 
-        return settingsPanel;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public String getDesc() {
-        return desc;
+        BaseMod.registerModBadge(badgeTexture, EXTRA_TEXT[0], EXTRA_TEXT[1], EXTRA_TEXT[2], settingsPanel);
     }
 
     public String getLabelText() {

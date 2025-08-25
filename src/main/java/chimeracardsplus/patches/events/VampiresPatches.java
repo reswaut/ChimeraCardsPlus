@@ -6,6 +6,7 @@ import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.rare.BitingMod;
 import chimeracardsplus.cards.preview.BitingPreview;
+import chimeracardsplus.helpers.Constants;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -52,7 +53,7 @@ public class VampiresPatches {
             AbstractDungeon.player.masterDeck.removeCard(card);
 
             BitingMod augment = new BitingMod();
-            ArrayList<AbstractCard> validCards = new ArrayList<>(512);
+            ArrayList<AbstractCard> validCards = new ArrayList<>(Constants.EXPECTED_CARDS);
             validCards.add(new Bite());
 
             for (AbstractCard c : CardLibrary.getAllCards()) {

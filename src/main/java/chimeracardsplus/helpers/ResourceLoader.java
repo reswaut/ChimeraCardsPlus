@@ -22,17 +22,17 @@ public class ResourceLoader {
     private static final String DEFAULT_LANGUAGE = "eng";
     private static final String RESOURCE_FOLDER = "chimeracardsplus";
     private final Gson gson = new Gson();
-    private final HashMap<String, Texture> textures = new HashMap<>(16);
+    private final HashMap<String, Texture> textures = new HashMap<>(Constants.EXPECTED_TEXTURES);
 
     private static String getLangString() {
         return Settings.language.name().toLowerCase(Locale.getDefault());
     }
 
-    public static String imagePath(String file) {
+    private static String imagePath(String file) {
         return RESOURCE_FOLDER + "/images/" + file;
     }
 
-    public static String localizationPath(String lang, String file) {
+    private static String localizationPath(String lang, String file) {
         return RESOURCE_FOLDER + "/localization/" + lang + '/' + file;
     }
 

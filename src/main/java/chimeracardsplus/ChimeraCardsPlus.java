@@ -1,9 +1,9 @@
 package chimeracardsplus;
 
 import CardAugments.CardAugmentsMod;
+import CardAugments.cardmods.AbstractAugment.AugmentRarity;
 import basemod.AutoAdd;
 import basemod.BaseMod;
-import basemod.ModPanel;
 import basemod.interfaces.*;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus.AugmentBonusLevel;
@@ -20,6 +20,9 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 import com.megacrit.cardcrawl.rooms.EventRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.EnumMap;
+import java.util.Map;
 
 @SpireInitializer
 public class ChimeraCardsPlus implements
@@ -83,15 +86,34 @@ public class ChimeraCardsPlus implements
         }
     }
 
+    private static void registerAugments() {
+        CardAugmentsMod.registerMod(MOD_ID, configs.getLabelText());
+        Map<AugmentRarity, Integer> augmentsByRarity = new EnumMap<>(AugmentRarity.class);
+        new AutoAdd(MOD_ID).packageFilter("chimeracardsplus.cardmods")
+                .any(AbstractAugmentPlus.class, (info, augment) -> {
+                    registerAugment(augment);
+                    AugmentRarity rarity = augment.getModRarity();
+                    augmentsByRarity.put(rarity, augmentsByRarity.getOrDefault(rarity, 0) + 1);
+                });
+        logger.info("-- Registered to CardAugment:");
+        int total = 0;
+        for (AugmentRarity rarity : AugmentRarity.values()) {
+            int value = augmentsByRarity.getOrDefault(rarity, 0);
+            total += value;
+            logger.info("-- {} {} modifiers", value, rarity);
+        }
+        logger.info("-- {} modifiers in total", total);
+    }
+
     @Override
     public void receivePostInitialize() {
         logger.info("Initialization started.");
-        ModPanel modPanel = configs.setupModPanel();
-        BaseMod.registerModBadge(resourceLoader.getTexture("badge.png"), configs.getName(), configs.getAuthor(), configs.getDesc(), modPanel);
+        configs.setupModPanel(resourceLoader.getTexture("badge.png"));
+        logger.info("- Mod panel setup complete.");
         registerPowers();
-        CardAugmentsMod.registerMod(MOD_ID, configs.getLabelText());
-        new AutoAdd(MOD_ID).packageFilter("chimeracardsplus.cardmods")
-                .any(AbstractAugmentPlus.class, (info, augment) -> registerAugment(augment));
+        logger.info("- Registered powers.");
+        registerAugments();
+        logger.info("- Registered modifiers.");
         logger.info("Initialization complete.");
     }
 

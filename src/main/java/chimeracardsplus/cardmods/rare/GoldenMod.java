@@ -59,7 +59,7 @@ public class GoldenMod extends AbstractAugmentPlus {
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         if (card.cost == -1) {
-            return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[1] : CARD_TEXT[2]);
+            return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[2] : CARD_TEXT[3]);
         }
         return insertAfterText(rawDescription, String.format(addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1], card.cost));
     }

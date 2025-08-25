@@ -352,7 +352,7 @@
         "DESCRIPTION": "Merged #yEquilibrial with #yEquilibrium."
       }
     },
-    "${modID}:Established": {
+    "${modID}:EstablishedMod": {
       "Establishment": {
         "NAME": "Establishment²",
         "DESCRIPTION": "Merged #yEstablished with #yEstablishment."

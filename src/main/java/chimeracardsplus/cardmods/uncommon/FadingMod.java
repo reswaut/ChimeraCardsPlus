@@ -4,6 +4,7 @@ import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.helpers.Constants;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -100,7 +101,7 @@ public class FadingMod extends AbstractAugmentPlus {
     public static class RemoveFadingCardOnBossVictoryPatch {
         @SpirePostfixPatch
         public static void Postfix() {
-            Collection<AbstractCard> targetCards = AbstractDungeon.player.masterDeck.group.stream().filter(card -> CardModifierManager.hasModifier(card, ID)).collect(Collectors.toCollection(() -> new ArrayList<>(16)));
+            Collection<AbstractCard> targetCards = AbstractDungeon.player.masterDeck.group.stream().filter(card -> CardModifierManager.hasModifier(card, ID)).collect(Collectors.toCollection(() -> new ArrayList<>(Constants.DEFAULT_LIST_SIZE)));
             for (AbstractCard card : targetCards) {
                 AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(card));
                 AbstractDungeon.player.masterDeck.removeCard(card);

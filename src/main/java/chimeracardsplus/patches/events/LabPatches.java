@@ -6,6 +6,7 @@ import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.rare.LiquidizingMod;
 import chimeracardsplus.cards.preview.LiquidizingPreview;
+import chimeracardsplus.helpers.Constants;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -97,7 +98,7 @@ public class LabPatches {
 
         private static void applyModifiers() {
             LiquidizingMod augment = new LiquidizingMod();
-            ArrayList<AbstractCard> applicableCards = AbstractDungeon.player.masterDeck.group.stream().filter(augment::canApplyTo).collect(Collectors.toCollection(ArrayList::new));
+            ArrayList<AbstractCard> applicableCards = AbstractDungeon.player.masterDeck.group.stream().filter(augment::canApplyTo).collect(Collectors.toCollection(() -> new ArrayList<>(Constants.DEFAULT_LIST_SIZE)));
             if (applicableCards.isEmpty()) {
                 return;
             }

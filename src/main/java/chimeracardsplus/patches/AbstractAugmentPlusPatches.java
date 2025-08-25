@@ -4,6 +4,7 @@ import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.helpers.Constants;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.lib.Matcher.MethodCallMatcher;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
@@ -53,7 +54,7 @@ public class AbstractAugmentPlusPatches {
                 locator = Locator.class
         )
         public static void Insert(Soul __instance, AbstractCard card) {
-            Collection<AbstractAugmentPlus> augmentsToRemove = new ArrayList<>(4);
+            Collection<AbstractAugmentPlus> augmentsToRemove = new ArrayList<>(Constants.DEFAULT_LIST_SIZE);
             for (AbstractCardModifier modifier : CardModifierManager.modifiers(card)) {
                 if (!(modifier instanceof AbstractAugmentPlus)) {
                     continue;
@@ -81,7 +82,7 @@ public class AbstractAugmentPlusPatches {
         public static void doPatches(ClassFinder finder, ClassPool pool) throws NotFoundException, CannotCompileException {
             ChimeraCardsPlus.logger.info("- Dynamic AbstractCard patches started.");
             ClassFilter filter = new AndClassFilter(new NotClassFilter(new InterfaceOnlyClassFilter()), new SubclassClassFilter(AbstractCard.class));
-            ArrayList<ClassInfo> clzList = new ArrayList<>(512);
+            ArrayList<ClassInfo> clzList = new ArrayList<>(Constants.EXPECTED_CARDS);
             finder.findClasses(clzList, filter);
             ChimeraCardsPlus.logger.info("- Potential targets found ({}).", clzList.size());
             CtClass ctClass = pool.get(AbstractCard.class.getName());

@@ -5,6 +5,7 @@ import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.special.HesitantMod;
 import chimeracardsplus.cards.preview.HesitantPreview;
+import chimeracardsplus.helpers.Constants;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -86,7 +87,7 @@ public class MoaiHeadPatches {
 
         private static void applyModifiers() {
             HesitantMod augment = new HesitantMod();
-            ArrayList<AbstractCard> applicableCards = AbstractDungeon.player.masterDeck.group.stream().filter(augment::canApplyTo).collect(Collectors.toCollection(ArrayList::new));
+            ArrayList<AbstractCard> applicableCards = AbstractDungeon.player.masterDeck.group.stream().filter(augment::canApplyTo).collect(Collectors.toCollection(() -> new ArrayList<>(Constants.DEFAULT_LIST_SIZE)));
             if (applicableCards.isEmpty()) {
                 return;
             }

@@ -352,7 +352,7 @@
         "DESCRIPTION": "合并 #y均衡 和 #y均衡 。"
       }
     },
-    "${modID}:Established": {
+    "${modID}:EstablishedMod": {
       "确立基础": {
         "NAME": "确立²基础",
         "DESCRIPTION": "合并 #y确立 和 #y确立基础 。"

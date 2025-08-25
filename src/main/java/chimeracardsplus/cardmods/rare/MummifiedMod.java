@@ -3,6 +3,7 @@ package chimeracardsplus.cardmods.rare;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.helpers.Constants;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
@@ -29,7 +30,7 @@ public class MummifiedMod extends AbstractAugmentPlus {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        List<AbstractCard> groupCopy = AbstractDungeon.player.hand.group.stream().filter(c -> c.cost > 0 && c.costForTurn > 0 && !c.freeToPlayOnce).collect(Collectors.toCollection(() -> new ArrayList<>(16)));
+        List<AbstractCard> groupCopy = AbstractDungeon.player.hand.group.stream().filter(c -> c.cost > 0 && c.costForTurn > 0 && !c.freeToPlayOnce).collect(Collectors.toCollection(() -> new ArrayList<>(Constants.DEFAULT_LIST_SIZE)));
         for (CardQueueItem i : AbstractDungeon.actionManager.cardQueue) {
             if (i.card != null) {
                 groupCopy.remove(i.card);

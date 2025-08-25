@@ -1,10 +1,4 @@
 {
-  "${modID}:RenderHealingTipPatches": {
-    "TEXT": [
-      "Run-Scale Modifier",
-      "This Modifier will not be generated during combat."
-    ]
-  },
   "${modID}:ModConfigs": {
     "TEXT": [
       "Enable Chimera Cards+ Content",
@@ -19,6 +13,21 @@
       "${project.name}",
       "${author}",
       "${project.description}"
+    ]
+  },
+  "${modID}:RenderHealingTipPatches": {
+    "TEXT": [
+      "Run-Scale Modifier",
+      "This Modifier will not be generated during combat."
+    ]
+  },
+  "${modID}:BetterModifierScreenPatches": {
+    "TEXT": [
+      "All Mods",
+      "Common",
+      "Uncommon",
+      "Rare",
+      "Special"
     ]
   },
   "${modID}:CardByIDFromDeckToHandAction": {

@@ -72,8 +72,8 @@ public class PoopyMod extends AbstractAugmentPlus {
     )
     public static class EquivalentFrozenEyePatches {
         @SpirePrefixPatch
-        public static SpireReturn<Boolean> Prefix(AbstractPlayer __instace, String targetID) {
-            if (targetID.equals(SpiritPoop.ID) && __instace.masterDeck.group.stream().anyMatch(card -> CardModifierManager.modifiers(card).stream().anyMatch(mod -> mod.identifier(card).equals(ID)))) {
+        public static SpireReturn<Boolean> Prefix(AbstractPlayer __instance, String targetID) {
+            if (targetID.equals(SpiritPoop.ID) && __instance.masterDeck.group.stream().anyMatch(card -> CardModifierManager.modifiers(card).stream().anyMatch(mod -> mod.identifier(card).equals(ID)))) {
                 return SpireReturn.Return(true);
             }
             return SpireReturn.Continue();

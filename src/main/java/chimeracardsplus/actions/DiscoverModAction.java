@@ -6,6 +6,7 @@ import CardAugments.patches.RolledModFieldPatches.RolledModField;
 import basemod.helpers.CardModifierManager;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus.AugmentBonusLevel;
+import chimeracardsplus.helpers.Constants;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
@@ -56,12 +57,12 @@ public class DiscoverModAction extends AbstractGameAction {
 
     private ArrayList<AbstractCard> generateCardChoices() {
         List<AbstractAugment> filter = AbstractAugmentPlus.filterModsByBonusLevel(CardAugmentsMod.getAllValidMods(baseCard), AugmentBonusLevel.NORMAL);
-        ArrayList<AbstractCard> ret = new ArrayList<>(4);
+        ArrayList<AbstractCard> ret = new ArrayList<>(Constants.DEFAULT_LIST_SIZE);
         if (filter.isEmpty()) {
             ret.add(baseCard);
             return ret;
         }
-        Collection<Integer> derp = new ArrayList<>(4);
+        Collection<Integer> derp = new ArrayList<>(Constants.DEFAULT_LIST_SIZE);
         for (int i = Math.min(3, filter.size()); i > 0; --i) {
             int tmp;
             do {

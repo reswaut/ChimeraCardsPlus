@@ -3,6 +3,7 @@ package chimeracardsplus.cardmods.rare;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.helpers.Constants;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -40,7 +41,7 @@ public class CleansingMod extends AbstractAugmentPlus {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        ArrayList<String> debuffs = AbstractDungeon.player.powers.stream().filter(p -> p.type == PowerType.DEBUFF).map(p -> p.ID).collect(Collectors.toCollection(() -> new ArrayList<>(4)));
+        ArrayList<String> debuffs = AbstractDungeon.player.powers.stream().filter(p -> p.type == PowerType.DEBUFF).map(p -> p.ID).collect(Collectors.toCollection(() -> new ArrayList<>(Constants.DEFAULT_LIST_SIZE)));
         if (debuffs.isEmpty()) {
             return;
         }

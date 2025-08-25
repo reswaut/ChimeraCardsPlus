@@ -79,8 +79,8 @@ public class FrozenEyePower extends AbstractPower {
     )
     public static class EquivalentFrozenEyePatches {
         @SpirePrefixPatch
-        public static SpireReturn<Boolean> Prefix(AbstractPlayer __instace, String targetID) {
-            if (targetID.equals(FrozenEye.ID) && __instace.hasPower(POWER_ID)) {
+        public static SpireReturn<Boolean> Prefix(AbstractPlayer __instance, String targetID) {
+            if (targetID.equals(FrozenEye.ID) && __instance.hasPower(POWER_ID)) {
                 return SpireReturn.Return(true);
             }
             return SpireReturn.Continue();

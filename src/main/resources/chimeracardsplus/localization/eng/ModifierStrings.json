@@ -2682,7 +2682,7 @@
     "TEXT": [
       "Tungsten ",
       "",
-      "Reduces #yBlock by #b20%. NL Whenever you would lose HP this turn, lose 1 less."
+      "Reduces #yBlock by #b20%. NL Whenever you would lose HP this turn, lose #b1 less."
     ],
     "EXTRA_TEXT": [
       " NL Whenever you would lose HP this turn, lose 1 less."

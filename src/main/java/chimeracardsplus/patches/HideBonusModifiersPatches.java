@@ -5,6 +5,7 @@ import CardAugments.screens.ModifierScreen;
 import basemod.ReflectionHacks;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus.AugmentBonusLevel;
+import chimeracardsplus.helpers.Constants;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.lib.Matcher.MethodCallMatcher;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
@@ -26,7 +27,7 @@ public class HideBonusModifiersPatches {
             return;
         }
         Map<String, AbstractAugment> augmentMap = ReflectionHacks.getPrivate(__instance, ModifierScreen.class, "augmentMap");
-        ArrayList<String> tmp = new ArrayList<>(512);
+        ArrayList<String> tmp = new ArrayList<>(Constants.EXPECTED_MODIFIERS);
         for (String s : ret[0]) {
             AbstractAugment augment = augmentMap.get(s);
             if (!(augment instanceof AbstractAugmentPlus)) {

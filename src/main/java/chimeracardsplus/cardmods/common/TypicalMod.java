@@ -14,9 +14,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import java.util.HashSet;
-import java.util.stream.Collectors;
-
 public class TypicalMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(TypicalMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
@@ -65,7 +62,7 @@ public class TypicalMod extends AbstractAugmentPlus {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        addToBot(new UseCardMultipleTimesAction(card, target, () -> AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> !card.uuid.equals(c.uuid)).map(c -> c.type).collect(Collectors.toCollection(HashSet<CardType>::new)).size() - 1));
+        addToBot(new UseCardMultipleTimesAction(card, target, () -> Math.toIntExact(AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> !card.uuid.equals(c.uuid)).map(c -> c.type).distinct().count() - 1)));
     }
 
     @Override

@@ -5,6 +5,7 @@ import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.special.DisgracefulMod;
 import chimeracardsplus.cards.preview.DisgracefulPreview;
+import chimeracardsplus.helpers.Constants;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
@@ -82,7 +83,7 @@ public class AddictPatches {
 
         private static void applyModifiers() {
             DisgracefulMod augment = new DisgracefulMod();
-            ArrayList<AbstractCard> applicableCards = AbstractDungeon.player.masterDeck.group.stream().filter(c -> augment.canApplyTo(c) && c.type == CardType.ATTACK).collect(Collectors.toCollection(ArrayList::new));
+            ArrayList<AbstractCard> applicableCards = AbstractDungeon.player.masterDeck.group.stream().filter(c -> augment.canApplyTo(c) && c.type == CardType.ATTACK).collect(Collectors.toCollection(() -> new ArrayList<>(Constants.DEFAULT_LIST_SIZE)));
             if (applicableCards.isEmpty()) {
                 return;
             }

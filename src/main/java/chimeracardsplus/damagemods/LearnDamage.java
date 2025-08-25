@@ -1,5 +1,6 @@
 package chimeracardsplus.damagemods;
 
+import chimeracardsplus.helpers.Constants;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
@@ -31,7 +32,7 @@ public class LearnDamage extends AbstractDamageModifier {
                 && !target.halfDead
                 && !target.hasPower(MinionPower.POWER_ID)
                 && !target.hasPower(UnawakenedPower.POWER_ID)) {
-            ArrayList<AbstractCard> possibleCards = AbstractDungeon.player.masterDeck.group.stream().filter(AbstractCard::canUpgrade).collect(Collectors.toCollection(() -> new ArrayList<>(64)));
+            ArrayList<AbstractCard> possibleCards = AbstractDungeon.player.masterDeck.group.stream().filter(AbstractCard::canUpgrade).collect(Collectors.toCollection(() -> new ArrayList<>(Constants.DEFAULT_LIST_SIZE)));
 
             AbstractCard theCard = null;
             if (!possibleCards.isEmpty()) {

@@ -1,4 +1,4 @@
-package chimeracardsplus.cardmods.common;
+package chimeracardsplus.cardmods.uncommon;
 
 import CardAugments.cardmods.DynvarCarrier;
 import basemod.abstracts.AbstractCardModifier;
@@ -104,7 +104,7 @@ public class ChokingMod extends AbstractAugmentPlus implements DynvarCarrier {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.COMMON;
+        return AugmentRarity.UNCOMMON;
     }
 
     @Override

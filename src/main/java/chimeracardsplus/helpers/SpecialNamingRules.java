@@ -12,7 +12,7 @@ public class SpecialNamingRules {
             return;
         }
         if (NAME_DICT == null) {
-            NAME_DICT = new HashMap<>(512);
+            NAME_DICT = new HashMap<>(Constants.EXPECTED_MODIFIERS);
             NAME_DICT.putAll(newRules.NAME_DICT);
             return;
         }
