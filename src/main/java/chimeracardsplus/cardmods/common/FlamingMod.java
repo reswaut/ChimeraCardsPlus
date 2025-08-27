@@ -52,7 +52,7 @@ public class FlamingMod extends AbstractAugmentPlus implements DynvarCarrier {
         } else {
             addToBot(new VFXAction(AbstractDungeon.player, new FlameBarrierEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY), 0.5F));
         }
-        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FlameBarrierPower(AbstractDungeon.player, baseVal(card)), baseVal(card)));
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FlameBarrierPower(AbstractDungeon.player, baseVal(card))));
     }
 
     @Override

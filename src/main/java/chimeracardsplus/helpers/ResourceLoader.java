@@ -67,9 +67,11 @@ public class ResourceLoader {
     }
 
     public void loadStrings() {
-        loadStrings(DEFAULT_LANGUAGE);
-        if (!DEFAULT_LANGUAGE.equals(getLangString())) {
+        try {
             loadStrings(getLangString());
+        } catch (GdxRuntimeException e) {
+            ChimeraCardsPlus.logger.error("Failed to load strings for language {}, fallback to default language {} instead.", getLangString(), DEFAULT_LANGUAGE, e);
+            loadStrings(DEFAULT_LANGUAGE);
         }
     }
 
@@ -88,9 +90,11 @@ public class ResourceLoader {
     }
 
     public void loadKeywords() {
-        loadKeywords(DEFAULT_LANGUAGE);
-        if (!DEFAULT_LANGUAGE.equals(getLangString())) {
+        try {
             loadKeywords(getLangString());
+        } catch (GdxRuntimeException e) {
+            ChimeraCardsPlus.logger.error("Failed to load keywords for language {}, fallback to default language {} instead.", getLangString(), DEFAULT_LANGUAGE, e);
+            loadKeywords(DEFAULT_LANGUAGE);
         }
     }
 

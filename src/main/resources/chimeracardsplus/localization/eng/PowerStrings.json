@@ -14,7 +14,7 @@
   "${modID}:LetterOpenerPower": {
     "NAME": "Sharpened",
     "DESCRIPTIONS": [
-      "Whenever you play an #yAttack this turn, deal #b%d damage to ALL enemies."
+      "Whenever you play a Skill this turn, deal #b%d damage to ALL enemies."
     ]
   },
   "${modID}:LoseFocusPower": {
@@ -40,6 +40,12 @@
     "DESCRIPTIONS": [
       "You cannot play cards.",
       "I cannot play cards."
+    ]
+  },
+  "${modID}:TempStaticDischargePower": {
+    "NAME": "Static",
+    "DESCRIPTIONS": [
+      "When receiving unblocked attack damage, #yChannel #b%d #yLightning."
     ]
   },
   "${modID}:TungstenRodPower": {

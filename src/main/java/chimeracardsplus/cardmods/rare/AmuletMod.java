@@ -10,8 +10,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-public class AmuleticMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(AmuleticMod.class.getSimpleName());
+public class AmuletMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(AmuletMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
@@ -54,7 +54,7 @@ public class AmuleticMod extends AbstractAugmentPlus {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new AmuleticMod();
+        return new AmuletMod();
     }
 
     @Override

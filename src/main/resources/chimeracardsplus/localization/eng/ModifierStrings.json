@@ -2648,9 +2648,9 @@
       " NL At the start of each combat, gain 1 Strength."
     ]
   },
-  "${modID}:AmuleticMod": {
+  "${modID}:AmuletMod": {
     "TEXT": [
-      "Amuletic ",
+      "Amulet of ",
       "",
       "Gains #b6 Max HP upon pickup."
     ],
@@ -2682,7 +2682,7 @@
     "TEXT": [
       "Tungsten ",
       "",
-      "Reduces #yBlock by #b20%. NL Whenever you would lose HP this turn, lose #b1 less."
+      "Reduces #yBlock by #b20%. NL Loses #b1 less HP whenever you would lose HP this turn."
     ],
     "EXTRA_TEXT": [
       " NL Whenever you would lose HP this turn, lose 1 less."
@@ -2697,6 +2697,16 @@
     "EXTRA_TEXT": [
       " NL Transfer the enemy's Poison to another random enemy.",
       "Poison"
+    ]
+  },
+  "${modID}:StaticMod": {
+    "TEXT": [
+      "Static ",
+      "",
+      "Reduces #yBlock by #b25%. NL #yChannels #b1 #yLightning whenever you take unblocked damage this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you take unblocked attack damage this turn, Channel 1 Lightning."
     ]
   }
 }

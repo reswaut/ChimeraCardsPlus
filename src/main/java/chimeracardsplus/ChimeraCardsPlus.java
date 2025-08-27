@@ -58,6 +58,7 @@ public class ChimeraCardsPlus implements
         BaseMod.addPower(NoDamagePower.class, NoDamagePower.POWER_ID);
         BaseMod.addPower(RetributionPower.class, RetributionPower.POWER_ID);
         BaseMod.addPower(StunPlayerPower.class, StunPlayerPower.POWER_ID);
+        BaseMod.addPower(TempStaticDischargePower.class, TempStaticDischargePower.POWER_ID);
         BaseMod.addPower(TungstenRodPower.class, TungstenRodPower.POWER_ID);
         BaseMod.addPower(UntappedPower.class, UntappedPower.POWER_ID);
         BaseMod.addPower(VelvetChokerPower.class, VelvetChokerPower.POWER_ID);

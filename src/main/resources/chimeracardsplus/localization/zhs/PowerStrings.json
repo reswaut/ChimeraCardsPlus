@@ -14,7 +14,7 @@
   "${modID}:LetterOpenerPower": {
     "NAME": "锋利",
     "DESCRIPTIONS": [
-      "你在这回合每打出一张攻击牌，对所有敌人造成 #b%d 点伤害。"
+      "你在这回合每打出一张技能牌，对所有敌人造成 #b%d 点伤害。"
     ]
   },
   "${modID}:LoseFocusPower": {
@@ -40,6 +40,12 @@
     "DESCRIPTIONS": [
       "你不能打出卡牌。",
       "我不能打出卡牌。"
+    ]
+  },
+  "${modID}:TempStaticDischargePower": {
+    "NAME": "静电",
+    "DESCRIPTIONS": [
+      "受到攻击伤害而失去生命时， #y生成 #b%d 个 #y闪电 充能球。"
     ]
   },
   "${modID}:TungstenRodPower": {
