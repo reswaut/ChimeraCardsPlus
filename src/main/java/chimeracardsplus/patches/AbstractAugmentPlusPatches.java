@@ -2,10 +2,8 @@ package chimeracardsplus.patches;
 
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
-import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import chimeracardsplus.helpers.Constants;
-import chimeracardsplus.patches.cards.CardDescriptionPatches;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.lib.Matcher.MethodCallMatcher;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
@@ -15,8 +13,8 @@ import com.megacrit.cardcrawl.cards.Soul;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import javassist.*;
-import org.clapper.util.classutil.*;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -75,47 +73,6 @@ public class AbstractAugmentPlusPatches {
             public int[] Locate(CtBehavior ctBehavior) throws CannotCompileException, PatchingException {
                 Matcher finalMatcher = new MethodCallMatcher(Soul.class, "setSharedVariables");
                 return LineFinder.findInOrder(ctBehavior, finalMatcher);
-            }
-        }
-    }
-
-    public static class DynamicAbstractCardPatches {
-        public static void doPatches(ClassFinder finder, ClassPool pool) throws NotFoundException, CannotCompileException {
-            ChimeraCardsPlus.logger.info("- Dynamic AbstractCard patches started.");
-            ClassFilter filter = new AndClassFilter(new NotClassFilter(new InterfaceOnlyClassFilter()), new SubclassClassFilter(AbstractCard.class));
-            ArrayList<ClassInfo> clzList = new ArrayList<>(Constants.EXPECTED_CARDS);
-            finder.findClasses(clzList, filter);
-            ChimeraCardsPlus.logger.info("- Potential targets found ({}).", clzList.size());
-            checkClassPatches(AbstractCard.class.getName(), pool);
-            for (ClassInfo classInfo : clzList) {
-                checkClassPatches(classInfo.getClassName(), pool);
-            }
-            ChimeraCardsPlus.logger.info("- Dynamic AbstractCard patches complete.");
-        }
-
-        private static void checkClassPatches(String className, ClassPool pool) throws CannotCompileException, NotFoundException {
-            CtClass ctClass = pool.get(className);
-            CtConstructor ctConstructor = ctClass.getClassInitializer();
-            if (ctConstructor == null) {
-                ChimeraCardsPlus.logger.info("- Class initializer of {} not found, making one.", className);
-                ctConstructor = ctClass.makeClassInitializer();
-            }
-            ctConstructor.insertAfter(CardDescriptionPatches.class.getName() + ".rewriteDescriptions(" + className + ".class);");
-            for (CtMethod m : ctClass.getDeclaredMethods()) {
-                checkMethodPatches(ctClass, m);
-            }
-        }
-
-        private static void checkMethodPatches(CtClass ctClass, CtMethod method) throws CannotCompileException {
-            if ("triggerOnManualDiscard".equals(method.getName())) {
-                ChimeraCardsPlus.logger.info("- Patching {}.triggerOnManualDiscard", ctClass.getName());
-                method.insertBefore(AbstractAugmentPlusPatches.class.getName() + ".onManualDiscard(this);");
-            } else if ("onMoveToDiscard".equals(method.getName())) {
-                ChimeraCardsPlus.logger.info("- Patching {}.onMoveToDiscard", ctClass.getName());
-                method.insertBefore(AbstractAugmentPlusPatches.class.getName() + ".onMoveToDiscard(this);");
-            } else if ("onRemoveFromMasterDeck".equals(method.getName())) {
-                ChimeraCardsPlus.logger.info("- Patching {}.onRemoveFromMasterDeck", ctClass.getName());
-                method.insertBefore(AbstractAugmentPlusPatches.class.getName() + ".onRemoveFromMasterDeck(this);");
             }
         }
     }

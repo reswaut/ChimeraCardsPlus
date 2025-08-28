@@ -1,4 +1,4 @@
-package chimeracardsplus.patches.cards;
+package chimeracardsplus.patches;
 
 import CardAugments.cardmods.AbstractAugment;
 import chimeracardsplus.ChimeraCardsPlus;

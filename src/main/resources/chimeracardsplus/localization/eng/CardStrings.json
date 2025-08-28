@@ -48,18 +48,15 @@
   "${modID}:Burst": {
     "DESCRIPTION": "This turn, your next !M! Skill is played twice."
   },
-  "${modID}:CreativeAI": {
+  "${modID}:Creative AI": {
     "DESCRIPTION": "At the start of your turn, add !M! random Power card into your hand."
   },
-  "${modID}:DoubleTap": {
+  "${modID}:Double Tap": {
     "DESCRIPTION": "This turn, your next !M! Attack is played twice."
   },
-  "${modID}:DualWield": {
+  "${modID}:Dual Wield": {
     "DESCRIPTION": "Choose an Attack or Power card. Add !M! copy of that card into your hand.",
     "UPGRADE_DESCRIPTION": "Choose an Attack or Power card. Add !M! copies of that card into your hand."
-  },
-  "${modID}:Equilibrium": {
-    "DESCRIPTION": "Gain !B! Block. NL Retain your hand for !M! turn."
   },
   "${modID}:Loop": {
     "DESCRIPTION": "At the start of your turn, trigger the passive ability of your next Orb !M! time."
@@ -77,7 +74,7 @@
   "${modID}:Omniscience": {
     "DESCRIPTION": "Choose a card in your draw pile. NL Play the chosen card !M! times and exhaust it. NL Exhaust."
   },
-  "${modID}:RipAndTear": {
+  "${modID}:Rip and Tear": {
     "DESCRIPTION": "Deal !D! damage to a random enemy !M! times."
   },
   "${modID}:Storm": {
@@ -87,8 +84,15 @@
   "${modID}:Study": {
     "DESCRIPTION": "At the end of your turn, shuffle !M! *Insight into your draw pile."
   },
+  "${modID}:Tactician": {
+    "DESCRIPTION": "Unplayable. NL If this card is discarded from your hand, gain !M! [G].",
+    "UPGRADE_DESCRIPTION": "Unplayable. NL If this card is discarded from your hand, gain !M! [G]."
+  },
   "${modID}:Turbo": {
     "DESCRIPTION": "Gain !M! [B]. NL Add a *Void into your discard pile.",
     "UPGRADE_DESCRIPTION": "Gain !M! [B]. NL Add a *Void into your discard pile."
+  },
+  "${modID}:Undo": {
+    "DESCRIPTION": "Gain !B! Block. NL Retain your hand for !M! turn."
   }
 }

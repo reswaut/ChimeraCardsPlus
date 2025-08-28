@@ -48,18 +48,15 @@
   "${modID}:Burst": {
     "DESCRIPTION": "在这个回合，你打出的下 !M! 张技能牌会打出两次。"
   },
-  "${modID}:CreativeAI": {
+  "${modID}:Creative AI": {
     "DESCRIPTION": "在每回合开始时，增加 !M! 张随机 能力 牌到你的手牌。"
   },
-  "${modID}:DoubleTap": {
+  "${modID}:Double Tap": {
     "DESCRIPTION": "在这个回合，你打出的下 !M! 张攻击牌会打出两次。"
   },
-  "${modID}:DualWield": {
+  "${modID}:Dual Wield": {
     "DESCRIPTION": "将你手牌中的一张 攻击 或 能力 牌复制 !M! 张。",
     "UPGRADE_DESCRIPTION": "将你手牌中的一张 攻击 或 能力 牌复制 !M! 张。"
-  },
-  "${modID}:Equilibrium": {
-    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 在 !M! 回合内 保留 你的手牌。"
   },
   "${modID}:Loop": {
     "DESCRIPTION": "在你的回合开始时，使用你最右侧的1个充能球的被动能力 !M! 次。"
@@ -77,7 +74,7 @@
   "${modID}:Omniscience": {
     "DESCRIPTION": "选择你抽牌堆中的一张牌。 将这张牌打出 !M! 次然后将其 消耗 。 NL 消耗 。"
   },
-  "${modID}:PerfectedStrike": {
+  "${modID}:Perfected Strike": {
     "DESCRIPTION": "造成 !D! 点伤害。 NL 你每有一张名字中有 打击 的牌，伤害+ !M! 。",
     "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 你每有一张名字中有 打击 的牌，伤害+ !M! 。"
   },
@@ -88,8 +85,15 @@
   "${modID}:Study": {
     "DESCRIPTION": "在你的回合结束时，在你的抽牌堆中加入 !M! 张 *洞见 。"
   },
+  "${modID}:Tactician": {
+    "DESCRIPTION": " 不能被打出 。 NL 如果这张牌从你的手牌中被丢弃，获得 !M! [G] 。",
+    "UPGRADE_DESCRIPTION": " 不能被打出 。 NL 如果这张牌从你的手牌中被丢弃，获得 !M! [G] 。"
+  },
   "${modID}:Turbo": {
     "DESCRIPTION": "获得 !M! [B] 。 NL 将一张 *虚空 放入你的弃牌堆中。",
     "UPGRADE_DESCRIPTION": "获得 !M! [B] 。 NL 将一张 *虚空 放入你的弃牌堆中。"
+  },
+  "${modID}:Undo": {
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 在 !M! 回合内 保留 你的手牌。"
   }
 }

@@ -1,4 +1,4 @@
-package chimeracardsplus.patches.cards;
+package chimeracardsplus.patches;
 
 import basemod.ReflectionHacks;
 import chimeracardsplus.ChimeraCardsPlus;
@@ -15,8 +15,12 @@ public class CardDescriptionPatches {
         if (!ChimeraCardsPlus.configs.enableBaseGameFixes()) {
             return;
         }
-        String id = ChimeraCardsPlus.makeID(cardClass.getSimpleName());
-        CardStrings cardStrings = cards.get(id);
+        String ID = ReflectionHacks.getPrivateStatic(cardClass, "ID");
+        if (ID == null) {
+            ChimeraCardsPlus.logger.error("-- No static ID found in {}.", cardClass.getName());
+            return;
+        }
+        CardStrings cardStrings = cards.get(ChimeraCardsPlus.makeID(ID));
         if (cardStrings == null) {
             return;
         }
