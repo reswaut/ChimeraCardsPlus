@@ -25,7 +25,7 @@ public class RefluxingMod extends AbstractAugmentPlus {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        DamageModifierManager.addModifier(card, new EnergizedDamage());
+        DamageModifierManager.addModifier(card, new EnergizedDamage(1));
         card.cost += 1;
         card.costForTurn = card.cost;
     }
@@ -37,7 +37,7 @@ public class RefluxingMod extends AbstractAugmentPlus {
         for (AbstractDamageModifier m : toRemove) {
             DamageModifierManager.removeModifier(card, m);
         }
-        DamageModifierManager.addModifier(card, new EnergizedDamage());
+        DamageModifierManager.addModifier(card, new EnergizedDamage(1));
     }
 
     @Override

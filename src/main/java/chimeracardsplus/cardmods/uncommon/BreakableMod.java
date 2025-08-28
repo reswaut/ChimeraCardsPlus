@@ -43,7 +43,7 @@ public class BreakableMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= -1 && (c.baseDamage >= 1 || c.baseBlock >= 1 || doesntDowngradeMagic() && c.baseMagicNumber >= 1));
+        return cardCheck(abstractCard, c -> c.cost >= -1 && (c.baseDamage >= 1 || c.baseBlock >= 1 || c.baseMagicNumber >= 1 && doesntDowngradeMagic()));
     }
 
     @Override

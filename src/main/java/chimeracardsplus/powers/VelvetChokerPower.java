@@ -97,7 +97,7 @@ public class VelvetChokerPower extends TwoAmountPower {
     @Override
     public void renderIcons(SpriteBatch sb, float x, float y, Color c) {
         sb.setColor(c);
-        sb.draw(img, x - 12.0F, y - 12.0F, 16.0F, 16.0F, 32.0F, 32.0F, Settings.scale * 1.5F, Settings.scale * 1.5F, 0.0F, 0, 0, img_width, img_height, false, false);
+        sb.draw(img, x - 16.0F, y - 16.0F, 16.0F, 16.0F, 32.0F, 32.0F, Settings.scale * 1.875F, Settings.scale * 1.875F, 0.0F, 0, 0, img_width, img_height, false, false);
         updateEffect();
         if (effect != null) {
             for (AbstractGameEffect e : effect) {

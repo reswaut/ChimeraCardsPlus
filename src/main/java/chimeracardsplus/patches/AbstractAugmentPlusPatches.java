@@ -5,6 +5,7 @@ import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import chimeracardsplus.helpers.Constants;
+import chimeracardsplus.patches.cards.CardDescriptionPatches;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.lib.Matcher.MethodCallMatcher;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
@@ -85,21 +86,24 @@ public class AbstractAugmentPlusPatches {
             ArrayList<ClassInfo> clzList = new ArrayList<>(Constants.EXPECTED_CARDS);
             finder.findClasses(clzList, filter);
             ChimeraCardsPlus.logger.info("- Potential targets found ({}).", clzList.size());
-            CtClass ctClass = pool.get(AbstractCard.class.getName());
+            checkClassPatches(AbstractCard.class.getName(), pool);
+            for (ClassInfo classInfo : clzList) {
+                checkClassPatches(classInfo.getClassName(), pool);
+            }
+            ChimeraCardsPlus.logger.info("- Dynamic AbstractCard patches complete.");
+        }
+
+        private static void checkClassPatches(String className, ClassPool pool) throws CannotCompileException, NotFoundException {
+            CtClass ctClass = pool.get(className);
+            CtConstructor ctConstructor = ctClass.getClassInitializer();
+            if (ctConstructor == null) {
+                ChimeraCardsPlus.logger.info("- Class initializer of {} not found, making one.", className);
+                ctConstructor = ctClass.makeClassInitializer();
+            }
+            ctConstructor.insertAfter(CardDescriptionPatches.class.getName() + ".rewriteDescriptions(" + className + ".class);");
             for (CtMethod m : ctClass.getDeclaredMethods()) {
                 checkMethodPatches(ctClass, m);
             }
-            for (ClassInfo classInfo : clzList) {
-                try {
-                    ctClass = pool.get(classInfo.getClassName());
-                    for (CtMethod m : ctClass.getDeclaredMethods()) {
-                        checkMethodPatches(ctClass, m);
-                    }
-                } catch (NotFoundException e) {
-                    ChimeraCardsPlus.logger.error("- Class not found: {}", classInfo.getClassName(), e);
-                }
-            }
-            ChimeraCardsPlus.logger.info("- Dynamic AbstractCard patches complete.");
         }
 
         private static void checkMethodPatches(CtClass ctClass, CtMethod method) throws CannotCompileException {

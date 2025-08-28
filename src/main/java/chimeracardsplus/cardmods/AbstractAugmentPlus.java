@@ -5,10 +5,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public abstract class AbstractAugmentPlus extends AbstractAugment {
     public static List<AbstractAugment> filterModsByBonusLevel(List<AbstractAugment> augments, AugmentBonusLevel filterLevel) {
@@ -30,8 +30,8 @@ public abstract class AbstractAugmentPlus extends AbstractAugment {
         return ret;
     }
 
-    public static boolean hasCardWithKeywordInDeck(AbstractPlayer p, String keyword) {
-        return p.masterDeck.group.stream().anyMatch(card -> card.rawDescription.toLowerCase(Locale.getDefault()).contains(keyword.toLowerCase(Locale.getDefault())));
+    public static boolean hasCardWithKeywordInDeck(AbstractPlayer p, CharSequence keyword) {
+        return p.masterDeck.group.stream().anyMatch(card -> StringUtils.containsIgnoreCase(card.rawDescription, keyword));
     }
 
     public abstract AugmentBonusLevel getModBonusLevel();

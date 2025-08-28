@@ -30,5 +30,65 @@
   "${modID}:UnawakenedPreview": {
     "NAME": "Unawakened",
     "DESCRIPTION": "Becomes Awakened when transformed or removed."
+  },
+  "${modID}:Amplify": {
+    "DESCRIPTION": "This turn, your next !M! Power card is played twice."
+  },
+  "${modID}:BattleHymn": {
+    "DESCRIPTION": "At the start of each turn, add !M! *Smite into your hand.",
+    "UPGRADE_DESCRIPTION": "Innate. NL At the start of each turn, add !M! *Smite into your hand."
+  },
+  "${modID}:Bloodletting": {
+    "DESCRIPTION": "Lose 3 HP. NL Gain !M! [R].",
+    "UPGRADE_DESCRIPTION": "Lose 3 HP. NL Gain !M! [R]."
+  },
+  "${modID}:Buffer": {
+    "DESCRIPTION": "Prevent the next !M! time you would lose HP."
+  },
+  "${modID}:Burst": {
+    "DESCRIPTION": "This turn, your next !M! Skill is played twice."
+  },
+  "${modID}:CreativeAI": {
+    "DESCRIPTION": "At the start of your turn, add !M! random Power card into your hand."
+  },
+  "${modID}:DoubleTap": {
+    "DESCRIPTION": "This turn, your next !M! Attack is played twice."
+  },
+  "${modID}:DualWield": {
+    "DESCRIPTION": "Choose an Attack or Power card. Add !M! copy of that card into your hand.",
+    "UPGRADE_DESCRIPTION": "Choose an Attack or Power card. Add !M! copies of that card into your hand."
+  },
+  "${modID}:Equilibrium": {
+    "DESCRIPTION": "Gain !B! Block. NL Retain your hand for !M! turn."
+  },
+  "${modID}:Loop": {
+    "DESCRIPTION": "At the start of your turn, trigger the passive ability of your next Orb !M! time."
+  },
+  "${modID}:Magnetism": {
+    "DESCRIPTION": "At the start of your turn, add !M! random Colorless card into your hand."
+  },
+  "${modID}:Mayhem": {
+    "DESCRIPTION": "At the start of your turn, play the top !M! card of your draw pile."
+  },
+  "${modID}:Meditate": {
+    "DESCRIPTION": "Put !M! card from your discard pile into your hand and Retain it. NL Enter Calm. NL End your turn.",
+    "UPGRADE_DESCRIPTION": "Put !M! cards from your discard pile into your hand and Retain them. NL Enter Calm. NL End your turn."
+  },
+  "${modID}:Omniscience": {
+    "DESCRIPTION": "Choose a card in your draw pile. NL Play the chosen card !M! times and exhaust it. NL Exhaust."
+  },
+  "${modID}:RipAndTear": {
+    "DESCRIPTION": "Deal !D! damage to a random enemy !M! times."
+  },
+  "${modID}:Storm": {
+    "DESCRIPTION": "Whenever you play a Power card, Channel !M! Lightning.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Whenever you play a Power card, Channel !M! Lightning."
+  },
+  "${modID}:Study": {
+    "DESCRIPTION": "At the end of your turn, shuffle !M! *Insight into your draw pile."
+  },
+  "${modID}:Turbo": {
+    "DESCRIPTION": "Gain !M! [B]. NL Add a *Void into your discard pile.",
+    "UPGRADE_DESCRIPTION": "Gain !M! [B]. NL Add a *Void into your discard pile."
   }
 }

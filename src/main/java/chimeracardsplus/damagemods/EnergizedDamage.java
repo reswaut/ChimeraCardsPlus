@@ -1,33 +1,27 @@
 package chimeracardsplus.damagemods;
 
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
-import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class EnergizedDamage extends AbstractDamageModifier {
-    public EnergizedDamage() {
-        priority = 32767;
+public class EnergizedDamage extends CardModifierDamageModifier {
+    private final int amount;
+
+    public EnergizedDamage(int amount) {
+        this.amount = amount;
     }
 
     @Override
     public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature target) {
-        if (target instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
-                && target.currentHealth > 0 && !target.halfDead && lastDamageTaken > 0) {
-            addToBot(new GainEnergyAction(1));
+        if (!dealtUnblockedDamage(info, lastDamageTaken, overkillAmount, target)) {
+            return;
         }
-    }
-
-    @Override
-    public boolean isInherent() {
-        return true;
+        addToBot(new GainEnergyAction(amount));
     }
 
     @Override
     public AbstractDamageModifier makeCopy() {
-        return new EnergizedDamage();
+        return new EnergizedDamage(amount);
     }
 }

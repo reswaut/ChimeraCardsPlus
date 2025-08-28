@@ -45,7 +45,7 @@ public class AchingMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.baseDamage >= 4 || c.baseBlock >= 4 || doesntDowngradeMagic() && c.baseMagicNumber >= 4);
+        return cardCheck(abstractCard, c -> c.baseDamage >= 4 || c.baseBlock >= 4 || c.baseMagicNumber >= 4 && doesntDowngradeMagic());
     }
 
     @Override

@@ -1,13 +1,9 @@
 package chimeracardsplus.cardmods.rare;
 
-import CardAugments.patches.InfiniteUpgradesPatches;
 import basemod.abstracts.AbstractCardModifier;
-import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.actions.SetEnergyAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -45,16 +41,8 @@ public class ResidualMod extends AbstractAugmentPlus {
     }
 
     @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        originalCost = card.cost;
-        card.cost = 3;
-        card.costForTurn = card.cost;
-        card.initializeDescription();
-    }
-
-    @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.cost >= 0 && abstractCard.cost <= 4;
+        return cardCheck(abstractCard, c -> c.cost >= 0 && c.cost <= 4 && doesntUpgradeCost());
     }
 
     @Override
@@ -100,21 +88,5 @@ public class ResidualMod extends AbstractAugmentPlus {
     @Override
     public AugmentBonusLevel getModBonusLevel() {
         return AugmentBonusLevel.NORMAL;
-    }
-
-    @SpirePatch(
-            clz = InfiniteUpgradesPatches.class,
-            method = "infCheck"
-    )
-    public static class RestoreCardCostBeforeUpgradePatch {
-        @SpirePostfixPatch
-        public static void Postfix(AbstractCard card) {
-            if (!CardModifierManager.hasModifier(card, ID)) {
-                return;
-            }
-            ResidualMod modifier = (ResidualMod) CardModifierManager.getModifiers(card, ID).get(0);
-            card.cost = modifier.originalCost;
-            modifier.originalCost = 0;
-        }
     }
 }

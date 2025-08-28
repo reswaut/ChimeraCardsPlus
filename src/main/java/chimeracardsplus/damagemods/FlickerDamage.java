@@ -1,36 +1,36 @@
 package chimeracardsplus.damagemods;
 
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
-import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class FlickerDamage extends AbstractDamageModifier {
+public class FlickerDamage extends CardModifierDamageModifier {
     private final AbstractCard hiddenCard;
+    public boolean addedReturnToHand;
 
     public FlickerDamage(AbstractCard card) {
-        priority = 32767;
+        this(card, false);
+    }
+
+    private FlickerDamage(AbstractCard card, boolean addedReturnToHand) {
         hiddenCard = card;
+        this.addedReturnToHand = addedReturnToHand;
     }
 
     @Override
     public void onLastDamageTakenUpdate(DamageInfo info, int lastDamageTaken, int overkillAmount, AbstractCreature target) {
-        if (target instanceof AbstractMonster && DamageModifierManager.getInstigator(info) instanceof AbstractCard
-                && target.currentHealth > 0
-                && target.currentHealth - lastDamageTaken <= 0) {
+        if (!killedEnemy(info, lastDamageTaken, overkillAmount, target)) {
+            return;
+        }
+        if (!hiddenCard.returnToHand) {
             hiddenCard.returnToHand = true;
+            addedReturnToHand = true;
         }
     }
 
     @Override
-    public boolean isInherent() {
-        return true;
-    }
-
-    @Override
     public AbstractDamageModifier makeCopy() {
-        return new FlickerDamage(hiddenCard);
+        return new FlickerDamage(hiddenCard, addedReturnToHand);
     }
 }

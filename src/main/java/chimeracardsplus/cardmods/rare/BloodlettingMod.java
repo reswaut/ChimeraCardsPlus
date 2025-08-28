@@ -1,12 +1,8 @@
 package chimeracardsplus.cardmods.rare;
 
-import CardAugments.patches.InfiniteUpgradesPatches;
 import basemod.abstracts.AbstractCardModifier;
-import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -38,16 +34,8 @@ public class BloodlettingMod extends AbstractAugmentPlus {
     }
 
     @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        hpCost = card.cost;
-        card.cost = 0;
-        card.costForTurn = card.cost;
-        card.initializeDescription();
-    }
-
-    @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.cost > 0;
+        return cardCheck(abstractCard, c -> c.cost >= 1 && doesntUpgradeCost());
     }
 
     @Override
@@ -98,23 +86,5 @@ public class BloodlettingMod extends AbstractAugmentPlus {
     @Override
     public AugmentBonusLevel getModBonusLevel() {
         return AugmentBonusLevel.NORMAL;
-    }
-
-    @SpirePatch(
-            clz = InfiniteUpgradesPatches.class,
-            method = "infCheck"
-    )
-    public static class RestoreCardCostBeforeUpgradePatch {
-        @SpirePostfixPatch
-        public static void Postfix(AbstractCard card) {
-            if (!CardModifierManager.hasModifier(card, ID)) {
-                return;
-            }
-            BloodlettingMod modifier = (BloodlettingMod) CardModifierManager.getModifiers(card, ID).get(0);
-            if (modifier.hpCost > 0) {
-                card.cost = modifier.hpCost;
-                modifier.hpCost = 0;
-            }
-        }
     }
 }

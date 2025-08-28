@@ -27,7 +27,7 @@ public class DynamicPatchTrigger {
         ClassFinder finder = new ClassFinder();
         finder.add(new File(Loader.STS_JAR));
         for (ModInfo modInfo : Loader.MODINFOS) {
-            if (modInfo.jarURL != null) {
+            if (modInfo.jarURL != null && !ChimeraCardsPlus.MOD_ID.equals(modInfo.ID)) {
                 finder.add(new File(modInfo.jarURL.toURI()));
             }
         }

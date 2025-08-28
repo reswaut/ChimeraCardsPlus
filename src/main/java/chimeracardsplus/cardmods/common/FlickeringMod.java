@@ -6,8 +6,10 @@ import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import chimeracardsplus.damagemods.FlickerDamage;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
@@ -40,6 +42,20 @@ public class FlickeringMod extends AbstractAugmentPlus {
             DamageModifierManager.removeModifier(card, m);
         }
         DamageModifierManager.addModifier(card, new FlickerDamage(card));
+    }
+
+    @Override
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        for (AbstractDamageModifier modifier : DamageModifierManager.modifiers(card)) {
+            if (!(modifier instanceof FlickerDamage)) {
+                continue;
+            }
+            FlickerDamage mod = (FlickerDamage) modifier;
+            if (mod.addedReturnToHand) {
+                card.returnToHand = false;
+                mod.addedReturnToHand = false;
+            }
+        }
     }
 
     @Override

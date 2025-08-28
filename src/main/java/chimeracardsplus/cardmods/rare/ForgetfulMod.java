@@ -18,7 +18,6 @@ import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.EnumSet;
 
 public class ForgetfulMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(ForgetfulMod.class.getSimpleName());
@@ -26,13 +25,13 @@ public class ForgetfulMod extends AbstractAugmentPlus {
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
     public static final String UI_TEXT = CardCrawlGame.languagePack.getEventString("Purifier").OPTIONS[2];
-    private static final Collection<CurrentScreen> VALID_SCREENS = EnumSet.copyOf(Arrays.asList(
+    private static final Collection<CurrentScreen> VALID_SCREENS = Arrays.asList(
             CurrentScreen.COMBAT_REWARD,
             CurrentScreen.MAP,
             CurrentScreen.NONE,
             CurrentScreen.SHOP,
             CurrentScreen.VICTORY
-    ));
+    );
     private CurrentScreen prevScreen = null;
     private boolean pickup, cardsSelected;
 
