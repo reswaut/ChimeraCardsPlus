@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.localization.LocalizedStrings;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 @SpirePatch(
         clz = AbstractAugment.class,
@@ -16,7 +17,7 @@ public class BetterMakeMatchersPatches {
     public static ArrayList<String> Postfix(ArrayList<String> __result, String... inputs) {
         for (String s : inputs) {
             StringBuilder sb = new StringBuilder(s.length() + 2);
-            sb.append(String.join(' ' + LocalizedStrings.PERIOD, s.split(LocalizedStrings.PERIOD)));
+            sb.append(String.join(' ' + LocalizedStrings.PERIOD, s.split(Pattern.quote(LocalizedStrings.PERIOD))));
             if (s.endsWith(LocalizedStrings.PERIOD)) {
                 sb.append(' ').append(LocalizedStrings.PERIOD);
             }
@@ -28,8 +29,8 @@ public class BetterMakeMatchersPatches {
             sb.insert(0, ' ');
             String t2 = sb.toString();
             __result.add(t2);
-            __result.add((" [diffRmvS] " + t2 + " [diffRmvE] ").replace("  ", " "));
-            __result.add((" [diffAddS] " + t2 + " [diffAddE] ").replace("  ", " "));
+            __result.add((" [diffRmvS]" + t2 + " [diffRmvE] ").replace("  ", " "));
+            __result.add((" [diffAddS]" + t2 + " [diffAddE] ").replace("  ", " "));
         }
         return __result;
     }

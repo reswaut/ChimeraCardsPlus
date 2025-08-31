@@ -16,7 +16,7 @@
     </properties>
 
     <name>Chimera Cards+</name>
-    <version>0.12.3</version>
+    <version>0.12.4</version>
     <description>Adds 250+ Chimera Cards modifiers.\n增加 250+ 奇美拉卡牌修改。</description>
 
     <groupId>chimeracardsplus</groupId>
@@ -92,7 +92,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.4.2</version>
                 <configuration>
                     <excludes>
                         <exclude>**/*.psd</exclude>

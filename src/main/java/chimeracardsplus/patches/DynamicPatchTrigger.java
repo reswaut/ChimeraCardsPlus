@@ -23,7 +23,7 @@ public class DynamicPatchTrigger {
     private static final ClassFinder allModsFinder;
     private static final ClassFinder stsFinder;
     private static final ClassFilter abstractCardSubClassFilter;
-    private static final ClassFilter nonInterfaceAbstractCardSubClassFilter;
+    private static final ClassFilter nonInterfaceAbstractCardSubclassFilter;
 
     static {
         File sts = new File(Loader.STS_JAR);
@@ -45,7 +45,7 @@ public class DynamicPatchTrigger {
 
         abstractCardSubClassFilter = new SubclassClassFilter(AbstractCard.class);
 
-        nonInterfaceAbstractCardSubClassFilter = new AndClassFilter(new NotClassFilter(new InterfaceOnlyClassFilter()), abstractCardSubClassFilter);
+        nonInterfaceAbstractCardSubclassFilter = new AndClassFilter(new NotClassFilter(new InterfaceOnlyClassFilter()), abstractCardSubClassFilter);
     }
 
     @SpireRawPatch
@@ -84,7 +84,7 @@ public class DynamicPatchTrigger {
     private static void applyBaseGameCardPatches(ClassPool pool) throws NotFoundException, CannotCompileException {
         ChimeraCardsPlus.logger.info("- Dynamic base game card patches started.");
         ArrayList<ClassInfo> clzList = new ArrayList<>(Constants.EXPECTED_CARDS);
-        stsFinder.findClasses(clzList, nonInterfaceAbstractCardSubClassFilter);
+        stsFinder.findClasses(clzList, nonInterfaceAbstractCardSubclassFilter);
         ChimeraCardsPlus.logger.info("- Potential targets found for dynamic base game card patches({}).", clzList.size());
         for (ClassInfo classInfo : clzList) {
             String className = classInfo.getClassName();
