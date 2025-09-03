@@ -29,7 +29,7 @@ public class DisgracefulMod extends AbstractAugmentPlus {
         if (group.type != CardGroupType.HAND) {
             return;
         }
-        addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FrailPower(AbstractDungeon.player, 1, true), 1));
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FrailPower(AbstractDungeon.player, 1, true), 1));
         card.flash(Color.RED);
     }
 

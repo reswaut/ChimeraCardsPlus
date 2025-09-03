@@ -11,8 +11,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import java.util.regex.Pattern;
 
 public class ChronoMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(ChronoMod.class.getSimpleName());
@@ -38,7 +41,7 @@ public class ChronoMod extends AbstractAugmentPlus {
                 && (c.baseDamage >= 4 || c.baseBlock >= 4)
                 && customCheck(c, check ->
                 noCardModDescriptionChanges(check)
-                        && check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L));
+                        && check.rawDescription.chars().filter(ch -> ch == LocalizedStrings.PERIOD.charAt(0)).count() == 1L));
     }
 
     @Override
@@ -63,7 +66,7 @@ public class ChronoMod extends AbstractAugmentPlus {
             int count = GameActionManager.turn;
             text += String.format(count == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count);
         }
-        return rawDescription.replaceFirst("[.。]", text);
+        return rawDescription.replaceFirst(Pattern.quote(LocalizedStrings.PERIOD), text);
     }
 
     @Override

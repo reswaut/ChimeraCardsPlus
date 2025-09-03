@@ -1,17 +1,19 @@
-package chimeracardsplus.cardmods.special;
+package chimeracardsplus.cardmods.uncommon;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
+import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
+import com.megacrit.cardcrawl.cards.curses.AscendersBane;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class AwakenedMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(AwakenedMod.class.getSimpleName());
+public class UnreliableMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(UnreliableMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
@@ -19,30 +21,34 @@ public class AwakenedMod extends AbstractAugmentPlus {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        SoulboundField.soulbound.set(card, true);
         if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
             modMagic = true;
         }
     }
 
     @Override
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> !AscendersBane.ID.equals(c.cardID) && (c.cost == -2 || c.baseDamage > 0 || c.baseBlock > 0 || doesntDowngradeMagic() && c.baseMagicNumber >= 2));
+    }
+
+    @Override
     public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage > 0.0F ? damage * 2.0F : damage;
+        return damage > 0.0F ? damage * 1.5F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return block > 0.0F ? block * 2.0F : block;
+        return block > 0.0F ? block * 1.5F : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return modMagic ? magic * 2.0F : magic;
+        return modMagic ? magic * 1.5F : magic;
     }
 
     @Override
-    public boolean validCard(AbstractCard abstractCard) {
-        return true;
+    public void onDrawn(AbstractCard card) {
+        addToBot(new DiscardAction(AbstractDungeon.player, AbstractDungeon.player, 1, true));
     }
 
     @Override
@@ -61,13 +67,18 @@ public class AwakenedMod extends AbstractAugmentPlus {
     }
 
     @Override
+    public String modifyDescription(String rawDescription, AbstractCard card) {
+        return insertAfterText(rawDescription, CARD_TEXT[0]);
+    }
+
+    @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.SPECIAL;
+        return AugmentRarity.UNCOMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new AwakenedMod();
+        return new UnreliableMod();
     }
 
     @Override

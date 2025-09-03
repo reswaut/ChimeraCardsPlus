@@ -41,11 +41,6 @@ public class VajraMod extends AbstractAugmentPlus {
     }
 
     @Override
-    public String modifyDescription(String rawDescription, AbstractCard card) {
-        return rawDescription;
-    }
-
-    @Override
     public AugmentRarity getModRarity() {
         return AugmentRarity.UNCOMMON;
     }

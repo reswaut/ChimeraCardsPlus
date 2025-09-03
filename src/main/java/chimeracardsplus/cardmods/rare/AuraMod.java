@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -46,7 +47,7 @@ public class AuraMod extends AbstractAugmentPlus {
                 (c.type == CardType.ATTACK || c.type == CardType.SKILL) &&
                 doesntOverride(c, "triggerOnEndOfTurnForPlayingCard") &&
                 customCheck(c, check -> noCardModDescriptionChanges(check) &&
-                        check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L &&
+                        check.rawDescription.chars().filter(ch -> ch == LocalizedStrings.PERIOD.charAt(0)).count() == 1L &&
                         check.rawDescription.chars().noneMatch(ch -> ch == ',' || ch == '，')));
     }
 

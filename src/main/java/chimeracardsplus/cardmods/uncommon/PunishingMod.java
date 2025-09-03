@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
+import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
@@ -36,7 +37,7 @@ public class PunishingMod extends AbstractAugmentPlus implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= 1 && usesVanillaTargeting(c) && c.type == CardType.ATTACK && customCheck(c, check -> check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L));
+        return cardCheck(abstractCard, c -> c.cost >= 1 && usesVanillaTargeting(c) && c.type == CardType.ATTACK && customCheck(c, check -> check.rawDescription.chars().filter(ch -> ch == LocalizedStrings.PERIOD.charAt(0)).count() == 1L));
     }
 
     @Override

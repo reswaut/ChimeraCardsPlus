@@ -11,8 +11,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import java.util.regex.Pattern;
 
 public class FiendMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(FiendMod.class.getSimpleName());
@@ -35,7 +38,7 @@ public class FiendMod extends AbstractAugmentPlus {
                 && (c.type == CardType.ATTACK || c.type == CardType.SKILL)
                 && customCheck(c, check ->
                 noCardModDescriptionChanges(check)
-                        && check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L
+                        && check.rawDescription.chars().filter(ch -> ch == LocalizedStrings.PERIOD.charAt(0)).count() == 1L
                         && check.rawDescription.chars().noneMatch(ch -> ch == ',' || ch == '，')));
     }
 
@@ -56,7 +59,7 @@ public class FiendMod extends AbstractAugmentPlus {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertBeforeText(rawDescription.replaceFirst("[.。]", CARD_TEXT[1]), CARD_TEXT[0]);
+        return insertBeforeText(rawDescription.replaceFirst(Pattern.quote(LocalizedStrings.PERIOD), CARD_TEXT[1]), CARD_TEXT[0]);
     }
 
     @Override

@@ -31,7 +31,7 @@ public class DecayingMod extends AbstractAugmentPlus {
         if (group.type != CardGroupType.HAND) {
             return;
         }
-        addToTop(new DamageAction(AbstractDungeon.player, new DamageInfo(AbstractDungeon.player, 2, DamageType.THORNS), AttackEffect.FIRE));
+        addToBot(new DamageAction(AbstractDungeon.player, new DamageInfo(AbstractDungeon.player, 2, DamageType.THORNS), AttackEffect.FIRE));
         card.flash(Color.RED);
     }
 

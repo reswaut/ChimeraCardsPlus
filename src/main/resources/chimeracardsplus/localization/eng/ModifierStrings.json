@@ -2708,5 +2708,35 @@
     "EXTRA_TEXT": [
       " NL Whenever you take unblocked attack damage this turn, Channel 1 Lightning."
     ]
+  },
+  "${modID}:UnreliableMod": {
+    "TEXT": [
+      "Unreliable ",
+      "",
+      "Increases card values by #b50%. NL Discards #b1 random card when drawn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you draw this card, discard 1 card at random."
+    ]
+  },
+  "${modID}:IrregularMod": {
+    "TEXT": [
+      "Irregular ",
+      "",
+      "Randomizes card cost and values."
+    ],
+    "EXTRA_TEXT": [
+    ]
+  },
+  "${modID}:ShiftingMod": {
+    "TEXT": [
+      "Shifting ",
+      "",
+      "Costs [E] more. NL Applies #yStrength down equal to unblocked damage dealt for one turn. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Enemy loses Strength this turn equal to unblocked damage. NL Exhaust.",
+      " NL Enemy loses Strength this turn equal to unblocked damage."
+    ]
   }
 }

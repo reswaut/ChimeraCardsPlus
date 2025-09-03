@@ -70,6 +70,10 @@
       "Claw": {
         "NAME": "Claw²",
         "DESCRIPTION": "Merged #yClawful with #yClaw."
+      },
+      "Strike": {
+        "NAME": "Strike²",
+        "DESCRIPTION": "Merged #yStrikeful with #yStrike."
       }
     },
     "CardAugments:EndlessMod": {
@@ -302,6 +306,12 @@
       "Crush Joints": {
         "NAME": "Crush² Joints",
         "DESCRIPTION": "Merged #yCrushing with #yCrush #yJoints."
+      }
+    },
+    "${modID}:CubicMod": {
+      "Brutality": {
+        "NAME": "Brutality²",
+        "DESCRIPTION": "Merged #yCubic with #yBrutality."
       }
     },
     "${modID}:CutThroughMod": {

@@ -9,8 +9,11 @@ import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import java.util.regex.Pattern;
 
 public class IterativeMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(IterativeMod.class.getSimpleName());
@@ -44,7 +47,7 @@ public class IterativeMod extends AbstractAugmentPlus {
                 && (c.baseDamage >= 2 || c.baseBlock >= 2)
                 && customCheck(c, check ->
                 noCardModDescriptionChanges(check)
-                        && check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L));
+                        && check.rawDescription.chars().filter(ch -> ch == LocalizedStrings.PERIOD.charAt(0)).count() == 1L));
     }
 
     @Override
@@ -79,7 +82,7 @@ public class IterativeMod extends AbstractAugmentPlus {
         if (descriptionHack) {
             text += String.format(count + 1 == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count + 1);
         }
-        return rawDescription.replaceFirst("[.。]", text);
+        return rawDescription.replaceFirst(Pattern.quote(LocalizedStrings.PERIOD), text);
     }
 
     @Override

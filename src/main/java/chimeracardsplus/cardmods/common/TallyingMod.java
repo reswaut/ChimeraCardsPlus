@@ -10,7 +10,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
+
+import java.util.regex.Pattern;
 
 public class TallyingMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(TallyingMod.class.getSimpleName());
@@ -28,7 +31,7 @@ public class TallyingMod extends AbstractAugmentPlus {
     public boolean validCard(AbstractCard abstractCard) {
         return cardCheck(abstractCard, c -> noShenanigans(c)
                 && c.cost >= -1 && (c.type == CardType.ATTACK || c.type == CardType.SKILL)
-                && customCheck(c, check -> noCardModDescriptionChanges(check) && check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L));
+                && customCheck(c, check -> noCardModDescriptionChanges(check) && check.rawDescription.chars().filter(ch -> ch == LocalizedStrings.PERIOD.charAt(0)).count() == 1L));
     }
 
     @Override
@@ -53,7 +56,7 @@ public class TallyingMod extends AbstractAugmentPlus {
             int count = ChimeraCardsPlus.drawPileShuffleHelper.drawPileShufflesThisCombat;
             text += String.format(count == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count);
         }
-        return rawDescription.replaceFirst("[.。]", text);
+        return rawDescription.replaceFirst(Pattern.quote(LocalizedStrings.PERIOD), text);
     }
 
     @Override

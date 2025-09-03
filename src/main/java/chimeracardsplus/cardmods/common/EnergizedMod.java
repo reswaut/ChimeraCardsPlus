@@ -11,9 +11,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+
+import java.util.regex.Pattern;
 
 public class EnergizedMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(EnergizedMod.class.getSimpleName());
@@ -41,7 +44,7 @@ public class EnergizedMod extends AbstractAugmentPlus {
         return cardCheck(abstractCard, c -> noShenanigans(c)
                 && c.cost >= 0 && (c.type == CardType.ATTACK || c.type == CardType.SKILL)
                 && (c.baseDamage >= 2 || c.baseBlock >= 2)
-                && customCheck(c, check -> noCardModDescriptionChanges(check) && check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L));
+                && customCheck(c, check -> noCardModDescriptionChanges(check) && check.rawDescription.chars().filter(ch -> ch == LocalizedStrings.PERIOD.charAt(0)).count() == 1L));
     }
 
     @Override
@@ -61,7 +64,7 @@ public class EnergizedMod extends AbstractAugmentPlus {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return rawDescription.replaceFirst("[.。]", CARD_TEXT[0]);
+        return rawDescription.replaceFirst(Pattern.quote(LocalizedStrings.PERIOD), CARD_TEXT[0]);
     }
 
     @Override

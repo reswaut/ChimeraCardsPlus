@@ -12,8 +12,11 @@ import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import java.util.regex.Pattern;
 
 public class FinishingMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(FinishingMod.class.getSimpleName());
@@ -48,7 +51,7 @@ public class FinishingMod extends AbstractAugmentPlus {
                 && (c.baseDamage >= 2 || c.baseBlock >= 2)
                 && customCheck(c, check ->
                     noCardModDescriptionChanges(check)
-                            && check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L));
+                            && check.rawDescription.chars().filter(ch -> ch == LocalizedStrings.PERIOD.charAt(0)).count() == 1L));
     }
 
     @Override
@@ -82,7 +85,7 @@ public class FinishingMod extends AbstractAugmentPlus {
                 text += String.format(count == 1 ? CARD_TEXT[4] : CARD_TEXT[5], count);
             }
         }
-        return rawDescription.replaceFirst("[.。]", text);
+        return rawDescription.replaceFirst(Pattern.quote(LocalizedStrings.PERIOD), text);
     }
 
     @Override

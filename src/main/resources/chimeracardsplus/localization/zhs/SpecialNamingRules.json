@@ -64,6 +64,10 @@
       "爪击": {
         "NAME": "爪击²",
         "DESCRIPTION": "合并 #y爪击 和 #y爪击 。"
+      },
+      "打击": {
+        "NAME": "打击²",
+        "DESCRIPTION": "合并 #y打击 和 #y打击 。"
       }
     },
     "CardAugments:ElectroMod": {
@@ -302,6 +306,12 @@
       "粉碎关节": {
         "NAME": "粉碎²关节",
         "DESCRIPTION": "合并 #y粉碎 和 #y粉碎关节 。"
+      }
+    },
+    "${modID}:CubicMod": {
+      "残暴": {
+        "NAME": "残暴²",
+        "DESCRIPTION": "合并 #y立方体 和 #y残暴 。"
       }
     },
     "${modID}:CutThroughMod": {

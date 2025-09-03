@@ -29,7 +29,7 @@ public class HesitantMod extends AbstractAugmentPlus {
         if (group.type != CardGroupType.HAND) {
             return;
         }
-        addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new WeakPower(AbstractDungeon.player, 1, true), 1));
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new WeakPower(AbstractDungeon.player, 1, true), 1));
         card.flash(Color.RED);
     }
 

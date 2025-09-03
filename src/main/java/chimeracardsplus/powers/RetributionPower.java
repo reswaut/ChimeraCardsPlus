@@ -37,7 +37,7 @@ public class RetributionPower extends AbstractPower {
     public int onAttacked(DamageInfo info, int damageAmount) {
         if (info.owner != null && info.type != DamageType.THORNS && info.type != DamageType.HP_LOSS && !info.owner.equals(owner)) {
             flash();
-            addToTop(new ApplyPowerAction(owner, owner, new VigorPower(owner, amount)));
+            addToBot(new ApplyPowerAction(owner, owner, new VigorPower(owner, amount)));
         }
 
         return damageAmount;

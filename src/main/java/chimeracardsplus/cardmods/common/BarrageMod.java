@@ -12,9 +12,12 @@ import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
+
+import java.util.regex.Pattern;
 
 public class BarrageMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(BarrageMod.class.getSimpleName());
@@ -44,7 +47,7 @@ public class BarrageMod extends AbstractAugmentPlus {
                 && (c.baseDamage >= 2 || c.baseBlock >= 2)
                 && customCheck(c, check ->
                     noCardModDescriptionChanges(check)
-                            && check.rawDescription.chars().filter(ch -> ch == '.' || ch == '。').count() == 1L));
+                            && check.rawDescription.chars().filter(ch -> ch == LocalizedStrings.PERIOD.charAt(0)).count() == 1L));
     }
 
     @Override
@@ -64,7 +67,7 @@ public class BarrageMod extends AbstractAugmentPlus {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return rawDescription.replaceFirst("[.。]", CARD_TEXT[0]);
+        return rawDescription.replaceFirst(Pattern.quote(LocalizedStrings.PERIOD), CARD_TEXT[0]);
     }
 
     @Override

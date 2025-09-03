@@ -1,19 +1,23 @@
-package chimeracardsplus.cardmods.rare;
+package chimeracardsplus.cardmods.uncommon;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.actions.RemoveRandomDebuffAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import chimeracardsplus.damagemods.ShiftingDamage;
+import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
+import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-public class CleansingMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(CleansingMod.class.getSimpleName());
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class ShiftingMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(ShiftingMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
@@ -21,22 +25,26 @@ public class CleansingMod extends AbstractAugmentPlus {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (!card.exhaust && card.type != CardType.POWER) {
-            addedExhaust = true;
-            card.exhaust = true;
-        } else {
-            addedExhaust = false;
-        }
+        card.cost += 1;
+        card.costForTurn = card.cost;
+        addedExhaust = !card.exhaust;
+        card.exhaust = true;
+        DamageModifierManager.addModifier(card, new ShiftingDamage());
     }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= -1 && doesntUpgradeExhaust());
+        return cardCheck(abstractCard, c -> c.type == CardType.ATTACK && c.cost >= 0 && doesntUpgradeCost() && doesntUpgradeExhaust());
     }
 
     @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        addToBot(new RemoveRandomDebuffAction(AbstractDungeon.player, AbstractDungeon.player));
+    public void onUpgradeCheck(AbstractCard card) {
+        List<AbstractDamageModifier> mods = DamageModifierManager.modifiers(card);
+        Collection<AbstractDamageModifier> toRemove = mods.stream().filter(m -> m instanceof ShiftingDamage).collect(Collectors.toCollection(() -> new ArrayList<>(1)));
+        for (AbstractDamageModifier m : toRemove) {
+            DamageModifierManager.removeModifier(card, m);
+        }
+        DamageModifierManager.addModifier(card, new ShiftingDamage());
     }
 
     @Override
@@ -61,12 +69,12 @@ public class CleansingMod extends AbstractAugmentPlus {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.RARE;
+        return AugmentRarity.UNCOMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new CleansingMod();
+        return new ShiftingMod();
     }
 
     @Override
