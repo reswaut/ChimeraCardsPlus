@@ -5,6 +5,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -55,7 +56,7 @@ public class TimeWarpedMod extends AbstractAugmentPlus {
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (AbstractDungeon.actionManager.cardsPlayedThisCombat.size() == 12) {
-            CardCrawlGame.sound.play("POWER_TIME_WARP", 0.05F);
+            addToBot(new SFXAction("POWER_TIME_WARP", 0.05F));
             AbstractDungeon.topLevelEffectsQueue.add(new TimeWarpTurnEndEffect());
             addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, 2)));
             addToBot(new PressEndTurnButtonAction());

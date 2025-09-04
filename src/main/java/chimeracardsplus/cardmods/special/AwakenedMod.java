@@ -3,7 +3,6 @@ package chimeracardsplus.cardmods.special;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -19,7 +18,6 @@ public class AwakenedMod extends AbstractAugmentPlus {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        SoulboundField.soulbound.set(card, true);
         if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
             modMagic = true;
         }

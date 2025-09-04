@@ -6,19 +6,17 @@
       "#b重新启动游戏以完整生效。 NL 修改部分卡牌和遗物的描述或机制，以正确兼容卡牌修改。不会改变其效果。",
       "允许启用附加事件+",
       "为事件添加更多新选项。",
-      "允许启用特殊命名",
-      "可以找到有特殊名字的卡牌！"
+      "启用修改卡牌名",
+      "禁用后，词条将不再修改卡牌名字。",
+      "启用特殊命名",
+      "可以找到有特殊名字的卡牌！",
+      "白名单模式",
+      "只启用选择的卡牌修改，而非将其禁用。（在卡牌修改界面选择。）"
     ],
     "EXTRA_TEXT": [
       "${project.name}",
       "${author}",
       "${project.description}"
-    ]
-  },
-  "${modID}:RenderHealingTipPatches": {
-    "TEXT": [
-      "全局修改",
-      "这个卡牌修改不会在战斗中生成。"
     ]
   },
   "${modID}:BetterModifierScreenPatches": {
@@ -28,6 +26,18 @@
       "罕见",
       "稀有",
       "特殊"
+    ]
+  },
+  "${modID}:RenderHealingTipPatches": {
+    "TEXT": [
+      "全局修改",
+      "这个卡牌修改不会在战斗中生成。"
+    ]
+  },
+  "${modID}:WhitelistModePatches": {
+    "TEXT": [
+      "禁用此修改",
+      "启用此修改"
     ]
   },
   "${modID}:CardByIDFromDeckToHandAction": {

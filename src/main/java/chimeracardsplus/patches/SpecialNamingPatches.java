@@ -31,6 +31,9 @@ public class SpecialNamingPatches {
     public static class ModifyNamesPatch {
         @SpirePrefixPatch
         public static SpireReturn<String> Prefix(AbstractAugment __instance, String cardName, AbstractCard card) {
+            if (!cardName.isEmpty() && !ChimeraCardsPlus.configs.enableModifyNames()) {
+                return SpireReturn.Return(cardName);
+            }
             if (!ChimeraCardsPlus.configs.enableSpecialNaming()) {
                 return SpireReturn.Continue();
             }

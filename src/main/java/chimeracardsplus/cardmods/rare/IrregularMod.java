@@ -16,7 +16,7 @@ public class IrregularMod extends AbstractAugmentPlus {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private static final double sigma = StrictMath.sqrt(2.0 * StrictMath.log(1.2));
+    private static final double GLOBAL_INCREMENT = StrictMath.sqrt(StrictMath.log(1.2) * 2.0);
     private boolean rolled;
     private float damageMultiplier, blockMultiplier, magicMultiplier;
     private int costIncrement;
@@ -40,28 +40,45 @@ public class IrregularMod extends AbstractAugmentPlus {
         this.timer = timer;
     }
 
-    private static float logNormal(com.megacrit.cardcrawl.random.Random rng) {
-        return (float) StrictMath.exp(new java.util.Random(rng.randomLong()).nextGaussian() * sigma);
+    private static float logNormal(com.megacrit.cardcrawl.random.Random rng, float exp) {
+        return exp * (float) StrictMath.exp(new java.util.Random(rng.randomLong()).nextGaussian() * GLOBAL_INCREMENT);
+    }
+
+    private static float clip(float value, float lo, float hi) {
+        return StrictMath.min(StrictMath.max(value, lo), hi);
+    }
+
+    private static float logNormalClip(com.megacrit.cardcrawl.random.Random rng, float exp, float bound) {
+        return clip(logNormal(rng, exp), 1.0F / bound, bound);
     }
 
     private void updateMultipliers(AbstractCard card, com.megacrit.cardcrawl.random.Random rng) {
-        damageMultiplier = logNormal(rng);
-        blockMultiplier = logNormal(rng);
-        if (card.baseMagicNumber >= 1 && usesMagic(card)) {
-            magicMultiplier = logNormal(rng);
-        }
+        rolled = true;
         if (cardCheck(card, c -> c.cost >= 0 && doesntUpgradeCost())) {
             card.cost -= costIncrement;
             costIncrement = 0;
-            int choice = rng.random((1 << card.cost + 1) - 2);
-            for (int i = 0; i < card.cost; ++i) {
+            int choice = rng.random((1 << card.cost + 2) - 2);
+            for (int i = 0; i <= card.cost; ++i) {
                 if (choice < (1 << i + 1) - 1) {
-                    costIncrement = rng.randomBoolean() ? card.cost - i : i - card.cost;
+                    costIncrement = card.cost + 1 - i;
+                    if (card.cost - costIncrement >= 0 && rng.randomBoolean()) {
+                        costIncrement = -costIncrement;
+                    }
                     break;
                 }
             }
             card.cost += costIncrement;
             card.costForTurn = card.cost;
+        }
+        float exp = costIncrement == 0 ? 1.0F : (card.cost + 1.0F) / (card.cost - costIncrement + 1.0F);
+        if (card.baseDamage >= 1) {
+            damageMultiplier = logNormalClip(rng, exp, card.baseDamage);
+        }
+        if (card.baseBlock >= 1) {
+            blockMultiplier = logNormalClip(rng, exp, card.baseBlock);
+        }
+        if (card.baseMagicNumber >= 1 && usesMagic(card)) {
+            magicMultiplier = logNormalClip(rng, exp, card.baseMagicNumber);
         }
     }
 
@@ -71,7 +88,6 @@ public class IrregularMod extends AbstractAugmentPlus {
             return;
         }
         if (timer <= 0.0F || !rolled) {
-            rolled = true;
             updateMultipliers(card, new com.megacrit.cardcrawl.random.Random(System.currentTimeMillis()));
             timer = 2.0F;
         }
@@ -83,13 +99,12 @@ public class IrregularMod extends AbstractAugmentPlus {
         if (!CardCrawlGame.isInARun() || rolled) {
             return;
         }
-        rolled = true;
         updateMultipliers(card, AbstractDungeon.miscRng);
     }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.baseDamage >= 1 || abstractCard.baseBlock >= 1 || abstractCard.baseMagicNumber >= 1 && usesMagic(abstractCard);
+        return cardCheck(abstractCard, c -> c.cost >= 0 && doesntUpgradeCost() || c.baseDamage >= 2 || c.baseBlock >= 2 || c.baseMagicNumber >= 2 && usesMagic(c));
     }
 
     @Override

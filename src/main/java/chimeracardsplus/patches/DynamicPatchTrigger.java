@@ -43,7 +43,7 @@ public class DynamicPatchTrigger {
         stsFinder = new ClassFinder();
         stsFinder.add(sts);
 
-        abstractCardSubClassFilter = new SubclassClassFilter(AbstractCard.class);
+        abstractCardSubClassFilter = new OrClassFilter(new SubclassClassFilter(AbstractCard.class), (classInfo, classFinder) -> AbstractCard.class.getName().equals(classInfo.getClassName()));
 
         nonInterfaceAbstractCardSubclassFilter = new AndClassFilter(new NotClassFilter(new InterfaceOnlyClassFilter()), abstractCardSubClassFilter);
     }
@@ -85,7 +85,7 @@ public class DynamicPatchTrigger {
         ChimeraCardsPlus.logger.info("- Dynamic base game card patches started.");
         ArrayList<ClassInfo> clzList = new ArrayList<>(Constants.EXPECTED_CARDS);
         stsFinder.findClasses(clzList, nonInterfaceAbstractCardSubclassFilter);
-        ChimeraCardsPlus.logger.info("- Potential targets found for dynamic base game card patches({}).", clzList.size());
+        ChimeraCardsPlus.logger.info("- Potential targets found for dynamic base game card patches ({}).", clzList.size());
         for (ClassInfo classInfo : clzList) {
             String className = classInfo.getClassName();
             CtClass ctClass = pool.get(className);

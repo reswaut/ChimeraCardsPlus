@@ -15,6 +15,9 @@ public class CardDescriptionPatches {
         if (!ChimeraCardsPlus.configs.enableBaseGameFixes()) {
             return;
         }
+        if (AbstractCard.class.getName().equals(cardClass.getName())) {
+            return;
+        }
         String ID = ReflectionHacks.getPrivateStatic(cardClass, "ID");
         if (ID == null) {
             ChimeraCardsPlus.logger.error("-- No static ID found in {}.", cardClass.getName());

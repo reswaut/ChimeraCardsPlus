@@ -6,19 +6,17 @@
       "#bRestart #bthe #bgame #bto #bfully #btake #beffect. NL Change the descriptions or mechanisms of some cards and relics to make them work correctly with Chimera Modifiers. Does not change their effects.",
       "Enable Event Addons+",
       "Add more new options in Events.",
+      "Enable Modify Names",
+      "When disabled, Modifiers will no longer modify card names.",
       "Enable Special Naming",
-      "Find cards with special names!"
+      "Find cards with special names!",
+      "Whitelist Mode",
+      "Enable only selected Modifiers instead of disabling them. (Select in Modifiers Screen.)"
     ],
     "EXTRA_TEXT": [
       "${project.name}",
       "${author}",
       "${project.description}"
-    ]
-  },
-  "${modID}:RenderHealingTipPatches": {
-    "TEXT": [
-      "Run-Scale Modifier",
-      "This Modifier will not be generated during combat."
     ]
   },
   "${modID}:BetterModifierScreenPatches": {
@@ -28,6 +26,18 @@
       "Uncommon",
       "Rare",
       "Special"
+    ]
+  },
+  "${modID}:RenderHealingTipPatches": {
+    "TEXT": [
+      "Run-Scale Modifier",
+      "This Modifier will not be generated during combat."
+    ]
+  },
+  "${modID}:WhitelistModePatches": {
+    "TEXT": [
+      "Disable Modifier",
+      "Enable Modifier"
     ]
   },
   "${modID}:CardByIDFromDeckToHandAction": {

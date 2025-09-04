@@ -21,7 +21,10 @@ import java.util.Map;
         method = "getAugmentStrings"
 )
 public class HideBonusModifiersPatches {
-    @SpireInsertPatch(locator = Locator.class, localvars = "ret")
+    @SpireInsertPatch(
+            locator = Locator.class,
+            localvars = "ret"
+    )
     public static void Insert(ModifierScreen __instance, @ByRef ArrayList<String>[] ret) {
         if (Settings.isDebug) {
             return;
