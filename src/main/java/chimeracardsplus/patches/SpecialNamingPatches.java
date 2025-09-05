@@ -76,7 +76,7 @@ public class SpecialNamingPatches {
             }
         }
 
-        public static class Locator extends SpireInsertLocator {
+        private static class Locator extends SpireInsertLocator {
             @Override
             public int[] Locate(CtBehavior ctBehavior) throws CannotCompileException, PatchingException {
                 Matcher finalMatcher = new NewExprMatcher(TooltipInfo.class);

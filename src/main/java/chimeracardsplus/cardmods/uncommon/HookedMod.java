@@ -26,8 +26,8 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 
 import java.util.Locale;
 
-public class DevastatingMod extends AbstractAugmentPlus implements DynvarCarrier {
-    public static final String ID = ChimeraCardsPlus.makeID(DevastatingMod.class.getSimpleName());
+public class HookedMod extends AbstractAugmentPlus implements DynvarCarrier {
+    public static final String ID = ChimeraCardsPlus.makeID(HookedMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
@@ -112,7 +112,7 @@ public class DevastatingMod extends AbstractAugmentPlus implements DynvarCarrier
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new DevastatingMod();
+        return new HookedMod();
     }
 
     @Override

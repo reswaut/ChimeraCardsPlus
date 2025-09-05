@@ -1785,7 +1785,7 @@
       "Gains #b2 Strength. NL Gives ALL enemies #b1 Strength."
     ],
     "EXTRA_TEXT": [
-      " NL Gain 2 Strength and ALL enemies gain 1 Strength."
+      " NL Gain 2 Strength. ALL enemies gain 1 Strength."
     ]
   },
   "${modID}:SuperluminalMod": {
@@ -2061,7 +2061,7 @@
     "TEXT": [
       "Fading ",
       "",
-      "Increases card values by #b100%. NL Removes itself from the deck after defeating a Boss."
+      "Increases card values by #b100%. NL Removes the card from the deck after defeating a Boss."
     ],
     "EXTRA_TEXT": [
       " NL After you defeat a Boss, remove this from your deck."
@@ -2231,9 +2231,9 @@
       "Exhaust."
     ]
   },
-  "${modID}:PunishingMod": {
+  "${modID}:KickingMod": {
     "TEXT": [
-      "Punishing ",
+      "Kicking ",
       "",
       "Deals #b5(7) damage, then triggers card effect if the enemy has #yVulnerable."
     ],
@@ -2241,9 +2241,9 @@
       "Deal %s damage. NL If the enemy has Vulnerable, "
     ]
   },
-  "${modID}:DevastatingMod": {
+  "${modID}:HookedMod": {
     "TEXT": [
-      "Devastating ",
+      "Hooked ",
       "",
       "Deals #b5(7) damage, then triggers card effect if the enemy has #yWeak."
     ],
@@ -2318,7 +2318,7 @@
     "TEXT": [
       "Transient ",
       "",
-      "Increases card values by #b100%. NL Removes itself from the deck after playing #b5(6) times."
+      "Increases card values by #b100%. NL Removes the card from the deck after playing #b5(6) times."
     ],
     "EXTRA_TEXT": [
       " NL After you play this card %s times, remove it from your deck.",
@@ -2350,7 +2350,7 @@
     "TEXT": [
       "Hyper ",
       "",
-      "Increases card values by #b200%. NL Cards are #yUnplayable for #b2 turns."
+      "Increases card values by #b300%. NL Cards are #yUnplayable for #b2 turns."
     ],
     "EXTRA_TEXT": [
       " NL You cannot play cards for 2 turns."
@@ -2526,9 +2526,9 @@
       " NL Upon pickup, obtain a random potion."
     ]
   },
-  "${modID}:ThirstingMod": {
+  "${modID}:PunishingMod": {
     "TEXT": [
-      "Thirsting ",
+      "Punishing ",
       "",
       "Increases damage by #b50% if the enemy is under half HP."
     ],
@@ -2737,6 +2737,27 @@
     "EXTRA_TEXT": [
       " NL Enemy loses Strength this turn equal to unblocked damage. NL Exhaust.",
       " NL Enemy loses Strength this turn equal to unblocked damage."
+    ]
+  },
+  "${modID}:ThirstyMod": {
+    "TEXT": [
+      "Thirsty ",
+      "",
+      "Removes the card from the deck after discarding #b2 potions."
+    ],
+    "EXTRA_TEXT": [
+      " NL After you discard %s potions, remove it from your deck.",
+      " NL After you discard %s potion, remove it from your deck."
+    ]
+  },
+  "${modID}:PeacefulMod": {
+    "TEXT": [
+      "Peaceful ",
+      "",
+      "Removes the card from the deck when it is #yUpgraded."
+    ],
+    "EXTRA_TEXT": [
+      " NL When you Upgrade this card, remove it from your deck instead."
     ]
   }
 }

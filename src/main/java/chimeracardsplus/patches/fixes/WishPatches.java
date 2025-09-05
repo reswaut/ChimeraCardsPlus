@@ -1,4 +1,4 @@
-package chimeracardsplus.patches.cards;
+package chimeracardsplus.patches.fixes;
 
 import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;

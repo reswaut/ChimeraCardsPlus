@@ -1,4 +1,4 @@
-package chimeracardsplus.patches.relics;
+package chimeracardsplus.patches.fixes;
 
 import chimeracardsplus.ChimeraCardsPlus;
 import com.evacipated.cardcrawl.modthespire.lib.*;

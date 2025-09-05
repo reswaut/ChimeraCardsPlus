@@ -5,8 +5,6 @@ import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
-import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -21,20 +19,12 @@ public class FairyMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return isNormalCard(abstractCard) && abstractCard.rarity != CardRarity.BASIC;
+        return isNormalCard(abstractCard) && abstractCard.rarity != CardRarity.BASIC && isCardRemovable(abstractCard, false);
     }
 
     @Override
     public boolean preDeath(AbstractCard card) {
-        if (AbstractDungeon.player.currentHealth > 0) {
-            return false;
-        }
-
-        CardGroup group = new CardGroup(CardGroupType.UNSPECIFIED);
-        group.group.add(card);
-        // It is intended to be able to remove bottled card.
-        CardGroup retGroup = group.getPurgeableCards();
-        if (retGroup.isEmpty()) {
+        if (AbstractDungeon.player.currentHealth > 0 || !isCardRemovable(card, false)) {
             return false;
         }
 

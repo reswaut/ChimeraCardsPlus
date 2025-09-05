@@ -1,6 +1,7 @@
 package chimeracardsplus.cardmods.common;
 
 import CardAugments.cardmods.DynvarCarrier;
+import CardAugments.util.FormatHelper;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
@@ -9,10 +10,13 @@ import com.evacipated.cardcrawl.mod.stslib.StSLib;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.GameDictionary;
+import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
@@ -24,10 +28,10 @@ public class TransientMod extends AbstractAugmentPlus implements DynvarCarrier {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
     private static final String DESCRIPTION_KEY = '!' + ID + '!';
     private int uses;
-    private boolean modMagic = false;
+    private boolean modMagic = false, removeUnplayable = false;
 
     public TransientMod() {
-        uses = 5;
+        this(5);
     }
     public TransientMod(int uses) {
         this.uses = uses;
@@ -38,11 +42,16 @@ public class TransientMod extends AbstractAugmentPlus implements DynvarCarrier {
         if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
             modMagic = true;
         }
+        if (cardCheck(card, c -> c.type == CardType.CURSE && c.cost == -2 && doesntUpgradeCost())) {
+            removeUnplayable = true;
+            card.cost = 3;
+            card.costForTurn = 3;
+        }
     }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.cost >= -1 && abstractCard.rarity != CardRarity.BASIC && isNormalCard(abstractCard);
+        return cardCheck(abstractCard, c -> (c.cost >= -1 && c.rarity != CardRarity.BASIC && isNormalCard(c) || c.type == CardType.CURSE && c.cost == -2 && doesntUpgradeCost()) && isCardRemovable(abstractCard, false));
     }
 
     @Override
@@ -73,7 +82,7 @@ public class TransientMod extends AbstractAugmentPlus implements DynvarCarrier {
         TransientMod modifier = (TransientMod) CardModifierManager.getModifiers(cardToRemove, ID).get(0);
         modifier.uses -= 1;
         cardToRemove.initializeDescription();
-        if (modifier.uses > 0) {
+        if (modifier.uses > 0 || !isCardRemovable(card, false)) {
             return;
         }
 
@@ -104,10 +113,19 @@ public class TransientMod extends AbstractAugmentPlus implements DynvarCarrier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (uses <= 1) {
-            return insertAfterText(rawDescription, CARD_TEXT[1]);
+        String description = rawDescription;
+        if (removeUnplayable) {
+            for (String s : GameDictionary.UNPLAYABLE.NAMES) {
+                description = description.replace(FormatHelper.capitalize(s) + LocalizedStrings.PERIOD + " NL ", "");
+                description = description.replace(FormatHelper.capitalize(s) + ' ' + LocalizedStrings.PERIOD + " NL ", "");
+                description = description.replace(FormatHelper.capitalize(s) + LocalizedStrings.PERIOD, "");
+                description = description.replace(FormatHelper.capitalize(s) + ' ' + LocalizedStrings.PERIOD, "");
+            }
         }
-        return insertAfterText(rawDescription, String.format(CARD_TEXT[0], DESCRIPTION_KEY));
+        if (uses <= 1) {
+            return insertAfterText(description, CARD_TEXT[1]);
+        }
+        return insertAfterText(description, String.format(CARD_TEXT[0], DESCRIPTION_KEY));
     }
 
     @Override

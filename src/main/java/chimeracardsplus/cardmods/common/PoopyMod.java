@@ -23,7 +23,7 @@ public class PoopyMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.type == CardType.CURSE && abstractCard.rarity == CardRarity.CURSE;
+        return abstractCard.rarity == CardRarity.CURSE && abstractCard.type == CardType.CURSE;
     }
 
     @Override

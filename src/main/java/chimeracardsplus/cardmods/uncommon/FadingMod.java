@@ -36,7 +36,7 @@ public class FadingMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.rarity != CardRarity.BASIC && isNormalCard(abstractCard);
+        return abstractCard.rarity != CardRarity.BASIC && isNormalCard(abstractCard) && isCardRemovable(abstractCard, false);
     }
 
     @Override
@@ -101,7 +101,7 @@ public class FadingMod extends AbstractAugmentPlus {
     public static class RemoveFadingCardOnBossVictoryPatch {
         @SpirePostfixPatch
         public static void Postfix() {
-            Collection<AbstractCard> targetCards = AbstractDungeon.player.masterDeck.group.stream().filter(card -> CardModifierManager.hasModifier(card, ID)).collect(Collectors.toCollection(() -> new ArrayList<>(Constants.DEFAULT_LIST_SIZE)));
+            Collection<AbstractCard> targetCards = AbstractDungeon.player.masterDeck.group.stream().filter(card -> CardModifierManager.hasModifier(card, ID) && isCardRemovable(card, false)).collect(Collectors.toCollection(() -> new ArrayList<>(Constants.DEFAULT_LIST_SIZE)));
             for (AbstractCard card : targetCards) {
                 AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(card));
                 AbstractDungeon.player.masterDeck.removeCard(card);

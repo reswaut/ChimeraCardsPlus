@@ -3,6 +3,7 @@ package chimeracardsplus.cardmods;
 import CardAugments.cardmods.AbstractAugment;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import org.apache.commons.lang3.StringUtils;
@@ -34,6 +35,13 @@ public abstract class AbstractAugmentPlus extends AbstractAugment {
         return p.masterDeck.group.stream().anyMatch(card -> StringUtils.containsIgnoreCase(card.rawDescription, keyword));
     }
 
+    public static boolean isCardRemovable(AbstractCard card, boolean checkBottle) {
+        CardGroup group = new CardGroup(CardGroupType.UNSPECIFIED);
+        group.group.add(card);
+        CardGroup retGroup = group.getPurgeableCards();
+        return !(checkBottle ? CardGroup.getGroupWithoutBottledCards(retGroup) : retGroup).isEmpty();
+    }
+
     public abstract AugmentBonusLevel getModBonusLevel();
 
     public void onManualDiscard(AbstractCard card) {
@@ -53,10 +61,16 @@ public abstract class AbstractAugmentPlus extends AbstractAugment {
         return false;
     }
 
-    public void onUsePotion(AbstractCard card, CardGroup group, AbstractPotion potion) {
+    public boolean onUsePotion(AbstractCard card, CardGroup group, AbstractPotion potion) {
+        return false;
     }
 
-    public void onShuffle(AbstractCard card, CardGroup group) {
+    public boolean preDiscardPotion(AbstractCard card, CardGroup group, AbstractPotion potion) {
+        return false;
+    }
+
+    public boolean onShuffle(AbstractCard card, CardGroup group) {
+        return false;
     }
 
     public boolean preDeath(AbstractCard card) {

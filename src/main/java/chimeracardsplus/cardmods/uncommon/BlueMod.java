@@ -31,7 +31,7 @@ public class BlueMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.type == CardType.CURSE && c.cost == -2 && doesntUpgradeCost());
+        return cardCheck(abstractCard, c -> c.type == CardType.CURSE && c.cost == -2 && doesntUpgradeCost() && notExhaust(c));
     }
 
     @Override

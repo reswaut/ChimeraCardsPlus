@@ -1,4 +1,4 @@
-package chimeracardsplus.patches.cards;
+package chimeracardsplus.patches.fixes;
 
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.CardModifierPatches.CardModifierOnApplyPowers;
 import chimeracardsplus.ChimeraCardsPlus;

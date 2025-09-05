@@ -1,6 +1,7 @@
 package chimeracardsplus.powers;
 
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.helpers.ShuffleModifierManager;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnDrawPileShufflePower;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -31,6 +32,6 @@ public class AbstractAugmentPlusHelperPower extends AbstractPower implements Inv
 
     @Override
     public void onShuffle() {
-        ChimeraCardsPlus.drawPileShuffleHelper.onShuffle();
+        ShuffleModifierManager.onShuffle();
     }
 }

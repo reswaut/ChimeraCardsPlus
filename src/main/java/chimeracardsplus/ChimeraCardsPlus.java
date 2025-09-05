@@ -37,8 +37,6 @@ public class ChimeraCardsPlus implements
     public static final ModConfigs configs = new ModConfigs();
     public static final ResourceLoader resourceLoader = new ResourceLoader();
     public static final SpecialNamingRules specialNamingRules = new SpecialNamingRules();
-    public static final PotionUseHelper potionUseHelper = new PotionUseHelper();
-    public static final DrawPileShuffleHelper drawPileShuffleHelper = new DrawPileShuffleHelper();
 
     public static String makeID(String name) {
         return MOD_ID + ':' + name;
@@ -132,18 +130,18 @@ public class ChimeraCardsPlus implements
 
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
-        potionUseHelper.onBattleStart(abstractRoom);
-        drawPileShuffleHelper.onBattleStart(abstractRoom);
+        PotionModifierManager.onBattleStart();
+        ShuffleModifierManager.onBattleStart();
         AbstractDungeon.player.addPower(new AbstractAugmentPlusHelperPower(AbstractDungeon.player));
     }
 
     @Override
     public void receiveOnPlayerTurnStart() {
-        potionUseHelper.onPlayerTurnStart();
+        PotionModifierManager.onPlayerTurnStart();
     }
 
     @Override
     public void receivePostPotionUse(AbstractPotion abstractPotion) {
-        potionUseHelper.onUsePotion(abstractPotion);
+        PotionModifierManager.onUsePotion(abstractPotion);
     }
 }

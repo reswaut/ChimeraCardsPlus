@@ -35,17 +35,17 @@ public class HyperMod extends AbstractAugmentPlus {
 
     @Override
     public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage > 0.0F ? damage * 3.0F : damage;
+        return damage > 0.0F ? damage * 4.0F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return block > 0.0F ? block * 3.0F : block;
+        return block > 0.0F ? block * 4.0F : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return modMagic ? magic * 3.0F : magic;
+        return modMagic ? magic * 4.0F : magic;
     }
 
     @Override
