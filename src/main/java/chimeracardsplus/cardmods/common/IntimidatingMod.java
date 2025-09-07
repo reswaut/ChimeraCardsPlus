@@ -70,7 +70,7 @@ public class IntimidatingMod extends AbstractAugmentPlus {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (!Intimidate.ID.equals(card.cardID)) {
+        if (Intimidate.ID.equals(card.cardID)) {
             return;
         }
         addToBot(new SFXAction("INTIMIDATE"));

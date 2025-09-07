@@ -2769,5 +2769,16 @@
     "EXTRA_TEXT": [
       "${modID}:Recur. NL "
     ]
+  },
+  "${modID}:RhythmicMod": {
+    "TEXT": [
+      "Rhythmic ",
+      "",
+      "Adds a copy of the card to your hand at the start of next turn. NL Adds #yEthereal and #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      "Ethereal. NL ",
+      " NL Next turn, add a copy of this card to your hand. NL Exhaust."
+    ]
   }
 }
