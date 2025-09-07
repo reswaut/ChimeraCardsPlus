@@ -1402,7 +1402,7 @@
     "TEXT": [
       "Proud ",
       "",
-      "Costs [E] more. NL Adds #yInnate and #yExhaust. NL Puts a copy of the card on top of your draw pile if you end your turn with it in hand."
+      "Costs [E] more. NL Adds #yInnate and #yExhaust. NL Puts a copy of the card on top of your draw pile if the card is in your hand at the end of your turn.."
     ],
     "EXTRA_TEXT": [
       "Innate. NL ",
@@ -1587,11 +1587,11 @@
     "TEXT": [
       "Shocking ",
       "",
-      "Costs [E] more. NL Applies #b2(3) #yWeak and #yVulnerable to ALL enemies. NL Adds #yExhaust."
+      "Costs [E] more. NL Applies #b2 #yWeak and #yVulnerable to ALL enemies. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
-      " NL Apply %s Weak and Vulnerable to ALL enemies. NL Exhaust.",
-      " NL Apply %s Weak and Vulnerable to ALL enemies."
+      " NL Apply 2 Weak and Vulnerable to ALL enemies. NL Exhaust.",
+      " NL Apply 2 Weak and Vulnerable to ALL enemies."
     ]
   },
   "${modID}:ShriekingMod": {
@@ -2164,7 +2164,7 @@
     "TEXT": [
       "Regretful ",
       "",
-      "At the end of your turn, if the card is in hand, lose HP equal to the number of cards in hand."
+      "Loses HP equal to the number of cards in hand if the card is in your hand at the end of your turn."
     ],
     "EXTRA_TEXT": [
       " NL At the end of your turn, lose HP equal to the number of cards in your hand."
@@ -2174,7 +2174,7 @@
     "TEXT": [
       "Hesitant ",
       "",
-      "At the end of your turn, if the card is in hand, gain #b1 #yWeak."
+      "Gains #b1 #yWeak if the card is in your hand at the end of your turn."
     ],
     "EXTRA_TEXT": [
       " NL At the end of your turn, gain 1 Weak."
@@ -2184,7 +2184,7 @@
     "TEXT": [
       "Decaying ",
       "",
-      "At the end of your turn, if the card is in hand, take #b2 damage."
+      "Takes #b2 damage if the card is in your hand at the end of your turn."
     ],
     "EXTRA_TEXT": [
       " NL At the end of your turn, take 2 damage."
@@ -2255,7 +2255,7 @@
     "TEXT": [
       "Disgraceful ",
       "",
-      "At the end of your turn, if the card is in hand, gain #b1 #yFrail."
+      "Gains #b1 #yFrail if the card is in your hand at the end of your turn."
     ],
     "EXTRA_TEXT": [
       " NL At the end of your turn, gain 1 Frail."
@@ -2758,6 +2758,16 @@
     ],
     "EXTRA_TEXT": [
       " NL When you Upgrade this card, remove it from your deck instead."
+    ]
+  },
+  "${modID}:RecurringMod": {
+    "TEXT": [
+      "Recurring ",
+      "",
+      "Shuffles back into your draw pile if the card is in your hand at the end of your turn."
+    ],
+    "EXTRA_TEXT": [
+      "${modID}:Recur. NL "
     ]
   }
 }

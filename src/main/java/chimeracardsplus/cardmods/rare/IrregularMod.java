@@ -73,12 +73,18 @@ public class IrregularMod extends AbstractAugmentPlus {
         float exp = costIncrement == 0 ? 1.0F : (card.cost + 1.0F) / (card.cost - costIncrement + 1.0F);
         if (card.baseDamage >= 1) {
             damageMultiplier = logNormalClip(rng, exp, card.baseDamage);
+        } else {
+            damageMultiplier = 1.0F;
         }
         if (card.baseBlock >= 1) {
             blockMultiplier = logNormalClip(rng, exp, card.baseBlock);
+        } else {
+            blockMultiplier = 1.0F;
         }
         if (card.baseMagicNumber >= 1 && usesMagic(card)) {
             magicMultiplier = logNormalClip(rng, exp, card.baseMagicNumber);
+        } else {
+            magicMultiplier = 1.0F;
         }
     }
 
@@ -104,7 +110,7 @@ public class IrregularMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= 0 && doesntUpgradeCost() || c.baseDamage >= 2 || c.baseBlock >= 2 || c.baseMagicNumber >= 2 && usesMagic(c));
+        return cardCheck(abstractCard, c -> c.cost >= 1 && doesntUpgradeCost() || c.baseDamage >= 2 || c.baseBlock >= 2 || c.baseMagicNumber >= 2 && usesMagic(c));
     }
 
     @Override

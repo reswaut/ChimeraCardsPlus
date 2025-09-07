@@ -1,5 +1,12 @@
 [
   {
+    "PROPER_NAME": "反复",
+    "NAMES": [
+      "反复"
+    ],
+    "DESCRIPTION": "如果这张牌在回合结束时仍然在你的手中，它将被洗入抽牌堆。"
+  },
+  {
     "PROPER_NAME": "奇巧",
     "NAMES": [
       "奇巧"

@@ -1,5 +1,12 @@
 [
   {
+    "PROPER_NAME": "Recur",
+    "NAMES": [
+      "recur"
+    ],
+    "DESCRIPTION": "If this card is in your hand at the end of turn, it is shuffled into your draw pile."
+  },
+  {
     "PROPER_NAME": "Sly",
     "NAMES": [
       "sly"

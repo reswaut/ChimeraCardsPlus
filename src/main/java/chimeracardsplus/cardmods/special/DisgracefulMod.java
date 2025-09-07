@@ -21,7 +21,7 @@ public class DisgracefulMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return isNormalCard(abstractCard);
+        return isNormalCard(abstractCard) && doesntOverride(abstractCard, "triggerOnEndOfTurnForPlayingCard");
     }
 
     @Override

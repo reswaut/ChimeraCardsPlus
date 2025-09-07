@@ -39,6 +39,7 @@ public class TransientMod extends AbstractAugmentPlus implements DynvarCarrier {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
+        uses = baseVal(card);
         if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
             modMagic = true;
         }
