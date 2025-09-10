@@ -35,17 +35,17 @@ public class UnfocusedMod extends AbstractAugmentPlus {
 
     @Override
     public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage > 0.0F ? damage * 1.25F : damage;
+        return damage > 0.0F ? damage * 1.5F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return block > 0.0F ? block * 1.25F : block;
+        return block > 0.0F ? block * 1.5F : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return modMagic ? magic * 1.25F : magic;
+        return modMagic ? magic * 1.5F : magic;
     }
 
     @Override

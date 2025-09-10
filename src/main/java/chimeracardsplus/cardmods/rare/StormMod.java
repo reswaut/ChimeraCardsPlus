@@ -27,7 +27,7 @@ public class StormMod extends AbstractAugmentPlus {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private boolean inherentHack = true;
+    private boolean inherentHack = false;
     private final String labelID = LabelMod.makeLabelModID(ID);
 
     // This modifier should apply first.

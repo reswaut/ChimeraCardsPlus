@@ -28,18 +28,25 @@ public class TransientMod extends AbstractAugmentPlus implements DynvarCarrier {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
     private static final String DESCRIPTION_KEY = '!' + ID + '!';
     private int uses;
+    private boolean initialized;
     private boolean modMagic = false, removeUnplayable = false;
 
     public TransientMod() {
-        this(5);
+        uses = 5;
+        initialized = false;
     }
-    public TransientMod(int uses) {
+
+    private TransientMod(int uses) {
         this.uses = uses;
+        initialized = true;
     }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        uses = baseVal(card);
+        if (!initialized) {
+            initialized = true;
+            uses = baseVal(card);
+        }
         if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
             modMagic = true;
         }
@@ -136,7 +143,7 @@ public class TransientMod extends AbstractAugmentPlus implements DynvarCarrier {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new TransientMod(uses);
+        return initialized ? new TransientMod(uses) : new TransientMod();
     }
 
     @Override
