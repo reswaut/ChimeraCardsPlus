@@ -2,6 +2,7 @@ package chimeracardsplus.powers;
 
 import basemod.ReflectionHacks;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.effects.BetterSilentGainPowerEffect;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
@@ -57,7 +58,10 @@ public class LetterOpenerPower extends AbstractPower {
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if (card.type == CardType.SKILL) {
             addToBot(new DamageAllEnemiesAction(null, DamageInfo.createDamageMatrix(amount, true), DamageType.THORNS, AttackEffect.SLASH_HEAVY));
-            flash();
+            updateEffect();
+            if (effect != null) {
+                effect.add(new BetterSilentGainPowerEffect(img, img_width, img_height));
+            }
         }
     }
 

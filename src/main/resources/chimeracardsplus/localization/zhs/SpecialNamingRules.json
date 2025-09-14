@@ -130,6 +130,12 @@
         "DESCRIPTION": "合并 #y御血 和 #y御血术 。"
       }
     },
+    "CardAugments:LockingMod": {
+      "瞄准靶心": {
+        "NAME": "瞄准靶心²",
+        "DESCRIPTION": "合并 #y锁定 和 #y瞄准靶心 。"
+      }
+    },
     "CardAugments:LuckyMod": {
       "幸运一击": {
         "NAME": "幸运²一击",

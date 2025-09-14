@@ -9,12 +9,10 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.combat.FlashPowerEffect;
 
 import java.util.List;
 
@@ -52,9 +50,9 @@ public class TungstenRodPower extends AbstractPower {
     @Override
     public int onLoseHp(int damageAmount) {
         if (damageAmount > 0) {
+            updateEffect();
             if (effect != null) {
                 effect.add(new BetterSilentGainPowerEffect(img, img_width, img_height));
-                AbstractDungeon.effectList.add(new FlashPowerEffect(this));
             }
             return Math.max(damageAmount - amount, 0);
         }

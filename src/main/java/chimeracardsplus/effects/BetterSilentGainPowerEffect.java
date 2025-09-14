@@ -63,8 +63,8 @@ public class BetterSilentGainPowerEffect extends AbstractGameEffect {
         sb.setColor(color);
         sb.setBlendFunction(770, 1);
         if (img != null) {
-            // sb.draw(img, x - 12.0F, y - 12.0F, 16.0F, 16.0F, 32.0F, 32.0F, Settings.scale * 1.5F, Settings.scale * 1.5F, 0.0F, 0, 0, img_width, img_height, false, false);
-            sb.draw(img, x - 12.0F, y - 12.0F, 16.0F, 16.0F, 32.0F, 32.0F, scale * 1.5F, scale * 1.5F, 0.0F, 0, 0, img_width, img_height, false, false);
+            // sb.draw(img, x - 16.0F, y - 16.0F, 16.0F, 16.0F, 32.0F, 32.0F, Settings.scale * 1.875F, Settings.scale * 1.875F, 0.0F, 0, 0, img_width, img_height, false, false);
+            sb.draw(img, x - 16.0F, y - 16.0F, 16.0F, 16.0F, 32.0F, 32.0F, scale * 1.875F, scale * 1.875F, 0.0F, 0, 0, img_width, img_height, false, false);
         } else {
             // sb.draw(region48, x - region48.packedWidth / 2.0F, y - region48.packedHeight / 2.0F, region48.packedWidth / 2.0F, region48.packedHeight / 2.0F, region48.packedWidth, region48.packedHeight, Settings.scale, Settings.scale, 0.0F);
             sb.draw(region48, x - region48.packedWidth / 2.0F, y - region48.packedHeight / 2.0F, region48.packedWidth / 2.0F, region48.packedHeight / 2.0F, region48.packedWidth, region48.packedHeight, scale, scale, 0.0F);

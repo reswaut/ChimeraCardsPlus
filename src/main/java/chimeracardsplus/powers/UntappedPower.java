@@ -36,6 +36,7 @@ public class UntappedPower extends AbstractPower {
             addToBot(new ReducePowerAction(owner, owner, POWER_ID, 1));
             int energyLeft = EnergyPanel.getCurrentEnergy();
             if (energyLeft > 0) {
+                flash();
                 addToBot(new ApplyPowerAction(owner, owner, new DrawCardNextTurnPower(owner, energyLeft)));
             }
         }

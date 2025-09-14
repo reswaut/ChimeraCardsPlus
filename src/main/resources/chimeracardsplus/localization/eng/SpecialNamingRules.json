@@ -130,6 +130,12 @@
         "DESCRIPTION": "Merged #yHemo with #yHemokinesis."
       }
     },
+    "CardAugments:LockingMod": {
+      "Bullseye": {
+        "NAME": "Bullseye²",
+        "DESCRIPTION": "Merged #yLocking with #yBullseye."
+      }
+    },
     "CardAugments:LuckyMod": {
       "Just Lucky": {
         "NAME": "Just Lucky²",
