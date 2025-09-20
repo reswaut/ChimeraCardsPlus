@@ -18,7 +18,10 @@ public class PunishingMod extends AbstractAugmentPlus {
 
     @Override
     public float modifyDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return target.currentHealth * 2.0F <= target.maxHealth ? damage * 1.5F : damage;
+        if (target != null && target.currentHealth * 2.0F <= target.maxHealth) {
+            return damage * 1.5F;
+        }
+        return damage;
     }
 
     @Override
