@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 public class SpecializedMod extends AbstractAugmentPlus {
@@ -21,7 +22,7 @@ public class SpecializedMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.rarity != CardRarity.BASIC && isNormalCard(abstractCard);
+        return isNormalCard(abstractCard) && abstractCard.rarity != CardRarity.BASIC && (!CardCrawlGame.isInARun() || AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() instanceof MonsterRoom);
     }
 
     @Override
