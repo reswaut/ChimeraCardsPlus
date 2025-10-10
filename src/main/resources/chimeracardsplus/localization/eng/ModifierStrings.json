@@ -711,16 +711,6 @@
       " NL Whenever you are attacked this turn, deal %s damage back."
     ]
   },
-  "${modID}:FlickeringMod": {
-    "TEXT": [
-      "Flickering ",
-      "",
-      "Returns to your hand when killing an enemy."
-    ],
-    "EXTRA_TEXT": [
-      " NL If this kills an enemy, return it to your hand."
-    ]
-  },
   "${modID}:FocusedMod": {
     "TEXT": [
       "Focused ",
@@ -803,7 +793,7 @@
     "TEXT": [
       "Grand ",
       "",
-      "Increases card values by #b300%. NL #yUnplayable unless your deck is empty."
+      "Increases card values by #b300%. NL #yUnplayable unless your draw pile is empty."
     ],
     "EXTRA_TEXT": [
       " NL Can only be played if there are no cards in your draw pile."
@@ -1688,9 +1678,7 @@
       "Costs [E] more. NL Increases damage and #yBlock by #b33%. NL Gains #b1 #yEquilibrium."
     ],
     "EXTRA_TEXT": [
-      " NL Retain your hand this turn.",
-      "Retain your hand this turn.",
-      "Retain your hand for 2 turns."
+      " NL Retain your hand this turn."
     ]
   },
   "${modID}:StarMod": {

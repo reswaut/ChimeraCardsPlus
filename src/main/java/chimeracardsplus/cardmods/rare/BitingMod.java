@@ -33,6 +33,14 @@ public class BitingMod extends AbstractAugmentPlus {
     }
 
     @Override
+    public float modifyBaseMagic(float magic, AbstractCard card) {
+        if (Bite.ID.equals(card.cardID)) {
+            return magic + card.cost;
+        }
+        return magic;
+    }
+
+    @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if (Bite.ID.equals(card.cardID)) {
             return;
@@ -42,14 +50,6 @@ public class BitingMod extends AbstractAugmentPlus {
         } else if (card.cost == -1) {
             addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, card.energyOnUse));
         }
-    }
-
-    @Override
-    public float modifyBaseMagic(float magic, AbstractCard card) {
-        if (Bite.ID.equals(card.cardID)) {
-            return magic + card.cost;
-        }
-        return magic;
     }
 
     @Override

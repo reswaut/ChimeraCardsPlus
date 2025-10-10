@@ -43,7 +43,18 @@ public class EquilibrialMod extends AbstractAugmentPlus {
     }
 
     @Override
+    public float modifyBaseMagic(float magic, AbstractCard card) {
+        if (Equilibrium.ID.equals(card.cardID)) {
+            return magic + 1.0F;
+        }
+        return magic;
+    }
+
+    @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        if (Equilibrium.ID.equals(card.cardID)) {
+            return;
+        }
         addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new EquilibriumPower(AbstractDungeon.player, 1), 1));
     }
 
@@ -65,7 +76,7 @@ public class EquilibrialMod extends AbstractAugmentPlus {
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         if (Equilibrium.ID.equals(card.cardID)) {
-            return rawDescription.replace(CARD_TEXT[1], CARD_TEXT[2]);
+            return rawDescription;
         }
         return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
