@@ -32,12 +32,12 @@ public class InjuriousMod extends AbstractAugmentPlus {
 
     @Override
     public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage > 0.0F ? damage * 4.0F / 3.0F : damage;
+        return damage > 0.0F ? damage * 5.0F / 3.0F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return block > 0.0F ? block * 4.0F / 3.0F : block;
+        return block > 0.0F ? block * 5.0F / 3.0F : block;
     }
 
     @Override

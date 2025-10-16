@@ -275,7 +275,7 @@
     "TEXT": [
       "Clear ",
       "",
-      "Reduces damage and #yBlock by #b20%. NL Chooses #b1 of the top #b2 cards to put into your hand. #yExhausts the other."
+      "Reduces damage and #yBlock by #b20%. NL Chooses #b1 of the top #b2 cards of your draw pile to put into your hand. #yExhausts the other."
     ],
     "EXTRA_TEXT": [
       " NL Look at the top 2 cards of your draw pile. Add 1 to your hand and Exhaust the other."
@@ -985,7 +985,7 @@
     "TEXT": [
       "Injurious ",
       "",
-      "Increases damage and #yBlock by #b33%. NL Adds a #rWound into your draw pile."
+      "Increases damage and #yBlock by #b67%. NL Adds a #rWound into your draw pile."
     ],
     "EXTRA_TEXT": [
       " NL Shuffle a *Wound into your draw pile."
@@ -1796,8 +1796,6 @@
     ],
     "EXTRA_TEXT": [
       " NL If this card is discarded from your hand, gain [E].",
-      "If this card is discarded from your hand, gain [G]",
-      "If this card is discarded from your hand, gain [G] [G]",
       "discard"
     ]
   },
@@ -2767,6 +2765,16 @@
     "EXTRA_TEXT": [
       "Ethereal. NL ",
       " NL Next turn, add a copy of this card to your hand. NL Exhaust."
+    ]
+  },
+  "${modID}:SturdyMod": {
+    "TEXT": [
+      "Sturdy ",
+      "",
+      "#yDexterity affects this card #b3 times."
+    ],
+    "EXTRA_TEXT": [
+      " NL Dexterity affects this card 3 times."
     ]
   }
 }

@@ -17,7 +17,15 @@ public class TacticalMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[3]));
+        return characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
+    }
+
+    @Override
+    public float modifyBaseMagic(float magic, AbstractCard card) {
+        if (Tactician.ID.equals(card.cardID)) {
+            return magic + 1.0F;
+        }
+        return magic;
     }
 
     @Override
@@ -38,13 +46,16 @@ public class TacticalMod extends AbstractAugmentPlus {
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         if (Tactician.ID.equals(card.cardID)) {
-            return rawDescription.replace(CARD_TEXT[1], CARD_TEXT[2]);
+            return rawDescription;
         }
         return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 
     @Override
     public void onManualDiscard(AbstractCard card) {
+        if (Tactician.ID.equals(card.cardID)) {
+            return;
+        }
         addToBot(new GainEnergyAction(1));
     }
 

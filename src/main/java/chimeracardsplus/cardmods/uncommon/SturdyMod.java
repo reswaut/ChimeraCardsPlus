@@ -1,41 +1,36 @@
-package chimeracardsplus.cardmods.common;
+package chimeracardsplus.cardmods.uncommon;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.actions.BetterClarityAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.DexterityPower;
 
-public class ClearMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(ClearMod.class.getSimpleName());
+public class SturdyMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(SturdyMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.cost >= -1 && (abstractCard.baseDamage >= 2 || abstractCard.baseBlock >= 2);
+        return abstractCard.baseBlock > 0;
     }
 
     @Override
-    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage > 0.0F ? damage * 0.8F : damage;
-    }
-
-    @Override
-    public float modifyBaseBlock(float block, AbstractCard card) {
-        return block > 0.0F ? block * 0.8F : block;
-    }
-
-    @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        addToBot(new BetterClarityAction(2));
+    public float modifyBlock(float block, AbstractCard card) {
+        if (AbstractDungeon.player == null) {
+            return block;
+        }
+        AbstractPower dexterity = AbstractDungeon.player.getPower(DexterityPower.POWER_ID);
+        if (dexterity == null) {
+            return block;
+        }
+        return block + dexterity.amount * 2.0F;
     }
 
     @Override
@@ -60,12 +55,12 @@ public class ClearMod extends AbstractAugmentPlus {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.COMMON;
+        return AugmentRarity.UNCOMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ClearMod();
+        return new SturdyMod();
     }
 
     @Override

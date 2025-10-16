@@ -31,7 +31,7 @@ public class OverclockedMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.baseDamage >= 2 || c.baseBlock >= 2 || c.baseMagicNumber >= 2 && doesntDowngradeMagic());
+        return cardCheck(abstractCard, c -> c.cost >= -1 && (c.baseDamage >= 2 || c.baseBlock >= 2 || c.baseMagicNumber >= 2) && doesntDowngradeMagic());
     }
 
     @Override
