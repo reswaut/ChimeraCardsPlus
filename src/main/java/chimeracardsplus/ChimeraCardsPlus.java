@@ -50,9 +50,11 @@ public class ChimeraCardsPlus implements
 
     private static void registerPowers() {
         BaseMod.addPower(DeceptionPower.class, DeceptionPower.POWER_ID);
+        BaseMod.addPower(DoomPower.class, DoomPower.POWER_ID);
         BaseMod.addPower(FrozenEyePower.class, FrozenEyePower.POWER_ID);
         BaseMod.addPower(LetterOpenerPower.class, LetterOpenerPower.POWER_ID);
         BaseMod.addPower(LoseFocusPower.class, LoseFocusPower.POWER_ID);
+        BaseMod.addPower(NeurosurgePower.class, NeurosurgePower.POWER_ID);
         BaseMod.addPower(NoDamagePower.class, NoDamagePower.POWER_ID);
         BaseMod.addPower(RetributionPower.class, RetributionPower.POWER_ID);
         BaseMod.addPower(StunPlayerPower.class, StunPlayerPower.POWER_ID);

@@ -70,7 +70,7 @@ public class PointyMod extends AbstractAugmentPlus {
     }
 
     @Override
-    public float modifyDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+    public float modifyDamageFinal(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
         int count = Math.toIntExact(AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().filter(
                 c -> c != null && c.type == CardType.ATTACK).count());
         if (AbstractDungeon.actionManager.cardQueue.stream().noneMatch(item -> item.card != null && item.card.uuid.equals(card.uuid))) {

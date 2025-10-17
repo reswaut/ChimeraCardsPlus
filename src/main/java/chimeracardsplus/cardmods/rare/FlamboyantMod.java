@@ -21,7 +21,7 @@ public class FlamboyantMod extends AbstractAugmentPlus {
     private boolean descriptionHack = false;
 
     @Override
-    public float modifyDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+    public float modifyDamageFinal(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
         return AbstractDungeon.actionManager.cardsPlayedThisTurn.size() > 5 ? damage * 1.5F : damage;
     }
 

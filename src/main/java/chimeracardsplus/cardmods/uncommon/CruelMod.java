@@ -1,4 +1,4 @@
-package chimeracardsplus.cardmods.rare;
+package chimeracardsplus.cardmods.uncommon;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
@@ -9,24 +9,25 @@ import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 
-public class PunishingMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(PunishingMod.class.getSimpleName());
+public class CruelMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(CruelMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public float modifyDamageFinal(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        if (target != null && target.currentHealth * 2.0F <= target.maxHealth) {
-            return damage * 1.5F;
-        }
-        return damage;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.baseDamage >= 4 && abstractCard.type == CardType.ATTACK && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
     }
 
     @Override
-    public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.baseDamage >= 1 && abstractCard.type == CardType.ATTACK;
+    public float modifyDamageFinal(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        if (target != null && target.hasPower(VulnerablePower.POWER_ID)) {
+            return damage * 1.25F;
+        }
+        return damage;
     }
 
     @Override
@@ -51,12 +52,12 @@ public class PunishingMod extends AbstractAugmentPlus {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.RARE;
+        return AugmentRarity.UNCOMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new PunishingMod();
+        return new CruelMod();
     }
 
     @Override

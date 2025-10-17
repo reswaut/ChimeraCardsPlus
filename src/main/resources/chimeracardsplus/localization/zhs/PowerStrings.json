@@ -5,6 +5,12 @@
       "受到攻击伤害而失去生命时，给予 #b%d 层 #y虚弱 。"
     ]
   },
+  "${modID}:DoomPower": {
+    "NAME": "灾厄",
+    "DESCRIPTIONS": [
+      "在这个生物的回合结束时，如果它的灾厄值超出其生命值，它将会死亡。"
+    ]
+  },
   "${modID}:FrozenEyePower": {
     "NAME": "预知",
     "DESCRIPTIONS": [
@@ -21,6 +27,12 @@
     "NAME": "集中下降",
     "DESCRIPTIONS": [
       "在你的回合结束时，失去 #b%d 点 #y集中 。"
+    ]
+  },
+  "${modID}:NeurosurgePower": {
+    "NAME": "精神过载",
+    "DESCRIPTIONS": [
+      "在这个生物回合开始时，它获得 #b%d 点 #y灾厄 。"
     ]
   },
   "${modID}:NoDamagePower": {

@@ -40,6 +40,11 @@
       "Enable Modifier"
     ]
   },
+  "${modID}:AddEtherealAction": {
+    "TEXT": [
+      "Add Ethereal"
+    ]
+  },
   "${modID}:CardByIDFromDeckToHandAction": {
     "TEXT": [
       "Choose a Card to Add to Your Hand."

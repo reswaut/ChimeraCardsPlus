@@ -2776,5 +2776,76 @@
     "EXTRA_TEXT": [
       " NL Dexterity affects this card 3 times."
     ]
+  },
+  "${modID}:BlightMod": {
+    "TEXT": [
+      "Blight ",
+      "",
+      "Reduces damage by #b33%. NL Applies #yDoom equal to unblocked damage."
+    ],
+    "EXTRA_TEXT": [
+      " NL Apply ${modID}:Doom equal to unblocked damage dealt."
+    ]
+  },
+  "${modID}:NeuroMod": {
+    "TEXT": [
+      "Neuro ",
+      "",
+      "Costs [E] less. NL Gains #b3 #yDoom at the start of your turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL At the start of your turn, apply 3 ${modID}:Doom to yourself."
+    ]
+  },
+  "${modID}:SculptingMod": {
+    "TEXT": [
+      "Sculpting ",
+      "",
+      "Adds #yEthereal to a card."
+    ],
+    "EXTRA_TEXT": [
+      " NL Add Ethereal to a card in your hand."
+    ]
+  },
+  "${modID}:TransfiguredMod": {
+    "TEXT": [
+      "Transfigured ",
+      "",
+      "Costs [E] more. NL Plays twice."
+    ],
+    "EXTRA_TEXT": [
+      " NL cardaugments:Echo."
+    ]
+  },
+  "${modID}:CruelMod": {
+    "TEXT": [
+      "Cruel ",
+      "",
+      "Increases damage by #b25% if the enemy is #yVulnerable."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deals 25% more damage to Vulnerable enemies.",
+      "Vulnerable"
+    ]
+  },
+  "${modID}:CinderyMod": {
+    "TEXT": [
+      "Cindery ",
+      "",
+      "Increases damage and #yBlock by #b20%. NL #yExhausts the top card of your draw pile."
+    ],
+    "EXTRA_TEXT": [
+      " NL Exhaust the top card of your draw pile."
+    ]
+  },
+  "${modID}:NegativeMod": {
+    "TEXT": [
+      "Negative ",
+      "",
+      "Applies #b4 #yDoom to ALL enemies."
+    ],
+    "EXTRA_TEXT": [
+      " NL Apply 4 ${modID}:Doom to ALL enemies."
+    ]
   }
 }

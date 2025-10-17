@@ -40,6 +40,11 @@
       "启用此修改"
     ]
   },
+  "${modID}:AddEtherealAction": {
+    "TEXT": [
+      "增加 虚无"
+    ]
+  },
   "${modID}:CardByIDFromDeckToHandAction": {
     "TEXT": [
       "选择一张牌放入你的手牌。"

@@ -1,5 +1,12 @@
 [
   {
+    "PROPER_NAME": "Doom",
+    "NAMES": [
+      "doom"
+    ],
+    "DESCRIPTION": "When a creature's Doom meets or exceeds its current HP, it dies at the end of its turn."
+  },
+  {
     "PROPER_NAME": "Recur",
     "NAMES": [
       "recur"

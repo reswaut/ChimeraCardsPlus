@@ -45,7 +45,7 @@ public class ReflexMod extends AbstractAugmentPlus {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (Reflex.ID.equals(card.cardID)) {
+        if (Reflex.ID.equals(card.cardID) && ChimeraCardsPlus.configs.enableBaseGameFixes()) {
             return rawDescription;
         }
         return insertAfterText(rawDescription, CARD_TEXT[0]);

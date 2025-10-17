@@ -1,32 +1,51 @@
-package chimeracardsplus.cardmods.rare;
+package chimeracardsplus.cardmods.common;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.damagemods.DoomedDamage;
+import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
+import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class PunishingMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(PunishingMod.class.getSimpleName());
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class BlightMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(BlightMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public float modifyDamageFinal(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        if (target != null && target.currentHealth * 2.0F <= target.maxHealth) {
-            return damage * 1.5F;
+    public void onInitialApplication(AbstractCard card) {
+        DamageModifierManager.addModifier(card, new DoomedDamage());
+    }
+
+    @Override
+    public void onUpgradeCheck(AbstractCard card) {
+        List<AbstractDamageModifier> mods = DamageModifierManager.modifiers(card);
+        Collection<AbstractDamageModifier> toRemove = mods.stream().filter(m -> m instanceof DoomedDamage).collect(Collectors.toCollection(() -> new ArrayList<>(1)));
+        for (AbstractDamageModifier m : toRemove) {
+            DamageModifierManager.removeModifier(card, m);
         }
-        return damage;
+        DamageModifierManager.addModifier(card, new DoomedDamage());
     }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.baseDamage >= 1 && abstractCard.type == CardType.ATTACK;
+        return abstractCard.baseDamage >= 2;
+    }
+
+    @Override
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage * 2.0F / 3.0F;
     }
 
     @Override
@@ -51,12 +70,12 @@ public class PunishingMod extends AbstractAugmentPlus {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.RARE;
+        return AugmentRarity.COMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new PunishingMod();
+        return new BlightMod();
     }
 
     @Override

@@ -1,32 +1,29 @@
 package chimeracardsplus.cardmods.rare;
 
+import CardAugments.patches.EchoFieldPatches.EchoFields;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class PunishingMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(PunishingMod.class.getSimpleName());
+public class TransfiguredMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(TransfiguredMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public float modifyDamageFinal(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        if (target != null && target.currentHealth * 2.0F <= target.maxHealth) {
-            return damage * 1.5F;
-        }
-        return damage;
+    public void onInitialApplication(AbstractCard card) {
+        card.cost += 1;
+        card.costForTurn = card.cost;
+        EchoFields.echo.set(card, EchoFields.echo.get(card) + 1);
     }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.baseDamage >= 1 && abstractCard.type == CardType.ATTACK;
+        return cardCheck(abstractCard, c -> c.cost >= 0 && doesntUpgradeCost());
     }
 
     @Override
@@ -56,7 +53,7 @@ public class PunishingMod extends AbstractAugmentPlus {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new PunishingMod();
+        return new TransfiguredMod();
     }
 
     @Override

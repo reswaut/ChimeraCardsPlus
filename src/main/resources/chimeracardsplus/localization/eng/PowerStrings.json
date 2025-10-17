@@ -5,6 +5,12 @@
       "When receiving unblocked attack damage, apply #b%d #yWeak back."
     ]
   },
+  "${modID}:DoomPower": {
+    "NAME": "Doom",
+    "DESCRIPTIONS": [
+      "At the end of this creature's turn, if its health is not more than #b%d, it dies."
+    ]
+  },
   "${modID}:FrozenEyePower": {
     "NAME": "Foresee",
     "DESCRIPTIONS": [
@@ -21,6 +27,12 @@
     "NAME": "Focus Down",
     "DESCRIPTIONS": [
       "At the end of this turn, lose #b%d #yFocus."
+    ]
+  },
+  "${modID}:NeurosurgePower": {
+    "NAME": "Neurosurge",
+    "DESCRIPTIONS": [
+      "At the start of this creature's turn, it gains #b%d #yDoom."
     ]
   },
   "${modID}:NoDamagePower": {

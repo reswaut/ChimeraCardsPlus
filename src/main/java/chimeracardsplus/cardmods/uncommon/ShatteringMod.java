@@ -1,4 +1,4 @@
-package chimeracardsplus.cardmods.rare;
+package chimeracardsplus.cardmods.uncommon;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
@@ -10,23 +10,23 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class PunishingMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(PunishingMod.class.getSimpleName());
+public class ShatteringMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(ShatteringMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public float modifyDamageFinal(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        if (target != null && target.currentHealth * 2.0F <= target.maxHealth) {
-            return damage * 1.5F;
-        }
-        return damage;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.baseDamage >= 1 && abstractCard.type == CardType.ATTACK;
     }
 
     @Override
-    public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.baseDamage >= 1 && abstractCard.type == CardType.ATTACK;
+    public float modifyDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        if (target != null && target.currentBlock > 0) {
+            return damage + 3.0F;
+        }
+        return damage;
     }
 
     @Override
@@ -51,12 +51,12 @@ public class PunishingMod extends AbstractAugmentPlus {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.RARE;
+        return AugmentRarity.UNCOMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new PunishingMod();
+        return new ShatteringMod();
     }
 
     @Override
