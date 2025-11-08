@@ -29,10 +29,6 @@ public class PredictiveMod extends AbstractAugmentPlus {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
     private boolean inherentHack = false;
 
-    public PredictiveMod() {
-        priority = -100;
-    }
-
     @Override
     public void onInitialApplication(AbstractCard card) {
         inherentHack = true;
@@ -68,7 +64,7 @@ public class PredictiveMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= -1 && isNormalCard(c) && noShenanigans(c));
+        return cardCheck(abstractCard, c -> c.cost >= -1 && isCleanCard(c) && isNormalCard(c) && noShenanigans(c));
     }
 
     @Override

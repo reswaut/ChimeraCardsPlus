@@ -30,10 +30,6 @@ public class NightmareMod extends AbstractAugmentPlus {
     private boolean inherentHack = false;
     private final String labelID = LabelMod.makeLabelModID(ID);
 
-    public NightmareMod() {
-        priority = -100;
-    }
-
     @Override
     public void onInitialApplication(AbstractCard card) {
         inherentHack = true;
@@ -71,7 +67,7 @@ public class NightmareMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> isNormalCard(c) && noShenanigans(c) && doesntUpgradeCost());
+        return cardCheck(abstractCard, c -> isCleanCard(c) && isNormalCard(c) && noShenanigans(c) && doesntUpgradeCost());
     }
 
     @Override

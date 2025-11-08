@@ -280,16 +280,6 @@
         "DESCRIPTION": "Merged #yBursty with #yBurst."
       }
     },
-    "${modID}:CastMod": {
-      "Dualcast": {
-        "NAME": "Dualcast²",
-        "DESCRIPTION": "Merged #yand #yCast with #yDualcast."
-      },
-      "Multicast": {
-        "NAME": "Multicast²",
-        "DESCRIPTION": "Merged #yand #yCast with #yMulticast."
-      }
-    },
     "${modID}:ChaoticMod": {
       "Chaos": {
         "NAME": "Chaos²",

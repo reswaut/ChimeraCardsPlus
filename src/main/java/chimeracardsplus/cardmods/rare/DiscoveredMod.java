@@ -28,10 +28,6 @@ public class DiscoveredMod extends AbstractAugmentPlus {
     private boolean inherentHack = false;
     private final String labelID = LabelMod.makeLabelModID(ID);
 
-    public DiscoveredMod() {
-        priority = -100;
-    }
-
     @Override
     public void onInitialApplication(AbstractCard card) {
         inherentHack = true;
@@ -69,7 +65,7 @@ public class DiscoveredMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> isNormalCard(c) && doesntUpgradeCost() && noShenanigans(c));
+        return cardCheck(abstractCard, c -> isCleanCard(c) && isNormalCard(c) && doesntUpgradeCost() && noShenanigans(c));
     }
 
     @Override

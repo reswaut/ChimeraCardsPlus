@@ -30,11 +30,6 @@ public class StormMod extends AbstractAugmentPlus {
     private boolean inherentHack = false;
     private final String labelID = LabelMod.makeLabelModID(ID);
 
-    // This modifier should apply first.
-    public StormMod() {
-        priority = -100;
-    }
-
     @Override
     public void onInitialApplication(AbstractCard card) {
         inherentHack = true;
@@ -72,7 +67,7 @@ public class StormMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> (c.type == CardType.ATTACK || c.type == CardType.SKILL) && notExhaust(c) && noShenanigans(c) && c.cost == 0 && doesntUpgradeCost()
+        return cardCheck(abstractCard, c -> (c.type == CardType.ATTACK || c.type == CardType.SKILL) && isCleanCard(c) && notExhaust(c) && noShenanigans(c) && c.cost == 0 && doesntUpgradeCost()
         );
     }
 

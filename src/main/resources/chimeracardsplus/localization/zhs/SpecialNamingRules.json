@@ -280,16 +280,6 @@
         "DESCRIPTION": "合并 #y爆发 和 #y爆发 。"
       }
     },
-    "${modID}:CastMod": {
-      "双重释放": {
-        "NAME": "双重释放²",
-        "DESCRIPTION": "合并 #y并释放 和 #y双重释放 。"
-      },
-      "Multicast": {
-        "NAME": "多重释放²",
-        "DESCRIPTION": "合并 #y并释放 和 #y多重释放 。"
-      }
-    },
     "${modID}:ChaoticMod": {
       "混沌": {
         "NAME": "混沌²",

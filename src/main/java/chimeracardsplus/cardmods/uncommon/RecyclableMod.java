@@ -17,14 +17,9 @@ public class RecyclableMod extends AbstractAugmentPlus {
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
-    // This modifier should be applied first.
-    public RecyclableMod() {
-        priority = -100;
-    }
-
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost == -1 && doesntUpgradeCost() && noShenanigans(c));
+        return cardCheck(abstractCard, c -> c.cost == -1 && isCleanCard(c) && doesntUpgradeCost() && noShenanigans(c));
     }
 
     @Override

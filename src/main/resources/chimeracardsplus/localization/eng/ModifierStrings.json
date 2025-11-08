@@ -1334,8 +1334,8 @@
       "Drops an additional card reward if #yFatal in a normal combat. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
-      " NL If Fatal in a normal combat, it drops an additional card reward. NL Exhaust.",
-      " NL If Fatal in a normal combat, it drops an additional card reward."
+      " NL If Fatal in a normal combat, gain an additional card reward. NL Exhaust.",
+      " NL If Fatal in a normal combat, gain an additional card reward."
     ]
   },
   "${modID}:PredictedMod": {
@@ -1688,8 +1688,8 @@
       "Drops an additional Relic if #yFatal in an Elite combat. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
-      " NL If Fatal in an Elite combat, it drops an additional Relic. NL Exhaust.",
-      " NL If Fatal in an Elite combat, it drops an additional Relic."
+      " NL If Fatal in an Elite combat, gain an additional Relic. NL Exhaust.",
+      " NL If Fatal in an Elite combat, gain an additional Relic."
     ]
   },
   "${modID}:LiquidizingMod": {
@@ -2200,7 +2200,7 @@
     "TEXT": [
       "",
       " and Judge",
-      "Reduces damage by #b25%. NL Kills the enemy if it has HP less than or equal to #b75% damage."
+      "Reduces damage by #b25%. NL Kills the enemy if their HP is less than or equal to #b75% damage."
     ],
     "EXTRA_TEXT": [
       " NL If the enemy has %s or less HP, set their HP to 0."
@@ -2846,6 +2846,17 @@
     ],
     "EXTRA_TEXT": [
       " NL Apply 4 ${modID}:Doom to ALL enemies."
+    ]
+  },
+  "${modID}:ConstrictiveMod": {
+    "TEXT": [
+      "Constrictive ",
+      "",
+      "Reduces damage by #b67%. NL Applies #yConstricted equal to #b33% damage. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL At the end of the enemy's turn, they take %s damage. NL Exhaust.",
+      " NL At the end of the enemy's turn, they take %s damage."
     ]
   }
 }

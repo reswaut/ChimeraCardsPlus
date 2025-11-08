@@ -28,10 +28,6 @@ public class EvolutionaryMod extends AbstractAugmentPlus {
     private boolean inherentHack = false;
     private final String labelID = LabelMod.makeLabelModID(ID);
 
-    public EvolutionaryMod() {
-        priority = -100;
-    }
-
     @Override
     public void onInitialApplication(AbstractCard card) {
         inherentHack = true;
@@ -74,7 +70,7 @@ public class EvolutionaryMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= 0 && isNormalCard(c) && noShenanigans(c) && doesntUpgradeCost());
+        return cardCheck(abstractCard, c -> c.cost >= 0 && isCleanCard(c) && isNormalCard(c) && noShenanigans(c) && doesntUpgradeCost());
     }
 
     @Override

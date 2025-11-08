@@ -37,7 +37,7 @@ public class HookedMod extends AbstractAugmentPlus implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= 1 && usesVanillaTargeting(c) && c.type == CardType.ATTACK && customCheck(c, check -> check.rawDescription.chars().filter(ch -> ch == LocalizedStrings.PERIOD.charAt(0)).count() == 1L));
+        return cardCheck(abstractCard, c -> c.cost >= 1 && isCleanCard(c) && usesVanillaTargeting(c) && c.type == CardType.ATTACK && customCheck(c, check -> check.rawDescription.chars().filter(ch -> ch == LocalizedStrings.PERIOD.charAt(0)).count() == 1L));
     }
 
     @Override

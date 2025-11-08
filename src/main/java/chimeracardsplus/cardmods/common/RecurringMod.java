@@ -18,7 +18,7 @@ public class RecurringMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> notEthereal(c) && doesntOverride(c, "triggerOnEndOfTurnForPlayingCard"));
+        return cardCheck(abstractCard, c -> notEthereal(c) && notRetain(c) && doesntOverride(c, "triggerOnEndOfTurnForPlayingCard"));
     }
 
     @Override
