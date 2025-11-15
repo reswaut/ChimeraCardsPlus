@@ -91,6 +91,7 @@ public class GrowingMod extends AbstractAugmentPlus {
             AbstractDungeon.getCurrRoom().phase = RoomPhase.COMPLETE;
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
             CardModifierManager.removeSpecificModifier(card, this, false);
+            return true;
         }
         return false;
     }

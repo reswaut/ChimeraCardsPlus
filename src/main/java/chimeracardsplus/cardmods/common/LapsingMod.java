@@ -12,8 +12,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class DrainingMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(DrainingMod.class.getSimpleName());
+public class LapsingMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(LapsingMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
@@ -79,7 +79,7 @@ public class DrainingMod extends AbstractAugmentPlus {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new DrainingMod();
+        return new LapsingMod();
     }
 
     @Override

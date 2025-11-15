@@ -656,11 +656,11 @@
     "TEXT": [
       "Feeding ",
       "",
-      "Reduces damage by #b25%. NL Gains #b2(3) Max HP if #yFatal. NL Adds #yExhaust."
+      "Reduces damage by #b25%. NL Gains #b2 Max HP if #yFatal. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
-      " NL If Fatal, raise your Max HP by %s. NL Exhaust.",
-      " NL If Fatal, raise your Max HP by %s."
+      " NL If Fatal, raise your Max HP by 2. NL Exhaust.",
+      " NL If Fatal, raise your Max HP by 2."
     ]
   },
   "${modID}:FiendMod": {
@@ -2176,9 +2176,9 @@
       " NL At the end of your turn, take 2 damage."
     ]
   },
-  "${modID}:DrainingMod": {
+  "${modID}:LapsingMod": {
     "TEXT": [
-      "Draining ",
+      "Lapsing ",
       "",
       "Increases card values by #b40%. NL Loses #b1 HP when drawn."
     ],
@@ -2857,6 +2857,16 @@
     "EXTRA_TEXT": [
       " NL At the end of the enemy's turn, they take %s damage. NL Exhaust.",
       " NL At the end of the enemy's turn, they take %s damage."
+    ]
+  },
+  "${modID}:DrainingMod": {
+    "TEXT": [
+      "Draining ",
+      "",
+      "Reduces damage and #yBlock by #b25%. NL #yUpgrades #b1 random card in your discard pile for the rest of combat."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upgrade 1 random card in your discard pile for the rest of combat."
     ]
   }
 }

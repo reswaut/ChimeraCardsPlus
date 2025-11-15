@@ -32,47 +32,52 @@
     "DESCRIPTION": "被变化或移除后觉醒。"
   },
   "${modID}:Amplify": {
-    "DESCRIPTION": "在这个回合，你的下 !M! 张 能力牌 会打出两次。"
+    "DESCRIPTION": "{@@}在这个回合，你的下 {!M!|@=!M!|1=一} 张 能力牌 会打出两次。",
+    "UPGRADE_DESCRIPTION": "{@@}在这个回合，你的下 {!M!|@=!M!|1=一} 张 能力牌 会打出两次。"
   },
   "${modID}:BattleHymn": {
-    "DESCRIPTION": "在每回合开始时，将 !M! 张 *惩恶 加入你的手牌。",
-    "UPGRADE_DESCRIPTION": " 固有 。 在每回合开始时，将 !M! 张 *惩恶 加入你的手牌。"
+    "DESCRIPTION": "{@@}在每回合开始时，将 {!M!|@=!M!|1=一} 张 *惩恶 加入你的手牌。",
+    "UPGRADE_DESCRIPTION": "{@@} 固有 。 在每回合开始时，将 {!M!|@=!M!|1=一} 张 *惩恶 加入你的手牌。"
   },
   "${modID}:Bloodletting": {
-    "DESCRIPTION": "获得 !M! [R] 。 NL 失去 3 点生命。",
-    "UPGRADE_DESCRIPTION": "获得 !M! [R] 。 NL 失去 3 点生命。"
+    "DESCRIPTION": "{@@}获得 {!M!|repeat= [R]|>4= !M! [R]} 。 NL 失去 3 点生命。",
+    "UPGRADE_DESCRIPTION": "{@@}获得 {!M!|repeat= [R]|>4= !M! [R]} 。 NL 失去 3 点生命。"
   },
   "${modID}:Buffer": {
-    "DESCRIPTION": "阻止下 !M! 次你受到的生命值损伤。"
+    "DESCRIPTION": "{@@}阻止下 {!M!|@=!M!|1=一} 次你受到的生命值损伤。",
+    "UPGRADE_DESCRIPTION": "{@@}阻止下 {!M!|@=!M!|1=一} 次你受到的生命值损伤。"
   },
   "${modID}:Burst": {
-    "DESCRIPTION": "在这个回合，你打出的下 !M! 张技能牌会打出两次。"
+    "DESCRIPTION": "{@@}在这个回合，你打出的下 {!M!|@=!M!|1=一} 张技能牌会打出两次。",
+    "UPGRADE_DESCRIPTION": "{@@}在这个回合，你打出的下 {!M!|@=!M!|1=一} 张技能牌会打出两次。"
   },
   "${modID}:Creative AI": {
-    "DESCRIPTION": "在每回合开始时，增加 !M! 张随机 能力 牌到你的手牌。"
+    "DESCRIPTION": "{@@}在每回合开始时，增加 {!M!|@=!M!|1=一} 张随机 能力 牌到你的手牌。",
+    "UPGRADE_DESCRIPTION": "{@@}在每回合开始时，增加 {!M!|@=!M!|1=一} 张随机 能力 牌到你的手牌。"
   },
   "${modID}:Double Tap": {
-    "DESCRIPTION": "在这个回合，你打出的下 !M! 张攻击牌会打出两次。"
+    "DESCRIPTION": "{@@}在这个回合，你打出的下 {!M!|@=!M!|1=一} 张攻击牌会打出两次。",
+    "UPGRADE_DESCRIPTION": "{@@}在这个回合，你打出的下 {!M!|@=!M!|1=一} 张攻击牌会打出两次。"
   },
   "${modID}:Dual Wield": {
-    "DESCRIPTION": "将你手牌中的一张 攻击 或 能力 牌复制 !M! 张。",
-    "UPGRADE_DESCRIPTION": "将你手牌中的一张 攻击 或 能力 牌复制 !M! 张。"
+    "DESCRIPTION": "{@@}将你手牌中的一张 攻击 或 能力 牌复制 {!M!|@=!M!|1=一} 张。",
+    "UPGRADE_DESCRIPTION": "{@@}将你手牌中的一张 攻击 或 能力 牌复制 {!M!|@=!M!|1=一} 张。"
   },
   "${modID}:Loop": {
-    "DESCRIPTION": "在你的回合开始时，使用你最右侧的1个充能球的被动能力 !M! 次。"
+    "DESCRIPTION": "{@@}在你的回合开始时，使用你最右侧的1个充能球的被动能力{!M!|@= !M! 次|1=}。"
   },
   "${modID}:Magnetism": {
-    "DESCRIPTION": "在每回合开始时，增加 !M! 张随机无色牌到你的手牌。"
+    "DESCRIPTION": "{@@}在每回合开始时，增加 {!M!|@=!M!|1=一} 张随机无色牌到你的手牌。"
   },
   "${modID}:Mayhem": {
-    "DESCRIPTION": "在你的回合开始时，打出你抽牌堆顶部的 !M! 张牌。"
+    "DESCRIPTION": "在你的回合开始时，打出你抽牌堆顶部的 {!M|@= !M! 张|1=} 牌。"
   },
   "${modID}:Meditate": {
-    "DESCRIPTION": "将弃牌堆中的 !M! 张牌放入你的手牌，并将其 保留 。 NL 进入 平静 。 NL 结束你的回合。",
-    "UPGRADE_DESCRIPTION": "将弃牌堆中的 !M! 张牌放入你的手牌，并将它们 保留 。 NL 进入 平静 。 NL 结束你的回合。"
+    "DESCRIPTION": "{@@}将弃牌堆中的 {!M!|@=!M!|1=一} 张牌放入你的手牌，并将其 保留 。 NL 进入 平静 。 NL 结束你的回合。",
+    "UPGRADE_DESCRIPTION": "{@@}将弃牌堆中的 {!M!|@=!M!|1=一} 张牌放入你的手牌，并将其 保留 。 NL 进入 平静 。 NL 结束你的回合。"
   },
   "${modID}:Omniscience": {
-    "DESCRIPTION": "选择你抽牌堆中的一张牌。 将这张牌打出 !M! 次然后将其 消耗 。 NL 消耗 。"
+    "DESCRIPTION": "{@@}选择你抽牌堆中的一张牌。 将这张牌打出 {!M!|@=!M! 次|1=|2=两次} 然后将其 消耗 。 NL 消耗 。"
   },
   "${modID}:Perfected Strike": {
     "DESCRIPTION": "造成 !D! 点伤害。 NL 你每有一张名字中有 打击 的牌，伤害+ !M! 。",
@@ -83,17 +88,17 @@
     "UPGRADE_DESCRIPTION": "固有 。 NL 你每打出一张能力牌，生成 !M! 个 闪电 充能球。"
   },
   "${modID}:Study": {
-    "DESCRIPTION": "在你的回合结束时，在你的抽牌堆中加入 !M! 张 *洞见 。"
+    "DESCRIPTION": "{@@}在你的回合结束时，在你的抽牌堆中加入 {!M!|@=!M!|1=一} 张 *洞见 。"
   },
   "${modID}:Tactician": {
-    "DESCRIPTION": " 不能被打出 。 NL 如果这张牌从你的手牌中被丢弃，获得 !M! [G] 。",
-    "UPGRADE_DESCRIPTION": " 不能被打出 。 NL 如果这张牌从你的手牌中被丢弃，获得 !M! [G] 。"
+    "DESCRIPTION": "{@@} 不能被打出 。 NL 如果这张牌从你的手牌中被丢弃，获得 {!M!|repeat= [G]|>4= !M! [G]} 。",
+    "UPGRADE_DESCRIPTION": "{@@} 不能被打出 。 NL 如果这张牌从你的手牌中被丢弃，获得 {!M!|repeat= [G]|>4= !M! [G]} 。"
   },
   "${modID}:Turbo": {
-    "DESCRIPTION": "获得 !M! [B] 。 NL 将一张 *虚空 放入你的弃牌堆中。",
-    "UPGRADE_DESCRIPTION": "获得 !M! [B] 。 NL 将一张 *虚空 放入你的弃牌堆中。"
+    "DESCRIPTION": "{@@} 获得 {!M!|repeat= [B]|>4= !M! [B]} 。 NL 将一张 *虚空 放入你的弃牌堆中。",
+    "UPGRADE_DESCRIPTION": "{@@} 获得 {!M!|repeat= [B]|>4= !M! [B]} 。 NL 将一张 *虚空 放入你的弃牌堆中。"
   },
   "${modID}:Undo": {
-    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 在 !M! 回合内 保留 你的手牌。"
+    "DESCRIPTION": "{@@} 获得 !B! 点 格挡 。 NL 在 {!M!|@=!M!|1=本} 回合内 保留 你的手牌。"
   }
 }

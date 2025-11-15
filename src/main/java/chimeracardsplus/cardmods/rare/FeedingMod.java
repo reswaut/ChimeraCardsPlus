@@ -1,6 +1,5 @@
 package chimeracardsplus.cardmods.rare;
 
-import CardAugments.cardmods.DynvarCarrier;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
@@ -21,12 +20,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FeedingMod extends AbstractAugmentPlus implements DynvarCarrier {
+public class FeedingMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(FeedingMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private static final String DESCRIPTION_KEY = '!' + ID + '!';
     private boolean addedExhaust = true;
 
     @Override
@@ -42,7 +40,7 @@ public class FeedingMod extends AbstractAugmentPlus implements DynvarCarrier {
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
         if (Feed.ID.equals(card.cardID)) {
-            return magic + baseVal(card);
+            return magic + 2;
         }
         return magic;
     }
@@ -52,7 +50,7 @@ public class FeedingMod extends AbstractAugmentPlus implements DynvarCarrier {
         if (Feed.ID.equals(card.cardID)) {
             return;
         }
-        DamageModifierManager.addModifier(card, new FeedDamage(baseVal(card)));
+        DamageModifierManager.addModifier(card, new FeedDamage(2));
         addedExhaust = !card.exhaust;
         card.exhaust = true;
     }
@@ -67,38 +65,13 @@ public class FeedingMod extends AbstractAugmentPlus implements DynvarCarrier {
         for (AbstractDamageModifier m : toRemove) {
             DamageModifierManager.removeModifier(card, m);
         }
-        DamageModifierManager.addModifier(card, new FeedDamage(baseVal(card)));
+        DamageModifierManager.addModifier(card, new FeedDamage(2));
 
         if (!card.exhaust) {
             addedExhaust = true;
             card.exhaust = true;
             card.initializeDescription();
         }
-    }
-
-    @Override
-    public String key() {
-        return ID;
-    }
-
-    @Override
-    public int val(AbstractCard abstractCard) {
-        return baseVal(abstractCard);
-    }
-
-    @Override
-    public int baseVal(AbstractCard abstractCard) {
-        return 2 + getEffectiveUpgrades(abstractCard);
-    }
-
-    @Override
-    public boolean modified(AbstractCard abstractCard) {
-        return false;
-    }
-
-    @Override
-    public boolean upgraded(AbstractCard abstractCard) {
-        return abstractCard.timesUpgraded != 0 || abstractCard.upgraded;
     }
 
     @Override
@@ -121,7 +94,7 @@ public class FeedingMod extends AbstractAugmentPlus implements DynvarCarrier {
         if (Feed.ID.equals(card.cardID)) {
             return rawDescription;
         }
-        return insertAfterText(rawDescription, String.format(addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1], DESCRIPTION_KEY));
+        return insertAfterText(rawDescription, String.format(addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1]));
     }
 
     @Override

@@ -32,67 +32,72 @@
     "DESCRIPTION": "Becomes Awakened when transformed or removed."
   },
   "${modID}:Amplify": {
-    "DESCRIPTION": "This turn, your next !M! Power card is played twice."
+    "DESCRIPTION": "{@@}This turn, your next !M! {!M!|@=!M! Power cards are|1=Power card is} played twice.",
+    "UPGRADE_DESCRIPTION": "{@@}This turn, your next !M! {!M!|@=!M! Power cards are|1=Power card is} played twice."
   },
   "${modID}:BattleHymn": {
-    "DESCRIPTION": "At the start of each turn, add !M! *Smite into your hand.",
-    "UPGRADE_DESCRIPTION": "Innate. NL At the start of each turn, add !M! *Smite into your hand."
+    "DESCRIPTION": "{@@}At the start of each turn, add {!M!|@=!M! *Smites|1=a *Smite} into your hand.",
+    "UPGRADE_DESCRIPTION": "{@@}Innate. NL At the start of each turn, add {!M!|@=!M! *Smites|1=a *Smite} into your hand."
   },
   "${modID}:Bloodletting": {
-    "DESCRIPTION": "Lose 3 HP. NL Gain !M! [R].",
-    "UPGRADE_DESCRIPTION": "Lose 3 HP. NL Gain !M! [R]."
+    "DESCRIPTION": "{@@}Lose 3 HP. NL Gain{!M!|repeat= [R]|>4= !M! [R]}.",
+    "UPGRADE_DESCRIPTION": "{@@}Lose 3 HP. NL Gain{!M!|repeat= [R]|>4= !M! [R]}."
   },
   "${modID}:Buffer": {
-    "DESCRIPTION": "Prevent the next !M! time you would lose HP."
+    "DESCRIPTION": "{@@}Prevent the next {!M!|@=!M! times|1=time} you would lose HP.",
+    "UPGRADE_DESCRIPTION": "{@@}Prevent the next {!M!|@=!M! times|1=time} you would lose HP."
   },
   "${modID}:Burst": {
-    "DESCRIPTION": "This turn, your next !M! Skill is played twice."
+    "DESCRIPTION": "{@@}This turn, your next {!M!|@=!M! Skills are|1=Skill is} played twice.",
+    "UPGRADE_DESCRIPTION": "{@@}This turn, your next {!M!|@=!M! Skills are|1=Skill is} played twice."
   },
   "${modID}:Creative AI": {
-    "DESCRIPTION": "At the start of your turn, add !M! random Power card into your hand."
+    "DESCRIPTION": "{@@}At the start of your turn, add {!M!|@=!M! random Power cards|1=a random Power card} into your hand."
   },
   "${modID}:Double Tap": {
-    "DESCRIPTION": "This turn, your next !M! Attack is played twice."
+    "DESCRIPTION": "{@@}This turn, your next {!M!|@=!M! Attacks are|1=Attack is} played twice.",
+    "UPGRADE_DESCRIPTION": "{@@}This turn, your next {!M!|@=!M! Attacks are|1=Attack is} played twice."
   },
   "${modID}:Dual Wield": {
-    "DESCRIPTION": "Choose an Attack or Power card. Add !M! copy of that card into your hand.",
-    "UPGRADE_DESCRIPTION": "Choose an Attack or Power card. Add !M! copies of that card into your hand."
+    "DESCRIPTION": "{@@}Choose an Attack or Power card. Add {!M!|@=!M! copies|1=a copy} of that card into your hand.",
+    "UPGRADE_DESCRIPTION": "{@@}Choose an Attack or Power card. Add {!M!|@=!M! copies|1=a copy} of that card into your hand."
   },
   "${modID}:Loop": {
-    "DESCRIPTION": "At the start of your turn, trigger the passive ability of your next Orb !M! time."
+    "DESCRIPTION": "{@@}At the start of your turn, trigger the passive ability of your next Orb{!M!|@= !M! times|1=}.",
+    "UPGRADE_DESCRIPTION": "{@@}At the start of your turn, trigger the passive ability of your next Orb{!M!|@= !M! times|1=}."
   },
   "${modID}:Magnetism": {
-    "DESCRIPTION": "At the start of your turn, add !M! random Colorless card into your hand."
+    "DESCRIPTION": "{@@}At the start of your turn, add {!M!|@=!M! random Colorless cards|1=a random Colorless card} into your hand."
   },
   "${modID}:Mayhem": {
-    "DESCRIPTION": "At the start of your turn, play the top !M! card of your draw pile."
+    "DESCRIPTION": "{@@}At the start of your turn, play the top {!M!|@=!M! cards|1=card} of your draw pile."
   },
   "${modID}:Meditate": {
-    "DESCRIPTION": "Put !M! card from your discard pile into your hand and Retain it. NL Enter Calm. NL End your turn.",
-    "UPGRADE_DESCRIPTION": "Put !M! cards from your discard pile into your hand and Retain them. NL Enter Calm. NL End your turn."
+    "DESCRIPTION": "{@@}Put {!M!|@=!M! cards|1=a card} from your discard pile into your hand and Retain it. NL Enter Calm. NL End your turn.",
+    "UPGRADE_DESCRIPTION": "{@@}Put {!M!|@=!M! cards|1=a card} from your discard pile into your hand and Retain them. NL Enter Calm. NL End your turn."
   },
   "${modID}:Omniscience": {
-    "DESCRIPTION": "Choose a card in your draw pile. NL Play the chosen card !M! times and exhaust it. NL Exhaust."
+    "DESCRIPTION": "{@@}Choose a card in your draw pile. NL Play the chosen card{!M!|@= !M! times|1=|2= twice} and exhaust it. NL Exhaust."
   },
   "${modID}:Rip and Tear": {
-    "DESCRIPTION": "Deal !D! damage to a random enemy !M! times."
+    "DESCRIPTION": "{@@}Deal !D! damage to a random enemy{!M!|@= !M! times|1=|2= twice}."
   },
   "${modID}:Storm": {
     "DESCRIPTION": "Whenever you play a Power card, Channel !M! Lightning.",
     "UPGRADE_DESCRIPTION": "Innate. NL Whenever you play a Power card, Channel !M! Lightning."
   },
   "${modID}:Study": {
-    "DESCRIPTION": "At the end of your turn, shuffle !M! *Insight into your draw pile."
+    "DESCRIPTION": "{@@}At the end of your turn, shuffle {!M!|@=!M! *Insights|1=an *Insight} into your draw pile."
   },
   "${modID}:Tactician": {
-    "DESCRIPTION": "Unplayable. NL If this card is discarded from your hand, gain !M! [G].",
-    "UPGRADE_DESCRIPTION": "Unplayable. NL If this card is discarded from your hand, gain !M! [G]."
+    "DESCRIPTION": "{@@}Unplayable. NL If this card is discarded from your hand, gain{!M!|repeat= [G]|>4= !M! [G]}.",
+    "UPGRADE_DESCRIPTION": "{@@}Unplayable. NL If this card is discarded from your hand, gain{!M!|repeat= [G]|>4= !M! [G]}."
   },
   "${modID}:Turbo": {
-    "DESCRIPTION": "Gain !M! [B]. NL Add a *Void into your discard pile.",
-    "UPGRADE_DESCRIPTION": "Gain !M! [B]. NL Add a *Void into your discard pile."
+    "DESCRIPTION": "{@@}Gain{!M!|repeat= [B]|>4= !M! [B]}. NL Add a *Void into your discard pile.",
+    "UPGRADE_DESCRIPTION": "{@@}Gain{!M!|repeat= [B]|>4= !M! [B]}. NL Add a *Void into your discard pile."
   },
   "${modID}:Undo": {
-    "DESCRIPTION": "Gain !B! Block. NL Retain your hand for !M! turn."
+    "DESCRIPTION": "{@@}Gain !B! Block. NL Retain your hand {!M!|@=for !M! turns|1=this turn}."
   }
 }
