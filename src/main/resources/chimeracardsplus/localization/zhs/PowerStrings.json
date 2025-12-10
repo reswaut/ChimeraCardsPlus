@@ -8,7 +8,8 @@
   "${modID}:DoomPower": {
     "NAME": "灾厄",
     "DESCRIPTIONS": [
-      "在这个生物的回合结束时，如果它的灾厄值超出其生命值，它将会死亡。"
+      "在你的回合结束时，如果你的灾厄值超过生命值，则你会死亡。",
+      "在这个敌人的回合结束时，如果它的灾厄值超过生命值，则它会死亡。"
     ]
   },
   "${modID}:FrozenEyePower": {
@@ -32,13 +33,21 @@
   "${modID}:NeurosurgePower": {
     "NAME": "精神过载",
     "DESCRIPTIONS": [
-      "在这个生物回合开始时，它获得 #b%d 点 #y灾厄 。"
+      "在你的回合开始时，获得 #b%d 点 #y灾厄 。",
+      "在这个敌人的回合开始时，它获得 #b%d 点 #y灾厄 。"
     ]
   },
   "${modID}:NoDamagePower": {
     "NAME": "无法攻击",
     "DESCRIPTIONS": [
       "你无法造成攻击伤害。"
+    ]
+  },
+  "${modID}:PlatingPower": {
+    "NAME": "镀层",
+    "DESCRIPTIONS": [
+      "在你的回合结束时，获得 #b%d 点 #y格挡 。在你的回合开始时， #y镀层 会减少 #b1 层。",
+      "在这个敌人的回合结束时，它获得 #b%d 点 #y格挡 。在它的回合开始时， #y镀层 会减少 #b1 层。."
     ]
   },
   "${modID}:RetributionPower": {

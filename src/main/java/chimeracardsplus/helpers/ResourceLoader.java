@@ -28,11 +28,11 @@ public class ResourceLoader {
         return Settings.language.name().toLowerCase(Locale.getDefault());
     }
 
-    private static String imagePath(String file) {
-        return RESOURCE_FOLDER + "/images/" + file;
+    private static String getModImagePath(String filePath) {
+        return RESOURCE_FOLDER + "/images/" + filePath;
     }
 
-    private static String localizationPath(String lang, String file) {
+    private static String getLocalizationPath(String lang, String file) {
         return RESOURCE_FOLDER + "/localization/" + lang + '/' + file;
     }
 
@@ -41,7 +41,7 @@ public class ResourceLoader {
     }
 
     public Texture getTexture(String filePath, boolean linearFilter) {
-        String imagePath = imagePath(filePath);
+        String imagePath = getModImagePath(filePath);
         Texture texture = textures.get(imagePath);
         if (texture == null) {
             try {
@@ -77,16 +77,16 @@ public class ResourceLoader {
 
     private void loadStrings(String lang) {
         BaseMod.loadCustomStringsFile(CardStrings.class,
-                localizationPath(lang, "CardStrings.json"));
+                getLocalizationPath(lang, "CardStrings.json"));
         BaseMod.loadCustomStringsFile(EventStrings.class,
-                localizationPath(lang, "EventStrings.json"));
+                getLocalizationPath(lang, "EventStrings.json"));
         BaseMod.loadCustomStringsFile(PowerStrings.class,
-                localizationPath(lang, "PowerStrings.json"));
+                getLocalizationPath(lang, "PowerStrings.json"));
         BaseMod.loadCustomStringsFile(UIStrings.class,
-                localizationPath(lang, "ModifierStrings.json"));
+                getLocalizationPath(lang, "ModifierStrings.json"));
         BaseMod.loadCustomStringsFile(UIStrings.class,
-                localizationPath(lang, "UIStrings.json"));
-        ChimeraCardsPlus.specialNamingRules.addRules(gson.fromJson(Gdx.files.internal(localizationPath(lang, "SpecialNamingRules.json")).readString(String.valueOf(StandardCharsets.UTF_8)), SpecialNamingRules.class));
+                getLocalizationPath(lang, "UIStrings.json"));
+        ChimeraCardsPlus.specialNamingRules.addRules(gson.fromJson(Gdx.files.internal(getLocalizationPath(lang, "SpecialNamingRules.json")).readString(String.valueOf(StandardCharsets.UTF_8)), SpecialNamingRules.class));
     }
 
     public void loadKeywords() {
@@ -99,7 +99,7 @@ public class ResourceLoader {
     }
 
     private void loadKeywords(String lang) {
-        Keyword[] keywords = gson.fromJson(Gdx.files.internal(localizationPath(lang, "KeywordStrings.json")).readString(String.valueOf(StandardCharsets.UTF_8)), Keyword[].class);
+        Keyword[] keywords = gson.fromJson(Gdx.files.internal(getLocalizationPath(lang, "KeywordStrings.json")).readString(String.valueOf(StandardCharsets.UTF_8)), Keyword[].class);
         if (keywords != null) {
             for (Keyword keyword : keywords) {
                 BaseMod.addKeyword(ChimeraCardsPlus.MOD_ID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);

@@ -21,7 +21,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class DiscoverModAction extends AbstractGameAction {
-    private boolean retrieveCard = true;
+    private boolean first = true;
     private final AbstractCard baseCard;
 
     public DiscoverModAction(AbstractCard card) {
@@ -32,27 +32,27 @@ public class DiscoverModAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        if (duration >= Settings.ACTION_DUR_FAST) {
-            AbstractDungeon.cardRewardScreen.customCombatOpen(generateCardChoices(), CardRewardScreen.TEXT[1], false);
-        } else if (retrieveCard) {
-            if (AbstractDungeon.cardRewardScreen.discoveryCard != null) {
-                AbstractCard disCard = AbstractDungeon.cardRewardScreen.discoveryCard.makeStatEquivalentCopy();
-                if (AbstractDungeon.player.hasPower(MasterRealityPower.POWER_ID)) {
-                    disCard.upgrade();
-                }
-
-                disCard.current_x = -1000.0F * Settings.xScale;
-                if (AbstractDungeon.player.hand.size() < 10) {
-                    AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(disCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-                } else {
-                    AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(disCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-                }
-
-                AbstractDungeon.cardRewardScreen.discoveryCard = null;
-            }
-            retrieveCard = false;
+        if (first) {
+            first = false;
+            AbstractDungeon.cardRewardScreen.customCombatOpen(generateCardChoices(), CardRewardScreen.TEXT[1], true);
+            return;
         }
-        tickDuration();
+        if (AbstractDungeon.cardRewardScreen.discoveryCard != null) {
+            AbstractCard disCard = AbstractDungeon.cardRewardScreen.discoveryCard.makeStatEquivalentCopy();
+            if (AbstractDungeon.player.hasPower(MasterRealityPower.POWER_ID)) {
+                disCard.upgrade();
+            }
+
+            disCard.current_x = -1000.0F * Settings.xScale;
+            if (AbstractDungeon.player.hand.size() < 10) {
+                AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(disCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+            } else {
+                AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(disCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+            }
+
+            AbstractDungeon.cardRewardScreen.discoveryCard = null;
+        }
+        isDone = true;
     }
 
     private ArrayList<AbstractCard> generateCardChoices() {

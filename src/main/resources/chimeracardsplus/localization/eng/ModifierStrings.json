@@ -9,9 +9,9 @@
       " NL While in hand, lose 1 HP whenever you play another card."
     ]
   },
-  "${modID}:AgileMod": {
+  "${modID}:AnticipativeMod": {
     "TEXT": [
-      "Agile ",
+      "Anticipative ",
       "",
       "Gains #b3 #yDexterity this turn."
     ],
@@ -751,7 +751,7 @@
     "TEXT": [
       "Forethought ",
       "",
-      "Costs [E] more. NL Returns any number of cards from your hand to the bottom of your draw pile. Reduces their cost to #b0 until played."
+      "Costs [E] more. NL Returns any number of cards from your hand to the bottom of your draw pile. Reduces their costs to #b0 until played."
     ],
     "EXTRA_TEXT": [
       " NL Put any number of cards from your hand to the bottom of your draw pile. They cost 0 until played."
@@ -1392,7 +1392,7 @@
     "TEXT": [
       "Proud ",
       "",
-      "Costs [E] more. NL Adds #yInnate and #yExhaust. NL Puts a copy of the card on top of your draw pile if the card is in your hand at the end of your turn.."
+      "Adds #yInnate and #yExhaust. NL Puts a copy of the card on top of your draw pile if the card is in your hand at the end of your turn."
     ],
     "EXTRA_TEXT": [
       "Innate. NL ",
@@ -2564,9 +2564,9 @@
       " NL You cannot play more than 6 cards per turn for 2 turns."
     ]
   },
-  "${modID}:BreakableMod": {
+  "${modID}:BrightestMod": {
     "TEXT": [
-      "Breakable ",
+      "Brightest ",
       "",
       "Increases card values by #b100%. NL Loses #b1 Max HP."
     ],
@@ -2867,6 +2867,80 @@
     ],
     "EXTRA_TEXT": [
       " NL Upgrade 1 random card in your discard pile for the rest of combat."
+    ]
+  },
+  "${modID}:EternalMod": {
+    "TEXT": [
+      "Eternal ",
+      "",
+      "Reduces #yBlock by #b67%. NL Gains #yPlating equal to #b33% #yBlock. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain %s ${modID}:Plating. NL Exhaust.",
+      " NL Gain %s ${modID}:Plating."
+    ]
+  },
+  "${modID}:EndMod": {
+    "TEXT": [
+      "",
+      "'s End",
+      "Increases card values by #b200%. NL #yUnplayable unless your exhaust pile has #b3 or more cards."
+    ],
+    "EXTRA_TEXT": [
+      " NL Can only be played if you have 3 or more cards in your Exhaust pile.",
+      "I don't have enough cards in exhaust pile."
+    ]
+  },
+  "${modID}:DeathbringingMod": {
+    "TEXT": [
+      "Deathbringing ",
+      "",
+      "Costs [E] more. NL Applies #b6(9) #yDoom and #b1 #yWeak to ALL enemies."
+    ],
+    "EXTRA_TEXT": [
+      " NL Apply %s ${modID}:Doom and 1 Weak to ALL enemies."
+    ]
+  },
+  "${modID}:PagedMod": {
+    "TEXT": [
+      "Paged ",
+      "",
+      "Adds #yEthereal. NL Draws #b1 card when drawn."
+    ],
+    "EXTRA_TEXT": [
+      "Ethereal. NL ",
+      " NL Whenever you draw this card, draw 1 card."
+    ]
+  },
+  "${modID}:SpitefulMod": {
+    "TEXT": [
+      "Spiteful ",
+      "",
+      "Draws #b1 card if you lost HP this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If you lost HP this turn, draw 1 card."
+    ]
+  },
+  "${modID}:SeekingMod": {
+    "TEXT": [
+      "Seeking ",
+      "",
+      "Reduces damage and #yBlock by #b50%. NL Puts #b1 of #b3 cards in your draw pile to your hand."
+    ],
+    "EXTRA_TEXT": [
+      " NL Choose 1 of 3 cards in your draw pile to add to your hand."
+    ]
+  },
+  "${modID}:DyingMod": {
+    "TEXT": [
+      "Dying ",
+      "",
+      "Reduces #yBlock by #b25%. NL Gains #yBlock #b2 additional times if you applied #yDoom this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If you applied ${modID}:Doom this turn, gain !B! Block 2 additional times.",
+      "Doom"
     ]
   }
 }

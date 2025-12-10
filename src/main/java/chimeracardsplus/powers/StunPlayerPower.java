@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
@@ -24,7 +23,7 @@ public class StunPlayerPower extends AbstractPower {
         type = PowerType.DEBUFF;
         isTurnBased = true;
         updateDescription();
-        img = ImageMaster.loadImage("images/stslib/powers/32/stun.png");
+        img = ChimeraCardsPlus.resourceLoader.getTexture("images/stslib/powers/32/stun.png");
     }
 
     @Override

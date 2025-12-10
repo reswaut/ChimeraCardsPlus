@@ -3,7 +3,6 @@ package chimeracardsplus.cardmods.common;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import chimeracardsplus.helpers.PotionModifierManager;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -25,14 +24,14 @@ public class SozuMod extends AbstractAugmentPlus {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (PotionModifierManager.usedPotionThisTurn) {
+        if (ChimeraCardsPlus.battleActionInfoManager.usedPotionThisTurn) {
             addToBot(new GainEnergyAction(1));
         }
     }
 
     @Override
     public Color getGlow(AbstractCard card) {
-        return PotionModifierManager.usedPotionThisTurn ? Color.GOLD.cpy() : null;
+        return ChimeraCardsPlus.battleActionInfoManager.usedPotionThisTurn ? Color.GOLD.cpy() : null;
     }
 
     @Override

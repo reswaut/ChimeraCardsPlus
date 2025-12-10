@@ -2,6 +2,7 @@ package chimeracardsplus.cardmods;
 
 import CardAugments.cardmods.AbstractAugment;
 import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.CardModifierPatches.CardModifierOnCreateDescription;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
@@ -33,7 +34,7 @@ public abstract class AbstractAugmentPlus extends AbstractAugment {
     }
 
     public static boolean hasCardWithKeywordInDeck(AbstractPlayer p, CharSequence keyword) {
-        return p.masterDeck.group.stream().anyMatch(card -> StringUtils.containsIgnoreCase(card.rawDescription, keyword));
+        return p.masterDeck.group.stream().anyMatch(card -> StringUtils.containsIgnoreCase(CardModifierOnCreateDescription.calculateRawDescription(card, card.rawDescription), keyword));
     }
 
     public static boolean isCleanCard(AbstractCard card) {

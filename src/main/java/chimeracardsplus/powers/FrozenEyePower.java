@@ -13,7 +13,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.FrozenEye;
@@ -36,7 +35,7 @@ public class FrozenEyePower extends AbstractPower {
         this.amount = amount;
         type = PowerType.BUFF;
         updateDescription();
-        img = ImageMaster.loadImage("images/relics/frozenEye.png");
+        img = ChimeraCardsPlus.resourceLoader.getTexture("images/relics/frozenEye.png");
         img_width = img.getWidth();
         img_height = img.getHeight();
     }

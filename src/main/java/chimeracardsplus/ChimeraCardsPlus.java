@@ -4,17 +4,20 @@ import CardAugments.CardAugmentsMod;
 import CardAugments.cardmods.AbstractAugment.AugmentRarity;
 import basemod.AutoAdd;
 import basemod.BaseMod;
-import basemod.interfaces.*;
+import basemod.interfaces.EditKeywordsSubscriber;
+import basemod.interfaces.EditStringsSubscriber;
+import basemod.interfaces.PostInitializeSubscriber;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus.AugmentBonusLevel;
-import chimeracardsplus.helpers.*;
-import chimeracardsplus.powers.*;
+import chimeracardsplus.helpers.BattleActionInfoManager;
+import chimeracardsplus.helpers.ModConfigs;
+import chimeracardsplus.helpers.ResourceLoader;
+import chimeracardsplus.helpers.SpecialNamingRules;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.city.TheLibrary;
 import com.megacrit.cardcrawl.map.MapRoomNode;
-import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 import com.megacrit.cardcrawl.rooms.EventRoom;
@@ -28,15 +31,13 @@ import java.util.Map;
 public class ChimeraCardsPlus implements
         EditKeywordsSubscriber,
         EditStringsSubscriber,
-        OnPlayerTurnStartSubscriber,
-        OnStartBattleSubscriber,
-        PostPotionUseSubscriber,
         PostInitializeSubscriber {
     public static final String MOD_ID = "chimeracardsplus";
     public static final Logger logger = LogManager.getLogger(MOD_ID);
     public static final ModConfigs configs = new ModConfigs();
     public static final ResourceLoader resourceLoader = new ResourceLoader();
     public static final SpecialNamingRules specialNamingRules = new SpecialNamingRules();
+    public static final BattleActionInfoManager battleActionInfoManager = new BattleActionInfoManager();
 
     public static String makeID(String name) {
         return MOD_ID + ':' + name;
@@ -44,24 +45,10 @@ public class ChimeraCardsPlus implements
 
     public static void initialize() {
         BaseMod.subscribe(new ChimeraCardsPlus());
-        logger.info("Subscribed to BaseMod.");
+        logger.info("Main class subscribed to BaseMod.");
+        BaseMod.subscribe(battleActionInfoManager);
+        logger.info("Battle Action Manager subscribed to BaseMod.");
         configs.initialize();
-    }
-
-    private static void registerPowers() {
-        BaseMod.addPower(DeceptionPower.class, DeceptionPower.POWER_ID);
-        BaseMod.addPower(DoomPower.class, DoomPower.POWER_ID);
-        BaseMod.addPower(FrozenEyePower.class, FrozenEyePower.POWER_ID);
-        BaseMod.addPower(LetterOpenerPower.class, LetterOpenerPower.POWER_ID);
-        BaseMod.addPower(LoseFocusPower.class, LoseFocusPower.POWER_ID);
-        BaseMod.addPower(NeurosurgePower.class, NeurosurgePower.POWER_ID);
-        BaseMod.addPower(NoDamagePower.class, NoDamagePower.POWER_ID);
-        BaseMod.addPower(RetributionPower.class, RetributionPower.POWER_ID);
-        BaseMod.addPower(StunPlayerPower.class, StunPlayerPower.POWER_ID);
-        BaseMod.addPower(TempStaticDischargePower.class, TempStaticDischargePower.POWER_ID);
-        BaseMod.addPower(TungstenRodPower.class, TungstenRodPower.POWER_ID);
-        BaseMod.addPower(UntappedPower.class, UntappedPower.POWER_ID);
-        BaseMod.addPower(VelvetChokerPower.class, VelvetChokerPower.POWER_ID);
     }
 
     private static void registerAugment(AbstractAugmentPlus augment) {
@@ -111,8 +98,6 @@ public class ChimeraCardsPlus implements
         logger.info("Initialization started.");
         configs.setupModPanel(resourceLoader.getTexture("badge.png"));
         logger.info("- Mod panel setup complete.");
-        registerPowers();
-        logger.info("- Registered powers.");
         registerAugments();
         logger.info("- Registered modifiers.");
         logger.info("Initialization complete.");
@@ -128,22 +113,5 @@ public class ChimeraCardsPlus implements
     public void receiveEditStrings() {
         resourceLoader.loadStrings();
         logger.info("Loaded localization strings.");
-    }
-
-    @Override
-    public void receiveOnBattleStart(AbstractRoom abstractRoom) {
-        PotionModifierManager.onBattleStart();
-        ShuffleModifierManager.onBattleStart();
-        AbstractDungeon.player.addPower(new AbstractAugmentPlusHelperPower(AbstractDungeon.player));
-    }
-
-    @Override
-    public void receiveOnPlayerTurnStart() {
-        PotionModifierManager.onPlayerTurnStart();
-    }
-
-    @Override
-    public void receivePostPotionUse(AbstractPotion abstractPotion) {
-        PotionModifierManager.onUsePotion(abstractPotion);
     }
 }

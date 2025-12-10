@@ -22,13 +22,11 @@ public class ProudMod extends AbstractAugmentPlus {
     public void onInitialApplication(AbstractCard card) {
         card.isInnate = true;
         card.exhaust = true;
-        card.cost += 1;
-        card.costForTurn = card.cost;
     }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> notExhaust(c) && notInnate(c) && c.cost >= 0 && doesntUpgradeCost() && !c.hasTag(CardTags.HEALING) && (c.type == CardType.ATTACK || c.type == CardType.SKILL) && doesntOverride(c, "triggerOnEndOfTurnForPlayingCard"));
+        return cardCheck(abstractCard, c -> notExhaust(c) && notInnate(c) && !c.hasTag(CardTags.HEALING) && (c.type == CardType.ATTACK || c.type == CardType.SKILL) && doesntOverride(c, "triggerOnEndOfTurnForPlayingCard"));
     }
 
     @Override

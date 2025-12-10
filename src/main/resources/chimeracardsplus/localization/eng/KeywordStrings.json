@@ -7,6 +7,13 @@
     "DESCRIPTION": "When a creature's Doom meets or exceeds its current HP, it dies at the end of its turn."
   },
   {
+    "PROPER_NAME": "Plating",
+    "NAMES": [
+      "plating"
+    ],
+    "DESCRIPTION": "At the end of your turn, gain #yBlock. #yPlating is reduced by #b1 at the start of your turn."
+  },
+  {
     "PROPER_NAME": "Recur",
     "NAMES": [
       "recur"

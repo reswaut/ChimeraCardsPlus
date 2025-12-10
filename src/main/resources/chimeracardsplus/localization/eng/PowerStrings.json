@@ -8,7 +8,8 @@
   "${modID}:DoomPower": {
     "NAME": "Doom",
     "DESCRIPTIONS": [
-      "At the end of this creature's turn, if its health is not more than #b%d, it dies."
+      "At the end of your turn, if your health is not more than #b%d, you die.",
+      "At the end of this enemy's turn, if its health is not more than #b%d, it dies."
     ]
   },
   "${modID}:FrozenEyePower": {
@@ -32,13 +33,21 @@
   "${modID}:NeurosurgePower": {
     "NAME": "Neurosurge",
     "DESCRIPTIONS": [
-      "At the start of this creature's turn, it gains #b%d #yDoom."
+      "At the start of your turn, gain #b%d #yDoom.",
+      "At the start of this enemy's turn, it gains #b%d #yDoom."
     ]
   },
   "${modID}:NoDamagePower": {
     "NAME": "No Damage",
     "DESCRIPTIONS": [
       "You cannot deal attack damage."
+    ]
+  },
+  "${modID}:PlatingPower": {
+    "NAME": "Plating",
+    "DESCRIPTIONS": [
+      "At the end of your turn, gain #b%d #yBlock. #yPlating is reduced by #b1 at the start of your turn.",
+      "At the end of this enemy's turn, it gains #b%d #yBlock. #yPlating is reduced by #b1 at the start of its turn."
     ]
   },
   "${modID}:RetributionPower": {

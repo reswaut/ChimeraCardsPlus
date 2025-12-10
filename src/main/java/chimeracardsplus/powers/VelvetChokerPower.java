@@ -15,7 +15,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -39,7 +38,7 @@ public class VelvetChokerPower extends TwoAmountPower {
         type = PowerType.DEBUFF;
         isTurnBased = true;
         updateDescription();
-        img = ImageMaster.loadImage("images/relics/redChoker.png");
+        img = ChimeraCardsPlus.resourceLoader.getTexture("images/relics/redChoker.png");
         img_width = img.getWidth();
         img_height = img.getHeight();
         updateCardsUsedThisTurn();

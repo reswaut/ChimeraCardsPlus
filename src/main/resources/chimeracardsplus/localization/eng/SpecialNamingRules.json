@@ -476,6 +476,12 @@
         "DESCRIPTION": "Merged #yPanic with #yPanic #yButton."
       }
     },
+    "${modID}:ParasiticMod": {
+      "Parasite": {
+        "NAME": "Parasite²",
+        "DESCRIPTION": "Merged #yParasitic with #yParasite."
+      }
+    },
     "${modID}:PerfectMod": {
       "Perfected Strike": {
         "NAME": "Perfected² Strike",

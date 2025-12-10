@@ -16,7 +16,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -38,7 +37,7 @@ public class LetterOpenerPower extends AbstractPower {
         this.amount = amount;
         type = PowerType.BUFF;
         updateDescription();
-        img = ImageMaster.loadImage("images/relics/letterOpener.png");
+        img = ChimeraCardsPlus.resourceLoader.getTexture("images/relics/letterOpener.png");
         img_width = img.getWidth();
         img_height = img.getHeight();
     }

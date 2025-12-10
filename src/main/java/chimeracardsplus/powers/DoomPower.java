@@ -60,6 +60,6 @@ public class DoomPower extends AbstractPower implements HealthBarRenderPower {
 
     @Override
     public void updateDescription() {
-        description = String.format(DESCRIPTIONS[0], amount);
+        description = String.format(owner.isPlayer ? DESCRIPTIONS[0] : DESCRIPTIONS[1], amount);
     }
 }

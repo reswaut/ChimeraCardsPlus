@@ -470,6 +470,12 @@
         "DESCRIPTION": "合并 #y应急 和 #y应急按钮 。"
       }
     },
+    "${modID}:ParasiticMod": {
+      "寄生": {
+        "NAME": "寄生²",
+        "DESCRIPTION": "合并 #y寄生 和 #y寄生 。"
+      }
+    },
     "${modID}:PerfectMod": {
       "完美打击": {
         "NAME": "完美²打击",

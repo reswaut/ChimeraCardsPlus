@@ -51,12 +51,7 @@ public class ModConfigs {
     }
 
     public void initialize() {
-        Properties defaultSettings = new Properties();
-        defaultSettings.setProperty(EVENT_ADDONS_PLUS_KEY, String.valueOf(enableEventAddonsPlus));
-        defaultSettings.setProperty(SPECIAL_NAMING_KEY, String.valueOf(enableSpecialNaming));
-        defaultSettings.setProperty(BASE_GAME_FIXES_KEY, String.valueOf(enableBaseGameFixes));
-        defaultSettings.setProperty(WHITELIST_MODE_KEY, String.valueOf(enableWhitelistMode));
-        defaultSettings.setProperty(MODIFY_NAMES_KEY, String.valueOf(enableModifyNames));
+        Properties defaultSettings = getDefaultSettings();
 
         try {
             config = new SpireConfig(ChimeraCardsPlus.MOD_ID, FILE_NAME, defaultSettings);
@@ -69,6 +64,16 @@ public class ModConfigs {
         } catch (IOException e) {
             ChimeraCardsPlus.logger.warn("Failed to load mod config, using default settings instead.", e);
         }
+    }
+
+    private Properties getDefaultSettings() {
+        Properties defaultSettings = new Properties();
+        defaultSettings.setProperty(EVENT_ADDONS_PLUS_KEY, String.valueOf(enableEventAddonsPlus));
+        defaultSettings.setProperty(SPECIAL_NAMING_KEY, String.valueOf(enableSpecialNaming));
+        defaultSettings.setProperty(BASE_GAME_FIXES_KEY, String.valueOf(enableBaseGameFixes));
+        defaultSettings.setProperty(WHITELIST_MODE_KEY, String.valueOf(enableWhitelistMode));
+        defaultSettings.setProperty(MODIFY_NAMES_KEY, String.valueOf(enableModifyNames));
+        return defaultSettings;
     }
 
     public void setupModPanel(Texture badgeTexture) {

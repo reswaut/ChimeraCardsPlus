@@ -3,19 +3,13 @@ package chimeracardsplus.cardmods.uncommon;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.powers.NightmarePower;
 
-public class RhythmicMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(RhythmicMod.class.getSimpleName());
+public class PagedMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(PagedMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
@@ -23,17 +17,16 @@ public class RhythmicMod extends AbstractAugmentPlus {
     @Override
     public void onInitialApplication(AbstractCard card) {
         card.isEthereal = true;
-        card.exhaust = true;
     }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> (c.type == CardType.ATTACK || c.type == CardType.SKILL) && notRetain(c) && notEthereal(c) && notExhaust(c) && c.cost >= 1 && !c.hasTag(CardTags.HEALING));
+        return cardCheck(abstractCard, c -> c.cost >= 1 && notRetain(c) && notEthereal(c));
     }
 
     @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NightmarePower(AbstractDungeon.player, 1, card.makeStatEquivalentCopy())));
+    public void onDrawn(AbstractCard card) {
+        addToBot(new DrawCardAction(1));
     }
 
     @Override
@@ -63,7 +56,7 @@ public class RhythmicMod extends AbstractAugmentPlus {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new RhythmicMod();
+        return new PagedMod();
     }
 
     @Override
