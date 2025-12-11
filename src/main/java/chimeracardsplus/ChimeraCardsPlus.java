@@ -96,7 +96,7 @@ public class ChimeraCardsPlus implements
     @Override
     public void receivePostInitialize() {
         logger.info("Initialization started.");
-        configs.setupModPanel(resourceLoader.getTexture("badge.png"));
+        configs.setupModPanel(resourceLoader.getModTexture("badge.png"));
         logger.info("- Mod panel setup complete.");
         registerAugments();
         logger.info("Initialization complete.");

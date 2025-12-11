@@ -36,16 +36,15 @@ public class ResourceLoader {
         return RESOURCE_FOLDER + "/localization/" + lang + '/' + file;
     }
 
-    public Texture getTexture(String filePath) {
-        return getTexture(filePath, true);
+    public Texture getModTexture(String filePath) {
+        return getTexture(getModImagePath(filePath));
     }
 
-    public Texture getTexture(String filePath, boolean linearFilter) {
-        String imagePath = getModImagePath(filePath);
+    public Texture getTexture(String imagePath) {
         Texture texture = textures.get(imagePath);
         if (texture == null) {
             try {
-                texture = loadTexture(imagePath, linearFilter);
+                texture = loadTexture(imagePath, true);
             } catch (GdxRuntimeException e) {
                 ChimeraCardsPlus.logger.info("Failed to find texture {}", imagePath, e);
                 return null;

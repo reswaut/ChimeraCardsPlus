@@ -24,8 +24,8 @@ public class PlatingPower extends AbstractPower {
         type = PowerType.BUFF;
         isTurnBased = true;
         updateDescription();
-        Texture texture48 = ChimeraCardsPlus.resourceLoader.getTexture("powers/plating32.png");
-        Texture texture128 = ChimeraCardsPlus.resourceLoader.getTexture("powers/plating84.png");
+        Texture texture48 = ChimeraCardsPlus.resourceLoader.getModTexture("powers/plating32.png");
+        Texture texture128 = ChimeraCardsPlus.resourceLoader.getModTexture("powers/plating84.png");
         region48 = new AtlasRegion(texture48, 0, 0, texture48.getWidth(), texture48.getHeight());
         region128 = new AtlasRegion(texture128, 0, 0, texture128.getWidth(), texture128.getHeight());
     }
