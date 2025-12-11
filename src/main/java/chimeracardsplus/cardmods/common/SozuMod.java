@@ -24,14 +24,14 @@ public class SozuMod extends AbstractAugmentPlus {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (ChimeraCardsPlus.battleActionInfoManager.usedPotionThisTurn) {
+        if (ChimeraCardsPlus.battleActionInfoManager.isUsedPotionThisTurn()) {
             addToBot(new GainEnergyAction(1));
         }
     }
 
     @Override
     public Color getGlow(AbstractCard card) {
-        return ChimeraCardsPlus.battleActionInfoManager.usedPotionThisTurn ? Color.GOLD.cpy() : null;
+        return ChimeraCardsPlus.battleActionInfoManager.isUsedPotionThisTurn() ? Color.GOLD.cpy() : null;
     }
 
     @Override

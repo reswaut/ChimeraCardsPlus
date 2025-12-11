@@ -4,27 +4,25 @@ import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-public class AmuletMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(AmuletMod.class.getSimpleName());
+public class ExperiencedMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(ExperiencedMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.rarity == CardRarity.CURSE && abstractCard.type == CardType.CURSE;
+        return abstractCard.baseBlock >= 1;
     }
 
     @Override
-    public boolean onObtain(AbstractCard card) {
-        AbstractDungeon.player.increaseMaxHp(6, false);
-        return true;
+    public float modifyBlock(float block, AbstractCard card) {
+        int amount = Math.toIntExact(AbstractDungeon.player.hand.group.stream().filter(c -> !card.uuid.equals(c.uuid) && (c.timesUpgraded != 0 || c.upgraded)).count());
+        return block + amount;
     }
 
     @Override
@@ -54,7 +52,7 @@ public class AmuletMod extends AbstractAugmentPlus {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new AmuletMod();
+        return new ExperiencedMod();
     }
 
     @Override
@@ -64,6 +62,6 @@ public class AmuletMod extends AbstractAugmentPlus {
 
     @Override
     public AugmentBonusLevel getModBonusLevel() {
-        return AugmentBonusLevel.HEALING;
+        return AugmentBonusLevel.NORMAL;
     }
 }

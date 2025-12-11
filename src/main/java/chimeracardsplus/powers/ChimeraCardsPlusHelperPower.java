@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 public class ChimeraCardsPlusHelperPower extends AbstractPower implements InvisiblePower, OnDrawPileShufflePower {
     public static final String POWER_ID = ChimeraCardsPlus.makeID(ChimeraCardsPlusHelperPower.class.getSimpleName());
     public static final String NAME = "Chimera Cards+ Helper";
-    private static final String[] DESCRIPTIONS = {"Chimera Cards+ helper power. You shouldn't be seeing this normally."};
+    private static final String[] DESCRIPTIONS = {"Chimera Cards+ helper power. You shouldn't see this normally."};
 
     public ChimeraCardsPlusHelperPower(AbstractCreature owner) {
         name = NAME;

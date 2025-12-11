@@ -5,7 +5,7 @@
         <modID>chimeracardsplus</modID>
         <author>reswaut</author>
 
-        <steam.windows>F:/SteamLibrary/steamapps</steam.windows>
+        <steam.path>F:/SteamLibrary/steamapps</steam.path>
 
         <SlayTheSpire.version>12-18-2022</SlayTheSpire.version>
         <ModTheSpire.version>3.30.3</ModTheSpire.version>
@@ -16,7 +16,7 @@
     </properties>
 
     <name>Chimera Cards+</name>
-    <version>0.14.0</version>
+    <version>0.14.1</version>
     <description>Adds 270+ Chimera Cards modifiers.\n增加 270+ 奇美拉卡牌修改。</description>
 
     <groupId>chimeracardsplus</groupId>
@@ -28,7 +28,7 @@
             <artifactId>slaythespire</artifactId>
             <version>${SlayTheSpire.version}</version>
             <scope>system</scope>
-            <systemPath>${steam.path}${sts.path}</systemPath>
+            <systemPath>${steam.path}/common/SlayTheSpire/desktop-1.0.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.evacipated.cardcrawl</groupId>
@@ -93,11 +93,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.4.2</version>
-                <configuration>
-                    <excludes>
-                        <exclude>**/*.psd</exclude>
-                    </excludes>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -150,17 +145,4 @@
             <!-- Filtering replaces certain text like ${modID} with the corresponding value from this file. -->
         </resources>
     </build>
-
-    <profiles>
-        <profile>
-            <id>default</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <steam.path>${steam.windows}</steam.path>
-                <sts.path>/common/SlayTheSpire/desktop-1.0.jar</sts.path>
-            </properties>
-        </profile>
-    </profiles>
 </project>

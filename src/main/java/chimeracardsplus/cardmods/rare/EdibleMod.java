@@ -19,7 +19,7 @@ public class EdibleMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return isNormalCard(abstractCard) && Stream.of(CardRarity.COMMON, CardRarity.UNCOMMON, CardRarity.RARE).anyMatch(cardRarity -> abstractCard.rarity == cardRarity);
+        return Stream.of(CardRarity.COMMON, CardRarity.UNCOMMON, CardRarity.RARE, CardRarity.CURSE).anyMatch(cardRarity -> abstractCard.rarity == cardRarity);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class EdibleMod extends AbstractAugmentPlus {
             AbstractDungeon.player.increaseMaxHp(1, false);
         } else if (card.rarity == CardRarity.UNCOMMON) {
             AbstractDungeon.player.increaseMaxHp(2, false);
-        } else if (card.rarity == CardRarity.RARE) {
+        } else if (card.rarity == CardRarity.RARE || card.rarity == CardRarity.CURSE) {
             AbstractDungeon.player.increaseMaxHp(3, false);
         }
         return true;
@@ -57,7 +57,7 @@ public class EdibleMod extends AbstractAugmentPlus {
         if (card.rarity == CardRarity.UNCOMMON) {
             return insertAfterText(rawDescription, CARD_TEXT[1]);
         }
-        if (card.rarity == CardRarity.RARE) {
+        if (card.rarity == CardRarity.RARE || card.rarity == CardRarity.CURSE) {
             return insertAfterText(rawDescription, CARD_TEXT[2]);
         }
         return rawDescription;

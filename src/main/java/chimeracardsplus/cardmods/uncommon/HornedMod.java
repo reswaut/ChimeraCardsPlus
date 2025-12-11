@@ -16,8 +16,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class HornMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(HornMod.class.getSimpleName());
+public class HornedMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(HornedMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
@@ -69,7 +69,7 @@ public class HornMod extends AbstractAugmentPlus {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new HornMod();
+        return new HornedMod();
     }
 
     @Override

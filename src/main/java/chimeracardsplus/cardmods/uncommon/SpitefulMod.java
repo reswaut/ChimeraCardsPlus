@@ -24,14 +24,14 @@ public class SpitefulMod extends AbstractAugmentPlus {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (ChimeraCardsPlus.battleActionInfoManager.playerDamagedThisTurn) {
+        if (ChimeraCardsPlus.battleActionInfoManager.isPlayerDamagedThisTurn()) {
             addToBot(new DrawCardAction(1));
         }
     }
 
     @Override
     public Color getGlow(AbstractCard card) {
-        return ChimeraCardsPlus.battleActionInfoManager.playerDamagedThisTurn ? Color.GOLD.cpy() : null;
+        return ChimeraCardsPlus.battleActionInfoManager.isPlayerDamagedThisTurn() ? Color.GOLD.cpy() : null;
     }
 
     @Override

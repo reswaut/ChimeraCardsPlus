@@ -898,9 +898,9 @@
       "Put 2 cards from your discard pile into your hand."
     ]
   },
-  "${modID}:HornMod": {
+  "${modID}:HornedMod": {
     "TEXT": [
-      "Horn ",
+      "Horned ",
       "",
       "Gains [E] and draws #b1 card when killing an enemy."
     ],
@@ -1642,7 +1642,7 @@
       "Adds #b2 additional copies into your deck upon pickup."
     ],
     "EXTRA_TEXT": [
-      " NL Upon pickup, gain 2 additional copies."
+      " NL Upon pickup, obtain 2 additional copies."
     ]
   },
   "${modID}:SplitMod": {
@@ -2634,16 +2634,6 @@
       " NL At the start of each combat, gain 1 Strength."
     ]
   },
-  "${modID}:AmuletMod": {
-    "TEXT": [
-      "Amulet of ",
-      "",
-      "Gains #b6 Max HP upon pickup."
-    ],
-    "EXTRA_TEXT": [
-      " NL Upon pickup, gain 6 Max HP."
-    ]
-  },
   "${modID}:PoopyMod": {
     "TEXT": [
       "Poopy ",
@@ -2941,6 +2931,16 @@
     "EXTRA_TEXT": [
       " NL If you applied ${modID}:Doom this turn, gain !B! Block 2 additional times.",
       "Doom"
+    ]
+  },
+  "${modID}:PackedMod": {
+    "TEXT": [
+      "Packed ",
+      "",
+      "Also adds the other cards in the card reward to your deck upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, also obtain the other cards in the card reward."
     ]
   }
 }

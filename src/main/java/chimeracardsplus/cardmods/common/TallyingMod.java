@@ -53,7 +53,7 @@ public class TallyingMod extends AbstractAugmentPlus {
     public String modifyDescription(String rawDescription, AbstractCard card) {
         String text = CARD_TEXT[0];
         if (descriptionHack) {
-            int count = ChimeraCardsPlus.battleActionInfoManager.drawPileShufflesThisCombat;
+            int count = ChimeraCardsPlus.battleActionInfoManager.getDrawPileShufflesThisCombat();
             text += String.format(count == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count);
         }
         return rawDescription.replaceFirst(Pattern.quote(LocalizedStrings.PERIOD), text);
@@ -61,7 +61,7 @@ public class TallyingMod extends AbstractAugmentPlus {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        addToBot(new UseCardMultipleTimesAction(card, target, () -> ChimeraCardsPlus.battleActionInfoManager.drawPileShufflesThisCombat));
+        addToBot(new UseCardMultipleTimesAction(card, target, () -> ChimeraCardsPlus.battleActionInfoManager.getDrawPileShufflesThisCombat()));
         descriptionHack = false;
         card.initializeDescription();
     }

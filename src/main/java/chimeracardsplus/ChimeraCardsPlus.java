@@ -90,7 +90,7 @@ public class ChimeraCardsPlus implements
             total += value;
             logger.info("-- {} {} modifiers", value, rarity);
         }
-        logger.info("-- {} modifiers in total", total);
+        logger.info("-- {} total modifiers", total);
     }
 
     @Override
@@ -99,7 +99,6 @@ public class ChimeraCardsPlus implements
         configs.setupModPanel(resourceLoader.getTexture("badge.png"));
         logger.info("- Mod panel setup complete.");
         registerAugments();
-        logger.info("- Registered modifiers.");
         logger.info("Initialization complete.");
     }
 

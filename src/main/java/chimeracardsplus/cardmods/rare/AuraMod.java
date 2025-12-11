@@ -146,6 +146,7 @@ public class AuraMod extends AbstractAugmentPlus {
 
         public static void initialize() {
             BaseMod.subscribe(new TokenDynamicVariableInitializer());
+            ChimeraCardsPlus.logger.info("AuraMod DynVar Initializer subscribed to BaseMod.");
         }
 
         @Override

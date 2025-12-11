@@ -4,6 +4,7 @@ import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import basemod.interfaces.*;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.powers.ChimeraCardsPlusHelperPower;
 import chimeracardsplus.powers.DoomPower;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.lib.Matcher.MethodCallMatcher;
@@ -30,11 +31,14 @@ public class BattleActionInfoManager implements
         OnStartBattleSubscriber,
         PostPotionUseSubscriber,
         PostPowerApplySubscriber {
-    public boolean playerDamagedThisTurn = false;
-    public boolean usedPotionThisCombat = false;
-    public boolean usedPotionThisTurn = false;
-    public boolean appliedDoomThisTurn = false;
-    public int drawPileShufflesThisCombat = 0;
+    private boolean playerDamagedThisTurn = false;
+    private boolean usedPotionThisCombat = false;
+    private boolean usedPotionThisTurn = false;
+    private boolean appliedDoomThisTurn = false;
+    private int drawPileShufflesThisCombat = 0;
+
+    public static void initialize() {
+    }
 
     private static boolean onUsePotion(AbstractCard card, CardGroup group, AbstractPotion potion) {
         for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
@@ -91,6 +95,7 @@ public class BattleActionInfoManager implements
         usedPotionThisTurn = false;
         appliedDoomThisTurn = false;
         drawPileShufflesThisCombat = 0;
+        AbstractDungeon.player.addPower(new ChimeraCardsPlusHelperPower(AbstractDungeon.player));
     }
 
     @Override
@@ -146,6 +151,26 @@ public class BattleActionInfoManager implements
                 }
             } while (modified);
         }
+    }
+
+    public boolean isPlayerDamagedThisTurn() {
+        return playerDamagedThisTurn;
+    }
+
+    public boolean isUsedPotionThisCombat() {
+        return usedPotionThisCombat;
+    }
+
+    public boolean isUsedPotionThisTurn() {
+        return usedPotionThisTurn;
+    }
+
+    public boolean isAppliedDoomThisTurn() {
+        return appliedDoomThisTurn;
+    }
+
+    public int getDrawPileShufflesThisCombat() {
+        return drawPileShufflesThisCombat;
     }
 
     @SpirePatch(
