@@ -1,18 +1,17 @@
-package chimeracardsplus.cardmods.uncommon;
+package chimeracardsplus.cardmods.rare;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.unique.RandomizeHandCostAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-public class SpitefulMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(SpitefulMod.class.getSimpleName());
+public class ConfusingMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(ConfusingMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
@@ -24,14 +23,7 @@ public class SpitefulMod extends AbstractAugmentPlus {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (ChimeraCardsPlus.gameActionInfoManager.isPlayerDamagedThisTurn()) {
-            addToBot(new DrawCardAction(1));
-        }
-    }
-
-    @Override
-    public Color getGlow(AbstractCard card) {
-        return ChimeraCardsPlus.gameActionInfoManager.isPlayerDamagedThisTurn() ? Color.GOLD.cpy() : null;
+        addToBot(new RandomizeHandCostAction());
     }
 
     @Override
@@ -56,12 +48,12 @@ public class SpitefulMod extends AbstractAugmentPlus {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.UNCOMMON;
+        return AugmentRarity.RARE;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new SpitefulMod();
+        return new ConfusingMod();
     }
 
     @Override

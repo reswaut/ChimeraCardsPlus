@@ -32,7 +32,6 @@ public class AddEtherealAction extends AbstractGameAction {
                 isDone = true;
             } else {
                 AbstractDungeon.handCardSelectScreen.open(TEXT[0], 1, false);
-                tickDuration();
             }
             return;
         }

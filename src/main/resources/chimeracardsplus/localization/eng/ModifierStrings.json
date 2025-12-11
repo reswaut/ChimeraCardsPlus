@@ -2942,5 +2942,37 @@
     "EXTRA_TEXT": [
       " NL Upon pickup, also obtain the other cards in the card reward."
     ]
+  },
+  "${modID}:SunlitMod": {
+    "TEXT": [
+      "Sunlit ",
+      "",
+      "Gains [E] [E] if you shuffled your draw pile 3 times this combat."
+    ],
+    "EXTRA_TEXT": [
+      " NL If you shuffled your draw pile 3 times this combat, gain [E] [E] .",
+      " (%d shuffle.)",
+      " (%d shuffles.)"
+    ]
+  },
+  "${modID}:InsertableMod": {
+    "TEXT": [
+      "Insertable ",
+      "",
+      "Gains #b1 Orb slot on the second turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this is your second turn, gain 1 Orb slot."
+    ]
+  },
+  "${modID}:ConfusingMod": {
+    "TEXT": [
+      "Confusing ",
+      "",
+      "Randomizes the costs of cards in hand."
+    ],
+    "EXTRA_TEXT": [
+      " NL Randomize the costs of cards in your hand."
+    ]
   }
 }

@@ -9,7 +9,7 @@ import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus.AugmentBonusLevel;
-import chimeracardsplus.helpers.BattleActionInfoManager;
+import chimeracardsplus.helpers.GameActionInfoManager;
 import chimeracardsplus.helpers.ModConfigs;
 import chimeracardsplus.helpers.ResourceLoader;
 import chimeracardsplus.helpers.SpecialNamingRules;
@@ -37,7 +37,7 @@ public class ChimeraCardsPlus implements
     public static final ModConfigs configs = new ModConfigs();
     public static final ResourceLoader resourceLoader = new ResourceLoader();
     public static final SpecialNamingRules specialNamingRules = new SpecialNamingRules();
-    public static final BattleActionInfoManager battleActionInfoManager = new BattleActionInfoManager();
+    public static final GameActionInfoManager gameActionInfoManager = new GameActionInfoManager();
 
     public static String makeID(String name) {
         return MOD_ID + ':' + name;
@@ -46,7 +46,7 @@ public class ChimeraCardsPlus implements
     public static void initialize() {
         BaseMod.subscribe(new ChimeraCardsPlus());
         logger.info("Main class subscribed to BaseMod.");
-        BaseMod.subscribe(battleActionInfoManager);
+        BaseMod.subscribe(gameActionInfoManager);
         logger.info("Battle Action Manager subscribed to BaseMod.");
         configs.initialize();
     }

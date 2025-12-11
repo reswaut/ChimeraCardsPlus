@@ -4,18 +4,19 @@ import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-public class SpitefulMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(SpitefulMod.class.getSimpleName());
+public class SunlitMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(SunlitMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
+    private boolean descriptionHack = false;
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
@@ -24,14 +25,31 @@ public class SpitefulMod extends AbstractAugmentPlus {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (ChimeraCardsPlus.gameActionInfoManager.isPlayerDamagedThisTurn()) {
-            addToBot(new DrawCardAction(1));
+        if (ChimeraCardsPlus.gameActionInfoManager.getDrawPileShufflesThisCombat() == 3) {
+            addToBot(new GainEnergyAction(2));
         }
+        descriptionHack = false;
+        card.initializeDescription();
+    }
+
+    @Override
+    public void onApplyPowers(AbstractCard card) {
+        descriptionHack = true;
+        card.initializeDescription();
+    }
+
+    @Override
+    public void onMoveToDiscard(AbstractCard card) {
+        descriptionHack = false;
+        card.initializeDescription();
     }
 
     @Override
     public Color getGlow(AbstractCard card) {
-        return ChimeraCardsPlus.gameActionInfoManager.isPlayerDamagedThisTurn() ? Color.GOLD.cpy() : null;
+        if (ChimeraCardsPlus.gameActionInfoManager.getDrawPileShufflesThisCombat() == 3) {
+            return Color.GOLD.cpy();
+        }
+        return null;
     }
 
     @Override
@@ -51,7 +69,12 @@ public class SpitefulMod extends AbstractAugmentPlus {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, CARD_TEXT[0]);
+        String text = CARD_TEXT[0];
+        if (descriptionHack) {
+            int count = ChimeraCardsPlus.gameActionInfoManager.getDrawPileShufflesThisCombat();
+            text += String.format(count == 1 ? CARD_TEXT[1] : CARD_TEXT[2], count);
+        }
+        return insertAfterText(rawDescription, text);
     }
 
     @Override
@@ -61,7 +84,7 @@ public class SpitefulMod extends AbstractAugmentPlus {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new SpitefulMod();
+        return new SunlitMod();
     }
 
     @Override

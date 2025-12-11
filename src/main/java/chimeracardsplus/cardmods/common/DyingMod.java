@@ -50,7 +50,7 @@ public class DyingMod extends AbstractAugmentPlus {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (ChimeraCardsPlus.battleActionInfoManager.isAppliedDoomThisTurn()) {
+        if (ChimeraCardsPlus.gameActionInfoManager.isAppliedDoomThisTurn()) {
             addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, card.block));
             addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, card.block));
         }
@@ -58,7 +58,7 @@ public class DyingMod extends AbstractAugmentPlus {
 
     @Override
     public Color getGlow(AbstractCard card) {
-        return ChimeraCardsPlus.battleActionInfoManager.isAppliedDoomThisTurn() ? Color.GOLD.cpy() : null;
+        return ChimeraCardsPlus.gameActionInfoManager.isAppliedDoomThisTurn() ? Color.GOLD.cpy() : null;
     }
 
     @Override

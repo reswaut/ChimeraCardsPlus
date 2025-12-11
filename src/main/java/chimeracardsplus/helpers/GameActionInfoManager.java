@@ -2,7 +2,10 @@ package chimeracardsplus.helpers;
 
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
-import basemod.interfaces.*;
+import basemod.interfaces.OnPlayerTurnStartSubscriber;
+import basemod.interfaces.OnStartBattleSubscriber;
+import basemod.interfaces.PostPotionUseSubscriber;
+import basemod.interfaces.PostPowerApplySubscriber;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import chimeracardsplus.powers.ChimeraCardsPlusHelperPower;
 import chimeracardsplus.powers.DoomPower;
@@ -25,14 +28,12 @@ import javassist.CtBehavior;
 import java.util.Arrays;
 
 @SpireInitializer
-public class BattleActionInfoManager implements
-        OnPlayerDamagedSubscriber,
+public class GameActionInfoManager implements
         OnPlayerTurnStartSubscriber,
         OnStartBattleSubscriber,
         PostPotionUseSubscriber,
         PostPowerApplySubscriber {
     private boolean playerDamagedThisTurn = false;
-    private boolean usedPotionThisCombat = false;
     private boolean usedPotionThisTurn = false;
     private boolean appliedDoomThisTurn = false;
     private int drawPileShufflesThisCombat = 0;
@@ -91,7 +92,6 @@ public class BattleActionInfoManager implements
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         playerDamagedThisTurn = false;
-        usedPotionThisCombat = false;
         usedPotionThisTurn = false;
         appliedDoomThisTurn = false;
         drawPileShufflesThisCombat = 0;
@@ -106,21 +106,14 @@ public class BattleActionInfoManager implements
     }
 
     @Override
-    public int receiveOnPlayerDamaged(int i, DamageInfo damageInfo) {
-        playerDamagedThisTurn = true;
-        return i;
-    }
-
-    @Override
-    public void receivePostPotionUse(AbstractPotion potion) {
-        usedPotionThisCombat = true;
+    public void receivePostPotionUse(AbstractPotion abstractPotion) {
         usedPotionThisTurn = true;
         for (CardGroup group : Arrays.asList(AbstractDungeon.player.masterDeck, AbstractDungeon.player.drawPile, AbstractDungeon.player.hand, AbstractDungeon.player.discardPile, AbstractDungeon.player.exhaustPile)) {
             boolean modified;
             do {
                 modified = false;
                 for (AbstractCard card : group.group) {
-                    if (onUsePotion(card, group, potion)) {
+                    if (onUsePotion(card, group, abstractPotion)) {
                         modified = true;
                         break;
                     }
@@ -133,6 +126,12 @@ public class BattleActionInfoManager implements
     public void receivePostPowerApplySubscriber(AbstractPower abstractPower, AbstractCreature abstractCreature, AbstractCreature abstractCreature1) {
         if (DoomPower.POWER_ID.equals(abstractPower.ID) && abstractCreature1.isPlayer) {
             appliedDoomThisTurn = true;
+        }
+    }
+
+    public void wasHPLost(DamageInfo damageInfo, int damageAmount) {
+        if (damageAmount > 0) {
+            playerDamagedThisTurn = true;
         }
     }
 
@@ -155,10 +154,6 @@ public class BattleActionInfoManager implements
 
     public boolean isPlayerDamagedThisTurn() {
         return playerDamagedThisTurn;
-    }
-
-    public boolean isUsedPotionThisCombat() {
-        return usedPotionThisCombat;
     }
 
     public boolean isUsedPotionThisTurn() {
