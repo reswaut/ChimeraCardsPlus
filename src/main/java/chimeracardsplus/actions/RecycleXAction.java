@@ -3,10 +3,8 @@ package chimeracardsplus.actions;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -16,56 +14,55 @@ public class RecycleXAction extends AbstractGameAction {
     private static final String ID = ChimeraCardsPlus.makeID(RecycleXAction.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
-    private final AbstractPlayer p;
     private final AbstractCard hiddenCard;
+    private boolean first = true;
 
     public RecycleXAction(AbstractCard card, AbstractCreature target) {
         hiddenCard = card;
         this.target = target;
         actionType = ActionType.CARD_MANIPULATION;
-        p = AbstractDungeon.player;
-        duration = Settings.ACTION_DUR_FAST;
     }
 
     @Override
     public void update() {
-        if (duration >= Settings.ACTION_DUR_FAST) {
-            if (p.hand.isEmpty()) {
+        if (first) {
+            first = false;
+            if (AbstractDungeon.player.hand.isEmpty()) {
                 isDone = true;
-            } else {
-                if (p.hand.size() == 1) {
-                    if (p.hand.getBottomCard().costForTurn == -1) {
-                        hiddenCard.energyOnUse = EnergyPanel.getCurrentEnergy();
-                    } else {
-                        hiddenCard.energyOnUse = Math.max(0, p.hand.getBottomCard().costForTurn);
-                    }
-                    hiddenCard.freeToPlayOnce = true;
-                    hiddenCard.use(p, target instanceof AbstractMonster ? (AbstractMonster) target : null);
-
-                    p.hand.moveToExhaustPile(p.hand.getBottomCard());
+                return;
+            }
+            if (AbstractDungeon.player.hand.size() == 1) {
+                if (AbstractDungeon.player.hand.getBottomCard().costForTurn == -1) {
+                    hiddenCard.energyOnUse = EnergyPanel.getCurrentEnergy();
                 } else {
-                    AbstractDungeon.handCardSelectScreen.open(TEXT[0], 1, false);
+                    hiddenCard.energyOnUse = Math.max(0, AbstractDungeon.player.hand.getBottomCard().costForTurn);
                 }
-                tickDuration();
-            }
-        } else {
-            if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
-                for (AbstractCard c : AbstractDungeon.handCardSelectScreen.selectedCards.group) {
-                    if (c.costForTurn == -1) {
-                        hiddenCard.energyOnUse = EnergyPanel.getCurrentEnergy();
-                    } else {
-                        hiddenCard.energyOnUse = Math.max(0, c.costForTurn);
-                    }
-                    hiddenCard.freeToPlayOnce = true;
-                    hiddenCard.use(p, target instanceof AbstractMonster ? (AbstractMonster) target : null);
-                    p.hand.moveToExhaustPile(c);
-                }
+                hiddenCard.freeToPlayOnce = true;
+                hiddenCard.use(AbstractDungeon.player, target instanceof AbstractMonster ? (AbstractMonster) target : null);
 
-                AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
-                AbstractDungeon.handCardSelectScreen.selectedCards.group.clear();
-            }
+                AbstractDungeon.player.hand.moveToExhaustPile(AbstractDungeon.player.hand.getBottomCard());
 
-            tickDuration();
+                isDone = true;
+                return;
+            }
+            AbstractDungeon.handCardSelectScreen.open(TEXT[0], 1, false);
+            return;
         }
+        if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
+            for (AbstractCard c : AbstractDungeon.handCardSelectScreen.selectedCards.group) {
+                if (c.costForTurn == -1) {
+                    hiddenCard.energyOnUse = EnergyPanel.getCurrentEnergy();
+                } else {
+                    hiddenCard.energyOnUse = Math.max(0, c.costForTurn);
+                }
+                hiddenCard.freeToPlayOnce = true;
+                hiddenCard.use(AbstractDungeon.player, target instanceof AbstractMonster ? (AbstractMonster) target : null);
+                AbstractDungeon.player.hand.moveToExhaustPile(c);
+            }
+
+            AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
+            AbstractDungeon.handCardSelectScreen.selectedCards.group.clear();
+        }
+        isDone = true;
     }
 }

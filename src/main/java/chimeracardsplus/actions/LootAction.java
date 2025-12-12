@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
@@ -15,11 +14,10 @@ public class LootAction extends AbstractGameAction {
     private static final String ID = ChimeraCardsPlus.makeID(LootAction.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
+    private boolean first = true;
 
     public LootAction() {
         actionType = ActionType.DISCARD;
-        startDuration = Settings.ACTION_DUR_XFAST;
-        duration = startDuration;
     }
 
     private static void discard(AbstractCard card) {
@@ -34,7 +32,8 @@ public class LootAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        if (duration >= startDuration) {
+        if (first) {
+            first = false;
             if (AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
                 isDone = true;
                 return;
@@ -50,7 +49,6 @@ public class LootAction extends AbstractGameAction {
             }
             AbstractDungeon.handCardSelectScreen.open(TEXT[0], 1, false);
             AbstractDungeon.player.hand.applyPowers();
-            tickDuration();
             return;
         }
         if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
@@ -59,6 +57,6 @@ public class LootAction extends AbstractGameAction {
             }
             AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
         }
-        tickDuration();
+        isDone = true;
     }
 }

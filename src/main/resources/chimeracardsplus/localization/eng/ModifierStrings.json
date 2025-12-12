@@ -1041,11 +1041,11 @@
     "TEXT": [
       "",
       " and Learn",
-      "Costs [E] more. NL #yUpgrades a random card in deck if #yFatal. NL Adds #yExhaust."
+      "Costs [E] more. NL #yUpgrades #b1 random card in deck if #yFatal. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
-      " NL If Fatal, Upgrade a random card in your deck. NL Exhaust.",
-      " NL If Fatal, Upgrade a random card in your deck."
+      " NL If Fatal, Upgrade 1 random card in your deck. NL Exhaust.",
+      " NL If Fatal, Upgrade 1 random card in your deck."
     ]
   },
   "${modID}:LoopyMod": {
@@ -2853,7 +2853,7 @@
     "TEXT": [
       "Draining ",
       "",
-      "Reduces damage and #yBlock by #b25%. NL #yUpgrades #b1 random card in your discard pile for the rest of combat."
+      "Reduces damage and #yBlock by #b20%. NL #yUpgrades #b1 random card in your discard pile for the rest of combat."
     ],
     "EXTRA_TEXT": [
       " NL Upgrade 1 random card in your discard pile for the rest of combat."
@@ -2973,6 +2973,28 @@
     ],
     "EXTRA_TEXT": [
       " NL Randomize the costs of cards in your hand."
+    ]
+  },
+  "${modID}:AdaptiveMod": {
+    "TEXT": [
+      "Adaptive ",
+      "",
+      "Reduces damage or #yBlock by #b25%. NL Puts #b1 random card of a different type from discard pile into hand and #yUpgrades it."
+    ],
+    "EXTRA_TEXT": [
+      " NL Put a random Skill from your discard pile into your hand and Upgrade it.",
+      " NL Put a random Attack from your discard pile into your hand and Upgrade it."
+    ]
+  },
+  "${modID}:SwipeMod": {
+    "TEXT": [
+      "",
+      " and Swipe",
+      "Reduces damage by #b25%. NL Deals damage an additional time if the enemy has #yDoom."
+    ],
+    "EXTRA_TEXT": [
+      " NL If the enemy has ${modID}:Doom, deal !D! damage again.",
+      "Doom"
     ]
   }
 }

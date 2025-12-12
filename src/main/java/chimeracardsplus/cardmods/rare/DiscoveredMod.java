@@ -76,7 +76,7 @@ public class DiscoveredMod extends AbstractAugmentPlus {
     @Override
     public void onUpgradeCheck(AbstractCard card) {
         for (AbstractCard o : MultiCardPreview.multiCardPreview.get(card)) {
-            if (CardModifierManager.hasModifier(o, labelID)) {
+            if (CardModifierManager.hasModifier(o, labelID) && o.canUpgrade()) {
                 o.upgrade();
                 o.initializeDescription();
             }

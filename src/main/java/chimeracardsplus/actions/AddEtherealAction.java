@@ -43,6 +43,6 @@ public class AddEtherealAction extends AbstractGameAction {
             AbstractDungeon.player.hand.refreshHandLayout();
             AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
         }
-        tickDuration();
+        isDone = true;
     }
 }

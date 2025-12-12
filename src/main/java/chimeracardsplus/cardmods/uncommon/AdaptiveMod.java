@@ -2,40 +2,51 @@ package chimeracardsplus.cardmods.uncommon;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.actions.UpgradeRandomCardInDiscardAction;
+import chimeracardsplus.actions.AdaptAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class DrainingMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(DrainingMod.class.getSimpleName());
+public class AdaptiveMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(AdaptiveMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.cost >= -1 && (abstractCard.baseDamage >= 2 || abstractCard.baseBlock >= 2);
+        return abstractCard.cost >= -1 && (abstractCard.baseDamage >= 2 && abstractCard.type == CardType.ATTACK || abstractCard.baseBlock >= 2 && abstractCard.type == CardType.SKILL);
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage > 0.0F ? damage * 0.8F : damage;
+        if (card.type != CardType.ATTACK) {
+            return damage;
+        }
+        return damage > 0.0F ? damage * 0.75F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return block > 0.0F ? block * 0.8F : block;
+        if (card.type != CardType.SKILL) {
+            return block;
+        }
+        return block > 0.0F ? block * 0.75F : block;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        addToBot(new UpgradeRandomCardInDiscardAction());
+        if (card.type == CardType.ATTACK) {
+            addToBot(new AdaptAction(CardType.SKILL));
+        } else if (card.type == CardType.SKILL) {
+            addToBot(new AdaptAction(CardType.ATTACK));
+        }
     }
 
     @Override
@@ -55,7 +66,13 @@ public class DrainingMod extends AbstractAugmentPlus {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, CARD_TEXT[0]);
+        if (card.type == CardType.ATTACK) {
+            return insertAfterText(rawDescription, CARD_TEXT[0]);
+        }
+        if (card.type == CardType.SKILL) {
+            return insertAfterText(rawDescription, CARD_TEXT[1]);
+        }
+        return rawDescription;
     }
 
     @Override
@@ -65,7 +82,7 @@ public class DrainingMod extends AbstractAugmentPlus {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new DrainingMod();
+        return new AdaptiveMod();
     }
 
     @Override

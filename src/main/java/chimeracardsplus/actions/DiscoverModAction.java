@@ -3,6 +3,7 @@ package chimeracardsplus.actions;
 import CardAugments.CardAugmentsMod;
 import CardAugments.cardmods.AbstractAugment;
 import CardAugments.patches.RolledModFieldPatches.RolledModField;
+import basemod.BaseMod;
 import basemod.helpers.CardModifierManager;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus.AugmentBonusLevel;
@@ -27,7 +28,6 @@ public class DiscoverModAction extends AbstractGameAction {
     public DiscoverModAction(AbstractCard card) {
         baseCard = card;
         actionType = ActionType.CARD_MANIPULATION;
-        duration = Settings.ACTION_DUR_FAST;
     }
 
     @Override
@@ -39,15 +39,16 @@ public class DiscoverModAction extends AbstractGameAction {
         }
         if (AbstractDungeon.cardRewardScreen.discoveryCard != null) {
             AbstractCard disCard = AbstractDungeon.cardRewardScreen.discoveryCard.makeStatEquivalentCopy();
-            if (AbstractDungeon.player.hasPower(MasterRealityPower.POWER_ID)) {
+            if (AbstractDungeon.player.hasPower(MasterRealityPower.POWER_ID) && disCard.canUpgrade()) {
                 disCard.upgrade();
             }
 
             disCard.current_x = -1000.0F * Settings.xScale;
-            if (AbstractDungeon.player.hand.size() < 10) {
-                AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(disCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-            } else {
+            if (AbstractDungeon.player.hand.size() >= BaseMod.MAX_HAND_SIZE) {
                 AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(disCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+                AbstractDungeon.player.createHandIsFullDialog();
+            } else {
+                AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(disCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
             }
 
             AbstractDungeon.cardRewardScreen.discoveryCard = null;

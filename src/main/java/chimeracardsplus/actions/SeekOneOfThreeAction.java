@@ -1,9 +1,9 @@
 package chimeracardsplus.actions;
 
+import basemod.BaseMod;
 import chimeracardsplus.helpers.Constants;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 
@@ -39,21 +39,11 @@ public class SeekOneOfThreeAction extends AbstractGameAction {
             } else if (AbstractDungeon.player.drawPile.size() == 1) {
                 AbstractCard c = AbstractDungeon.player.drawPile.getTopCard();
 
-                if (AbstractDungeon.player.hand.size() == 10) {
+                if (AbstractDungeon.player.hand.size() >= BaseMod.MAX_HAND_SIZE) {
                     AbstractDungeon.player.drawPile.moveToDiscardPile(c);
                     AbstractDungeon.player.createHandIsFullDialog();
                 } else {
-                    c.unhover();
-                    c.lighten(true);
-                    c.setAngle(0.0F);
-                    c.drawScale = 0.12F;
-                    c.targetDrawScale = 0.75F;
-                    c.current_x = CardGroup.DRAW_PILE_X;
-                    c.current_y = CardGroup.DRAW_PILE_Y;
-                    AbstractDungeon.player.drawPile.removeCard(c);
-                    AbstractDungeon.player.hand.addToTop(c);
-                    AbstractDungeon.player.hand.refreshHandLayout();
-                    AbstractDungeon.player.hand.applyPowers();
+                    AbstractDungeon.player.drawPile.moveToHand(c);
                 }
 
                 isDone = true;
@@ -65,16 +55,12 @@ public class SeekOneOfThreeAction extends AbstractGameAction {
         AbstractCard card = AbstractDungeon.cardRewardScreen.discoveryCard;
         if (card != null) {
             card.unhover();
-            if (AbstractDungeon.player.hand.size() == 10) {
+            if (AbstractDungeon.player.hand.size() >= BaseMod.MAX_HAND_SIZE) {
                 AbstractDungeon.player.drawPile.moveToDiscardPile(card);
                 AbstractDungeon.player.createHandIsFullDialog();
             } else {
-                AbstractDungeon.player.drawPile.removeCard(card);
-                AbstractDungeon.player.hand.addToTop(card);
+                AbstractDungeon.player.drawPile.moveToHand(card);
             }
-
-            AbstractDungeon.player.hand.refreshHandLayout();
-            AbstractDungeon.player.hand.applyPowers();
 
             AbstractDungeon.cardRewardScreen.discoveryCard = null;
         }

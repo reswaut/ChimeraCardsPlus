@@ -87,7 +87,7 @@ public class PredictiveMod extends AbstractAugmentPlus {
     @Override
     public void onUpgradeCheck(AbstractCard card) {
         for (AbstractCard o : MultiCardPreview.multiCardPreview.get(card)) {
-            if (CardModifierManager.hasModifier(o, PredictedMod.ID)) {
+            if (CardModifierManager.hasModifier(o, PredictedMod.ID) && o.canUpgrade()) {
                 o.upgrade();
                 o.initializeDescription();
             }

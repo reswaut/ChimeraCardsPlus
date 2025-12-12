@@ -1,9 +1,9 @@
 package chimeracardsplus.actions;
 
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class FillHandAction extends AbstractGameAction {
@@ -11,16 +11,15 @@ public class FillHandAction extends AbstractGameAction {
 
     public FillHandAction(boolean upgraded) {
         this.upgraded = upgraded;
-        duration = Settings.ACTION_DUR_XFAST;
         actionType = ActionType.SPECIAL;
     }
 
     @Override
     public void update() {
-        int effect = 10 - AbstractDungeon.player.hand.size();
+        int effect = BaseMod.MAX_HAND_SIZE - AbstractDungeon.player.hand.size();
         for (int i = 0; i < effect; ++i) {
             AbstractCard c = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
-            if (upgraded) {
+            if (upgraded && c.canUpgrade()) {
                 c.upgrade();
             }
             addToTop(new MakeTempCardInHandAction(c, 1));
