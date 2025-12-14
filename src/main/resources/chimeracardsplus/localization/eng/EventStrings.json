@@ -18,7 +18,7 @@
   },
   "${modID}:ForgottenAlterPatches": {
     "DESCRIPTIONS": [
-      "You kneel before the statue in reverence. Pale light emanates from the statue, washing over you with #g~eerie~ #g~warmth.~ NL NL But as the light fades, you feel your techniques #pfalter - the blessing comes with ~strings~ attached."
+      "You kneel before the Alter. Pale light emanates from the statue, washing over you with an #g~eerie~ #g~warmth.~ NL NL But as the light fades, you feel your techniques #pfalter - the blessing comes with ~strings~ attached."
     ],
     "OPTIONS": [
       "[Worship] #gHeal #g",

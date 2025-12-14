@@ -9,14 +9,15 @@
       " NL While in hand, lose 1 HP whenever you play another card."
     ]
   },
-  "${modID}:AnticipativeMod": {
+  "${modID}:AdaptiveMod": {
     "TEXT": [
-      "Anticipative ",
+      "Adaptive ",
       "",
-      "Gains #b3 #yDexterity this turn."
+      "Reduces damage or #yBlock by #b25%. NL Puts #b1 random card of a different type from discard pile into hand and #yUpgrades it."
     ],
     "EXTRA_TEXT": [
-      " NL Gain 3 Dexterity. NL At the end of this turn, lose 3 Dexterity."
+      " NL Put a random Skill from your discard pile into your hand and Upgrade it.",
+      " NL Put a random Attack from your discard pile into your hand and Upgrade it."
     ]
   },
   "${modID}:AkabekoMod": {
@@ -27,6 +28,26 @@
     ],
     "EXTRA_TEXT": [
       " NL Deals 8 more damage if you have not played Attacks this combat."
+    ]
+  },
+  "${modID}:AlchemicalMod": {
+    "TEXT": [
+      "Alchemical ",
+      "",
+      "Obtains a random potion upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, obtain a random potion."
+    ]
+  },
+  "${modID}:AnticipativeMod": {
+    "TEXT": [
+      "Anticipative ",
+      "",
+      "Gains #b3 #yDexterity this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain 3 Dexterity. NL At the end of this turn, lose 3 Dexterity."
     ]
   },
   "${modID}:ArtOfMod": {
@@ -49,6 +70,26 @@
       " NL If this card is Exhausted, deal 3 damage to ALL enemies."
     ]
   },
+  "${modID}:AttentiveMod": {
+    "TEXT": [
+      "Attentive ",
+      "",
+      "Gains #b2 #yFocus this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain 2 Focus. NL At the end of this turn, lose 2 Focus."
+    ]
+  },
+  "${modID}:AugerMod": {
+    "TEXT": [
+      "Auger ",
+      "",
+      "Reduces damage by #b33%. NL Applies #b2 #yVulnerable when dealing unblocked damage."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this deals unblocked damage, apply 2 Vulnerable."
+    ]
+  },
   "${modID}:AuraMod": {
     "TEXT": [
       "",
@@ -59,6 +100,24 @@
       "Retain. NL ",
       " NL When Retained, ",
       "Innate. "
+    ]
+  },
+  "${modID}:AwakenedMod": {
+    "TEXT": [
+      "Awakened ",
+      "",
+      "Increases card values by #b100%."
+    ],
+    "EXTRA_TEXT": []
+  },
+  "${modID}:BackupMod": {
+    "TEXT": [
+      "Backup ",
+      "",
+      "Costs [E] more. NL Draws #b1 card when drawn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you draw this card, draw 1 card."
     ]
   },
   "${modID}:BanefulMod": {
@@ -80,6 +139,16 @@
     ],
     "EXTRA_TEXT": [
       " for each Channeled Orb."
+    ]
+  },
+  "${modID}:BeyondMod": {
+    "TEXT": [
+      "",
+      " from Beyond",
+      "Plays the card from exhaust pile at start of turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL At the start of your turn, play this card from your Exhaust pile."
     ]
   },
   "${modID}:BirdFacedMod": {
@@ -122,6 +191,16 @@
       " NL The blessing has lost its power."
     ]
   },
+  "${modID}:BlightMod": {
+    "TEXT": [
+      "Blight ",
+      "",
+      "Reduces damage by #b33%. NL Applies #yDoom equal to unblocked damage."
+    ],
+    "EXTRA_TEXT": [
+      " NL Apply ${modID}:Doom equal to unblocked damage dealt."
+    ]
+  },
   "${modID}:BloodlettingMod": {
     "TEXT": [
       "Bloodletting ",
@@ -132,6 +211,16 @@
       " NL Lose %d HP."
     ]
   },
+  "${modID}:BlueMod": {
+    "TEXT": [
+      "Blue ",
+      "",
+      "Costs #b0. NL Becomes playable. NL Loses #b1 HP. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose 1 HP. NL Exhaust."
+    ]
+  },
   "${modID}:BootMod": {
     "TEXT": [
       "",
@@ -139,6 +228,16 @@
       "Increases damage to #b5."
     ],
     "EXTRA_TEXT": []
+  },
+  "${modID}:BrightestMod": {
+    "TEXT": [
+      "Brightest ",
+      "",
+      "Increases card values by #b100%. NL Loses #b1 Max HP."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose 1 Max HP."
+    ]
   },
   "${modID}:BrilliantMod": {
     "TEXT": [
@@ -178,14 +277,14 @@
       "This turn, your next !M! Skills are played twice."
     ]
   },
-  "${modID}:SoulboundMod": {
+  "${modID}:CachedMod": {
     "TEXT": [
-      "Soulbound ",
+      "Cached ",
       "",
-      "Increases card values by #b40%. NL Cannot be removed from your deck."
+      "Puts a card in draw pile on top."
     ],
     "EXTRA_TEXT": [
-      "stslib:Soulbound. NL "
+      " NL Choose a card in your draw pile and put it on top."
     ]
   },
   "${modID}:CapaciousMod": {
@@ -271,6 +370,39 @@
       " NL Whenever you play a card this turn, the enemy loses %s HP."
     ]
   },
+  "${modID}:ChronoMod": {
+    "TEXT": [
+      "Chrono ",
+      "",
+      "Reduces damage and #yBlock by #b75%. NL Plays once for each turn in combat."
+    ],
+    "EXTRA_TEXT": [
+      " for each turn in combat.",
+      " (%d turn.)",
+      " (%d turns.)"
+    ]
+  },
+  "${modID}:CinderyMod": {
+    "TEXT": [
+      "Cindery ",
+      "",
+      "Increases damage and #yBlock by #b20%. NL #yExhausts the top card of your draw pile."
+    ],
+    "EXTRA_TEXT": [
+      " NL Exhaust the top card of your draw pile."
+    ]
+  },
+  "${modID}:CleansingMod": {
+    "TEXT": [
+      "Cleansing ",
+      "",
+      "Removes a random debuff from you. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose a random debuff. NL Exhaust.",
+      " NL Lose a random debuff."
+    ]
+  },
   "${modID}:ClearMod": {
     "TEXT": [
       "Clear ",
@@ -316,6 +448,16 @@
       " NL End your turn."
     ]
   },
+  "${modID}:ConfusingMod": {
+    "TEXT": [
+      "Confusing ",
+      "",
+      "Randomizes the costs of cards in hand."
+    ],
+    "EXTRA_TEXT": [
+      " NL Randomize the costs of cards in your hand."
+    ]
+  },
   "${modID}:ConservedMod": {
     "TEXT": [
       "Conserved ",
@@ -324,6 +466,27 @@
     ],
     "EXTRA_TEXT": [
       " NL Energy is conserved for next turn."
+    ]
+  },
+  "${modID}:ConstrictiveMod": {
+    "TEXT": [
+      "Constrictive ",
+      "",
+      "Reduces damage by #b67%. NL Applies #yConstricted equal to #b33% damage. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL At the end of the enemy's turn, they take %s damage. NL Exhaust.",
+      " NL At the end of the enemy's turn, they take %s damage."
+    ]
+  },
+  "${modID}:CounterMod": {
+    "TEXT": [
+      "Counter ",
+      "",
+      "Increases damage by #b40%. NL Gives enemy #yBlock equal to unblocked damage."
+    ],
+    "EXTRA_TEXT": [
+      " NL Give enemy Block equal to unblocked damage."
     ]
   },
   "${modID}:CourageousMod": {
@@ -357,6 +520,17 @@
       " NL Apply %s Poison and 1 Weak to ALL enemies. NL Exhaust.",
       " NL Apply %s Poison and 1 Weak to ALL enemies.",
       " NL Apply 1 Weak to ALL enemies."
+    ]
+  },
+  "${modID}:CruelMod": {
+    "TEXT": [
+      "Cruel ",
+      "",
+      "Increases damage by #b25% if the enemy is #yVulnerable."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deals 25% more damage to Vulnerable enemies.",
+      "Vulnerable"
     ]
   },
   "${modID}:CrushingMod": {
@@ -435,6 +609,36 @@
       " NL If this card is Exhausted, add a random card into your hand."
     ]
   },
+  "${modID}:DeathbringingMod": {
+    "TEXT": [
+      "Deathbringing ",
+      "",
+      "Costs [E] more. NL Applies #b6(9) #yDoom and #b1 #yWeak to ALL enemies."
+    ],
+    "EXTRA_TEXT": [
+      " NL Apply %s ${modID}:Doom and 1 Weak to ALL enemies."
+    ]
+  },
+  "${modID}:DecayingMod": {
+    "TEXT": [
+      "Decaying ",
+      "",
+      "Takes #b2 damage if the card is in your hand at the end of your turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL At the end of your turn, take 2 damage."
+    ]
+  },
+  "${modID}:DeceptiveMod": {
+    "TEXT": [
+      "Deceptive ",
+      "",
+      "Reduces #yBlock by #b33%. NL Applies #b2 #yWeak back when taking unblocked attack damage this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you take unblocked attack damage turn, apply 2 Weak back."
+    ]
+  },
   "${modID}:DeepMod": {
     "TEXT": [
       "Deep ",
@@ -490,6 +694,16 @@
       "Innate. NL "
     ]
   },
+  "${modID}:DisgracefulMod": {
+    "TEXT": [
+      "Disgraceful ",
+      "",
+      "Gains #b1 #yFrail if the card is in your hand at the end of your turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL At the end of your turn, gain 1 Frail."
+    ]
+  },
   "${modID}:DisorderedMod": {
     "TEXT": [
       "Disordered ",
@@ -498,6 +712,17 @@
     ],
     "EXTRA_TEXT": [
       " NL Play the top card of your draw pile and Exhaust it."
+    ]
+  },
+  "${modID}:DistantMod": {
+    "TEXT": [
+      "Distant ",
+      "",
+      "Increases card values by #b300%. NL #yUnplayable unless you don't have Energy left."
+    ],
+    "EXTRA_TEXT": [
+      " NL Can only be played if you have no Energy.",
+      "I have Energy left."
     ]
   },
   "${modID}:DistractingMod": {
@@ -509,6 +734,16 @@
     "EXTRA_TEXT": [
       " NL Add a random Skill into your hand. NL Exhaust.",
       " NL Add a random Upgraded Skill into your hand. NL Exhaust."
+    ]
+  },
+  "${modID}:DodecahedralMod": {
+    "TEXT": [
+      "Dodecahedral ",
+      "",
+      "Gains [E] if your HP is full."
+    ],
+    "EXTRA_TEXT": [
+      " NL If your HP is full, gain [E]."
     ]
   },
   "${modID}:DoppelgangerMod": {
@@ -538,14 +773,24 @@
       "This turn, your next !M! Attacks are played twice."
     ]
   },
-  "${modID}:WearyMod": {
+  "${modID}:DrainingMod": {
     "TEXT": [
-      "Weary ",
+      "Draining ",
       "",
-      "Increases #yBlock by #b50%. NL Loses #b1 #yDexterity."
+      "Reduces damage and #yBlock by #b20%. NL #yUpgrades #b1 random card in your discard pile for the rest of combat."
     ],
     "EXTRA_TEXT": [
-      " NL Lose 1 Dexterity."
+      " NL Upgrade 1 random card in your discard pile for the rest of combat."
+    ]
+  },
+  "${modID}:DuVuMod": {
+    "TEXT": [
+      "Du-Vu ",
+      "",
+      "Gains #b1 #yStrength at the start of each combat."
+    ],
+    "EXTRA_TEXT": [
+      " NL At the start of each combat, gain 1 Strength."
     ]
   },
   "${modID}:DuplicatingMod": {
@@ -559,6 +804,17 @@
       " NL This turn, your next card is played twice."
     ]
   },
+  "${modID}:DyingMod": {
+    "TEXT": [
+      "Dying ",
+      "",
+      "Reduces #yBlock by #b25%. NL Gains #yBlock #b2 additional times if you applied #yDoom this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If you applied ${modID}:Doom this turn, gain !B! Block 2 additional times.",
+      "Doom"
+    ]
+  },
   "${modID}:EdibleMod": {
     "TEXT": [
       "Edible ",
@@ -569,6 +825,27 @@
       " NL Upon pickup, raise your Max HP by 1.",
       " NL Upon pickup, raise your Max HP by 2.",
       " NL Upon pickup, raise your Max HP by 3."
+    ]
+  },
+  "${modID}:EndMod": {
+    "TEXT": [
+      "",
+      "'s End",
+      "Increases card values by #b200%. NL #yUnplayable unless your exhaust pile has #b3 or more cards."
+    ],
+    "EXTRA_TEXT": [
+      " NL Can only be played if you have 3 or more cards in your Exhaust pile.",
+      "I don't have enough cards in exhaust pile."
+    ]
+  },
+  "${modID}:EnergizedMod": {
+    "TEXT": [
+      "Energized ",
+      "",
+      "Reduces damage and #yBlock by #b33%. NL Plays once for each [E] left."
+    ],
+    "EXTRA_TEXT": [
+      " for each [E] you have."
     ]
   },
   "${modID}:EnlightenedMod": {
@@ -590,6 +867,49 @@
     "EXTRA_TEXT": [
       " NL Fill your hand with random cards. NL Exhaust.",
       " NL Fill your hand with random Upgraded cards. NL Exhaust."
+    ]
+  },
+  "${modID}:EquilibrialMod": {
+    "TEXT": [
+      "Equilibrial ",
+      "",
+      "Costs [E] more. NL Increases damage and #yBlock by #b33%. NL Gains #b1 #yEquilibrium."
+    ],
+    "EXTRA_TEXT": [
+      " NL Retain your hand this turn."
+    ]
+  },
+  "${modID}:EstablishedMod": {
+    "TEXT": [
+      "Established ",
+      "",
+      "Costs [E] [E] more. NL Adds #yRetain. NL Costs [E] less when #yRetained."
+    ],
+    "EXTRA_TEXT": [
+      "Retain. NL ",
+      " NL When Retained, lower its cost by 1 this combat."
+    ]
+  },
+  "${modID}:EternalMod": {
+    "TEXT": [
+      "Eternal ",
+      "",
+      "Reduces #yBlock by #b67%. NL Gains #yPlating equal to #b33% #yBlock. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain %s ${modID}:Plating. NL Exhaust.",
+      " NL Gain %s ${modID}:Plating."
+    ]
+  },
+  "${modID}:EvolutionaryMod": {
+    "TEXT": [
+      "Evolutionary ",
+      "",
+      "Costs [E] more. NL Shuffles #b3 copies of the card into your draw pile. They cost #b0 this combat. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      "Shuffle 3 copies of %s into your draw pile. They cost 0 this combat. NL Exhaust.",
+      "Innate. NL "
     ]
   },
   "${modID}:ExertedMod": {
@@ -632,6 +952,16 @@
       " NL When the enemy dies, deal damage equal to its Max HP to ALL enemies."
     ]
   },
+  "${modID}:FadingMod": {
+    "TEXT": [
+      "Fading ",
+      "",
+      "Increases card values by #b100%. NL Removes the card from the deck after defeating a Boss."
+    ],
+    "EXTRA_TEXT": [
+      " NL After you defeat a Boss, remove this from your deck."
+    ]
+  },
   "${modID}:FairyMod": {
     "TEXT": [
       "Fairy in ",
@@ -640,6 +970,16 @@
     ],
     "EXTRA_TEXT": [
       " NL When you would die, heal to 10% of your Max HP instead and remove this from your deck."
+    ]
+  },
+  "${modID}:FastMod": {
+    "TEXT": [
+      "Fast ",
+      "",
+      "Reduces #yBlock by #b20%. NL Draws #b1 card."
+    ],
+    "EXTRA_TEXT": [
+      " NL Draw 1 card."
     ]
   },
   "${modID}:FastingMod": {
@@ -711,6 +1051,49 @@
       " NL Whenever you are attacked this turn, deal %s damage back."
     ]
   },
+  "${modID}:FlashyMod": {
+    "TEXT": [
+      "Flashy ",
+      "",
+      "Reduces damage by #b33%. NL Draws #b2 cards when dealing unblocked damage."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this deals unblocked damage, draw 2 cards."
+    ]
+  },
+  "${modID}:FlexibleMod": {
+    "TEXT": [
+      "Flexible ",
+      "",
+      "Costs [E] more. NL Reduces the cost of a card in hand by #b1 this combat. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Reduce the cost of a card by 1 this combat. NL Exhaust.",
+      " NL Reduce the cost of a card by 1 this combat."
+    ]
+  },
+  "${modID}:FlowingMod": {
+    "TEXT": [
+      "Flowing ",
+      "",
+      "Discards any number of cards, then draws that many cards next turn. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Discard any number of cards and draw that many next turn. NL Exhaust.",
+      " NL Discard any number of cards and draw that many next turn."
+    ]
+  },
+  "${modID}:FlusteredMod": {
+    "TEXT": [
+      "Flustered ",
+      "",
+      "Increases damage by #b300%. NL Prevents dealing attack damage for #b2 turns. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL You cannot deal attack damage for 2 turns. NL Exhaust.",
+      " NL You cannot deal attack damage for 2 turns."
+    ]
+  },
   "${modID}:FocusedMod": {
     "TEXT": [
       "Focused ",
@@ -767,6 +1150,16 @@
       " NL Upon pickup, you may Remove another card in your deck."
     ]
   },
+  "${modID}:FrozenMod": {
+    "TEXT": [
+      "Frozen ",
+      "",
+      "For #b2 turns, when viewing your draw pile, the cards are shown in order."
+    ],
+    "EXTRA_TEXT": [
+      " NL Cards in your draw pile are shown in order for 2 turns."
+    ]
+  },
   "${modID}:GamblerMod": {
     "TEXT": [
       "Gambler's ",
@@ -787,6 +1180,19 @@
     "EXTRA_TEXT": [
       " NL Permanently increase this card's Block by %s. NL Exhaust.",
       " NL Permanently increase this card's Block by %s."
+    ]
+  },
+  "${modID}:GoldenMod": {
+    "TEXT": [
+      "Golden ",
+      "",
+      "Gains #yGold equal to the cost. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain %d *Gold. NL Exhaust.",
+      " NL Gain %d *Gold.",
+      " NL Gain X *Gold. NL Exhaust.",
+      " NL Gain X *Gold."
     ]
   },
   "${modID}:GrandMod": {
@@ -819,6 +1225,17 @@
       " NL If this card is Exhausted, gain [E].",
       "If this card is Exhausted, NL gain [R] [R]",
       "If this card is Exhausted, NL gain [R] [R] [R]"
+    ]
+  },
+  "${modID}:GuilefulMod": {
+    "TEXT": [
+      "Guileful ",
+      "",
+      "Plays when discarded."
+    ],
+    "EXTRA_TEXT": [
+      "${modID}:Sly. NL ",
+      "discard"
     ]
   },
   "${modID}:HandMod": {
@@ -885,6 +1302,16 @@
       " NL Add a random Upgraded Common card into your hand. NL Exhaust."
     ]
   },
+  "${modID}:HesitantMod": {
+    "TEXT": [
+      "Hesitant ",
+      "",
+      "Gains #b1 #yWeak if the card is in your hand at the end of your turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL At the end of your turn, gain 1 Weak."
+    ]
+  },
   "${modID}:HoloMod": {
     "TEXT": [
       "Holo ",
@@ -898,6 +1325,16 @@
       "Put 2 cards from your discard pile into your hand."
     ]
   },
+  "${modID}:HookedMod": {
+    "TEXT": [
+      "Hooked ",
+      "",
+      "Deals #b5(7) damage, then triggers card effect if the enemy has #yWeak."
+    ],
+    "EXTRA_TEXT": [
+      "Deal %s damage. NL If the enemy has Weak, "
+    ]
+  },
   "${modID}:HornedMod": {
     "TEXT": [
       "Horned ",
@@ -906,6 +1343,16 @@
     ],
     "EXTRA_TEXT": [
       " NL If this kills an enemy, gain [E] and draw 1 card."
+    ]
+  },
+  "${modID}:HyperMod": {
+    "TEXT": [
+      "Hyper ",
+      "",
+      "Increases card values by #b300%. NL Cards are #yUnplayable for #b2 turns."
+    ],
+    "EXTRA_TEXT": [
+      " NL You cannot play cards for 2 turns."
     ]
   },
   "${modID}:ImpatientMod": {
@@ -1003,6 +1450,16 @@
       " (%d cards played.)"
     ]
   },
+  "${modID}:InsertableMod": {
+    "TEXT": [
+      "Insertable ",
+      "",
+      "Gains #b1 Orb slot on the second turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this is your second turn, gain 1 Orb slot."
+    ]
+  },
   "${modID}:IntimidatingMod": {
     "TEXT": [
       "Intimidating ",
@@ -1025,6 +1482,46 @@
       " NL Remove all of your Frail and Vulnerable."
     ]
   },
+  "${modID}:IrregularMod": {
+    "TEXT": [
+      "Irregular ",
+      "",
+      "Randomizes card cost and values."
+    ],
+    "EXTRA_TEXT": []
+  },
+  "${modID}:IterativeMod": {
+    "TEXT": [
+      "Iterative ",
+      "",
+      "Reduces damage and #yBlock by #b50%. NL Plays once for each time played in combat."
+    ],
+    "EXTRA_TEXT": [
+      " for each time this card is played this combat.",
+      " (%d time.)",
+      " (%d times.)"
+    ]
+  },
+  "${modID}:JudgeMod": {
+    "TEXT": [
+      "",
+      " and Judge",
+      "Reduces damage by #b25%. NL Kills the enemy if their HP is less than or equal to #b75% damage."
+    ],
+    "EXTRA_TEXT": [
+      " NL If the enemy has %s or less HP, set their HP to 0."
+    ]
+  },
+  "${modID}:KickingMod": {
+    "TEXT": [
+      "Kicking ",
+      "",
+      "Deals #b5(7) damage, then triggers card effect if the enemy has #yVulnerable."
+    ],
+    "EXTRA_TEXT": [
+      "Deal %s damage. NL If the enemy has Vulnerable, "
+    ]
+  },
   "${modID}:KunaiMod": {
     "TEXT": [
       "Kunai ",
@@ -1035,6 +1532,16 @@
       " NL If this is the third Attack played this turn, gain 1 Dexterity.",
       " (%d Attack played.)",
       " (%d Attacks played.)"
+    ]
+  },
+  "${modID}:LapsingMod": {
+    "TEXT": [
+      "Lapsing ",
+      "",
+      "Increases card values by #b40%. NL Loses #b1 HP when drawn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you draw this card, lose 1 HP."
     ]
   },
   "${modID}:LearnMod": {
@@ -1048,6 +1555,17 @@
       " NL If Fatal, Upgrade 1 random card in your deck."
     ]
   },
+  "${modID}:LiquidizingMod": {
+    "TEXT": [
+      "Liquidizing ",
+      "",
+      "Obtains a random potion if #yFatal. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL If Fatal, obtain a random potion. NL Exhaust.",
+      " NL If Fatal, obtain a random potion."
+    ]
+  },
   "${modID}:LoopyMod": {
     "TEXT": [
       "Loopy ",
@@ -1056,6 +1574,16 @@
     ],
     "EXTRA_TEXT": [
       " NL Trigger the passive ability of your next Orb."
+    ]
+  },
+  "${modID}:LootableMod": {
+    "TEXT": [
+      "Lootable ",
+      "",
+      "Discards #b1 card, then draws cards equal to its cost."
+    ],
+    "EXTRA_TEXT": [
+      " NL Discard 1 card and draw cards equal to its cost."
     ]
   },
   "${modID}:LoudMod": {
@@ -1113,6 +1641,36 @@
       " NL Apply %s *Mark. NL ALL enemies lose HP equal to their *Mark."
     ]
   },
+  "${modID}:MartialMod": {
+    "TEXT": [
+      "Martial ",
+      "",
+      "Draws #b2 cards if the last card played was an Attack."
+    ],
+    "EXTRA_TEXT": [
+      " NL If the last card played this combat was an Attack, draw 2 cards."
+    ]
+  },
+  "${modID}:MedicalMod": {
+    "TEXT": [
+      "Medical ",
+      "",
+      "Costs #b0. NL Becomes playable. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Exhaust."
+    ]
+  },
+  "${modID}:MemorableMod": {
+    "TEXT": [
+      "Memorable ",
+      "",
+      "Increases damage and #yBlock by #b25%. NL Shuffles a card into your draw pile."
+    ],
+    "EXTRA_TEXT": [
+      " NL Shuffle a card into your draw pile."
+    ]
+  },
   "${modID}:MetallicMod": {
     "TEXT": [
       "Metallic ",
@@ -1152,6 +1710,26 @@
     ],
     "EXTRA_TEXT": [
       " NL Deals 3 more damage on your first turn."
+    ]
+  },
+  "${modID}:NegativeMod": {
+    "TEXT": [
+      "Negative ",
+      "",
+      "Applies #b4 #yDoom to ALL enemies."
+    ],
+    "EXTRA_TEXT": [
+      " NL Apply 4 ${modID}:Doom to ALL enemies."
+    ]
+  },
+  "${modID}:NeuroMod": {
+    "TEXT": [
+      "Neuro ",
+      "",
+      "Costs [E] less. NL Gains #b3 #yDoom at the start of your turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL At the start of your turn, apply 3 ${modID}:Doom to yourself."
     ]
   },
   "${modID}:NightmareMod": {
@@ -1200,6 +1778,17 @@
       " NL If the enemy intends to attack, gain X Strength."
     ]
   },
+  "${modID}:OpeningMod": {
+    "TEXT": [
+      "Opening ",
+      "",
+      "Increases damage by #b3 if this is the first Attack played this turn. NL Increases #yBlock by #b3 if this is the first Skill played this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deals 3 more damage if you have not played Attacks this turn.",
+      " NL Gains 3 more Block if you have not played Skills this turn."
+    ]
+  },
   "${modID}:OpportunisticMod": {
     "TEXT": [
       "Opportunistic ",
@@ -1210,6 +1799,18 @@
       " NL If you have no Skills in your hand, draw 1 card."
     ]
   },
+  "${modID}:OrnamentalMod": {
+    "TEXT": [
+      "Ornamental ",
+      "",
+      "Gains #b4 #yBlock if this is the third Attack played in a turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this is the third Attack played this turn, gain !B! Block.",
+      " (%d Attack played.)",
+      " (%d Attacks played.)"
+    ]
+  },
   "${modID}:OverclockedMod": {
     "TEXT": [
       "Overclocked ",
@@ -1218,6 +1819,27 @@
     ],
     "EXTRA_TEXT": [
       " NL Add a *Burn into your discard pile."
+    ]
+  },
+  "${modID}:PackedMod": {
+    "TEXT": [
+      "Packed ",
+      "",
+      "Also adds the other cards in the card reward to your deck upon pickup."
+    ],
+    "EXTRA_TEXT": [
+      " NL Upon pickup, also obtain the other cards in the card reward."
+    ]
+  },
+  "${modID}:PagedMod": {
+    "TEXT": [
+      "Paged ",
+      "",
+      "Adds #yEthereal. NL Draws #b1 card when drawn."
+    ],
+    "EXTRA_TEXT": [
+      "Ethereal. NL ",
+      " NL Whenever you draw this card, draw 1 card."
     ]
   },
   "${modID}:PainfulMod": {
@@ -1272,6 +1894,16 @@
       " NL When Retained, increase its damage by %s this combat."
     ]
   },
+  "${modID}:PeacefulMod": {
+    "TEXT": [
+      "Peaceful ",
+      "",
+      "Removes the card from the deck when it is #yUpgraded."
+    ],
+    "EXTRA_TEXT": [
+      " NL When you Upgrade this card, remove it from your deck instead."
+    ]
+  },
   "${modID}:PerfectMod": {
     "TEXT": [
       "Perfect ",
@@ -1282,6 +1914,17 @@
       " NL Deals %s additional damage for ALL your cards containing \"Strike\"."
     ]
   },
+  "${modID}:PerseverantMod": {
+    "TEXT": [
+      "Perseverant ",
+      "",
+      "Adds #yRetain. NL Reduces #yBlock by #b50%. NL Increases #yBlock by #b25% when #yRetained."
+    ],
+    "EXTRA_TEXT": [
+      "Retain. NL ",
+      " NL When Retained, increase its Block by %s this combat."
+    ]
+  },
   "${modID}:PhantasmalMod": {
     "TEXT": [
       "Phantasmal ",
@@ -1290,6 +1933,17 @@
     ],
     "EXTRA_TEXT": [
       " NL Next turn, your Attacks deal double damage."
+    ]
+  },
+  "${modID}:PlatedMod": {
+    "TEXT": [
+      "Plated ",
+      "",
+      "Reduces #yBlock by #b67%. NL Gains #yPlated #yArmor equal to #b33% #yBlock. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain %s *Plated *Armor. NL Exhaust.",
+      " NL Gain %s *Plated *Armor."
     ]
   },
   "${modID}:PocketwatchMod": {
@@ -1316,15 +1970,14 @@
       " (%d Attacks played.)"
     ]
   },
-  "${modID}:PrayerfulMod": {
+  "${modID}:PoopyMod": {
     "TEXT": [
-      "Prayerful ",
+      "Poopy ",
       "",
-      "Gains #b1(2) #yMantra."
+      "It's unpleasant."
     ],
     "EXTRA_TEXT": [
-      " NL Gain %s Mantra.",
-      " NL Enter Divinity."
+      " NL It's unpleasant."
     ]
   },
   "${modID}:PrayerMod": {
@@ -1336,6 +1989,17 @@
     "EXTRA_TEXT": [
       " NL If Fatal in a normal combat, gain an additional card reward. NL Exhaust.",
       " NL If Fatal in a normal combat, gain an additional card reward."
+    ]
+  },
+  "${modID}:PrayerfulMod": {
+    "TEXT": [
+      "Prayerful ",
+      "",
+      "Gains #b1(2) #yMantra."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain %s Mantra.",
+      " NL Enter Divinity."
     ]
   },
   "${modID}:PredictedMod": {
@@ -1367,15 +2031,14 @@
       "NL "
     ]
   },
-  "${modID}:PerseverantMod": {
+  "${modID}:PreemptiveMod": {
     "TEXT": [
-      "Perseverant ",
+      "Preemptive ",
       "",
-      "Adds #yRetain. NL Reduces #yBlock by #b50%. NL Increases #yBlock by #b25% when #yRetained."
+      "Deals #b3 more damage to enemies who intend to attack."
     ],
     "EXTRA_TEXT": [
-      "Retain. NL ",
-      " NL When Retained, increase its Block by %s this combat."
+      " NL Deals 3 more damage to enemies who intend to attack."
     ]
   },
   "${modID}:ProactiveMod": {
@@ -1399,14 +2062,14 @@
       " NL At the end of your turn, put a copy of this card on top of your draw pile. NL Exhaust."
     ]
   },
-  "${modID}:FastMod": {
+  "${modID}:PunishingMod": {
     "TEXT": [
-      "Fast ",
+      "Punishing ",
       "",
-      "Reduces #yBlock by #b20%. NL Draws #b1 card."
+      "Increases damage by #b50% if the enemy is under half HP."
     ],
     "EXTRA_TEXT": [
-      " NL Draw 1 card."
+      " NL Deals 50% more damage if the enemy is at or under 50% HP."
     ]
   },
   "${modID}:RagingMod": {
@@ -1451,6 +2114,16 @@
       " NL Shuffle a *Dazed into your draw pile."
     ]
   },
+  "${modID}:RecurringMod": {
+    "TEXT": [
+      "Recurring ",
+      "",
+      "Shuffles back into your draw pile if the card is in your hand at the end of your turn."
+    ],
+    "EXTRA_TEXT": [
+      "${modID}:Recur. NL "
+    ]
+  },
   "${modID}:RecyclableMod": {
     "TEXT": [
       "Recyclable ",
@@ -1477,6 +2150,26 @@
       "discard"
     ]
   },
+  "${modID}:RefluxingMod": {
+    "TEXT": [
+      "Refluxing ",
+      "",
+      "Costs [E] more. NL Increases damage by #b33%. NL Gains [E] when dealing unblocked damage."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this deals unblocked damage, gain [E]."
+    ]
+  },
+  "${modID}:RegretfulMod": {
+    "TEXT": [
+      "Regretful ",
+      "",
+      "Loses HP equal to the number of cards in hand if the card is in your hand at the end of your turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL At the end of your turn, lose HP equal to the number of cards in your hand."
+    ]
+  },
   "${modID}:ReplaceableMod": {
     "TEXT": [
       "Replaceable ",
@@ -1497,6 +2190,37 @@
     "EXTRA_TEXT": [
       " NL If this card is discarded from your hand, put a copy of this card into your hand.",
       "discard"
+    ]
+  },
+  "${modID}:ResidualMod": {
+    "TEXT": [
+      "Residual ",
+      "",
+      "Costs [E] [E] [E] . NL Sets your Energy to #b4 minus original cost."
+    ],
+    "EXTRA_TEXT": [
+      " NL Set your Energy to %d."
+    ]
+  },
+  "${modID}:RetributiveMod": {
+    "TEXT": [
+      "Retributive ",
+      "",
+      "Reduces #yBlock by #b33%. NL Gains #yVigor equal to #b25% #yBlock when attacked this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you are attacked this turn, your next attack deals %s additional damage."
+    ]
+  },
+  "${modID}:RhythmicMod": {
+    "TEXT": [
+      "Rhythmic ",
+      "",
+      "Adds a copy of the card to your hand at the start of next turn. NL Adds #yEthereal and #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      "Ethereal. NL ",
+      " NL Next turn, add a copy of this card to your hand. NL Exhaust."
     ]
   },
   "${modID}:RupturedMod": {
@@ -1520,6 +2244,28 @@
       " NL Draw cards until your hand is full."
     ]
   },
+  "${modID}:SculptingMod": {
+    "TEXT": [
+      "Sculpting ",
+      "",
+      "Adds #yEthereal to a card."
+    ],
+    "EXTRA_TEXT": [
+      " NL Add Ethereal to a card in your hand."
+    ]
+  },
+  "${modID}:SealedMod": {
+    "TEXT": [
+      "Sealed ",
+      "",
+      "Increases card values by #b100%. NL Becomes #yUnplayable after played."
+    ],
+    "EXTRA_TEXT": [
+      " NL Becomes Unplayable for the rest of combat.",
+      "Unplayable. NL ",
+      "I have already played this card."
+    ]
+  },
   "${modID}:SecretMod": {
     "TEXT": [
       "Secret ",
@@ -1528,6 +2274,16 @@
     ],
     "EXTRA_TEXT": [
       " NL Put 1 %s from your draw pile into your hand."
+    ]
+  },
+  "${modID}:SeekingMod": {
+    "TEXT": [
+      "Seeking ",
+      "",
+      "Reduces damage and #yBlock by #b50%. NL Puts #b1 of #b3 cards in your draw pile to your hand."
+    ],
+    "EXTRA_TEXT": [
+      " NL Choose 1 of 3 cards in your draw pile to add to your hand."
     ]
   },
   "${modID}:SeparateMod": {
@@ -1563,6 +2319,26 @@
       " NL Enemy loses 5 Strength this turn."
     ]
   },
+  "${modID}:SharedMod": {
+    "TEXT": [
+      "Shared ",
+      "",
+      "Increases #yBlock by #b40%. NL Gives all enemies equal #yBlock."
+    ],
+    "EXTRA_TEXT": [
+      " NL Give ALL enemies !B! Block."
+    ]
+  },
+  "${modID}:SharpMod": {
+    "TEXT": [
+      "Sharp ",
+      "",
+      "Reduces damage by #b20%. NL Deals #b3 damage to ALL enemies whenever you play play a Skill this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you play a Skill this turn, deal 3 damage to ALL enemies."
+    ]
+  },
   "${modID}:ShatteringMod": {
     "TEXT": [
       "Shattering ",
@@ -1571,6 +2347,17 @@
     ],
     "EXTRA_TEXT": [
       " NL Deals 3 more damage to enemies with Block."
+    ]
+  },
+  "${modID}:ShiftingMod": {
+    "TEXT": [
+      "Shifting ",
+      "",
+      "Costs [E] more. NL Applies #yStrength down equal to unblocked damage dealt for one turn. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Enemy loses Strength this turn equal to unblocked damage. NL Exhaust.",
+      " NL Enemy loses Strength this turn equal to unblocked damage."
     ]
   },
   "${modID}:ShockingMod": {
@@ -1625,6 +2412,16 @@
     ],
     "EXTRA_TEXT": []
   },
+  "${modID}:SoulboundMod": {
+    "TEXT": [
+      "Soulbound ",
+      "",
+      "Increases card values by #b40%. NL Cannot be removed from your deck."
+    ],
+    "EXTRA_TEXT": [
+      "stslib:Soulbound. NL "
+    ]
+  },
   "${modID}:SozuMod": {
     "TEXT": [
       "Sozu ",
@@ -1643,6 +2440,27 @@
     ],
     "EXTRA_TEXT": [
       " NL Upon pickup, obtain 2 additional copies."
+    ]
+  },
+  "${modID}:SpecimenMod": {
+    "TEXT": [
+      "Specimen of ",
+      "",
+      "Transfers the enemy's #yPoison to another random enemy."
+    ],
+    "EXTRA_TEXT": [
+      " NL Transfer the enemy's Poison to another random enemy.",
+      "Poison"
+    ]
+  },
+  "${modID}:SpitefulMod": {
+    "TEXT": [
+      "Spiteful ",
+      "",
+      "Draws #b1 card if you lost HP this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If you lost HP this turn, draw 1 card."
     ]
   },
   "${modID}:SplitMod": {
@@ -1671,16 +2489,6 @@
       "Put the next 2 cards you play this turn on top of your draw pile."
     ]
   },
-  "${modID}:EquilibrialMod": {
-    "TEXT": [
-      "Equilibrial ",
-      "",
-      "Costs [E] more. NL Increases damage and #yBlock by #b33%. NL Gains #b1 #yEquilibrium."
-    ],
-    "EXTRA_TEXT": [
-      " NL Retain your hand this turn."
-    ]
-  },
   "${modID}:StarMod": {
     "TEXT": [
       "Star ",
@@ -1692,15 +2500,14 @@
       " NL If Fatal in an Elite combat, gain an additional Relic."
     ]
   },
-  "${modID}:LiquidizingMod": {
+  "${modID}:StaticMod": {
     "TEXT": [
-      "Liquidizing ",
+      "Static ",
       "",
-      "Obtains a random potion if #yFatal. NL Adds #yExhaust."
+      "Reduces #yBlock by #b25%. NL #yChannels #b1 #yLightning whenever you take unblocked damage this turn."
     ],
     "EXTRA_TEXT": [
-      " NL If Fatal, obtain a random potion. NL Exhaust.",
-      " NL If Fatal, obtain a random potion."
+      " NL Whenever you take unblocked attack damage this turn, Channel 1 Lightning."
     ]
   },
   "${modID}:StealthyMod": {
@@ -1747,6 +2554,17 @@
       " NL Lose 1 Strength."
     ]
   },
+  "${modID}:StrangeMod": {
+    "TEXT": [
+      "Strange ",
+      "",
+      "#yExhausts with #b50% chance."
+    ],
+    "EXTRA_TEXT": [
+      "50% chance to Exhaust.",
+      "Exhaust."
+    ]
+  },
   "${modID}:StrategicMod": {
     "TEXT": [
       "Strategic ",
@@ -1766,6 +2584,16 @@
     ],
     "EXTRA_TEXT": []
   },
+  "${modID}:SturdyMod": {
+    "TEXT": [
+      "Sturdy ",
+      "",
+      "#yDexterity affects this card #b3 times."
+    ],
+    "EXTRA_TEXT": [
+      " NL Dexterity affects this card 3 times."
+    ]
+  },
   "${modID}:SulfuricMod": {
     "TEXT": [
       "Sulfuric ",
@@ -1774,6 +2602,18 @@
     ],
     "EXTRA_TEXT": [
       " NL Gain 2 Strength. ALL enemies gain 1 Strength."
+    ]
+  },
+  "${modID}:SunlitMod": {
+    "TEXT": [
+      "Sunlit ",
+      "",
+      "Gains [E] [E] if you shuffled your draw pile 3 times this combat."
+    ],
+    "EXTRA_TEXT": [
+      " NL If you shuffled your draw pile 3 times this combat, gain [E] [E] .",
+      " (%d shuffle.)",
+      " (%d shuffles.)"
     ]
   },
   "${modID}:SuperluminalMod": {
@@ -1786,6 +2626,17 @@
       " NL If you have played less than %s cards this turn, draw 1 card.",
       " (%d card played.)",
       " (%d cards played.)"
+    ]
+  },
+  "${modID}:SwipeMod": {
+    "TEXT": [
+      "",
+      " and Swipe",
+      "Reduces damage by #b25%. NL Deals damage an additional time if the enemy has #yDoom."
+    ],
+    "EXTRA_TEXT": [
+      " NL If the enemy has ${modID}:Doom, deal !D! damage again.",
+      "Doom"
     ]
   },
   "${modID}:TacticalMod": {
@@ -1807,6 +2658,29 @@
     ],
     "EXTRA_TEXT": [
       " NL You feel more talkative."
+    ]
+  },
+  "${modID}:TallyingMod": {
+    "TEXT": [
+      "Tallying ",
+      "",
+      "Plays once for each time you shuffled your draw pile this combat."
+    ],
+    "EXTRA_TEXT": [
+      " for each time you shuffled your draw pile this combat.",
+      " (%d shuffle.)",
+      " (%d shuffles.)"
+    ]
+  },
+  "${modID}:TangledMod": {
+    "TEXT": [
+      "Tangled ",
+      "",
+      "Costs [E] less. NL Cards of the same type are #yUnplayable this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL You cannot play additional Attacks this turn.",
+      " NL You cannot play additional Skills this turn."
     ]
   },
   "${modID}:TemperamentalMod": {
@@ -1840,6 +2714,17 @@
       " NL Scry 3."
     ]
   },
+  "${modID}:ThirstyMod": {
+    "TEXT": [
+      "Thirsty ",
+      "",
+      "Removes the card from the deck after discarding #b2 potions."
+    ],
+    "EXTRA_TEXT": [
+      " NL After you discard %s potions, remove it from your deck.",
+      " NL After you discard %s potion, remove it from your deck."
+    ]
+  },
   "${modID}:ThornyMod": {
     "TEXT": [
       "Thorny ",
@@ -1849,6 +2734,18 @@
     "EXTRA_TEXT": [
       " NL Gain %s Thorns. NL Exhaust.",
       " NL Gain %s Thorns."
+    ]
+  },
+  "${modID}:TimeWarpedMod": {
+    "TEXT": [
+      "Time-Warped ",
+      "",
+      "Gains #b2 #yStrength and ends your turn if this is the twelfth card played in combat."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this is the twelfth card played this combat, gain 2 Strength and end your turn.",
+      " (%d card played.)",
+      " (%d cards played.)"
     ]
   },
   "${modID}:TingshaMod": {
@@ -1873,6 +2770,18 @@
       "discard"
     ]
   },
+  "${modID}:ToxicMod": {
+    "TEXT": [
+      "Toxic ",
+      "",
+      "Triggers the enemy's #yPoison. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Trigger the enemy's Poison. NL Exhaust.",
+      " NL Trigger the enemy's Poison.",
+      "Poison"
+    ]
+  },
   "${modID}:TranceMod": {
     "TEXT": [
       "",
@@ -1881,6 +2790,57 @@
     ],
     "EXTRA_TEXT": [
       " NL You cannot draw additional cards this turn."
+    ]
+  },
+  "${modID}:TransfiguredMod": {
+    "TEXT": [
+      "Transfigured ",
+      "",
+      "Costs [E] more. NL Plays twice."
+    ],
+    "EXTRA_TEXT": [
+      " NL cardaugments:Echo."
+    ]
+  },
+  "${modID}:TransientMod": {
+    "TEXT": [
+      "Transient ",
+      "",
+      "Increases card values by #b100%. NL Removes the card from the deck after playing #b5(6) times."
+    ],
+    "EXTRA_TEXT": [
+      " NL After you play this card %s times, remove it from your deck.",
+      " NL Remove this card from your deck."
+    ]
+  },
+  "${modID}:TungstenMod": {
+    "TEXT": [
+      "Tungsten ",
+      "",
+      "Reduces #yBlock by #b20%. NL Loses #b1 less HP whenever you would lose HP this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you would lose HP this turn, lose 1 less."
+    ]
+  },
+  "${modID}:TypicalMod": {
+    "TEXT": [
+      "Typical ",
+      "",
+      "Reduces damage and #yBlock by #b40%. NL Plays once for each different type of card played this turn."
+    ],
+    "EXTRA_TEXT": [
+      " for each type of card played this turn."
+    ]
+  },
+  "${modID}:UnawakenedMod": {
+    "TEXT": [
+      "Unawakened ",
+      "",
+      "Adds an #yAwakened copy into your deck when transformed or removed from your deck."
+    ],
+    "EXTRA_TEXT": [
+      " NL This card hasn't awakened yet..."
     ]
   },
   "${modID}:UnceasingMod": {
@@ -1903,6 +2863,26 @@
       " NL Lose 1 Focus."
     ]
   },
+  "${modID}:UnravelingMod": {
+    "TEXT": [
+      "Unraveling ",
+      "",
+      "Costs [E] more. NL Plays #b1 random card in hand."
+    ],
+    "EXTRA_TEXT": [
+      " NL Play 1 random card in your hand."
+    ]
+  },
+  "${modID}:UnreliableMod": {
+    "TEXT": [
+      "Unreliable ",
+      "",
+      "Increases card values by #b50%. NL Discards #b1 random card when drawn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you draw this card, discard 1 card at random."
+    ]
+  },
   "${modID}:UnstableMod": {
     "TEXT": [
       "Unstable ",
@@ -1913,6 +2893,26 @@
       " NL Discard all non-Attack cards in your hand.",
       " NL Discard all non-Skill cards in your hand.",
       " NL Discard all non-Power cards in your hand."
+    ]
+  },
+  "${modID}:UntappedMod": {
+    "TEXT": [
+      "Untapped ",
+      "",
+      "Draws #b1 additional card next turn for each unused Energy this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL For each unused Energy this turn, draw 1 additional card next turn."
+    ]
+  },
+  "${modID}:UpliftingMod": {
+    "TEXT": [
+      "Uplifting ",
+      "",
+      "Reduces damage by #b60%. NL Gains #yVigor equal to unblocked damage dealt."
+    ],
+    "EXTRA_TEXT": [
+      " NL Your next Attack deals additional damage equal to unblocked damage."
     ]
   },
   "${modID}:UpperMod": {
@@ -1933,6 +2933,16 @@
     ],
     "EXTRA_TEXT": []
   },
+  "${modID}:VelvetMod": {
+    "TEXT": [
+      "Velvet ",
+      "",
+      "Costs [E] less. NL You cannot play more than #b6 cards per turn for #b2 turns."
+    ],
+    "EXTRA_TEXT": [
+      " NL You cannot play more than 6 cards per turn for 2 turns."
+    ]
+  },
   "${modID}:ViolentMod": {
     "TEXT": [
       "Violent ",
@@ -1942,6 +2952,16 @@
     "EXTRA_TEXT": [
       " NL Put 2 random Attacks from your draw pile into your hand. NL Exhaust.",
       " NL Put 2 random Attacks from your draw pile into your hand."
+    ]
+  },
+  "${modID}:VolatileMod": {
+    "TEXT": [
+      "Volatile ",
+      "",
+      "Costs [E] less. NL Adds a #rBurn+ into your hand when drawn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you draw this card, add a *Burn+ into your hand."
     ]
   },
   "${modID}:WaffleMod": {
@@ -1963,6 +2983,26 @@
     "EXTRA_TEXT": [
       " NL Put 2 random Skills from your draw pile into your hand. NL Exhaust.",
       " NL Put 2 random Skills from your draw pile into your hand."
+    ]
+  },
+  "${modID}:WavyMod": {
+    "TEXT": [
+      "Wavy ",
+      "",
+      "Reduces #yBlock by #b40%. NL Gains #b1 #yWave #yof #ythe #yHand."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you gain Block this turn, apply 1 Weak to ALL enemies."
+    ]
+  },
+  "${modID}:WearyMod": {
+    "TEXT": [
+      "Weary ",
+      "",
+      "Increases #yBlock by #b50%. NL Loses #b1 #yDexterity."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose 1 Dexterity."
     ]
   },
   "${modID}:WhipMod": {
@@ -1995,1006 +3035,6 @@
     ],
     "EXTRA_TEXT": [
       " NL Your next Attack deals %s additional damage."
-    ]
-  },
-  "${modID}:EstablishedMod": {
-    "TEXT": [
-      "Established ",
-      "",
-      "Costs [E] [E] more. NL Adds #yRetain. NL Costs [E] less when #yRetained."
-    ],
-    "EXTRA_TEXT": [
-      "Retain. NL ",
-      " NL When Retained, lower its cost by 1 this combat."
-    ]
-  },
-  "${modID}:GoldenMod": {
-    "TEXT": [
-      "Golden ",
-      "",
-      "Gains #yGold equal to the cost. NL Adds #yExhaust."
-    ],
-    "EXTRA_TEXT": [
-      " NL Gain %d *Gold. NL Exhaust.",
-      " NL Gain %d *Gold.",
-      " NL Gain X *Gold. NL Exhaust.",
-      " NL Gain X *Gold."
-    ]
-  },
-  "${modID}:OpeningMod": {
-    "TEXT": [
-      "Opening ",
-      "",
-      "Increases damage by #b3 if this is the first Attack played this turn. NL Increases #yBlock by #b3 if this is the first Skill played this turn."
-    ],
-    "EXTRA_TEXT": [
-      " NL Deals 3 more damage if you have not played Attacks this turn.",
-      " NL Gains 3 more Block if you have not played Skills this turn."
-    ]
-  },
-  "${modID}:PlatedMod": {
-    "TEXT": [
-      "Plated ",
-      "",
-      "Reduces #yBlock by #b67%. NL Gains #yPlated #yArmor equal to #b33% #yBlock. NL Adds #yExhaust."
-    ],
-    "EXTRA_TEXT": [
-      " NL Gain %s *Plated *Armor. NL Exhaust.",
-      " NL Gain %s *Plated *Armor."
-    ]
-  },
-  "${modID}:FadingMod": {
-    "TEXT": [
-      "Fading ",
-      "",
-      "Increases card values by #b100%. NL Removes the card from the deck after defeating a Boss."
-    ],
-    "EXTRA_TEXT": [
-      " NL After you defeat a Boss, remove this from your deck."
-    ]
-  },
-  "${modID}:UpliftingMod": {
-    "TEXT": [
-      "Uplifting ",
-      "",
-      "Reduces damage by #b60%. NL Gains #yVigor equal to unblocked damage dealt."
-    ],
-    "EXTRA_TEXT": [
-      " NL Your next Attack deals additional damage equal to unblocked damage."
-    ]
-  },
-  "${modID}:OrnamentalMod": {
-    "TEXT": [
-      "Ornamental ",
-      "",
-      "Gains #b4 #yBlock if this is the third Attack played in a turn."
-    ],
-    "EXTRA_TEXT": [
-      " NL If this is the third Attack played this turn, gain !B! Block.",
-      " (%d Attack played.)",
-      " (%d Attacks played.)"
-    ]
-  },
-  "${modID}:UnawakenedMod": {
-    "TEXT": [
-      "Unawakened ",
-      "",
-      "Adds an #yAwakened copy into your deck when transformed or removed from your deck."
-    ],
-    "EXTRA_TEXT": [
-      " NL This card hasn't awakened yet..."
-    ]
-  },
-  "${modID}:AwakenedMod": {
-    "TEXT": [
-      "Awakened ",
-      "",
-      "Increases card values by #b100%."
-    ],
-    "EXTRA_TEXT": []
-  },
-  "${modID}:FlashyMod": {
-    "TEXT": [
-      "Flashy ",
-      "",
-      "Reduces damage by #b33%. NL Draws #b2 cards when dealing unblocked damage."
-    ],
-    "EXTRA_TEXT": [
-      " NL If this deals unblocked damage, draw 2 cards."
-    ]
-  },
-  "${modID}:AugerMod": {
-    "TEXT": [
-      "Auger ",
-      "",
-      "Reduces damage by #b33%. NL Applies #b2 #yVulnerable when dealing unblocked damage."
-    ],
-    "EXTRA_TEXT": [
-      " NL If this deals unblocked damage, apply 2 Vulnerable."
-    ]
-  },
-  "${modID}:TimeWarpedMod": {
-    "TEXT": [
-      "Time-Warped ",
-      "",
-      "Gains #b2 #yStrength and ends your turn if this is the twelfth card played in combat."
-    ],
-    "EXTRA_TEXT": [
-      " NL If this is the twelfth card played this combat, gain 2 Strength and end your turn.",
-      " (%d card played.)",
-      " (%d cards played.)"
-    ]
-  },
-  "${modID}:RefluxingMod": {
-    "TEXT": [
-      "Refluxing ",
-      "",
-      "Costs [E] more. NL Increases damage by #b33%. NL Gains [E] when dealing unblocked damage."
-    ],
-    "EXTRA_TEXT": [
-      " NL If this deals unblocked damage, gain [E]."
-    ]
-  },
-  "${modID}:CleansingMod": {
-    "TEXT": [
-      "Cleansing ",
-      "",
-      "Removes a random debuff from you. NL Adds #yExhaust."
-    ],
-    "EXTRA_TEXT": [
-      " NL Lose a random debuff. NL Exhaust.",
-      " NL Lose a random debuff."
-    ]
-  },
-  "${modID}:RegretfulMod": {
-    "TEXT": [
-      "Regretful ",
-      "",
-      "Loses HP equal to the number of cards in hand if the card is in your hand at the end of your turn."
-    ],
-    "EXTRA_TEXT": [
-      " NL At the end of your turn, lose HP equal to the number of cards in your hand."
-    ]
-  },
-  "${modID}:HesitantMod": {
-    "TEXT": [
-      "Hesitant ",
-      "",
-      "Gains #b1 #yWeak if the card is in your hand at the end of your turn."
-    ],
-    "EXTRA_TEXT": [
-      " NL At the end of your turn, gain 1 Weak."
-    ]
-  },
-  "${modID}:DecayingMod": {
-    "TEXT": [
-      "Decaying ",
-      "",
-      "Takes #b2 damage if the card is in your hand at the end of your turn."
-    ],
-    "EXTRA_TEXT": [
-      " NL At the end of your turn, take 2 damage."
-    ]
-  },
-  "${modID}:LapsingMod": {
-    "TEXT": [
-      "Lapsing ",
-      "",
-      "Increases card values by #b40%. NL Loses #b1 HP when drawn."
-    ],
-    "EXTRA_TEXT": [
-      " NL Whenever you draw this card, lose 1 HP."
-    ]
-  },
-  "${modID}:BackupMod": {
-    "TEXT": [
-      "Backup ",
-      "",
-      "Costs [E] more. NL Draws #b1 card when drawn."
-    ],
-    "EXTRA_TEXT": [
-      " NL Whenever you draw this card, draw 1 card."
-    ]
-  },
-  "${modID}:JudgeMod": {
-    "TEXT": [
-      "",
-      " and Judge",
-      "Reduces damage by #b25%. NL Kills the enemy if their HP is less than or equal to #b75% damage."
-    ],
-    "EXTRA_TEXT": [
-      " NL If the enemy has %s or less HP, set their HP to 0."
-    ]
-  },
-  "${modID}:StrangeMod": {
-    "TEXT": [
-      "Strange ",
-      "",
-      "#yExhausts with #b50% chance."
-    ],
-    "EXTRA_TEXT": [
-      "50% chance to Exhaust.",
-      "Exhaust."
-    ]
-  },
-  "${modID}:KickingMod": {
-    "TEXT": [
-      "Kicking ",
-      "",
-      "Deals #b5(7) damage, then triggers card effect if the enemy has #yVulnerable."
-    ],
-    "EXTRA_TEXT": [
-      "Deal %s damage. NL If the enemy has Vulnerable, "
-    ]
-  },
-  "${modID}:HookedMod": {
-    "TEXT": [
-      "Hooked ",
-      "",
-      "Deals #b5(7) damage, then triggers card effect if the enemy has #yWeak."
-    ],
-    "EXTRA_TEXT": [
-      "Deal %s damage. NL If the enemy has Weak, "
-    ]
-  },
-  "${modID}:DisgracefulMod": {
-    "TEXT": [
-      "Disgraceful ",
-      "",
-      "Gains #b1 #yFrail if the card is in your hand at the end of your turn."
-    ],
-    "EXTRA_TEXT": [
-      " NL At the end of your turn, gain 1 Frail."
-    ]
-  },
-  "${modID}:GuilefulMod": {
-    "TEXT": [
-      "Guileful ",
-      "",
-      "Plays when discarded."
-    ],
-    "EXTRA_TEXT": [
-      "${modID}:Sly. NL ",
-      "discard"
-    ]
-  },
-  "${modID}:MartialMod": {
-    "TEXT": [
-      "Martial ",
-      "",
-      "Draws #b2 cards if the last card played was an Attack."
-    ],
-    "EXTRA_TEXT": [
-      " NL If the last card played this combat was an Attack, draw 2 cards."
-    ]
-  },
-  "${modID}:CounterMod": {
-    "TEXT": [
-      "Counter ",
-      "",
-      "Increases damage by #b40%. NL Gives enemy #yBlock equal to unblocked damage."
-    ],
-    "EXTRA_TEXT": [
-      " NL Give enemy Block equal to unblocked damage."
-    ]
-  },
-  "${modID}:SharedMod": {
-    "TEXT": [
-      "Shared ",
-      "",
-      "Increases #yBlock by #b40%. NL Gives all enemies equal #yBlock."
-    ],
-    "EXTRA_TEXT": [
-      " NL Give ALL enemies !B! Block."
-    ]
-  },
-  "${modID}:SealedMod": {
-    "TEXT": [
-      "Sealed ",
-      "",
-      "Increases card values by #b100%. NL Becomes #yUnplayable after played."
-    ],
-    "EXTRA_TEXT": [
-      " NL Becomes Unplayable for the rest of combat.",
-      "Unplayable. NL ",
-      "I have already played this card."
-    ]
-  },
-  "${modID}:TransientMod": {
-    "TEXT": [
-      "Transient ",
-      "",
-      "Increases card values by #b100%. NL Removes the card from the deck after playing #b5(6) times."
-    ],
-    "EXTRA_TEXT": [
-      " NL After you play this card %s times, remove it from your deck.",
-      " NL Remove this card from your deck."
-    ]
-  },
-  "${modID}:TangledMod": {
-    "TEXT": [
-      "Tangled ",
-      "",
-      "Costs [E] less. NL Cards of the same type are #yUnplayable this turn."
-    ],
-    "EXTRA_TEXT": [
-      " NL You cannot play additional Attacks this turn.",
-      " NL You cannot play additional Skills this turn."
-    ]
-  },
-  "${modID}:EnergizedMod": {
-    "TEXT": [
-      "Energized ",
-      "",
-      "Reduces damage and #yBlock by #b33%. NL Plays once for each [E] left."
-    ],
-    "EXTRA_TEXT": [
-      " for each [E] you have."
-    ]
-  },
-  "${modID}:HyperMod": {
-    "TEXT": [
-      "Hyper ",
-      "",
-      "Increases card values by #b300%. NL Cards are #yUnplayable for #b2 turns."
-    ],
-    "EXTRA_TEXT": [
-      " NL You cannot play cards for 2 turns."
-    ]
-  },
-  "${modID}:RetributiveMod": {
-    "TEXT": [
-      "Retributive ",
-      "",
-      "Reduces #yBlock by #b33%. NL Gains #yVigor equal to #b25% #yBlock when attacked this turn."
-    ],
-    "EXTRA_TEXT": [
-      " NL Whenever you are attacked this turn, your next attack deals %s additional damage."
-    ]
-  },
-  "${modID}:FlusteredMod": {
-    "TEXT": [
-      "Flustered ",
-      "",
-      "Increases damage by #b300%. NL Prevents dealing attack damage for #b2 turns. NL Adds #yExhaust."
-    ],
-    "EXTRA_TEXT": [
-      " NL You cannot deal attack damage for 2 turns. NL Exhaust.",
-      " NL You cannot deal attack damage for 2 turns."
-    ]
-  },
-  "${modID}:ChronoMod": {
-    "TEXT": [
-      "Chrono ",
-      "",
-      "Reduces damage and #yBlock by #b75%. NL Plays once for each turn in combat."
-    ],
-    "EXTRA_TEXT": [
-      " for each turn in combat.",
-      " (%d turn.)",
-      " (%d turns.)"
-    ]
-  },
-  "${modID}:IterativeMod": {
-    "TEXT": [
-      "Iterative ",
-      "",
-      "Reduces damage and #yBlock by #b50%. NL Plays once for each time played in combat."
-    ],
-    "EXTRA_TEXT": [
-      " for each time this card is played this combat.",
-      " (%d time.)",
-      " (%d times.)"
-    ]
-  },
-  "${modID}:ResidualMod": {
-    "TEXT": [
-      "Residual ",
-      "",
-      "Costs [E] [E] [E] . NL Sets your Energy to #b4 minus original cost."
-    ],
-    "EXTRA_TEXT": [
-      " NL Set your Energy to %d."
-    ]
-  },
-  "${modID}:FlowingMod": {
-    "TEXT": [
-      "Flowing ",
-      "",
-      "Discards any number of cards, then draws that many cards next turn. NL Adds #yExhaust."
-    ],
-    "EXTRA_TEXT": [
-      " NL Discard any number of cards and draw that many next turn. NL Exhaust.",
-      " NL Discard any number of cards and draw that many next turn."
-    ]
-  },
-  "${modID}:MemorableMod": {
-    "TEXT": [
-      "Memorable ",
-      "",
-      "Increases damage and #yBlock by #b25%. NL Shuffles a card into your draw pile."
-    ],
-    "EXTRA_TEXT": [
-      " NL Shuffle a card into your draw pile."
-    ]
-  },
-  "${modID}:LootableMod": {
-    "TEXT": [
-      "Lootable ",
-      "",
-      "Discards #b1 card, then draws cards equal to its cost."
-    ],
-    "EXTRA_TEXT": [
-      " NL Discard 1 card and draw cards equal to its cost."
-    ]
-  },
-  "${modID}:PreemptiveMod": {
-    "TEXT": [
-      "Preemptive ",
-      "",
-      "Deals #b3 more damage to enemies who intend to attack."
-    ],
-    "EXTRA_TEXT": [
-      " NL Deals 3 more damage to enemies who intend to attack."
-    ]
-  },
-  "${modID}:UntappedMod": {
-    "TEXT": [
-      "Untapped ",
-      "",
-      "Draws #b1 additional card next turn for each unused Energy this turn."
-    ],
-    "EXTRA_TEXT": [
-      " NL For each unused Energy this turn, draw 1 additional card next turn."
-    ]
-  },
-  "${modID}:TypicalMod": {
-    "TEXT": [
-      "Typical ",
-      "",
-      "Reduces damage and #yBlock by #b40%. NL Plays once for each different type of card played this turn."
-    ],
-    "EXTRA_TEXT": [
-      " for each type of card played this turn."
-    ]
-  },
-  "${modID}:ToxicMod": {
-    "TEXT": [
-      "Toxic ",
-      "",
-      "Triggers the enemy's #yPoison. NL Adds #yExhaust."
-    ],
-    "EXTRA_TEXT": [
-      " NL Trigger the enemy's Poison. NL Exhaust.",
-      " NL Trigger the enemy's Poison.",
-      "Poison"
-    ]
-  },
-  "${modID}:DistantMod": {
-    "TEXT": [
-      "Distant ",
-      "",
-      "Increases card values by #b300%. NL #yUnplayable unless you don't have Energy left."
-    ],
-    "EXTRA_TEXT": [
-      " NL Can only be played if you have no Energy.",
-      "I have Energy left."
-    ]
-  },
-  "${modID}:DodecahedralMod": {
-    "TEXT": [
-      "Dodecahedral ",
-      "",
-      "Gains [E] if your HP is full."
-    ],
-    "EXTRA_TEXT": [
-      " NL If your HP is full, gain [E]."
-    ]
-  },
-  "${modID}:EvolutionaryMod": {
-    "TEXT": [
-      "Evolutionary ",
-      "",
-      "Costs [E] more. NL Shuffles #b3 copies of the card into your draw pile. They cost #b0 this combat. NL Adds #yExhaust."
-    ],
-    "EXTRA_TEXT": [
-      "Shuffle 3 copies of %s into your draw pile. They cost 0 this combat. NL Exhaust.",
-      "Innate. NL "
-    ]
-  },
-  "${modID}:AlchemicalMod": {
-    "TEXT": [
-      "Alchemical ",
-      "",
-      "Obtains a random potion upon pickup."
-    ],
-    "EXTRA_TEXT": [
-      " NL Upon pickup, obtain a random potion."
-    ]
-  },
-  "${modID}:PunishingMod": {
-    "TEXT": [
-      "Punishing ",
-      "",
-      "Increases damage by #b50% if the enemy is under half HP."
-    ],
-    "EXTRA_TEXT": [
-      " NL Deals 50% more damage if the enemy is at or under 50% HP."
-    ]
-  },
-  "${modID}:VolatileMod": {
-    "TEXT": [
-      "Volatile ",
-      "",
-      "Costs [E] less. NL Adds a #rBurn+ into your hand when drawn."
-    ],
-    "EXTRA_TEXT": [
-      " NL Whenever you draw this card, add a *Burn+ into your hand."
-    ]
-  },
-  "${modID}:DeceptiveMod": {
-    "TEXT": [
-      "Deceptive ",
-      "",
-      "Reduces #yBlock by #b33%. NL Applies #b2 #yWeak back when taking unblocked attack damage this turn."
-    ],
-    "EXTRA_TEXT": [
-      " NL Whenever you take unblocked attack damage turn, apply 2 Weak back."
-    ]
-  },
-  "${modID}:TallyingMod": {
-    "TEXT": [
-      "Tallying ",
-      "",
-      "Plays once for each time you shuffled your draw pile this combat."
-    ],
-    "EXTRA_TEXT": [
-      " for each time you shuffled your draw pile this combat.",
-      " (%d shuffle.)",
-      " (%d shuffles.)"
-    ]
-  },
-  "${modID}:VelvetMod": {
-    "TEXT": [
-      "Velvet ",
-      "",
-      "Costs [E] less. NL You cannot play more than #b6 cards per turn for #b2 turns."
-    ],
-    "EXTRA_TEXT": [
-      " NL You cannot play more than 6 cards per turn for 2 turns."
-    ]
-  },
-  "${modID}:BrightestMod": {
-    "TEXT": [
-      "Brightest ",
-      "",
-      "Increases card values by #b100%. NL Loses #b1 Max HP."
-    ],
-    "EXTRA_TEXT": [
-      " NL Lose 1 Max HP."
-    ]
-  },
-  "${modID}:AttentiveMod": {
-    "TEXT": [
-      "Attentive ",
-      "",
-      "Gains #b2 #yFocus this turn."
-    ],
-    "EXTRA_TEXT": [
-      " NL Gain 2 Focus. NL At the end of this turn, lose 2 Focus."
-    ]
-  },
-  "${modID}:WavyMod": {
-    "TEXT": [
-      "Wavy ",
-      "",
-      "Reduces #yBlock by #b40%. NL Gains #b1 #yWave #yof #ythe #yHand."
-    ],
-    "EXTRA_TEXT": [
-      " NL Whenever you gain Block this turn, apply 1 Weak to ALL enemies."
-    ]
-  },
-  "${modID}:SharpMod": {
-    "TEXT": [
-      "Sharp ",
-      "",
-      "Reduces damage by #b20%. NL Deals #b3 damage to ALL enemies whenever you play play a Skill this turn."
-    ],
-    "EXTRA_TEXT": [
-      " NL Whenever you play a Skill this turn, deal 3 damage to ALL enemies."
-    ]
-  },
-  "${modID}:BlueMod": {
-    "TEXT": [
-      "Blue ",
-      "",
-      "Costs #b0. NL Becomes playable. NL Loses #b1 HP. NL Adds #yExhaust."
-    ],
-    "EXTRA_TEXT": [
-      " NL Lose 1 HP. NL Exhaust."
-    ]
-  },
-  "${modID}:MedicalMod": {
-    "TEXT": [
-      "Medical ",
-      "",
-      "Costs #b0. NL Becomes playable. NL Adds #yExhaust."
-    ],
-    "EXTRA_TEXT": [
-      " NL Exhaust."
-    ]
-  },
-  "${modID}:DuVuMod": {
-    "TEXT": [
-      "Du-Vu ",
-      "",
-      "Gains #b1 #yStrength at the start of each combat."
-    ],
-    "EXTRA_TEXT": [
-      " NL At the start of each combat, gain 1 Strength."
-    ]
-  },
-  "${modID}:PoopyMod": {
-    "TEXT": [
-      "Poopy ",
-      "",
-      "It's unpleasant."
-    ],
-    "EXTRA_TEXT": [
-      " NL It's unpleasant."
-    ]
-  },
-  "${modID}:FrozenMod": {
-    "TEXT": [
-      "Frozen ",
-      "",
-      "For #b2 turns, when viewing your draw pile, the cards are shown in order."
-    ],
-    "EXTRA_TEXT": [
-      " NL Cards in your draw pile are shown in order for 2 turns."
-    ]
-  },
-  "${modID}:TungstenMod": {
-    "TEXT": [
-      "Tungsten ",
-      "",
-      "Reduces #yBlock by #b20%. NL Loses #b1 less HP whenever you would lose HP this turn."
-    ],
-    "EXTRA_TEXT": [
-      " NL Whenever you would lose HP this turn, lose 1 less."
-    ]
-  },
-  "${modID}:SpecimenMod": {
-    "TEXT": [
-      "Specimen of ",
-      "",
-      "Transfers the enemy's #yPoison to another random enemy."
-    ],
-    "EXTRA_TEXT": [
-      " NL Transfer the enemy's Poison to another random enemy.",
-      "Poison"
-    ]
-  },
-  "${modID}:StaticMod": {
-    "TEXT": [
-      "Static ",
-      "",
-      "Reduces #yBlock by #b25%. NL #yChannels #b1 #yLightning whenever you take unblocked damage this turn."
-    ],
-    "EXTRA_TEXT": [
-      " NL Whenever you take unblocked attack damage this turn, Channel 1 Lightning."
-    ]
-  },
-  "${modID}:UnreliableMod": {
-    "TEXT": [
-      "Unreliable ",
-      "",
-      "Increases card values by #b50%. NL Discards #b1 random card when drawn."
-    ],
-    "EXTRA_TEXT": [
-      " NL Whenever you draw this card, discard 1 card at random."
-    ]
-  },
-  "${modID}:IrregularMod": {
-    "TEXT": [
-      "Irregular ",
-      "",
-      "Randomizes card cost and values."
-    ],
-    "EXTRA_TEXT": [
-    ]
-  },
-  "${modID}:ShiftingMod": {
-    "TEXT": [
-      "Shifting ",
-      "",
-      "Costs [E] more. NL Applies #yStrength down equal to unblocked damage dealt for one turn. NL Adds #yExhaust."
-    ],
-    "EXTRA_TEXT": [
-      " NL Enemy loses Strength this turn equal to unblocked damage. NL Exhaust.",
-      " NL Enemy loses Strength this turn equal to unblocked damage."
-    ]
-  },
-  "${modID}:ThirstyMod": {
-    "TEXT": [
-      "Thirsty ",
-      "",
-      "Removes the card from the deck after discarding #b2 potions."
-    ],
-    "EXTRA_TEXT": [
-      " NL After you discard %s potions, remove it from your deck.",
-      " NL After you discard %s potion, remove it from your deck."
-    ]
-  },
-  "${modID}:PeacefulMod": {
-    "TEXT": [
-      "Peaceful ",
-      "",
-      "Removes the card from the deck when it is #yUpgraded."
-    ],
-    "EXTRA_TEXT": [
-      " NL When you Upgrade this card, remove it from your deck instead."
-    ]
-  },
-  "${modID}:RecurringMod": {
-    "TEXT": [
-      "Recurring ",
-      "",
-      "Shuffles back into your draw pile if the card is in your hand at the end of your turn."
-    ],
-    "EXTRA_TEXT": [
-      "${modID}:Recur. NL "
-    ]
-  },
-  "${modID}:RhythmicMod": {
-    "TEXT": [
-      "Rhythmic ",
-      "",
-      "Adds a copy of the card to your hand at the start of next turn. NL Adds #yEthereal and #yExhaust."
-    ],
-    "EXTRA_TEXT": [
-      "Ethereal. NL ",
-      " NL Next turn, add a copy of this card to your hand. NL Exhaust."
-    ]
-  },
-  "${modID}:SturdyMod": {
-    "TEXT": [
-      "Sturdy ",
-      "",
-      "#yDexterity affects this card #b3 times."
-    ],
-    "EXTRA_TEXT": [
-      " NL Dexterity affects this card 3 times."
-    ]
-  },
-  "${modID}:BlightMod": {
-    "TEXT": [
-      "Blight ",
-      "",
-      "Reduces damage by #b33%. NL Applies #yDoom equal to unblocked damage."
-    ],
-    "EXTRA_TEXT": [
-      " NL Apply ${modID}:Doom equal to unblocked damage dealt."
-    ]
-  },
-  "${modID}:NeuroMod": {
-    "TEXT": [
-      "Neuro ",
-      "",
-      "Costs [E] less. NL Gains #b3 #yDoom at the start of your turn."
-    ],
-    "EXTRA_TEXT": [
-      " NL At the start of your turn, apply 3 ${modID}:Doom to yourself."
-    ]
-  },
-  "${modID}:SculptingMod": {
-    "TEXT": [
-      "Sculpting ",
-      "",
-      "Adds #yEthereal to a card."
-    ],
-    "EXTRA_TEXT": [
-      " NL Add Ethereal to a card in your hand."
-    ]
-  },
-  "${modID}:TransfiguredMod": {
-    "TEXT": [
-      "Transfigured ",
-      "",
-      "Costs [E] more. NL Plays twice."
-    ],
-    "EXTRA_TEXT": [
-      " NL cardaugments:Echo."
-    ]
-  },
-  "${modID}:CruelMod": {
-    "TEXT": [
-      "Cruel ",
-      "",
-      "Increases damage by #b25% if the enemy is #yVulnerable."
-    ],
-    "EXTRA_TEXT": [
-      " NL Deals 25% more damage to Vulnerable enemies.",
-      "Vulnerable"
-    ]
-  },
-  "${modID}:CinderyMod": {
-    "TEXT": [
-      "Cindery ",
-      "",
-      "Increases damage and #yBlock by #b20%. NL #yExhausts the top card of your draw pile."
-    ],
-    "EXTRA_TEXT": [
-      " NL Exhaust the top card of your draw pile."
-    ]
-  },
-  "${modID}:NegativeMod": {
-    "TEXT": [
-      "Negative ",
-      "",
-      "Applies #b4 #yDoom to ALL enemies."
-    ],
-    "EXTRA_TEXT": [
-      " NL Apply 4 ${modID}:Doom to ALL enemies."
-    ]
-  },
-  "${modID}:ConstrictiveMod": {
-    "TEXT": [
-      "Constrictive ",
-      "",
-      "Reduces damage by #b67%. NL Applies #yConstricted equal to #b33% damage. NL Adds #yExhaust."
-    ],
-    "EXTRA_TEXT": [
-      " NL At the end of the enemy's turn, they take %s damage. NL Exhaust.",
-      " NL At the end of the enemy's turn, they take %s damage."
-    ]
-  },
-  "${modID}:DrainingMod": {
-    "TEXT": [
-      "Draining ",
-      "",
-      "Reduces damage and #yBlock by #b20%. NL #yUpgrades #b1 random card in your discard pile for the rest of combat."
-    ],
-    "EXTRA_TEXT": [
-      " NL Upgrade 1 random card in your discard pile for the rest of combat."
-    ]
-  },
-  "${modID}:EternalMod": {
-    "TEXT": [
-      "Eternal ",
-      "",
-      "Reduces #yBlock by #b67%. NL Gains #yPlating equal to #b33% #yBlock. NL Adds #yExhaust."
-    ],
-    "EXTRA_TEXT": [
-      " NL Gain %s ${modID}:Plating. NL Exhaust.",
-      " NL Gain %s ${modID}:Plating."
-    ]
-  },
-  "${modID}:EndMod": {
-    "TEXT": [
-      "",
-      "'s End",
-      "Increases card values by #b200%. NL #yUnplayable unless your exhaust pile has #b3 or more cards."
-    ],
-    "EXTRA_TEXT": [
-      " NL Can only be played if you have 3 or more cards in your Exhaust pile.",
-      "I don't have enough cards in exhaust pile."
-    ]
-  },
-  "${modID}:DeathbringingMod": {
-    "TEXT": [
-      "Deathbringing ",
-      "",
-      "Costs [E] more. NL Applies #b6(9) #yDoom and #b1 #yWeak to ALL enemies."
-    ],
-    "EXTRA_TEXT": [
-      " NL Apply %s ${modID}:Doom and 1 Weak to ALL enemies."
-    ]
-  },
-  "${modID}:PagedMod": {
-    "TEXT": [
-      "Paged ",
-      "",
-      "Adds #yEthereal. NL Draws #b1 card when drawn."
-    ],
-    "EXTRA_TEXT": [
-      "Ethereal. NL ",
-      " NL Whenever you draw this card, draw 1 card."
-    ]
-  },
-  "${modID}:SpitefulMod": {
-    "TEXT": [
-      "Spiteful ",
-      "",
-      "Draws #b1 card if you lost HP this turn."
-    ],
-    "EXTRA_TEXT": [
-      " NL If you lost HP this turn, draw 1 card."
-    ]
-  },
-  "${modID}:SeekingMod": {
-    "TEXT": [
-      "Seeking ",
-      "",
-      "Reduces damage and #yBlock by #b50%. NL Puts #b1 of #b3 cards in your draw pile to your hand."
-    ],
-    "EXTRA_TEXT": [
-      " NL Choose 1 of 3 cards in your draw pile to add to your hand."
-    ]
-  },
-  "${modID}:DyingMod": {
-    "TEXT": [
-      "Dying ",
-      "",
-      "Reduces #yBlock by #b25%. NL Gains #yBlock #b2 additional times if you applied #yDoom this turn."
-    ],
-    "EXTRA_TEXT": [
-      " NL If you applied ${modID}:Doom this turn, gain !B! Block 2 additional times.",
-      "Doom"
-    ]
-  },
-  "${modID}:PackedMod": {
-    "TEXT": [
-      "Packed ",
-      "",
-      "Also adds the other cards in the card reward to your deck upon pickup."
-    ],
-    "EXTRA_TEXT": [
-      " NL Upon pickup, also obtain the other cards in the card reward."
-    ]
-  },
-  "${modID}:SunlitMod": {
-    "TEXT": [
-      "Sunlit ",
-      "",
-      "Gains [E] [E] if you shuffled your draw pile 3 times this combat."
-    ],
-    "EXTRA_TEXT": [
-      " NL If you shuffled your draw pile 3 times this combat, gain [E] [E] .",
-      " (%d shuffle.)",
-      " (%d shuffles.)"
-    ]
-  },
-  "${modID}:InsertableMod": {
-    "TEXT": [
-      "Insertable ",
-      "",
-      "Gains #b1 Orb slot on the second turn."
-    ],
-    "EXTRA_TEXT": [
-      " NL If this is your second turn, gain 1 Orb slot."
-    ]
-  },
-  "${modID}:ConfusingMod": {
-    "TEXT": [
-      "Confusing ",
-      "",
-      "Randomizes the costs of cards in hand."
-    ],
-    "EXTRA_TEXT": [
-      " NL Randomize the costs of cards in your hand."
-    ]
-  },
-  "${modID}:AdaptiveMod": {
-    "TEXT": [
-      "Adaptive ",
-      "",
-      "Reduces damage or #yBlock by #b25%. NL Puts #b1 random card of a different type from discard pile into hand and #yUpgrades it."
-    ],
-    "EXTRA_TEXT": [
-      " NL Put a random Skill from your discard pile into your hand and Upgrade it.",
-      " NL Put a random Attack from your discard pile into your hand and Upgrade it."
-    ]
-  },
-  "${modID}:SwipeMod": {
-    "TEXT": [
-      "",
-      " and Swipe",
-      "Reduces damage by #b25%. NL Deals damage an additional time if the enemy has #yDoom."
-    ],
-    "EXTRA_TEXT": [
-      " NL If the enemy has ${modID}:Doom, deal !D! damage again.",
-      "Doom"
     ]
   }
 }

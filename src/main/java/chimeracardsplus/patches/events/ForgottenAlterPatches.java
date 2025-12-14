@@ -30,9 +30,9 @@ public class ForgottenAlterPatches {
 
     private static int calcHeal() {
         if (AbstractDungeon.ascensionLevel < 15) {
-            return (int) (AbstractDungeon.player.maxHealth * 0.25F);
+            return (int) (AbstractDungeon.player.maxHealth * 0.30F);
         }
-        return (int) (AbstractDungeon.player.maxHealth * 0.15F);
+        return (int) (AbstractDungeon.player.maxHealth * 0.24F);
     }
 
     @SpirePatch(

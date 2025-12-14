@@ -91,7 +91,7 @@ public class AuraMod extends AbstractAugmentPlus {
         }
         AbstractMonster target = null;
         if (targetsEnemy(card)) {
-            target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+            target = AbstractDungeon.getRandomMonster();
         }
         copy.calculateCardDamage(target);
         copy.use(AbstractDungeon.player, target);

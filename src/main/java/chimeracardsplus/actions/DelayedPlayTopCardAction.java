@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 public class DelayedPlayTopCardAction extends AbstractGameAction {
     @Override
     public void update() {
-        addToBot(new PlayTopCardAction(AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng), true));
+        addToBot(new PlayTopCardAction(AbstractDungeon.getRandomMonster(), true));
         isDone = true;
     }
 }

@@ -94,7 +94,7 @@ public class PackedMod extends AbstractAugmentPlus {
                     continue;
                 }
                 PackedMod mod = (PackedMod) modifiers.get(0);
-                mod.rewardCards = __result.stream().filter(card -> !c.equals(card)).collect(Collectors.toCollection(ArrayList::new));
+                mod.rewardCards = __result.stream().filter(card -> !c.equals(card)).collect(Collectors.toCollection(() -> new ArrayList<>(Constants.DEFAULT_LIST_SIZE)));
             }
             return __result;
         }

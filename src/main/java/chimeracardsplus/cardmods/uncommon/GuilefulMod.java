@@ -6,7 +6,6 @@ import chimeracardsplus.actions.PlayDiscardedCardAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
 public class GuilefulMod extends AbstractAugmentPlus {
@@ -43,7 +42,7 @@ public class GuilefulMod extends AbstractAugmentPlus {
 
     @Override
     public void onManualDiscard(AbstractCard card) {
-        addToBot(new PlayDiscardedCardAction(card, AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng)));
+        addToBot(new PlayDiscardedCardAction(card));
     }
 
     @Override

@@ -50,6 +50,11 @@
       "选择一张牌放入你的手牌。"
     ]
   },
+  "${modID}:FlexibleAction": {
+    "TEXT": [
+      "减少1耗能"
+    ]
+  },
   "${modID}:FlowAction": {
     "TEXT": [
       "丢弃"
