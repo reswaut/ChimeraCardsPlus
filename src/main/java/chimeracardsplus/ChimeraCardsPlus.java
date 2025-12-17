@@ -13,6 +13,12 @@ import chimeracardsplus.helpers.GameActionInfoManager;
 import chimeracardsplus.helpers.ModConfigs;
 import chimeracardsplus.helpers.ResourceLoader;
 import chimeracardsplus.helpers.SpecialNamingRules;
+import chimeracardsplus.rewards.AddModifierReward;
+import chimeracardsplus.rewards.ModificationRewardsGenerator;
+import chimeracardsplus.rewards.ModificationRewardsGenerator.RewardTypeEnum;
+import chimeracardsplus.rewards.RemoveModifierReward;
+import chimeracardsplus.rewards.TransferModifierReward;
+import chimeracardsplus.screens.ModificationRewardScreen;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -38,6 +44,7 @@ public class ChimeraCardsPlus implements
     public static final ResourceLoader resourceLoader = new ResourceLoader();
     public static final SpecialNamingRules specialNamingRules = new SpecialNamingRules();
     public static final GameActionInfoManager gameActionInfoManager = new GameActionInfoManager();
+    public static final ModificationRewardsGenerator modificationRewardsGenerator = new ModificationRewardsGenerator();
 
     public static String makeID(String name) {
         return MOD_ID + ':' + name;
@@ -93,12 +100,24 @@ public class ChimeraCardsPlus implements
         logger.info("-- {} total modifiers", total);
     }
 
+    public static void registerRewards() {
+        BaseMod.registerCustomReward(RewardTypeEnum.ADD_MODIFIER, AddModifierReward::onLoad, AddModifierReward::onSave);
+        BaseMod.registerCustomReward(RewardTypeEnum.REMOVE_MODIFIER, RemoveModifierReward::onLoad, RemoveModifierReward::onSave);
+        BaseMod.registerCustomReward(RewardTypeEnum.TRANSFER_MODIFIER, TransferModifierReward::onLoad, TransferModifierReward::onSave);
+    }
+
     @Override
     public void receivePostInitialize() {
         logger.info("Initialization started.");
         configs.setupModPanel(resourceLoader.getModTexture("badge.png"));
-        logger.info("- Mod panel setup complete.");
+        logger.info("- Setup mod panel.");
         registerAugments();
+        logger.info("- Registered modifiers.");
+        BaseMod.addCustomScreen(new ModificationRewardScreen());
+        logger.info("- Registered chimera modification screen.");
+        registerRewards();
+        logger.info("- Registered chimera modification rewards.");
+        BaseMod.addSaveField(makeID("ModificationRollChance"), modificationRewardsGenerator);
         logger.info("Initialization complete.");
     }
 

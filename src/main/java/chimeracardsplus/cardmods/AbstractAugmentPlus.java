@@ -1,6 +1,7 @@
 package chimeracardsplus.cardmods;
 
 import CardAugments.cardmods.AbstractAugment;
+import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.CardModifierPatches.CardModifierOnCreateDescription;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -31,6 +32,20 @@ public abstract class AbstractAugmentPlus extends AbstractAugment {
             }
         }
         return ret;
+    }
+
+    public static AbstractCard safeCopyEquivalentCardWithoutModifier(AbstractCard card, AbstractCardModifier modifier) {
+        AbstractCard copy = card.makeCopy();
+        for (int i = 0; i < card.timesUpgraded; ++i) {
+            copy.upgrade();
+        }
+        copy.misc = card.misc;
+        for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
+            if (!modifier.equals(mod)) {
+                CardModifierManager.addModifier(copy, mod.makeCopy());
+            }
+        }
+        return copy;
     }
 
     public static boolean hasCardWithKeywordInDeck(AbstractPlayer p, CharSequence keyword) {

@@ -16,8 +16,10 @@
     </properties>
 
     <name>Chimera Cards+</name>
-    <version>0.14.5</version>
-    <description>Adds 280+ Chimera Cards modifiers.\n增加 280+ 奇美拉卡牌修改。</description>
+    <version>0.15.1</version>
+    <description>Adds many Chimera Cards modifiers, as well as new ways to apply them to your
+        cards!\n增加大量奇美拉卡牌修改，以及将它们添加到你的卡牌上的新方法！
+    </description>
 
     <groupId>chimeracardsplus</groupId>
     <artifactId>chimeracardsplus</artifactId>

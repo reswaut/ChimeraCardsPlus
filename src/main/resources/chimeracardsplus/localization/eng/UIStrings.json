@@ -11,7 +11,16 @@
       "Enable Special Naming",
       "Find cards with special names!",
       "Whitelist Mode",
-      "Enable only selected Modifiers instead of disabling them. (Select in Modifiers Screen.)"
+      "Enable only selected Modifiers instead of disabling them. (Select in Modifiers Screen.)",
+      "Card Modification Rewards Rate",
+      "Frequent",
+      "Card modification rewards always attempt to drop after combat. NL #rNOT guaranteed because drop attempts may fail.",
+      "Dynamic",
+      "Card modification rewards sometimes drop after combat, similar to potion drops.",
+      "Never",
+      "Card modification rewards never drop.",
+      "Link Card Modification Rewards",
+      "Attach each card modification reward to a card reward, so obtaining one removes the other."
     ],
     "EXTRA_TEXT": [
       "${project.name}",
@@ -73,6 +82,12 @@
   "${modID}:ShuffleCardToDrawAction": {
     "TEXT": [
       "Shuffle into Your Draw Pile"
+    ]
+  },
+  "${modID}:AbstractModificationReward": {
+    "TEXT": [
+      "Modify cards in your deck",
+      "Modify Cards"
     ]
   }
 }

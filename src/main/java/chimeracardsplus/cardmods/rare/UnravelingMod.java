@@ -54,7 +54,7 @@ public class UnravelingMod extends AbstractAugmentPlus {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.COMMON;
+        return AugmentRarity.RARE;
     }
 
     @Override
