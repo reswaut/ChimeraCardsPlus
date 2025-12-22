@@ -1,27 +1,19 @@
-package chimeracardsplus.cardmods.uncommon;
+package chimeracardsplus.cardmods.common;
 
 import basemod.abstracts.AbstractCardModifier;
-import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import chimeracardsplus.helpers.Constants;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.megacrit.cardcrawl.actions.defect.DecreaseMaxOrbAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.stream.Collectors;
-
-public class FadingMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(FadingMod.class.getSimpleName());
+public class ConsumingMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(ConsumingMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
@@ -36,22 +28,27 @@ public class FadingMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.rarity != CardRarity.BASIC && isNormalCard(abstractCard) && isCardRemovable(abstractCard, true);
+        return allowOrbMods() && cardCheck(abstractCard, c -> c.baseDamage >= 3 || c.baseBlock >= 3 || c.baseMagicNumber >= 3 && doesntDowngradeMagic());
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage > 0.0F ? damage * 2.0F : damage;
+        return damage > 0.0F ? damage * 4.0F / 3.0F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return block > 0.0F ? block * 2.0F : block;
+        return block > 0.0F ? block * 4.0F / 3.0F : block;
     }
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return modMagic ? magic * 2.0F : magic;
+        return modMagic ? magic * 4.0F / 3.0F : magic;
+    }
+
+    @Override
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        addToBot(new DecreaseMaxOrbAction(1));
     }
 
     @Override
@@ -76,12 +73,12 @@ public class FadingMod extends AbstractAugmentPlus {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.UNCOMMON;
+        return AugmentRarity.COMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new FadingMod();
+        return new ConsumingMod();
     }
 
     @Override
@@ -91,21 +88,6 @@ public class FadingMod extends AbstractAugmentPlus {
 
     @Override
     public AugmentBonusLevel getModBonusLevel() {
-        return AugmentBonusLevel.HEALING;
-    }
-
-    @SpirePatch(
-            clz = AbstractMonster.class,
-            method = "onBossVictoryLogic"
-    )
-    public static class RemoveFadingCardOnBossVictoryPatch {
-        @SpirePostfixPatch
-        public static void Postfix() {
-            Collection<AbstractCard> targetCards = AbstractDungeon.player.masterDeck.group.stream().filter(card -> CardModifierManager.hasModifier(card, ID) && isCardRemovable(card, false)).collect(Collectors.toCollection(() -> new ArrayList<>(Constants.DEFAULT_LIST_SIZE)));
-            for (AbstractCard card : targetCards) {
-                AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(card));
-                AbstractDungeon.player.masterDeck.removeCard(card);
-            }
-        }
+        return AugmentBonusLevel.NORMAL;
     }
 }

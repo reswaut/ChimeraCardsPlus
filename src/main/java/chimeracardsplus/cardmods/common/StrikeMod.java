@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
 public class StrikeMod extends AbstractAugmentPlus {
-    private static final String ID = ChimeraCardsPlus.makeID(StrikeMod.class.getSimpleName());
+    public static final String ID = ChimeraCardsPlus.makeID(StrikeMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] EXTRA_TEXT = uiStrings.EXTRA_TEXT;

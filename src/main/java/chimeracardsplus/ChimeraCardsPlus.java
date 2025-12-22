@@ -13,11 +13,9 @@ import chimeracardsplus.helpers.GameActionInfoManager;
 import chimeracardsplus.helpers.ModConfigs;
 import chimeracardsplus.helpers.ResourceLoader;
 import chimeracardsplus.helpers.SpecialNamingRules;
-import chimeracardsplus.rewards.AddModifierReward;
-import chimeracardsplus.rewards.ModificationRewardsGenerator;
-import chimeracardsplus.rewards.ModificationRewardsGenerator.RewardTypeEnum;
-import chimeracardsplus.rewards.RemoveModifierReward;
-import chimeracardsplus.rewards.TransferModifierReward;
+import chimeracardsplus.rewards.*;
+import chimeracardsplus.rewards.CardToModifierReward.Generator;
+import chimeracardsplus.rewards.ModificationRewardsManager.RewardTypeEnum;
 import chimeracardsplus.screens.ModificationRewardScreen;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.core.Settings;
@@ -44,7 +42,7 @@ public class ChimeraCardsPlus implements
     public static final ResourceLoader resourceLoader = new ResourceLoader();
     public static final SpecialNamingRules specialNamingRules = new SpecialNamingRules();
     public static final GameActionInfoManager gameActionInfoManager = new GameActionInfoManager();
-    public static final ModificationRewardsGenerator modificationRewardsGenerator = new ModificationRewardsGenerator();
+    public static final ModificationRewardsManager modificationRewardsManager = new ModificationRewardsManager();
 
     public static String makeID(String name) {
         return MOD_ID + ':' + name;
@@ -101,9 +99,14 @@ public class ChimeraCardsPlus implements
     }
 
     public static void registerRewards() {
-        BaseMod.registerCustomReward(RewardTypeEnum.ADD_MODIFIER, AddModifierReward::onLoad, AddModifierReward::onSave);
-        BaseMod.registerCustomReward(RewardTypeEnum.REMOVE_MODIFIER, RemoveModifierReward::onLoad, RemoveModifierReward::onSave);
-        BaseMod.registerCustomReward(RewardTypeEnum.TRANSFER_MODIFIER, TransferModifierReward::onLoad, TransferModifierReward::onSave);
+        modificationRewardsManager.registerModificationReward(new AddModifierReward.Generator());
+        modificationRewardsManager.registerModificationReward(new RemoveModifierReward.Generator());
+        modificationRewardsManager.registerModificationReward(new RemoveAllModifiersReward.Generator());
+        modificationRewardsManager.registerModificationReward(new TransferModifierReward.Generator());
+        modificationRewardsManager.registerModificationReward(new MergeModifiersReward.Generator());
+        modificationRewardsManager.registerModificationReward(new Generator());
+        BaseMod.registerCustomReward(RewardTypeEnum.CARD_MODIFICATION, modificationRewardsManager::onLoad, modificationRewardsManager::onSave);
+        BaseMod.addSaveField(makeID("ModificationRollChance"), modificationRewardsManager);
     }
 
     @Override
@@ -117,7 +120,6 @@ public class ChimeraCardsPlus implements
         logger.info("- Registered chimera modification screen.");
         registerRewards();
         logger.info("- Registered chimera modification rewards.");
-        BaseMod.addSaveField(makeID("ModificationRollChance"), modificationRewardsGenerator);
         logger.info("Initialization complete.");
     }
 

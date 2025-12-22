@@ -37,12 +37,16 @@ public class DeadMod extends AbstractAugmentPlus {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, CARD_TEXT[0]);
+        return insertAfterText(rawDescription, card.upgraded ? CARD_TEXT[1] : CARD_TEXT[0]);
     }
 
     @Override
     public void onExhausted(AbstractCard card) {
-        addToBot(new MakeTempCardInHandAction(AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy(), false));
+        AbstractCard c = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
+        if (card.upgraded && c.canUpgrade()) {
+            c.upgrade();
+        }
+        addToBot(new MakeTempCardInHandAction(c, false));
     }
 
     @Override

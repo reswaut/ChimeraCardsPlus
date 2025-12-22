@@ -7,7 +7,6 @@ import com.evacipated.cardcrawl.modthespire.lib.Matcher.MethodCallMatcher;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
 import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
 import javassist.CannotCompileException;
@@ -24,7 +23,7 @@ public class AddModificationRewardsPatches {
         )
         public static void Insert(CombatRewardScreen __instance) {
             if (AbstractDungeon.getCurrRoom() instanceof MonsterRoom) {
-                ChimeraCardsPlus.modificationRewardsGenerator.addModificationRewards(__instance);
+                ChimeraCardsPlus.modificationRewardsManager.addRewardToRewardScreen(__instance);
             }
         }
 
@@ -38,14 +37,20 @@ public class AddModificationRewardsPatches {
     }
 
     @SpirePatch(
-            clz = CardRewardScreen.class,
-            method = "takeReward"
+            clz = CombatRewardScreen.class,
+            method = "rewardViewUpdate"
     )
     public static class RemoveLinkedModificationReward {
         @SpirePrefixPatch
-        public static void Prefix(CardRewardScreen __instance) {
-            if (__instance.rItem != null && __instance.rItem.relicLink instanceof AbstractModificationReward) {
-                AbstractDungeon.combatRewardScreen.rewards.remove(__instance.rItem.relicLink);
+        public static void Prefix(CombatRewardScreen __instance) {
+            boolean[] removed = {false};
+            __instance.rewards.removeIf(item -> {
+                boolean removeThis = item instanceof AbstractModificationReward && ((AbstractModificationReward) item).isInvalid();
+                removed[0] = removed[0] || removeThis;
+                return removeThis;
+            });
+            if (removed[0]) {
+                __instance.positionRewards();
             }
         }
     }

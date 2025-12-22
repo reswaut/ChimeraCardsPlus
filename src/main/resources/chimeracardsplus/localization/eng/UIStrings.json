@@ -14,7 +14,7 @@
       "Enable only selected Modifiers instead of disabling them. (Select in Modifiers Screen.)",
       "Card Modification Rewards Rate",
       "Frequent",
-      "Card modification rewards always attempt to drop after combat. NL #rNOT guaranteed because drop attempts may fail.",
+      "Card modification rewards always attempt to drop after combat. NL However, the rewards are #rNOT guaranteed because roll attempts may fail.",
       "Dynamic",
       "Card modification rewards sometimes drop after combat, similar to potion drops.",
       "Never",

@@ -17,7 +17,7 @@ public class SmilingMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return isNormalCard(abstractCard) && abstractCard.rarity != CardRarity.BASIC && isCardRemovable(abstractCard, false);
+        return isNormalCard(abstractCard) && abstractCard.rarity != CardRarity.BASIC && isCardRemovable(abstractCard, true);
     }
 
     @Override

@@ -22,7 +22,7 @@ public class UnawakenedMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return isCardRemovable(abstractCard, false);
+        return isCardRemovable(abstractCard, true);
     }
 
     @Override

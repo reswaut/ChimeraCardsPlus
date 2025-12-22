@@ -11,12 +11,12 @@ import com.megacrit.cardcrawl.screens.options.DropdownMenuListener;
 
 import java.util.ArrayList;
 
-public class LabeledDropdownMenu implements IUIElement {
+public class TooltipDropdownMenu implements IUIElement {
     private final DropdownMenu dropdownMenu;
     private final ArrayList<String> descriptions;
     private float x, y;
 
-    public LabeledDropdownMenu(DropdownMenuListener listener, ArrayList<String> options, ArrayList<String> descriptions, float x, float y, int defaultRow) {
+    public TooltipDropdownMenu(DropdownMenuListener listener, ArrayList<String> options, ArrayList<String> descriptions, float x, float y, int defaultRow) {
         dropdownMenu = new DropdownMenu(listener, options, FontHelper.tipBodyFont, Settings.CREAM_COLOR);
         dropdownMenu.setSelectedIndex(defaultRow);
         this.descriptions = new ArrayList<>(descriptions);

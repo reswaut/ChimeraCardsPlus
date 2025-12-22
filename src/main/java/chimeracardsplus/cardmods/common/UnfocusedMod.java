@@ -30,7 +30,7 @@ public class UnfocusedMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return allowOrbMods() && cardCheck(abstractCard, c -> c.baseDamage >= 4 || c.baseBlock >= 4 || c.baseMagicNumber >= 4 && doesntDowngradeMagic());
+        return allowOrbMods() && cardCheck(abstractCard, c -> c.baseDamage >= 2 || c.baseBlock >= 2 || c.baseMagicNumber >= 2 && doesntDowngradeMagic());
     }
 
     @Override

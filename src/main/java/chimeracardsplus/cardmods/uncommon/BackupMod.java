@@ -5,6 +5,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
@@ -16,13 +17,15 @@ public class BackupMod extends AbstractAugmentPlus {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        card.cost += 1;
-        card.costForTurn = card.cost;
+        if (card.cost >= 0) {
+            card.cost += 1;
+            card.costForTurn = card.cost;
+        }
     }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= 0 && doesntUpgradeCost());
+        return cardCheck(abstractCard, c -> (c.cost >= 0 || c.type == CardType.STATUS) && doesntUpgradeCost());
     }
 
     @Override

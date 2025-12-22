@@ -26,7 +26,7 @@ public class AuraMod extends AbstractAugmentPlus {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private int tokenDamage, tokenBlock;
+    private int tokenDamage = -1, tokenBlock = -1;
     private boolean token;
     private boolean modMagic = false;
 

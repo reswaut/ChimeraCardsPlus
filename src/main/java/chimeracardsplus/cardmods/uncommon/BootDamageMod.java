@@ -10,8 +10,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class BootMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(BootMod.class.getSimpleName());
+public class BootDamageMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(BootDamageMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
@@ -48,7 +48,7 @@ public class BootMod extends AbstractAugmentPlus {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new BootMod();
+        return new BootDamageMod();
     }
 
     @Override

@@ -35,17 +35,42 @@ public abstract class AbstractAugmentPlus extends AbstractAugment {
     }
 
     public static AbstractCard safeCopyEquivalentCardWithoutModifier(AbstractCard card, AbstractCardModifier modifier) {
-        AbstractCard copy = card.makeCopy();
+        AbstractCard cardCopy = card.makeCopy();
         for (int i = 0; i < card.timesUpgraded; ++i) {
-            copy.upgrade();
+            cardCopy.upgrade();
         }
-        copy.misc = card.misc;
+        cardCopy.misc = card.misc;
         for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
             if (!modifier.equals(mod)) {
-                CardModifierManager.addModifier(copy, mod.makeCopy());
+                AbstractCardModifier modCopy = mod.makeCopy();
+                if (!modCopy.shouldApply(cardCopy)) {
+                    continue;
+                }
+                if (modCopy instanceof AbstractAugment && !((AbstractAugment) modCopy).canApplyTo(card)) {
+                    continue;
+                }
+                CardModifierManager.addModifier(cardCopy, modCopy);
             }
         }
-        return copy;
+        return cardCopy;
+    }
+
+    public static AbstractCard safeCopyEquivalentCardWithoutAugments(AbstractCard card) {
+        AbstractCard cardCopy = card.makeCopy();
+        for (int i = 0; i < card.timesUpgraded; ++i) {
+            cardCopy.upgrade();
+        }
+        cardCopy.misc = card.misc;
+        for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
+            if (!(mod instanceof AbstractAugment)) {
+                AbstractCardModifier modCopy = mod.makeCopy();
+                if (!modCopy.shouldApply(cardCopy)) {
+                    continue;
+                }
+                CardModifierManager.addModifier(cardCopy, modCopy);
+            }
+        }
+        return cardCopy;
     }
 
     public static boolean hasCardWithKeywordInDeck(AbstractPlayer p, CharSequence keyword) {
@@ -91,10 +116,6 @@ public abstract class AbstractAugmentPlus extends AbstractAugment {
     }
 
     public boolean onShuffle(AbstractCard card, CardGroup group) {
-        return false;
-    }
-
-    public boolean preDeath(AbstractCard card) {
         return false;
     }
 

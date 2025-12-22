@@ -2,7 +2,7 @@ package chimeracardsplus.helpers;
 
 import basemod.*;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.uis.LabeledDropdownMenu;
+import chimeracardsplus.uis.TooltipDropdownMenu;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -155,7 +155,7 @@ public class ModConfigs {
         settingsPanel.addUIElement(rollMethodLabel);
 
         float rollMethodDropdownOffset = FontHelper.getWidth(FontHelper.charDescFont, TEXT[11], 1.0F / Settings.scale) + 20.0F;
-        IUIElement rollMethodDropdown = new LabeledDropdownMenu((dropdownMenu, i, s) -> {
+        IUIElement rollMethodDropdown = new TooltipDropdownMenu((dropdownMenu, i, s) -> {
             rollMethod = ModificationRewardRollMethod.values()[i];
             config.setInt(ROLL_METHOD_KEY, i);
             saveConfig();

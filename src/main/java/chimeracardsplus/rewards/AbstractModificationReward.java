@@ -8,6 +8,7 @@ import basemod.abstracts.CustomReward;
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.CardModifierPatches;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.helpers.Constants;
+import chimeracardsplus.patches.AbstractAugmentPlusPatches;
 import chimeracardsplus.screens.ModificationRewardScreen.CurrentScreenEnum;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.google.gson.Gson;
@@ -22,7 +23,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon.CurrentScreen;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 
@@ -31,6 +34,7 @@ import java.util.ArrayList;
 
 public abstract class AbstractModificationReward extends CustomReward {
     protected static final Gson gson = new Gson();
+    protected static final CardActionAnalyzer cardActionAnalyzer = new CardActionAnalyzer();
     private static final String ID = ChimeraCardsPlus.makeID(AbstractModificationReward.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     public static final String[] TEXT = uiStrings.TEXT;
@@ -65,6 +69,18 @@ public abstract class AbstractModificationReward extends CustomReward {
         return (AbstractAugment) cardModifier;
     }
 
+    protected static <T> T loadSaveFromReward(RewardSave rewardSave, Class<T> tClass) {
+        T save;
+        try {
+            save = gson.fromJson(rewardSave.id, tClass);
+        } catch (JsonSyntaxException e) {
+            ChimeraCardsPlus.logger.error("Unable to load reward save {} to save type {}", rewardSave, tClass.getName());
+            return null;
+        }
+        return save;
+    }
+
+
     protected static JsonElement modifierToJsonTree(AbstractAugment modifier) {
         return modifierGson.toJsonTree(modifier, modifierType);
     }
@@ -74,11 +90,12 @@ public abstract class AbstractModificationReward extends CustomReward {
     public void removeCard(AbstractCard oldCard) {
         if (sourceCards.contains(oldCard)) {
             sourceCards.clear();
+            resultCards.clear();
         }
     }
 
     public boolean isInvalid() {
-        return sourceCards.isEmpty();
+        return sourceCards.isEmpty() || relicLink != null && !AbstractDungeon.combatRewardScreen.rewards.contains(relicLink);
     }
 
     public void takeReward() {
@@ -106,7 +123,15 @@ public abstract class AbstractModificationReward extends CustomReward {
             }
         }
         for (int i = replaceSize; i < resultSize; ++i) {
-            AbstractDungeon.player.masterDeck.group.add(resultCards.get(i));
+            AbstractCard card = resultCards.get(i);
+            for (AbstractRelic r : AbstractDungeon.player.relics) {
+                r.onObtainCard(card);
+            }
+            AbstractAugmentPlusPatches.onObtainCard(card);
+            AbstractDungeon.player.masterDeck.addToTop(card);
+            for (AbstractRelic r : AbstractDungeon.player.relics) {
+                r.onMasterDeckChange();
+            }
         }
         for (int i = replaceSize; i < sourceSize; ++i) {
             AbstractCard sourceCard = sourceCards.get(i);
@@ -116,13 +141,6 @@ public abstract class AbstractModificationReward extends CustomReward {
                     ((AbstractModificationReward) item).removeCard(sourceCard);
                 }
             }
-        }
-
-        AbstractDungeon.combatRewardScreen.rewards.removeIf(item -> item instanceof AbstractModificationReward && ((AbstractModificationReward) item).isInvalid());
-        AbstractDungeon.combatRewardScreen.positionRewards();
-        if (AbstractDungeon.combatRewardScreen.rewards.isEmpty()) {
-            AbstractDungeon.combatRewardScreen.hasTakenAll = true;
-            AbstractDungeon.overlayMenu.proceedButton.show();
         }
 
         float padX = AbstractCard.IMG_WIDTH + 40.0F * Settings.scale;
@@ -148,5 +166,17 @@ public abstract class AbstractModificationReward extends CustomReward {
         if (relicLink != null) {
             ReflectionHacks.privateMethod(RewardItem.class, "renderRelicLink", SpriteBatch.class).invoke(this, sb);
         }
+    }
+
+    public interface AbstractRewardGenerator<T extends AbstractModificationReward> {
+        long getGlobalWeight();
+
+        T generate();
+
+        T onLoad(RewardSave rewardSave);
+
+        RewardSave onSave(AbstractModificationReward customReward, int amount);
+
+        Class<T> getRewardClass();
     }
 }

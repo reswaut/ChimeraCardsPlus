@@ -221,7 +221,7 @@
       " NL Lose 1 HP. NL Exhaust."
     ]
   },
-  "${modID}:BootMod": {
+  "${modID}:BootDamageMod": {
     "TEXT": [
       "",
       "'s Boot",
@@ -603,10 +603,11 @@
     "TEXT": [
       "Dead ",
       "",
-      "Adds a random card into your hand when #yExhausted."
+      "Adds a random card into your hand when #yExhausted. #yUpgrades that card when #yUpgraded."
     ],
     "EXTRA_TEXT": [
-      " NL If this card is Exhausted, add a random card into your hand."
+      " NL If this card is Exhausted, add a random card into your hand.",
+      " NL If this card is Exhausted, add a random Upgraded card into your hand."
     ]
   },
   "${modID}:DeathbringingMod": {
@@ -2174,10 +2175,11 @@
     "TEXT": [
       "Replaceable ",
       "",
-      "Adds a random card into your hand when discarded."
+      "Adds a random card into your hand when discarded. #yUpgrades that card when #yUpgraded."
     ],
     "EXTRA_TEXT": [
       " NL If this card is discarded from your hand, add a random card into your hand.",
+      " NL If this card is discarded from your hand, add a random Upgraded card into your hand.",
       "discard"
     ]
   },
@@ -3035,6 +3037,16 @@
     ],
     "EXTRA_TEXT": [
       " NL Your next Attack deals %s additional damage."
+    ]
+  },
+  "${modID}:ConsumingMod": {
+    "TEXT": [
+      "Consuming ",
+      "",
+      "Increases card values by #b33%. NL Loses #b1 Orb slot."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose 1 Orb slot."
     ]
   }
 }

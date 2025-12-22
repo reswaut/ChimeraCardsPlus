@@ -27,7 +27,7 @@ public class ParasiticMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> ((c.baseDamage >= 5 || c.baseBlock >= 5 || c.baseMagicNumber >= 5 && doesntDowngradeMagic()) && isNormalCard(c) || c.type == CardType.CURSE) && isCardRemovable(c, false));
+        return cardCheck(abstractCard, c -> ((c.baseDamage >= 5 || c.baseBlock >= 5 || c.baseMagicNumber >= 5 && doesntDowngradeMagic()) && isNormalCard(c) || c.type == CardType.CURSE) && isCardRemovable(c, true));
     }
 
     @Override

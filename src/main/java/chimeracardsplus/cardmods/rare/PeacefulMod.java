@@ -21,7 +21,7 @@ public class PeacefulMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.type == CardType.CURSE && doesntOverride(abstractCard, "canUpgrade") && !(abstractCard instanceof BranchingUpgradesCard) && !(abstractCard instanceof MultiUpgradeCard) && isCardRemovable(abstractCard, false);
+        return abstractCard.type == CardType.CURSE && doesntOverride(abstractCard, "canUpgrade") && !(abstractCard instanceof BranchingUpgradesCard) && !(abstractCard instanceof MultiUpgradeCard) && isCardRemovable(abstractCard, true);
     }
 
     @Override

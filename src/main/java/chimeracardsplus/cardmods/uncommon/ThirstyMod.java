@@ -33,7 +33,7 @@ public class ThirstyMod extends AbstractAugmentPlus implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.type == CardType.CURSE && isCardRemovable(abstractCard, false);
+        return abstractCard.type == CardType.CURSE && isCardRemovable(abstractCard, true);
     }
 
     @Override
