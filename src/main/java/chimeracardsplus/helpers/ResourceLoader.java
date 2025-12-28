@@ -1,12 +1,15 @@
 package chimeracardsplus.helpers;
 
 import basemod.BaseMod;
+import basemod.interfaces.EditKeywordsSubscriber;
+import basemod.interfaces.EditStringsSubscriber;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
+import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -17,12 +20,19 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
-public class ResourceLoader {
+@SpireInitializer
+public class ResourceLoader implements
+        EditKeywordsSubscriber,
+        EditStringsSubscriber {
     private static final String DEFAULT_LANGUAGE = "eng";
     private static final String RESOURCE_FOLDER = "chimeracardsplus";
     private final Gson gson = new Gson();
-    private final HashMap<String, Texture> textures = new HashMap<>(Constants.EXPECTED_TEXTURES);
+    private final Map<String, Texture> textures = new HashMap<>(Constants.EXPECTED_TEXTURES);
+
+    public static void initialize() {
+    }
 
     private static String getLangString() {
         return Settings.language.name().toLowerCase(Locale.getDefault());
@@ -44,7 +54,7 @@ public class ResourceLoader {
         Texture texture = textures.get(imagePath);
         if (texture == null) {
             try {
-                texture = loadTexture(imagePath, true);
+                texture = loadTexture(imagePath);
             } catch (GdxRuntimeException e) {
                 ChimeraCardsPlus.logger.info("Failed to find texture {}", imagePath, e);
                 return null;
@@ -53,25 +63,32 @@ public class ResourceLoader {
         return texture;
     }
 
-    private Texture loadTexture(String filePath, boolean linearFilter) {
+    private Texture loadTexture(String filePath) {
         Texture texture = new Texture(filePath);
-        if (linearFilter) {
-            texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-        } else {
-            texture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-        }
+        texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
         ChimeraCardsPlus.logger.info("Loaded texture {}", filePath);
         textures.put(filePath, texture);
         return texture;
     }
 
-    public void loadStrings() {
-        try {
-            loadStrings(getLangString());
-        } catch (GdxRuntimeException e) {
-            ChimeraCardsPlus.logger.error("Failed to load strings for language {}, fallback to default language {} instead.", getLangString(), DEFAULT_LANGUAGE, e);
-            loadStrings(DEFAULT_LANGUAGE);
+    private void loadKeywords(String lang) {
+        Keyword[] keywords = gson.fromJson(Gdx.files.internal(getLocalizationPath(lang, "KeywordStrings.json")).readString(String.valueOf(StandardCharsets.UTF_8)), Keyword[].class);
+        if (keywords != null) {
+            for (Keyword keyword : keywords) {
+                BaseMod.addKeyword(ChimeraCardsPlus.MOD_ID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+            }
         }
+    }
+
+    @Override
+    public void receiveEditKeywords() {
+        try {
+            loadKeywords(getLangString());
+        } catch (GdxRuntimeException e) {
+            ChimeraCardsPlus.logger.error("Failed to load keywords for language {}, fallback to default language {} instead.", getLangString(), DEFAULT_LANGUAGE, e);
+            loadKeywords(DEFAULT_LANGUAGE);
+        }
+        ChimeraCardsPlus.logger.info("Loaded keywords.");
     }
 
     private void loadStrings(String lang) {
@@ -88,21 +105,14 @@ public class ResourceLoader {
         ChimeraCardsPlus.specialNamingRules.addRules(gson.fromJson(Gdx.files.internal(getLocalizationPath(lang, "SpecialNamingRules.json")).readString(String.valueOf(StandardCharsets.UTF_8)), SpecialNamingRules.class));
     }
 
-    public void loadKeywords() {
+    @Override
+    public void receiveEditStrings() {
         try {
-            loadKeywords(getLangString());
+            loadStrings(getLangString());
         } catch (GdxRuntimeException e) {
-            ChimeraCardsPlus.logger.error("Failed to load keywords for language {}, fallback to default language {} instead.", getLangString(), DEFAULT_LANGUAGE, e);
-            loadKeywords(DEFAULT_LANGUAGE);
+            ChimeraCardsPlus.logger.error("Failed to load strings for language {}, fallback to default language {} instead.", getLangString(), DEFAULT_LANGUAGE, e);
+            loadStrings(DEFAULT_LANGUAGE);
         }
-    }
-
-    private void loadKeywords(String lang) {
-        Keyword[] keywords = gson.fromJson(Gdx.files.internal(getLocalizationPath(lang, "KeywordStrings.json")).readString(String.valueOf(StandardCharsets.UTF_8)), Keyword[].class);
-        if (keywords != null) {
-            for (Keyword keyword : keywords) {
-                BaseMod.addKeyword(ChimeraCardsPlus.MOD_ID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
-            }
-        }
+        ChimeraCardsPlus.logger.info("Loaded localization strings.");
     }
 }

@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class AddModifierReward extends AbstractModificationReward {
+    private static final AbstractRewardGenerator<AddModifierReward> generator = new Generator();
     private AbstractCard card;
     private AbstractAugment modifier;
 
@@ -57,7 +58,11 @@ public class AddModifierReward extends AbstractModificationReward {
         }
     }
 
-    public static class Generator implements AbstractRewardGenerator<AddModifierReward> {
+    public static AbstractRewardGenerator<AddModifierReward> getGenerator() {
+        return generator;
+    }
+
+    private static class Generator implements AbstractRewardGenerator<AddModifierReward> {
         private static AddModifierReward randomAddModifierRewardByCard() {
             if (AbstractDungeon.player.masterDeck.isEmpty()) {
                 return null;

@@ -30,11 +30,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.cards.blue.ForceField;
-import com.megacrit.cardcrawl.cards.green.GlassKnife;
 import com.megacrit.cardcrawl.cards.green.GrandFinale;
 import com.megacrit.cardcrawl.cards.green.MasterfulStab;
 import com.megacrit.cardcrawl.cards.purple.BowlingBash;
-import com.megacrit.cardcrawl.cards.purple.FollowUp;
 import com.megacrit.cardcrawl.cards.purple.SignatureMove;
 import com.megacrit.cardcrawl.cards.red.BloodForBlood;
 import com.megacrit.cardcrawl.cards.red.Clash;
@@ -75,6 +73,7 @@ public class CardActionAnalyzer extends ExprEditor {
     private static final Set<String> excludedPackages;
     private static final Set<Class<?>> spireTypePatchAnnotations;
     private static final Set<Class<?>> spireMethodPatchAnnotations;
+    private static final Set<String> spireMethodPatchNames;
 
     static {
         methodsToSearch = new HashMap<>(3);
@@ -147,6 +146,14 @@ public class CardActionAnalyzer extends ExprEditor {
         spireMethodPatchAnnotations.add(SpireInsertPatch.class);
         spireMethodPatchAnnotations.add(SpireInstrumentPatch.class);
         spireMethodPatchAnnotations.add(SpireRawPatch.class);
+
+        spireMethodPatchNames = new HashSet<>(6);
+        spireMethodPatchNames.add("Prefix");
+        spireMethodPatchNames.add("Postfix");
+        spireMethodPatchNames.add("Insert");
+        spireMethodPatchNames.add("Instrument");
+        spireMethodPatchNames.add("Replace");
+        spireMethodPatchNames.add("Raw");
     }
 
     private final Map<String, List<String>> cardToModifier = new HashMap<>(Constants.EXPECTED_CARDS);
@@ -226,13 +233,10 @@ public class CardActionAnalyzer extends ExprEditor {
             return;
         }
         String methodName = ctMethod.getLongName();
-        if (visitedMethods.contains(methodName) || excludedPackages.stream().anyMatch(methodName::startsWith)) {
+        if (visitedMethods.contains(methodName) || excludedPackages.stream().anyMatch(methodName::startsWith) || spireMethodPatchNames.contains(ctMethod.getName()) || spireMethodPatchAnnotations.stream().anyMatch(ctMethod::hasAnnotation)) {
             return;
         }
         visitedMethods.add(methodName);
-        if (spireMethodPatchAnnotations.stream().anyMatch(ctMethod::hasAnnotation)) {
-            return;
-        }
 
         try {
             ctMethod.instrument(this);
@@ -355,6 +359,7 @@ public class CardActionAnalyzer extends ExprEditor {
         }
 
         if (callsMethod(CardGroup.class, "moveToExhaustPile")) {
+            modifiers.add(AshenMod.ID);
             modifiers.add(BeyondMod.ID);
             modifiers.add(CinderyMod.ID);
             modifiers.add(ClearMod.ID);
@@ -402,7 +407,7 @@ public class CardActionAnalyzer extends ExprEditor {
         if (callsMethod(AbstractPlayer.class, "gainEnergy")) {
             modifiers.add(DodecahedralMod.ID);
             modifiers.add(EnergizedMod.ID);
-            modifiers.add(FollowUp.ID);
+            modifiers.add(FollowUpMod.ID);
             modifiers.add(GuardedMod.ID);
             modifiers.add(HappyMod.ID);
             modifiers.add(HornedMod.ID);
@@ -766,7 +771,7 @@ public class CardActionAnalyzer extends ExprEditor {
         if (usesActions(ModifyDamageAction.class, ReduceCostAction.class, GashAction.class, ModifyBlockAction.class)) {
             modifiers.add(BracedMod.ID);
             modifiers.add(ClawfulMod.ID);
-            modifiers.add(GlassKnife.ID);
+            modifiers.add(GlassMod.ID);
             modifiers.add(IterativeMod.ID);
             modifiers.add(RampedMod.ID);
             modifiers.add(SteamMod.ID);

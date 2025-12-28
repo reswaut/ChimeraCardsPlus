@@ -4,8 +4,6 @@ import CardAugments.CardAugmentsMod;
 import CardAugments.cardmods.AbstractAugment.AugmentRarity;
 import basemod.AutoAdd;
 import basemod.BaseMod;
-import basemod.interfaces.EditKeywordsSubscriber;
-import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus.AugmentBonusLevel;
@@ -14,7 +12,6 @@ import chimeracardsplus.helpers.ModConfigs;
 import chimeracardsplus.helpers.ResourceLoader;
 import chimeracardsplus.helpers.SpecialNamingRules;
 import chimeracardsplus.rewards.*;
-import chimeracardsplus.rewards.CardToModifierReward.Generator;
 import chimeracardsplus.rewards.ModificationRewardsManager.RewardTypeEnum;
 import chimeracardsplus.screens.ModificationRewardScreen;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
@@ -32,10 +29,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 @SpireInitializer
-public class ChimeraCardsPlus implements
-        EditKeywordsSubscriber,
-        EditStringsSubscriber,
-        PostInitializeSubscriber {
+public class ChimeraCardsPlus implements PostInitializeSubscriber {
     public static final String MOD_ID = "chimeracardsplus";
     public static final Logger logger = LogManager.getLogger(MOD_ID);
     public static final ModConfigs configs = new ModConfigs();
@@ -50,9 +44,9 @@ public class ChimeraCardsPlus implements
 
     public static void initialize() {
         BaseMod.subscribe(new ChimeraCardsPlus());
-        logger.info("Main class subscribed to BaseMod.");
         BaseMod.subscribe(gameActionInfoManager);
-        logger.info("Battle Action Manager subscribed to BaseMod.");
+        BaseMod.subscribe(resourceLoader);
+        logger.info("Mod classes subscribed to BaseMod.");
         configs.initialize();
     }
 
@@ -99,12 +93,13 @@ public class ChimeraCardsPlus implements
     }
 
     public static void registerRewards() {
-        modificationRewardsManager.registerModificationReward(new AddModifierReward.Generator());
-        modificationRewardsManager.registerModificationReward(new RemoveModifierReward.Generator());
-        modificationRewardsManager.registerModificationReward(new RemoveAllModifiersReward.Generator());
-        modificationRewardsManager.registerModificationReward(new TransferModifierReward.Generator());
-        modificationRewardsManager.registerModificationReward(new MergeModifiersReward.Generator());
-        modificationRewardsManager.registerModificationReward(new Generator());
+        BaseMod.addCustomScreen(new ModificationRewardScreen());
+        modificationRewardsManager.registerModificationReward(AddModifierReward.getGenerator());
+        modificationRewardsManager.registerModificationReward(RemoveModifierReward.getGenerator());
+        modificationRewardsManager.registerModificationReward(RemoveAllModifiersReward.getGenerator());
+        modificationRewardsManager.registerModificationReward(TransferModifierReward.getGenerator());
+        modificationRewardsManager.registerModificationReward(MergeModifiersReward.getGenerator());
+        modificationRewardsManager.registerModificationReward(CardToModifierReward.getGenerator());
         BaseMod.registerCustomReward(RewardTypeEnum.CARD_MODIFICATION, modificationRewardsManager::onLoad, modificationRewardsManager::onSave);
         BaseMod.addSaveField(makeID("ModificationRollChance"), modificationRewardsManager);
     }
@@ -116,22 +111,8 @@ public class ChimeraCardsPlus implements
         logger.info("- Setup mod panel.");
         registerAugments();
         logger.info("- Registered modifiers.");
-        BaseMod.addCustomScreen(new ModificationRewardScreen());
-        logger.info("- Registered chimera modification screen.");
         registerRewards();
         logger.info("- Registered chimera modification rewards.");
         logger.info("Initialization complete.");
-    }
-
-    @Override
-    public void receiveEditKeywords() {
-        resourceLoader.loadKeywords();
-        logger.info("Loaded keywords.");
-    }
-
-    @Override
-    public void receiveEditStrings() {
-        resourceLoader.loadStrings();
-        logger.info("Loaded localization strings.");
     }
 }

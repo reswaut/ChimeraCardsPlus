@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 
 public class RemoveAllModifiersReward extends AbstractModificationReward {
+    private static final AbstractRewardGenerator<RemoveAllModifiersReward> generator = new Generator();
     private AbstractCard card;
 
     public RemoveAllModifiersReward(int index) {
@@ -34,7 +35,11 @@ public class RemoveAllModifiersReward extends AbstractModificationReward {
         }
     }
 
-    public static class Generator implements AbstractRewardGenerator<RemoveAllModifiersReward> {
+    public static AbstractRewardGenerator<RemoveAllModifiersReward> getGenerator() {
+        return generator;
+    }
+
+    private static class Generator implements AbstractRewardGenerator<RemoveAllModifiersReward> {
         @Override
         public long getGlobalWeight() {
             return 27;

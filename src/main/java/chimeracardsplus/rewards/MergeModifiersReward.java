@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 
 public class MergeModifiersReward extends AbstractModificationReward {
+    private static final AbstractRewardGenerator<MergeModifiersReward> generator = new Generator();
     private AbstractCard card1, card2;
 
     public MergeModifiersReward(int index1, int index2) {
@@ -89,7 +90,11 @@ public class MergeModifiersReward extends AbstractModificationReward {
         resultCards.set(1, resultCard2);
     }
 
-    public static class Generator implements AbstractRewardGenerator<MergeModifiersReward> {
+    public static AbstractRewardGenerator<MergeModifiersReward> getGenerator() {
+        return generator;
+    }
+
+    private static class Generator implements AbstractRewardGenerator<MergeModifiersReward> {
         @Override
         public long getGlobalWeight() {
             return 73;

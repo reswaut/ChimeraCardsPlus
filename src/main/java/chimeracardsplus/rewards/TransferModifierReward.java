@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TransferModifierReward extends AbstractModificationReward {
+    private static final AbstractRewardGenerator<TransferModifierReward> generator = new Generator();
     private AbstractCard fromCard, toCard;
     private AbstractAugment fromModifier, toModifier = null;
 
@@ -69,7 +70,11 @@ public class TransferModifierReward extends AbstractModificationReward {
         }
     }
 
-    public static class Generator implements AbstractRewardGenerator<TransferModifierReward> {
+    public static AbstractRewardGenerator<TransferModifierReward> getGenerator() {
+        return generator;
+    }
+
+    private static class Generator implements AbstractRewardGenerator<TransferModifierReward> {
         @Override
         public long getGlobalWeight() {
             return 73;

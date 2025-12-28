@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RemoveModifierReward extends AbstractModificationReward {
+    private static final AbstractRewardGenerator<RemoveModifierReward> generator = new Generator();
+
     private AbstractCard card;
     private AbstractAugment modifier;
 
@@ -47,7 +49,11 @@ public class RemoveModifierReward extends AbstractModificationReward {
         }
     }
 
-    public static class Generator implements AbstractRewardGenerator<RemoveModifierReward> {
+    public static AbstractRewardGenerator<RemoveModifierReward> getGenerator() {
+        return generator;
+    }
+
+    private static class Generator implements AbstractRewardGenerator<RemoveModifierReward> {
         @Override
         public long getGlobalWeight() {
             return 27;

@@ -148,7 +148,7 @@
       "Plays the card from exhaust pile at start of turn."
     ],
     "EXTRA_TEXT": [
-      " NL At the start of your turn, play this card from your Exhaust pile."
+      " NL At the start of your turn, plays from the Exhaust pile."
     ]
   },
   "${modID}:BirdFacedMod": {
@@ -3047,6 +3047,26 @@
     ],
     "EXTRA_TEXT": [
       " NL Lose 1 Orb slot."
+    ]
+  },
+  "${modID}:AshenMod": {
+    "TEXT": [
+      "Ashen ",
+      "",
+      "Increases damage by #b1 for every card in your exhaust pile."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deals 1 additional damage for each card in Exhaust pile."
+    ]
+  },
+  "${modID}:IllusionalMod": {
+    "TEXT": [
+      "Illusional ",
+      "",
+      "Gains #b2 random #yModifier at the start of each combat."
+    ],
+    "EXTRA_TEXT": [
+      " NL At the start of each combat, apply 2 random *Modifiers to this card."
     ]
   }
 }
