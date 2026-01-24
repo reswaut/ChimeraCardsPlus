@@ -239,6 +239,7 @@ public class CardActionAnalyzer extends ExprEditor {
         visitedMethods.add(methodName);
 
         try {
+            ctMethod.getDeclaringClass().defrost();
             ctMethod.instrument(this);
         } catch (CannotCompileException ignored) {
         }
@@ -360,7 +361,6 @@ public class CardActionAnalyzer extends ExprEditor {
 
         if (callsMethod(CardGroup.class, "moveToExhaustPile")) {
             modifiers.add(AshenMod.ID);
-            modifiers.add(BeyondMod.ID);
             modifiers.add(CinderyMod.ID);
             modifiers.add(ClearMod.ID);
             modifiers.add(EndMod.ID);
@@ -441,6 +441,7 @@ public class CardActionAnalyzer extends ExprEditor {
         }
         if (usesActions(CardQueueItem.class)) {
             modifiers.add(AutoMod.ID);
+            modifiers.add(BeyondMod.ID);
             modifiers.add(BurstyMod.ID);
             modifiers.add(DisorderedMod.ID);
             modifiers.add(DivergentMod.ID);
