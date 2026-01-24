@@ -180,7 +180,6 @@ public class CardActionAnalyzer extends ExprEditor {
     private void visitClass(Class<?> clz) {
         try {
             CtClass ctClass = Loader.getClassPool().get(clz.getName());
-            ctClass.defrost();
             searchInClass(ctClass);
         } catch (NotFoundException ignored) {
         }
@@ -190,6 +189,7 @@ public class CardActionAnalyzer extends ExprEditor {
         if (ctClass == null) {
             return;
         }
+        ctClass.defrost();
         String className = ctClass.getName();
         if (visitedClasses.contains(className) || excludedPackages.stream().anyMatch(className::startsWith)) {
             return;
@@ -591,7 +591,6 @@ public class CardActionAnalyzer extends ExprEditor {
             modifiers.add(BloodlettingMod.ID);
             modifiers.add(BloodyMod.ID);
             modifiers.add(CubicMod.ID);
-            modifiers.add(DodecahedralMod.ID);
             modifiers.add(HemoMod.ID);
             modifiers.add(LapsingMod.ID);
             modifiers.add(MasterfulMod.ID);
@@ -619,7 +618,6 @@ public class CardActionAnalyzer extends ExprEditor {
         }
         if (usesActions(ObtainPotionAction.class)) {
             modifiers.add(LiquidizingMod.ID);
-            modifiers.add(SozuMod.ID);
             modifiers.add(ThirstyMod.ID);
         }
         if (usesActions(Plasma.class)) {

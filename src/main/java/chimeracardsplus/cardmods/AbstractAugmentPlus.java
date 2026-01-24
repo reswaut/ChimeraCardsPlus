@@ -43,10 +43,7 @@ public abstract class AbstractAugmentPlus extends AbstractAugment {
         for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
             if (!modifier.equals(mod)) {
                 AbstractCardModifier modCopy = mod.makeCopy();
-                if (!modCopy.shouldApply(cardCopy)) {
-                    continue;
-                }
-                if (modCopy instanceof AbstractAugment && !((AbstractAugment) modCopy).canApplyTo(card)) {
+                if (modCopy instanceof AbstractAugment && !((AbstractAugment) modCopy).canApplyTo(cardCopy)) {
                     continue;
                 }
                 CardModifierManager.addModifier(cardCopy, modCopy);
