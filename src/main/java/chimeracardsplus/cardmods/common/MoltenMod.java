@@ -2,30 +2,32 @@ package chimeracardsplus.cardmods.common;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.actions.DoubleVulnerableAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-public class DyingMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(DyingMod.class.getSimpleName());
+public class MoltenMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(MoltenMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
+    private boolean addedExhaust = true;
 
     @Override
-    public float modifyBaseBlock(float block, AbstractCard card) {
-        return block * 0.75F;
+    public void onInitialApplication(AbstractCard card) {
+        addedExhaust = !card.exhaust;
+        card.exhaust = true;
     }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.cost >= -1 && abstractCard.baseBlock >= 2 && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
+        return cardCheck(abstractCard, c -> c.cost >= -1 && (c.type == CardType.ATTACK || c.type == CardType.SKILL) && doesntUpgradeExhaust() && usesEnemyTargeting()) && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[2]));
     }
 
     @Override
@@ -45,20 +47,15 @@ public class DyingMod extends AbstractAugmentPlus {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, CARD_TEXT[0]);
+        return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1]);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (ChimeraCardsPlus.gameActionInfoManager.isAppliedDoomThisTurn()) {
-            addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, card.block));
-            addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, card.block));
+        if (target == null) {
+            return;
         }
-    }
-
-    @Override
-    public Color getGlow(AbstractCard card) {
-        return ChimeraCardsPlus.gameActionInfoManager.isAppliedDoomThisTurn() ? Color.GOLD.cpy() : null;
+        addToBot(new DoubleVulnerableAction(target, AbstractDungeon.player));
     }
 
     @Override
@@ -68,7 +65,7 @@ public class DyingMod extends AbstractAugmentPlus {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new DyingMod();
+        return new MoltenMod();
     }
 
     @Override

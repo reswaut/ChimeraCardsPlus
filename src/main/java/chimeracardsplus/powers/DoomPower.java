@@ -2,6 +2,8 @@ package chimeracardsplus.powers;
 
 import chimeracardsplus.ChimeraCardsPlus;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.InstantKillAction;
@@ -26,7 +28,10 @@ public class DoomPower extends AbstractPower implements HealthBarRenderPower {
         this.amount = amount;
         type = PowerType.DEBUFF;
         updateDescription();
-        loadRegion("end_turn_death");
+        Texture texture48 = ChimeraCardsPlus.resourceLoader.getModTexture("powers/doom32.png");
+        Texture texture128 = ChimeraCardsPlus.resourceLoader.getModTexture("powers/doom84.png");
+        region48 = new AtlasRegion(texture48, 0, 0, texture48.getWidth(), texture48.getHeight());
+        region128 = new AtlasRegion(texture128, 0, 0, texture128.getWidth(), texture128.getHeight());
     }
 
     @Override

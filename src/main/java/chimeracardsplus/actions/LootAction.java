@@ -26,7 +26,7 @@ public class LootAction extends AbstractGameAction {
         GameActionManager.incrementDiscard(false);
         int drawAmount = card.costForTurn == -1 ? EnergyPanel.getCurrentEnergy() : card.costForTurn;
         if (drawAmount > 0) {
-            AbstractDungeon.actionManager.addToBottom(new DrawCardAction(drawAmount));
+            AbstractDungeon.actionManager.addToTop(new DrawCardAction(drawAmount));
         }
     }
 

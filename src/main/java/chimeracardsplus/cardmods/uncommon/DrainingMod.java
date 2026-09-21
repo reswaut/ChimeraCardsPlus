@@ -6,11 +6,9 @@ import chimeracardsplus.actions.UpgradeRandomCardInDiscardAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class DrainingMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(DrainingMod.class.getSimpleName());
@@ -20,17 +18,7 @@ public class DrainingMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.cost >= -1 && (abstractCard.baseDamage >= 2 || abstractCard.baseBlock >= 2);
-    }
-
-    @Override
-    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage > 0.0F ? damage * 0.8F : damage;
-    }
-
-    @Override
-    public float modifyBaseBlock(float block, AbstractCard card) {
-        return block > 0.0F ? block * 0.8F : block;
+        return abstractCard.cost >= -1;
     }
 
     @Override

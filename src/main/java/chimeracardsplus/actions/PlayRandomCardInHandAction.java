@@ -26,7 +26,7 @@ public class PlayRandomCardInHandAction extends AbstractGameAction {
         }
 
         AbstractCard c = cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
-        addToBot(new NewQueueCardAction(c, true, false, true));
+        addToTop(new NewQueueCardAction(c, true, false, true));
         isDone = true;
     }
 }

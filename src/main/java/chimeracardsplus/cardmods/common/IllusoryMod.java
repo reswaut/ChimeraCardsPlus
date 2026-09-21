@@ -3,36 +3,48 @@ package chimeracardsplus.cardmods.common;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import chimeracardsplus.powers.NeurosurgePower;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.PoisonPower;
 
-public class NeuroMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(NeuroMod.class.getSimpleName());
+public class IllusoryMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(IllusoryMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-
-    @Override
-    public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= 1 && doesntUpgradeCost() && c.type == CardType.POWER);
-    }
+    private boolean addedExhaust = true;
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        card.cost = Math.max(0, card.cost - 2);
+        addedExhaust = !card.exhaust;
+        card.exhaust = true;
+        card.cost += 1;
         card.costForTurn = card.cost;
     }
 
     @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NeurosurgePower(AbstractDungeon.player, 3)));
+    public boolean validCard(AbstractCard abstractCard) {
+        return cardCheck(abstractCard, c -> c.cost >= 0 && c.baseBlock >= 1 && doesntUpgradeCost() && doesntUpgradeExhaust() && (c.type == CardType.ATTACK || c.type == CardType.SKILL)) && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[2]));
+    }
+
+    @Override
+    public float modifyBlock(float block, AbstractCard card) {
+        int poison = 0;
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo.isDeadOrEscaped()) {
+                continue;
+            }
+            AbstractPower power = mo.getPower(PoisonPower.POWER_ID);
+            if (power != null) {
+                poison += power.amount;
+            }
+        }
+        return block + poison;
     }
 
     @Override
@@ -52,7 +64,7 @@ public class NeuroMod extends AbstractAugmentPlus {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, CARD_TEXT[0]);
+        return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1]);
     }
 
     @Override
@@ -62,7 +74,7 @@ public class NeuroMod extends AbstractAugmentPlus {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new NeuroMod();
+        return new IllusoryMod();
     }
 
     @Override

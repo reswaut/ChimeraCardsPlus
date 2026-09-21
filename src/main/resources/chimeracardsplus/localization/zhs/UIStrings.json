@@ -84,6 +84,11 @@
       "洗入抽牌堆"
     ]
   },
+  "${modID}:ExhaustCardInDrawPileAction": {
+    "TEXT": [
+      "消耗"
+    ]
+  },
   "${modID}:AbstractModificationReward": {
     "TEXT": [
       "修改牌组中的卡牌",

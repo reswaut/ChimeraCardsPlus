@@ -26,7 +26,7 @@ public class ProudMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> notExhaust(c) && notInnate(c) && !c.hasTag(CardTags.HEALING) && (c.type == CardType.ATTACK || c.type == CardType.SKILL) && doesntOverride(c, "triggerOnEndOfTurnForPlayingCard"));
+        return cardCheck(abstractCard, c -> c.cost >= -1 && notExhaust(c) && notInnate(c) && !c.hasTag(CardTags.HEALING) && (c.type == CardType.ATTACK || c.type == CardType.SKILL) && doesntOverride(c, "triggerOnEndOfTurnForPlayingCard"));
     }
 
     @Override

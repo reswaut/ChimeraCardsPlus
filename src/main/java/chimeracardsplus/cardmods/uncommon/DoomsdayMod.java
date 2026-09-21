@@ -1,31 +1,43 @@
-package chimeracardsplus.cardmods.common;
+package chimeracardsplus.cardmods.uncommon;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.powers.DoomPower;
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.InstantKillAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 
-public class DyingMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(DyingMod.class.getSimpleName());
+public class DoomsdayMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(DoomsdayMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public float modifyBaseBlock(float block, AbstractCard card) {
-        return block * 0.75F;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.cost >= -1 && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
     }
 
     @Override
-    public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.cost >= -1 && abstractCard.baseBlock >= 2 && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            AbstractPower power = mo.getPower(DoomPower.POWER_ID);
+            if (power == null || mo.isDeadOrEscaped() || power.amount < mo.currentHealth) {
+                continue;
+            }
+            addToBot(new VFXAction(new WeightyImpactEffect(mo.hb.cX, mo.hb.cY, Color.GOLD.cpy())));
+            addToBot(new InstantKillAction(mo));
+        }
     }
 
     @Override
@@ -49,26 +61,13 @@ public class DyingMod extends AbstractAugmentPlus {
     }
 
     @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (ChimeraCardsPlus.gameActionInfoManager.isAppliedDoomThisTurn()) {
-            addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, card.block));
-            addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, card.block));
-        }
-    }
-
-    @Override
-    public Color getGlow(AbstractCard card) {
-        return ChimeraCardsPlus.gameActionInfoManager.isAppliedDoomThisTurn() ? Color.GOLD.cpy() : null;
-    }
-
-    @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.COMMON;
+        return AugmentRarity.UNCOMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new DyingMod();
+        return new DoomsdayMod();
     }
 
     @Override

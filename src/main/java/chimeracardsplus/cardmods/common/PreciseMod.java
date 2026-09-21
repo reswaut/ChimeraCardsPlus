@@ -3,29 +3,38 @@ package chimeracardsplus.cardmods.common;
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class DyingMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(DyingMod.class.getSimpleName());
+import java.util.Objects;
+
+public class PreciseMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(PreciseMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public float modifyBaseBlock(float block, AbstractCard card) {
-        return block * 0.75F;
+    public boolean validCard(AbstractCard abstractCard) {
+        return abstractCard.baseDamage >= 2;
     }
 
     @Override
-    public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.cost >= -1 && abstractCard.baseBlock >= 2 && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage > 0.0F ? damage * 1.5F : damage;
+    }
+
+    @Override
+    public float modifyDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        if (damage <= 0.0F) {
+            return damage;
+        }
+        int otherCards = Math.toIntExact(AbstractDungeon.player.hand.group.stream().filter(c -> !Objects.equals(c, card)).count());
+        return Math.max(damage - 2.0F * otherCards, 0.0F);
     }
 
     @Override
@@ -49,26 +58,13 @@ public class DyingMod extends AbstractAugmentPlus {
     }
 
     @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (ChimeraCardsPlus.gameActionInfoManager.isAppliedDoomThisTurn()) {
-            addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, card.block));
-            addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, card.block));
-        }
-    }
-
-    @Override
-    public Color getGlow(AbstractCard card) {
-        return ChimeraCardsPlus.gameActionInfoManager.isAppliedDoomThisTurn() ? Color.GOLD.cpy() : null;
-    }
-
-    @Override
     public AugmentRarity getModRarity() {
         return AugmentRarity.COMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new DyingMod();
+        return new PreciseMod();
     }
 
     @Override

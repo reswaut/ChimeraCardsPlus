@@ -1,6 +1,8 @@
 package chimeracardsplus.powers;
 
 import chimeracardsplus.ChimeraCardsPlus;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -20,7 +22,10 @@ public class NeurosurgePower extends AbstractPower {
         this.amount = amount;
         type = PowerType.DEBUFF;
         updateDescription();
-        loadRegion("minion");
+        Texture texture48 = ChimeraCardsPlus.resourceLoader.getModTexture("powers/neurosurge32.png");
+        Texture texture128 = ChimeraCardsPlus.resourceLoader.getModTexture("powers/neurosurge84.png");
+        region48 = new AtlasRegion(texture48, 0, 0, texture48.getWidth(), texture48.getHeight());
+        region128 = new AtlasRegion(texture128, 0, 0, texture128.getWidth(), texture128.getHeight());
     }
 
     @Override

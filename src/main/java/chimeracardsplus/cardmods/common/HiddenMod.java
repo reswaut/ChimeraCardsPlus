@@ -1,31 +1,39 @@
 package chimeracardsplus.cardmods.common;
 
 import basemod.abstracts.AbstractCardModifier;
+import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPreview;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.DiscardAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-public class DyingMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(DyingMod.class.getSimpleName());
+public class HiddenMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(HiddenMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
-    public float modifyBaseBlock(float block, AbstractCard card) {
-        return block * 0.75F;
+    public void onInitialApplication(AbstractCard card) {
+        MultiCardPreview.add(card, new Shiv());
     }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.cost >= -1 && abstractCard.baseBlock >= 2 && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
+        return abstractCard.cost >= -1;
+    }
+
+    @Override
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        addToBot(new DiscardAction(AbstractDungeon.player, AbstractDungeon.player, 1, false));
+        addToBot(new MakeTempCardInHandAction(new Shiv()));
     }
 
     @Override
@@ -49,26 +57,13 @@ public class DyingMod extends AbstractAugmentPlus {
     }
 
     @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (ChimeraCardsPlus.gameActionInfoManager.isAppliedDoomThisTurn()) {
-            addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, card.block));
-            addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, card.block));
-        }
-    }
-
-    @Override
-    public Color getGlow(AbstractCard card) {
-        return ChimeraCardsPlus.gameActionInfoManager.isAppliedDoomThisTurn() ? Color.GOLD.cpy() : null;
-    }
-
-    @Override
     public AugmentRarity getModRarity() {
         return AugmentRarity.COMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new DyingMod();
+        return new HiddenMod();
     }
 
     @Override

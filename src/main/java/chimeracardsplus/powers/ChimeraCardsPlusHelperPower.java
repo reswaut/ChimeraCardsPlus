@@ -3,6 +3,7 @@ package chimeracardsplus.powers;
 import chimeracardsplus.ChimeraCardsPlus;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnDrawPileShufflePower;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -33,6 +34,11 @@ public class ChimeraCardsPlusHelperPower extends AbstractPower implements Invisi
     @Override
     public void wasHPLost(DamageInfo info, int damageAmount) {
         ChimeraCardsPlus.gameActionInfoManager.wasHPLost(info, damageAmount);
+    }
+
+    @Override
+    public void onExhaust(AbstractCard card) {
+        ChimeraCardsPlus.gameActionInfoManager.onExhaust(card);
     }
 
     @Override

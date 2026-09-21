@@ -99,7 +99,6 @@ public class ChimeraCardsPlus implements PostInitializeSubscriber {
         modificationRewardsManager.registerModificationReward(RemoveAllModifiersReward.getGenerator());
         modificationRewardsManager.registerModificationReward(TransferModifierReward.getGenerator());
         modificationRewardsManager.registerModificationReward(MergeModifiersReward.getGenerator());
-        modificationRewardsManager.registerModificationReward(CardToModifierReward.getGenerator());
         BaseMod.registerCustomReward(RewardTypeEnum.CARD_MODIFICATION, modificationRewardsManager::onLoad, modificationRewardsManager::onSave);
         BaseMod.addSaveField(makeID("ModificationRollChance"), modificationRewardsManager);
     }

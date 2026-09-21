@@ -21,9 +21,9 @@ public class TransferPoisonAction extends AbstractGameAction {
             if (newTarget != null && !target.equals(newTarget)) {
                 AbstractPower poison = target.getPower(PoisonPower.POWER_ID);
                 int poisonAmt = poison.amount;
-                addToBot(new RemoveSpecificPowerAction(target, AbstractDungeon.player, poison));
                 if (poisonAmt > 0) {
-                    addToBot(new ApplyPowerAction(newTarget, AbstractDungeon.player, new PoisonPower(newTarget, AbstractDungeon.player, poisonAmt)));
+                    addToTop(new ApplyPowerAction(newTarget, AbstractDungeon.player, new PoisonPower(newTarget, AbstractDungeon.player, poisonAmt)));
+                    addToTop(new RemoveSpecificPowerAction(target, AbstractDungeon.player, poison));
                 }
             }
         }

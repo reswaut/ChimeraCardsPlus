@@ -35,17 +35,8 @@ public class CripplingMod extends AbstractAugmentPlus implements DynvarCarrier {
     }
 
     @Override
-    public void onUpgradeCheck(AbstractCard card) {
-        if (!card.exhaust) {
-            addedExhaust = true;
-            card.exhaust = true;
-        }
-        card.initializeDescription();
-    }
-
-    @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= 0 && doesntUpgradeCost()
+        return cardCheck(abstractCard, c -> c.cost >= 0 && doesntUpgradeCost() && doesntUpgradeExhaust()
                 && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
     }
 

@@ -34,7 +34,6 @@ import java.util.ArrayList;
 
 public abstract class AbstractModificationReward extends CustomReward {
     protected static final Gson gson = new Gson();
-    protected static final CardActionAnalyzer cardActionAnalyzer = new CardActionAnalyzer();
     private static final String ID = ChimeraCardsPlus.makeID(AbstractModificationReward.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     public static final String[] TEXT = uiStrings.TEXT;

@@ -1,40 +1,41 @@
-package chimeracardsplus.cardmods.common;
+package chimeracardsplus.cardmods.rare;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 
-public class AchingMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(AchingMod.class.getSimpleName());
+public class BullyingMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(BullyingMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return true;
+        return abstractCard.baseDamage >= 1 && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
     }
 
     @Override
-    public void onDrawn(AbstractCard card) {
-        addToBot(new DrawCardAction(2));
-    }
-
-    @Override
-    public void onOtherCardPlayed(AbstractCard card, AbstractCard otherCard, CardGroup group) {
-        if (group.type == CardGroupType.HAND) {
-            addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, 1));
-            card.flash(Color.RED);
+    public float modifyDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        if (target == null) {
+            return damage;
         }
+        AbstractPower power = target.getPower(VulnerablePower.POWER_ID);
+        if (power == null) {
+            return damage;
+        }
+        int amount = power.amount;
+        if (amount <= 0) {
+            return damage;
+        }
+        return damage + amount;
     }
 
     @Override
@@ -59,12 +60,12 @@ public class AchingMod extends AbstractAugmentPlus {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.COMMON;
+        return AugmentRarity.RARE;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new AchingMod();
+        return new BullyingMod();
     }
 
     @Override

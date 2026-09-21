@@ -20,17 +20,17 @@ public class CinderyMod extends AbstractAugmentPlus {
 
     @Override
     public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage > 0.0F ? damage * 1.2F : damage;
+        return damage > 0.0F ? damage * 1.25F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return block > 0.0F ? block * 1.2F : block;
+        return block > 0.0F ? block * 1.25F : block;
     }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return (abstractCard.baseDamage >= 5 || abstractCard.baseBlock >= 5) && abstractCard.cost >= -1;
+        return (abstractCard.baseDamage >= 4 || abstractCard.baseBlock >= 4) && abstractCard.cost >= -1;
     }
 
     @Override

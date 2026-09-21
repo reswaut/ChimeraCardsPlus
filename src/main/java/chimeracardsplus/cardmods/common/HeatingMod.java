@@ -33,7 +33,9 @@ public class HeatingMod extends AbstractAugmentPlus {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        addToTop(new RemoveAllBlockAction(target, AbstractDungeon.player));
+        if (target != null) {
+            addToTop(new RemoveAllBlockAction(target, AbstractDungeon.player));
+        }
     }
 
     @Override

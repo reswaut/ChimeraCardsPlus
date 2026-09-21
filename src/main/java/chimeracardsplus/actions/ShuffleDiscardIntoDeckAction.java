@@ -9,8 +9,8 @@ public class ShuffleDiscardIntoDeckAction extends AbstractGameAction {
     @Override
     public void update() {
         if (!AbstractDungeon.player.discardPile.isEmpty()) {
-            addToBot(new EmptyDeckShuffleAction());
-            addToBot(new ShuffleAction(AbstractDungeon.player.drawPile, false));
+            addToTop(new ShuffleAction(AbstractDungeon.player.drawPile, false));
+            addToTop(new EmptyDeckShuffleAction());
         }
         isDone = true;
     }

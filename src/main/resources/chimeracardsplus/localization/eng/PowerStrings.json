@@ -8,8 +8,8 @@
   "${modID}:DoomPower": {
     "NAME": "Doom",
     "DESCRIPTIONS": [
-      "At the end of your turn, if your health is not more than #b%d, you die.",
-      "At the end of this enemy's turn, if its health is not more than #b%d, it dies."
+      "At the end of your turn, if you have #b%d or less HP, you die.",
+      "At the end of the enemy turn, if it has #b%d or less HP, it dies."
     ]
   },
   "${modID}:FrozenEyePower": {
@@ -86,6 +86,13 @@
     "DESCRIPTIONS": [
       "You cannot play more than #b6 cards this turn. You have played #b%d.",
       "I can only play up to NL #r6 cards this turn."
+    ]
+  },
+  "${modID}:ColossusPower": {
+    "NAME": "Colossus",
+    "DESCRIPTIONS": [
+      "You receive #b50%% less damage from #yVulnerable enemies for %d turn.",
+      "You receive #b50%% less damage from #yVulnerable enemies for %d turns."
     ]
   }
 }

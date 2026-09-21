@@ -36,7 +36,9 @@ public class GameActionInfoManager implements
     private boolean playerDamagedThisTurn = false;
     private boolean usedPotionThisTurn = false;
     private boolean appliedDoomThisTurn = false;
+    private boolean exhaustedCardThisTurn = false;
     private int drawPileShufflesThisCombat = 0;
+    private int timesHPLostThisCombat = 0;
 
     public static void initialize() {
     }
@@ -94,7 +96,9 @@ public class GameActionInfoManager implements
         playerDamagedThisTurn = false;
         usedPotionThisTurn = false;
         appliedDoomThisTurn = false;
+        exhaustedCardThisTurn = false;
         drawPileShufflesThisCombat = 0;
+        timesHPLostThisCombat = 0;
         AbstractDungeon.player.addPower(new ChimeraCardsPlusHelperPower(AbstractDungeon.player));
     }
 
@@ -103,6 +107,7 @@ public class GameActionInfoManager implements
         playerDamagedThisTurn = false;
         usedPotionThisTurn = false;
         appliedDoomThisTurn = false;
+        exhaustedCardThisTurn = false;
     }
 
     @Override
@@ -132,7 +137,12 @@ public class GameActionInfoManager implements
     public void wasHPLost(DamageInfo damageInfo, int damageAmount) {
         if (damageAmount > 0) {
             playerDamagedThisTurn = true;
+            timesHPLostThisCombat += 1;
         }
+    }
+
+    public void onExhaust(AbstractCard card) {
+        exhaustedCardThisTurn = true;
     }
 
     public void onShuffle() {
@@ -164,8 +174,16 @@ public class GameActionInfoManager implements
         return appliedDoomThisTurn;
     }
 
+    public boolean isExhaustedCardThisTurn() {
+        return exhaustedCardThisTurn;
+    }
+
     public int getDrawPileShufflesThisCombat() {
         return drawPileShufflesThisCombat;
+    }
+
+    public int getTimesHPLostThisCombat() {
+        return timesHPLostThisCombat;
     }
 
     @SpirePatch(

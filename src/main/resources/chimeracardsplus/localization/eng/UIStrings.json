@@ -84,6 +84,11 @@
       "Shuffle into Your Draw Pile"
     ]
   },
+  "${modID}:ExhaustCardInDrawPileAction": {
+    "TEXT": [
+      "Exhaust"
+    ]
+  },
   "${modID}:AbstractModificationReward": {
     "TEXT": [
       "Modify cards in your deck",

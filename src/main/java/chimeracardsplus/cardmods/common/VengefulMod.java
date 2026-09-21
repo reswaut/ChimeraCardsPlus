@@ -1,42 +1,47 @@
-package chimeracardsplus.cardmods.rare;
+package chimeracardsplus.cardmods.common;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.actions.RemoveRandomDebuffAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class CleansingMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(CleansingMod.class.getSimpleName());
+public class VengefulMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(VengefulMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private boolean addedExhaust = true;
 
     @Override
-    public void onInitialApplication(AbstractCard card) {
-        if (!card.exhaust && card.type != CardType.POWER) {
-            addedExhaust = true;
-            card.exhaust = true;
-        } else {
-            addedExhaust = false;
-        }
+    public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage * 0.75F;
     }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= -1 && doesntUpgradeExhaust());
+        return cardCheck(abstractCard, c -> c.cost >= -1 && c.baseDamage >= 3 && usesEnemyTargeting());
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        addToBot(new RemoveRandomDebuffAction(AbstractDungeon.player, AbstractDungeon.player));
+        if (target != null && ChimeraCardsPlus.gameActionInfoManager.isPlayerDamagedThisTurn()) {
+            addToBot(new DamageAction(target, new DamageInfo(AbstractDungeon.player, card.damage, card.damageTypeForTurn), AttackEffect.BLUNT_HEAVY));
+        }
+    }
+
+    @Override
+    public Color getGlow(AbstractCard card) {
+        return ChimeraCardsPlus.gameActionInfoManager.isPlayerDamagedThisTurn() ? Color.GOLD.cpy() : null;
     }
 
     @Override
@@ -56,17 +61,17 @@ public class CleansingMod extends AbstractAugmentPlus {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1]);
+        return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.RARE;
+        return AugmentRarity.COMMON;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new CleansingMod();
+        return new VengefulMod();
     }
 
     @Override
