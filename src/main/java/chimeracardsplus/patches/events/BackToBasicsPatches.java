@@ -4,7 +4,7 @@ import basemod.ReflectionHacks;
 import basemod.ReflectionHacks.RMethod;
 import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.cardmods.rare.StrategicMod;
+import chimeracardsplus.cardmods.uncommon.StrategicMod;
 import chimeracardsplus.cards.preview.StrategicPreview;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.*;

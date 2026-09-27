@@ -26,5 +26,12 @@
       "sly"
     ],
     "DESCRIPTION": "If this card is discarded from your hand during your turn, play it for free."
+  },
+  {
+    "PROPER_NAME": "Stun",
+    "NAMES": [
+      "stun"
+    ],
+    "DESCRIPTION": "A stunned enemy can't act on its next turn."
   }
 ]

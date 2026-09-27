@@ -67,7 +67,7 @@ public class FiendMod extends AbstractAugmentPlus {
         int count = 0;
 
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
-            if (!card.uuid.equals(c.uuid)) {
+            if (!card.equals(c)) {
                 count += 1;
                 addToTop(new ExhaustSpecificCardAction(c, AbstractDungeon.player.hand));
             }

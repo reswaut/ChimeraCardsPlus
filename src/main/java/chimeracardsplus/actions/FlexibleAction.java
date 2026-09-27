@@ -49,17 +49,7 @@ public class FlexibleAction extends AbstractGameAction {
             }
 
             AbstractDungeon.player.hand.group.removeAll(cannotChoose);
-            if (AbstractDungeon.player.hand.group.size() > 1) {
-                AbstractDungeon.handCardSelectScreen.open(TEXT[0], 1, false);
-                return;
-            }
-
-            if (AbstractDungeon.player.hand.group.size() == 1) {
-                AbstractDungeon.player.hand.getTopCard().modifyCostForCombat(-1);
-                returnCards();
-                isDone = true;
-            }
-            return;
+            AbstractDungeon.handCardSelectScreen.open(TEXT[0], 1, false);
         }
 
         if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
@@ -67,18 +57,14 @@ public class FlexibleAction extends AbstractGameAction {
                 c.modifyCostForCombat(-1);
                 AbstractDungeon.player.hand.addToTop(c);
             }
-            returnCards();
+            for (AbstractCard c : cannotChoose) {
+                AbstractDungeon.player.hand.addToTop(c);
+            }
+            AbstractDungeon.player.hand.refreshHandLayout();
             AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
             AbstractDungeon.handCardSelectScreen.selectedCards.group.clear();
         }
 
         isDone = true;
-    }
-
-    private void returnCards() {
-        for (AbstractCard c : cannotChoose) {
-            AbstractDungeon.player.hand.addToTop(c);
-        }
-        AbstractDungeon.player.hand.refreshHandLayout();
     }
 }

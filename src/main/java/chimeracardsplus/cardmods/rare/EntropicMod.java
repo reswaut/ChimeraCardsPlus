@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
 public class EntropicMod extends AbstractAugmentPlus {
@@ -56,7 +57,14 @@ public class EntropicMod extends AbstractAugmentPlus {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        addToBot(new FillHandAction(card.timesUpgraded != 0 || card.upgraded));
+        boolean upgraded = card.timesUpgraded != 0 || card.upgraded;
+        addToBot(new FillHandAction(() -> {
+            AbstractCard randomCard = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
+            if (upgraded && randomCard.canUpgrade()) {
+                randomCard.upgrade();
+            }
+            return randomCard;
+        }));
     }
 
     @Override

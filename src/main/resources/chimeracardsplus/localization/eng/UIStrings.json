@@ -54,6 +54,11 @@
       "Add Ethereal"
     ]
   },
+  "${modID}:AddRetainAction": {
+    "TEXT": [
+      "Add Retain"
+    ]
+  },
   "${modID}:CardByIDFromDeckToHandAction": {
     "TEXT": [
       "Choose a Card to Add to Your Hand."

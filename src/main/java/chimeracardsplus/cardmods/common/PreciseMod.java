@@ -10,8 +10,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import java.util.Objects;
-
 public class PreciseMod extends AbstractAugmentPlus {
     public static final String ID = ChimeraCardsPlus.makeID(PreciseMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
@@ -33,7 +31,7 @@ public class PreciseMod extends AbstractAugmentPlus {
         if (damage <= 0.0F) {
             return damage;
         }
-        int otherCards = Math.toIntExact(AbstractDungeon.player.hand.group.stream().filter(c -> !Objects.equals(c, card)).count());
+        long otherCards = AbstractDungeon.player.hand.group.stream().filter(c -> !card.equals(c)).count();
         return Math.max(damage - 2.0F * otherCards, 0.0F);
     }
 

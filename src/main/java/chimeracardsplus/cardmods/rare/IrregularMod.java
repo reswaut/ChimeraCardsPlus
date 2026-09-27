@@ -16,7 +16,7 @@ public class IrregularMod extends AbstractAugmentPlus {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private static final double GLOBAL_INCREMENT = StrictMath.sqrt(StrictMath.log(1.2) * 2.0);
+    private static final double GLOBAL_INCREMENT = StrictMath.sqrt(StrictMath.log(1.5) * 2.0);
     private boolean rolled;
     private float damageMultiplier, blockMultiplier, magicMultiplier;
     private int costIncrement;

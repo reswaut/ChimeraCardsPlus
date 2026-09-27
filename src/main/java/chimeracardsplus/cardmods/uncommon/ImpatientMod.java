@@ -32,7 +32,7 @@ public class ImpatientMod extends AbstractAugmentPlus {
     @Override
     public Color getGlow(AbstractCard card) {
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
-            if (c.type == CardType.ATTACK && !card.uuid.equals(c.uuid)) {
+            if (c.type == CardType.ATTACK && !card.equals(c)) {
                 return null;
             }
         }

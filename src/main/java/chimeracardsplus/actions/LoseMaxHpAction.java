@@ -11,7 +11,7 @@ public class LoseMaxHpAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        AbstractDungeon.player.decreaseMaxHealth(1);
+        AbstractDungeon.player.decreaseMaxHealth(amount);
         CardCrawlGame.sound.play("BLOOD_SWISH");
         isDone = true;
     }

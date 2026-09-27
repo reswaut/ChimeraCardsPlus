@@ -28,7 +28,11 @@ public class OpeningMod extends AbstractAugmentPlus {
         if (card.type != CardType.ATTACK) {
             return damage;
         }
-        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.ATTACK).count() == 1L) {
+        int count = Math.toIntExact(AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.ATTACK).count());
+        if (AbstractDungeon.actionManager.cardQueue.stream().noneMatch(item -> card.equals(item.card))) {
+            count += 1;
+        }
+        if (count == 1) {
             return damage + 3.0F;
         }
         return damage;
@@ -39,7 +43,11 @@ public class OpeningMod extends AbstractAugmentPlus {
         if (card.type != CardType.SKILL) {
             return block;
         }
-        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.SKILL).count() == 1L) {
+        int count = Math.toIntExact(AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> c != null && c.type == CardType.SKILL).count());
+        if (AbstractDungeon.actionManager.cardQueue.stream().noneMatch(item -> card.equals(item.card))) {
+            count += 1;
+        }
+        if (count == 1) {
             return block + 3.0F;
         }
         return block;

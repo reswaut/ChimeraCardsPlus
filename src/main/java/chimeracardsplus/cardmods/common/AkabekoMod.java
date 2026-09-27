@@ -20,7 +20,11 @@ public class AkabekoMod extends AbstractAugmentPlus {
 
     @Override
     public float modifyDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().filter(c -> c.type == CardType.ATTACK).count() <= 1L ? damage + 8.0F : damage;
+        int count = Math.toIntExact(AbstractDungeon.actionManager.cardsPlayedThisCombat.stream().filter(c -> c != null && c.type == CardType.ATTACK).count());
+        if (AbstractDungeon.actionManager.cardQueue.stream().noneMatch(item -> card.equals(item.card))) {
+            count += 1;
+        }
+        return count == 1 ? damage + 8.0F : damage;
     }
 
     @Override

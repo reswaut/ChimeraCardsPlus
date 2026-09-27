@@ -19,7 +19,7 @@ public class TrackingMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.baseDamage >= 4 && abstractCard.type == CardType.ATTACK && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
+        return abstractCard.baseDamage >= 2 && abstractCard.type == CardType.ATTACK && characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[1]));
     }
 
     @Override

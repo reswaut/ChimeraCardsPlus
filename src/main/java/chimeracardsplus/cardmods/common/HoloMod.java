@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.actions.common.BetterDiscardPileToHandAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.cards.blue.Hologram;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -47,7 +48,7 @@ public class HoloMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.cost >= -1 && (abstractCard.baseDamage >= 3 || abstractCard.baseBlock >= 3);
+        return abstractCard.cost >= -1 && (abstractCard.baseDamage >= 3 || abstractCard.baseBlock >= 3) && (abstractCard.type == CardType.ATTACK || abstractCard.type == CardType.SKILL);
     }
 
     @Override

@@ -32,8 +32,8 @@
     "DESCRIPTION": "Becomes Awakened when transformed or removed."
   },
   "${modID}:Amplify": {
-    "DESCRIPTION": "{@@}This turn, your next !M! {!M!|@=!M! Power cards are|1=Power card is} played twice.",
-    "UPGRADE_DESCRIPTION": "{@@}This turn, your next !M! {!M!|@=!M! Power cards are|1=Power card is} played twice."
+    "DESCRIPTION": "{@@}This turn, your next {!M!|@=!M! Power cards are|1=Power card is} played twice.",
+    "UPGRADE_DESCRIPTION": "{@@}This turn, your next {!M!|@=!M! Power cards are|1=Power card is} played twice."
   },
   "${modID}:BattleHymn": {
     "DESCRIPTION": "{@@}At the start of each turn, add {!M!|@=!M! *Smites|1=a *Smite} into your hand.",

@@ -71,7 +71,7 @@ public class DartMod extends AbstractAugmentPlus {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        addToBot(new UseCardMultipleTimesAction(card, target, () -> Math.toIntExact(AbstractDungeon.player.hand.group.stream().filter(c -> c.type == CardType.SKILL && !card.uuid.equals(c.uuid)).count())));
+        addToBot(new UseCardMultipleTimesAction(card, target, () -> Math.toIntExact(AbstractDungeon.player.hand.group.stream().filter(c -> c.type == CardType.SKILL && !card.equals(c)).count())));
     }
 
     @Override

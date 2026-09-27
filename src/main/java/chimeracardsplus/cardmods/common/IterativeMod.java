@@ -5,6 +5,7 @@ import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -42,9 +43,8 @@ public class IterativeMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> noShenanigans(c)
-                && c.cost >= 0
-                && (c.baseDamage >= 2 || c.baseBlock >= 2)
+        return cardCheck(abstractCard, c -> c.cost >= 0 && (c.baseDamage >= 2 || c.baseBlock >= 2)
+                && (c.type == CardType.ATTACK || c.type == CardType.SKILL) && notExhaust(c) && noShenanigans(c)
                 && customCheck(c, check ->
                 noCardModDescriptionChanges(check)
                         && check.rawDescription.chars().filter(ch -> ch == LocalizedStrings.PERIOD.charAt(0)).count() == 1L));

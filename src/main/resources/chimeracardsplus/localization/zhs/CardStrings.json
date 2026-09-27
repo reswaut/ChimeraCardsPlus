@@ -5,7 +5,7 @@
   },
   "${modID}:DecayingPreview": {
     "NAME": "腐朽",
-    "DESCRIPTION": "在你的回合结束时，如果在你的手牌中，收到2点伤害。"
+    "DESCRIPTION": "在你的回合结束时，如果在你的手牌中，受到2点伤害。"
   },
   "${modID}:DisgracefulPreview": {
     "NAME": "可耻",
@@ -70,7 +70,7 @@
     "DESCRIPTION": "{@@}在每回合开始时，增加 {!M!|@=!M!|1=一} 张随机无色牌到你的手牌。"
   },
   "${modID}:Mayhem": {
-    "DESCRIPTION": "在你的回合开始时，打出你抽牌堆顶部的 {!M|@= !M! 张|1=} 牌。"
+    "DESCRIPTION": "{@@}在你的回合开始时，打出你抽牌堆顶部的 {!M!|@= !M! 张|1=} 牌。"
   },
   "${modID}:Meditate": {
     "DESCRIPTION": "{@@}将弃牌堆中的 {!M!|@=!M!|1=一} 张牌放入你的手牌，并将其 保留 。 NL 进入 平静 。 NL 结束你的回合。",

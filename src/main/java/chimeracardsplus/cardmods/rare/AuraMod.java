@@ -28,7 +28,7 @@ public class AuraMod extends AbstractAugmentPlus {
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
     private int tokenDamage = -1, tokenBlock = -1;
     private boolean token;
-    private boolean modMagic = false;
+    private boolean modDamage = false, modBlock = false, modMagic = false;
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
@@ -38,9 +38,10 @@ public class AuraMod extends AbstractAugmentPlus {
                 !usesAction(c, PressEndTurnButtonAction.class) &&
                 (c.type == CardType.ATTACK || c.type == CardType.SKILL) &&
                 doesntOverride(c, "triggerOnEndOfTurnForPlayingCard") &&
-                customCheck(c, check -> noCardModDescriptionChanges(check) &&
-                        check.rawDescription.chars().filter(ch -> ch == LocalizedStrings.PERIOD.charAt(0)).count() == 1L &&
-                        check.rawDescription.chars().noneMatch(ch -> ch == ',' || ch == '，')));
+                customCheck(c, card -> noCardModDescriptionChanges(card) &&
+                        !card.rawDescription.contains("{@@}") &&
+                        card.rawDescription.chars().filter(ch -> ch == LocalizedStrings.PERIOD.charAt(0)).count() == 1L &&
+                        card.rawDescription.chars().noneMatch(ch -> ch == ',' || ch == '，')));
     }
 
     public AuraMod() {
@@ -53,21 +54,27 @@ public class AuraMod extends AbstractAugmentPlus {
     @Override
     public void onInitialApplication(AbstractCard card) {
         card.selfRetain = true;
-        if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+        if (card.baseDamage >= 4) {
+            modDamage = true;
+            tokenDamage = TokenDynamicVariableInitializer.dynamicDamage.baseValue(card);
+        }
+        if (card.baseBlock >= 4) {
+            modBlock = true;
+            tokenBlock = TokenDynamicVariableInitializer.dynamicBlock.baseValue(card);
+        }
+        if (cardCheck(card, c -> c.baseMagicNumber >= 4 && doesntDowngradeMagic())) {
             modMagic = true;
         }
-        tokenDamage = TokenDynamicVariableInitializer.dynamicDamage.baseValue(card);
-        tokenBlock = TokenDynamicVariableInitializer.dynamicBlock.baseValue(card);
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return token ? TokenDynamicVariableInitializer.dynamicDamage.baseValue(card) : damage > 0.0F ? damage - (int) (damage / 4.0F) * 2.0F : damage;
+        return modDamage ? token ? TokenDynamicVariableInitializer.dynamicDamage.baseValue(card) : damage - (int) (damage / 4.0F) * 2.0F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return token ? TokenDynamicVariableInitializer.dynamicBlock.baseValue(card) : block > 0.0F ? block - (int) (block / 4.0F) * 2.0F : block;
+        return modBlock ? token ? TokenDynamicVariableInitializer.dynamicBlock.baseValue(card) : block - (int) (block / 4.0F) * 2.0F : block;
     }
 
     @Override
@@ -126,10 +133,10 @@ public class AuraMod extends AbstractAugmentPlus {
     @Override
     public void onApplyPowers(AbstractCard card) {
         updateDynvar(card);
-        if (tokenDamage >= 0) {
+        if (modDamage && tokenDamage >= 0) {
             tokenDamage = CalcHelper.applyPowers(tokenDamage);
         }
-        if (tokenBlock >= 0) {
+        if (modBlock && tokenBlock >= 0) {
             tokenBlock = CalcHelper.applyPowersToBlock(tokenBlock);
         }
     }

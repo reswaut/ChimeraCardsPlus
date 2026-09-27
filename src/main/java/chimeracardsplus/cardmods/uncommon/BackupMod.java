@@ -5,7 +5,6 @@ import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
@@ -17,15 +16,12 @@ public class BackupMod extends AbstractAugmentPlus {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (card.cost >= 0) {
-            card.cost += 1;
-            card.costForTurn = card.cost;
-        }
+        card.isEthereal = true;
     }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> (c.cost >= 0 || c.type == CardType.STATUS) && doesntUpgradeCost());
+        return cardCheck(abstractCard, c -> c.cost >= 1 && notRetain(c) && notEthereal(c));
     }
 
     @Override
@@ -50,7 +46,7 @@ public class BackupMod extends AbstractAugmentPlus {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, CARD_TEXT[0]);
+        return insertAfterText(insertBeforeText(rawDescription, CARD_TEXT[0]), CARD_TEXT[1]);
     }
 
     @Override

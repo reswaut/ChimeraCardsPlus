@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 
 public class UpgradeRandomCardInDiscardAction extends AbstractGameAction {
     public UpgradeRandomCardInDiscardAction() {
@@ -23,6 +24,7 @@ public class UpgradeRandomCardInDiscardAction extends AbstractGameAction {
             AbstractCard c = upgradeable.getRandomCard(true);
             c.upgrade();
             c.applyPowers();
+            AbstractDungeon.topLevelEffects.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy()));
         }
         isDone = true;
     }

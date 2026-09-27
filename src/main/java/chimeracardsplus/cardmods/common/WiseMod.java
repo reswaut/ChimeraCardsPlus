@@ -20,19 +20,15 @@ public class WiseMod extends AbstractAugmentPlus {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private boolean modMagic = false;
 
     @Override
     public void onInitialApplication(AbstractCard card) {
         MultiCardPreview.add(card, new Insight());
-        if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
-            modMagic = true;
-        }
     }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> (c.cost == -1 || c.cost >= 1) && doesntUpgradeCost() && (c.baseDamage >= 2 || c.baseBlock >= 2 || c.baseMagicNumber >= 2 && doesntDowngradeMagic()) && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
+        return cardCheck(abstractCard, c -> (c.cost == -1 || c.cost >= 1) && doesntUpgradeCost() && (c.baseDamage >= 2 || c.baseBlock >= 2 || c.baseMagicNumber >= 2) && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
     }
 
     @Override
@@ -43,11 +39,6 @@ public class WiseMod extends AbstractAugmentPlus {
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
         return block > 0.0F ? block * 0.75F : block;
-    }
-
-    @Override
-    public float modifyBaseMagic(float magic, AbstractCard card) {
-        return modMagic ? magic * 0.75F : magic;
     }
 
     @Override

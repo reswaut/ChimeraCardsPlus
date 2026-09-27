@@ -32,7 +32,7 @@ public class OpportunisticMod extends AbstractAugmentPlus {
     @Override
     public Color getGlow(AbstractCard card) {
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
-            if (c.type == CardType.SKILL && !card.uuid.equals(c.uuid)) {
+            if (c.type == CardType.SKILL && !card.equals(c)) {
                 return null;
             }
         }

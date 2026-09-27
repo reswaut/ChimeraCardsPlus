@@ -15,7 +15,7 @@ public class DrawCardIfEmptyHandAction extends AbstractGameAction {
     @Override
     public void update() {
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
-            if (!cardToExclude.uuid.equals(c.uuid)) {
+            if (!cardToExclude.equals(c)) {
                 isDone = true;
                 return;
             }

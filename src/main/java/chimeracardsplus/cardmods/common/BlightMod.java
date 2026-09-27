@@ -45,7 +45,7 @@ public class BlightMod extends AbstractAugmentPlus {
 
     @Override
     public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage * 2.0F / 3.0F;
+        return damage * 0.8F;
     }
 
     @Override

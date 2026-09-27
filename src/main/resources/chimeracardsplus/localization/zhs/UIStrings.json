@@ -54,6 +54,11 @@
       "增加 虚无"
     ]
   },
+  "${modID}:AddRetainAction": {
+    "TEXT": [
+      "增加 保留"
+    ]
+  },
   "${modID}:CardByIDFromDeckToHandAction": {
     "TEXT": [
       "选择一张牌放入你的手牌。"

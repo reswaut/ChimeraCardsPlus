@@ -9,14 +9,23 @@
       " NL Whenever you draw this card, draw 2 cards. NL While in hand, lose 1 HP whenever you play another card."
     ]
   },
-  "${modID}:AdaptiveMod": {
+  "${modID}:DefensiveMod": {
     "TEXT": [
-      "Adaptive ",
+      "Defensive ",
       "",
-      "Reduces damage or #yBlock by #b25%. NL Puts #b1 random card of a different type from discard pile into hand and #yUpgrades it."
+      "Reduces damage and #yBlock by #b20%. NL Puts #b1 random Skill from discard pile into hand and #yUpgrades it."
     ],
     "EXTRA_TEXT": [
-      " NL Put a random Skill from your discard pile into your hand and Upgrade it.",
+      " NL Put a random Skill from your discard pile into your hand and Upgrade it."
+    ]
+  },
+  "${modID}:AggressiveMod": {
+    "TEXT": [
+      "Aggressive ",
+      "",
+      "Reduces damage and #yBlock by #b20%. NL Puts #b1 random Attack from discard pile into hand and #yUpgrades it."
+    ],
+    "EXTRA_TEXT": [
       " NL Put a random Attack from your discard pile into your hand and Upgrade it."
     ]
   },
@@ -70,9 +79,9 @@
       " NL If this card is Exhausted, deal 3 damage to ALL enemies."
     ]
   },
-  "${modID}:AttentiveMod": {
+  "${modID}:HotMod": {
     "TEXT": [
-      "Attentive ",
+      "Hot ",
       "",
       "Gains #b2 #yFocus this turn."
     ],
@@ -109,16 +118,6 @@
       "Increases card values by #b100%."
     ],
     "EXTRA_TEXT": []
-  },
-  "${modID}:BackupMod": {
-    "TEXT": [
-      "Backup ",
-      "",
-      "Costs [E] more. NL Draws #b1 card when drawn."
-    ],
-    "EXTRA_TEXT": [
-      " NL Whenever you draw this card, draw 1 card."
-    ]
   },
   "${modID}:BanefulMod": {
     "TEXT": [
@@ -195,7 +194,7 @@
     "TEXT": [
       "Blight ",
       "",
-      "Reduces damage by #b33%. NL Applies #yDoom equal to unblocked damage."
+      "Reduces damage by #b20%. NL Applies #yDoom equal to unblocked damage."
     ],
     "EXTRA_TEXT": [
       " NL Apply ${modID}:Doom equal to unblocked damage dealt."
@@ -987,7 +986,7 @@
     "TEXT": [
       "Fasting ",
       "",
-      "Costs [E] less. NL Gains #b1 #yFasting."
+      "Costs [E] [E] less. NL Gains #b1 #yFasting."
     ],
     "EXTRA_TEXT": [
       " NL Gain 1 less [E] at the start of each turn."
@@ -1161,9 +1160,9 @@
       " NL Cards in your draw pile are shown in order for 2 turns."
     ]
   },
-  "${modID}:GamblerMod": {
+  "${modID}:CalculatedMod": {
     "TEXT": [
-      "Gambler's ",
+      "Calculated ",
       "",
       "Discards your hand, then draws that many cards. NL Adds #yExhaust."
     ],
@@ -1176,16 +1175,16 @@
     "TEXT": [
       "Genetic ",
       "",
-      "Sets #yBlock to #b1. NL Increases #yBlock by #b25% permanently each time played. NL Adds #yExhaust."
+      "Sets #yBlock to #b1. NL Increases #yBlock by #b25% permanently. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
       " NL Permanently increase this card's Block by %s. NL Exhaust.",
       " NL Permanently increase this card's Block by %s."
     ]
   },
-  "${modID}:GoldenMod": {
+  "${modID}:RoyalMod": {
     "TEXT": [
-      "Golden ",
+      "Royal ",
       "",
       "Gains #yGold equal to the cost. NL Adds #yExhaust."
     ],
@@ -1260,16 +1259,6 @@
     ],
     "EXTRA_TEXT": [
       " NL If this is your third turn, gain [E]."
-    ]
-  },
-  "${modID}:HastyMod": {
-    "TEXT": [
-      "Hasty ",
-      "",
-      "Costs [E] less. NL Loses [E] ."
-    ],
-    "EXTRA_TEXT": [
-      " NL Lose [E]."
     ]
   },
   "${modID}:HeadOnMod": {
@@ -1834,9 +1823,9 @@
       " NL Upon pickup, also obtain the other cards in the card reward."
     ]
   },
-  "${modID}:PagedMod": {
+  "${modID}:BackupMod": {
     "TEXT": [
-      "Paged ",
+      "Backup ",
       "",
       "Adds #yEthereal. NL Draws #b1 card when drawn."
     ],
@@ -1880,7 +1869,7 @@
     "TEXT": [
       "Parasitic ",
       "",
-      "Increases card values by #b20%. NL Loses #b3 Max HP when transformed or removed from your deck."
+      "Increases card values by #b25%. NL Loses #b3 Max HP when transformed or removed from your deck."
     ],
     "EXTRA_TEXT": [
       " NL If transformed or removed from your deck, lose 3 Max HP."
@@ -1983,9 +1972,9 @@
       " NL It's unpleasant."
     ]
   },
-  "${modID}:PrayerMod": {
+  "${modID}:HunterMod": {
     "TEXT": [
-      "Prayer's ",
+      "Hunter's ",
       "",
       "Drops an additional card reward if #yFatal in a normal combat. NL Adds #yExhaust."
     ],
@@ -2251,11 +2240,11 @@
       " NL Put 1 %s from your draw pile into your hand."
     ]
   },
-  "${modID}:SeekingMod": {
+  "${modID}:SeekerMod": {
     "TEXT": [
-      "Seeking ",
+      "Seeker ",
       "",
-      "Reduces damage and #yBlock by #b50%. NL Puts #b1 of #b3 cards in your draw pile to your hand."
+      "Reduces damage and #yBlock by #b25%. NL Puts #b1 of #b3 cards in your draw pile to your hand."
     ],
     "EXTRA_TEXT": [
       " NL Choose 1 of 3 cards in your draw pile to add to your hand."
@@ -2314,9 +2303,9 @@
       " NL Whenever you play a Skill this turn, deal 3 damage to ALL enemies."
     ]
   },
-  "${modID}:ShatteringMod": {
+  "${modID}:FracturingMod": {
     "TEXT": [
-      "Shattering ",
+      "Fracturing ",
       "",
       "Increases damage by #b3 if the enemy has #yBlock."
     ],
@@ -2391,7 +2380,7 @@
     "TEXT": [
       "Soulbound ",
       "",
-      "Increases card values by #b40%. NL Cannot be removed from your deck."
+      "Increases card values by #b50%. NL Cannot be removed from your deck."
     ],
     "EXTRA_TEXT": [
       "stslib:Soulbound. NL "
@@ -2749,11 +2738,11 @@
     "TEXT": [
       "Toxic ",
       "",
-      "Triggers the enemy's #yPoison. NL Adds #yExhaust."
+      "Triggers #yPoison immediately. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
-      " NL Trigger the enemy's Poison. NL Exhaust.",
-      " NL Trigger the enemy's Poison.",
+      " NL Poison triggers immediately. NL Exhaust.",
+      " NL Poison triggers immediately.",
       "Poison"
     ]
   },
@@ -2994,7 +2983,7 @@
     "TEXT": [
       "Wise ",
       "",
-      "Reduces card values by #b25%. NL Adds #yInsights into your draw pile equal to the cost."
+      "Reduces damage and #yBlock by #b25%. NL Adds #yInsights into your draw pile equal to the cost."
     ],
     "EXTRA_TEXT": [
       " NL Shuffle an *Insight into your draw pile.",
@@ -3247,6 +3236,280 @@
     "EXTRA_TEXT": [
       " NL Kill enemies with at least as much ${modID}:Doom as HP.",
       "Doom"
+    ]
+  },
+  "${modID}:ReapingMod": {
+    "TEXT": [
+      "Reaping ",
+      "",
+      "Costs [E] more. NL Increases damage by #b3 permanently. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Permanently increase this card's damage by 3. NL Exhaust.",
+      " NL Permanently increase this card's damage by 3."
+    ]
+  },
+  "${modID}:DeadlineMod": {
+    "TEXT": [
+      "Deadline ",
+      "",
+      "Increases damage by the amount of #yDoom on the enemy."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deals additional damage equal to the enemy's ${modID}:Doom.",
+      "Doom"
+    ]
+  },
+  "${modID}:CollisionalMod": {
+    "TEXT": [
+      "Collisional ",
+      "",
+      "Costs [E] less. NL Adds 1 #rSlimed to hand."
+    ],
+    "EXTRA_TEXT": [
+      " NL Add 1 *Slimed into your hand."
+    ]
+  },
+  "${modID}:KinglyMod": {
+    "TEXT": [
+      "Kingly ",
+      "",
+      "Reduces damage by #b50%. NL Increases damage by #b25% when drawn."
+    ],
+    "EXTRA_TEXT": [
+      " NL When drawn, increase its damage by %s this combat."
+    ]
+  },
+  "${modID}:PaleMod": {
+    "TEXT": [
+      "Pale ",
+      "",
+      "Draws #b1 card next turn if #b5 or more cards are played this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If you have played 5 or more cards this turn, draw 1 card next turn.",
+      " (%d card played.)",
+      " (%d cards played.)"
+    ]
+  },
+  "${modID}:ParticleMod": {
+    "TEXT": [
+      "Particle ",
+      "",
+      "Returns to hand the first time the card is played each turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL stslib:Persist !stslib:persist!."
+    ]
+  },
+  "${modID}:CrashMod": {
+    "TEXT": [
+      "Crash ",
+      "",
+      "Increases damage and #yBlock by #b100%. NL Fills your hand with #rSlimed."
+    ],
+    "EXTRA_TEXT": [
+      " NL Fill your hand with *Slimed."
+    ]
+  },
+  "${modID}:ProlongedMod": {
+    "TEXT": [
+      "Prolonged ",
+      "",
+      "Gains #yBlock next turn equal to your current #yBlock. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Next turn, gain Block equal to your current Block. NL Exhaust.",
+      " NL Next turn, gain Block equal to your current Block."
+    ]
+  },
+  "${modID}:GoldenMod": {
+    "TEXT": [
+      "Golden ",
+      "",
+      "Costs [E] more. NL Increases damage by #b1 for each card played this combat. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deals 1 additional damage for each card played this combat. NL Exhaust.",
+      " NL Deals 1 additional damage for each card played this combat."
+    ]
+  },
+  "${modID}:WindfallMod": {
+    "TEXT": [
+      "Windfall ",
+      "",
+      "Adds #b1 random cost #b0 card into your hand. #yUpgrades that card when #yUpgraded. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Add 1 random cost 0 card into your hand. NL Exhaust.",
+      " NL Add 1 random Upgraded cost 0 card into your hand. NL Exhaust."
+    ]
+  },
+  "${modID}:SnapMod": {
+    "TEXT": [
+      "Snap ",
+      "",
+      "Reduces damage and #yBlock by #b25%. NL Adds #yRetain to a card."
+    ],
+    "EXTRA_TEXT": [
+      " NL Add Retain to a card in your hand."
+    ]
+  },
+  "${modID}:EchoingMod": {
+    "TEXT": [
+      "Echoing ",
+      "",
+      "Plays a copy when killing an enemy."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this kills an enemy, play a copy of it."
+    ]
+  },
+  "${modID}:RestlessMod": {
+    "TEXT": [
+      "Restless ",
+      "",
+      "Increases card values by #b100%. NL #yUnplayable unless there are no other cards in your hand."
+    ],
+    "EXTRA_TEXT": [
+      " NL Can only be played if there are no other cards in your hand.",
+      "I have other cards in my hand."
+    ]
+  },
+  "${modID}:DevouringMod": {
+    "TEXT": [
+      "Devouring ",
+      "",
+      "#yEvokes your leftmost Orb."
+    ],
+    "EXTRA_TEXT": [
+      " NL Evoke your leftmost Orb."
+    ]
+  },
+  "${modID}:CoolMod": {
+    "TEXT": [
+      "Cool ",
+      "",
+      "Gains #b1 additional #yBlock for each unique Orb you have."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gain 1 additional Block for each unique Orb you have."
+    ]
+  },
+  "${modID}:ModdedMod": {
+    "TEXT": [
+      "Modded ",
+      "",
+      "Becomes a Skill. NL Costs [E] more this combat after played."
+    ],
+    "EXTRA_TEXT": [
+      " NL Increase this card's cost by 1 this combat."
+    ]
+  },
+  "${modID}:ShatteringMod": {
+    "TEXT": [
+      "Shattering ",
+      "",
+      "Costs [E] more. NL #yEvokes ALL your Orbs twice. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL Evoke ALL your Orbs twice. NL Exhaust.",
+      " NL Evoke ALL your Orbs twice."
+    ]
+  },
+  "${modID}:NostalgicMod": {
+    "TEXT": [
+      "Nostalgic ",
+      "",
+      "Returns to the top of your draw pile if this is the first Attack or Skill played this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Put this card on top of your draw pile if it is the first Attack or Skill played this turn."
+    ]
+  },
+  "${modID}:WhistleMod": {
+    "TEXT": [
+      "",
+      " and Whistle",
+      "Costs [E] [E] more. NL Applies #b1 #yStun. NL Adds #yExhaust."
+    ],
+    "EXTRA_TEXT": [
+      " NL ${modID}:Stun the enemy. NL Exhaust.",
+      " NL ${modID}:Stun the enemy."
+    ]
+  },
+  "${modID}:SwingingMod": {
+    "TEXT": [
+      "Swinging ",
+      "",
+      "Draws #b1 card on the third turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this is your third turn, draw 1 card."
+    ]
+  },
+  "${modID}:KusarigamaMod": {
+    "TEXT": [
+      "Kusarigama ",
+      "",
+      "Increases damage by #b6 if this is the third Attack played in a turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Deals 6 more damage if this is the third Attack played this turn.",
+      " (%d Attack played.)",
+      " (%d Attacks played.)"
+    ]
+  },
+  "${modID}:TuningMod": {
+    "TEXT": [
+      "Tuning ",
+      "",
+      "Increases #yBlock by #b7 if this is the tenth Skill played in combat."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gains 7 more Block if this is the tenth Skill played this combat.",
+      " (%d Skill played.)",
+      " (%d Skills played.)"
+    ]
+  },
+  "${modID}:UnmovableMod": {
+    "TEXT": [
+      "Unmovable ",
+      "",
+      "Increase #yBlock by #b100% if this is the first Skill played in combat."
+    ],
+    "EXTRA_TEXT": [
+      " NL Gains double Block if this is the first Skill played this combat."
+    ]
+  },
+  "${modID}:ThrowingMod": {
+    "TEXT": [
+      "Throwing ",
+      "",
+      "Plays twice if this is the first card played in combat."
+    ],
+    "EXTRA_TEXT": [
+      " NL Plays twice if this is the first card played this combat."
+    ]
+  },
+  "${modID}:PollinicMod": {
+    "TEXT": [
+      "Pollinic ",
+      "",
+      "Draws #b2 cards on the fourth turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this is your fourth turn, draw 2 cards."
+    ]
+  },
+  "${modID}:MusicalMod": {
+    "TEXT": [
+      "Musical ",
+      "",
+      "Adds a copy of the card into your hand and gives it #yEthereal if this is the first Attack played in a turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL If this is the first Attack played this turn, add a copy of it into your hand. It gains Ethereal."
     ]
   }
 }

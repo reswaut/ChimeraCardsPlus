@@ -9,6 +9,7 @@ import com.evacipated.cardcrawl.mod.stslib.StSLib;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
@@ -38,7 +39,7 @@ public class GeneticMod extends AbstractAugmentPlus implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= 0 && c.baseBlock >= 4 && c.rarity != CardRarity.BASIC && doesntUpgradeExhaust());
+        return cardCheck(abstractCard, c -> c.cost >= 0 && c.baseBlock >= 4 && c.rarity != CardRarity.BASIC && c.type == CardType.SKILL && doesntUpgradeExhaust());
     }
 
     @Override

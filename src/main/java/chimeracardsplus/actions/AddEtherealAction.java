@@ -3,16 +3,22 @@ package chimeracardsplus.actions;
 import basemod.cardmods.EtherealMod;
 import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.helpers.Constants;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class AddEtherealAction extends AbstractGameAction {
     private static final String ID = ChimeraCardsPlus.makeID(AddEtherealAction.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
+
+    private final Collection<AbstractCard> cannotChoose = new ArrayList<>(Constants.DEFAULT_LIST_SIZE);
     private boolean first = true;
 
     public AddEtherealAction() {
@@ -23,26 +29,46 @@ public class AddEtherealAction extends AbstractGameAction {
     public void update() {
         if (first) {
             first = false;
-            if (AbstractDungeon.player.hand.isEmpty()) {
-                isDone = true;
-            } else if (AbstractDungeon.player.hand.size() == 1) {
-                AbstractCard c = AbstractDungeon.player.hand.getTopCard();
-                CardModifierManager.addModifier(c, new EtherealMod());
-                AbstractDungeon.player.hand.refreshHandLayout();
-                isDone = true;
-            } else {
-                AbstractDungeon.handCardSelectScreen.open(TEXT[0], 1, false);
+            for (AbstractCard c : AbstractDungeon.player.hand.group) {
+                if (c.isEthereal) {
+                    cannotChoose.add(c);
+                }
             }
+
+            if (cannotChoose.size() == AbstractDungeon.player.hand.group.size()) {
+                isDone = true;
+                return;
+            }
+
+            if (AbstractDungeon.player.hand.group.size() - cannotChoose.size() == 1) {
+                for (AbstractCard c : AbstractDungeon.player.hand.group) {
+                    if (!c.isEthereal) {
+                        CardModifierManager.addModifier(c, new EtherealMod());
+                        AbstractDungeon.player.hand.refreshHandLayout();
+                        isDone = true;
+                        return;
+                    }
+                }
+            }
+
+            AbstractDungeon.player.hand.group.removeAll(cannotChoose);
+            AbstractDungeon.handCardSelectScreen.open(TEXT[0], 1, false);
             return;
         }
+
         if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
             for (AbstractCard c : AbstractDungeon.handCardSelectScreen.selectedCards.group) {
                 CardModifierManager.addModifier(c, new EtherealMod());
                 AbstractDungeon.player.hand.addToHand(c);
             }
+            for (AbstractCard c : cannotChoose) {
+                AbstractDungeon.player.hand.addToTop(c);
+            }
             AbstractDungeon.player.hand.refreshHandLayout();
             AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
+            AbstractDungeon.handCardSelectScreen.selectedCards.group.clear();
         }
+
         isDone = true;
     }
 }
