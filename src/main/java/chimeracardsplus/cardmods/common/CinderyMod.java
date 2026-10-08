@@ -30,7 +30,7 @@ public class CinderyMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return (abstractCard.baseDamage >= 4 || abstractCard.baseBlock >= 4) && abstractCard.cost >= -1;
+        return abstractCard.cost >= -1 && (abstractCard.baseDamage >= 4 || abstractCard.baseBlock >= 4);
     }
 
     @Override

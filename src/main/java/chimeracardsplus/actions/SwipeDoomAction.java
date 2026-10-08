@@ -14,7 +14,6 @@ public class SwipeDoomAction extends AbstractGameAction {
     public SwipeDoomAction(AbstractMonster target, DamageInfo info) {
         this.info = info;
         setValues(target, info);
-        actionType = ActionType.DAMAGE;
         attackEffect = AttackEffect.SLASH_VERTICAL;
     }
 

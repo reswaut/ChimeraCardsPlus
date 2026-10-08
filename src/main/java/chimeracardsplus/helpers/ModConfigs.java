@@ -17,6 +17,7 @@ import java.util.Properties;
 
 public class ModConfigs {
     private static final String FILE_NAME = "chimera_cards_plus_config";
+
     private static final String BASE_GAME_FIXES_KEY = "CardFixes";
     private static final String EVENT_ADDONS_PLUS_KEY = "EventAddonsPlus";
     private static final String MODIFY_NAMES_KEY = "ModifyNames";

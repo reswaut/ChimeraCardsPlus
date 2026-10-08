@@ -43,7 +43,7 @@ public class IterativeMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= 0 && (c.baseDamage >= 2 || c.baseBlock >= 2)
+        return cardCheck(abstractCard, c -> c.cost >= -1 && (c.baseDamage >= 2 || c.baseBlock >= 2)
                 && (c.type == CardType.ATTACK || c.type == CardType.SKILL) && notExhaust(c) && noShenanigans(c)
                 && customCheck(c, check ->
                 noCardModDescriptionChanges(check)

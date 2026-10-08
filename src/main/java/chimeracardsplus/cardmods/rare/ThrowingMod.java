@@ -22,12 +22,11 @@ public class ThrowingMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> noShenanigans(c) && c.cost >= 0 && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
+        return cardCheck(abstractCard, c -> c.cost >= 0 && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        // The card's own play is already counted; the replayed copy is a phantom play and cannot trigger this again.
         if (!card.purgeOnUse && AbstractDungeon.actionManager.cardsPlayedThisCombat.size() == 1) {
             addToBot(new ReplayCardAction(card, target instanceof AbstractMonster ? (AbstractMonster) target : null));
         }

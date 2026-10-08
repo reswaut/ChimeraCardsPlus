@@ -27,7 +27,6 @@ public class DiscoverModAction extends AbstractGameAction {
 
     public DiscoverModAction(AbstractCard card) {
         baseCard = card;
-        actionType = ActionType.CARD_MANIPULATION;
     }
 
     @Override

@@ -363,7 +363,7 @@
     "TEXT": [
       "Choking ",
       "",
-      "Reduces damage by #b20%. NL Applies #yChoke equal to #b20% damage."
+      "Reduces damage by #b20%. NL Applies #yChoke equal to twice the cost."
     ],
     "EXTRA_TEXT": [
       " NL Whenever you play a card this turn, the enemy loses %s HP."
@@ -565,19 +565,6 @@
       " NL Upon pickup, add %s into your deck."
     ]
   },
-  "${modID}:CutThroughMod": {
-    "TEXT": [
-      "Cut Through ",
-      "",
-      "Reduces card values by #b25%. NL Scries #b1(2) and draws #b1 card."
-    ],
-    "EXTRA_TEXT": [
-      " NL Scry %s.",
-      " NL Draw 1 card.",
-      "Draw 1 card.",
-      "Draw 2 cards."
-    ]
-  },
   "${modID}:DarkMod": {
     "TEXT": [
       "Dark ",
@@ -613,7 +600,7 @@
     "TEXT": [
       "Deathbringing ",
       "",
-      "Costs [E] more. NL Applies #b6(9) #yDoom and #b1 #yWeak to ALL enemies."
+      "Costs [E] more. NL Applies #b10(13) #yDoom and #b1 #yWeak to ALL enemies."
     ],
     "EXTRA_TEXT": [
       " NL Apply %s ${modID}:Doom and 1 Weak to ALL enemies."
@@ -808,7 +795,7 @@
     "TEXT": [
       "Dying ",
       "",
-      "Reduces #yBlock by #b25%. NL Gains #yBlock #b2 additional times if you applied #yDoom this turn."
+      "Reduces #yBlock by #b20%. NL Gains #yBlock #b2 additional times if you applied #yDoom this turn."
     ],
     "EXTRA_TEXT": [
       " NL If you applied ${modID}:Doom this turn, gain !B! Block 2 additional times.",
@@ -1227,9 +1214,9 @@
       "If this card is Exhausted, NL gain [R] [R] [R]"
     ]
   },
-  "${modID}:GuilefulMod": {
+  "${modID}:SlyMod": {
     "TEXT": [
-      "Guileful ",
+      "Sly ",
       "",
       "Plays when discarded."
     ],
@@ -1242,7 +1229,7 @@
     "TEXT": [
       "",
       " to the Hand",
-      "Reduces card values by #b33%. NL Applies #yBlock #yReturn equal to the cost. NL Adds #yExhaust."
+      "Reduces damage and #yBlock by #b33%. NL Applies #yBlock #yReturn equal to the cost. NL Adds #yExhaust."
     ],
     "EXTRA_TEXT": [
       " NL Whenever you attack this enemy, gain %d Block. NL Exhaust.",
@@ -2039,7 +2026,7 @@
     "TEXT": [
       "Raging ",
       "",
-      "Reduces #yBlock by #b20%. NL Gains #b1 #yRage."
+      "Reduces #yBlock by #b20%. NL Gains #b3 #yRage."
     ],
     "EXTRA_TEXT": [
       " NL Whenever you play an Attack this turn, gain 3 Block."
@@ -2297,7 +2284,7 @@
     "TEXT": [
       "Sharp ",
       "",
-      "Reduces damage by #b20%. NL Deals #b3 damage to ALL enemies whenever you play play a Skill this turn."
+      "Reduces damage by #b20%. NL Deals #b3 damage to ALL enemies whenever you play a Skill this turn."
     ],
     "EXTRA_TEXT": [
       " NL Whenever you play a Skill this turn, deal 3 damage to ALL enemies."
@@ -2376,9 +2363,9 @@
     ],
     "EXTRA_TEXT": []
   },
-  "${modID}:SoulboundMod": {
+  "${modID}:IntrinsicMod": {
     "TEXT": [
-      "Soulbound ",
+      "Intrinsic ",
       "",
       "Increases card values by #b50%. NL Cannot be removed from your deck."
     ],
@@ -2596,7 +2583,7 @@
     "TEXT": [
       "",
       " and Swipe",
-      "Reduces damage by #b25%. NL Deals damage an additional time if the enemy has #yDoom."
+      "Reduces damage by #b20%. NL Deals damage an additional time if the enemy has #yDoom."
     ],
     "EXTRA_TEXT": [
       " NL If the enemy has ${modID}:Doom, deal !D! damage again.",
@@ -2983,12 +2970,10 @@
     "TEXT": [
       "Wise ",
       "",
-      "Reduces damage and #yBlock by #b25%. NL Adds #yInsights into your draw pile equal to the cost."
+      "Reduces damage and #yBlock by #b20%. NL Adds #b1 #yInsight into your draw pile."
     ],
     "EXTRA_TEXT": [
-      " NL Shuffle an *Insight into your draw pile.",
-      " NL Shuffle %d *Insights into your draw pile.",
-      " NL Shuffle X *Insights into your draw pile."
+      " NL Shuffle an *Insight into your draw pile."
     ]
   },
   "${modID}:WreathMod": {
@@ -3189,7 +3174,7 @@
     "TEXT": [
       "Cleansing ",
       "",
-      "Exhausts #b1 card in your draw pile."
+      "Reduces damage and #yBlock by #b50%. NL #yExhausts #b1 card in your draw pile."
     ],
     "EXTRA_TEXT": [
       " NL Exhaust 1 card in your draw pile."
@@ -3264,7 +3249,7 @@
     "TEXT": [
       "Collisional ",
       "",
-      "Costs [E] less. NL Adds 1 #rSlimed to hand."
+      "Costs [E] less. NL Adds #b1 #rSlimed to hand."
     ],
     "EXTRA_TEXT": [
       " NL Add 1 *Slimed into your hand."
@@ -3510,6 +3495,89 @@
     ],
     "EXTRA_TEXT": [
       " NL If this is the first Attack played this turn, add a copy of it into your hand. It gains Ethereal."
+    ]
+  },
+  "${modID}:PlunderMod": {
+    "TEXT": [
+      "",
+      " and Plunder",
+      "Reduces damage and #yBlock by #b50%. NL Draws card until a card of different type is drawn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Draw cards until you draw a non-Attack card.",
+      " NL Draw cards until you draw a non-Skill card."
+    ]
+  },
+  "${modID}:TrickyMod": {
+    "TEXT": [
+      "Tricky ",
+      "",
+      "Reduces damage and #yBlock by #b20%. NL Adds #ySly to a card of the same type in your Hand this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Add ${modID}:Sly to an Attack this turn.",
+      " NL Add ${modID}:Sly to a Skill this turn.",
+      "discard"
+    ]
+  },
+  "${modID}:SpeedyMod": {
+    "TEXT": [
+      "Speedy ",
+      "",
+      "Reduces damage by #b20%. NL Deals #b2 damage to ALL enemies whenever you draw a card this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you draw a card this turn, deal 2 damage to ALL enemies."
+    ]
+  },
+  "${modID}:CorrosiveMod": {
+    "TEXT": [
+      "Corrosive ",
+      "",
+      "Reduces damage by #b40%. NL Applies #b1 #yPoison to ALL enemies whenever you draw a card this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you draw a card this turn, apply 1 Poison to ALL enemies."
+    ]
+  },
+  "${modID}:ShadowMod": {
+    "TEXT": [
+      "Shadow ",
+      "",
+      "Costs [E] more. NL Increases #yBlock gain by #b100% this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Double your Block gain this turn."
+    ]
+  },
+  "${modID}:DebilitatingMod": {
+    "TEXT": [
+      "Debilitating ",
+      "",
+      "Enemy's #yVulnerable and #yWeak are twice as effective this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Vulnerable and Weak are twice as effective against the enemy this turn."
+    ]
+  },
+  "${modID}:ObliviousMod": {
+    "TEXT": [
+      "Oblivious ",
+      "",
+      "Applies #b2 #yDoom to the enemy whenever you play a card this turn."
+    ],
+    "EXTRA_TEXT": [
+      " NL Whenever you play a card this turn, apply 2 ${modID}:Doom to the enemy."
+    ]
+  },
+  "${modID}:FriendlyMod": {
+    "TEXT": [
+      "Friendly ",
+      "",
+      "Costs [E] less. NL Loses #b2 #yStrength."
+    ],
+    "EXTRA_TEXT": [
+      " NL Lose 2 Strength."
     ]
   }
 }

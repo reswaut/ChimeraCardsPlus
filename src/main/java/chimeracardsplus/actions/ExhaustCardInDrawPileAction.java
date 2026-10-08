@@ -16,10 +16,6 @@ public class ExhaustCardInDrawPileAction extends AbstractGameAction {
     private static final String[] TEXT = uiStrings.TEXT;
     private boolean first = true;
 
-    public ExhaustCardInDrawPileAction() {
-        actionType = ActionType.EXHAUST;
-    }
-
     @Override
     public void update() {
         if (first) {

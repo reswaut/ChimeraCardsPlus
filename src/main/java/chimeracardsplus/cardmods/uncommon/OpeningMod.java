@@ -20,7 +20,7 @@ public class OpeningMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.cost >= -1 && abstractCard.baseDamage >= 1 && abstractCard.type == CardType.ATTACK || abstractCard.baseBlock >= 1 && abstractCard.type == CardType.SKILL;
+        return abstractCard.cost >= -1 && (abstractCard.baseDamage >= 1 && abstractCard.type == CardType.ATTACK || abstractCard.baseBlock >= 1 && abstractCard.type == CardType.SKILL);
     }
 
     @Override

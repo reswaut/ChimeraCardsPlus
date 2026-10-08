@@ -29,12 +29,6 @@ public class NeurosurgePower extends AbstractPower {
     }
 
     @Override
-    public void stackPower(int stackAmount) {
-        super.stackPower(stackAmount);
-        updateDescription();
-    }
-
-    @Override
     public void atStartOfTurn() {
         addToBot(new ApplyPowerAction(owner, owner, new DoomPower(owner, amount)));
     }

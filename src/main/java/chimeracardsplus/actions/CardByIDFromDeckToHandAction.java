@@ -20,7 +20,6 @@ public class CardByIDFromDeckToHandAction extends AbstractGameAction {
     public CardByIDFromDeckToHandAction(int amount, String cardID) {
         this.cardID = cardID;
         this.amount = amount;
-        actionType = ActionType.CARD_MANIPULATION;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package chimeracardsplus.cardmods.uncommon;
+package chimeracardsplus.cardmods.rare;
 
 import CardAugments.patches.InterruptUseCardFieldPatches.InterceptUseField;
 import basemod.abstracts.AbstractCardModifier;
@@ -90,7 +90,7 @@ public class RecyclableMod extends AbstractAugmentPlus {
 
     @Override
     public AugmentRarity getModRarity() {
-        return AugmentRarity.UNCOMMON;
+        return AugmentRarity.RARE;
     }
 
     @Override

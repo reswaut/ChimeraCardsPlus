@@ -5,6 +5,8 @@ import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.effects.RemoveCardFromMasterDeckEffect;
+import chimeracardsplus.effects.RemoveModifierEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -37,21 +39,24 @@ public class ThirstyMod extends AbstractAugmentPlus implements DynvarCarrier {
     }
 
     @Override
-    public boolean preDiscardPotion(AbstractCard card, CardGroup group, AbstractPotion potion) {
+    public void preDiscardPotion(AbstractCard card, CardGroup group, AbstractPotion potion) {
         if (group.type != CardGroupType.MASTER_DECK || !CardModifierManager.hasModifier(card, ID)) {
-            return false;
+            return;
         }
 
         ThirstyMod modifier = (ThirstyMod) CardModifierManager.getModifiers(card, ID).get(0);
         modifier.uses -= 1;
         card.initializeDescription();
-        if (modifier.uses > 0 || !isCardRemovable(card, false)) {
-            return false;
+        if (modifier.uses > 0) {
+            return;
         }
 
-        AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(card));
-        AbstractDungeon.player.masterDeck.removeCard(card);
-        return true;
+        if (isCardRemovable(card, false)) {
+            AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(card));
+            AbstractDungeon.topLevelEffects.add(new RemoveCardFromMasterDeckEffect(card));
+        } else {
+            AbstractDungeon.topLevelEffects.add(new RemoveModifierEffect(card, this, true));
+        }
     }
 
     @Override

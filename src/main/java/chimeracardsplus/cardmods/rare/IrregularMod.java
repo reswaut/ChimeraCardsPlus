@@ -67,8 +67,6 @@ public class IrregularMod extends AbstractAugmentPlus {
                     break;
                 }
             }
-            card.cost += costIncrement;
-            card.costForTurn = card.cost;
         }
         float exp = costIncrement == 0 ? 1.0F : (card.cost + 1.0F) / (card.cost - costIncrement + 1.0F);
         if (card.baseDamage >= 1) {
@@ -102,10 +100,13 @@ public class IrregularMod extends AbstractAugmentPlus {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (!CardCrawlGame.isInARun() || rolled) {
-            return;
+        if (!rolled && AbstractDungeon.miscRng != null) {
+            updateMultipliers(card, AbstractDungeon.miscRng);
         }
-        updateMultipliers(card, AbstractDungeon.miscRng);
+        if (rolled) {
+            card.cost += costIncrement;
+            card.costForTurn = card.cost;
+        }
     }
 
     @Override

@@ -17,7 +17,6 @@ public class EvokeAllOrbsAction extends AbstractGameAction {
     @Override
     public void update() {
         int orbs = Math.toIntExact(AbstractDungeon.player.orbs.stream().filter(orb -> !(orb instanceof EmptyOrbSlot)).count());
-        // addToTop is LIFO, so each evocation is queued in reverse order.
         for (int i = 0; i < orbs; ++i) {
             addToTop(new EvokeOrbAction(1));
             addToTop(new AnimateOrbAction(1));

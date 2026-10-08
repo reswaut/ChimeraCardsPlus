@@ -21,10 +21,28 @@ public class BitingMod extends AbstractAugmentPlus {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
+    private int amount;
+
+    public BitingMod() {
+        this(0);
+    }
+
+    public BitingMod(int amount) {
+        this.amount = amount;
+    }
+
+    @Override
+    public void onInitialApplication(AbstractCard card) {
+        AbstractCard copy = makeNewInstance(card);
+        if (copy != null) {
+            amount = copy.cost;
+        }
+    }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> (c.cost >= 1 || c.cost == -1) && c.type == CardType.ATTACK && c.baseDamage >= 2 && c.rarity != CardRarity.BASIC && doesntUpgradeCost());
+        AbstractCard copy = makeNewInstance(abstractCard);
+        return copy != null && cardCheck(copy, c -> (c.cost >= 1 || c.cost == -1) && c.type == CardType.ATTACK && c.baseDamage >= 2 && c.rarity != CardRarity.BASIC);
     }
 
     @Override
@@ -35,20 +53,19 @@ public class BitingMod extends AbstractAugmentPlus {
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
         if (Bite.ID.equals(card.cardID)) {
-            return magic + card.cost;
+            return magic + amount;
         }
         return magic;
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (Bite.ID.equals(card.cardID)) {
+        if (Bite.ID.equals(card.cardID) || amount == 0 || amount <= -2) {
             return;
         }
-        if (card.cost > 0) {
-            addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, card.cost));
-        } else if (card.cost == -1) {
-            addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, card.energyOnUse));
+        int healAmount = amount > 0 ? amount : card.energyOnUse;
+        if (healAmount > 0) {
+            addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, healAmount));
         }
     }
 
@@ -72,10 +89,13 @@ public class BitingMod extends AbstractAugmentPlus {
         if (Bite.ID.equals(card.cardID)) {
             return rawDescription;
         }
-        if (card.cost == -1) {
-            return insertAfterText(rawDescription, CARD_TEXT[1]);
+        String text = "";
+        if (amount == -1) {
+            text = CARD_TEXT[1];
+        } else if (card.cost >= 1) {
+            text = String.format(CARD_TEXT[0], amount);
         }
-        return insertAfterText(rawDescription, String.format(CARD_TEXT[0], card.cost));
+        return insertAfterText(rawDescription, text);
     }
 
     @Override
@@ -85,7 +105,7 @@ public class BitingMod extends AbstractAugmentPlus {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new BitingMod();
+        return new BitingMod(amount);
     }
 
     @Override

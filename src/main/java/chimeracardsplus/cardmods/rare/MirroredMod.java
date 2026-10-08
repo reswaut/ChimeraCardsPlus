@@ -1,9 +1,9 @@
 package chimeracardsplus.cardmods.rare;
 
 import basemod.abstracts.AbstractCardModifier;
-import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.effects.RemoveModifierEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -37,8 +37,7 @@ public class MirroredMod extends AbstractAugmentPlus {
     private boolean pickup, cardsSelected;
 
     public MirroredMod() {
-        pickup = false;
-        cardsSelected = true;
+        this(false);
     }
     public MirroredMod(boolean pickup) {
         this.pickup = pickup;
@@ -57,9 +56,9 @@ public class MirroredMod extends AbstractAugmentPlus {
     }
 
     @Override
-    public boolean onRoomUpdateObjects(AbstractCard card) {
+    public void onRoomUpdateObjects(AbstractCard card) {
         if (AbstractDungeon.getCurrMapNode() == null) {
-            return false;
+            return;
         }
         RoomPhase phase = AbstractDungeon.getCurrRoom().phase;
         if (cardsSelected && pickup && phase != RoomPhase.INCOMPLETE && phase != RoomPhase.COMBAT && VALID_SCREENS.contains(AbstractDungeon.screen)) {
@@ -89,17 +88,13 @@ public class MirroredMod extends AbstractAugmentPlus {
 
             AbstractDungeon.getCurrRoom().phase = RoomPhase.COMPLETE;
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
-            CardModifierManager.removeSpecificModifier(card, this, false);
-            return true;
-        }
-        if (!cardsSelected && AbstractDungeon.screen == prevScreen) {
+            AbstractDungeon.topLevelEffects.add(new RemoveModifierEffect(card, this, true));
+        } else if (!cardsSelected && AbstractDungeon.screen == prevScreen) {
             cardsSelected = true;
             AbstractDungeon.getCurrRoom().phase = RoomPhase.COMPLETE;
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
-            CardModifierManager.removeSpecificModifier(card, this, false);
-            return true;
+            AbstractDungeon.topLevelEffects.add(new RemoveModifierEffect(card, this, true));
         }
-        return false;
     }
 
     @Override

@@ -7,10 +7,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 
 public class ProlongBlockAction extends AbstractGameAction {
-    public ProlongBlockAction() {
-        actionType = ActionType.BLOCK;
-    }
-
     @Override
     public void update() {
         AbstractCreature player = AbstractDungeon.player;

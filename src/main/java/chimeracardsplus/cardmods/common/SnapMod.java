@@ -6,7 +6,6 @@ import chimeracardsplus.actions.AddRetainAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -21,7 +20,7 @@ public class SnapMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.cost >= -1 && (abstractCard.type == CardType.ATTACK || abstractCard.type == CardType.SKILL) && (abstractCard.baseDamage >= 2 || abstractCard.baseBlock >= 2);
+        return abstractCard.cost >= -1 && (abstractCard.baseDamage >= 2 || abstractCard.baseBlock >= 2);
     }
 
     @Override

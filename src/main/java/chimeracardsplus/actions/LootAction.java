@@ -16,10 +16,6 @@ public class LootAction extends AbstractGameAction {
     private static final String[] TEXT = uiStrings.TEXT;
     private boolean first = true;
 
-    public LootAction() {
-        actionType = ActionType.DISCARD;
-    }
-
     private static void discard(AbstractCard card) {
         AbstractDungeon.player.hand.moveToDiscardPile(card);
         card.triggerOnManualDiscard();

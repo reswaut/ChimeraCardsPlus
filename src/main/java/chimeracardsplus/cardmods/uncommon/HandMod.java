@@ -21,14 +21,24 @@ public class HandMod extends AbstractAugmentPlus {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private boolean addedExhaust = true, modMagic = false;
+    private boolean addedExhaust = true;
+    private int amount;
+
+    public HandMod() {
+        this(0);
+    }
+
+    public HandMod(int amount) {
+        this.amount = amount;
+    }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
         addedExhaust = !card.exhaust;
         card.exhaust = true;
-        if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
-            modMagic = true;
+        AbstractCard copy = makeNewInstance(card);
+        if (copy != null) {
+            amount = copy.cost;
         }
     }
 
@@ -44,12 +54,16 @@ public class HandMod extends AbstractAugmentPlus {
 
     @Override
     public float modifyBaseMagic(float magic, AbstractCard card) {
-        return modMagic ? magic * 2.0F / 3.0F : magic;
+        if (TalkToTheHand.ID.equals(card.cardID)) {
+            return magic + amount;
+        }
+        return magic;
     }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> (c.cost == -1 || c.cost >= 1) && doesntUpgradeCost() && doesntUpgradeExhaust() && (c.baseDamage >= 2 || c.baseBlock >= 2 || c.baseMagicNumber >= 2 && doesntDowngradeMagic()) && usesEnemyTargeting() && !TalkToTheHand.ID.equals(c.cardID) && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
+        AbstractCard copy = makeNewInstance(abstractCard);
+        return copy != null && cardCheck(copy, c -> (c.cost == -1 || c.cost >= 1) && doesntUpgradeExhaust() && (c.baseDamage >= 2 || c.baseBlock >= 2) && usesEnemyTargeting() && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
     }
 
     @Override
@@ -69,23 +83,27 @@ public class HandMod extends AbstractAugmentPlus {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (TalkToTheHand.ID.equals(card.cardID)) {
+            return rawDescription;
+        }
         String text = "";
-        if (card.cost == -1) {
+        if (amount == -1) {
             text = addedExhaust ? CARD_TEXT[2] : CARD_TEXT[3];
-        } else if (card.cost >= 1) {
-            text = String.format(addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1], card.cost);
+        } else if (amount >= 1) {
+            text = String.format(addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1], amount);
         }
         return insertAfterText(rawDescription, text);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (card.cost == 0 || card.cost <= -2 || target == null) {
+        if (TalkToTheHand.ID.equals(card.cardID) || amount == 0 || amount <= -2 || target == null) {
             return;
         }
-        addToBot(new ApplyPowerAction(target, AbstractDungeon.player,
-                new BlockReturnPower(target, card.cost > 0 ? card.cost : card.energyOnUse),
-                card.cost > 0 ? card.cost : card.energyOnUse));
+        int powerAmount = amount > 0 ? amount : card.energyOnUse;
+        if (powerAmount > 0) {
+            addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new BlockReturnPower(target, powerAmount)));
+        }
     }
 
     @Override
@@ -95,7 +113,7 @@ public class HandMod extends AbstractAugmentPlus {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new HandMod();
+        return new HandMod(amount);
     }
 
     @Override

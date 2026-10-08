@@ -40,7 +40,7 @@ public class EchoingMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> noShenanigans(c) && c.cost >= 0 && c.type == CardType.ATTACK && c.baseDamage >= 1 && !c.hasTag(CardTags.HEALING));
+        return cardCheck(abstractCard, c -> c.cost >= -1 && c.type == CardType.ATTACK && c.baseDamage >= 1 && !c.hasTag(CardTags.HEALING));
     }
 
     @Override

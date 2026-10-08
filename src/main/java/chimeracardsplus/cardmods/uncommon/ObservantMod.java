@@ -22,11 +22,24 @@ public class ObservantMod extends AbstractAugmentPlus {
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
     private boolean modMagic = false;
+    private int amount;
+
+    public ObservantMod() {
+        this(0);
+    }
+
+    public ObservantMod(int amount) {
+        this.amount = amount;
+    }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+        if (cardCheck(card, c -> c.baseMagicNumber >= 2 && doesntDowngradeMagic())) {
             modMagic = true;
+        }
+        AbstractCard copy = makeNewInstance(card);
+        if (copy != null) {
+            amount = copy.cost;
         }
     }
 
@@ -47,8 +60,8 @@ public class ObservantMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> (c.cost == -1 || c.cost >= 1) && doesntUpgradeCost() &&
-                (c.baseDamage >= 2 || c.baseBlock >= 2 || c.baseMagicNumber >= 2 && doesntDowngradeMagic()) && usesEnemyTargeting() && !SpotWeakness.ID.equals(c.cardID) && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
+        AbstractCard copy = makeNewInstance(abstractCard);
+        return copy != null && cardCheck(copy, c -> (c.cost == -1 || c.cost >= 1) && (c.baseDamage >= 2 || c.baseBlock >= 2 || c.baseMagicNumber >= 2 && doesntDowngradeMagic()) && usesEnemyTargeting() && !SpotWeakness.ID.equals(c.cardID) && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
     }
 
     @Override
@@ -69,27 +82,25 @@ public class ObservantMod extends AbstractAugmentPlus {
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         String text = "";
-        if (card.cost == -1) {
+        if (amount == -1) {
             text = CARD_TEXT[1];
         } else if (card.cost >= 1) {
-            text = String.format(CARD_TEXT[0], card.cost);
+            text = String.format(CARD_TEXT[0], amount);
         }
         return insertAfterText(rawDescription, text);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (card.cost == 0 || card.cost <= -2) {
-            return;
-        }
-        if (target == null) {
+        if (amount == 0 || amount <= -2 || target == null) {
             return;
         }
         AbstractMonster m = (AbstractMonster) target;
         if (m.getIntentBaseDmg() >= 0) {
-            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
-                    new StrengthPower(AbstractDungeon.player, card.cost > 0 ? card.cost : card.energyOnUse),
-                    card.cost > 0 ? card.cost : card.energyOnUse));
+            int powerAmount = card.cost > 0 ? card.cost : card.energyOnUse;
+            if (powerAmount > 0) {
+                addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, powerAmount)));
+            }
         }
     }
 
@@ -100,7 +111,7 @@ public class ObservantMod extends AbstractAugmentPlus {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ObservantMod();
+        return new ObservantMod(amount);
     }
 
     @Override

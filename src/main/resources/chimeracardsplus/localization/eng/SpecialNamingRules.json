@@ -310,12 +310,6 @@
         "DESCRIPTION": "Merged #yCubic with #yBrutality."
       }
     },
-    "${modID}:CutThroughMod": {
-      "Cut Through Fate": {
-        "NAME": "Cut Through² Fate",
-        "DESCRIPTION": "Merged #yCut #yThrough with #yCut #yThrough #yFate."
-      }
-    },
     "${modID}:DarkMod": {
       "Dark Embrace": {
         "NAME": "Dark² Embrace",
@@ -604,6 +598,12 @@
       "Violence": {
         "NAME": "Violence²",
         "DESCRIPTION": "Merged #yViolent with #yViolence."
+      }
+    },
+    "${modID}:HandMod": {
+      "Talk to the Hand": {
+        "NAME": "Talk to the Hand²",
+        "DESCRIPTION": "Merged #yto #ythe #yHand with #yTalk #yto #ythe #yHand."
       }
     }
   }

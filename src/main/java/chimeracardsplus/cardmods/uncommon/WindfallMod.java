@@ -44,6 +44,11 @@ public class WindfallMod extends AbstractAugmentPlus {
     }
 
     @Override
+    public void onUpgradeCheck(AbstractCard card) {
+        card.initializeDescription();
+    }
+
+    @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         List<AbstractCard> freeCards = new ArrayList<>(Constants.DEFAULT_LIST_SIZE);
         collectFreeCards(freeCards, AbstractDungeon.srcCommonCardPool);

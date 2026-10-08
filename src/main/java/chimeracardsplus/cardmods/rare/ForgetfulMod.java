@@ -1,9 +1,10 @@
 package chimeracardsplus.cardmods.rare;
 
 import basemod.abstracts.AbstractCardModifier;
-import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.effects.RemoveCardFromMasterDeckEffect;
+import chimeracardsplus.effects.RemoveModifierEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -36,8 +37,7 @@ public class ForgetfulMod extends AbstractAugmentPlus {
     private boolean pickup, cardsSelected;
 
     public ForgetfulMod() {
-        pickup = false;
-        cardsSelected = true;
+        this(false);
     }
     public ForgetfulMod(boolean pickup) {
         this.pickup = pickup;
@@ -56,9 +56,9 @@ public class ForgetfulMod extends AbstractAugmentPlus {
     }
 
     @Override
-    public boolean onRoomUpdateObjects(AbstractCard card) {
+    public void onRoomUpdateObjects(AbstractCard card) {
         if (AbstractDungeon.getCurrMapNode() == null) {
-            return false;
+            return;
         }
         RoomPhase phase = AbstractDungeon.getCurrRoom().phase;
         if (cardsSelected && pickup && phase != RoomPhase.INCOMPLETE && phase != RoomPhase.COMBAT && VALID_SCREENS.contains(AbstractDungeon.screen)) {
@@ -78,21 +78,17 @@ public class ForgetfulMod extends AbstractAugmentPlus {
             c.unhover();
 
             AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(c, (float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2));
-            AbstractDungeon.player.masterDeck.removeCard(c);
+            AbstractDungeon.topLevelEffects.add(new RemoveCardFromMasterDeckEffect(c));
 
             AbstractDungeon.getCurrRoom().phase = RoomPhase.COMPLETE;
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
-            CardModifierManager.removeSpecificModifier(card, this, false);
-            return true;
-        }
-        if (!cardsSelected && AbstractDungeon.screen == prevScreen) {
+            AbstractDungeon.topLevelEffects.add(new RemoveModifierEffect(card, this, true));
+        } else if (!cardsSelected && AbstractDungeon.screen == prevScreen) {
             cardsSelected = true;
             AbstractDungeon.getCurrRoom().phase = RoomPhase.COMPLETE;
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
-            CardModifierManager.removeSpecificModifier(card, this, false);
-            return true;
+            AbstractDungeon.topLevelEffects.add(new RemoveModifierEffect(card, this, true));
         }
-        return false;
     }
 
     @Override

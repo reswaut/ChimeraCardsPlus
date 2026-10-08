@@ -7,7 +7,6 @@ import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -28,7 +27,7 @@ public class CollisionalMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> c.cost >= 1 && doesntUpgradeCost() && c.type != CardType.POWER);
+        return cardCheck(abstractCard, c -> c.cost >= 1 && doesntUpgradeCost());
     }
 
     @Override

@@ -91,8 +91,34 @@
   "${modID}:ColossusPower": {
     "NAME": "巨像",
     "DESCRIPTIONS": [
-      "你从 #y易伤 的敌人处受到的伤害减少 #b50%% ，持续 %d 回合。",
-      "你从 #y易伤 的敌人处受到的伤害减少 #b50%% ，持续 %d 回合。"
+      "你从 #y易伤 的敌人处受到的伤害减少 #b50%% ，持续 #b%d 回合。",
+      "你从 #y易伤 的敌人处受到的伤害减少 #b50%% ，持续 #b%d 回合。"
+    ]
+  },
+  "${modID}:SpeedsterPower": {
+    "NAME": "速行者",
+    "DESCRIPTIONS": [
+      "每当你在本回合中抽到一张牌时，对所有敌人造成 #b%d 点伤害。"
+    ]
+  },
+  "${modID}:CorrosiveWavePower": {
+    "NAME": "腐蚀波",
+    "DESCRIPTIONS": [
+      "每当你在本回合中抽到一张牌时，给予所有敌人造成 #b%d 层 #y中毒 。"
+    ]
+  },
+  "${modID}:ShadowmeldPower": {
+    "NAME": "融入暗影",
+    "DESCRIPTIONS": [
+      "本回合你获得的 #y格挡 翻倍。",
+      "本回合你获得的 #y格挡 翻倍 #b%d 次。"
+    ]
+  },
+  "${modID}:DebilitatePower": {
+    "NAME": "摧残",
+    "DESCRIPTIONS": [
+      "#y易伤 与 #y虚弱 效果翻倍，持续 #b%d 回合。",
+      "#y易伤 与 #y虚弱 效果翻倍，持续 #b%d 回合。"
     ]
   }
 }

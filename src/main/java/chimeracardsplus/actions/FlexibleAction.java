@@ -19,10 +19,6 @@ public class FlexibleAction extends AbstractGameAction {
     private final Collection<AbstractCard> cannotChoose = new ArrayList<>(Constants.DEFAULT_LIST_SIZE);
     private boolean first = true;
 
-    public FlexibleAction() {
-        actionType = ActionType.CARD_MANIPULATION;
-    }
-
     @Override
     public void update() {
         if (first) {
@@ -50,6 +46,7 @@ public class FlexibleAction extends AbstractGameAction {
 
             AbstractDungeon.player.hand.group.removeAll(cannotChoose);
             AbstractDungeon.handCardSelectScreen.open(TEXT[0], 1, false);
+            return;
         }
 
         if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {

@@ -9,11 +9,17 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class ReplayCardAction extends AbstractGameAction {
     private final AbstractCard card;
-    private final AbstractMonster target;
+    private final boolean randomTarget;
+
+    public ReplayCardAction(AbstractCard card, boolean randomTarget) {
+        this.card = card;
+        this.randomTarget = randomTarget;
+    }
 
     public ReplayCardAction(AbstractCard card, AbstractMonster target) {
         this.card = card;
         this.target = target;
+        randomTarget = false;
     }
 
     @Override
@@ -24,11 +30,16 @@ public class ReplayCardAction extends AbstractGameAction {
         copy.current_y = card.current_y;
         copy.target_x = Settings.WIDTH / 2.0F - 300.0F * Settings.scale;
         copy.target_y = Settings.HEIGHT / 2.0F;
-        if (target != null) {
-            copy.calculateCardDamage(target);
-        }
         copy.purgeOnUse = true;
-        AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(copy, target, card.energyOnUse, true, true), true);
+        if (randomTarget) {
+            target = AbstractDungeon.getRandomMonster();
+        }
+        if (target != null && target instanceof AbstractMonster) {
+            copy.calculateCardDamage((AbstractMonster) target);
+            AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(copy, (AbstractMonster) target, card.energyOnUse, true, true), true);
+        } else {
+            AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(copy, null, card.energyOnUse, true, true), true);
+        }
         isDone = true;
     }
 }

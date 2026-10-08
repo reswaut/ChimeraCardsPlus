@@ -2,14 +2,14 @@ package chimeracardsplus.cardmods.rare;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.actions.PlayDiscardedCardAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import chimeracardsplus.patches.SlyFieldPatches.SlyFieldPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-public class GuilefulMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(GuilefulMod.class.getSimpleName());
+public class SlyMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(SlyMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
@@ -17,7 +17,12 @@ public class GuilefulMod extends AbstractAugmentPlus {
     @Override
     public boolean validCard(AbstractCard abstractCard) {
         return characterCheck(p -> hasCardWithKeywordInDeck(p, CARD_TEXT[1])) &&
-                cardCheck(abstractCard, c -> c.cost == 1 && doesntUpgradeCost());
+                cardCheck(abstractCard, c -> c.cost == 1 && doesntUpgradeCost() && !SlyFieldPatch.sly.get(c));
+    }
+
+    @Override
+    public void onInitialApplication(AbstractCard card) {
+        SlyFieldPatch.sly.set(card, true);
     }
 
     @Override
@@ -41,18 +46,13 @@ public class GuilefulMod extends AbstractAugmentPlus {
     }
 
     @Override
-    public void onManualDiscard(AbstractCard card) {
-        addToBot(new PlayDiscardedCardAction(card));
-    }
-
-    @Override
     public AugmentRarity getModRarity() {
         return AugmentRarity.RARE;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new GuilefulMod();
+        return new SlyMod();
     }
 
     @Override

@@ -310,12 +310,6 @@
         "DESCRIPTION": "合并 #y立方体 和 #y残暴 。"
       }
     },
-    "${modID}:CutThroughMod": {
-      "斩破命运": {
-        "NAME": "斩破²命运",
-        "DESCRIPTION": "合并 #y斩破 和 #y斩破命运 。"
-      }
-    },
     "${modID}:DarkMod": {
       "黑暗之拥": {
         "NAME": "黑暗²之拥",
@@ -592,6 +586,12 @@
       "暴力": {
         "NAME": "暴力²",
         "DESCRIPTION": "合并 #y暴力 和 #y暴力 。"
+      }
+    },
+    "${modID}:HandMod": {
+      "以手拒之": {
+        "NAME": "以手²拒之",
+        "DESCRIPTION": "合并 #y以手 和 #y以手拒之 。"
       }
     }
   }

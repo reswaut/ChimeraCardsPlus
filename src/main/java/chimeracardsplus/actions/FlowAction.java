@@ -16,10 +16,6 @@ public class FlowAction extends AbstractGameAction {
     private static final String[] TEXT = uiStrings.TEXT;
     private boolean first = true;
 
-    public FlowAction() {
-        actionType = ActionType.CARD_MANIPULATION;
-    }
-
     @Override
     public void update() {
         if (first) {

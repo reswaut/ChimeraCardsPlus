@@ -2,53 +2,43 @@ package chimeracardsplus.cardmods.common;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;
+import chimeracardsplus.actions.PillageAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class ParasiticMod extends AbstractAugmentPlus {
-    public static final String ID = ChimeraCardsPlus.makeID(ParasiticMod.class.getSimpleName());
+public class PlunderMod extends AbstractAugmentPlus {
+    public static final String ID = ChimeraCardsPlus.makeID(PlunderMod.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
-    private boolean modMagic = false;
-
-    @Override
-    public void onInitialApplication(AbstractCard card) {
-        if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
-            modMagic = true;
-        }
-    }
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> (c.baseDamage >= 4 || c.baseBlock >= 4 || c.baseMagicNumber >= 4 && doesntDowngradeMagic()) && isNormalCard(c) && c.rarity == CardRarity.BASIC && isCardRemovable(c, true));
+        return abstractCard.cost >= -1 && (abstractCard.baseDamage >= 2 || abstractCard.baseBlock >= 2) && (abstractCard.type == CardType.ATTACK || abstractCard.type == CardType.SKILL);
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage > 0.0F ? damage * 1.25F : damage;
+        return damage > 0.0F ? damage * 0.5F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return block > 0.0F ? block * 1.25F : block;
+        return block > 0.0F ? block * 0.5F : block;
     }
 
     @Override
-    public float modifyBaseMagic(float magic, AbstractCard card) {
-        return modMagic ? magic * 1.25F : magic;
-    }
-
-    @Override
-    public void onRemoveFromMasterDeck(AbstractCard card) {
-        AbstractDungeon.player.decreaseMaxHealth(3);
-        CardCrawlGame.sound.play("BLOOD_SWISH");
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        if (card.type == CardType.ATTACK || card.type == CardType.SKILL) {
+            addToBot(new PillageAction(card.type));
+        }
     }
 
     @Override
@@ -68,7 +58,13 @@ public class ParasiticMod extends AbstractAugmentPlus {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return insertAfterText(rawDescription, CARD_TEXT[0]);
+        if (card.type == CardType.ATTACK) {
+            return insertAfterText(rawDescription, CARD_TEXT[0]);
+        }
+        if (card.type == CardType.SKILL) {
+            return insertAfterText(rawDescription, CARD_TEXT[1]);
+        }
+        return rawDescription;
     }
 
     @Override
@@ -78,7 +74,7 @@ public class ParasiticMod extends AbstractAugmentPlus {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ParasiticMod();
+        return new PlunderMod();
     }
 
     @Override
@@ -88,6 +84,6 @@ public class ParasiticMod extends AbstractAugmentPlus {
 
     @Override
     public AugmentBonusLevel getModBonusLevel() {
-        return AugmentBonusLevel.HEALING;
+        return AugmentBonusLevel.NORMAL;
     }
 }

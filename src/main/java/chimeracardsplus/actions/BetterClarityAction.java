@@ -16,7 +16,6 @@ public class BetterClarityAction extends AbstractGameAction {
 
     public BetterClarityAction(int numCards) {
         amount = numCards;
-        actionType = ActionType.CARD_MANIPULATION;
         first = true;
     }
 

@@ -18,6 +18,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.city.TheLibrary;
+import com.megacrit.cardcrawl.events.shrines.Transmogrifier;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
@@ -68,7 +69,7 @@ public class ChimeraCardsPlus implements PostInitializeSubscriber {
                     return false;
                 }
                 AbstractRoom room = node.getRoom();
-                return room instanceof EventRoom && room.event instanceof TheLibrary;
+                return room instanceof EventRoom && (room.event instanceof TheLibrary || room.event instanceof Transmogrifier);
             });
         }
     }

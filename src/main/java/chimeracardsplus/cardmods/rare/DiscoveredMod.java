@@ -9,7 +9,7 @@ import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPrevie
 import chimeracardsplus.ChimeraCardsPlus;
 import chimeracardsplus.actions.DiscoverModAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
-import chimeracardsplus.helpers.LabelMod;
+import chimeracardsplus.cardmods.LabelMod;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTarget;

@@ -4,8 +4,8 @@ import basemod.ReflectionHacks;
 import basemod.ReflectionHacks.RMethod;
 import basemod.helpers.CardModifierManager;
 import chimeracardsplus.ChimeraCardsPlus;
-import chimeracardsplus.cardmods.uncommon.StrategicMod;
-import chimeracardsplus.cards.preview.StrategicPreview;
+import chimeracardsplus.cardmods.special.IntrinsicMod;
+import chimeracardsplus.cards.preview.IntrinsicPreview;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -38,7 +38,7 @@ public class BackToBasicsPatches {
                 return;
             }
             myIndex = __instance.imageEventText.optionList.size();
-            __instance.imageEventText.setDialogOption(OPTIONS[0], new StrategicPreview());
+            __instance.imageEventText.setDialogOption(OPTIONS[0], new IntrinsicPreview());
         }
     }
 
@@ -79,10 +79,10 @@ public class BackToBasicsPatches {
         }
 
         private static void applyModifiers() {
-            StrategicMod augment = new StrategicMod();
+            IntrinsicMod augment = new IntrinsicMod();
             for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
                 if (c.hasTag(CardTags.STARTER_DEFEND) && augment.canApplyTo(c)) {
-                    CardModifierManager.addModifier(c, new StrategicMod());
+                    CardModifierManager.addModifier(c, new IntrinsicMod());
                     AbstractDungeon.player.bottledCardUpgradeCheck(c);
                     AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy(), MathUtils.random(0.1F, 0.9F) * Settings.WIDTH, MathUtils.random(0.2F, 0.8F) * Settings.HEIGHT));
                 }

@@ -35,12 +35,6 @@ public class DoomPower extends AbstractPower implements HealthBarRenderPower {
     }
 
     @Override
-    public void stackPower(int stackAmount) {
-        super.stackPower(stackAmount);
-        updateDescription();
-    }
-
-    @Override
     public int getHealthBarAmount() {
         return amount;
     }

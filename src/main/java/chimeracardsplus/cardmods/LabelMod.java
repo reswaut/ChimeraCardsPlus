@@ -1,4 +1,4 @@
-package chimeracardsplus.helpers;
+package chimeracardsplus.cardmods;
 
 import basemod.abstracts.AbstractCardModifier;
 import chimeracardsplus.ChimeraCardsPlus;

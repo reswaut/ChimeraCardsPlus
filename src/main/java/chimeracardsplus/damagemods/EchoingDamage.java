@@ -1,6 +1,6 @@
 package chimeracardsplus.damagemods;
 
-import chimeracardsplus.actions.EchoCardAction;
+import chimeracardsplus.actions.ReplayCardAction;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.DamageModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -13,7 +13,10 @@ public class EchoingDamage extends CardModifierDamageModifier {
         if (!killedEnemy(info, lastDamageTaken, overkillAmount, target)) {
             return;
         }
-        addToBot(new EchoCardAction((AbstractCard) DamageModifierManager.getInstigator(info)));
+        Object instigator = DamageModifierManager.getInstigator(info);
+        if (instigator instanceof AbstractCard) {
+            addToBot(new ReplayCardAction((AbstractCard) instigator, true));
+        }
     }
 
     @Override

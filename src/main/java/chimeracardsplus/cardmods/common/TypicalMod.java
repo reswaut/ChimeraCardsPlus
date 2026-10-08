@@ -66,7 +66,6 @@ public class TypicalMod extends AbstractAugmentPlus {
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         addToBot(new UseCardMultipleTimesAction(card, target, () -> {
-            // Only the play being resolved is excluded, so an earlier play of this same card still counts as a type.
             boolean beingPlayed = AbstractDungeon.actionManager.cardQueue.stream().anyMatch(item -> card.equals(item.card));
             long types = AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().filter(c -> !(beingPlayed && card.equals(c))).map(c -> c.type).distinct().count();
             return Math.toIntExact(types);

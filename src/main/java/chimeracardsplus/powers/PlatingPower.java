@@ -31,12 +31,6 @@ public class PlatingPower extends AbstractPower {
     }
 
     @Override
-    public void stackPower(int stackAmount) {
-        super.stackPower(stackAmount);
-        updateDescription();
-    }
-
-    @Override
     public void atEndOfTurn(boolean isPlayer) {
         flash();
         addToBot(new GainBlockAction(owner, owner, amount));

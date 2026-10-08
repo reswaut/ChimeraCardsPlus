@@ -51,7 +51,7 @@ public class DeathbringingMod extends AbstractAugmentPlus implements DynvarCarri
 
     @Override
     public int baseVal(AbstractCard abstractCard) {
-        return 6 + 3 * getEffectiveUpgrades(abstractCard);
+        return 10 + 3 * getEffectiveUpgrades(abstractCard);
     }
 
     @Override

@@ -3,8 +3,10 @@ package chimeracardsplus.patches;
 import basemod.ReflectionHacks;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
+import chimeracardsplus.actions.PlayDiscardedCardAction;
 import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import chimeracardsplus.helpers.Constants;
+import chimeracardsplus.patches.SlyFieldPatches.SlyFieldPatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.lib.Matcher.MethodCallMatcher;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
@@ -27,6 +29,9 @@ public class AbstractAugmentPlusPatches {
             if (mod instanceof AbstractAugmentPlus) {
                 ((AbstractAugmentPlus) mod).onManualDiscard(card);
             }
+        }
+        if (SlyFieldPatch.sly.get(card)) {
+            AbstractDungeon.actionManager.addToBottom(new PlayDiscardedCardAction(card));
         }
     }
 
@@ -123,22 +128,10 @@ public class AbstractAugmentPlusPatches {
     public static class CardModifierOnUpdateObjectsPatch {
         @SpirePostfixPatch
         public static void Postfix(AbstractRoom __instance) {
-            boolean updated = true;
-            while (updated) {
-                updated = false;
-                for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
-                    for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
-                        if (!(mod instanceof AbstractAugmentPlus)) {
-                            continue;
-                        }
-                        AbstractAugmentPlus augmentPlus = (AbstractAugmentPlus) mod;
-                        if (augmentPlus.onRoomUpdateObjects(card)) {
-                            updated = true;
-                            break;
-                        }
-                    }
-                    if (updated) {
-                        break;
+            for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
+                for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
+                    if (mod instanceof AbstractAugmentPlus) {
+                        ((AbstractAugmentPlus) mod).onRoomUpdateObjects(card);
                     }
                 }
             }

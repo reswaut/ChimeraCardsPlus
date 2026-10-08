@@ -23,9 +23,9 @@
     "NAME": "Regretful",
     "DESCRIPTION": "Lose HP equal to the number of cards in your hand if in your hand at the end of your turn."
   },
-  "${modID}:StrategicPreview": {
-    "NAME": "Strategic",
-    "DESCRIPTION": "Draw 2 cards. NL Exhaust."
+  "${modID}:IntrinsicPreview": {
+    "NAME": "Intrinsic",
+    "DESCRIPTION": "Increases Block by 50%. NL Cannot be transformed or removed from your deck."
   },
   "${modID}:UnawakenedPreview": {
     "NAME": "Unawakened",

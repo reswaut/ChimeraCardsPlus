@@ -33,9 +33,9 @@ public class LabPatches {
 
     private static int calcHpLoss() {
         if (AbstractDungeon.ascensionLevel < 15) {
-            return (int) (AbstractDungeon.player.maxHealth * 0.08F);
+            return Math.max((int) (AbstractDungeon.player.maxHealth * 0.03F), 1);
         }
-        return (int) (AbstractDungeon.player.maxHealth * 0.1F);
+        return Math.max((int) (AbstractDungeon.player.maxHealth * 0.05F), 1);
     }
 
     @SpirePatch(

@@ -13,7 +13,6 @@ public class FillHandAction extends AbstractGameAction {
 
     public FillHandAction(Supplier<AbstractCard> cardProvider) {
         this.cardProvider = cardProvider;
-        actionType = ActionType.SPECIAL;
     }
 
     @Override

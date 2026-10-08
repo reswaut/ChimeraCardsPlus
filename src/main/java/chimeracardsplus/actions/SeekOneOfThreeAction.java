@@ -14,10 +14,6 @@ import java.util.stream.Collectors;
 public class SeekOneOfThreeAction extends AbstractGameAction {
     private boolean first = true;
 
-    public SeekOneOfThreeAction() {
-        actionType = ActionType.CARD_MANIPULATION;
-    }
-
     private static ArrayList<AbstractCard> generateCardChoices() {
         Collection<Integer> derp = new ArrayList<>(Constants.DEFAULT_LIST_SIZE);
         for (int i = Math.min(3, AbstractDungeon.player.drawPile.group.size()); i > 0; --i) {

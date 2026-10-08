@@ -22,13 +22,26 @@ public class DisarmingMod extends AbstractAugmentPlus {
     private static final String[] TEXT = uiStrings.TEXT;
     private static final String[] CARD_TEXT = uiStrings.EXTRA_TEXT;
     private boolean addedExhaust = true, modMagic = false;
+    private int amount;
+
+    public DisarmingMod() {
+        this(0);
+    }
+
+    public DisarmingMod(int amount) {
+        this.amount = amount;
+    }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
         addedExhaust = !card.exhaust;
         card.exhaust = true;
-        if (cardCheck(card, c -> c.baseMagicNumber >= 1 && doesntDowngradeMagic())) {
+        if (cardCheck(card, c -> c.baseMagicNumber >= 2 && doesntDowngradeMagic())) {
             modMagic = true;
+        }
+        AbstractCard copy = makeNewInstance(card);
+        if (copy != null) {
+            amount = copy.cost;
         }
     }
 
@@ -49,7 +62,8 @@ public class DisarmingMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> (c.cost == -1 || c.cost >= 1) && doesntUpgradeCost() && doesntUpgradeExhaust() && (c.baseDamage >= 2 || c.baseBlock >= 2 || c.baseMagicNumber >= 2 && doesntDowngradeMagic()) && usesEnemyTargeting() && !Disarm.ID.equals(c.cardID) && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
+        AbstractCard copy = makeNewInstance(abstractCard);
+        return copy != null && cardCheck(copy, c -> (c.cost == -1 || c.cost >= 1) && doesntUpgradeExhaust() && (c.baseDamage >= 2 || c.baseBlock >= 2 || c.baseMagicNumber >= 2 && doesntDowngradeMagic()) && usesEnemyTargeting() && !Disarm.ID.equals(c.cardID) && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
     }
 
     @Override
@@ -70,22 +84,23 @@ public class DisarmingMod extends AbstractAugmentPlus {
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         String text = "";
-        if (card.cost == -1) {
+        if (amount == -1) {
             text = addedExhaust ? CARD_TEXT[2] : CARD_TEXT[3];
-        } else if (card.cost >= 1) {
-            text = String.format(addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1], card.cost);
+        } else if (amount >= 1) {
+            text = String.format(addedExhaust ? CARD_TEXT[0] : CARD_TEXT[1], amount);
         }
         return insertAfterText(rawDescription, text);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (card.cost == 0 || card.cost <= -2 || target == null) {
+        if (amount == 0 || amount <= -2 || target == null) {
             return;
         }
-        addToBot(new ApplyPowerAction(target, AbstractDungeon.player,
-                new StrengthPower(target, -(card.cost > 0 ? card.cost : card.energyOnUse)),
-                -(card.cost > 0 ? card.cost : card.energyOnUse)));
+        int powerAmount = amount > 0 ? amount : card.energyOnUse;
+        if (powerAmount > 0) {
+            addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new StrengthPower(target, -powerAmount)));
+        }
     }
 
     @Override
@@ -95,7 +110,7 @@ public class DisarmingMod extends AbstractAugmentPlus {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new DisarmingMod();
+        return new DisarmingMod(amount);
     }
 
     @Override

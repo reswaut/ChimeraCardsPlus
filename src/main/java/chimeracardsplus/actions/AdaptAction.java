@@ -11,7 +11,6 @@ public class AdaptAction extends AbstractGameAction {
 
     public AdaptAction(CardType type) {
         this.type = type;
-        actionType = ActionType.CARD_MANIPULATION;
     }
 
     @Override

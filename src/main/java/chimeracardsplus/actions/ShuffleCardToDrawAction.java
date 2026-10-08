@@ -13,10 +13,6 @@ public class ShuffleCardToDrawAction extends AbstractGameAction {
     private static final String[] TEXT = uiStrings.TEXT;
     private boolean first = true;
 
-    public ShuffleCardToDrawAction() {
-        actionType = ActionType.CARD_MANIPULATION;
-    }
-
     @Override
     public void update() {
         if (first) {

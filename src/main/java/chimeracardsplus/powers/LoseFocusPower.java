@@ -26,12 +26,6 @@ public class LoseFocusPower extends AbstractPower {
     }
 
     @Override
-    public void stackPower(int stackAmount) {
-        super.stackPower(stackAmount);
-        updateDescription();
-    }
-
-    @Override
     public void atEndOfTurn(boolean isPlayer) {
         flash();
         addToBot(new ApplyPowerAction(owner, owner, new FocusPower(owner, -amount), -amount));

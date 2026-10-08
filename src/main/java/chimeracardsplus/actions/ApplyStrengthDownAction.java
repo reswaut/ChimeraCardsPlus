@@ -12,7 +12,6 @@ public class ApplyStrengthDownAction extends AbstractGameAction {
     public ApplyStrengthDownAction(AbstractCreature target, int amount) {
         this.target = target;
         this.amount = amount;
-        actionType = ActionType.DEBUFF;
     }
 
     @Override

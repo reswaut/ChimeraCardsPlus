@@ -59,6 +59,11 @@
       "增加 保留"
     ]
   },
+  "${modID}:AddSlyUntilNextTurnAction": {
+    "TEXT": [
+      "增加 奇巧"
+    ]
+  },
   "${modID}:CardByIDFromDeckToHandAction": {
     "TEXT": [
       "选择一张牌放入你的手牌。"
@@ -98,6 +103,11 @@
     "TEXT": [
       "修改牌组中的卡牌",
       "修改卡牌"
+    ]
+  },
+  "${modID}:SlyKeywordMod": {
+    "TEXT": [
+      "${modID}:奇巧 。 NL "
     ]
   }
 }

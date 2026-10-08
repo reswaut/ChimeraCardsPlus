@@ -20,7 +20,6 @@ public class RecycleXAction extends AbstractGameAction {
     public RecycleXAction(AbstractCard card, AbstractCreature target) {
         hiddenCard = card;
         this.target = target;
-        actionType = ActionType.CARD_MANIPULATION;
     }
 
     @Override

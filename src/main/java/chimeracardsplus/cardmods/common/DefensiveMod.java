@@ -21,7 +21,7 @@ public class DefensiveMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return abstractCard.cost >= -1 && (abstractCard.type == CardType.ATTACK || abstractCard.type == CardType.SKILL) && (abstractCard.baseDamage >= 2 || abstractCard.baseBlock >= 2);
+        return abstractCard.cost >= -1 && (abstractCard.baseDamage >= 2 || abstractCard.baseBlock >= 2);
     }
 
     @Override

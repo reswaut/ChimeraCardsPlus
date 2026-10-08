@@ -15,7 +15,6 @@ import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect.ShockWaveType;
 public class ShriekAction extends AbstractGameAction {
     public ShriekAction(int amount) {
         this.amount = amount;
-        actionType = ActionType.DEBUFF;
     }
 
     @Override

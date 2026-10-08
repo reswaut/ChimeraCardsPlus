@@ -91,8 +91,34 @@
   "${modID}:ColossusPower": {
     "NAME": "Colossus",
     "DESCRIPTIONS": [
-      "You receive #b50%% less damage from #yVulnerable enemies for %d turn.",
-      "You receive #b50%% less damage from #yVulnerable enemies for %d turns."
+      "You receive #b50%% less damage from #yVulnerable enemies for #b%d turn.",
+      "You receive #b50%% less damage from #yVulnerable enemies for #b%d turns."
+    ]
+  },
+  "${modID}:SpeedsterPower": {
+    "NAME": "Speedster",
+    "DESCRIPTIONS": [
+      "Whenever you draw a card this turn, deal #b%d damage to ALL enemies."
+    ]
+  },
+  "${modID}:CorrosiveWavePower": {
+    "NAME": "Corrosive Wave",
+    "DESCRIPTIONS": [
+      "Whenever you draw a card this turn, apply #b%d #yPoison to ALL enemies."
+    ]
+  },
+  "${modID}:ShadowmeldPower": {
+    "NAME": "Shadowmeld",
+    "DESCRIPTIONS": [
+      "Double your #yBlock gain this turn.",
+      "Double your #yBlock gain this turn #b%d times."
+    ]
+  },
+  "${modID}:DebilitatePower": {
+    "NAME": "Debilitate",
+    "DESCRIPTIONS": [
+      "#yVulnerable and #yWeak are twice as effective for #b%d turn.",
+      "#yVulnerable and #yWeak are twice as effective for #b%d turns."
     ]
   }
 }

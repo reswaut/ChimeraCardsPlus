@@ -28,12 +28,6 @@ public class RetributionPower extends AbstractPower {
     }
 
     @Override
-    public void stackPower(int stackAmount) {
-        super.stackPower(stackAmount);
-        updateDescription();
-    }
-
-    @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
         if (info.owner != null && info.type != DamageType.THORNS && info.type != DamageType.HP_LOSS && !info.owner.equals(owner)) {
             flash();

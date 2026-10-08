@@ -12,6 +12,7 @@ import chimeracardsplus.powers.DoomPower;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.lib.Matcher.MethodCallMatcher;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -25,7 +26,9 @@ import com.megacrit.cardcrawl.ui.panels.TopPanel;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 
 @SpireInitializer
 public class GameActionInfoManager implements
@@ -39,56 +42,25 @@ public class GameActionInfoManager implements
     private boolean exhaustedCardThisTurn = false;
     private int drawPileShufflesThisCombat = 0;
     private int timesHPLostThisCombat = 0;
+    private final Collection<AbstractGameAction> queuedPlayerTurnStartActions = new ArrayList<>(Constants.DEFAULT_LIST_SIZE);
+
+    private static void preDiscardPotion(AbstractPotion potion) {
+        for (CardGroup group : Arrays.asList(AbstractDungeon.player.masterDeck, AbstractDungeon.player.drawPile, AbstractDungeon.player.hand, AbstractDungeon.player.discardPile, AbstractDungeon.player.exhaustPile)) {
+            for (AbstractCard card : group.group) {
+                for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
+                    if (mod instanceof AbstractAugmentPlus) {
+                        ((AbstractAugmentPlus) mod).preDiscardPotion(card, group, potion);
+                    }
+                }
+            }
+        }
+    }
 
     public static void initialize() {
     }
 
-    private static boolean onUsePotion(AbstractCard card, CardGroup group, AbstractPotion potion) {
-        for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
-            if (mod instanceof AbstractAugmentPlus) {
-                if (((AbstractAugmentPlus) mod).onUsePotion(card, group, potion)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private static void preDiscardPotion(AbstractPotion potion) {
-        for (CardGroup group : Arrays.asList(AbstractDungeon.player.masterDeck, AbstractDungeon.player.drawPile, AbstractDungeon.player.hand, AbstractDungeon.player.discardPile, AbstractDungeon.player.exhaustPile)) {
-            boolean modified;
-            do {
-                modified = false;
-                for (AbstractCard card : group.group) {
-                    if (preDiscardPotion(card, group, potion)) {
-                        modified = true;
-                        break;
-                    }
-                }
-            } while (modified);
-        }
-    }
-
-    private static boolean preDiscardPotion(AbstractCard card, CardGroup group, AbstractPotion potion) {
-        for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
-            if (mod instanceof AbstractAugmentPlus) {
-                if (((AbstractAugmentPlus) mod).preDiscardPotion(card, group, potion)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private static boolean onShuffle(AbstractCard card, CardGroup group) {
-        for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
-            if (mod instanceof AbstractAugmentPlus) {
-                if (((AbstractAugmentPlus) mod).onShuffle(card, group)) {
-                    return true;
-                }
-            }
-        }
-        return false;
+    public void queuePlayerTurnStartAction(AbstractGameAction action) {
+        queuedPlayerTurnStartActions.add(action);
     }
 
     @Override
@@ -100,6 +72,7 @@ public class GameActionInfoManager implements
         drawPileShufflesThisCombat = 0;
         timesHPLostThisCombat = 0;
         AbstractDungeon.player.addPower(new ChimeraCardsPlusHelperPower(AbstractDungeon.player));
+        queuedPlayerTurnStartActions.clear();
     }
 
     @Override
@@ -108,22 +81,23 @@ public class GameActionInfoManager implements
         usedPotionThisTurn = false;
         appliedDoomThisTurn = false;
         exhaustedCardThisTurn = false;
+        for (AbstractGameAction action : queuedPlayerTurnStartActions) {
+            AbstractDungeon.actionManager.addToBottom(action);
+        }
+        queuedPlayerTurnStartActions.clear();
     }
 
     @Override
     public void receivePostPotionUse(AbstractPotion abstractPotion) {
         usedPotionThisTurn = true;
         for (CardGroup group : Arrays.asList(AbstractDungeon.player.masterDeck, AbstractDungeon.player.drawPile, AbstractDungeon.player.hand, AbstractDungeon.player.discardPile, AbstractDungeon.player.exhaustPile)) {
-            boolean modified;
-            do {
-                modified = false;
-                for (AbstractCard card : group.group) {
-                    if (onUsePotion(card, group, abstractPotion)) {
-                        modified = true;
-                        break;
+            for (AbstractCard card : group.group) {
+                for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
+                    if (mod instanceof AbstractAugmentPlus) {
+                        ((AbstractAugmentPlus) mod).onUsePotion(card, group, abstractPotion);
                     }
                 }
-            } while (modified);
+            }
         }
     }
 
@@ -148,17 +122,13 @@ public class GameActionInfoManager implements
     public void onShuffle() {
         drawPileShufflesThisCombat += 1;
         for (CardGroup group : Arrays.asList(AbstractDungeon.player.masterDeck, AbstractDungeon.player.drawPile, AbstractDungeon.player.hand, AbstractDungeon.player.discardPile, AbstractDungeon.player.exhaustPile)) {
-
-            boolean modified;
-            do {
-                modified = false;
-                for (AbstractCard card : group.group) {
-                    if (onShuffle(card, group)) {
-                        modified = true;
-                        break;
+            for (AbstractCard card : group.group) {
+                for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
+                    if (mod instanceof AbstractAugmentPlus) {
+                        ((AbstractAugmentPlus) mod).onShuffle(card, group);
                     }
                 }
-            } while (modified);
+            }
         }
     }
 

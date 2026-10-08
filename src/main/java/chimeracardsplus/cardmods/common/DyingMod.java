@@ -20,7 +20,7 @@ public class DyingMod extends AbstractAugmentPlus {
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return block * 0.75F;
+        return block * 0.8F;
     }
 
     @Override

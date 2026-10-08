@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 public class LoseMaxHpAction extends AbstractGameAction {
     public LoseMaxHpAction(int amount) {
         this.amount = amount;
+        actionType = ActionType.DAMAGE;
     }
 
     @Override

@@ -23,13 +23,13 @@
     "NAME": "悔恨",
     "DESCRIPTION": "在你的回合结束时，如果在你的手牌中，失去手牌数的生命。"
   },
-  "${modID}:StrategicPreview": {
-    "NAME": "战略",
-    "DESCRIPTION": "抽 2 张牌。 NL 消耗 。"
+  "${modID}:IntrinsicPreview": {
+    "NAME": "内在",
+    "DESCRIPTION": "获得的 格挡 增加 50% 。 NL 不能从你的牌组 变化 或 移除 。"
   },
   "${modID}:UnawakenedPreview": {
     "NAME": "未觉醒",
-    "DESCRIPTION": "被变化或移除后觉醒。"
+    "DESCRIPTION": "被 变化 或 移除 后觉醒。"
   },
   "${modID}:Amplify": {
     "DESCRIPTION": "{@@}在这个回合，你的下 {!M!|@=!M!|1=一} 张 能力牌 会打出两次。",

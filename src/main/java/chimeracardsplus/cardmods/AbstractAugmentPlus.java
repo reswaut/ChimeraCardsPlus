@@ -100,20 +100,16 @@ public abstract class AbstractAugmentPlus extends AbstractAugment {
     public void onRemoveFromMasterDeck(AbstractCard card) {
     }
 
-    public boolean onRoomUpdateObjects(AbstractCard card) {
-        return false;
+    public void onRoomUpdateObjects(AbstractCard card) {
     }
 
-    public boolean onUsePotion(AbstractCard card, CardGroup group, AbstractPotion potion) {
-        return false;
+    public void onUsePotion(AbstractCard card, CardGroup group, AbstractPotion potion) {
     }
 
-    public boolean preDiscardPotion(AbstractCard card, CardGroup group, AbstractPotion potion) {
-        return false;
+    public void preDiscardPotion(AbstractCard card, CardGroup group, AbstractPotion potion) {
     }
 
-    public boolean onShuffle(AbstractCard card, CardGroup group) {
-        return false;
+    public void onShuffle(AbstractCard card, CardGroup group) {
     }
 
     public enum AugmentBonusLevel {

@@ -59,6 +59,11 @@
       "Add Retain"
     ]
   },
+  "${modID}:AddSlyUntilNextTurnAction": {
+    "TEXT": [
+      "Add Sly"
+    ]
+  },
   "${modID}:CardByIDFromDeckToHandAction": {
     "TEXT": [
       "Choose a Card to Add to Your Hand."
@@ -98,6 +103,11 @@
     "TEXT": [
       "Modify cards in your deck",
       "Modify Cards"
+    ]
+  },
+  "${modID}:SlyKeywordMod": {
+    "TEXT": [
+      "${modID}:Sly. NL "
     ]
   }
 }

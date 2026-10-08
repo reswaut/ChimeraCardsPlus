@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 public class ExhaustTopOfDrawPileAction extends AbstractGameAction {
     public ExhaustTopOfDrawPileAction(int numCards) {
         amount = numCards;
-        actionType = ActionType.EXHAUST;
     }
 
     @Override

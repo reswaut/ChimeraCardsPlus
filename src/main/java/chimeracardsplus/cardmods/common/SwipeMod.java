@@ -23,7 +23,7 @@ public class SwipeMod extends AbstractAugmentPlus {
 
     @Override
     public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage * 0.75F;
+        return damage * 0.8F;
     }
 
     @Override

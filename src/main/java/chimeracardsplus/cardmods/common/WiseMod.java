@@ -7,7 +7,6 @@ import chimeracardsplus.cardmods.AbstractAugmentPlus;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.cards.tempCards.Insight;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -28,17 +27,17 @@ public class WiseMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return cardCheck(abstractCard, c -> (c.cost == -1 || c.cost >= 1) && doesntUpgradeCost() && (c.baseDamage >= 2 || c.baseBlock >= 2 || c.baseMagicNumber >= 2) && (c.type == CardType.ATTACK || c.type == CardType.SKILL));
+        return abstractCard.cost >= -1 && (abstractCard.baseDamage >= 2 || abstractCard.baseBlock >= 2);
     }
 
     @Override
     public float modifyBaseDamage(float damage, DamageType type, AbstractCard card, AbstractMonster target) {
-        return damage > 0.0F ? damage * 0.75F : damage;
+        return damage > 0.0F ? damage * 0.8F : damage;
     }
 
     @Override
     public float modifyBaseBlock(float block, AbstractCard card) {
-        return block > 0.0F ? block * 0.75F : block;
+        return block > 0.0F ? block * 0.8F : block;
     }
 
     @Override
@@ -58,24 +57,12 @@ public class WiseMod extends AbstractAugmentPlus {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        int cost = card.cost;
-        String text = "";
-        if (cost == -1) {
-            text = CARD_TEXT[2];
-        } else if (cost == 1) {
-            text = CARD_TEXT[0];
-        } else if (cost > 1) {
-            text = String.format(CARD_TEXT[1], cost);
-        }
-        return insertAfterText(rawDescription, text);
+        return insertAfterText(rawDescription, CARD_TEXT[0]);
     }
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        if (card.cost == 0 || card.cost <= -2) {
-            return;
-        }
-        addToBot(new MakeTempCardInDrawPileAction(new Insight(), card.cost > 0 ? card.cost : card.energyOnUse, true, true));
+        addToBot(new MakeTempCardInDrawPileAction(new Insight(), 1, true, true));
     }
 
     @Override

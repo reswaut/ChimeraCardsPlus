@@ -21,10 +21,6 @@ public class AddRetainAction extends AbstractGameAction {
     private final Collection<AbstractCard> cannotChoose = new ArrayList<>(Constants.DEFAULT_LIST_SIZE);
     private boolean first = true;
 
-    public AddRetainAction() {
-        actionType = ActionType.CARD_MANIPULATION;
-    }
-
     @Override
     public void update() {
         if (first) {

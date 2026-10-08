@@ -28,12 +28,6 @@ public class TempStaticDischargePower extends AbstractPower {
     }
 
     @Override
-    public void stackPower(int stackAmount) {
-        super.stackPower(stackAmount);
-        updateDescription();
-    }
-
-    @Override
     public void wasHPLost(DamageInfo info, int damageAmount) {
         if (info.owner != null && info.type != DamageType.THORNS && info.type != DamageType.HP_LOSS && !info.owner.equals(owner) && damageAmount > 0) {
             flash();

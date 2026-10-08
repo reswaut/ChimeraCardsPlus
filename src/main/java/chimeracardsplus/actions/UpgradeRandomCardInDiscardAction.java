@@ -8,10 +8,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 
 public class UpgradeRandomCardInDiscardAction extends AbstractGameAction {
-    public UpgradeRandomCardInDiscardAction() {
-        actionType = ActionType.CARD_MANIPULATION;
-    }
-
     @Override
     public void update() {
         CardGroup upgradeable = new CardGroup(CardGroupType.UNSPECIFIED);

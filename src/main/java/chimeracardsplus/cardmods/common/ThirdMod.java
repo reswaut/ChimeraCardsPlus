@@ -29,7 +29,7 @@ public class ThirdMod extends AbstractAugmentPlus {
 
     @Override
     public boolean validCard(AbstractCard abstractCard) {
-        return (abstractCard.baseDamage >= 2 || abstractCard.baseBlock >= 2) && abstractCard.cost >= -1 && (abstractCard.type == CardType.ATTACK || abstractCard.type == CardType.SKILL);
+        return abstractCard.cost >= -1 && (abstractCard.type == CardType.ATTACK || abstractCard.type == CardType.SKILL) && (abstractCard.baseDamage >= 2 || abstractCard.baseBlock >= 2 || abstractCard.baseMagicNumber >= 2 && doesntDowngradeMagic());
     }
 
     @Override

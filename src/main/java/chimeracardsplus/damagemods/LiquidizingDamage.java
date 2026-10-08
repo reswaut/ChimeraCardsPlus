@@ -1,9 +1,11 @@
 package chimeracardsplus.damagemods;
 
-import chimeracardsplus.actions.ObtainLiquidizingPotionAction;
 import com.evacipated.cardcrawl.mod.stslib.damagemods.AbstractDamageModifier;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.ActionType;
+import com.megacrit.cardcrawl.actions.common.ObtainPotionAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class LiquidizingDamage extends CardModifierDamageModifier {
     @Override
@@ -11,7 +13,9 @@ public class LiquidizingDamage extends CardModifierDamageModifier {
         if (!dealtFatalDamage(info, lastDamageTaken, overkillAmount, target)) {
             return;
         }
-        addToBot(new ObtainLiquidizingPotionAction());
+        ObtainPotionAction action = new ObtainPotionAction(AbstractDungeon.returnRandomPotion(true));
+        action.actionType = ActionType.DAMAGE;
+        addToBot(action);
     }
 
     @Override
